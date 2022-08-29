@@ -18,7 +18,7 @@ endef
 .PHONY: format
 format:
 	@ echo "# Format source files with 'latexindent'."
-	@ scripts/latexindent.exe --overwrite src/*.tex
+	@ scripts/latexindent.exe --cruft=temp --logfile=latexindent.log --overwrite src/*.tex
 
 .PHONY: pdf
 pdf:
