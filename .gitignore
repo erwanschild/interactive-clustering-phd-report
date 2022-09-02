@@ -1,5 +1,12 @@
-## Core latex/pdflatex auxiliary files:
+## Temporary folder
 temp/*
+
+## Template
+thesul/*
+TUL/*
+thesul.zip
+
+## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
 *.log
