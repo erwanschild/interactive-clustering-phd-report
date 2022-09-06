@@ -249,10 +249,10 @@ specialBeginEnd:
 indentAfterHeadings:
   Annexes:
     indentAfterThisHeading: 1
-    level: 1
+    level: 2
   Annex:
     indentAfterThisHeading: 1
-    level: 2
+    level: 3
   part:
     indentAfterThisHeading: 1
     level: 1
