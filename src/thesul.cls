@@ -1154,15 +1154,7 @@
         \markboth{}{}
         \def\@abstr@ct@beginning##1##2{
     \section*{\@title@lignment ##1}
-        \@abstract@hook{##1}
-        \if@tocswitch
-            \DontFrameThisInToc
-            \if@classic@section
-                \addcontentsline{toc}{tulstarchapter}{##1}
-            \else
-                \addcontentsline{toc}{spsection}{##1}
-            \fi
-        \fi
+        \addcontentsline{toc}{spsection}{##1}
         \reset@numbertocswitch
         \reset@frame@switch
         \def\KeyWords####1{\par\bigskip\noindent\textbf{##2:} ####1\par}
@@ -1216,16 +1208,7 @@
         \newenvironment{ThesisAcknowledgments}
         {\@newdoublepage
     \section*{\@title@lignment\AcknowledgmentName}
-        \@acknowledgment@hook
-        \@mkboth{}{}
-        \if@tocswitch
-            \if@classic@section
-                \global\@classic@sectionfalse
-                \addcontentsline{toc}{tulstarchapter}{\AcknowledgmentName}
-            \else
-                \addcontentsline{toc}{spsection}{\AcknowledgmentName}
-            \fi
-        \fi
+        \addcontentsline{toc}{spsection}{\AcknowledgmentName}
         \reset@numbertocswitch
         \reset@frame@switch
         \global\@tocswitchfalse
@@ -1443,9 +1426,9 @@
             \let\item\@idxitem}
         {\onecolumn}
         \newcommand\PrintGlossary{\@input@{\jobname.gls}}
-        \if@dont@load@french
-            \def\glossaryname{Glossary}
-        \fi
+        \def\glossaryname{Glossaire}
+        \def\glossarytitle{Glossaire}
+        \def\glossarytoctitle{Glossaire}
         \newcommand{\glogobble}[1]{}
         \newcommand{\Glossary}[3][]{\glossary{#1#2@{\textbf{#2}} : #3|glogobble}}
         \newcommand\@Bib@Introduction{}
@@ -1555,194 +1538,194 @@
         \newif\if@nnex@in@l@stp@rt
         \@nnex@in@l@stp@rtfalse
         \newcommand\Annexe{\global\@nnex@in@l@stp@rttrue
-            \@TULann{\appendixname}}
-        \newcommand\Annexes{\global\@nnex@in@l@stp@rttrue
-            \@TULann{\appendixname s}}
-        \newcommand{\@tulann@hook}[1]{}
-        \newcommand{\@tulann@lasthook}[1]{}
-        \def\@TULann#1{
-            \par
-            \setcounter{section}{0}
-            \def\@chapapp{\appendixname}\def\thechapter{\Alph{annex}}
-            \cleardoublepage
-            \@tulann@hook{#1}
-            \addcontentsline{toc}{tulstarchapter}{\protect#1}
-            \@tulann@lasthook{#1}
-        }
-        \newcommand{\ThesisDraft}{
-            \if@draft
-            \else
-                \pagestyle{thesisdraft}
-                \@drafttrue
-                \let\@old@ps=\pagestyle
-                \def\pagestyle##1{
-                    \@old@ps{##1}
-                    \if@draft
-                        \@old@ps{thesisdraft}
-                    \fi
-                }
-            \fi
-        }
-        \newcount\tul@hour \newcount\tul@minute
-        \tul@hour=\time  \divide \tul@hour by 60
-        \tul@minute=\time
-        \loop \ifnum \tul@minute > 59 \advance \tul@minute by -60 \repeat
-        \newcommand\now{\number\tul@hour\ h
-            \ifnum \tul@minute<10 0\fi
-            \number\tul@minute
-        }
-        \newcommand\@le@pye@r{
-            \def\@leapye@rcorrection{\count6 }
-            \def\@scratch{\count8 }
-            \@leapye@rcorrection=0\relax
-            \ifnum\@month>2\relax
-                \@scratch\@year
-                \divide\@scratch4\multiply\@scratch4\relax
-                \ifnum\@scratch=\@year
-                    \divide\@scratch100\multiply\@scratch100\relax
+                \@TULann{\appendixname}}
+            \newcommand\Annexes{\global\@nnex@in@l@stp@rttrue
+                \@TULann{\appendixname s}}
+            \newcommand{\@tulann@hook}[1]{}
+            \newcommand{\@tulann@lasthook}[1]{}
+            \def\@TULann#1{
+                \par
+                \setcounter{section}{0}
+                \def\@chapapp{\appendixname}\def\thechapter{\Alph{annex}}
+                \cleardoublepage
+                \@tulann@hook{#1}
+                \addcontentsline{toc}{tulstarchapter}{\protect#1}
+                \@tulann@lasthook{#1}
+            }
+            \newcommand{\ThesisDraft}{
+                \if@draft
+                \else
+                    \pagestyle{thesisdraft}
+                    \@drafttrue
+                    \let\@old@ps=\pagestyle
+                    \def\pagestyle##1{
+                        \@old@ps{##1}
+                        \if@draft
+                            \@old@ps{thesisdraft}
+                        \fi
+                    }
+                \fi
+            }
+            \newcount\tul@hour \newcount\tul@minute
+            \tul@hour=\time  \divide \tul@hour by 60
+            \tul@minute=\time
+            \loop \ifnum \tul@minute > 59 \advance \tul@minute by -60 \repeat
+            \newcommand\now{\number\tul@hour\ h
+                \ifnum \tul@minute<10 0\fi
+                \number\tul@minute
+            }
+            \newcommand\@le@pye@r{
+                \def\@leapye@rcorrection{\count6 }
+                \def\@scratch{\count8 }
+                \@leapye@rcorrection=0\relax
+                \ifnum\@month>2\relax
+                    \@scratch\@year
+                    \divide\@scratch4\multiply\@scratch4\relax
                     \ifnum\@scratch=\@year
-                        \divide\@scratch400 \multiply\@scratch400\relax
+                        \divide\@scratch100\multiply\@scratch100\relax
                         \ifnum\@scratch=\@year
-                            \@leapye@rcorrection=1\relax
+                            \divide\@scratch400 \multiply\@scratch400\relax
+                            \ifnum\@scratch=\@year
+                                \@leapye@rcorrection=1\relax
+                            \else
+                                \@leapye@rcorrection=0\relax
+                            \fi
                         \else
-                            \@leapye@rcorrection=0\relax
+                            \@leapye@rcorrection=1\relax
                         \fi
                     \else
-                        \@leapye@rcorrection=1\relax
+                        \@leapye@rcorrection=0\relax
                     \fi
-                \else
-                    \@leapye@rcorrection=0\relax
                 \fi
+            }
+            \newcommand\@weekday{
+                \@le@pye@r
+                \advance\@year-1201\relax
+                \def\@dayselapsed{\count10 }
+                \@dayselapsed=\@year
+                \multiply\@dayselapsed365\relax
+                \@scratch\@year
+                \divide\@scratch4
+                \advance\@dayselapsed\@scratch\relax
+                \@scratch\@year
+                \divide\@scratch100
+                \advance\@dayselapsed-\@scratch\relax
+                \@scratch\@year
+                \divide\@scratch400
+                \advance\@dayselapsed\@scratch
+                \advance\@dayselapsed
+                \ifcase\@month\or
+                    0\relax\or   31\relax\or  59\relax\or   90\relax\or
+                    120\relax\or  151\relax\or 181\relax\or  212\relax\or
+                    243\relax\or  273\relax\or 304\relax\or  334\relax
+                \fi
+                \advance\@dayselapsed\@day
+                \advance\@dayselapsed\@leapye@rcorrection
+                \@scratch=-\@dayselapsed
+                \divide\@scratch7\relax
+                \multiply\@scratch7\relax
+                \advance\@dayselapsed\@scratch
+            }
+            \newcommand\@day@of@week{}
+            \newcommand\WeekDay[3]{  % jour 1--31, mois 1--12,  annee
+                \@WeekDay{#1}{#2}{#3}
+                \@day@of@week
+            }
+            \newcommand\@WeekDay[3]{  % jour 1--31, mois 1--12,  annee
+                {
+                        \def\@day{\count0 }
+                        \def\@month{\count2 }
+                        \def\@year{\count4 }
+                        \@day=#1\relax
+                        \@month=#2\relax
+                        \@year=#3\relax
+                        \@weekday
+                        \xdef\@day@of@week{
+                            \ifcase\@dayselapsed
+                                dimanche\or
+                                lundi\or
+                                mardi\or
+                                mercredi\or
+                                jeudi\or
+                                vendredi\or
+                                samedi
+                            \fi}
+                    }
+            }
+            \newcommand\@timest@mp{}
+            \newcommand\TimeStamp{
+                \long\def\@empty{}
+                \ifx\@timest@mp\@empty
+                    \@WeekDay{\day}{\month}{\year}
+                    \let\@@protect=\protect
+                    \def\protect{\noexpand\protect\noexpand}
+                    \xdef\@timest@mp{\@day@of@week\ \today\ \`a \now}
+                    \let\protect=\@@protect
+                \fi
+                \def\@empty{}
+                \@timest@mp
+            }
+            \newcommand\not@implemented{
+                \message{***You tried to use a command******^^J}
+                \message{***which has not yet been implemented.***^^J}
+            }
+            \newcommand{\TUL}{{\normalfont\textsf{thesul}}}
+            \errorcontextlines5
+            \ifx\@removefromreset\undefined
+                \newcommand\@removefromreset[2]{\let\@tempb\@elt
+                    \def\@tempa#1{@&#1}\expandafter\let\csname @*#1*\endcsname\@tempa
+                    \def\@elt##1{\expandafter\ifx\csname @*##1*\endcsname\@tempa\else
+                            \noexpand\@elt{##1}\fi}
+                    \expandafter\xdef\csname cl@#2\endcsname{\csname cl@#2\endcsname}
+                    \let\@elt\@tempb
+                    \expandafter\let\csname @*#1*\endcsname\@undefined}
             \fi
-        }
-        \newcommand\@weekday{
-            \@le@pye@r
-            \advance\@year-1201\relax
-            \def\@dayselapsed{\count10 }
-            \@dayselapsed=\@year
-            \multiply\@dayselapsed365\relax
-            \@scratch\@year
-            \divide\@scratch4
-            \advance\@dayselapsed\@scratch\relax
-            \@scratch\@year
-            \divide\@scratch100
-            \advance\@dayselapsed-\@scratch\relax
-            \@scratch\@year
-            \divide\@scratch400
-            \advance\@dayselapsed\@scratch
-            \advance\@dayselapsed
-            \ifcase\@month\or
-                0\relax\or   31\relax\or  59\relax\or   90\relax\or
-                120\relax\or  151\relax\or 181\relax\or  212\relax\or
-                243\relax\or  273\relax\or 304\relax\or  334\relax
-            \fi
-            \advance\@dayselapsed\@day
-            \advance\@dayselapsed\@leapye@rcorrection
-            \@scratch=-\@dayselapsed
-            \divide\@scratch7\relax
-            \multiply\@scratch7\relax
-            \advance\@dayselapsed\@scratch
-        }
-        \newcommand\@day@of@week{}
-        \newcommand\WeekDay[3]{  % jour 1--31, mois 1--12,  annee
-            \@WeekDay{#1}{#2}{#3}
-            \@day@of@week
-        }
-        \newcommand\@WeekDay[3]{  % jour 1--31, mois 1--12,  annee
-            {
-                    \def\@day{\count0 }
-                    \def\@month{\count2 }
-                    \def\@year{\count4 }
-                    \@day=#1\relax
-                    \@month=#2\relax
-                    \@year=#3\relax
-                    \@weekday
-                    \xdef\@day@of@week{
-                        \ifcase\@dayselapsed
-                            dimanche\or
-                            lundi\or
-                            mardi\or
-                            mercredi\or
-                            jeudi\or
-                            vendredi\or
-                            samedi
-                        \fi}
-                }
-        }
-        \newcommand\@timest@mp{}
-        \newcommand\TimeStamp{
-            \long\def\@empty{}
-            \ifx\@timest@mp\@empty
-                \@WeekDay{\day}{\month}{\year}
-                \let\@@protect=\protect
-                \def\protect{\noexpand\protect\noexpand}
-                \xdef\@timest@mp{\@day@of@week\ \today\ \`a \now}
-                \let\protect=\@@protect
-            \fi
-            \def\@empty{}
-            \@timest@mp
-        }
-        \newcommand\not@implemented{
-            \message{***You tried to use a command******^^J}
-            \message{***which has not yet been implemented.***^^J}
-        }
-        \newcommand{\TUL}{{\normalfont\textsf{thesul}}}
-        \errorcontextlines5
-        \ifx\@removefromreset\undefined
-            \newcommand\@removefromreset[2]{\let\@tempb\@elt
-                \def\@tempa#1{@&#1}\expandafter\let\csname @*#1*\endcsname\@tempa
-                \def\@elt##1{\expandafter\ifx\csname @*##1*\endcsname\@tempa\else
-                        \noexpand\@elt{##1}\fi}
-                \expandafter\xdef\csname cl@#2\endcsname{\csname cl@#2\endcsname}
-                \let\@elt\@tempb
-                \expandafter\let\csname @*#1*\endcsname\@undefined}
-        \fi
-        \newcommand\ResetChaptersAtParts{
-            \@addtoreset{chapter}{part}
-            \@addtoreset{annex}{part}
-        }
-        \@removefromreset{footnote}{chapter}
-        \newcommand\ResetFootnotesAtChapters{
-            \@addtoreset{footnote}{chapter}
-            \@addtoreset{footnote}{annex}
-        }
-        \newif\if@equations@continuous
-        \newif\if@figures@continuous
-        \newif\if@tables@continuous
-        \newcommand\ContinuousNumbering[1]{
-            \@removefromreset{#1}{chapter}
-            \csname @#1s@continuoustrue\endcsname
-        }
-        \newcommand\@redefGOfrench{
-            \ifx\GOfrench\undefined
-            \else
-                \let\TUL@GOfrench\GOfrench
-                \gdef\GOfrench{\TUL@GOfrench
-                    \@removefromreset{chapter}{part}
-                }
-            \fi
-        }
-        \AtBeginDocument{\@redefGOfrench}
-        \newcounter {annex}
-        \def\theannex{\thechapter}
-        \@addtoreset{section}{annex}
-        \@addtoreset{equation}{annex}
-        \@addtoreset{figure}{annex}
-        \@addtoreset{table}{annex}
-        \newcommand\Annex{
-            \if@openright\cleardoublepage\else\clearpage\fi
-            \thispagestyle{\@chapter@ps}
-            \global\@topnum\z@
-            \@afterindentfalse
-            \gdef\@chapapp{\appendixname}
-            \gdef\thechapter{\Alph{annex}}
-            \secdef\@annex\@sannex
-        }
-        \def\@annex[#1]#2{\ifx\dominitoc\@undefined\else\stepcounter{mtc}\fi
-            \@generic@chapter{annex}[#1]{#2}}
-        \newcommand\@sannex[1]{\@generic@schapter{annex}[#1]}
-        \endinput
+            \newcommand\ResetChaptersAtParts{
+                \@addtoreset{chapter}{part}
+                \@addtoreset{annex}{part}
+            }
+            \@removefromreset{footnote}{chapter}
+            \newcommand\ResetFootnotesAtChapters{
+                \@addtoreset{footnote}{chapter}
+                \@addtoreset{footnote}{annex}
+            }
+            \newif\if@equations@continuous
+            \newif\if@figures@continuous
+            \newif\if@tables@continuous
+            \newcommand\ContinuousNumbering[1]{
+                \@removefromreset{#1}{chapter}
+                \csname @#1s@continuoustrue\endcsname
+            }
+            \newcommand\@redefGOfrench{
+                \ifx\GOfrench\undefined
+                \else
+                    \let\TUL@GOfrench\GOfrench
+                    \gdef\GOfrench{\TUL@GOfrench
+                        \@removefromreset{chapter}{part}
+                    }
+                \fi
+            }
+            \AtBeginDocument{\@redefGOfrench}
+            \newcounter {annex}
+            \def\theannex{\thechapter}
+            \@addtoreset{section}{annex}
+            \@addtoreset{equation}{annex}
+            \@addtoreset{figure}{annex}
+            \@addtoreset{table}{annex}
+            \newcommand\Annex{
+                \if@openright\cleardoublepage\else\clearpage\fi
+                \thispagestyle{\@chapter@ps}
+                \global\@topnum\z@
+                \@afterindentfalse
+                \gdef\@chapapp{\appendixname}
+                \gdef\thechapter{\Alph{annex}}
+                \secdef\@annex\@sannex
+            }
+            \def\@annex[#1]#2{\ifx\dominitoc\@undefined\else\stepcounter{mtc}\fi
+                \@generic@chapter{annex}[#1]{#2}}
+            \newcommand\@sannex[1]{\@generic@schapter{annex}[#1]}
+            \endinput
 
-        %%
-        %% End of file `thesul.cls'.
-        %%
+            %%
+            %% End of file `thesul.cls'.
+            %%

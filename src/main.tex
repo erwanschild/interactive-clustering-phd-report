@@ -34,11 +34,21 @@
 %%% Pour une bibliographie au styme 'named':
 % \usepackage{named}
 
+%%% Pour les tableaux:
+% \usepackage{array}
+% \usepackage{multirow}
+
 %%% Pour les figures:
 \usepackage{graphicx}
 
+%%% Pour les algorithmes:
+\usepackage{algorithm}
+
 %%% Pour les mini-tables des matières:
 \usepackage[french]{minitoc}
+
+%%% Pour le glossaire:
+\usepackage{glossaries}
 
 
 %%%%%--------------------------------------------------------------------
@@ -67,8 +77,8 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Enlever les numéro et préfix des chapitres:
-% \NoChapterNumberInRef
-% \NoChapterPrefix
+\NoChapterNumberInRef
+\NoChapterPrefix
 
 %%% Faire un glossaire:
 \makeglossary
@@ -84,7 +94,6 @@
 \begin{document}
 
 %%% Pour définir le style de pages:
-\FramePartsInToc
 \OddHead={{\leftmark\rightmark}{\hfil\slshape\rightmark}}
 \EvenHead={{\leftmark}{{\slshape\leftmark}\hfil}}
 \OddFoot={\hfil\thepage}
@@ -92,30 +101,49 @@
 \pagestyle{ThesisHeadingsII}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Encadrement des partie set des chapitres
+%%%%% Paramétrage de la table des matières (encadrement, numérotation, ...)
 %%%%%--------------------------------------------------------------------
+
+%%% Ecrire "Partie" dans la table des matières:
+% \WritePartLabelInToc
+%%% Ecrire "Chapitre" dans la table des matières:
+% \WriteChapterLabelInToc
+%%% Ajouter ou non le prochain titre à la table des matières:
+% \WriteThisInToc
+% \DontWriteThisInToc
+
+%%% Ajouter une ligne ou un saut de page dans la table des matières:
+% \PutLineInToc
+% \PutNewPageInToc
 
 %%% Pour encadrer encadre les parties dans la table des matières:
 %%% (nb: ces commandes doivent figurer apres \begin{document})
-\FramePartsInToc
-
+% \FramePartsInToc
+\DontFramePartsInToc
 %%% Pour encadrer encadre les chapitres dans la table des matières:
 %%% (nb: ces commandes doivent figurer apres \begin{document})
-% \FrameChaptersInToc
+\FrameChaptersInToc
+% \DontFrameChaptersInToc
+%%% Encadrer ou non le prochain titre:
+% \FrameThisInToc
+% \DontFrameThisInToc
 
-%-------------------------------------------------------------------
-%            Réinitialisation de la numérotation des chapitres
-%-------------------------------------------------------------------
+%%% Pour réinitialiser la numérotation des chapitres à chaque partie:
+%%% (nb: ces commandes doivent figurer apres \begin{document})
+\ResetChaptersAtParts
+%%% Numéroter ou non le prochain titre dans la table des matières:
+% \NumberThisInToc
+% \DontNumberThisInToc
 
-% Si la commande suivante est présente, elle doit figurer APRÈS '\begin{document}' et avant la première commande '\part':
-% \ResetChaptersAtParts
+%%%%%--------------------------------------------------------------------
+%%%%% Mini-table des matières à chaque chapitre
+%%%%%--------------------------------------------------------------------
 
-%-------------------------------------------------------------------
-%               mini-tables des matières par chapitre
-%-------------------------------------------------------------------
-
-% Préparer les mini-tables des matières par chapitre (commande de minitoc.sty):
+%%% Préparer les mini-tables des matières par chapitre (commande de minitoc.sty):
 \dominitoc
+
+%%% Créer une mini table du chapitre à cet endroit:
+% \minitoc
 
 %%%%%--------------------------------------------------------------------
 %%%%% Page de titre
@@ -156,9 +184,33 @@ Dr. Florian MICONI
 \MakeThesisTitlePage
 
 %%%%%--------------------------------------------------------------------
+%%%%% Abstract
+%%%%%--------------------------------------------------------------------
+
+%%% (si le résumé apparaît sur une colonne étroite, avec la bibliographie à gauche, c'est sans doute parce que vous avez oublié de générer les fichiers d'index et de glossaire...)
+
+\NumberAbstractPages
+\begin{ThesisAbstract}
+
+    %%% Abstract en français
+    \begin{FrenchAbstract}
+        Le résumé.
+        \KeyWords{chat, chien, puces.}
+    \end{FrenchAbstract}
+
+    %%% Abstract en anglais
+    \begin{EnglishAbstract}
+        In computational geometry many search problems and range queries can be solved by performing an iterative search for the same key in separate ordered lists.  In Part I of this report we show that, if these ordered lists can be put in a one-to-one correspondence with the nodes of a graph of degree  d  so that the iterative search always proceeds along edges of that graph, then we can do much better than the obvious sequence of binary searches. Without expanding the storage by more than a constant factor, we can build a data-structure, called a fractional cascading structure, in which all original searches after the first can be carried out at only  log d  extra cost per search.  Several results related to the dynamization of this structure are also presented. Part II gives  numerous applications of this technique to geometric problems.
+        Examples include intersecting a polygonal path with a line, slanted range search, orthogonal range search, computing locus functions, and others. Some results on the optimality of fractional cascading, and certain extensions of the technique for retrieving additional information are also included.
+        \KeyWords{cat, dog, flees.}
+    \end{EnglishAbstract}
+\end{ThesisAbstract}
+
+%%%%%--------------------------------------------------------------------
 %%%%% Page de remerciements
 %%%%%--------------------------------------------------------------------
 
+% \WriteThisInToc
 \begin{ThesisAcknowledgments}
     Les remerciements.\\
     Ma femme.\\
@@ -170,6 +222,7 @@ Dr. Florian MICONI
 %%%%% Page de dédicaces
 %%%%%--------------------------------------------------------------------
 
+% \WriteThisInToc
 \begin{ThesisDedication}
     Je dédie cette thèse\\
     à ma machine.\\
@@ -181,152 +234,88 @@ Dr. Florian MICONI
 %%%%% Table des matières
 %%%%%--------------------------------------------------------------------
 
-%%% Ajout des parties dans la table des matières:
-\WritePartLabelInToc
-
-%%% Ajout des chapitres dans la table des matières:
-\WriteChapterLabelInToc
-
 %%% Génération de la table des matières:
 \tableofcontents
 
 %%% Génère la liste des figures:
 \listoffigures
 
+%%% Génère la liste des tableaux:
+\listoftables
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% PRÉAMBULE
+%%%%% CORPS DU DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\SpecialSection{Avertissement}
-
-Attention à ce que vous lisez !
-
-\SpecialSection{Préambule}
-
-Ceci est un ensemble d'information complémentaires à savoir...
 
 %%% Commencer la numérotation arabe (cf. '\pagenumbering{arabic}') avec la page 1 sur une page impaire:
 \mainmatter
 
+%%%%%--------------------------------------------------------------------
+%%%%% Introduction
+%%%%%--------------------------------------------------------------------
+\input{chapters/introduction.tex}
+
+%%%%%--------------------------------------------------------------------
+%%%%% Chapitre 1Table des matières
+%%%%%--------------------------------------------------------------------
+\input{chapters/1_etat_de_l_art.tex}
+
+%%%%%--------------------------------------------------------------------
+%%%%% Chapitre 2
+%%%%%--------------------------------------------------------------------
+\input{chapters/2_travaux.tex}
+
+%%%%%--------------------------------------------------------------------
+%%%%% Conclusions
+%%%%%--------------------------------------------------------------------
+\input{chapters/conclusion.tex}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% PARTIE 1
+%%%%% ANNEXES DU DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\input{sections/1_introduction.tex}
+%%% Préparer les annexes et la bibliographie:
+\PutLineInToc
+% \PutNewPageInToc
+\DontFrameChaptersInToc
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% PARTIE 2
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%--------------------------------------------------------------------
+%%%%% Annexes
+%%%%%--------------------------------------------------------------------
+\label{ANNEXES}
+\input{chapters/annexes.tex}
 
-\input{sections/2_etat_de_l_art.tex}
+%%%%%--------------------------------------------------------------------
+%%%%% Bibliographie
+%%%%%--------------------------------------------------------------------
+%%% Définition de la bibliographie:
+\bibliographystyle{apalike}
+\bibliography{references/bibliography}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% ANNEXES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%--------------------------------------------------------------------
+%%%%% glossaire
+%%%%%--------------------------------------------------------------------
+%%% Définition du glossaire:
+\newglossaryentry{comics}{
+    name=comics,
+    description={une bande dessinée à parution régulière}}
+\newglossaryentry{1980}{
+    name={Années 1980},
+    description={une decénie de musiques chouettes}}
+\newglossaryentry{1990}{
+    name={Années 1990},
+    description={une decénie de musiques discutables}}
 
-\FrameThisInToc
-\Annexes
-    \label{ANNEXES}
-    \input{sections/annexes.tex}
+%%% Définition des accronymes:
+\newacronym{svm4}{SVM}{Support Vector Machine}
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%% GLOSSAIRE
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\WriteThisInToc
+\printglossaries
 
-    %%% Définition du glossaire:
-    \Glossary{Chat1}{animal}\Glossary{Chien1}{Autre animal}
-    \Glossary{Chat2}{animal}\Glossary{Chien2}{Autre animal}
-    \Glossary{Chat3}{animal}\Glossary{Chien3}{Autre animal}
-    \Glossary{Chat4}{animal}\Glossary{Chien4}{Autre animal}
-    \Glossary{Chat5}{animal}\Glossary{Chien5}{Autre animal}
-    \Glossary{Chat6}{animal}\Glossary{Chien6}{Autre animal}
-    \Glossary{Chat7}{animal}\Glossary{Chien7}{Autre animal}
-    \Glossary{Chat8}{animal}\Glossary{Chien8}{Autre animal}
-    \Glossary{Chat9}{animal}\Glossary{Chien9}{Autre animal}
-    \Glossary{Chat10}{animal}\Glossary{Chien10}{Autre animal}
-    \Glossary{Chat11}{animal}\Glossary{Chien11}{Autre animal}
-    \Glossary{Chat12}{animal}\Glossary{Chien12}{Autre animal}
-    \Glossary{Chat13}{animal}\Glossary{Chien13}{Autre animal}
-    \Glossary{Chat14}{animal}\Glossary{Chien14}{Autre animal}
-    \Glossary{Chat15}{animal}\Glossary{Chien15}{Autre animal}
-    \Glossary{Chat16}{animal}\Glossary{Chien16}{Autre animal}
-    \Glossary{Chat17}{animal}\Glossary{Chien17}{Autre animal}
-    \Glossary{Chat18}{animal}\Glossary{Chien18}{Autre animal}
-    \Glossary{Chat19}{animal}\Glossary{Chien19}{Autre animal}
-    \Glossary{Chat22}{animal}\Glossary{Chien22}{Autre animal}
-    \Glossary{Chat23}{animal}\Glossary{Chien23}{Autre animal}
-    \Glossary{Chat24}{animal}\Glossary{Chien24}{Autre animal}
-    \Glossary{Chat25}{animal}\Glossary{Chien25}{Autre animal}
-    \Glossary{Chat26}{animal}\Glossary{Chien26}{Autre animal}
-    \Glossary{Chat27}{animal}\Glossary{Chien27}{Autre animal}
-    \Glossary{Chat28}{animal}\Glossary{Chien28}{Autre animal}
-    \Glossary{Chat29}{animal}\Glossary{Chien29}{Autre animal}
-
-    %%% Affichage du glossaire:
-    \BeginGloWith{
-        Voici un glossaire tout-à-fait fictif,
-        introduit par un texte sur toute la largeur
-        des deux colonnes.
-    }
-    \twocolumn
-    \PrintGlossary
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%% INDEX
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %%% Affichage de l'index:
-    \BeginIndWith{
-        Voici un index
-    }
-    \PrintIndex
-
-    \onecolumn
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%% BIBLIOGRAPHIE
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %%% Définition de la bibliographie:
-    \begin{thebibliography}{Lam91a}
-
-        \bibitem[CM88]{chandy88a}
-        K.~M. Chandy and J.~Misra.
-        \newblock \emph{Parallel program design: a foundation}.
-        \newblock Addison-Wesley Publishing Company, 1988.
-
-        \bibitem[Lam91a]{lamport91a}
-        Leslie Lamport.
-        \newblock {The Temporal Logic of Actions}.
-        \newblock Technical Report~79, SRC, 1991.
-
-    \end{thebibliography}
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%% ABSTRACT
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    % (si le résumé apparaît sur une colonne étroite, avec la bibliographie à gauche, c'est sans doute parce que vous avez oublié de générer les fichiers d'index et de glossaire...)
-
-    \NumberAbstractPages
-    \begin{ThesisAbstract}
-
-        %%%%%--------------------------------------------------------------------
-        %%%%% Abstract en français
-        %%%%%--------------------------------------------------------------------
-        \begin{FrenchAbstract}
-            Le résumé.
-            \KeyWords{chat, chien, puces.}
-        \end{FrenchAbstract}
-
-        %%%%%--------------------------------------------------------------------
-        %%%%% Abstract en anglais
-        %%%%%--------------------------------------------------------------------
-        \begin{EnglishAbstract}
-            In computational geometry many search problems and range queries can be solved by performing an iterative search for the same key in separate ordered lists.  In Part I of this report we show that, if these ordered lists can be put in a one-to-one correspondence with the nodes of a graph of degree  d  so that the iterative search always proceeds along edges of that graph, then we can do much better than the obvious sequence of binary searches. Without expanding the storage by more than a constant factor, we can build a data-structure, called a fractional cascading structure, in which all original searches after the first can be carried out at only  log d  extra cost per search.  Several results related to the dynamization of this structure are also presented. Part II gives  numerous applications of this technique to geometric problems.
-            Examples include intersecting a polygonal path with a line, slanted range search, orthogonal range search, computing locus functions, and others. Some results on the optimality of fractional cascading, and certain extensions of the technique for retrieving additional information are also included.
-            \KeyWords{cat, dog, flees.}
-        \end{EnglishAbstract}
-    \end{ThesisAbstract}
+%%%%%--------------------------------------------------------------------
+%%%%% Index
+%%%%%--------------------------------------------------------------------
+\WriteThisInToc
+\printindex
 
 \end{document}
