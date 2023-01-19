@@ -1,0 +1,106 @@
+\chapter{Proposition d'un Clustering Interactif}
+    \label{chapter:2_CLUSTERING_INTERACTIF}
+
+    \minitoc
+
+    Transition / Récap : On a vu que :
+    
+    •	Le travail est principalement manuel : comment peut-on l’assister ?
+    
+    •	La définition de la structure de classes est un mélange de connaissances métiers et de regroupement manuel sur la base de patterns linguistiques commun : faisons du clustering !
+    
+    •	Mais le clustering est souvent peu pertinent pour un usage métier : intégrons-y des interactions avec la machine !
+    
+    •	Les intercations non guidées sont fastidieuses : ajoutons de l’active learning !
+
+    Nous proposons donc notre version d'intercative clustering.
+
+    NB : la démonstration de cette proposition sera démontrée dans la partie 3.
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.1:
+    %%%%%--------------------------------------------------------------------
+    \section{Description théorique de la méthode}
+
+        Nous proposons de combiner les techniques vues précédemment :
+
+        •	Clustering sous contraintes
+            o	Kmeans : Classique, Incontournable, Rapide, Efficace
+            o	Hiérarchique : Lent mais facile à implémenter
+            o	Spectral : Permet des topologies complexes
+            o	DBScan : Classique, Incontournable, Rapide, Efficace, Peu d’hyperparamètres
+            o	Affinity propagation : 
+            o	Metric learning : Lent mais plus adapté au corpus
+            o	…
+    
+        •	Echantillonnage de contraintes à annoter 
+            o	Random ou Pseudo-random
+            o	Farhtest : Scinder les gros clusters
+            o	Closest : Redéfinir la position des frontières de clusters
+            o	…
+    
+        •	Annotation de contraintes
+            o	MUST-LINK / CANNOT-LINK / SKIP
+            o	« Répondriez-vous de la même manière à ces deux demandes ? »
+
+        •	Boucle itérative entre clustering, échantillonnage et annotation
+            o	Améliorer le résultat précédent
+            o	Autant de boucle que « nécessaire »
+            o	Avoir le clustering le plus efficace pour avoir de bon résultats
+            o	Avoir l’échantillonnage le plus efficace pour améliorer le plus efficacement
+            o	Avoir une annotation sans ambiguïté pour ne pas biaiser la construction itérative
+
+        •	Analyses
+            o	Analyse de l’évolution de l’accord clustering->annotation
+            o	Analyse des patterns linguistiques pertinents
+            o	Analyse de la formation de clusters (taille, répartition, …)
+        •	NB : Réutilisation de schéma etc
+    
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.2:
+    %%%%%--------------------------------------------------------------------
+    \section{Espoirs de la méthode proposée (??ETAT DE L'ART??)}
+
+        •	Moins de formations, d’ateliers, …
+
+        •	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
+
+        •	Permettre de trouver la base d’apprentissage
+
+        •	Méthode réaliste / pas trop coûteuse•	…
+    
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.3:
+    %%%%%--------------------------------------------------------------------
+    \section{Description technique et implémentation}
+
+        •	cognitivefactory.interactive-clustering : Gestion des données
+    
+        •	cognitivefactory.interactive-clustering : Gestion des contraintes + conflits
+
+        •	cognitivefactory.interactive-clustering : Algorithmes de clustering
+
+        •	cognitivefactory.interactive-clustering : Algorithmes de sampling
+
+        •	cognitivefactory.interactive-clustering-gui : Interface d’annotation
+
+        •	cognitivefactory.interactive-clustering-gui : Interface d’analyse
+
+        •	NB : captures d’écrans pour donner un aperçu, puis redirection vers les annexes
+    
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.1:
+    %%%%%--------------------------------------------------------------------
+    \section{Protocole d’utilisation : Mode d'emploi associé (??CONCLUSION??)}
+
+        •	Collecte des données
+
+        •	Itération de clustering > échantillonnage > annotation
+
+        •	A chaque conflit : correction nécessaire
+
+        •	A la fin d’un clustering : caractériser la pertinence métier avec FMC
+
+        •	A chaque itération : voir l’évolution par rapport à la précédente
+
+        NB : la démonstration de cette proposition de protocole sera démontrée dans la partie 3.

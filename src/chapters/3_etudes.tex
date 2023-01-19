@@ -1,0 +1,263 @@
+\chapter{Etude de la méthode}
+    \label{chapter:3_ETUDES}
+
+    \minitoc
+
+    Transition / Récap : Cette méthode étant nouvelle, plusieurs études sont nécessaires :
+
+        1.	Est-ce que la méthode marche/converge ?
+
+        2.	Quelle est la meilleure implémentation ? 
+
+        3.	Quels sont les coûts à investir ?
+
+        4.	Quel est l’impact d’une différence / erreur d’annotation ?
+
+        5.	Comment interpréter les résultats et leur donner du sens ?
+
+        6.	Quand s’arrêter ?
+
+        (à formuler sous la forme d’hypothèse de travail à vérifier ?
+        et/ou formuler/rappeler ces hypothèse en début de chaque sous-partie)
+        
+    ==>	Remarque en préambule : C’est compliqué de remettre en cause l’annotation manuelle avec des vérité terrain conçues manuellement… Certaines  études ne sont donc pas faisables
+    
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.1:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude de viabilité : « est-ce que la méthode marche ? »}
+
+        \subsection{Etude de convergence vers une vérité terrain établie}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain
+            o	Jeu de données : Carte bancaire (500 questions)
+            o	Cf. EGC/IJDWM
+
+        •	Résultats :
+            o	Les contraintes sont respectées
+            o	La vérité terrain est atteinte (La vmeasure atteint 100\%)
+            o	L’ajout de contraintes permet vite d’être meilleur qu’un clustering simple
+
+        •	Conclusion : la méthode est viable : on trouve bien vérité terrain
+            o	Avantage : Pas besoin de définir une structure, elle se découvre toute seule
+            o	Avantage : Besoin de peu de connaissance en IA (same ? oui ou non)
+            o	Inconvénient : Besoin de « beaucoup » de contraintes
+            o	==> IL FAUT UNE OPTIMISATION (IV.B.)
+
+        •	Discussion : balance entre annotations de contraintes et clustering
+            o	Si pas assez de contraintes : alors clustering pas assez pertinent !
+            o	Si 100\% de contraintes : alors résultat trop subjectif !
+            o	Trouvons une juste milieu : supposons 80\% pour la suite (annotation partielle)
+
+    
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.2:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude technique : « quelle est la meilleure implémentation ? »}
+
+        \subsection{Etude des paramètres optimaux}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier des itérations clés pour déterminer quelle implémentation est la plus efficace.
+            o	Jeu de données : Carte bancaire (500 questions)
+            o	Paramètres étudiés : prétraitement, vectorisation, sampling, clustering
+            o	Métrique : VMeasure du clustering obtenue avec la vérité terrain en fonction du nombre de contraintes annotées
+            o	Cf. EGC/IJDWM
+
+        •	Résultats :
+            o	Tous les paramètres sont importants, surtout le sampling et le clustering
+            o	Meilleure implémentation trouvée
+
+        •	Conclusion :
+            o	Il y a donc moyen d’optimiser la méthode pour annoter moins de contraintes
+
+        •	Remarques :
+            o	Expliquer le choix du kmeans : rapide, efficace, itération rapide
+            o	Expliquer le choix du closest : favorise les MUST-LINK
+            o	Expliquer le non-choix du farthest : favorise CANNOT-LINK, mais n'aide pas
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.3:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude des coûts : « quels sont les coûts à investir ? »}
+
+        \subsection{Etude du temps d’annotation}
+
+        •	Expérience : Faire annoter des contraintes par plusieurs annotateurs
+            o	Jeu de données : Carte bancaire (500 questions) ou Titre de journaux (???)
+
+        •	Résultats : (\textbf{!!TODO!!})
+        
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : Définition d’un batch moyen
+
+
+        \subsection{Etude du temps de calcul}
+
+        •	Expérience : Estimer le temps de calcul de chaque algorithme
+            o	Jeu de données : Carte bancaire (1000 questions, artificiellement augmenté jusqu’à 1000 données)
+            o	Estimation des facteurs influents : nombre de données, nombre de contraintes, nombre de clusters, hyper-paramètres, effets aléatoires, …
+
+        •	Résultats :
+            o	Estimation des temps de calcul et des facteurs influents
+
+        •	Conclusions :
+            o	Certains algorithmes sont longs…
+            o	Définition d’une fonction d’estimation du temps de calcul pour chaque algo
+
+        •	Discussion : balance entre performance et coût temporel
+            o	Les itérations doivent être fluides
+            o	On a plus à gagner à ajouter des contraintes qu’attendre un algo trop long
+            o	Un optimal serait d’annoter des batch d’une durée d’un algo pour ne pas avoir trop à attendre entre deux itérations
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.4:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude des erreurs : « quel est l’impact d’une différence d’annotation ? »}
+
+        Préambules
+
+        •	Source potentielle des différences :
+            o	Différence de points de vue,
+            o	Erreurs d’inattention,
+            o	Données ambigües ;
+
+        •	Identification des différences :
+            o	Relectures / revue d’annotation,
+            o	Détection des incohérences entre contraintes,
+            o	Adjudication / ajout de redondance ;
+
+
+        \subsection{Etude de l’impact d’une erreur par simulation}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » en simulant un pourcentage d’erreur d’annotation
+            o	Jeu de données : Carte bancaire (500 questions),
+            o	Pourcentage d’erreur variable,
+            o	Prise en compte ou non de la résolution de conflits ;
+
+        •	Résultats : 
+            o	Peut gravement impacter le résultat,
+            o	N’est pas détectable sans redondance ;
+
+        •	Conclusions :  (\textbf{!!TODO!!})
+
+        •	Discussions : importance de la fiabilité des annotations :
+            o	Besoin de savoir ce que l’on veut : Ajouter de l’adjudication en début de projet pour confronter rapidement les visions,
+            o	Besoin de limiter les erreurs : Ajout de redondance ou de stratégie de vérification (de nouvelles méthode de sélection) mais cela entraîne un surcoût,
+            o	Préférer passer l’annotation que de forcer une annotation ambiguë ;
+
+
+        \subsection{Etude de ré-annotation d’un chatbot existant}
+
+        •	Expérience : Ré-annoter un AV existant pour identifier les inconvénients pratiques :
+            o	Jeu de données : Moyens de paiements (8000 questions de production),
+            o	Deux annotateurs avec des règles « floues » (comme c’est le cas en initialisation) mais avec un « objectif » commun (arbre de dialogues \& réponses « connues »),
+            o	Revues d’annotations à mi-projet ;
+
+        •	Résultats :
+            o	23\% de désaccord, mais au moins 77\% d’accord sans concertation !
+            o	Après revue d’annotation : (???),
+            o	Expériences interrompue ;
+
+        •	Conclusions :  (\textbf{!!TODO!!})
+
+        •	Discussions : Quelques conseils :
+            o	En début de projet : Adjudication pour confirmer les visions,
+            o	Correction des incohérences le plus rapidement possible,
+            o	D’autres sélection pour ajouter de la redondance,
+            o	Mais cela représente un cout supplémentaire,
+
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.5:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude métier : « comment interpréter les résultats et leur donner du sens ? »}
+
+        Préambule de définition de la FMC ou référence à l’état de l’art / annexe :
+
+        \subsection{Etude de la caractérisation du clustering par FMC}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier la FMC du clustering en cours :
+            o	Jeu de données : Carte bancaire (500 questions),
+            o	Métrique : VMeasure adaptée pour comparer la FMC d’un clustering et la FMC de la vérité terrain ;
+
+        •	Résultats : (\textbf{!!TODO!!})
+
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : (\textbf{!!TODO!!})
+
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.6:
+    %%%%%--------------------------------------------------------------------
+    \section{Etude d’arrêt : « quand le résultat est-il satisfaisant ? »}
+        
+        \subsection{Etude d’un prérequis d’arrêt : la cohérence du clustering obtenu}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier si un classifier entrainé sur cette base est stable, i.e. s’il arrive à retrouver sa base d’apprentissage 
+            o	Jeu de données : Carte bancaire (500 questions),
+            o	Remarque : si la base d’apprentissage n’est pas stable, le clustering doit encore être modifié…,
+
+        •	Résultats : (\textbf{!!TODO!!})
+
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : (\textbf{!!TODO!!})
+
+
+        \subsection{Etude d’un critère d’arrêt : l’accord entre un batch d’annotation et le clustering précédent}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier l’évolution des accords/désaccords entre l’annotateur et le clustering
+            o	Jeu de données : Carte bancaire (500 questions),
+            o	Remarque : si l’accord est maximal, l’annotateur n’a plus de valeur ajoutée car le clustering n’est jamais modifiée,
+
+        •	Résultats : (\textbf{!!TODO!!})
+        
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : (\textbf{!!TODO!!})
+
+
+        \subsection{Etude d’un critère d’arrêt : la similitude entre deux clustering consécutifs}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier l’évolution des similitudes entre le clustering courant et le clustering précédent
+            o	Jeu de données : Carte bancaire (500 questions),
+            o	Remarque : si la similitude est forte, c’est que le clustering devient stable,
+        
+        •	Résultats : (\textbf{!!TODO!!})
+
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : (\textbf{!!TODO!!})
+
+
+        \subsection{Etude d’un critère d’arrêt : la similitude entre deux FMC de clustering consécutifs}
+
+        •	Expérience : Faire des itérations de « clustering > échantillonnage > annotation » jusqu’à convergence vers la vérité terrain et étudier l’évolution des similitudes entre la FMC du clustering courant et la FMC du clustering précédent
+            o	Jeu de données : Carte bancaire (500 questions)
+            o	Remarque : si la similitude est forte, c’est que le clustering devient stable
+
+        •	Résultats : (\textbf{!!TODO!!})
+
+        •	Conclusions : (\textbf{!!TODO!!})
+
+        •	Discussions : (\textbf{!!TODO!!})
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 3.7:
+    %%%%%--------------------------------------------------------------------
+    \section{Autres études à réaliser (!!PAS FAIT PAR MANQUE DE TEMPS!!)}
+
+        \subsection{Choix du nombre de clusters ==> problème de recherche complexe}
+            o	Piste de résolution : plusieurs clusterings + vote collaboratif ? algorithmes sans le nombre de clusters en hyper-paramètres
+
+        \subsection{Impact d’un modèle de langage ==> nécessite de nombreuses données spécifiques au domaine}
+            o	Piste de résolution : script d’étude comparative déjà prêt, mais il manque les données opensources… 
+
+        \subsection{Paradigme d’annotation (intention vs dialogue) ==> problème d’UX + objectif métier}
+            o	Etude Ergo, sort de mon domaine d’expertise
+
+        \subsection{(et plein d’autres que j’ajouterai au fur et à mesure de ma rédaction)}
+            o	

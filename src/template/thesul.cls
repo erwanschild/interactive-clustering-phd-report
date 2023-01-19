@@ -1,12 +1,12 @@
 %%
-%% This is file `thesul.cls', generated with the docstrip utility.
-%% The original source files were: thesul.dtx  (with options: `tulkernel,tulannex')
+%% This is file `template/thesul.cls', generated with the docstrip utility.
+%% The original source files were: template/thesul.dtx  (with options: `tulkernel,tulannex')
 %% 
 %% IMPORTANT NOTICE:
 %% 
 %% For the copyright see the source file.
-%% Any modified versions of this file must be renamed with new filenames distinct from thesul.cls.
-%% For distribution of the original source see the terms for copying and modification in the file thesul.dtx.
+%% Any modified versions of this file must be renamed with new filenames distinct from template/thesul.cls.
+%% For distribution of the original source see the terms for copying and modification in the file template/thesul.dtx.
 %% 
 %% This generated file may be distributed as long as the original source files, as listed above, are part of the same distribution.
 %% (The sources need not necessarily be in the same archive or directory.)
@@ -33,7 +33,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{thesul}[\filedate\space
+\ProvidesClass{template/thesul}[\filedate\space
     LaTeX2e document class^^J
     \space\space\space\space\space\space\space\space
     \space\space\space\space\space\space\space\space\space
@@ -45,7 +45,7 @@
 \@minfrenchfalse
 \DeclareOption{minfrench}{
     \if@dont@load@french
-        \ClassWarning*{thesul}
+        \ClassWarning*{template/thesul}
         {Option \string`nofrench\string' is ignored\MessageBreak
             when \string`minfrench\string' is present.}
     \else
@@ -63,9 +63,8 @@
     \else
         \ifx\noenglishdoublequotes\@undefined % french
             \ifx\bbl@nonfrenchguillemets\@undefined % frenchb
-                \ClassWarning{thesul}
-                {Beware! I think you have forgotten to load\MessageBreak
-                    a francization package.}
+                \ClassWarning{template/thesul}
+                {Beware! I think you have forgotten to load a francization package.}
             \fi
         \fi
     \fi
@@ -205,7 +204,7 @@
                 \hbox{}\hbox to0pt{\includegraphics[scale=.2]{tulloria}\hss}\vss}
     }
     \newcommand\ULLogo{
-        \vtop to0pt{\hbox{}\hbox to0pt{\includegraphics[scale=1]{tulul}\hss}\vss}
+        \vtop to0pt{\hbox{}\hbox to0pt{\includegraphics[scale=1]{template/tulul}\hss}\vss}
     }
     \newif\if@logos@
     \newif\if@logo@ul@
@@ -521,7 +520,7 @@
         \if@frame@switch
             \if T\csname @#1snotframedintoc\endcsname
                 \if@thisnotframed
-                    \ClassWarning{thesul}{The command
+                    \ClassWarning{template/thesul}{The command
                         \protect\DontFrameThisInToc\space
                         has no use,\MessageBreak
                         since by default,
@@ -530,7 +529,7 @@
             \else
                 \if@thisnotframed
                 \else
-                    \ClassWarning{thesul}{The command \protect\FrameThisInToc\space
+                    \ClassWarning{template/thesul}{The command \protect\FrameThisInToc\space
                         has no use,\MessageBreak
                         since by default,
                         all #2 entries are framed,\MessageBreak}
@@ -552,13 +551,13 @@
         \if@numbertocswitch
             \if@numberintoc
                 \ifx\@framed@ N
-                    \ClassWarning{thesul}{The command
+                    \ClassWarning{template/thesul}{The command
                         \protect\NumberThisInToc\space
                         has no use here,\MessageBreak}
                 \fi
             \else
                 \ifx\@framed@ Y
-                    \ClassWarning{thesul}{The command
+                    \ClassWarning{template/thesul}{The command
                         \protect\DontNumberThisInToc\space
                         has no use here,\MessageBreak}
                 \fi
@@ -853,7 +852,7 @@
         \if@tocswitch
             \if@st@rch@ptersintoc
                 \if@intoc
-                    \ClassWarning{thesul}
+                    \ClassWarning{template/thesul}
                     {You said \protect\WriteThisInToc\space
                         but\MessageBreak
                         the entry was going
@@ -1669,7 +1668,7 @@
                 \message{***You tried to use a command******^^J}
                 \message{***which has not yet been implemented.***^^J}
             }
-            \newcommand{\TUL}{{\normalfont\textsf{thesul}}}
+            \newcommand{\TUL}{{\normalfont\textsf{template/thesul}}}
             \errorcontextlines5
             \ifx\@removefromreset\undefined
                 \newcommand\@removefromreset[2]{\let\@tempb\@elt
@@ -1727,5 +1726,5 @@
             \endinput
 
             %%
-            %% End of file `thesul.cls'.
+            %% End of file `template/thesul.cls'.
             %%

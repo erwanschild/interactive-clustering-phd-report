@@ -1,16 +1,16 @@
 %
-% This package complements the thesul class and is aimed to replace
+% This package complements the template/thesul class and is aimed to replace
 % the hyperref package in this context. The hyperref package does not
-% address the intricacies of thesul and this is what we are doing here.
+% address the intricacies of template/thesul and this is what we are doing here.
 % This package load hyperref and passes its options so that one can write
-% \usepackage[pdftex]{tulhypref} or whatever.
+% \usepackage[pdftex]{template/tulhypref} or whatever.
 %
 % Versions:
 \def\fileversion{0.11}
 \def\filedate{2013/10/06}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{tulhypref}[\filedate\space\fileversion\space
-thesul wrapper for hyperref package (D. Roegel)]
+\ProvidesPackage{template/tulhypref}[\filedate\space\fileversion\space
+template/thesul wrapper for hyperref package (D. Roegel)]
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{hyperref}}
 \ProcessOptions
 \RequirePackage{hyperref}
@@ -24,7 +24,7 @@ thesul wrapper for hyperref package (D. Roegel)]
 \let\refstepcounter\H@refstepcounter
 
 % Now, \@part, \@chapter, \@sect and \refstepcounter have the good values
-% of thesul.
+% of template/thesul.
 
 % Addition of \TULtopbookmark in front of \tableofcontents
 % in order to make sure that the bookmark entry for the table of contents
@@ -52,7 +52,7 @@ thesul wrapper for hyperref package (D. Roegel)]
       \else
         % \hyper@refstepcounter is only performed when it is neither a part,
         % nor a chapter/annex; the \hyper@refstepcounter is done
-        % in the hook of thesul with \hyper@refstepcounter{division}.
+        % in the hook of template/thesul with \hyper@refstepcounter{division}.
         \def\@countername{#1}%
         \ifx\@countername\@partcountername
         \else
@@ -110,7 +110,7 @@ thesul wrapper for hyperref package (D. Roegel)]
 \newcommand{\toclevel@starpart}{-1}
 \newcommand{\toclevel@spsection}{\TUL@topbookmarkpos}
 
-% Changes of various hooks in thesul:
+% Changes of various hooks in template/thesul:
 
 \renewcommand{\@tulann@hook}[1]{%
   \@division@inc@hook
@@ -166,4 +166,4 @@ thesul wrapper for hyperref package (D. Roegel)]
   }
 
 \endinput
-% end of file tulhypref.sty
+% end of file template/tulhypref.sty

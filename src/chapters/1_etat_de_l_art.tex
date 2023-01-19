@@ -1,75 +1,207 @@
-\chapter{État de l'art}
-    \label{CHAP_1_ETAT_DE_L_ART}
+\chapter{État de l'art : concevons un jeu de données}
+    \label{chapter:1_ETAT_DE_L_ART}
+
+    Dans cette partie, nous allons faire un état des lieux des méthodes pour créer le premier jeu de données nécessaire à l'entrainement d'un assistant conversationnel.
+    Cela comprend une description des acteurs du projet, un rappel de l'organisation usuelle en fonction de leur compétence, et une énumération des problèmes et solutions les plus communs.
+    \textbf{Rappel des contraintes industrielles}
 
     \minitoc
 
-    \section{Dans la fiction}
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 1.1:
+    %%%%%--------------------------------------------------------------------
+    \section{Rappel sur le fonctionnement usuel d'un chatbot}
 
-        \subsection{Rêvons un peu...}
-            Une « autre » page avec « plein » de texte « et » très varié.
-            Une autre page avec plein de texte très varié. \cite{ibm:2016, rasa:2017, wagstaff:2000}
-            Une autre page avec plein de texte très varié. 
+        •	Description du cas d'un chatbot "classique" modélisé à base d'intention et d'entités
+            o	 On se concentre sur ces implémentations car on peut y controller les réponses (image de marque en jeu)
 
-        \subsection{Dans les films...}
-            Une « autre » page avec « plein » de texte « et » très varié.
-            Une autre page avec plein de texte très varié .
-            Une autre page avec plein de texte très varié.
+        •	Classification d'intention (règles, classification supervisée, ...)
 
-        \subsection{Dans les comics...}
-            Un \gls{svm4} avec « plein » de texte « et » très varié.
-            Une autre \gls{svm4} avec plein de texte très varié. \cite{gancarski:2007} et \cite{lampert:2019}
-            Une autre \gls{svm4} avec plein de texte très varié.
+        •	Extraction d'entités (règles, ner, ...)
 
-    \section{Dans la recherche}
+        •	Mapping des réponses sur la base du couple $(intention, enites)$
 
-        \subsection{Depuis 1970...}
-            Une page de \gls{comics} avec plein de texte très varié.
-            Une autre page de \gls{comics}  avec plein de texte très varié.
+        •	\textbf{CITATION}
 
-        \subsection{Depuis 1980...}
-            Les musiques des années \gls{1980} avec plein de texte très varié.
-            Les musiques des années \gls{1980} avec plein de texte très varié.
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 1.2:
+    %%%%%--------------------------------------------------------------------
+    \section{Les étapes usuelles de conception d'un chatbot}
 
-        \subsection{Depuis 1990...}
-            Les musiques des années \gls{1990} avec plein de texte très varié.
-            Les musiques des années \gls{1990} avec plein de texte très varié.
+        Préambule : l'organisation peut bien entendu varier suivant les contextes, mais la description qui suit est représentative des organisation principales
 
-            \begin{figure}[htb]
-                \includegraphics{tulul}
-                \caption{xxxxxxxxx xxxxxxx\label{rintintin1}}
-            \end{figure}
+        \subsection{Définition des acteurs}
 
-        \subsection{Depuis 2010...}
-            Une autre page avec plein de texte très varié.
-            Une autre page avec plein de texte très varié.
+            •	Data scientistes :
+                o	Experts en IA
+                o	Peu de connaissance métier, i.e. peu de regarde critique sur la pertinence des résultats (autre que statistique)
+            
+            •	Expert métier :
+                o	Pas de connaissance en IA, i.e. nécessitent des formations
+                o	Connaissance métier forte, i.e. peuvent décrire la pertinence d’un résultat
+            
+            •	Chef de projet
+                o	Pas de connaissance en IA
+                o	Pas de connaissance métier
+                o	Connaissance du besoin (hypothèse non vérifiée car parfois ils ne savent pas ce qu’ils veulent dû à la méconnaissance des capacités de l’IA)
 
-            \begin{figure}[htb]
-                \includegraphics{tulloria}
-                \caption{yyyyy yyyyy yyyy\label{rintintin2}}
-            \end{figure}
+        \subsection{Cadrage du projet}
 
-        \subsection{Depuis 2022...}
-            Une autre page avec plein de texte très varié.
-            Une autre page avec plein de texte très varié.
+            •	Objectifs :
+                o	Clarification du besoin,
+                o	Définition du périmètre couvert (i.e. les fonctionnalités et réponses à proposer),
 
-    \section{Dans l'industrie}
+            •   Livrable : un cahier des charges
 
-        \subsection{Avec XXXXX...}
-            Une autre page avec plein de texte très varié.
-            Une autre page avec plein de texte très varié.
+        \subsection{Collecte des données}
 
-        \subsection{Avec YYYY...}
-            Une autre page avec plein de texte très varié.
-            Une autre page avec plein de texte très varié.
+            •	Souvent pas de données à disposition :
+                o	En R\&D, "80\%" sur la recherche d’algo sur des données publiques, d'où le besoin de datascientists,
+                o	En entreprise, "80\%" sur la gestion des données privées/spécifiques sur des algo connus, d'où le besoin d'experts métiers ;
+    
+            •	Risque de biais dans les données :
+                o	Biais d’échantillon : la collecte ne représente pas la réalité,
+                o	Biais de sélection : le trie de la collecte ne représente plus la réalité,
+                o	Biais de confirmation : on garde les données qui nous arrangent,
+                o	Biais de valeur : les données ne sont pas éthiquement représentatives,
+                o	Biais de contexte : les données d’un cas d’usage ne sont pas toujours réutilisables pour un autre cas d’usage (ex : différence entre les jargons des AV clients et celui des AV conseillers) ;
+                o	\textbf{A COMPLETER}
+            
+            •   Livrable : une collecte de données brutes
 
-        \subsection{Depuis ZZZZZ...}
+        \subsection{Modélisation d’une structure et Labellisation des données}
 
-            \begin{itemize}
-                \item Une autre page avec plein de texte très varié.
-                \item Une autre page avec plein de texte très varié.
-                    \begin{itemize}
-                        \item Une autre page.
-                        \item Une autre page.
-                    \end{itemize}
-                \item Une autre page avec plein de texte très varié.
-            \end{itemize}
+            •	Le coeur "métier" de la création du projet ;
+
+            •	Objectif : Définition d'une modélisation sur la base des besoins attendus restreints au périmètre à couvrir ;
+
+            •	En théorie :
+                o	Intention: verbe d'actions,
+                o	Entités: informations complémentaires, personnes, date, lieux, montants, noms de produits, ... ;
+
+            •   Complexité de la tâche :
+                o	Intention abstraite : définition difficile voir subjective, ...
+                o	Annotation difficile :  différence entre théorie et pratique, données ambigues, ...
+                o	Plusieurs itérations car modélisation trop théorique / pas pratique
+                o	Besoins de beaucoup de formation (pour donner la compétence aux experts) et d'atelier (pour se mettre d'accord)
+
+            •   Livrable : un jeu de données annotées
+
+        \subsection{Entrainement et tests}
+
+            •	Le coeur "technique" de la création du projet ;
+
+            •	Objectif : avoir un modèle qui soit adapté à son utilisation en production
+
+            •	En théorie :
+                o	Split en train et tests
+                o	Entrainement et tests
+                o	Association des réponses
+
+            •   Complexité de la tâche :
+                o	Modélisation précédente pas toujours adaptée : OK pour un métier, mais pas possible à entrainer à cause de déséquilibre, de manque de données, ...
+                o	Algorithme fixe mais données variables : savoir quelle modélisation est la plus adaptée est compliqué à deviner
+                o	Réponses pas toujours adaptées aux questions : décalage entre entrainement (modélisation théorique) et réponse (modélisation pratique)
+
+        \subsection{Déploiement de la première version}
+
+            •	RAS
+
+            •	Parfois la modélisation est décalée par rapport à l'utilisation en production
+                o	Comportement en moteur de recherche avec des questions courtes
+                o	Vocabulaire non maitrisé par les utilisateurs
+                o	problème d'ergo ou d'expérience utilisateur
+
+        \subsection{Amélioration continue}
+
+            •	Vérification du comportement ;
+
+            •	Ajustement du modèle ;
+
+            •	Déploiement des versions suivantes.
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 1.2:
+    %%%%%--------------------------------------------------------------------
+    \section{Zoom sur la partie Modélisation et Labellisation de la bse d'apprentissage}
+
+        \subsection{Création « manuelle »}
+
+            •	Enchainement de plusieurs ateliers/cycles :
+                o	Définition d’une structure en atelier et Annotation des données
+                o	Premier conflit : La structure est trop théorique
+                o	Redéfinition et Ré-annotation
+                o	Second conflit : Les structure ou les données ne sont pas adaptées
+                o	Collecte complémentaire, Redéfinition et Ré-annotation
+
+            •	Avantages :
+                o	Transmission progressive du savoir aux datascientist
+                o	Test des modélisations potentielles
+
+            •	Inconvénients :
+                o	Nombreux ateliers
+                o	Nombreuses remises en questions / aller-retour de conception
+                o	L'avis initiale sur le périmètre à couvrir est flou quand cela concerne une centaine de demandes clients
+                o	Se base sur de la connaissance que les experts métiers n’ont pas
+                o	Comment les aider dans ce problème d’organisation ?
+
+        \subsection{Création assistée par des regroupements non-supervisés}
+
+            •	Constat :
+                o	Pour des jeux de données à taille humaine (moins de 20.000 données), le premier tri est parfois "optimisé" manuellement sur la base des patterns commun (ordonnancement alphabétique)
+
+            •	Solution :
+                o	Un clustering pourrait simplifier cette tâche !
+                o   Rappel : grandes lignes du fonctionnement d'un algorithme de clustering ?
+                o	NB : une section ou une annexe détaillera les algorithmes de clustering les plus utilisés
+
+            •	Avantages :
+                o	Regroupement automatique
+                o	Découverte de la structure
+
+            •	Inconvénients :
+                o	Les résultats sont souvent peu pertinents
+                o	Similarité par entités, et pas par intentions
+                o	Nuances métiers non comprises
+                o	Plusieurs soucis si le jeu de données est déséquilibré ou spécifique
+                o	Absence d’un modèle de langue spécifique au contexte...
+                o   parfois besoin d'hyperparamètres compexes à déterminer
+
+        \subsection{Conception assistée par des regroupements semi-supervisés}
+
+            •	Solution :
+                o	On peut envisager ainsi de corriger le clustering en y insérant des contraintes métiers \cite{lampert:2018}
+                o	Méthodes semi-supervisée
+                o	NB : une section ou une annexe détaillera les algorithmes de clustering sous contraintes
+
+            •   Interactions possibles avec le clustering (sur la base de proposition de l'humain)
+                o	Sur les données / sur le résultat : ajouts de contraintes sur les données, suppressions ou modifications manuelles de données, réorganisation manuelles des clusters, …
+                o	Sur les paramètres : modifier les hyper-paramètres, modifier le nombre de clusters, modifier les embeddings, utiliser d’autres algorithmes, …
+                o	Besoin de visualisation : vue des contraintes, de la représentation vectorielle, …
+
+            •	Avantage :
+                o	On a réglé les problèmes de pertinence en ajoutant des contraintes
+
+            •	Inconvénients : 
+                o	Choisir comment modéliser ces contraintes peut être complexe
+                o	Surtout énorme en ajoutant des contraintes
+                o	Choisir les contraintes pertinentes est une tâche difficile
+
+        \subsection{Conception basée sur des méthodes d’apprentissage actif}
+
+            •	Solution :
+                o	On peut demander à la machine de définir les contraintes dont elle a besoin pour s’améliorer / confirmer son comportement
+                o	On peut séparer et cibler les tâches pour que le clustering se nourrissent des commentaires de l’expert et que l’expert corrige ce qui semble utile au clustering
+                o	Sous-entendu : Préférer la collaboration à la supériorité (que ce soit celle de la machine ou celle de l’expert)
+                o	NB : une section ou une annexe détaillera les interactions possibles entre homme et machine
+
+            •   Interactions possibles avec le clustering (sur la base de propositions de la machine)
+                o	Sur les données / sur le résultat : proposition de suppression de données abhérrantes, proposition d'ajout de contraintes à des endroits stratégiques, …
+                o	Sur les paramètres : réévaluation des paramètres, combiner plusieurs algorithmes et synthétiser le résultat, …
+
+            •	Avantage :
+                o	On a réglé les problèmes de pertinence et de coûts en ajoutant des contraintes
+
+            •	Inconvénients / problème à résoudre : 
+                o	Accepter de collaborer avec la machine (problème UX, ergo, accompagnement au changement)
+                o	Il faut prouver cette méthode

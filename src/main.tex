@@ -1,4 +1,3 @@
-%%
 %% * DOCUMENT:
 %%   - title: `PhD report on Interactive Clustering`
 %%   - autor: Erwan SCHILD
@@ -8,14 +7,13 @@
 %%   - autor: Denis ROEGEL
 %%   - date: 30 mars 2013, update 12 mars 2022
 %%   - url: [thesul](https://members.loria.fr/DRoegel/TeX/TUL.html)
-%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% PARAMÈTRES DU DOCUMENT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Pour la classe du document:
-\documentclass[11pt]{thesul}
+\documentclass[11pt]{template/thesul}
 
 %%% Pour déclarer un brouillon:
 % \ThesisDraft
@@ -28,11 +26,20 @@
 %%%%% Chargement des packages
 %%%%%--------------------------------------------------------------------
 
+%%% Pour la langue:
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+
 %%% Pour un PDF avec des hyperliens:
-\usepackage[pageanchor=false]{tulhypref}
+\usepackage[pageanchor=false]{template/tulhypref}
 
 %%% Pour une bibliographie au styme 'named':
 % \usepackage{named}
+
+%%% Pour les listes:
+\usepackage{enumitem, amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 
 %%% Pour les tableaux:
 % \usepackage{array}
@@ -81,7 +88,7 @@
 \NoChapterPrefix
 
 %%% Faire un glossaire:
-\makeglossary
+\makeglossaries %\makeglossary
 
 %%% Faire un index:
 \makeindex
@@ -155,29 +162,37 @@
 }
 
 %%% Date:
-\ThesisDate{09 setpembre 2022}
+\ThesisDate{
+    01 mai 2023
+}  % 8 semaine après la date du rendu
 
 %%% Auteur:
-\ThesisAuthor{Erwan SCHILD}
+\ThesisAuthor{
+    Erwan SCHILD
+}
 
 %%% Type de these:
 \ThesisUL
 
 %%% Membres du jury:
 \President={
-M. Le président de la soutenance
+    Dr. Pascal CUXAC (à demander)\\
 }
 \Rapporteurs ={
-Le rapporteur 1\\
-Le rapporteur 2
+    Dr. Thomas LAMPERT (attendre réponse)\\
+    Dr. (avoir une femme !)
 }
 \Examinateurs={
-L'examinateur 1\\
-L'examinateur 2
+    Dr. Adrien COULET (à demander)\\
+    Dr. (avoir une femme !)
 }
 \Encadrants={
-Dr. Jean-Charles LAMIREL\\
-Dr. Florian MICONI
+    Dr. Jean-Charles LAMIREL\\
+    Dr. Florian MICONI
+}
+\Invites={
+    Dr. Gautier DURANTIN (à demander)\\
+    Dr. Mathieu POWALKA (à demander)
 }
 
 %%% Création de la page de titre:
@@ -212,10 +227,19 @@ Dr. Florian MICONI
 
 % \WriteThisInToc
 \begin{ThesisAcknowledgments}
-    Les remerciements.\\
-    Ma femme.\\
-    Mes amis.\\
-    Mon chien.\\
+
+    Par la présente, je souhaites remercier:
+    \begin{todolist}
+        \item ma femme
+        \item ma tortue
+        \item ma famille
+        \item mes amis
+        \item mes collègies
+        \item mes encadrants
+        \item chatGPT
+        \item ...
+    \end{todolist}
+
 \end{ThesisAcknowledgments}
 
 %%%%%--------------------------------------------------------------------
@@ -224,10 +248,10 @@ Dr. Florian MICONI
 
 % \WriteThisInToc
 \begin{ThesisDedication}
+
     Je dédie cette thèse\\
-    à ma machine.\\
-    Oui, à Pandore,\\
-    qui fut la première de toutes.
+    à quelqu'un de bien.
+
 \end{ThesisDedication}
 
 %%%%%--------------------------------------------------------------------
@@ -256,17 +280,22 @@ Dr. Florian MICONI
 \input{chapters/introduction.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Chapitre 1Table des matières
+%%%%% Chapitre 1: Etat de l'art
 %%%%%--------------------------------------------------------------------
 \input{chapters/1_etat_de_l_art.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Chapitre 2
+%%%%% Chapitre 2: Clustering Interactif
 %%%%%--------------------------------------------------------------------
-\input{chapters/2_travaux.tex}
+\input{chapters/2_clustering_interactif.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Conclusions
+%%%%% Chapitre 3: Etude de la méthode
+%%%%%--------------------------------------------------------------------
+\input{chapters/3_etudes.tex}
+
+%%%%%--------------------------------------------------------------------
+%%%%% Conclusion
 %%%%%--------------------------------------------------------------------
 \input{chapters/conclusion.tex}
 
@@ -282,8 +311,49 @@ Dr. Florian MICONI
 %%%%%--------------------------------------------------------------------
 %%%%% Annexes
 %%%%%--------------------------------------------------------------------
+% \input{chapters/annexes.tex}
+\Annexes
 \label{ANNEXES}
-\input{chapters/annexes.tex}
+
+\Annex{Annexe théorique}
+
+    plein de texte très varié.
+    Une autre page avec plein de texte très varié.
+
+    \section{AAAAAA}
+
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+
+    \section{BBBBBB}
+
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+
+    \section{CCCCCCC}
+
+        Une autre page avec plein de texte très varié.
+
+\Annex{Annexe technique}
+
+    plein de texte très varié.
+    Une autre page avec plein de texte très varié.
+
+    \section{AAAAAA}
+
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+
+    \section{BBBBBB}
+
+        Une autre page avec plein de texte très varié.
+        Une autre page avec plein de texte très varié.
+
+    \section{CCCCCCC}
+
+        Une autre page avec plein de texte très varié.
 
 %%%%%--------------------------------------------------------------------
 %%%%% Bibliographie
@@ -309,7 +379,7 @@ Dr. Florian MICONI
 %%% Définition des accronymes:
 \newacronym{svm4}{SVM}{Support Vector Machine}
 
-\WriteThisInToc
+%%% Affichage du glossaire:
 \printglossaries
 
 %%%%%--------------------------------------------------------------------
