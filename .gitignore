@@ -1,5 +1,6 @@
 ## Temporary folder
 temp/*
+src/temp/*
 
 ## Template
 thesul/*

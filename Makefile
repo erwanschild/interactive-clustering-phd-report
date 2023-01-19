@@ -3,14 +3,14 @@ SHELL := bash
 
 # Define preparation command for temp folders.
 define prepare_env
-	mkdir -p temp
-	mkdir -p output
+	mkdir -p src/temp
+	mkdir -p src/output
 endef
 
 # Define formatter command with `latexindent` (`.exe` or `.pl`).
 define formatter
 	scripts/latexindent.exe \
-		--cruft=temp \
+		--cruft=src/temp \
 		--logfile=logfile_format.log \
 		--modifylinebreaks \
 		--replacement \
@@ -39,11 +39,12 @@ define tex_compiler
 		--enable-installer \
 		--interaction=nonstopmode \
 		--include-directory=src \
-		--aux-directory=temp \
-		--output-directory=output \
+		--aux-directory=src/temp \
+		--output-directory=src/output \
 		--job-name=phd_report \
 		--output-format=pdf \
 		--synctex=1 \
+        --file-line-error \
 		$(1)
 endef
 
@@ -95,9 +96,9 @@ compil-tex4:
 # Define 'bib' compiler command with `bibtex`.
 define bib_compiler
 	bibtex \
-		temp/phd_report \
 		--enable-installer \
 		--include-directory=src \
+		src/temp/phd_report \
 		$(1)
 endef
 
@@ -113,13 +114,12 @@ compil-bib:
 		fi;
 
 
-# Define 'glo' compiler command with `makeindex`.
+# Define 'glo' compiler command with `makeglossaries`.
 define glo_compiler
-	makeindex \
-		-s temp/phd_report.ist \
-		-o temp/phd_report.gls \
-		-t temp/logfile_glossary.log \
-		temp/phd_report.glo \
+	makeglossaries \
+		-t src/temp/logfile_glossary.log \
+		-d src/temp \
+		phd_report \
 		$(1)
 endef
 
@@ -138,9 +138,10 @@ compil-glo:
 # Define 'idx' compiler command with `makeindex`.
 define idx_compiler
 	makeindex \
-		-o temp/phd_report.ind \
-		-t temp/logfile_index.log \
-		temp/phd_report.idx \
+		-s src/temp/phd_report.ist \
+		-o src/temp/phd_report.ind \
+		-t src/temp/logfile_index.log \
+		src/temp/phd_report.idx \
 		$(1)
 endef
 
@@ -163,7 +164,7 @@ pdf: compil-tex compil-tex2 compil-bib compil-glo compil-idx compil-tex3 compil-
 .PHONY: read
 read:
 	-@ echo -e "# Read the pdf of phd report with the default pdf reader." ;
-	-@ START "" "output/phd_report.pdf"
+	-@ START "" "src/output/phd_report.pdf"
 
 
 .PHONY: all
