@@ -1,9 +1,10 @@
 \chapter{État de l'art : concevons un jeu de données}
-    \label{chapter:1_ETAT_DE_L_ART}
+    \label{chapter:1-ETAT-DE-L-ART}
 
     Dans cette partie, nous allons faire un état des lieux des méthodes pour créer le premier jeu de données nécessaire à l'entrainement d'un assistant conversationnel.
     Cela comprend une description des acteurs du projet, un rappel de l'organisation usuelle en fonction de leur compétence, et une énumération des problèmes et solutions les plus communs.
-    \textbf{Rappel des contraintes industrielles}
+	\todo[inline]{TRANSITIOn À COMPLÉTERR}
+    \todo{Rappel des contraintes industrielles}
 
     \minitoc
 
@@ -11,13 +12,14 @@
     %%%%% Section 1.1:
     %%%%%--------------------------------------------------------------------
     \section{Rappel sur le fonctionnement usuel d'un chatbot}
+		\todo[inline]{SECTION À RÉDIGER}
 
-        •	Description du cas d'un chatbot "classique" modélisé à base d'intention et d'entités
+        •	Description du cas d'un chatbot \index{chatbot} "classique" modélisé à base d'intention et d'entités
             o	 On se concentre sur ces implémentations car on peut y controller les réponses (image de marque en jeu)
 
-        •	Classification d'intention (règles, classification supervisée, ...)
+        •	Classification \index{chatbot!classification} d'intention (règles, classification supervisée, ...)
 
-        •	Extraction d'entités (règles, ner, ...)
+        •	Extraction d'entités \index{chatbot!ner} (règles, ner, ...)
 
         •	Mapping des réponses sur la base du couple $(intention, enites)$
 
@@ -27,6 +29,7 @@
     %%%%% Section 1.2:
     %%%%%--------------------------------------------------------------------
     \section{Les étapes usuelles de conception d'un chatbot}
+		\todo[inline]{SECTION À RÉDIGER}
 
         Préambule : l'organisation peut bien entendu varier suivant les contextes, mais la description qui suit est représentative des organisation principales
 
@@ -123,7 +126,8 @@
     %%%%%--------------------------------------------------------------------
     %%%%% Section 1.2:
     %%%%%--------------------------------------------------------------------
-    \section{Zoom sur la partie Modélisation et Labellisation de la bse d'apprentissage}
+    \section{Zoom sur la partie Modélisation et Labellisation de la base d'apprentissage}
+		\todo[inline]{SECTION À RÉDIGER}
 
         \subsection{Création « manuelle »}
 
@@ -152,8 +156,8 @@
 
             •	Solution :
                 o	Un clustering pourrait simplifier cette tâche !
-                o   Rappel : grandes lignes du fonctionnement d'un algorithme de clustering ?
-                o	NB : une section ou une annexe détaillera les algorithmes de clustering les plus utilisés
+                o   Rappel : grandes lignes du fonctionnement d'un algorithme de \gls{clustering} ?
+                o	NB : une section ou une annexe détaillera les algorithmes de \index{clustering} les plus utilisés
 
             •	Avantages :
                 o	Regroupement automatique
@@ -165,12 +169,13 @@
                 o	Nuances métiers non comprises
                 o	Plusieurs soucis si le jeu de données est déséquilibré ou spécifique
                 o	Absence d’un modèle de langue spécifique au contexte...
-                o   parfois besoin d'hyperparamètres compexes à déterminer
+                o   parfois besoin d'hyperparamètres complexes à déterminer
 
         \subsection{Conception assistée par des regroupements semi-supervisés}
 
             •	Solution :
-                o	On peut envisager ainsi de corriger le clustering en y insérant des contraintes métiers \cite{lampert:2018}
+                o	On peut envisager ainsi de corriger le clustering en y insérant des contraintes métiers\hspace{2em}
+                \cite{lampert:2018}
                 o	Méthodes semi-supervisée
                 o	NB : une section ou une annexe détaillera les algorithmes de clustering sous contraintes
 

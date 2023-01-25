@@ -74,42 +74,37 @@
     \let\annexes\Annexes
     }
     \RequirePackage[T1]{fontenc}
-    \if@dont@load@french
-        \if@minfrench
-            \RequirePackage[french]{babel}
-            \frenchspacing
-            \def\pagename{page}
-            \def\refname{R\'ef\'erences}
-            \def\abstractname{R\'esum\'e}
-            \def\bibname{Bibliographie}
-            \def\listfigurename{Table des figures}
-            \def\listtablename{Liste des tableaux}
-            \def\indexname{Index}
-            \def\seename{\emph{voir}}
-            \def\seealsoname{\emph{voir aussi}}
-            \def\figurename{\textsc{Fig.}}
-            \def\tablename{\textsc{Tab.}}
-            \def\partname{\protect\@RPt partie}
-                \def\@RPt{{\ifcase\value{part}\or Premi\`ere\or Deuxi\`eme\or
-                                Troisi\`eme\or Quatri\`eme\or Cinqui\`eme\or Sixi\`eme\or
-                                Septi\`eme\or Huiti\`eme\or Neuvi\`eme\or Dixi\`eme\or
-                                Onzi\`eme\or Douzi\`eme\or Treizi\`eme\or Quatorzi\`eme\or
-                                Quinzi\`eme\or Seizi\`eme\or Dix-septi\`eme\or
-                                Dix-huiti\`eme\or
-                                Dix-neuvi\`eme\or Vingti\`eme\fi}\space\def\thepart{}}
-                \def\glossaryname{Glossaire}
-                \def\chaptername{Chapitre}
-                    \def\appendixname{Annexe}
-                    \ifx\ier\undefined\def\ier{er}\fi
-                    \def\today{\ifnum\day=1\relax 1\ier
-                        \else \number\day\fi
-                        \space\ifcase\month\or janvier\or f\'evrier\or mars\or
-                            avril\or mai\or juin\or juillet\or ao\^ut\or septembre\or
-                            octobre\or novembre\or d\'ecembre\fi \space\number\year}
-        \fi
-    \else
-        \RequirePackage[french]{babel}
-    \fi
+	\RequirePackage[french]{babel}
+	\frenchspacing
+	\def\pagename{page}
+	\def\refname{R\'ef\'erences}
+	\def\abstractname{R\'esum\'e}
+	\def\bibname{Bibliographie}
+	%\def\listfigurename{Liste des figures}
+	%\def\listtablename{Liste des tableaux}
+	\def\listofalgorithm{Liste des algorithmes}
+	\def\indexname{Index}
+	\def\seename{\emph{voir}}
+	\def\seealsoname{\emph{voir aussi}}
+	\def\figurename{\textsc{Fig.}}
+	\def\tablename{\textsc{Tab.}}
+	\def\partname{\protect\@RPt partie}
+		\def\@RPt{{\ifcase\value{part}\or Premi\`ere\or Deuxi\`eme\or
+						Troisi\`eme\or Quatri\`eme\or Cinqui\`eme\or Sixi\`eme\or
+						Septi\`eme\or Huiti\`eme\or Neuvi\`eme\or Dixi\`eme\or
+						Onzi\`eme\or Douzi\`eme\or Treizi\`eme\or Quatorzi\`eme\or
+						Quinzi\`eme\or Seizi\`eme\or Dix-septi\`eme\or
+						Dix-huiti\`eme\or
+						Dix-neuvi\`eme\or Vingti\`eme\fi}\space\def\thepart{}}
+		\def\glossaryname{Glossaire}
+		\def\chaptername{Chapitre}
+			\def\appendixname{Annexe}
+			\ifx\ier\undefined\def\ier{er}\fi
+			\def\today{\ifnum\day=1\relax 1\ier
+				\else \number\day\fi
+				\space\ifcase\month\or janvier\or f\'evrier\or mars\or
+					avril\or mai\or juin\or juillet\or ao\^ut\or septembre\or
+					octobre\or novembre\or d\'ecembre\fi \space\number\year}
     \if@dont@load@UTFVIII
     \else
         \RequirePackage[utf8]{inputenc}
@@ -1433,13 +1428,10 @@
         \newcommand\@Bib@Introduction{}
         \newcommand\BeginBibWith[1]
         {\renewcommand\@Bib@Introduction{#1\par\bigskip}}
+		%
         \renewenvironment{thebibliography}[1]
-        {\if@classic@section
-                \global\@classic@sectionfalse
-                \chapter*{\bibname}
-            \else
-                    \SpecialSection{\bibname}
-            \fi
+        {
+            \SpecialSection{\bibname}
             \generic@mark{\bibname}
             \@Bib@Introduction
             \list{\@biblabel{\@arabic\c@enumiv}}
@@ -1457,42 +1449,23 @@
         \newcommand\@Lof@Introduction{}
         \newcommand\BeginLofWith[1]
         {\renewcommand\@Lof@Introduction{#1\par\bigskip}}
+		%
         \renewcommand\listoffigures{
-            \if@twocolumn
-                \@restonecoltrue\onecolumn
-            \else
-                \@restonecolfalse
-            \fi
-            \if@classic@section
-                \global\@classic@sectionfalse
-                \chapter*{\listfigurename}
-            \else
-                    \SpecialSection{\listfigurename}
-            \fi
-            \generic@mark{\listfigurename}
+            \global\@classic@sectionfalse
+            \SpecialSection{Liste des figures}
+            \generic@mark{Liste des figures}
             \@Lof@Introduction
             \@starttoc{lof}
-            \if@restonecol\twocolumn\fi
         }
         \newcommand\@Lot@Introduction{}
         \newcommand\BeginLotWith[1]
         {\renewcommand\@Lot@Introduction{#1\par\bigskip}}
+		%
         \renewcommand\listoftables{
-            \if@twocolumn
-                \@restonecoltrue\onecolumn
-            \else
-                \@restonecolfalse
-            \fi
-            \if@classic@section
-                \global\@classic@sectionfalse
-                \chapter*{\listtablename}
-            \else
-                    \SpecialSection{\listtablename}
-            \fi
+            \SpecialSection{\listtablename}
             \generic@mark{\listtablename}
             \@Lot@Introduction
             \@starttoc{lot}
-            \if@restonecol\twocolumn\fi
         }
         \pagenumbering{roman}
         \setlength\@tempdima{\paperheight}

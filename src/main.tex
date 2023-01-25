@@ -31,31 +31,81 @@
 \usepackage[T1]{fontenc}
 
 %%% Pour un PDF avec des hyperliens:
-\usepackage[pageanchor=false]{template/tulhypref}
+\usepackage[pageanchor=true]{template/tulhypref}
 
 %%% Pour une bibliographie au styme 'named':
 % \usepackage{named}
 
+%%% Pour les notes à faire:
+\usepackage{todonotes}
+
+%%% Pour les couleurs:
+\usepackage{xcolor}
+
 %%% Pour les listes:
-\usepackage{enumitem, amssymb}
+\usepackage{enumitem,pifont,amssymb}
+
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\itemok}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}\hspace{-2.5pt}}
+\newcommand{\itemko}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
 
 %%% Pour les tableaux:
 % \usepackage{array}
 % \usepackage{multirow}
 
 %%% Pour les figures:
+\usepackage{float}
 \usepackage{graphicx}
 
+%%% Pour les schémas:
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows,
+	shapes,
+	automata,
+	petri,
+	positioning,
+	calc
+}
+
 %%% Pour les algorithmes:
-\usepackage{algorithm}
+\usepackage{algorithm} % algorithm2e
+\usepackage{algpseudocode}
+% Redéfinir les noms pour des algorithmes en français
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}} 
+\floatname{algorithm}{Algorithme}
+\renewcommand{\algorithmicreturn}{\textbf{retourne}}
+\renewcommand{\algorithmicprocedure}{\textbf{procédure}}
+\renewcommand{\algorithmicrequire}{\textbf{Entrée(s):}}
+\renewcommand{\algorithmicensure}{\textbf{Sortie(s):}}
+\renewcommand{\algorithmiccomment}[1]{\{#1\}}
+\renewcommand{\algorithmicend}{\textbf{fin}}
+\renewcommand{\algorithmicif}{\textbf{si}}
+\renewcommand{\algorithmicthen}{\textbf{alors}}
+\renewcommand{\algorithmicelse}{\textbf{sinon}}
+\renewcommand{\algorithmicfor}{\textbf{pour}}
+\renewcommand{\algorithmicforall}{\textbf{pour tout}}
+\renewcommand{\algorithmicdo}{\textbf{faire}}
+\renewcommand{\algorithmicwhile}{\textbf{tant que}}
+\renewcommand{\algorithmicrepeat}{\textbf{répéter}}
+\renewcommand{\algorithmicuntil}{\textbf{jusqu'à}}
+\newcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
+\newcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
+\newcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
 
 %%% Pour les mini-tables des matières:
 \usepackage[french]{minitoc}
 
+%%% Pour les références bibliographiques:
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{references/bibliography.bib}
+\usepackage{csquotes}
+
 %%% Pour le glossaire:
-\usepackage{glossaries}
+\usepackage[automake]{glossaries}
 
 
 %%%%%--------------------------------------------------------------------
@@ -88,7 +138,10 @@
 \NoChapterPrefix
 
 %%% Faire un glossaire:
-\makeglossaries %\makeglossary
+\makeglossaries
+
+%%% Définition du glossaire:
+\input{chapters/glossaire.tex}
 
 %%% Faire un index:
 \makeindex
@@ -209,14 +262,13 @@
 
     %%% Abstract en français
     \begin{FrenchAbstract}
-        Le résumé.
+        Le résumé à faire.
         \KeyWords{chat, chien, puces.}
     \end{FrenchAbstract}
 
     %%% Abstract en anglais
     \begin{EnglishAbstract}
-        In computational geometry many search problems and range queries can be solved by performing an iterative search for the same key in separate ordered lists.  In Part I of this report we show that, if these ordered lists can be put in a one-to-one correspondence with the nodes of a graph of degree  d  so that the iterative search always proceeds along edges of that graph, then we can do much better than the obvious sequence of binary searches. Without expanding the storage by more than a constant factor, we can build a data-structure, called a fractional cascading structure, in which all original searches after the first can be carried out at only  log d  extra cost per search.  Several results related to the dynamization of this structure are also presented. Part II gives  numerous applications of this technique to geometric problems.
-        Examples include intersecting a polygonal path with a line, slanted range search, orthogonal range search, computing locus functions, and others. Some results on the optimality of fractional cascading, and certain extensions of the technique for retrieving additional information are also included.
+        The abstract to do
         \KeyWords{cat, dog, flees.}
     \end{EnglishAbstract}
 \end{ThesisAbstract}
@@ -259,13 +311,8 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génération de la table des matières:
+\renewcommand{\contentsname}{Table des matières}
 \tableofcontents
-
-%%% Génère la liste des figures:
-\listoffigures
-
-%%% Génère la liste des tableaux:
-\listoftables
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% CORPS DU DOCUMENT
@@ -299,85 +346,66 @@
 %%%%%--------------------------------------------------------------------
 \input{chapters/conclusion.tex}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% ANNEXES DU DOCUMENT
+%%%%% ANNEXES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Préparer les annexes et la bibliographie:
 \PutLineInToc
-% \PutNewPageInToc
+\input{chapters/annexes.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% DIVERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PutLineInToc
 \DontFrameChaptersInToc
-
-%%%%%--------------------------------------------------------------------
-%%%%% Annexes
-%%%%%--------------------------------------------------------------------
-% \input{chapters/annexes.tex}
-\Annexes
-\label{ANNEXES}
-
-\Annex{Annexe théorique}
-
-    plein de texte très varié.
-    Une autre page avec plein de texte très varié.
-
-    \section{AAAAAA}
-
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-
-    \section{BBBBBB}
-
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-
-    \section{CCCCCCC}
-
-        Une autre page avec plein de texte très varié.
-
-\Annex{Annexe technique}
-
-    plein de texte très varié.
-    Une autre page avec plein de texte très varié.
-
-    \section{AAAAAA}
-
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-
-    \section{BBBBBB}
-
-        Une autre page avec plein de texte très varié.
-        Une autre page avec plein de texte très varié.
-
-    \section{CCCCCCC}
-
-        Une autre page avec plein de texte très varié.
 
 %%%%%--------------------------------------------------------------------
 %%%%% Bibliographie
 %%%%%--------------------------------------------------------------------
-%%% Définition de la bibliographie:
-\bibliographystyle{apalike}
-\bibliography{references/bibliography}
+
+%%% Affichage de la bibliographie:
+\printbibliography
 
 %%%%%--------------------------------------------------------------------
-%%%%% glossaire
+%%%%% Liste des TODOs
 %%%%%--------------------------------------------------------------------
-%%% Définition du glossaire:
-\newglossaryentry{comics}{
-    name=comics,
-    description={une bande dessinée à parution régulière}}
-\newglossaryentry{1980}{
-    name={Années 1980},
-    description={une decénie de musiques chouettes}}
-\newglossaryentry{1990}{
-    name={Années 1990},
-    description={une decénie de musiques discutables}}
 
-%%% Définition des accronymes:
-\newacronym{svm4}{SVM}{Support Vector Machine}
+%%% Génère la liste des choses à faire:
+\listoftodos[Liste des TODOs]
+
+%%% Certaines choses à faire:
+\todo[inline]{\textbf{Style d'écriture}: "je" ou "nous" ou "on" ?}
+
+%%%%%--------------------------------------------------------------------
+%%%%% Liste des figures
+%%%%%--------------------------------------------------------------------
+
+%%% Génère la liste des figures:
+\renewcommand{\listfigurename}{Liste des figures}
+\listoffigures
+
+%%%%%--------------------------------------------------------------------
+%%%%% Liste des tableaux
+%%%%%--------------------------------------------------------------------
+
+%%% Génère la liste des tableaux:
+\renewcommand{\listtablename}{Liste des tableaux}
+\listoftables
+
+%%%%%--------------------------------------------------------------------
+%%%%% Liste des algorithmes
+%%%%%--------------------------------------------------------------------
+
+%%% Génère la liste des algorithmes:
+\renewcommand{\listalgorithmname}{Liste des algorithmes}  % ERROR TABLE MATIERES
+\listofalgorithms
+
+%%%%%--------------------------------------------------------------------
+%%%%% Glossaire
+%%%%%--------------------------------------------------------------------
 
 %%% Affichage du glossaire:
 \printglossaries
@@ -385,7 +413,9 @@
 %%%%%--------------------------------------------------------------------
 %%%%% Index
 %%%%%--------------------------------------------------------------------
+
+%%% Affichage de l'index:
 \WriteThisInToc
-\printindex
+\PrintIndex
 
 \end{document}

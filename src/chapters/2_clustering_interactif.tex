@@ -1,30 +1,146 @@
 \chapter{Proposition d'un Clustering Interactif}
-    \label{chapter:2_CLUSTERING_INTERACTIF}
+    \label{chapter:2-CLUSTERING-INTERACTIF}
+    
+    % RÉSUMÉ DES ÉPISODES PRÉCÉDENTES: L'ANNOTATION C'EST COMPLIQUÉ !
+    Dans le chapitre précédent, nous avons vu les points essentiels suivants :
+	\begin{todolist}
+	    	% 1. Importance du jeu de données
+		\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l'entrainement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
+		% 2. Experts métiers avec connaissance métiers, pas de connaissance en datascience.
+		\item[\itemok] Pour concevoir ce jeu de données, il est nécessaire de faire appel à des experts maîtrisant le domaine à couvrir par l'assistant car les données sont en général spécifiques ou privées ;
+		% 3. Experts métiers ayant peu de donnaissance en datascience
+		\item[\itemok] L'intervention de ces experts métiers au sein du projet est en général laborieuse :
+		d'une part à cause de leur manque de connaissances en datascience (ce n'est pas leur domaine d'expertise),
+		d'autre part à cause de la complexité inhérente des tâches de modélisation et d'annotation des données.
+		% 4. Tache manuelle avec peu d'assistance.
+	  \item[\itemok] Par manque de compétences, de connaissances ou d'ergonomie, la tâche de conception d'un jeu de données reste manuelle et est encore mal assistée par ordinateur par manque d'ergonomie ou de faisabilité.  %% TODO: A REVOIR
+
+	  
+	\end{todolist}
+	
+	% ANNONCE DU BUT DU CHAPITRE: MA CONTRIBUTION !
+	Dans cette partie, nous proposons une alternative à l'organisation manuelle destinée à la conception d'un jeu de données. Notre proposition vise à remplir un double objectif :
+	\begin{todolist}
+		\item Proposer une méthode permettant d'assister la modélisation et l'annotation des données pour créer plus efficacement une base d'apprentissage pour la classification d'intention d'un assistant conversationnel ;
+		\item Redéfinir les tâches et les objectifs des différents acteurs afin de rester au plus proche de leurs compétences réelles, particulièrement en ce qui concerne les experts métiers intervenants dans le projet.
+	\end{todolist}
 
     \minitoc
 
-    Transition / Récap : On a vu que :
-    
-    •	Le travail est principalement manuel : comment peut-on l’assister ?
-    
-    •	La définition de la structure de classes est un mélange de connaissances métiers et de regroupement manuel sur la base de patterns linguistiques commun : faisons du clustering !
-    
-    •	Mais le clustering est souvent peu pertinent pour un usage métier : intégrons-y des interactions avec la machine !
-    
-    •	Les intercations non guidées sont fastidieuses : ajoutons de l’active learning !
-
-    Nous proposons donc notre version d'intercative clustering.
-
-    NB : la démonstration de cette proposition sera démontrée dans la partie 3.
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 2.1:
     %%%%%--------------------------------------------------------------------
-    \section{Description théorique de la méthode}
+    \section{Intuitions à l'origine de notre méthode}
 
-        Nous proposons de combiner les techniques vues précédemment :
+		% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
+		La pierre angulaire de notre méthode repose sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie :
+		cela l'éloigne de ses compétences initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
+		\todo{Référence}
+		De fait, il semble plus adéquat de demander à l'expert métier de discriminer deux questions sur la base de leurs réponses :
+		une telle approche demande une charge de travail plus faible et est plus intuitive car elle est plus proche des compétences réelles de l'annotateur.
+		\todo{Référence}
+		Ainsi, nous basons notre méthode sur l'annotation de contraintes sur les données.
+		
+		% 2. Un expert métier seul ne peut trouver une modélisation adéquate, il faut se reposer sur l'interaction homme-machine.
+		Toutefois, l'annotation de contraintes semble elle aussi fastidieuse.
+		En effet, pour faire émerger une base d'apprentissage, il faut annoter un grand nombre de contraintes et être attentifs aux éventuelles incohérences pour ne pas introduire de contraintes contradictoires.
+		\todo{Référence}
+		Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine. Ce choix est motivé entre autre par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.\todo{à reformuler plus tard.}
 
-        •	Clustering sous contraintes
+		% TR:
+		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d'entrainement de notre assistant conversationnel.
+
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.2:
+    %%%%%--------------------------------------------------------------------
+    \section{Description théorique de notre clustering interactif}
+    
+	    	% Rappel de l'objectif.
+		Nous proposons la méthode suivante pour transformer une collecte de données bruts en une base d'apprentissage nécessaire à l'entrainement d'un assistant conversationnel. Cette méthode, que nous appelons "\textit{clustering interactif}", est décrite formellement à l'aide du pseudo-code figurant  dans Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}.
+
+		\begin{algorithm}
+		    \begin{algorithmic}[1]
+		        \Require données non segmentées ; budget à disposition
+				\State \textbf{initialisation}: créer une liste vide de contraintes
+		        \State \textit{optionnel}: évaluer les hyper-paramètres de la segmentation automatique
+		        \State \textbf{segmentation initial}: regrouper les données par similarité
+		        \Repeat
+		            \State \textit{optionnel}: évaluer les hyper-paramètres de l'échantillonnage
+		            \State \textbf{échantillonnage}: sélectionner une partie de la segmentation à corriger
+		            \State \textbf{annotation}: corriger la segmentation en ajoutant des contraintes sur l'échantillon
+		            \State \textit{optionnel}: ré-évaluer les hyper-paramètres de la segmentation automatique
+			        \State \textbf{segmentation}: regrouper les données par similarité et avec les contraintes
+			        \State \textbf{évaluation (1)}: estimer la pertinence et la stabilité de la segmentation
+			        \State \textbf{évaluation (2)}: estimer le budget restant et les coûts restant à investir
+		        \Until{segmentation satisfaisante OU budget épuisé}
+		        \Ensure données segmentées (i.e. base d'apprentissage)
+		    \end{algorithmic}
+		    \caption{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif}
+		    \label{algorithm:CLUSTERING-INTERACTIF}
+		\end{algorithm}
+		
+		% Présentation succinte.
+		Comme vous pouvez le constater, la méthode repose principalement sur l'alternance successive entre deux phases clefs :
+		\begin{itemize}
+			\item une phase d'\textbf{annotation de contraintes}
+			par un expert sur la base des connaissances qu'il détient ;
+			\item une phase de \textbf{segmentation automatique} des données
+			\todo{utiliser l'appellation clustering ou segmentation ?}
+			par une machine sur la base de la proximité sémantique des données et des contraintes précédemment annotées.
+		\end{itemize}
+		
+		% Objectif recherché
+		L'objectif recherché en associant ces deux phases est la création d'un cercle vertueux pour améliorer itérativement la qualité de la base d'apprentissage en cours de construction.
+		En effet, à chaque itération, l'expert métier obtiendra une proposition de segmentation des données qu'il pourra raffiner pour corriger le fonctionnement de la machine et ainsi obtenir une segmentation plus pertinente à l'itération suivante.
+		
+		% Description de l'initialisation.
+		Pour l'\textbf{initialisation} la méthode (cf. Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, cette liste contiendra l'ensemble de la connaissance que l'expert transmettra au système sous la forme de contraintes simple sur les données (nous entrerons en détails en décrivant la phase d'annotation).
+		De plus, il faut une première segmentation des données par la machine : celle-ci se réalise par l'exécution d'un algorithme de clustering. Nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de clustering et ses hyper-paramètres. Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter ou laissés par défaut.\todo{cf. partie étude} Il est à noter que cette segmentation des données est réalisée sans bénéficier de la connaissance de l'expert, il est donc peu probable que le résultat soit pertinent à ce stade.
+		
+		% Description de l'échantillonnage.
+		Nous entrons dans le coeur de la boucle itérative par la phase d'\textbf{échantillonnage} (cf. Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}, \textit{lignes 5 et 6}).
+		Comme mentionné au préalable, savoir quelles contraintes ajouter pour corriger efficacement le clustering est un problème NP-difficile (le nombre de possibilité croît proportionnellement au carré du nombre de données). De plus, l'intervention d'expert est chiffrée et représente en général la majeure partie des coûts à investir dans un projet\todo{reférence}. Il est donc inconcevable de laisser un expert métier annoter des contraintes "seul" et "au hasard".
+		Ainsi, pour optimiser ses interventions, il convient de déterminer là où l'expert aura le plus d'impact lors de sa transmission de connaissance. C'est pourquoi la phase d'échantillonnage est primordiale dans la méthode proposée : Nous proposons d'y sélectionner des couples de données sur la base de leur similarité, de leur segmentation ou encore de leur relations avec d'autres données déjà liées par d'autres contraintes.
+		\todo{description technique plus tard ?}
+		
+		% Description de l'annotation.
+		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}, \textit{ligne 7}).
+		Pour alléger la charge d'annotation, nous avons décidé de discriminer les données de l'échantillon par des contraintes binaires simples : \textit{MUST\_LINK} et \textit{CANNOT\_LINK}. Ces contraintes représentent respectivement la similitude ou la différence entre deux données, et seront utilisées pour regrouper ou séparer certaines données dans la prochain segmentation.
+		En fonction de l'orientation du projet et afin de rester au plus proche des compétences réelles de l'expert, la formulation de l'énoncer d'annotation doit être judicieusement définie : par exemple, les contraintes peuvent représenter une similitude
+		sur la thématique concernée\footnote{thématique : \textit{crédit} vs. \textit{assurance}},
+		sur l'action désirée\footnote{action : \textit{souscrire} vs. \textit{résilier}},
+		ou encore sur le besoin de l'utilisateur\footnote{besoin : \textit{souscrire un crédit} vs. \textit{souscrire une assurance}}.
+		On notera que ces contraintes respectent des règles de transitivité (cf. figure)\todo{figure}, ce qui peuvent introduire des incohérences dans les contraintes si elles ne sont pas vérifiées
+		\footnote{Si $(d_1, d_2)$ sont liées par un \textit{MUST\_LINK} et $(d_2, d_3)$ sont liées par un \textit{CANNOT\_LINK}, alors $(d_1, d_3)$ devrait en toute cohérence être liées par un \textit{CANNOT\_LINK}}.
+		
+		% Description du clustering.
+		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}, \textit{lignes 8 et 9}). Cette devra respecter les contraintes préalablement définies par l'expert, nous nous tournons donc vers l'utilisation d'un clustering sous contraintes.
+		Au fur et à mesure des itérations, de plus en plus de contraintes seront ajoutées pour corriger le clustering. ainsi, au bout d'un certain nombre d'itérations, la segmentation des données reflétera la vision que l'expert aura voulu transmettre.
+		Comme précédemment, nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de clustering et ses hyper-paramètres. Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter, estimés en fonction de l'itération et des contraintes disponibles, ou laissés par défaut.\todo{cf. partie étude}
+		\todo{description technique plus tard ?}
+		
+		% Description de l'évaluation.
+		Comme la méthode est itérative, il faut pouvoir estimer des \textbf{cas d'arrêt} (cf. Alg.~\ref{algorithm:CLUSTERING-INTERACTIF}, \textit{lignes 10 à 12}).
+		Le cas d'arrêt le plus évident n'est pas technique mais relatif aux coûts investis dans l'opération : si le projet n'a plus de budget dédié à l'annotation, il faudra créer la base d'apprentissage avec le résultat à disposition, quel que soit la pertinence de la segmentation obtenue sur les données. Ce cas d'arrêt par défaut peut malheureusement être synonyme d'échec pour le projet si les résultats sont inexploitables.
+		D'autres cas d'arrêts plus techniques peuvent être envisager en fonction de la qualité de la segmentation.
+		D'une part, nous pouvons comparer l'évolution de la segmentation des données : si les segmentations sont similaires sur plusieurs itérations, il est possible que la modélisation atteint un optimum local ou un palier de performance. D'autre part, nous pouvons aussi comparer l'évolution de l'accord entre la segmentation obtenue et l'annotation de l'expert : en effet, si l'expert ne contredit plus la répartition proposée des données, il est probable sa vision et la vision de la machine aient convergé.
+		Dans les deux cas, l'analyse de l'expert métier reste nécessaire pour valider si la modélisation des données est pertinente ou si elle comporte encore des incohérences à corriger.
+		\todo{description technique plus tard ?}
+
+		
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.3:
+    %%%%%--------------------------------------------------------------------
+    \section{Description technique et implémentation}
+		\todo[inline]{SECTION À RÉDIGER ? EN ANNEXE ? DANS LA PARTIE PRÉCÉDENTE ?}
+
+        •	cognitivefactory.interactive-clustering : Gestion des données
+    
+        •	cognitivefactory.interactive-clustering : Gestion des contraintes + conflits
+
+        •	cognitivefactory.interactive-clustering : Algorithmes de clustering
             o	Kmeans : Classique, Incontournable, Rapide, Efficace
             o	Hiérarchique : Lent mais facile à implémenter
             o	Spectral : Permet des topologies complexes
@@ -32,66 +148,100 @@
             o	Affinity propagation : 
             o	Metric learning : Lent mais plus adapté au corpus
             o	…
-    
-        •	Echantillonnage de contraintes à annoter 
+
+        •	cognitivefactory.interactive-clustering : Algorithmes de sampling
             o	Random ou Pseudo-random
             o	Farhtest : Scinder les gros clusters
             o	Closest : Redéfinir la position des frontières de clusters
             o	…
-    
-        •	Annotation de contraintes
-            o	MUST-LINK / CANNOT-LINK / SKIP
-            o	« Répondriez-vous de la même manière à ces deux demandes ? »
 
-        •	Boucle itérative entre clustering, échantillonnage et annotation
+        •	cognitivefactory.interactive-clustering-gui : Diagramme d'état ?
+        		o	Boucle itérative entre clustering, échantillonnage et annotation
             o	Améliorer le résultat précédent
             o	Autant de boucle que « nécessaire »
             o	Avoir le clustering le plus efficace pour avoir de bon résultats
             o	Avoir l’échantillonnage le plus efficace pour améliorer le plus efficacement
             o	Avoir une annotation sans ambiguïté pour ne pas biaiser la construction itérative
 
-        •	Analyses
+        •	cognitivefactory.interactive-clustering-gui : Interface d’annotation
+            o	MUST-LINK / CANNOT-LINK / SKIP
+            o	« Répondriez-vous de la même manière à ces deux demandes ? »
+            o	Formulation de la question
+
+        •	cognitivefactory.interactive-clustering-gui : Interface d’analyse
             o	Analyse de l’évolution de l’accord clustering->annotation
             o	Analyse des patterns linguistiques pertinents
             o	Analyse de la formation de clusters (taille, répartition, …)
-        •	NB : Réutilisation de schéma etc
-    
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 2.2:
-    %%%%%--------------------------------------------------------------------
-    \section{Espoirs de la méthode proposée (??ETAT DE L'ART??)}
-
-        •	Moins de formations, d’ateliers, …
-
-        •	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
-
-        •	Permettre de trouver la base d’apprentissage
-
-        •	Méthode réaliste / pas trop coûteuse•	…
-    
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 2.3:
-    %%%%%--------------------------------------------------------------------
-    \section{Description technique et implémentation}
-
-        •	cognitivefactory.interactive-clustering : Gestion des données
-    
-        •	cognitivefactory.interactive-clustering : Gestion des contraintes + conflits
-
-        •	cognitivefactory.interactive-clustering : Algorithmes de clustering
-
-        •	cognitivefactory.interactive-clustering : Algorithmes de sampling
-
-        •	cognitivefactory.interactive-clustering-gui : Interface d’annotation
-
-        •	cognitivefactory.interactive-clustering-gui : Interface d’analyse
 
         •	NB : captures d’écrans pour donner un aperçu, puis redirection vers les annexes
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+	node distance=1.5cm and 2.5cm,
+	shorten >=1pt,
+	>=stealth',
+	auto,
+	state/.style={
+		circle,
+		thick,
+		minimum size=2.75cm,
+		align=center,
+	},
+	edge/.style={
+		align=center,
+	},
+]
+    \node [
+		state,
+		accepting,
+		draw=blue!75,
+		fill=blue!20,
+	] (Sf) {\scriptsize données \\ \scriptsize segmentées};
+    \node [
+		state,
+		initial,
+		draw=red!75,
+		fill=red!20,
+	] (S0) [above=of Sf] {\scriptsize données non \\ \scriptsize segmentées};
+    \node [
+		state,
+		draw=orange!75,
+		fill=orange!20,
+	] (S2) [left=of Sf] {\scriptsize nouvelles \\ \scriptsize contraintes \\ \scriptsize à intégrer};
+    \node [
+		state,
+		draw=orange!75,
+		fill=orange!20,
+	] (S1) [left=of S2] {\scriptsize échantillon \\ \scriptsize de segmentation \\ \scriptsize à vérifier};
+
+    \path[->] (S0) edge [edge, left] node {\scriptsize clustering \\ \scriptsize non contraint} (Sf);
+    \path[->] (Sf) edge [edge, bend left=30] node {\scriptsize nouvel \scriptsize échantillonnage} (S1);
+    \path[->] (S1) edge [edge, left] node [pos=0.9] {\scriptsize annotation de \\ \scriptsize contraintes} (S2);
+    \path[->] (S2) edge [edge, left] node [pos=1] {\scriptsize clustering \\ \scriptsize sous contraintes} (Sf);      
+\end{tikzpicture}
+	\caption{Diagramme d'état représentant les grandes étapes du clustering interactif.}
+    \label{figure:CLUSTERING-INTERACTIF}
+\end{figure}
     
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 2.1:
+    %%%%% Section 2.4:
     %%%%%--------------------------------------------------------------------
-    \section{Protocole d’utilisation : Mode d'emploi associé (??CONCLUSION??)}
+    \section{Espoirs de la méthode proposée}
+		\todo[inline]{SECTION À RÉDIGER}
+
+        •	Moins de formations, d’ateliers, …
+        •	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
+        •	Permettre de trouver la base d’apprentissage
+        •	Méthode réaliste / pas trop coûteuse
+        •	…
+ 
+    
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 2.5:
+    %%%%%--------------------------------------------------------------------
+    \section{Protocole d'utilisation : Mode d'emploi associé (??CONCLUSION??)}
+		\todo[inline]{SECTION À RÉDIGER}
 
         •	Collecte des données
 
