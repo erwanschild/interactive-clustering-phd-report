@@ -6,24 +6,17 @@
             "args": [
                 "--enable-installer",
                 "--interaction=nonstopmode",
-                "--include-directory=.",
-                "--aux-directory=temp",
-                "--output-directory=output",
-                "--job-name=phd_report",
                 "--output-format=pdf",
                 "--synctex=1",
-                "--file-line-error",
                 "%DOC%"
             ],
             "env": {}
         },
         {
-            "name": "bibtex",
-            "command": "bibtex",
+            "name": "biber",
+            "command": "biber",
             "args": [
-                "--enable-installer",
-                "--include-directory=.",
-                "temp/phd_report"
+                "%DOCFILE%"
             ],
             "env": {}
         },
@@ -31,9 +24,7 @@
             "name": "makeglossaries",
             "command": "makeglossaries",
             "args": [
-                "-t", "logfile_glossary.log",
-                "-d", "temp",
-                "phd_report"
+                "%DOCFILE%"
             ],
             "env": {}
         },
@@ -41,29 +32,17 @@
             "name": "makeindex",
             "command": "makeindex",
             "args": [
-                "-s", "temp/phd_report.ist",
-                "-o", "temp/phd_report.ind",
-                "-t", "temp/logfile_index.log",
-                "temp/phd_report.idx",
+                "%DOCFILE%"
             ],
             "env": {}
         }
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "pdflatex ➞ bibtex ➞ pdflatex`×2",
+            "name": "pdflatex ➞ biber ➞ makeglossaries ➞ makeindex ➞ pdflatex`×2",
             "tools": [
                 "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "pdflatex ➞ bibtex ➞ makeglossaries ➞ makeindex ➞ pdflatex`×2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
+                "biber",
                 "makeglossaries",
                 "makeindex",
                 "pdflatex",
