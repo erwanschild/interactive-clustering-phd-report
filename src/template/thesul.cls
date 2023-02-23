@@ -87,6 +87,7 @@
 	\def\seename{\emph{voir}}
 	\def\seealsoname{\emph{voir aussi}}
 	\def\figurename{\textsc{Fig.}}
+	\def\algorithmname{\textsc{Alg.}}
 	\def\tablename{\textsc{Tab.}}
 	\def\partname{\protect\@RPt partie}
 		\def\@RPt{{\ifcase\value{part}\or Premi\`ere\or Deuxi\`eme\or
@@ -275,8 +276,8 @@
     \NewJuryCategory{President}{\textit{Pr\'esident :}}{\textit{Pr\'esidents :}}
     \NewJuryCategory{Rapporteurs}{\textit{Rapporteur :}}{\textit{Rapporteurs :}}
     \NewJuryCategory{Examinateurs}{\textit{Examinateur :}}{\textit{Examinateurs :}}
-    \NewJuryCategory{Invites}{\textit{Invit\'e :}}{\textit{Invit\'es :}}
     \NewJuryCategory{Encadrants}{\textit{Encadrant :}}{\textit{Encadrants :}}
+    \NewJuryCategory{Invites}{\textit{Invit\'e :}}{\textit{Invit\'es :}}
     \def\@selecti#1{\expandafter\@@selecti#1}
     \def\@@selecti#1#2{{#1}}
     \def\@selectii#1{\expandafter\@@selectii#1}
@@ -878,6 +879,7 @@
         \setcounter{section}{0}
         \setcounter{equation}{0}
         \setcounter{figure}{0}
+        \setcounter{algorithm}{0}
         \setcounter{table}{0}
         \if@twocolumn
             \if@notop@page
@@ -948,6 +950,7 @@
         \renewcommand\@thesection@prefix{#1}
         \renew@continuous{equation}{#1}
         \renew@continuous{figure}{#1}
+        \renew@continuous{algorithm}{#1}
         \renew@continuous{table}{#1}
     }
     \newcommand\ChapterPrefix{\C@Prefix{\thechapter.}}
@@ -1663,6 +1666,7 @@
             }
             \newif\if@equations@continuous
             \newif\if@figures@continuous
+            \newif\if@algorithms@continuous
             \newif\if@tables@continuous
             \newcommand\ContinuousNumbering[1]{
                 \@removefromreset{#1}{chapter}
@@ -1683,6 +1687,7 @@
             \@addtoreset{section}{annex}
             \@addtoreset{equation}{annex}
             \@addtoreset{figure}{annex}
+            \@addtoreset{algorithm}{annex}
             \@addtoreset{table}{annex}
             \newcommand\Annex{
                 \if@openright\cleardoublepage\else\clearpage\fi
