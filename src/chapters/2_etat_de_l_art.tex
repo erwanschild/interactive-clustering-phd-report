@@ -1,51 +1,73 @@
 \chapter{État de l'art : concevons un jeu de données}
-    \label{chapter:1-ETAT-DE-L-ART}
+    \label{chapter:2-ETAT-DE-L-ART}
 
-    Dans cette partie, nous allons faire un état des lieux des méthodes pour créer le premier jeu de données nécessaire à l'entrainement d'un assistant conversationnel.
+    Dans cette partie, nous allons faire un état des lieux des méthodes pour créer le premier jeu de données nécessaire à l’entraînement d'un assistant conversationnel.
     Cela comprend une description des acteurs du projet, un rappel de l'organisation usuelle en fonction de leur compétence, et une énumération des problèmes et solutions les plus communs.
-	\todo[inline]{TRANSITIOn À COMPLÉTERR}
+	\todo[inline]{TRANSITION À COMPLÉTER}
     \todo{Rappel des contraintes industrielles}
 
     \minitoc
 
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 1.1:
+    %%%%% Section 2.1:
     %%%%%--------------------------------------------------------------------
-    \section{Rappel sur le fonctionnement usuel d'un chatbot}
+    \section{Rappel sur le fonctionnement d'un chatbot}
+    \todo{titre: Approche statistique vs symbolique}
 		\todo[inline]{SECTION À RÉDIGER}
+		\todo[inline]{
+			Remarque Gautier 20/02/2023:
+			Le "usuel" est clairement à discuter ici.
+			Il y a deux approches à la connaissance, qui sont ici à discuter, je pense :
+			- une approche statistique, qui cherche DIRECTEMENT à générer la connaissance à partir de la masse de données ingérée (on y retrouve les approches génératives, par exemple)
+			- une approche symbolique, dans laquelle on décide de passer par des représentations symboliques intermédiaires (les intentions et entités) comme médiateur de la réponse qu'on apporte au client
+			Il n'y a pas d'approche qui soit "usuelle", à mon sens, mais uniquement deux approches de la connaissance différentes, chacune à ses avantages, et en l'occurrence on peut apprécier le pragmatisme de l'approche symbolique, puisque ça a un côté très efficace et ça permet de garder le contrôle sur le vocabulaire (les symboles) qu'on souhaite couvrir.
+			Quelle que soit ta position sur le sujet, je ne pense pas que tu puisses directement parler de fonctionnement usuel sans passer d'abord en revue les différentes approches qu'on peut choisir pour concevoir un chatbot 
+		}
 
-        •	Description du cas d'un chatbot \index{chatbot} "classique" modélisé à base d'intention et d'entités
-            o	 On se concentre sur ces implémentations car on peut y controller les réponses (image de marque en jeu)
-
-        •	Classification \index{chatbot!classification} d'intention (règles, classification supervisée, ...)
-
-        •	Extraction d'entités \index{chatbot!ner} (règles, ner, ...)
-
-        •	Mapping des réponses sur la base du couple $(intention, enites)$
-
-        •	\textbf{CITATION}
+        •	Description du cas d'un chatbot \index{chatbot} supervisé / à base d'intention et d'entités
+            o	 On se concentre sur ces implémentations car on peut y contrôler les réponses (image de marque en jeu)
+            o	 Classification \index{chatbot!classification} d'intention (règles, classification supervisée, ...)
+            o	 Extraction d'entités \index{chatbot!ner} (règles, ner, ...)
+            o	 Mapping des réponses sur la base du couple $(intention, enites)$
+            o	 \todo{citation}
+            
+        •	Description du cas d'un chatbot \index{chatbot} non-supervisé / à base d'un modèle de langage
+            o	 \todo{citation}
 
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 1.2:
+    %%%%% Section 2.2:
     %%%%%--------------------------------------------------------------------
     \section{Les étapes usuelles de conception d'un chatbot}
 		\todo[inline]{SECTION À RÉDIGER}
 
         Préambule : l'organisation peut bien entendu varier suivant les contextes, mais la description qui suit est représentative des organisation principales
+        
+        \todo[inline]{
+        	a distinguer suivant l'approche statistiques et l'approche symbolique
+        }
 
         \subsection{Définition des acteurs}
+		\todo[inline]{
+			Remarque Gautier 20/02/2023:
+        	Vu le chaos du monde du travail concernant la définition du data scientist, et en quoi il est différent d'un data engineer, analyst, etc..., ce sera important que tu livres ta définition et ton point de vue sur ce qu'est un DS.
+        	En fait on pourrait imaginer trouver des experts métiers et des chefs de projets qui connaissent l'IA. On peut même les y former (c'est une des approches qu'on suit souvent). Mais c'est juste pas pratique à faire.
+			Je me demande, à la lecture de cette section, si le problème n'est pas plutôt un problème de division des compétences ici, plutôt que de acteurs. On divise les compétences (connaissance des algorithmes, des données, du métier, de l'organisation d'un projet), et c'est de cette division que naissent les différents acteurs d'un projet. Ca serait intéressant de trouver un exemple d'un chatbot conçu par une seule personne qui prend en charge touts les aspects.
+		}
+		\todo[inline]{
+			reformuler cette section par "compétences nécessaires" et montrer qu'elles sont en générales réparties entre plusieurs acteurs
+		}
 
             •	Data scientistes :
                 o	Experts en IA
                 o	Peu de connaissance métier, i.e. peu de regarde critique sur la pertinence des résultats (autre que statistique)
             
             •	Expert métier :
-                o	Pas de connaissance en IA, i.e. nécessitent des formations
+                o	Peu de connaissance en IA, i.e. nécessitent des formations
                 o	Connaissance métier forte, i.e. peuvent décrire la pertinence d’un résultat
             
             •	Chef de projet
-                o	Pas de connaissance en IA
-                o	Pas de connaissance métier
+                o	Peu de connaissance en IA
+                o	Peu de connaissance métier
                 o	Connaissance du besoin (hypothèse non vérifiée car parfois ils ne savent pas ce qu’ils veulent dû à la méconnaissance des capacités de l’IA)
 
         \subsection{Cadrage du projet}
@@ -55,6 +77,11 @@
                 o	Définition du périmètre couvert (i.e. les fonctionnalités et réponses à proposer),
 
             •   Livrable : un cahier des charges
+            
+            \todo[inline]{
+				Remarque Gautier 20/02/2023:
+				La aussi, ça mérite presque une digression (et ton point de vue perso) sur les méthodes de travail et l'agilité en particulier. Le cahier des charges et la spécification ont l'avantage de contractualiser le travail à faire, et lorque le travail est très divisé c'est important. Mais dans la pratique, aujourd'hui tout le monde dit qu'il est Agile. hors, dans l'agilité, on n'est pas sensé avoir de contractualisation. Pourquoi en faire une ici ?
+            }
 
         \subsection{Collecte des données}
 
@@ -73,6 +100,14 @@
             •   Livrable : une collecte de données brutes
 
         \subsection{Modélisation d’une structure et Labellisation des données}
+            
+            \todo[inline]{
+				Remarque Gautier 20/02/2023:
+				Au dela de ce que tu écris (avec lequel je suis d'accord), on a aussi un problème plus large. En choisissant une approche symbolique (cf mon commentaire plus haut), ça implique que la création et l'utilisation des chatbots fait se rencontrer deux mondes symboliques : 
+				- le monde symbolique des experts travaillant dans le métier (i.e. les banquiers)
+				- le monde symbolique des utilisateurs (i.e les clients)
+				Il serait intéressant de discuter les raisons pour lesquels ces mondes symboliques peuvent converger (objectifs identiques et partagés, caractère humain...) et diverger (compétences et connaissances très inégales). Ca permet d'avoir un regard critique sur l'organisation du travail, et justement de prôner l'idée que l'on doit retirer le plus possible les facteurs de divergence durant la symbolisation de la connaissance.
+			}
 
             •	Le coeur "métier" de la création du projet ;
 
@@ -84,13 +119,13 @@
 
             •   Complexité de la tâche :
                 o	Intention abstraite : définition difficile voir subjective, ...
-                o	Annotation difficile :  différence entre théorie et pratique, données ambigues, ...
+                o	Annotation difficile :  différence entre théorie et pratique, données ambiguës, ...
                 o	Plusieurs itérations car modélisation trop théorique / pas pratique
                 o	Besoins de beaucoup de formation (pour donner la compétence aux experts) et d'atelier (pour se mettre d'accord)
 
             •   Livrable : un jeu de données annotées
 
-        \subsection{Entrainement et tests}
+        \subsection{Entraînement et tests}
 
             •	Le coeur "technique" de la création du projet ;
 
@@ -98,13 +133,13 @@
 
             •	En théorie :
                 o	Split en train et tests
-                o	Entrainement et tests
+                o	Entraînement et tests
                 o	Association des réponses
 
             •   Complexité de la tâche :
-                o	Modélisation précédente pas toujours adaptée : OK pour un métier, mais pas possible à entrainer à cause de déséquilibre, de manque de données, ...
+                o	Modélisation précédente pas toujours adaptée : OK pour un métier, mais pas possible à entraîner à cause de déséquilibre, de manque de données, ...
                 o	Algorithme fixe mais données variables : savoir quelle modélisation est la plus adaptée est compliqué à deviner
-                o	Réponses pas toujours adaptées aux questions : décalage entre entrainement (modélisation théorique) et réponse (modélisation pratique)
+                o	Réponses pas toujours adaptées aux questions : décalage entre entraînement (modélisation théorique) et réponse (modélisation pratique)
 
         \subsection{Déploiement de la première version}
 
@@ -114,6 +149,11 @@
                 o	Comportement en moteur de recherche avec des questions courtes
                 o	Vocabulaire non maitrisé par les utilisateurs
                 o	problème d'ergo ou d'expérience utilisateur
+            
+            \todo[inline]{
+				Remarque Gautier 20/02/2023:
+				oui,cf mon commentaire plus haut sur la rencontre des mondes symboliques. C'est pour moi un désavantage de cette approche, et ça explique peut etre en partie le succès des approches non supervisées style ChatGPT
+			}
 
         \subsection{Amélioration continue}
 
@@ -122,16 +162,21 @@
             •	Ajustement du modèle ;
 
             •	Déploiement des versions suivantes.
+            
+            \todo[inline]{
+				Remarque Gautier 20/02/2023:
+				Quels sont les objectifs de l'AC ? C'est seulement d'améliorer le tux de bonnes réponse ? Ou c'est plu large que ça ? (corriger les erreurs d'interprétation, faire converger les conceptions symboliques, éduquer les équipes, etc...)
+			}
 
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 1.2:
+    %%%%% Section 2.2:
     %%%%%--------------------------------------------------------------------
     \section{Zoom sur la partie Modélisation et Labellisation de la base d'apprentissage}
 		\todo[inline]{SECTION À RÉDIGER}
 
         \subsection{Création « manuelle »}
 
-            •	Enchainement de plusieurs ateliers/cycles :
+            •	Enchaînement de plusieurs ateliers/cycles :
                 o	Définition d’une structure en atelier et Annotation des données
                 o	Premier conflit : La structure est trop théorique
                 o	Redéfinition et Ré-annotation
@@ -139,7 +184,7 @@
                 o	Collecte complémentaire, Redéfinition et Ré-annotation
 
             •	Avantages :
-                o	Transmission progressive du savoir aux datascientist
+                o	Transmission progressive du savoir aux data scientists
                 o	Test des modélisations potentielles
 
             •	Inconvénients :
@@ -156,8 +201,15 @@
 
             •	Solution :
                 o	Un clustering pourrait simplifier cette tâche !
+                \todo{clustering, topic modeling, ...}
                 o   Rappel : grandes lignes du fonctionnement d'un algorithme de \gls{clustering} ?
-                o	NB : une section ou une annexe détaillera les algorithmes de \index{clustering} les plus utilisés
+                o	NB : une section ou une annexe détaillera les algorithmes de \index{clustering} les plus utilisés					o	KMeans : Classique, Incontournable, Rapide, Efficace
+					o	Hiérarchique : Lent mais facile à implémenter
+					o	Spectral : Permet des topologies complexes
+					o	DBScan : Classique, Incontournable, Rapide, Efficace, Peu d'hyperparamètre
+					o	Affinity propagation : 
+					o	Metric learning : Lent mais plus adapté au corpus
+					o	…
 
             •	Avantages :
                 o	Regroupement automatique
@@ -178,6 +230,13 @@
                 \cite{lampert:2018}
                 o	Méthodes semi-supervisée
                 o	NB : une section ou une annexe détaillera les algorithmes de clustering sous contraintes
+					o	KMeans : Classique, Incontournable, Rapide, Efficace
+					o	Hiérarchique : Lent mais facile à implémenter
+					o	Spectral : Permet des topologies complexes
+					o	DBScan : Classique, Incontournable, Rapide, Efficace, Peu d'hyperparamètre
+					o	Affinity propagation : 
+					o	Metric learning : Lent mais plus adapté au corpus
+					o	…
 
             •   Interactions possibles avec le clustering (sur la base de proposition de l'humain)
                 o	Sur les données / sur le résultat : ajouts de contraintes sur les données, suppressions ou modifications manuelles de données, réorganisation manuelles des clusters, …
@@ -201,7 +260,7 @@
                 o	NB : une section ou une annexe détaillera les interactions possibles entre homme et machine
 
             •   Interactions possibles avec le clustering (sur la base de propositions de la machine)
-                o	Sur les données / sur le résultat : proposition de suppression de données abhérrantes, proposition d'ajout de contraintes à des endroits stratégiques, …
+                o	Sur les données / sur le résultat : proposition de suppression de données aberrantes, proposition d'ajout de contraintes à des endroits stratégiques, …
                 o	Sur les paramètres : réévaluation des paramètres, combiner plusieurs algorithmes et synthétiser le résultat, …
 
             •	Avantage :

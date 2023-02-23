@@ -39,12 +39,13 @@
 %%% Pour les notes à faire:
 \usepackage{todonotes}
 
-%%% Pour les couleurs:
-\usepackage{xcolor}
+%%% Pour les styles:
+\usepackage{amssymb,pifont,xcolor,}
+
+\usepackage{}
 
 %%% Pour les listes:
-\usepackage{enumitem,pifont,amssymb}
-
+\usepackage{enumitem}
 \newlist{todolist}{itemize}{2}
 \setlist[todolist]{label=$\square$}
 \newcommand{\cmark}{\ding{51}}
@@ -71,11 +72,17 @@
 	calc
 }
 
+%%% Pour les encadrés:
+\usepackage{tcolorbox}
+
 %%% Pour les algorithmes:
 \usepackage{algorithm} % algorithm2e
 \usepackage{algpseudocode}
 % Redéfinir les noms pour des algorithmes en français
+\makeatletter 
 \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}} 
+\@addtoreset{algorithm}{chapter} 
+\makeatother
 \floatname{algorithm}{Algorithme}
 \renewcommand{\algorithmicreturn}{\textbf{retourne}}
 \renewcommand{\algorithmicprocedure}{\textbf{procédure}}
@@ -232,20 +239,21 @@
     Dr. ??\\
 }
 \Rapporteurs ={
-    Dr. Thomas LAMPERT (ok!)\\
-    Dr. (avoir une femme !)
+	% rapporteurs = membre du jury évaluant le manuscrit
+    Dr. Pascale KUNTZ-COSPEREC\\
+    Dr. Thomas LAMPERT
 }
 \Examinateurs={
-    Dr. Adrien COULET (à demander)\\
-    Dr. Pascale KUNTZ-COSPEREC (à demander)
+	% examinateurs = membre du jury présents à la soutenance
+    Dr. Adrien COULET (à demander)
 }
 \Encadrants={
     Dr. Jean-Charles LAMIREL\\
     Dr. Florian MICONI
 }
 \Invites={
-    Dr. Gautier DURANTIN (à demander)\\
-    Dr. Mathieu POWALKA (à demander)
+    Dr. Gautier DURANTIN\\
+    Dr. Mathieu POWALKA
 }
 
 %%% Création de la page de titre:
@@ -324,27 +332,27 @@
 %%%%%--------------------------------------------------------------------
 %%%%% Introduction
 %%%%%--------------------------------------------------------------------
-\input{chapters/introduction.tex}
+\input{chapters/1_introduction.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Chapitre 1: Etat de l'art
+%%%%% Chapitre: Etat de l'art
 %%%%%--------------------------------------------------------------------
-\input{chapters/1_etat_de_l_art.tex}
+\input{chapters/2_etat_de_l_art.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Chapitre 2: Clustering Interactif
+%%%%% Chapitre: Clustering Interactif
 %%%%%--------------------------------------------------------------------
-\input{chapters/2_clustering_interactif.tex}
+\input{chapters/3_clustering_interactif.tex}
 
 %%%%%--------------------------------------------------------------------
-%%%%% Chapitre 3: Etude de la méthode
+%%%%% Chapitre: Etude de la méthode
 %%%%%--------------------------------------------------------------------
-\input{chapters/3_etudes.tex}
+\input{chapters/4_etudes.tex}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Conclusion
 %%%%%--------------------------------------------------------------------
-\input{chapters/conclusion.tex}
+\input{chapters/5_conclusion.tex}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

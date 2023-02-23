@@ -1,0 +1,38 @@
+**Hypothèses**:
+
+\item \textbf{Efficacité} : Une méthodologie d'annotation basée sur le \textit{clustering} interactif \textbf{peut converger} vers une vérité terrain préalablement établie. ;
+    - => Question sous-entendue : _est-ce que ça fonctionne ?_
+	- Étude A: _simuler une ré-annotation et vérifier que la vérité terrain est retrouvée_.
+
+\item \textbf{Efficience} : La vitesse de convergence du \textit{clustering} interactif \textbf{peut être optimisée} en réglant différents paramètres. Nous étudierons l'influence du prétraitement des données, de la vectorisation des données, de l'échantillonnage des contraintes à annoter et du \textit{clustering} sous contraintes ;
+    - => Question sous-entendue : _est-ce que ça fonctionne de manière optimale ?
+	- Étude A: _simuler une ré-annotation et analyser la vitesse de convergence et les tailles d'effets des paramètres_.
+
+\item \textbf{Pertinence} : Il est possible de \textbf{mesurer la pertinence} de la base d'apprentissage en cours d'annotation. Pour cela, nous étudierons l'évolution de sa cohérence statistique et l'évolution de sa description sémantique ;
+    - => Question sous-entendue : _est-ce que le résultat obtenu est acceptable pour un expert ?_
+	- Étude A: _évaluer la cohérence statistique : test de cohérence, entraînement d'un SVM/KFold et test sur la vérité terrain_.
+	- Étude B: _évaluer la description sémantique : interprétation FMC, comparaison avec la FMC de la vérité terrain_.
+
+\item \textbf{Coût temporel} : Il est possible de \textbf{mesurer le temps nécessaire} à une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenu un résultat acceptable ;
+	- => Question sous-entendue : _est-ce que l'investissement est humainement concevable ?_
+	- Étude A: _estimer le coût temporel des algorithmes en fonction de divers paramètres en fonction de tâche : algorithme implémenté, nombre de données, nombre de contraintes, nombre de clusters, hyper-paramètres_.
+	- Étude B: _estimer le coût temporel de l'annotation de contraintes : chronométrage du temps d'annotation, estimation du temps de résolution des conflits_.
+	- Synthèse: _estimer le coût temporel total d'un projet : cumul du temps d'annotation et des temps de calculs en fonction des données et de la performance souhaitée_.
+	
+\item \textbf{Impact} : Il est possible d'estimer quand méthodologie d'annotation basée sur le \textit{clustering} interactif \textbf{a converger} vers un résultat satisfaisant ;
+    - => Question sous-entendue : _est-ce que les différences sont notables entre chaque itération ?_
+	- NB: _constater la faible performance d'un clustering simple_.
+	- Étude B: _évaluer l'évolution des cas d'arrêt suivants : l'évolution de la vmeasure entre deux clustering, l'évolution de la modélisation FMC, l'évolution de l'accord entre clustering/annotateur_.
+	
+\item \textbf{Robustesse} : Il est possible d'\textbf{estimer l'impact d'une différence d'annotation} lors d'une méthodologie d'annotation basée sur le \textit{clustering} interactif.
+	- => Question sous-entendue : _est-ce que les résultats sont comparables si une erreur s’immisce ?_
+	- Étude A: _simuler un pourcentage d'erreur d'annotation_.
+	- Étude B: _estimer la différence de base d'apprentissage annotées par des annotateurs différents_.
+	
+	
+----------
+
+	
+	% Critère ergonomique de Bastien & Scapin
+	% Critère ergonomique de Ben Shneiderman
+	% Critère ergonomique de Jakob Nielsen
