@@ -9,6 +9,7 @@ thesul.zip
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
+*.ist
 *.lof
 *.log
 *.lot
