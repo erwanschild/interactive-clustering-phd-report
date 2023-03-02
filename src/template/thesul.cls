@@ -82,12 +82,10 @@
 	\def\bibname{Bibliographie}
 	%\def\listfigurename{Liste des figures}
 	%\def\listtablename{Liste des tableaux}
-	\def\listofalgorithm{Liste des algorithmes}
 	\def\indexname{Index}
 	\def\seename{\emph{voir}}
 	\def\seealsoname{\emph{voir aussi}}
 	\def\figurename{\textsc{Fig.}}
-	\def\algorithmname{\textsc{Alg.}}
 	\def\tablename{\textsc{Tab.}}
 	\def\partname{\protect\@RPt partie}
 		\def\@RPt{{\ifcase\value{part}\or Premi\`ere\or Deuxi\`eme\or

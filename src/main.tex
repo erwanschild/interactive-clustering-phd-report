@@ -21,6 +21,9 @@
 %%% Pour les vraies marges:
 % \SetRealMargins{1mm}{1mm}
 
+%%% Magie noire..
+%\usepackage{morewrites}  % for "! No room for a new \write."
+%\morewritessetup { allocate = 32 }
 
 %%%%%--------------------------------------------------------------------
 %%%%% Chargement des packages
@@ -42,8 +45,6 @@
 %%% Pour les styles:
 \usepackage{amssymb,pifont,xcolor,}
 
-\usepackage{}
-
 %%% Pour les listes:
 \usepackage{enumitem}
 \newlist{todolist}{itemize}{2}
@@ -54,8 +55,8 @@
 \newcommand{\itemko}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
 
 %%% Pour les tableaux:
-% \usepackage{array}
-% \usepackage{multirow}
+\usepackage{array}
+\usepackage{multirow}
 
 %%% Pour les figures:
 \usepackage{float}
@@ -78,7 +79,6 @@
 %%% Pour les algorithmes:
 \usepackage{algorithm} % algorithm2e
 \usepackage{algpseudocode}
-% Redéfinir les noms pour des algorithmes en français
 \makeatletter 
 \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}} 
 \@addtoreset{algorithm}{chapter} 
@@ -103,11 +103,44 @@
 \newcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
 \newcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
 
+%%% Pour le code Python:
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Code}
+
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.50,0}
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
+\definecolor{orange}{rgb}{0.99,0.48,0.13}
+\definecolor{grass}{rgb}{0.18,0.80,0.18}
+\definecolor{pink}{rgb}{0.97,0.15,0.45}
+\definecolor{gray}{rgb}{0.90, 0.90, 0.90}
+\lstset{
+  inputencoding=utf8,
+  breaklines=true,
+  %captionpos=b,
+  escapeinside={\%*}{*)},
+  frame=lines,
+  numbers=left,
+  showstringspaces=false,
+  morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,}
+  basicstyle=\tiny,%\ttfamily,
+  backgroundcolor=\color{gray},
+  commentstyle=\color{darkgreen},
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{darkred},
+  emphstyle=\color{pink}\underbar,
+  tabsize=2,
+  literate=
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+	{à}{{\`a}}{1}%
+}
+
 %%% Pour les mini-tables des matières:
 \usepackage[french]{minitoc}
 
 %%% Pour les références bibliographiques:
-\usepackage[style=apa, backend=biber]{biblatex}
+\usepackage[style=apa, natbib=true, backend=biber]{biblatex}
 \addbibresource{references/bibliography.bib}
 \usepackage{csquotes}
 
@@ -408,8 +441,17 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génère la liste des algorithmes:
-\renewcommand{\listalgorithmname}{Liste des algorithmes}  % ERROR TABLE MATIERES
-\listofalgorithms
+\renewcommand{\listalgorithmname}{Liste des algorithmes}
+\listofalgorithms  % ERROR TABLE MATIERES
+
+%%%%%--------------------------------------------------------------------
+%%%%% Liste des codes
+%%%%%--------------------------------------------------------------------
+
+%%% Génère la liste des codes:
+\renewcommand{\lstlistlistingname}{Liste de codes}
+%\renewcommand{\lstlistlistingname}{Liste des codes}
+%\lstlistoflistings
 
 %%%%%--------------------------------------------------------------------
 %%%%% Glossaire
