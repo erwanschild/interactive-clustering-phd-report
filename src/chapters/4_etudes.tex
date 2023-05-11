@@ -23,12 +23,12 @@
 		\item Peut-on obtenir une base d'apprentissage à l'aide de notre proposition d'implémentation de la méthodologie d'\textit{clustering} interactif ? (cf. hypothèse d'\textbf{efficacité} en section~\ref{section:4.1-HYPOTHESE-EFFICACITE})
 		% 2. Efficience.
 		\item Peut-on déterminer un paramétrage optimal de cette implémentation pour obtenir plus rapidement une base d'apprentissage ? (cf. hypothèse d'\textbf{efficience} en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE})
-		% 3. Pertinence.
-		\item A un instant donné, peut-on estimer la pertinence métier d'une base d'apprentissage en cours de construction ? (cf. hypothèse de \textbf{pertinence} en section~\ref{section:4.3-HYPOTHESE-PERTINENCE})
-		% 4. Coûts.
-		\item D'après les données initiales, peut-on approximer l'investissement nécessaire pour obtenir une base d'apprentissage exploitable ? (cf. hypothèse sur les \textbf{coûts} en section~\ref{section:4.4-HYPOTHESE-COUTS})
+		% 3. Coûts.
+		\item D'après les données initiales, peut-on approximer l'investissement nécessaire pour obtenir une base d'apprentissage exploitable ? (cf. hypothèse sur les \textbf{coûts} en section~\ref{section:4.3-HYPOTHESE-COUTS})
+		% 4. Pertinence.
+		\item A un instant donné, peut-on estimer la pertinence métier d'une base d'apprentissage en cours de construction ? (cf. hypothèse de \textbf{pertinence} en section~\ref{section:4.4-HYPOTHESE-PERTINENCE})
 		% 5. Impact.
-		\item A un instant donné, peut-on estimer les gains potentiels d'une nouvelle étape de raffinage de la base d'apprentissage en cours de construction ? (cf. hypothèse d'\textbf{impact} en section~\ref{section:4.5-HYPOTHESE-IMPACT})
+		\item Au cours du processus de construction de la base d'apprentissage, peut-on aisément estimer les potentiels d'une étape de raffinage supplémentaire ? (cf. hypothèse de \textbf{rentabilité} en section~\ref{section:4.5-HYPOTHESE-RENTABILITE})
 		% 6. Robustesse.
 		\item Peut-on estimer l'influence d'une erreur ou d'une différence d'annotation dans la construction de la base d'apprentissage ? (cf. hypothèse de \textbf{robustesse} en section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE})
 	\end{todolist}
@@ -228,33 +228,38 @@
 				
 				
 				%%% Avantages.
-				Cette découverte permet de confirmer plusieurs espoirs porter sur la méthode. 
+				Cette découverte permet de confirmer plusieurs espoirs portés sur la méthode. 
 				
 				% Avantage 1 : Émergence d'une modélisation sur la base des contraintes
 				Tout d'abord, la vérité terrain a été retrouvée sans formaliser concrètement la structure de données.
-				Là où une annotation par label aurait requis au préalable une définition des catégories de données possibles, la méthodologie employant le \textit{clustering} interactif a permis de faire émerger naturelle cette structure de données.
-				Cette émergence provient directement des contraintes annotées par l'expert métier, traduisant par elles ses connaissances à l'aide d'instructions simples : les données sont-elles ou non similaires ?
+				Là où une annotation par label aurait requis au préalable une définition des catégories possibles pour les données à étiqueter, la méthodologie employant le \textit{clustering} interactif a permis de faire émerger naturellement cette structure de données.
+				Cette émergence provient directement des contraintes annotées par l'expert métier, traduisant ainsi ses connaissances à l'aide d'instructions simples : \textit{les données sont-elles ou non similaires ?}
 				
-				% Avantage 2 : annotations plus simples et plu concrètes
-				De plus, ces contraintes ont été l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance de la \texttt{v-measure} sur la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
-				A chaque itération, l'expert métier peut ainsi corriger concrètement la base d'apprentissage, soit étendant les clusters en cours de construction (pics de croissance sur la courbe), soit en remaniant les clusters mal formés pour imposer sa vision (légères décroissances sur la courbe). \\
+				% Avantage 2 : annotations plus simples et plus concrètes
+				De plus, ces contraintes ont été l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+				Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les clusters en cours de construction, améliorant ainsi la cohérence des clusters (cf. pentes croissantes) ; soit en remaniant les clusters mal formés pour repartir sur de bonnes bases, détériorant la cohérence des clusters le temps de la réorganisation (cf. oscillations ou pentes décroissantes). \\
 
 				
 				%%% Les limites.
 				Néanmoins, différentes pistes sont encore à explorer pour rendre le \textit{clustering} interactif pleinement opérationnel.
 				
 				% Limite 1 : Nombre d'annotations ==> besoin d'optimisation.
-				D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes afin de converger vers la vérité terrain : pour \texttt{500} points de données, il faudrait une moyenne de \texttt{76.29} itérations, soit \texttt{3 801.19} annotations, ce qui correspond à près de \texttt{8} fois plus de contraintes que de données.
-				Bien que l'annotation binaire demande a priori une charge mentale plus faible à un annotateur, un tel volume représente une grande quantité de travail, peut effrayer les experts métiers, mais peut aussi ne pas être viable pour des jeux de données de plus grandes tailles.
-				Cependant, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire (écart-type de \texttt{46.44}).
-				On peut donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre de contraintes requis et obtenir ainsi une base d'apprentissage exploitable avec une charge d'annotation maîtrisée.
+				D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes : pour \texttt{500} points de données, il faudrait une moyenne de \texttt{88.98} itérations pour être exhaustif, soit \texttt{4 431.34} annotations, ce qui correspond à près de \texttt{9} fois plus de contraintes que de données.
+				Bien que l'annotation binaire demande a priori une charge mentale plus faible à un annotateur, un tel volume représente tout de même une grande quantité de travail. Cela peut décourager les experts métiers en début de projet, surtout pour des projets ayant des jeux de données de plus grandes tailles.
+				Toutefois, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire (écart-type de \texttt{68.21}).
+				On peut donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre de contraintes requis et obtenir ainsi une base d'apprentissage exploitable avec un volume d'annotations acceptable.
 				Cet aspect fait l'objet de l'étude décrite dans la section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} (hypothèse d'efficience).\todo{footnote ?}
 				
-				% Limite 2 : Expert métier parfait ==> simuler les erreurs.
-				D'autre part, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
-				Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des erreurs d'annotations peuvent intervenir (ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...), ce qui peut entraîner des divergences ou des incohérences dans la base d'apprentissage en cours de construction.
-				Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les identifier et les corriger.
-				Cet aspect sera traité à la fin de ce chapitre lors de la section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE} (hypothèse de robustesse).
+				% Limite 2 : Exhaustivité des annotations ==> evaluation de la rentabilité.
+				D'autre part, le choix d'annoter toutes les contraintes possibles sur les données (\textbf{annotation exhaustive}) n'est pas forcément judicieux.
+				En effet, si nous nous référons à la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}), une moyenne de 80\% de \texttt{v-measure} est déjà atteinte autour de l'itération 60, alors que l'asymptote à 100\% n'est atteinte que vers l'itération 150.
+				\todo[inline]{WARNING: moyenne selon itération vs moyenne selon vmeasure}
+				
+				% Limite 3 : Expert métier parfait ==> simuler les erreurs.
+				Pour finir, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
+				Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des erreurs d'annotations peuvent intervenir (ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+				Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
+				Cet aspect sera traité à la fin de ce chapitre dans la section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE} (hypothèse de robustesse).
 	
 
     %%%%%--------------------------------------------------------------------
@@ -264,7 +269,7 @@
 	\label{section:4.2-HYPOTHESE-EFFICIENCE}
 	
 		%%% Formulation des hypothèses:
-		Nous aimerions vérifier l'hypothèse suivante :
+		Suite à la validation de l'hypothèse d'efficacité (convergence de la méthode, cf. section~\ref{section:4.1-HYPOTHESE-EFFICACITE}), nous aimerions vérifier l'hypothèse suivante :
 		\todo{à compléter}
 
 		\begin{tcolorbox}[
@@ -316,7 +321,7 @@
 				Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}.
 				
 				% Description de l'évaluation et Seuils d'évaluation.
-				Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attentation aux trois seuils d'annotations suivants :
+				Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 				\begin{enumerate}
 					\item (\textbf{\textit{nouveau}}) le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir 80\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de 80\% a été arbitrairement choisi pour cette étude.} ;\todo{pourquoi un nouveau seuil à 80\%}
 					\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir 100\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
@@ -537,7 +542,7 @@
 							\hline
 					\end{tabular}
 					\end{center}
-					\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de 80\% de V-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+					\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de 80\% de v-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
 					\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}
 				\end{table}
 				
@@ -722,7 +727,7 @@
 							\hline
 					\end{tabular}
 					\end{center}
-					\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de 100\% de V-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+					\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de 100\% de v-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
 					\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}
 				\end{table}
 				
@@ -913,12 +918,21 @@
 			
 				% Graphe d'évolution de la v-measure moyenne, min et max.
 				La figure~\ref{figure:4.2.1-ETUDE-CONVERGENCE-EVOLUTION-PAR-FACTEURS} représente les évolutions moyennes de la \texttt{v-measure} du clustering en fonction du nombre d'itération de la méthode pour les différentes valeurs des facteurs analysés (prétraitement en haut à gauche, vectorisation en haut à droite, clustering en bas à gauche, échantillonnage en bas à droite).
+				La figure~\ref{figure:4.2.1-ETUDE-CONVERGENCE-EVOLUTION-MEILLEUR-PARAMETRAGE} représente cette même évolution pour les meilleurs paramétrages moyens destinés à atteindre les trois seuils d'annotation définis (partiel, suffisant, exhaustif).
+				%
+				\todo[inline]{figure trop petite ?}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=\textwidth]{figures/etude-convergence-evolution-moyenne-par-iteration-par-facteur}
+					\caption{Évolution des moyennes de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyennes réalisées itération par itération sur les différentes valeurs que peuvent prendre les facteurs analysés et affichées par facteur : \textbf{(1)} prétraitement, \textbf{(2)} vectorisation, \textbf{(3)} clustering et \textbf{(4)} échantillonnage.}
+					\label{figure:4.2.1-ETUDE-CONVERGENCE-EVOLUTION-PAR-FACTEURS}
+				\end{figure}
 				%
 				\begin{figure}[H]
 					\centering
-					\includegraphics[width=0.8\textwidth]{figures/etude-convergence-evolution-moyenne-par-iteration-par-facteur}
-					\caption{Évolution des moyennes de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyennes réalisées itération par itération sur les différentes valeurs que peuvent prendre les facteurs analysés et affichées par facteur : \textbf{(1)} prétraitement, \textbf{(2)} vectorisation, \textbf{(3)} clustering et \textbf{(4)} échantillonnage.}
-					\label{figure:4.2.1-ETUDE-CONVERGENCE-EVOLUTION-PAR-FACTEURS}
+					\includegraphics[width=0.8\textwidth]{figures/etude-convergence-evolution-moyenne-5best-par-iteration}
+					\caption{Évolution des moyennes de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyennes réalisées itération par itération sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de 80\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de 100\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).}
+					\label{figure:4.2.1-ETUDE-CONVERGENCE-EVOLUTION-MEILLEUR-PARAMETRAGE}
 				\end{figure}
 
 			%%% Discussion
@@ -927,69 +941,10 @@
 	
 
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 4.3: Hypothèse de pertinence.
-    %%%%%--------------------------------------------------------------------
-    \section{Hypothèse de pertinence : « \textit{est-ce le résultat est exploitable ?} »}
-	\label{section:4.3-HYPOTHESE-PERTINENCE}
-	
-		%%% Formulation des hypothèses:
-		Nous aimerions vérifier l'hypothèse suivante :
-		\todo{à compléter}
-
-		\begin{tcolorbox}[
-			title=\textbf{Hypothèse de pertinence},
-			colback=gray!20,
-			colframe=gray!50!black!75,
-			width=\linewidth
-		]
-			« La vitesse de convergence du \textit{clustering} interactif \textbf{peut être optimisée} en réglant différents paramètres. Nous étudierons l'influence du prétraitement des données, de la vectorisation des données, de l'échantillonnage des contraintes à annoter et du \textit{clustering} sous contraintes (cf. figure~\ref{figure:HYPOTHESE-PERTINENCE}. »
-			
-			
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.8\textwidth]{figures/hypotheses-03-pertinence}
-				\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
-				\label{figure:HYPOTHESE-PERTINENCE}
-			\end{figure}
-
-		\end{tcolorbox}
-		
-		%%%
-		%%% Subsection 4.3.1: Étude de la cohérence statistique de la base d'apprentissage en cours de construction
-		%%%
-		\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
-		
-			%%% Protocole expérimental.
-			\subsubsection{Protocole expérimental}
-				\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
-
-			%%% Résultats
-			\subsubsection{Résultats obtenus}
-
-			%%% Discussion
-			\subsubsection{Discussion}
-		
-		%%%
-		%%% Subsection 4.3.2: Étude de la pertinence sémentique de la base d'apprentissage en cours de construction
-		%%%
-		\subsection{Étude de la pertinence sémentique de la base d'apprentissage en cours de construction}
-		
-			%%% Protocole expérimental.
-			\subsubsection{Protocole expérimental}
-				\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
-
-			%%% Résultats
-			\subsubsection{Résultats obtenus}
-
-			%%% Discussion
-			\subsubsection{Discussion}
-	
-
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 4.4: Hypothèse sur les coûts.
+    %%%%% Section 4.3: Hypothèse sur les coûts.
     %%%%%--------------------------------------------------------------------
     \section{Hypothèse sur les coûts : « \textit{combien dois-je investir ?} »}
-	\label{section:4.4-HYPOTHESE-COUTS}
+	\label{section:4.3-HYPOTHESE-COUTS}
 	
 		%%% Formulation des hypothèses:
 		Nous aimerions vérifier l'hypothèse suivante :
@@ -1006,15 +961,15 @@
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.8\textwidth]{figures/hypotheses-04-couts}
-				\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 4/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+				\includegraphics[width=0.8\textwidth]{figures/hypotheses-03-couts}
+				\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
 				\label{figure:HYPOTHESE-COUTS}
 			\end{figure}
 
 		\end{tcolorbox}
 		
 		%%%
-		%%% Subsection 4.4.1: Étude d'estimation du temps d'annotation par un expert métier
+		%%% Subsection 4.3.1: Étude d'estimation du temps d'annotation par un expert métier
 		%%%
 		\subsection{Étude d'estimation du temps d'annotation par un expert métier}
 		
@@ -1029,7 +984,7 @@
 			\subsubsection{Discussion}
 		
 		%%%
-		%%% Subsection 4.4.2: Étude d'estimation du temps de calcul des algorithmes
+		%%% Subsection 4.3.2: Étude d'estimation du temps de calcul des algorithmes
 		%%%
 		\subsection{Étude d'estimation du temps de calcul des algorithmes}
 		
@@ -1044,7 +999,7 @@
 			\subsubsection{Discussion}
 		
 		%%%
-		%%% Subsection 4.4.3: Étude d'estimation du temps total d'un projet d'annotation
+		%%% Subsection 4.3.3: Étude d'estimation du temps total d'un projet d'annotation
 		%%%
 		\subsection{Étude d'estimation du temps total d'un projet d'annotation}
 		
@@ -1060,29 +1015,88 @@
 	
 
     %%%%%--------------------------------------------------------------------
-    %%%%% Section 4.5: Hypothèse d'impact.
+    %%%%% Section 4.4: Hypothèse de pertinence.
     %%%%%--------------------------------------------------------------------
-    \section{Hypothèse d'impact : « \textit{quel gain à chaque itération ?} »}
-	\label{section:4.5-HYPOTHESE-IMPACT}
+    \section{Hypothèse de pertinence : « \textit{est-ce le résultat est exploitable ?} »}
+	\label{section:4.4-HYPOTHESE-PERTINENCE}
+	
+		%%% Formulation des hypothèses:
+		Nous aimerions vérifier l'hypothèse suivante :
+		\todo{à compléter}
+
+		\begin{tcolorbox}[
+			title=\textbf{Hypothèse de pertinence},
+			colback=gray!20,
+			colframe=gray!50!black!75,
+			width=\linewidth
+		]
+			« La vitesse de convergence du \textit{clustering} interactif \textbf{peut être optimisée} en réglant différents paramètres. Nous étudierons l'influence du prétraitement des données, de la vectorisation des données, de l'échantillonnage des contraintes à annoter et du \textit{clustering} sous contraintes (cf. figure~\ref{figure:HYPOTHESE-PERTINENCE}. »
+			
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{figures/hypotheses-04-pertinence}
+				\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 4/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+				\label{figure:HYPOTHESE-PERTINENCE}
+			\end{figure}
+
+		\end{tcolorbox}
+		
+		%%%
+		%%% Subsection 4.4.1: Étude de la cohérence statistique de la base d'apprentissage en cours de construction
+		%%%
+		\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
+		
+			%%% Protocole expérimental.
+			\subsubsection{Protocole expérimental}
+				\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
+
+			%%% Résultats
+			\subsubsection{Résultats obtenus}
+
+			%%% Discussion
+			\subsubsection{Discussion}
+		
+		%%%
+		%%% Subsection 4.4.2: Étude de la pertinence sémentique de la base d'apprentissage en cours de construction
+		%%%
+		\subsection{Étude de la pertinence sémantique de la base d'apprentissage en cours de construction}
+		
+			%%% Protocole expérimental.
+			\subsubsection{Protocole expérimental}
+				\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
+
+			%%% Résultats
+			\subsubsection{Résultats obtenus}
+
+			%%% Discussion
+			\subsubsection{Discussion}
+	
+
+    %%%%%--------------------------------------------------------------------
+    %%%%% Section 4.5: Hypothèse de rentabilité.
+    %%%%%--------------------------------------------------------------------
+    \section{Hypothèse de rentabilité : « \textit{quel gain à chaque itération ?} »}
+	\label{section:4.5-HYPOTHESE-RENTABILITE}
 	
 		%%% Formulation des hypothèses:
 		Nous aimerions vérifier l'hypothèse suivante :
 		\todo{à reformuler}
 
 		\begin{tcolorbox}[
-			title=\textbf{Hypothèse d'impact},
+			title=\textbf{Hypothèse de rentabilité},
 			colback=gray!20,
 			colframe=gray!50!black!75,
 			width=\linewidth
 		]
-			« Il est possible d'estimer quand méthodologie d'annotation basée sur le \textit{clustering} interactif \textbf{a converger} vers un résultat satisfaisant (cf. figure~\ref{figure:HYPOTHESE-IMPACT}. »
+			« Il est possible d'estimer quand méthodologie d'annotation basée sur le \textit{clustering} interactif \textbf{a convergé} vers un résultat satisfaisant (cf. figure~\ref{figure:HYPOTHESE-RENTABILITE}. »
 			
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.8\textwidth]{figures/hypotheses-05-impact}
+				\includegraphics[width=0.8\textwidth]{figures/hypotheses-05-rentabilite}
 				\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
-				\label{figure:HYPOTHESE-IMPACT}
+				\label{figure:HYPOTHESE-RENTABILITE}
 			\end{figure}
 
 		\end{tcolorbox}
