@@ -1,13 +1,7 @@
-\section{Hypothèse d'efficacité : « \textit{est-ce que la méthode permet d'annoter un jeu de données ?} »}
+\section{Évaluation de l'hypothèse d'efficacité}
 \label{section:4.1-HYPOTHESE-EFFICACITE}
-
-	\todo[inline]{
-		TITRE A REVOIR:
-		est-ce que la méthode fonctionne ?
-		est-ce que la méthode atteint son objectif ?
-		est-ce que la méthode converge vers un jeu de données ?
-	}
-
+%  : « \textit{est-ce que la méthode permet d'annoter un jeu de données ?} »
+	
 	%%% Formulation des hypothèses:
 	Nous aimerions vérifier l'hypothèse suivante :
 
@@ -28,7 +22,7 @@
 		% Figure.
 		La figure~\ref{figure:4.1-HYPOTHESE-EFFICACITE} illustre cette hypothèse et l'espoir de convergence d'une base d'apprentissage en cours de construction vers sa vérité terrain.
 		%
-		\begin{figure}[H]
+		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.8\textwidth]{figures/hypotheses-01-efficacite}
 			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
@@ -44,8 +38,10 @@
 	\label{subsection:4.1.1-ETUDE-CONVERGENCE}
 			
 		% Référence articles.
-		Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~\citep{schild:conception-interactive-clustering:2021}, et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~\citep{schild:extension-interactive-clustering:2022}.
-		\footnote{Les résultats et la discussion ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
+		\begin{leftBarInformation}
+			Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~\citep{schild:conception-interactive-clustering:2021}, et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~\citep{schild:extension-interactive-clustering:2022}.
+			\footnote{Les résultats et la discussion ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
+		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental : simuler l'annotation d'une base d'apprentissage}
@@ -69,10 +65,10 @@
 			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètre de notre implémentation du clustering interactif (cf. section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}). Cela comprend les tâches et leurs paramètres respectifs suivants :
 			%
 			\begin{enumerate}
-				\item le \textbf{prétraitement} des données, avec les quatre niveaux suivants : \texttt{prep.no}, \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ;
-				\item la \textbf{vectorisation} des données, avec les deux niveaux suivants : \texttt{vect.tfidf} et \texttt{SpaCy (vect.frcorenewsmd)} ;
-				\item le \textbf{clustering sous contraintes} des données, avec les six niveaux suivants : \texttt{clust.kmeans.cop}, \texttt{clust.hier.sing}, \texttt{clust.hier.comp}, \texttt{clust.hier.avg}, \texttt{clust.hier.ward} et \texttt{clust.spec}. Le choix du nombre de clusters n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;\todo{ Tester C-DBScan ? }
-				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les quatre niveaux suivants : \texttt{samp.random.full}, \texttt{samp.random.same}, \texttt{samp.farhtest.same} et \texttt{samp.closest.diff}. La choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixé à \texttt{50}.
+				\item le \textbf{prétraitement} des données, avec les niveaux suivants : \textbf{absent} (\texttt{prep.no}), \textbf{simple} (\texttt{prep.simple}), \textbf{avec lemmatisation} (\texttt{prep.lemma}) et \textbf{avec filtres} (\texttt{prep.filter}) ;
+				\item la \textbf{vectorisation} des données, avec les niveaux suivants : \textbf{TF-IDF} (\texttt{vect.tfidf}) et \textbf{SpaCy} (\texttt{vect.frcorenewsmd}) ;
+				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants : \textbf{KMeans} (modèle \textit{COP} : \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single}: \texttt{clust.hier.sing} ; lien \textit{complete} \texttt{clust.hier.comp} ; lien \textit{average} : \texttt{clust.hier.avg} ; lien \textit{ward} : \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} : \texttt{clust.spec}). Le choix du nombre de clusters n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
+				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants : \textbf{purement aléatoire} (\texttt{samp.random.full}), \textbf{pseudo-aléatoire} (\texttt{samp.random.same}), \textbf{même cluster et étant les plus éloignées} (\texttt{samp.farhtest.same}) et \textbf{clusters différents et étant les plus proches} (\texttt{samp.closest.diff}). La choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixé à \texttt{50}.
 			\end{enumerate}
 			
 			Il y a donc \texttt{192} combinaisons testées, et chaque tentative est répétée \texttt{5} fois pour contrer les aléas statistiques de certains algorithmes.
@@ -85,7 +81,7 @@
 			% Pseudo-code.
 			Pour résumer ce protocole expérimental, vous pouvez vous référez au pseudo-code décrit dans Alg.~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}.
 			%
-			\begin{algorithm}
+			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
 					\Require jeu de données annoté (vérité terrain)
 					\ForAll{arrangement d'algorithmes et de paramètres à tester}
@@ -109,7 +105,9 @@
 			\end{algorithm}
 			
 			% Référence scripts.
-			Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+			\begin{leftBarInformation}
+				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+			\end{leftBarInformation}
 
 		%%% Résultats.
 		\subsubsection{Résultats obtenus}
@@ -130,7 +128,7 @@
 			La courbe se prolonge jusqu'à l'itération \texttt{394} pour que toutes les tentatives puisse annoter toutes les contraintes possibles sur le jeu de données.
 			
 			%
-			\begin{figure}[H]
+			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.8\textwidth]{figures/etude-efficacite-evolution-moyenne-0par-iteration}
 				\caption{Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
@@ -138,7 +136,7 @@
 				\label{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
 			\end{figure}
 			%
-			\begin{table}[H]
+			\begin{table}[!htb]
 				\begin{center}
 				\begin{tabular}{|c|r|r|r|r|r|}
 					\hline

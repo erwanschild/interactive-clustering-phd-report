@@ -4,39 +4,44 @@
 	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTES:
 	Dans le chapitre précédent, nous avons présenté une méthode de création d'un jeu de données d'entrainement pour un assistant conversationnel, que nous appelons "\textit{clustering interactif}" :
 	%
-	\begin{todolist}
-	    % 1. Structure de la méthode.
-		\item[\itemok] La méthode proposée repose sur la combinaison entre un regroupement automatique des données par la machine et l'annotation de contraintes binaires par un expert métier pour corriger le regroupement proposé ;
-		% 2. Enjeu 1 de la méthode : moins de technique.
-		\item[\itemok] Une telle approche devrait limiter les pré-requis techniques actuellement exigés à un expert métier en les déléguant à la machine.
-		% 2. Enjeu 2 de la méthode : plus de connaissance métier.
-		\item[\itemok] En échange, l'expert se concentre d'avantage sur la transmission de ses connaissances avec une annotation caractérisant la similitude métier entre deux données.
-		% 3. Divers.
-		\item[\itemok] ...\todo{divers à compléter (technique ? méthode ? ...).}
-	\end{todolist}
+	\begin{leftBarImportantGreen}
+		\begin{todolist}
+			% 1. Structure de la méthode.
+			\item[\itemok] La méthode proposée repose sur la combinaison entre un regroupement automatique des données par la machine et l'annotation de contraintes binaires par un expert métier pour corriger le regroupement proposé ;
+			% 2. Enjeu 1 de la méthode : moins de technique.
+			\item[\itemok] Une telle approche devrait limiter les pré-requis techniques actuellement exigés à un expert métier en les déléguant à la machine.
+			% 2. Enjeu 2 de la méthode : plus de connaissance métier.
+			\item[\itemok] En échange, l'expert se concentre d'avantage sur la transmission de ses connaissances avec une annotation caractérisant la similitude métier entre deux données.
+			% 3. Divers.
+			\item[\itemok] ...
+		\end{todolist}
+	\end{leftBarImportantGreen}
+	\todo[inline]{divers à compléter (technique ? méthode ? ...).}
 	
 	% ANNONCE DU BUT DU CHAPITRE: TEST DE LA MÉTHODE.
 	Comme nous l'avons détaillé dans le chapitre~\ref{chapter:2-ETAT-DE-L-ART}, des procédés d'annotation similaires existent pour des données facilement visualisables, comme dans le cadre du traitement d'images. Cependant, l'application d'une telle approche dans le cadre de la classification de données textuelles est peu détaillée dans la littérature. Ainsi, dans cette partie, nous étudierons la faisabilité d'un \textit{clustering interactif} pour des données textuelles en explorant les questions suivantes :
 	%
-	\begin{todolist}
-		% 1. Efficacité.
-		\item Peut-on obtenir une base d'apprentissage à l'aide de notre proposition d'implémentation de la méthodologie d'\textit{clustering} interactif ? (cf. hypothèse d'\textbf{efficacité} en section~\ref{section:4.1-HYPOTHESE-EFFICACITE})
-		% 2. Efficience.
-		\item Peut-on déterminer un paramétrage optimal de cette implémentation pour obtenir plus rapidement une base d'apprentissage ? (cf. hypothèse d'\textbf{efficience} en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE})
-		% 3. Coûts.
-		\item D'après les données initiales, peut-on approximer l'investissement nécessaire pour obtenir une base d'apprentissage exploitable ? (cf. hypothèse sur les \textbf{coûts} en section~\ref{section:4.3-HYPOTHESE-COUTS})
-		% 4. Pertinence.
-		\item A un instant donné, peut-on estimer la pertinence métier d'une base d'apprentissage en cours de construction ? (cf. hypothèse de \textbf{pertinence} en section~\ref{section:4.4-HYPOTHESE-PERTINENCE})
-		% 5. Impact.
-		\item Au cours du processus de construction de la base d'apprentissage, peut-on aisément estimer les potentiels d'une étape de raffinage supplémentaire ? (cf. hypothèse de \textbf{rentabilité} en section~\ref{section:4.5-HYPOTHESE-RENTABILITE})
-		% 6. Robustesse.
-		\item Peut-on estimer l'influence d'une erreur ou d'une différence d'annotation dans la construction de la base d'apprentissage ? (cf. hypothèse de \textbf{robustesse} en section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE})
-	\end{todolist}
+	\begin{leftBarImportantRed}
+		\begin{todolist}
+			% 1. Efficacité.
+			\item Peut-on obtenir une base d'apprentissage à l'aide de notre proposition d'implémentation de la méthodologie d'\textit{clustering} interactif ? (cf. hypothèse d'\textbf{efficacité} en section~\ref{section:4.1-HYPOTHESE-EFFICACITE})
+			% 2. Efficience.
+			\item Peut-on déterminer un paramétrage optimal de cette implémentation pour obtenir plus rapidement une base d'apprentissage ? (cf. hypothèse d'\textbf{efficience} en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE})
+			% 3. Coûts.
+			\item D'après les données initiales, peut-on approximer l'investissement nécessaire pour obtenir une base d'apprentissage exploitable ? (cf. hypothèse sur les \textbf{coûts} en section~\ref{section:4.3-HYPOTHESE-COUTS})
+			% 4. Pertinence.
+			\item A un instant donné, peut-on estimer la pertinence métier d'une base d'apprentissage en cours de construction ? (cf. hypothèse de \textbf{pertinence} en section~\ref{section:4.4-HYPOTHESE-PERTINENCE})
+			% 5. Impact.
+			\item Au cours du processus de construction de la base d'apprentissage, peut-on aisément estimer les potentiels d'une étape de raffinage supplémentaire ? (cf. hypothèse de \textbf{rentabilité} en section~\ref{section:4.5-HYPOTHESE-RENTABILITE})
+			% 6. Robustesse.
+			\item Peut-on estimer l'influence d'une erreur ou d'une différence d'annotation dans la construction de la base d'apprentissage ? (cf. hypothèse de \textbf{robustesse} en section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE})
+		\end{todolist}
+	\end{leftBarImportantRed}
 	
 	% ILLUSTRATION: SCHEMA DES HYPOTHESES
 	Afin d'illustrer ces interrogations, nous vous proposons de considérer de la figure~\ref{figure:HYPOTHESE-00-DEFAULT}. Dans les sections suivantes, cette figure évoluera pour résumer les études réalisées.
 	%
-	\begin{figure}[H]
+	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.8\textwidth]{figures/hypotheses-00-default}
 		\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 0/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
@@ -44,10 +49,12 @@
 	\end{figure}
 	
 	% PRÉAMBULE TECHNIQUE : CPU + scrips + datasets.
-	Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \textit{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisé avec la librairie Python \textit{multiprocessing} (un worker par CPU).
-	Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de notebooks Python et/ou R, sont disponibles dans~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}\todo{footnote documentation}.
-	Enfin, les jeux de données utilisés pour ces études sont détaillés en Annexe~\ref{annex:C-ANNEXE-DATASET}.
-	
+	\begin{leftBarInformation}
+		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \textit{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisé avec la librairie Python \textit{multiprocessing} (un worker par CPU).
+		Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de notebooks Python et/ou R, sont disponibles dans~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+		Enfin, les jeux de données utilisés pour ces études sont détaillés en Annexe~\ref{annex:C-ANNEXE-DATASET}.
+	\end{leftBarInformation}
+	\todo{Ajouter lien vers la documentation des notebooks en footnote}.
 	
 	% TABLE DES MATIÈRES DU CHAPITRE
     \minitoc
@@ -55,42 +62,49 @@
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.1: Hypothèse d'efficacité.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.1_hypothese_efficacite.tex}
 
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.2: Hypothèse d'efficience.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.2_hypothese_efficience.tex}
 
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.3: Hypothèse sur les coûts.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.3_hypothese_couts.tex}
 
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.4: Hypothèse de pertinence.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.4_hypothese_pertinence.tex}
 
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.5: Hypothèse de rentabilité.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.5_hypothese_rentabilite.tex}
 
 
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.6: Hypothèse de robustesse.
     %%%%%--------------------------------------------------------------------
+	\newpage
 	\input{chapters/4.6_hypothese_robustesse.tex}
 
 	
     %%%%%--------------------------------------------------------------------
     %%%%% Section 4.7:
     %%%%%--------------------------------------------------------------------
+	\newpage
     \section{Autres études à réaliser}
 	\label{section:4.7-ETUDES-DIVERSES}
 	\todo[inline]{SECTION À RÉDIGER}

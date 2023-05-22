@@ -47,14 +47,8 @@
 \usepackage{
 	amssymb,
 	pifont,
-	xcolor,
+	xcolor,  % http://latexcolor.com/
 }
-\definecolor{darkred}{rgb}{0.60, 0.00, 0.00}
-\definecolor{darkgreen}{rgb}{0.00 ,0.50, 0.00}
-\definecolor{darkyellow}{rgb}{0.60, 0.53, 0.05}
-\definecolor{orange}{rgb}{0.99, 0.48, 0.13}
-\definecolor{pink}{rgb}{0.97, 0.15, 0.45}
-\definecolor{gray}{rgb}{0.90, 0.90, 0.90}
 
 %%% Pour les symbols:
 \usepackage{fontawesome5}  % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
@@ -117,12 +111,28 @@
 }
 {\endMakeFramed}
 
+% Définition de l'encadré important.
+\definecolor{colorLeftBarImportantGreen}{rgb}{0.01, 0.75, 0.24}  % Dark pastel green
+\newenvironment{leftBarImportantGreen}{
+	\begin{leftbar}{colorLeftBarImportantGreen}
+	\noindent
+}{
+    \end{leftbar}
+}  % \begin{leftBarImportantGreen} \lipsum[1] \end{leftBarImportantGreen}
+\definecolor{colorLeftBarImportantRed}{rgb}{0.76, 0.23, 0.13}  % Dark pastel red
+\newenvironment{leftBarImportantRed}{
+	\begin{leftbar}{colorLeftBarImportantRed}
+	\noindent
+}{
+    \end{leftbar}
+}  % \begin{leftBarImportantRed} \lipsum[1] \end{leftBarImportantRed}
+
 % Définition de l'encadré d'attention.
 \definecolor{colorLeftBarWarning}{rgb}{0.93, 0.53, 0.18}  % Cadmium Orange
 \newenvironment{leftBarWarning}{
 	\begin{leftbar}{colorLeftBarWarning}
 	\noindent
-	\textbf{\textcolor{colorLeftBarWarning}{\faExclamationTriangle}~Attention~\textcolor{colorLeftBarWarning}{\faExclamationTriangle}}~:
+	\textbf{\textcolor{colorLeftBarWarning}{\faExclamationTriangle}~Attention :}
 }{
     \end{leftbar}
 }  % \begin{leftBarWarning} \lipsum[1] \end{leftBarWarning}
@@ -132,7 +142,7 @@
 \newenvironment{leftBarIdea}{
 	\begin{leftbar}{colorLeftBarIdea}
 	\noindent
-	\textbf{\textcolor{colorLeftBarIdea}{\faLightbulb}~Idée~\textcolor{colorLeftBarIdea}{\faLightbulb}}~:
+	\textbf{\textcolor{colorLeftBarIdea}{\faLightbulb}~Idée :}
 }{
     \end{leftbar}
 }  % \begin{leftBarIdea} \lipsum[1] \end{leftBarIdea}
@@ -142,7 +152,7 @@
 \newenvironment{leftBarAuthorOpinion}{
 	\begin{leftbar}{colorLeftBarAuthorOpinion}
 	\noindent
-	\textbf{\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}~Avis de l'auteur~\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}}~:
+	\textbf{\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}~Avis de l'auteur :}
 }{
     \end{leftbar}
 }  % \begin{leftBarAuthorOpinion} \lipsum[1] \end{leftBarAuthorOpinion}
@@ -152,7 +162,7 @@
 \newenvironment{leftBarInformation}{
 	\begin{leftbar}{colorLeftBarInformation}
 	\noindent
-	\textbf{\textcolor{colorLeftBarInformation}{\faInfoCircle}~Pour information~\textcolor{colorLeftBarInformation}{\faInfoCircle}}~:
+	\textbf{\textcolor{colorLeftBarInformation}{\faInfoCircle}~Pour information :}
 }{
     \end{leftbar}
 }  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}

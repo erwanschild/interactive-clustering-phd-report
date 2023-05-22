@@ -3,27 +3,32 @@
     
     % RÉSUMÉ DES ÉPISODES PRÉCÉDENTES: L'ANNOTATION C'EST COMPLIQUÉ !
     Dans le chapitre précédent, nous avons vu les points essentiels suivants :
-	\begin{todolist}
-	    % 1. Importance du jeu de données.
-		\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l'entrainement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
-		% 2. Experts métiers avec connaissance métiers, pas de connaissance en datascience.
-		\item[\itemok] Pour concevoir ce jeu de données, il est nécessaire de faire appel à des experts maîtrisant le domaine à couvrir par l'assistant car les données sont en général spécifiques ou privées ;
-		% 3. Experts métiers ayant peu de donnaissance en data science.
-		\item[\itemok] L'intervention de ces experts métiers au sein du projet est en général laborieuse :
-		d'une part à cause de leur manque de connaissances en data science (ce n'est pas leur domaine d'expertise),
-		d'autre part à cause de la complexité inhérente des tâches de modélisation et d'annotation des données.
-		% 4. Tache manuelle avec peu d'assistance.
-		\item[\itemok] Par manque de compétences, de connaissances ou d'ergonomie, la tâche de conception d'un jeu de données reste manuelle et est encore mal assistée par ordinateur.\todo{à reformuler plus tard.}
-	\end{todolist}
+	\begin{leftBarImportantGreen}
+		\begin{todolist}
+			% 1. Importance du jeu de données.
+			\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l’entraînement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
+			% 2. Experts métiers avec connaissance métiers, pas de connaissance en datascience.
+			\item[\itemok] Pour concevoir ce jeu de données, il est nécessaire de faire appel à des experts maîtrisant le domaine à couvrir par l'assistant car les données sont en général spécifiques ou privées ;
+			% 3. Experts métiers ayant peu de donnaissance en data science.
+			\item[\itemok] L'intervention de ces experts métiers au sein du projet est en général laborieuse :
+			d'une part à cause de leur manque de connaissances en data science (ce n'est pas leur domaine d'expertise),
+			d'autre part à cause de la complexité inhérente des tâches de modélisation et d'annotation des données.
+			% 4. Tache manuelle avec peu d'assistance.
+			\item[\itemok] Par manque de compétences, de connaissances ou d'ergonomie, la tâche de conception d'un jeu de données reste manuelle et est encore mal assistée par ordinateur.
+		\end{todolist}
+	\end{leftBarImportantGreen}
+	\todo[inline]{à reformuler plus tard.}
 	
 	% ANNONCE DU BUT DU CHAPITRE: MA CONTRIBUTION !
 	Dans cette partie, nous proposons une alternative à l'organisation manuelle destinée à la conception d'un jeu de données. Notre proposition vise à remplir un double objectif :
-	\begin{todolist}
-		% 1. Efficacité de création du trainset.
-		\item Proposer une méthode permettant d'assister la modélisation et l'annotation des données pour créer plus efficacement une base d'apprentissage pour la classification d'intention d'un assistant conversationnel ;
-		% 2. Efficacité d'intervention d'un expert.
-		\item Redéfinir les tâches et les objectifs des différents acteurs afin de rester au plus proche de leurs compétences réelles, particulièrement en ce qui concerne les experts métiers intervenants dans le projet.
-	\end{todolist}
+	\begin{leftBarImportantRed}
+		\begin{todolist}
+			% 1. Efficacité de création du trainset.
+			\item Proposer une méthode permettant d'assister la modélisation et l'annotation des données pour créer plus efficacement une base d'apprentissage pour la classification d'intention d'un assistant conversationnel ;
+			% 2. Efficacité d'intervention d'un expert.
+			\item Redéfinir les tâches et les objectifs des différents acteurs afin de rester au plus proche de leurs compétences réelles, particulièrement en ce qui concerne les experts métiers intervenants dans le projet.
+		\end{todolist}
+	\end{leftBarImportantRed}
 
 	% TABLE DES MATIÈRES DU CHAPITRE
     \minitoc
@@ -68,7 +73,7 @@
 	    	% Rappel de l'objectif.
 		Nous proposons la méthode suivante pour transformer une collecte de données brut en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel. Cette méthode, que nous appelons "\textit{clustering interactif}", est décrite formellement à l'aide du pseudo-code figurant dans Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}.
 
-		\begin{algorithm}
+		\begin{algorithm}[!htb]
 		    \begin{algorithmic}[1]
 		        \Require données non segmentées ; budget à disposition
 				\State \textbf{initialisation}: créer une liste vide de contraintes
@@ -214,7 +219,7 @@ dict_of_texts = {
 			\item L'\textbf{absence de prétraitement}, soit la conservation de la donnée brute, noté \texttt{prep.no} ;
 			\item Le \textbf{prétraitement simple}, correspondant au traitement traitement de base (minuscules, ponctuations, accents, espaces blancs), noté \texttt{prep.simple} ; 
 			\item Le \textbf{prétraitement lemmatisé}, correspondant au traitement de base auquel s'ajoute la lemmatisation des mots, noté \texttt{prep.lemma} ;
-			\item le \textbf{prétraitement avec filtre}, correspondant au traitement de base avec l'élagage de l'arbre de dépendance syntaxique de la phrase, noté \texttt{prep.filter}.
+			\item le \textbf{prétraitement avec filtres}, correspondant au traitement de base avec l'élagage de l'arbre de dépendance syntaxique de la phrase, noté \texttt{prep.filter}.
 		\end{enumerate}
 		
 		
@@ -323,7 +328,7 @@ dict_of_vectors = vectorize(
 		A partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. Fig.~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}).
 		Ce composant peut être vu comme un noyau de \textit{cluster}. Il pourra être associé à d'autres noyau par similarité pour former un plus \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
 
-		\begin{figure}[H]
+		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.7\textwidth]{figures/example-constraints-transitivity}
 			\caption{Exemples des propriétés de transitivité des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges). \textbf{(1)} et \textbf{(2)} représente les possibilités de déduction d'une contrainte (\texttt{(c)}) en fonction des deux autres (\texttt{(a)} et \texttt{(b)}). \textbf{(3)} représente deux composants connexes définis par la transitivité des contraintes \texttt{MUST-LINK}. Enfin, \textbf{(4)} représente un cas de conflit où une contrainte (\texttt{(c)}) ne correspond pas à sa déduction faite à partir des autres contraintes (\texttt{(a)} et \texttt{(b)}).}
@@ -387,7 +392,7 @@ connected_components = constraints_manager.get_connected_components()
 		Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes (référez-vous à la section \todo{ref:section2:clustering} pour les détails de fonctionnement des algorithmes non contraints) :
 		
 		\begin{enumerate}
-			\item \textbf{KMeans}, dans sa version \textit{COP}\todo{citation} et sa version \textit{MPC}\todo{citation}, notés \texttt{clust.kmeans.cop} et \texttt{clust.kmeans.mpc} pour nos études ;
+			\item \textbf{KMeans}, dans sa version \textit{COP}\todo{citation}, noté \texttt{clust.kmeans.cop}, et sa version \textit{MPC}\todo{citation}, noté \texttt{clust.kmeans.mpc}) ;
 			\item \textbf{DBscan}, dans sa version \textit{C-DBScan}\todo{citation}, noté \texttt{clust.cdbscan} ;
 			\item \textbf{Hiérarchique}, dans sa version xxx\todo{citation}, avec quatre métriques de distances : \textit{single} (noté \texttt{clust.hier.sing}), \textit{complete} (noté \texttt{clust.hier.comp}), \textit{average} (noté \texttt{clust.hier.avg}) et \textit{ward} (noté \texttt{clust.hier.ward}) ;
 			\item \textbf{Spectral}, dans sa version \textit{SPEC}\todo{citation}, noté \texttt{clust.spec} ;
@@ -466,7 +471,7 @@ clustering_result = clustering_model.cluster(
 			\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. Fig~\ref{figure:3.3-CONTRAINTES-SAMPLING}).
 		\end{enumerate}
 		
-		\begin{figure}[H]
+		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.35\textwidth]{figures/example-sampling}
 			\caption{Exemples d’échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).}
