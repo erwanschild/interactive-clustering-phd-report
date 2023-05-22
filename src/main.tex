@@ -44,7 +44,30 @@
 \usepackage{todonotes}
 
 %%% Pour les styles:
-\usepackage{amssymb,pifont,xcolor,}
+\usepackage{
+	amssymb,
+	pifont,
+	xcolor,
+}
+\definecolor{darkred}{rgb}{0.60, 0.00, 0.00}
+\definecolor{darkgreen}{rgb}{0.00 ,0.50, 0.00}
+\definecolor{darkyellow}{rgb}{0.60, 0.53, 0.05}
+\definecolor{orange}{rgb}{0.99, 0.48, 0.13}
+\definecolor{pink}{rgb}{0.97, 0.15, 0.45}
+\definecolor{gray}{rgb}{0.90, 0.90, 0.90}
+
+%%% Pour les symbols:
+\usepackage{fontawesome5}  % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
+	% Signet: \faBookmark \faBook
+	% Warning: \faExclamation \faExclamationTriangle
+	% Commentaire personnel: \faCommentDots
+	% Idées: \faLightbulb
+	% Check: \faCheckSquare
+	% MUST-LINK: \faCheck \faCheckCircle \faEquals
+	% CANNOT-LINK: \faTimes \faTimesCircle \faNotEqual
+	% Information, Questions ou Plus d'info: \faInfoCircle \faQuestionCircle % \faPlusCircle
+	% Eprouvette: \faVial
+	% Github: \faGit \faGithub
 
 %%% Pour les listes:
 \usepackage{enumitem}
@@ -76,6 +99,64 @@
 
 %%% Pour les encadrés:
 \usepackage{tcolorbox}
+\definecolor{colorTcolorboxHypothesis}{rgb}{0.53, 0.66, 0.42}  % Asparagus
+
+%%% Pour les paragraphes indentés:
+\usepackage{framed}  % provide \leftbar
+
+% Renommer la commande pour accepter la gestion des couleurs.
+\renewenvironment{leftbar}[2][15]
+{
+    \def\FrameCommand
+    {
+        {\color{#2}\vrule width 3pt}
+        \hspace{0pt}
+        \fboxsep=\FrameSep\colorbox{#2!#1}
+    }
+    \MakeFramed{\hsize\hsize\advance\hsize-\width\FrameRestore}
+}
+{\endMakeFramed}
+
+% Définition de l'encadré d'attention.
+\definecolor{colorLeftBarWarning}{rgb}{0.93, 0.53, 0.18}  % Cadmium Orange
+\newenvironment{leftBarWarning}{
+	\begin{leftbar}{colorLeftBarWarning}
+	\noindent
+	\textbf{\textcolor{colorLeftBarWarning}{\faExclamationTriangle}~Attention~\textcolor{colorLeftBarWarning}{\faExclamationTriangle}}~:
+}{
+    \end{leftbar}
+}  % \begin{leftBarWarning} \lipsum[1] \end{leftBarWarning}
+
+% Définition de l'encadré d'idée.
+\definecolor{colorLeftBarIdea}{rgb}{1.00, 0.88, 0.21}  % Banana Yellow
+\newenvironment{leftBarIdea}{
+	\begin{leftbar}{colorLeftBarIdea}
+	\noindent
+	\textbf{\textcolor{colorLeftBarIdea}{\faLightbulb}~Idée~\textcolor{colorLeftBarIdea}{\faLightbulb}}~:
+}{
+    \end{leftbar}
+}  % \begin{leftBarIdea} \lipsum[1] \end{leftBarIdea}
+
+% Définition de l'encadré de notes de l'auteur.
+\definecolor{colorLeftBarAuthorOpinion}{rgb}{0.13 ,0.67, 0.80}  % Ball blue
+\newenvironment{leftBarAuthorOpinion}{
+	\begin{leftbar}{colorLeftBarAuthorOpinion}
+	\noindent
+	\textbf{\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}~Avis de l'auteur~\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}}~:
+}{
+    \end{leftbar}
+}  % \begin{leftBarAuthorOpinion} \lipsum[1] \end{leftBarAuthorOpinion}
+
+% Définition de l'encadré d'informations
+\definecolor{colorLeftBarInformation}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
+\newenvironment{leftBarInformation}{
+	\begin{leftbar}{colorLeftBarInformation}
+	\noindent
+	\textbf{\textcolor{colorLeftBarInformation}{\faInfoCircle}~Pour information~\textcolor{colorLeftBarInformation}{\faInfoCircle}}~:
+}{
+    \end{leftbar}
+}  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}
+
 
 %%% Pour les algorithmes:
 \usepackage{algorithm} % algorithm2e
@@ -106,15 +187,12 @@
 
 %%% Pour le code Python:
 \usepackage{listings}
+\definecolor{colorCodeString}{rgb}{0.60, 0.00, 0.00}
+\definecolor{colorCodeComment}{rgb}{0.00 ,0.50, 0.00}
+\definecolor{colorCodeKeyword}{rgb}{0.00, 0.00, 1.00}
+\definecolor{colorCodeEmphasize}{rgb}{0.97, 0.15, 0.45}
+\definecolor{colorCodeBackground}{rgb}{0.90, 0.90, 0.90}
 \renewcommand{\lstlistingname}{Code}
-
-\definecolor{darkred}{rgb}{0.6,0.0,0.0}
-\definecolor{darkgreen}{rgb}{0,0.50,0}
-\definecolor{lightblue}{rgb}{0.0,0.42,0.91}
-\definecolor{orange}{rgb}{0.99,0.48,0.13}
-\definecolor{grass}{rgb}{0.18,0.80,0.18}
-\definecolor{pink}{rgb}{0.97,0.15,0.45}
-\definecolor{gray}{rgb}{0.90, 0.90, 0.90}
 \lstset{
   inputencoding=utf8,
   breaklines=true,
@@ -125,11 +203,11 @@
   showstringspaces=false,
   morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,}
   basicstyle=\tiny,%\ttfamily,
-  backgroundcolor=\color{gray},
-  commentstyle=\color{darkgreen},
-  keywordstyle=\color{blue}\bfseries,
-  stringstyle=\color{darkred},
-  emphstyle=\color{pink}\underbar,
+  backgroundcolor=\color{colorCodeBackground},
+  commentstyle=\color{colorCodeComment},
+  keywordstyle=\color{colorCodeKeyword}\bfseries,
+  stringstyle=\color{colorCodeString},
+  emphstyle=\color{colorCodeEmphasize}\underbar,
   tabsize=2,
   literate=
     {é}{{\'e}}{1}%
@@ -147,6 +225,9 @@
 
 %%% Pour le glossaire:
 \usepackage[automake]{glossaries}
+
+%%% Pour le brouillon:
+\usepackage{lipsum}
 
 
 %%%%%--------------------------------------------------------------------
@@ -257,7 +338,7 @@
 
 %%% Date:
 \ThesisDate{
-    01 mai 2023
+    01 septembre 2023
 }  % 8 semaine après la date du rendu
 
 %%% Auteur:
@@ -355,6 +436,10 @@
 %%% Génération de la table des matières:
 \renewcommand{\contentsname}{Table des matières}
 \tableofcontents
+
+
+%%% TODO généraux.
+\todo[inline]{TITRE A REVOIR: Faciliter => Accélérer ? Améliorer l'accessibilité ? Limiter les biais et erreurs ? ...}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% CORPS DU DOCUMENT

@@ -1,0 +1,241 @@
+\section{Hypothèse d'efficacité : « \textit{est-ce que la méthode permet d'annoter un jeu de données ?} »}
+\label{section:4.1-HYPOTHESE-EFFICACITE}
+
+	\todo[inline]{
+		TITRE A REVOIR:
+		est-ce que la méthode fonctionne ?
+		est-ce que la méthode atteint son objectif ?
+		est-ce que la méthode converge vers un jeu de données ?
+	}
+
+	%%% Formulation des hypothèses:
+	Nous aimerions vérifier l'hypothèse suivante :
+
+	\begin{tcolorbox}[
+		title=\faVial~\textbf{Hypothèse d'efficacité}~\faVial,
+		colback=colorTcolorboxHypothesis!15,
+		colframe=colorTcolorboxHypothesis!75,
+		width=\linewidth
+	]
+		% Hypothèse.
+		« \textbf{
+			Une méthodologie d'annotation basée sur le \textit{clustering} interactif permet d'obtenir une base d'apprentissage pour un assistant conversationnel qui respecte la vision donnée par l'expert métier au cours de l'annotation.
+		} » \\
+		
+		% Résumé de l'étude.
+		Afin de vérifier cette hypothèse, nous mettrons en place une expérience de ré-annotation d'une base d'apprentissage (qui servira ici de vérité terrain) à l'aide de notre méthode, en simulant l'annotation d'un expert, et nous critiquerons l'évolution de la nouvelle base d'apprentissage obtenue et sa similitude avec la base d'apprentissage initiale.
+		
+		% Figure.
+		La figure~\ref{figure:4.1-HYPOTHESE-EFFICACITE} illustre cette hypothèse et l'espoir de convergence d'une base d'apprentissage en cours de construction vers sa vérité terrain.
+		%
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{figures/hypotheses-01-efficacite}
+			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\label{figure:4.1-HYPOTHESE-EFFICACITE}
+		\end{figure}
+
+	\end{tcolorbox}
+	
+	%%%
+	%%% Subsection 4.1.1: Étude de convergence
+	%%%
+	\subsection{Étude de convergence vers une vérité terrain pré-établie}
+	\label{subsection:4.1.1-ETUDE-CONVERGENCE}
+			
+		% Référence articles.
+		Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~\citep{schild:conception-interactive-clustering:2021}, et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~\citep{schild:extension-interactive-clustering:2022}.
+		\footnote{Les résultats et la discussion ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
+
+		%%% Protocole expérimental.
+		\subsubsection{Protocole expérimental : simuler l'annotation d'une base d'apprentissage}
+		
+			% Objectif de l'expérience.
+			Nous voulons vérifier qu'une méthodologie d'annotation basée sur notre implémentation du \textit{clustering} interactif permet de créer une base d'apprentissage pour un assistant conversationnel.
+			Pour cela, nous prenons une base d'apprentissage employée pour entraîner un modèle de classification de textes\todo{référence, lien vers ANNEXE, + description conditions de création du JDD}, et nous utilisons ce jeu de données comme vérité terrain.
+			L'objectif de cette expérience est de simuler la création de cette base d'apprentissage et de nous assurer que le résultat obtenu correspond à la vérité terrain.
+			
+			% Axiome.
+			\begin{leftBarWarning}
+				Dans le cadre de cette étude, nous supposons que l'expert métier connaît parfaitement le domaine traité dans ce jeu de données, et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
+			\end{leftBarWarning}
+			
+			% Détails de l'expérience.
+			Lors de cette expérience, chaque tentative de la méthode commencera sur la version non labellisée de la vérité terrain à disposition, sans aucune contrainte connue à l'avance.
+			Au fur et à mesure des itérations de la méthode, nous simulerons l'annotation de l'expert métier en comparant les labels de la vérité terrain : ainsi, deux données ont une contrainte \texttt{MUST-LINK} si elles ont le même label, et une contrainte \texttt{CANNOT-LINK} sinon. Cela traduit le prérequis d'avoir un annotateur qui soit capable, dans son domaine d'expertise,  de différencier deux données selon leur ressemblance.
+			Une tentative de l'application de notre méthode s'arrête lorsque toutes les contraintes possibles entre les données ont été annotés par l'expert.
+
+			% Description implémentation de l'interactive clustering.
+			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètre de notre implémentation du clustering interactif (cf. section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}). Cela comprend les tâches et leurs paramètres respectifs suivants :
+			%
+			\begin{enumerate}
+				\item le \textbf{prétraitement} des données, avec les quatre niveaux suivants : \texttt{prep.no}, \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ;
+				\item la \textbf{vectorisation} des données, avec les deux niveaux suivants : \texttt{vect.tfidf} et \texttt{SpaCy (vect.frcorenewsmd)} ;
+				\item le \textbf{clustering sous contraintes} des données, avec les six niveaux suivants : \texttt{clust.kmeans.cop}, \texttt{clust.hier.sing}, \texttt{clust.hier.comp}, \texttt{clust.hier.avg}, \texttt{clust.hier.ward} et \texttt{clust.spec}. Le choix du nombre de clusters n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;\todo{ Tester C-DBScan ? }
+				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les quatre niveaux suivants : \texttt{samp.random.full}, \texttt{samp.random.same}, \texttt{samp.farhtest.same} et \texttt{samp.closest.diff}. La choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixé à \texttt{50}.
+			\end{enumerate}
+			
+			Il y a donc \texttt{192} combinaisons testées, et chaque tentative est répétée \texttt{5} fois pour contrer les aléas statistiques de certains algorithmes.
+			Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION} pour avoir accès à leur description, à leurs paramètres et aux choix d'implémentation.
+			
+			% Description de l'évaluation.
+			Pour évaluer l'équivalence entre la vérité terrain et notre segmentation des données obtenue au cours de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre ces deux jeu de données.
+			Si le score du calcul de la \texttt{v-measure} est de \texttt{100\%}, cela signifierait que le clustering final et la vérité terrain propose une segmentation identique des données, donc que la vérité terrain a pu être retrouvée, et donc qu'il est possible d'obtenir une base d'apprentissage pour un assistant conversationnel à l'aide d'une méthodologie d'annotation basée sur le \textit{clustering} interactif.
+			
+			% Pseudo-code.
+			Pour résumer ce protocole expérimental, vous pouvez vous référez au pseudo-code décrit dans Alg.~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}.
+			%
+			\begin{algorithm}
+				\begin{algorithmic}[1]
+					\Require jeu de données annoté (vérité terrain)
+					\ForAll{arrangement d'algorithmes et de paramètres à tester}
+						\State \textbf{initialisation}: récupérer les données de la vérité terrain sans leur label, créer une liste vide de contraintes
+						\State \textbf{prétraitement}: supprimer le bruit dans les données
+						\State \textbf{vectorisation}: transformer les données en vecteurs
+						\State \textbf{clustering initial}: regrouper les données par similarité
+						\State \textbf{évaluation}: estimer l'équivalence entre le clustering obtenu et la vérité terrain
+						\Repeat
+							\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
+							\State \textbf{simulation d'annotation}: ajouter des contraintes grâce à la comparaison des labels de la vérité terrain
+							\State \textbf{clustering}: regrouper les données par similarité avec les contraintes
+							\State \textbf{évaluation}: estimer l'équivalence entre le clustering obtenu et la vérité terrain
+						\Until{annotation de toutes les contraintes possibles}
+						\State \textbf{évaluation finale}: espérer avoir un score d'équivalence de 100\% entre le clustering obtenu et la vérité terrain
+					\EndFor
+					\Ensure arrangements d'algorithmes et de paramètres ayant un score d'équivalence de 100\%
+				\end{algorithmic}
+				\caption{Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}
+				\label{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}
+			\end{algorithm}
+			
+			% Référence scripts.
+			Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+
+		%%% Résultats.
+		\subsubsection{Résultats obtenus}
+			
+			% Graphe d'évolution de la v-measure moyenne, min et max.
+			La figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} et le tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} représentent l'évolution moyenne de la \texttt{v-measure} du clustering en fonction du nombre d'itération de la méthode. Les tentatives les plus rapides et les plus lentes sont représentées sur la figure.
+							
+			% Tendance: Forte dispersion, Croissance générale.
+			Malgré une forte dispersion des résultats (écart-type de \texttt{v-measure} pouvant être supérieur à 20\%, forte différence entre les tentatives la plus rapide et la plus lente) et quelques sauts de performances (cf. à-coups de la tentative la plus lente sur la figure), une convergence générale vers la vérité terrain peut être constatée.
+			
+			% Tendance à courts termes: Croissance linéaire
+			A l'itération \texttt{0}, une tentative commence avec une moyenne de \texttt{19.05}\% de \texttt{v-measure}  entre son \textit{clustering} initial (sans contraintes) et la vérité terrain.
+			Cette \texttt{v-measure} moyenne croît presque linéairement (pente de \texttt{0.97}) jusqu'à l'itération 75 où elle atteint la performance de \texttt{92.08}\% (cf. tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+
+			% Tendance à longs termes: Asymptote.
+			Au delà de l'itération 75, la courbe de la \texttt{v-measure} moyenne tend vers une asymptote de {100}\% (cf. figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+			Cette asymptote est atteinte par toute les \texttt{960} tentatives (\texttt{192} combinaisons de paramètres, \texttt{5} tentatives pour chaque combinaison), la tentative l'ayant atteinte le plus tôt à l'itération 19 et celle le plus tard à l'itération 326.
+			La courbe se prolonge jusqu'à l'itération \texttt{394} pour que toutes les tentatives puisse annoter toutes les contraintes possibles sur le jeu de données.
+			
+			%
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{figures/etude-efficacite-evolution-moyenne-0par-iteration}
+				\caption{Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
+				Représentation des tentatives ayant été les plus rapides (\textit{un prétraitement \texttt{prep.simple}, une vectorisation \texttt{vect.tfidf}, un clustering \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage \texttt{samp.closest.diff}}) et les plus lentes (\textit{un prétraitement \texttt{prep.no}, une vectorisation \texttt{vect.tfidf}, un clustering \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}}) pour atteindre 100\% de \texttt{v-measure}.}
+				\label{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
+			\end{figure}
+			%
+			\begin{table}[H]
+				\begin{center}
+				\begin{tabular}{|c|r|r|r|r|r|}
+					\hline
+					% ENTETE DU TABLEAU
+					\multicolumn{2}{|c|}{ \shortstack{ Annotations } }
+						& \multicolumn{4}{c|}{ \shortstack{ Performances (\texttt{v-measure}) } }
+						\tabularnewline
+						\hline
+					\multicolumn{1}{|c|}{ \shortstack{ Itérations } }
+						& \multicolumn{1}{c|}{ \shortstack{ Contraintes } }
+						& \multicolumn{1}{c|}{ \shortstack{ Moyenne } }
+						& \multicolumn{1}{c|}{ \shortstack{ Écart-type } }
+						& \multicolumn{1}{c|}{ \shortstack{ Minimum } }
+						& \multicolumn{1}{c|}{ \shortstack{ Maximum } }
+						\tabularnewline
+						\hline
+					%
+					0	& 0		& \( 19.05\% \) \footnotesize \( (\pm0.43) \) \par	& \( 13.38\% \) & \( 03.42\% \) & \( 47.75\% \)
+					\tabularnewline
+					\hline
+					%
+					25	& 1 250	& \( 49.09\% \) \footnotesize \( (\pm0.82) \) \par	& \( 25.43\% \) & \( 09.09\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					%
+					50	& 2 500	& \( 73.66\% \) \footnotesize \( (\pm0.77) \)	 \par& \( 23.98\% \) & \( 16.78\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					%
+					75	& 3 750	& \( 92.08\% \) \footnotesize \( (\pm0.54) \) \par	& \( 16.70\% \) & \( 21.74\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					%
+					100	& 5 000	& \( 95.19\% \) \footnotesize \( (\pm0.41) \) \par	& \( 12.67\% \) & \( 26.93\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					%
+					125	& 6 250	& \( 97.43\% \) \footnotesize \( (\pm0.29) \) \par	& \( 09.09\% \) & \( 34.99\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					%
+					150	& 7 500	& \( 98.73\% \) \footnotesize \( (\pm0.23) \) \par	& \( 07.22\% \) & \( 38.14\% \) & \( 100.00\% \)
+					\tabularnewline
+					\hline
+					
+				\end{tabular}
+				\end{center}
+				\caption{Détails de l'évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.}
+				\label{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
+			\end{table}
+
+		%%% Discussion
+		\subsubsection{Discussion}
+			
+			%%% Principale conclusion : il y a convergence !
+			La première et principale conclusion de cette étude concerne la preuve que la méthode est efficace.
+			En effet, les différentes simulations ont bien convergé vers la vérité terrain (atteinte de l'asymptote à \texttt{100}\% de \texttt{v-measure}), montrant qu'il est possible pour un expert métier de créer une base d'apprentissage à l'aide d'une méthodologie d'annotation basée sur le \textit{clustering} interactif. \\
+			
+			
+			%%% Avantages.
+			Cette découverte permet de confirmer plusieurs espoirs portés sur la méthode. 
+			
+			% Avantage 1 : Émergence d'une modélisation sur la base des contraintes
+			Tout d'abord, la vérité terrain a été retrouvée sans formaliser concrètement la structure de données.
+			Là où une annotation par label aurait requis au préalable une définition des catégories possibles pour les données à étiqueter, la méthodologie employant le \textit{clustering} interactif a permis de faire émerger naturellement cette structure de données.
+			Cette émergence provient directement des contraintes annotées par l'expert métier, traduisant ainsi ses connaissances à l'aide d'instructions simples : \textit{les données sont-elles ou non similaires ?}
+			
+			% Avantage 2 : annotations plus simples et plus concrètes
+			De plus, ces contraintes ont été l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les clusters en cours de construction, améliorant ainsi la cohérence des clusters (cf. pentes croissantes) ; soit en remaniant les clusters mal formés pour repartir sur de bonnes bases, détériorant la cohérence des clusters le temps de la réorganisation (cf. oscillations ou pentes décroissantes). \\
+
+			
+			%%% Limites.
+			Néanmoins, différentes pistes sont encore à explorer pour rendre le \textit{clustering} interactif utilisable en situation réelle.
+			
+			% Limite 1 : Nombre d'annotations ==> besoin d'optimisation.
+			D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes : pour \texttt{500} points de données, et en considérant que l'asymptote à \texttt{100}\% est atteinte en moyenne autour de l'itération \texttt{200}, il faudrait \texttt{10 000} annotations de contraintes pour être exhaustif, ce qui correspond à près de \texttt{20} fois plus de contraintes que de données.
+			Bien que l'annotation binaire demande a priori une charge mentale plus faible à un annotateur, un tel volume représente tout de même une grande quantité de travail.
+			\todo{
+				Commentaire Gautier 22/05/2023 :
+				(A DÉTAILLER AILLEURS ?)
+				Oui, complètement d'accord ici, mais en fait ça va plus loin que ça non ?
+				Déjà, on a une quantité de ressources allouées à la tâche en effet plus fabile (car choisir entre "similaire" et "non similaire" est clairement plus simple que d'assigner un label parmi N).
+				Mais on a aussi une diminution des ressources allouées au maintien d'une stratégie d'annotation : en effet, pas besoin de définir à l'avance de type system ou autre, tout est construit à la volée. Ce deuxième point est particulierement intéressant à discuter je pense, car on sait normalement que le maintien d'objectifs en mémoire de travail peut aider à maintenir un niveau d'engagement sur une tâche cognitive. Du coup, ça pose d'autant plus la question de l'expérience utilisateur : annoter avec un CI sera-t-il moins engageant qu'annoter avec une méthode classique ?
+			}
+			Cela peut décourager les experts métiers en début de projet, surtout pour des projets ayant des jeux de données de plus grandes tailles.
+			Toutefois, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire, et certaines tentatives ont été bien plus efficientes dans l'utilisation de leurs contraintes. La tentative la plus rapide a convergé à l'itération \texttt{19}, soit \texttt{950} contraintes, ce qui est un volume d'annotation bien plus abordable !
+			On peut donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre moyen de contraintes nécessaires afin d'obtenir une base d'apprentissage exploitable avec un volume d'annotations acceptable.
+			Cet aspect fait l'objet de l'étude décrite dans la section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} (hypothèse d'efficience).
+			
+			% Limite 2 : Exhaustivité des annotations ==> evaluation de la rentabilité.
+			D'autre part, le choix d'annoter toutes les contraintes possibles sur les données (\textbf{annotation exhaustive}) n'est pas forcément judicieux.
+			En effet, si nous nous référons à la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}), une moyenne de \texttt{90}\% de \texttt{v-measure} est déjà atteinte autour de l'itération \texttt{75}, alors que l'asymptote à \texttt{100}\% n'est atteinte qu'au delà de l'itération \texttt{200}. Afin d'être plus efficient, il faudrait envisager une \textbf{annotation partielle} permettant d'obtenir rapidement \texttt{90}\% de \texttt{v-measure} (quitte à affiner le résultat manuellement pour combler la "perte" moyenne de \texttt{10}\% de \texttt{v-measure}).
+			Cet aspect sera ajouté à l'objectif de l'étude décrite dans la section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} (hypothèse d'efficience).
+			
+			% Limite 3 : Expert métier parfait ==> simuler les erreurs.
+			Pour finir, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
+			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des erreurs d'annotations peuvent intervenir (ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
+			Cet aspect sera traité à la fin de ce chapitre dans la section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE} (hypothèse de robustesse).

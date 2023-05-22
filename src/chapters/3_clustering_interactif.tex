@@ -89,6 +89,11 @@
 		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
+		\todo[inline]{
+			AJOUTER SCHEMA :
+			Diagramme d'état ? du point de vue de l'utilisateur ?
+		}
+		
 		% Présentation succinte.
 		La méthode repose principalement sur l'alternance successive entre deux phases clefs :
 		\begin{itemize}
@@ -361,7 +366,6 @@ constraints_manager.add_constraint(
 	# NB: ajouter une contrainte "MUST_LINK" entre "1" et "N" lèverait une erreur.
 
 # Récupération des composants connexes.
-# Récupérartion des composants connexes.
 connected_components = constraints_manager.get_connected_components()
 """
 	[['0', '1'],
