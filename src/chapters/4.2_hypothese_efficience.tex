@@ -45,31 +45,14 @@
 		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
-		\subsubsection{Protocole expérimental : analyser la taille d'effet paramètres sur la vitesse de création d'une base d'apprentissage}
+		\subsubsection{Protocole expérimental : analyser la taille d'effet des paramètres d’implémentation sur la vitesse de création d'une base d'apprentissage}
 
 			% Objectif de l'expérience.
 			Nous voulons étudier l'influence des paramètres de notre implémentation du \textit{clustering} interactif sur la vitesse de création d'une base d'apprentissage pour un assistant conversationnel.
-			Pour cette étude, nous allons reprendre le protocole expérimental de l'étude de convergence en section~\ref{subsection:4.1.1-ETUDE-CONVERGENCE} visant à simuler la création d'une base d'apprentissage\todo{référence, lien vers ANNEXE}.
-			
-			% Détails de l'expérience.
-			En s'appuyant sur les résultats précédemment obtenus, nous allons analyser l'influence des différentes tâches employées (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) et de leurs paramètres sur la vitesse de convergence vers la vérité terrain.
-			% Description implémentation de l'interactive clustering.
-			Nous avons toujours \texttt{192} combinaisons testées, et chaque tentative est répétée \texttt{5} fois pour contrer les aléas statistiques de certains algorithmes.
-			Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}.
-			
-			% Description de l'évaluation et Seuils d'évaluation.
-			Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attention aux trois seuils d'annotations suivants :
-			\begin{enumerate}
-				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir \texttt{90}\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de \texttt{90}\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, section~\ref{section:4.1-HYPOTHESE-EFFICACITE}).} ;
-				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir \texttt{100}\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
-				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier.
-			\end{enumerate}
-			
-			% Description de l'analyse ANOVA.
-			Enfin, nous utiliserons une \texttt{ANOVA} à mesures répétées afin de déterminer l’effet des paramètres de notre implémentation sur le nombre d’annotations requis pour converger vers la vérité terrain. Ces analyses seront réalisées à l'aide du logiciel R\todo{citation}, et le test de \texttt{Tukey (HSD)} est utilisé pour les comparaisons post-hoc.
+			Nous allons donc compléter le protocole expérimental de l'étude de convergence en section~\ref{subsection:4.1.1-ETUDE-CONVERGENCE} visant à simuler la création d'une base d'apprentissage\todo{référence, lien vers ANNEXE}.
 			
 			% Pseudo-code.
-			Pour résumer ce protocole expérimental, vous pouvez vous référez au pseudo-code décrit dans Alg.~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}.
+			Pour résumer le protocole expérimental que nous décrivons c-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}.
 			%
 			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
@@ -94,6 +77,23 @@
 				\label{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}
 			\end{algorithm}
 			
+			% Détails de l'expérience.
+			En s'appuyant sur les résultats précédemment obtenus, nous allons analyser l'influence des différentes tâches employées (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) et de leurs paramètres sur la vitesse de convergence vers la vérité terrain.
+			% Description implémentation de l'interactive clustering.
+			Nous avons toujours $192$ combinaisons testées, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
+			Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}.
+			
+			% Description de l'évaluation et Seuils d'évaluation.
+			Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attention aux trois seuils d'annotations suivants :
+			\begin{enumerate}
+				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, section~\ref{section:4.1-HYPOTHESE-EFFICACITE}).} ;
+				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
+				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier.
+			\end{enumerate}
+			
+			% Description de l'analyse ANOVA.
+			Enfin, nous utiliserons une \texttt{ANOVA} à mesures répétées afin de déterminer l’effet des paramètres de notre implémentation sur le nombre d’annotations requis pour converger vers la vérité terrain. Ces analyses sont réalisées à l'aide du logiciel R\todo{citation}, et le test de \texttt{Tukey (HSD)} est utilisé pour les comparaisons post-hoc.
+			
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
@@ -102,26 +102,26 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 		
-			% Analyse d'une annotation partielle.
-			Pour obtenir une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de \texttt{90}\%}), la moyenne des itérations est de \texttt{59.04} (min: \texttt{11}, max: \texttt{315}, écart-type: \texttt{42.14}), soit une moyenne de \texttt{2 951.81} annotations (min: \texttt{550}, max: \texttt{15 750}, écart-type: \texttt{2 106.72}).
+			%%% Analyse d'une annotation partielle.
+			Pour obtenir une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de $90$\%}), la moyenne des itérations est de $59.04$ (min: $11$, max: $315$, écart-type: $42.14$), soit une moyenne de $2~951.81$ annotations (min: $550$, max: $15~750$, écart-type: $2~106.72$).
 			La figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE} représente la répartition de ces itérations au cours des différentes tentatives.
 			On peut noter les deux cas intéressants suivants :
 			%
 			\begin{itemize}
-				\item[\(\bullet\)] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.no} ou \texttt{prep.simple} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.hier.sing}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis \texttt{11} itérations, soit \texttt{550} annotations, dont \texttt{299} (respectivement \texttt{304} et \texttt{281}) contraintes \texttt{MUST-LINK}.
-				\item[\(\bullet\)] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.no}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}. Ces tentatives ont requis \texttt{315} itérations, soit \texttt{15 750} annotations, dont \texttt{1 032} contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.no} ou \texttt{prep.simple} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.hier.sing}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis $11$ itérations, soit $550$ annotations, dont $299$ (respectivement $304$ et $281$) contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.no}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}. Ces tentatives ont requis $315$ itérations, soit $15~750$ annotations, dont $1~032$ contraintes \texttt{MUST-LINK}.
 			\end{itemize}
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-partielle}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à \texttt{90}\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à \texttt{60} pics pour simplifier l'affichage.}
+				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE}
 			\end{figure}
 			%
-			Le tableau~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de \texttt{90}\%}).
-			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (eta-carré: \texttt{0.320}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), de la vectorisation (eta-carré: \texttt{0.388}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), du clustering (eta-carré: \texttt{0.866}, p-valeur: \(<\) \texttt{\(10^{-3}\)}) et de l'échantillonnage (eta-carré: \texttt{0.968}, p-valeur: \(<\) \texttt{\(10^{-3}\)}).
-			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation partielle} repose sur la prétraitement \texttt{prep.simple}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.hier.avg}, et l'échantillonnage \texttt{samp.closest.diff}. La moyenne du nombre d'itération requis pour ce paramétrage est de \texttt{19.00} (écart-type: \texttt{0.79}), soit \texttt{950} annotations (écart-type: \texttt{39.34}).
+			Le tableau~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de $90$\%}).
+			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (\texttt{eta-carré}: $0.320$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.388$, \texttt{p-valeur}: $< 10^{-3}$), du clustering (\texttt{eta-carré}: $0.866$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.968$, \texttt{p-valeur}: $< 10^{-3}$).
+			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation partielle} repose sur la prétraitement \texttt{prep.simple}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.hier.avg}, et l'échantillonnage \texttt{samp.closest.diff}. La moyenne du nombre d'itération requis pour ce paramétrage est de $19.00$ (écart-type: $0.79$), soit $950$ annotations (écart-type: $39.34$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -139,24 +139,24 @@
 						& Moyenne
 						& Rang
 						& SE
-						& \texttt{ \( \eta^{2} \) }
+						& \texttt{ $ \eta^{2} $ }
 						& \texttt{p-valeur}
-					\tabularnewline
-					\hline
+						\tabularnewline
+						\hline
 					
 					% PRETRAITEMENT
 					\multirow{4}{*}{prétraitement}
 						& \texttt{prep.simple}
-						& \( 61.90 \)
+						& $61.90$
 						& (1)
-						& \multirow{4}{*}{ \( 0.32 \) }
-						& \multirow{4}{*}{ \( 0.320 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.32$ }
+						& \multirow{4}{*}{ $0.320$ }
+						& \multirow{4}{*}{ \shortstack{ $< 10^{-3}$ \\ ($***$) } }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{prep.lemma}
-						& \( 63.08 \)
+						& $63.08$
 						& (2)
 						&
 						&
@@ -165,7 +165,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.no}
-						& \( 63.70 \)
+						& $63.70$
 						& (2)
 						&
 						& 
@@ -174,7 +174,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.filter}
-						& \( 71.90 \)
+						& $71.90$
 						& (4)
 						&
 						&
@@ -185,16 +185,16 @@
 					% VECTORISATION
 					\multirow{2}{*}{vectorisation}
 						& \texttt{vect.tfidf}
-						& \( 60.61 \)
+						& $60.61$
 						& (1)
-						& \multirow{2}{*}{ \( 0.29 \) }
-						& \multirow{2}{*}{ \( 0.388 \) }
-						& \multirow{2}{*}{ \shortstack{\( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{2}{*}{ $0.29$ }
+						& \multirow{2}{*}{ $0.388$ }
+						& \multirow{2}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$) } }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{vect.frcorenewsmd}
-						& \( 63.08 \)
+						& $63.08$
 						& (2)
 						&
 						&
@@ -205,16 +205,16 @@
 					% CLUSTERING
 					\multirow{6}{*}{clustering}
 						& \texttt{clust.hier.avg}
-						& \( 50.64 \)
+						& $50.64$
 						& (1)
-						& \multirow{6}{*}{ \( 0.35 \) }
-						& \multirow{6}{*}{ \( 0.866 \) }
-						& \multirow{6}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{6}{*}{ $0.35$ }
+						& \multirow{6}{*}{ $0.866$ }
+						& \multirow{6}{*}{ \shortstack{ $< 10^{-3}$ \\ ($***$) } }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{clust.kmeans.cop}
-						& \( 52.43 \)
+						& $52.43$
 						& (2)
 						&
 						&
@@ -223,7 +223,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.sing}
-						& \( 54.08 \)
+						& $54.08$
 						& (3)
 						&
 						& 
@@ -232,7 +232,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.ward}
-						& \( 72.41 \)
+						& $72.41$
 						& (4)
 						&
 						& 
@@ -241,7 +241,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.comp}
-						& \( 73.48 \)
+						& $73.48$
 						& (5)
 						&
 						&
@@ -250,7 +250,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.spec}
-						& \( 87.84 \)
+						& $87.84$
 						& (6)
 						&
 						& 
@@ -261,16 +261,16 @@
 					% ECHANTILLONNAGE
 					\multirow{4}{*}{échantillonnage}
 						& \texttt{samp.closest.diff}
-						& \( 33.66 \)
+						& $33.66$
 						& (1)
-						& \multirow{4}{*}{ \( 0.32 \) }
-						& \multirow{4}{*}{ \( 0.968 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.32$ }
+						& \multirow{4}{*}{ $0.968$ }
+						& \multirow{4}{*}{ \shortstack{ $< 10^{-3}$ \\ ($***$) } }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{samp.random.same}
-						& \( 48.24 \)
+						& $48.24$
 						& (2)
 						&
 						&
@@ -279,7 +279,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.random.full}
-						& \( 65.83 \)
+						& $65.83$
 						& (3)
 						&
 						& 
@@ -288,7 +288,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.farhtest.same}
-						& \( 112.86 \)
+						& $112.86$
 						& (4)
 						&
 						&
@@ -297,31 +297,31 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de \texttt{90}\% de v-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de $90$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}
 			\end{table}
 			
 
-			% Analyse d'une annotation suffisante.
-			Pour obtenir une \textbf{annotation suffisante} (\textit{atteindre une \texttt{v-measure} de \texttt{100}\%}), la moyenne des itérations est de \texttt{76.29} (min: \texttt{19}, max: \texttt{328}, écart-type: \texttt{46.44}), soit une moyenne de \texttt{3 801.19} annotations (min: \texttt{950}, max: \texttt{16 400}, écart-type: \texttt{2 314.91}).
+			%%% Analyse d'une annotation suffisante.
+			Pour obtenir une \textbf{annotation suffisante} (\textit{atteindre une \texttt{v-measure} de $100$\%}), la moyenne des itérations est de $76.29$ (min: $19$, max: $328$, écart-type: $46.44$), soit une moyenne de $3~801.19$ annotations (min: $950$, max: $16~400$, écart-type: $2~314.91$).
 			La figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE} représente la répartition de ces itérations au cours des différentes tentatives.
 			On peut noter les deux cas intéressants suivants :
 			%
 			\begin{itemize}
-				\item[\(\bullet\)] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.simple}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis \texttt{19} itérations, soit \texttt{950} annotations, dont \texttt{638} (respectivement \texttt{641}) contraintes \texttt{MUST-LINK}.
-				\item[\(\bullet\)] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.no}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}. Ces tentatives ont requis \texttt{394} itérations, soit \texttt{16 400} annotations, dont \texttt{1 309} contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.simple}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis $19$ itérations, soit $950$ annotations, dont $638$ (respectivement $641$) contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.no}, une vectorisation des données \texttt{vect.tfidf}, un clustering sous contraintes \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}. Ces tentatives ont requis $394$ itérations, soit $16~400$ annotations, dont $1~309$ contraintes \texttt{MUST-LINK}.
 			\end{itemize}
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-suffisante}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à \texttt{100}\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à \texttt{60} pics pour simplifier l'affichage.}
+				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE}
 			\end{figure}
 			%
 			Le tableau~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation suffisante}.
-			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (eta-carré: \texttt{0.987}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), de la vectorisation (eta-carré: \texttt{0.991}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), du clustering (eta-carré: \texttt{0.997}, p-valeur: \(<\) \texttt{\(10^{-3}\)}) et de l'échantillonnage (eta-carré: \texttt{0.998}, p-valeur: \(<\) \texttt{\(10^{-3}\)}).
-			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation suffisante} repose sur la prétraitement \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.closest.diff}. La moyenne du nombre d'itération requis pour ce paramétrage est de \texttt{34.60} (écart-type: \texttt{7.44}), soit \texttt{1 730} annotations (écart-type: \texttt{372.00}).
+			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (\texttt{eta-carré}: $0.987$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.991$, \texttt{p-valeur}: $< 10^{-3}$), du clustering (\texttt{eta-carré}: $0.997$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.998$, \texttt{p-valeur}: $< 10^{-3}$).
+			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation suffisante} repose sur la prétraitement \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.closest.diff}. La moyenne du nombre d'itération requis pour ce paramétrage est de $34.60$ (écart-type: $7.44$), soit $1~730$ annotations (écart-type: $372.00$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -339,24 +339,24 @@
 						& Moyenne
 						& Rang
 						& SE
-						& \texttt{ \( \eta^{2} \) }
+						& \texttt{ $\eta^{2}$ }
 						& \texttt{p-valeur}
-					\tabularnewline
-					\hline
+						\tabularnewline
+						\hline
 					
 					% PRETRAITEMENT
 					\multirow{4}{*}{prétraitement}
 						& \texttt{prep.lemma}
-						& \( 72.86 \)
+						& $72.86$
 						& (1)
-						& \multirow{4}{*}{ \( 0.32 \) }
-						& \multirow{4}{*}{ \( 0.276 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.32$ }
+						& \multirow{4}{*}{ $0.276$ }
+						& \multirow{4}{*}{ \shortstack{ $< 10^{-3}$ \\ ($***$) } }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{prep.simple}
-						& \( 73.30 \)
+						& $73.30$
 						& (2)
 						&
 						&
@@ -365,7 +365,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.no}
-						& \( 75.24 \)
+						& $75.24$
 						& (2)
 						&
 						& 
@@ -374,7 +374,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.filter}
-						& \( 83.77 \)
+						& $83.77$
 						& (4)
 						&
 						&
@@ -385,16 +385,16 @@
 					% VECTORISATION
 					\multirow{2}{*}{vectorisation}
 						& \texttt{vect.tfidf}
-						& \( 71.16 \)
+						& $71.16$
 						& (1)
-						& \multirow{2}{*}{ \( 0.36 \) }
-						& \multirow{2}{*}{ \( 0.366 \) }
-						& \multirow{2}{*}{ \shortstack{\( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{2}{*}{ $0.36$ }
+						& \multirow{2}{*}{ $0.366$ }
+						& \multirow{2}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{vect.frcorenewsmd}
-						& \( 81.43 \)
+						& $81.43$
 						& (2)
 						&
 						&
@@ -405,16 +405,16 @@
 					% CLUSTERING
 					\multirow{6}{*}{clustering}
 						& \texttt{clust.kmeans.cop}
-						& \( 62.23 \)
+						& $62.23$
 						& (1)
-						& \multirow{6}{*}{ \( 0.42 \) }
-						& \multirow{6}{*}{ \( 0.700 \) }
-						& \multirow{6}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{6}{*}{ $0.42$ }
+						& \multirow{6}{*}{ $0.700$ }
+						& \multirow{6}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{clust.hier.avg}
-						& \( 65.13 \)
+						& $65.13$
 						& (2)
 						&
 						&
@@ -423,7 +423,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.sing}
-						& \( 75.44 \)
+						& $75.44$
 						& (3)
 						&
 						& 
@@ -432,7 +432,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.ward}
-						& \( 80.44 \)
+						& $80.44$
 						& (4)
 						&
 						& 
@@ -441,7 +441,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.comp}
-						& \( 81.46 \)
+						& $81.46$
 						& (5)
 						&
 						&
@@ -450,7 +450,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.spec}
-						& \( 93.06 \)
+						& $93.06$
 						& (6)
 						&
 						& 
@@ -461,16 +461,16 @@
 					% ECHANTILLONNAGE
 					\multirow{4}{*}{échantillonnage}
 						& \texttt{samp.closest.diff}
-						& \( 50.29 \)
+						& $50.29$
 						& (1)
-						& \multirow{4}{*}{ \( 0.39 \) }
-						& \multirow{4}{*}{ \( 0.950 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.39$ }
+						& \multirow{4}{*}{ $0.950$ }
+						& \multirow{4}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{samp.random.same}
-						& \( 56.38 \)
+						& $56.38$
 						& (2)
 						&
 						&
@@ -479,7 +479,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.random.full}
-						& \( 71.95 \)
+						& $71.95$
 						& (3)
 						&
 						& 
@@ -488,7 +488,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.farhtest.same}
-						& \( 126.55 \)
+						& $126.55$
 						& (4)
 						&
 						&
@@ -497,30 +497,30 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de \texttt{100}\% de v-mesure. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de $100$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}
 			\end{table}
 			
-			% Analyse d'une annotation exhaustive.
-			Enfin, pour avoir une \textbf{annotation exhaustive} (\textit{annoter toutes les contraintes possibles}), la moyenne des itérations est de \texttt{88.98} (min: \texttt{20}, max: \texttt{394}, écart-type: \texttt{68.21}), soit une moyenne de \texttt{4 431.34} annotations (min: \texttt{1 000}, max: \texttt{19 656}, écart-type: \texttt{3 405.16}).
+			%%% Analyse d'une annotation exhaustive.
+			Enfin, pour avoir une \textbf{annotation exhaustive} (\textit{annoter toutes les contraintes possibles}), la moyenne des itérations est de $88.98$ (min: $20$, max: $394$, écart-type: $68.21$), soit une moyenne de $4~431.34$ annotations (min: $1~000$, max: $19~656$, écart-type: $3~405.16$).
 			La figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE} représente la répartition de ces itérations au cours des différentes tentatives.
 			On peut noter les deux cas intéressants suivant :
 			%
 			\begin{itemize}
-				\item[\(\bullet\)] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.no} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un algorithme de clustering sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.wars}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis \texttt{20} itérations, soit \texttt{1 000} annotations, dont \texttt{653} (respectivement \texttt{668}) contraintes \texttt{MUST-LINK}.
-				\item[\(\bullet\)] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.simple}, une vectorisation des données \texttt{vect.frcorenewsmd}, un clustering sous contraintes \texttt{clust.hier.sing}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis \texttt{394} itérations, soit \texttt{19 656} annotations, dont \texttt{682} contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus rapides furent celles avec un prétraitement des données \texttt{prep.no} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un algorithme de clustering sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.wars}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis $20$ itérations, soit $1~000$ annotations, dont $653$ (respectivement $668$) contraintes \texttt{MUST-LINK}.
+				\item[$\bullet$] Les tentatives les plus lentes furent celles avec un prétraitement des données \texttt{prep.simple}, une vectorisation des données \texttt{vect.frcorenewsmd}, un clustering sous contraintes \texttt{clust.hier.sing}, et un échantillonnage de contraintes \texttt{samp.closest.diff}. Ces tentatives ont requis $394$ itérations, soit $19~656$ annotations, dont $682$ contraintes \texttt{MUST-LINK}.
 			\end{itemize}
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-exhaustive}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées. L'histogramme est réduit à \texttt{60} pics pour simplifier l'affichage.}
+				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE}
 			\end{figure}
 			%
 			Le tableau~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation exhaustive}.
-			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (eta-carré: \texttt{0.909}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), de la vectorisation (eta-carré: \texttt{0.985}, p-valeur: \(<\) \texttt{\(10^{-3}\)}), du clustering (eta-carré: \texttt{0.999}, p-valeur: \(<\) \texttt{\(10^{-3}\)}) et de l'échantillonnage (eta-carré: \texttt{0.997}, p-valeur: \(<\) \texttt{\(10^{-3}\)}).
-			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation exhaustive} repose sur la prétraitement \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.random.same}. La moyenne du nombre d'itération requis pour ce paramétrage est de \texttt{32.60} (écart-type: \texttt{1.14}), soit \texttt{1 630} annotations (écart-type: \texttt{57.00}).
+			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (\texttt{eta-carré}: $0.909$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.985$, \texttt{p-valeur}: $< 10^{-3}$), du clustering (\texttt{eta-carré}: $0.999$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.997$, \texttt{p-valeur}: $< 10^{-3}$).
+			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation exhaustive} repose sur la prétraitement \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le clustering \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.random.same}. La moyenne du nombre d'itération requis pour ce paramétrage est de $32.60$ (écart-type: $1.14$), soit $1~630$ annotations (écart-type: $57.00$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -538,24 +538,24 @@
 						& Moyenne
 						& Rang
 						& SE
-						& \texttt{ \( \eta^{2} \) }
+						& \texttt{ $\eta^{2}$ }
 						& \texttt{p-valeur}
-					\tabularnewline
-					\hline
+						\tabularnewline
+						\hline
 					
 					% PRETRAITEMENT
 					\multirow{4}{*}{prétraitement}
 						& \texttt{prep.lemma}
-						& \( 85.89 \)
+						& $85.89$
 						& (1)
-						& \multirow{4}{*}{ \( 0.42 \) }
-						& \multirow{4}{*}{ \( 0.052 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.42$ }
+						& \multirow{4}{*}{ $0.052$ }
+						& \multirow{4}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{prep.filter}
-						& \( 89.55 \)
+						& $89.55$
 						& (2)
 						&
 						&
@@ -564,7 +564,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.simple}
-						& \( 89.64 \)
+						& $89.64$
 						& (2)
 						&
 						& 
@@ -573,7 +573,7 @@
 						\cline{2-4}
 						
 						& \texttt{prep.no}
-						& \( 90.81 \)
+						& $90.81$
 						& (4)
 						&
 						&
@@ -584,16 +584,16 @@
 					% VECTORISATION
 					\multirow{2}{*}{vectorisation}
 						& \texttt{vect.tfidf}
-						& \( 85.50 \)
+						& $85.50$
 						& (1)
-						& \multirow{2}{*}{ \( 0.39 \) }
-						& \multirow{2}{*}{ \( 0.165 \) }
-						& \multirow{2}{*}{ \shortstack{\( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{2}{*}{ $0.39$ }
+						& \multirow{2}{*}{ $0.165$ }
+						& \multirow{2}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{vect.frcorenewsmd}
-						& \( 92.46 \)
+						& $92.46$
 						& (2)
 						&
 						&
@@ -604,16 +604,16 @@
 					% CLUSTERING
 					\multirow{6}{*}{clustering}
 						& \texttt{clust.kmeans.cop}
-						& \( 64.99 \)
+						& $64.99$
 						& (1)
-						& \multirow{6}{*}{ \( 0.39 \) }
-						& \multirow{6}{*}{ \( 0.894 \) }
-						& \multirow{6}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{6}{*}{ $0.39$ }
+						& \multirow{6}{*}{ $0.894$ }
+						& \multirow{6}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{clust.hier.avg}
-						& \( 78.54 \)
+						& $78.54$
 						& (2)
 						&
 						&
@@ -622,7 +622,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.ward}
-						& \( 81.31 \)
+						& $81.31$
 						& (3)
 						&
 						& 
@@ -631,7 +631,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.comp}
-						& \( 82.49 \)
+						& $82.49$
 						& (3)
 						&
 						& 
@@ -640,7 +640,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.spec}
-						& \( 93.78 \)
+						& $93.78$
 						& (5)
 						&
 						&
@@ -649,7 +649,7 @@
 						\cline{2-4}
 						
 						& \texttt{clust.hier.comp}
-						& \( 132.75 \)
+						& $132.75$
 						& (6)
 						&
 						& 
@@ -660,16 +660,16 @@
 					% ECHANTILLONNAGE
 					\multirow{4}{*}{échantillonnage}
 						& \texttt{samp.random.same}
-						& \( 57.23 \)
+						& $57.23$
 						& (1)
-						& \multirow{4}{*}{ \( 0.42 \) }
-						& \multirow{4}{*}{ \( 0.930 \) }
-						& \multirow{4}{*}{ \shortstack{ \( < 2e^{-16} \) \\ (\( *** \)) } }
+						& \multirow{4}{*}{ $0.42$ }
+						& \multirow{4}{*}{ $0.930$ }
+						& \multirow{4}{*}{ \shortstack{$< 10^{-3}$ \\ ($***$)} }
 						\tabularnewline
 						\cline{2-4}
 						
 						& \texttt{samp.random.full}
-						& \( 72.80 \)
+						& $72.80$
 						& (2)
 						&
 						&
@@ -678,7 +678,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.closest.diff}
-						& \( 98.38 \)
+						& $98.38$
 						& (3)
 						&
 						& 
@@ -687,7 +687,7 @@
 						\cline{2-4}
 						
 						& \texttt{samp.farhtest.same}
-						& \( 132.75 \)
+						& $132.75$
 						& (4)
 						&
 						&
@@ -696,7 +696,7 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour annoter toutes les contraintes possibles. Les (\textit{\(*\)}) dénotent le niveau de significativité (\(\alpha=0.05\)). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{ANOVA du nombre d'itérations nécessaires pour annoter toutes les contraintes possibles. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE}
 			\end{table}
 		
@@ -715,7 +715,7 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.8\textwidth]{figures/etude-efficience-evolution-moyenne-5best-par-vmeasure}
-				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenu un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de \texttt{90}\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de \texttt{100}\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).}
+				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenu un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}
 			\end{figure}
 
@@ -729,13 +729,13 @@
 			% Première remarque : Choix d'un seuil à 90\% de v-measure.
 			Dans l'optique d'être efficient, nous excluons le désir d'annoter \textbf{exhaustivement} le jeu de données car la charge de travail estimée est trop importante.
 			(cf. discussion de la section~\ref{section:4.1-HYPOTHESE-EFFICACITE} (hypothèse d'efficacité))
-			Nous préférons donc nous concentrer sur deux seuils d'annotation plus réalistes : celui d'une \textbf{annotation partielle} (atteindre \texttt{90}\% de \texttt{v-measure} avec la vérité terrain) et celui d'une \textbf{annotation suffisante} (atteindre \texttt{100}\% de \texttt{v-measure} avec la vérité terrain en un minimum de contraintes). 
+			Nous préférons donc nous concentrer sur deux seuils d'annotation plus réalistes : celui d'une \textbf{annotation partielle} (atteindre $90$\% de \texttt{v-measure} avec la vérité terrain) et celui d'une \textbf{annotation suffisante} (atteindre $100$\% de \texttt{v-measure} avec la vérité terrain en un minimum de contraintes). 
 			
 			% Meilleur paramétrage.
-			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitement}\todo{remarque sur la valeur de eta2}, \textbf{vectorisation}\todo{remarque sur la valeur de eta2}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de \texttt{90}\% et \texttt{100}\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
+			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitement}\todo{remarque sur la valeur de eta2}, \textbf{vectorisation}\todo{remarque sur la valeur de eta2}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
 			\begin{enumerate}
-				\item pour une \textbf{annotation partielle} (\texttt{90}\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne \texttt{950} annotations de contraintes pour obtenir une \texttt{v-measure} de \texttt{90}\% ;
-				\item pour une \textbf{annotation suffisante} (\texttt{100}\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering KMeans (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne \texttt{1 750} annotations de contraintes pour obtenir une \texttt{v-measure} de \texttt{100}\% ;
+				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne $950$ annotations de contraintes pour obtenir une \texttt{v-measure} de $90$\% ;
+				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering KMeans (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne $1~750$ annotations de contraintes pour obtenir une \texttt{v-measure} de $100$\% ;
 				\item le cas d'une \textbf{annotation exhaustive} (annoter toutes les contraintes possibles sur les données) n'est pas explicité ici mais peut se déduire des résultats décrits plus haut.
 			\end{enumerate}
 
@@ -745,8 +745,8 @@
 			
 			% Avantage 1: Optimisation du nombre de contraintes.
 			En effet, l'optimisation des paramètres de l'implémentation du \textit{clustering} interactif permet de réduire considérablement le nombre de contraintes nécessaires pour obtenir une base d'apprentissage exploitable.
-			En nous basant sur le tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} de l'étude de convergence, et dans le cadre de l'annotation d'un jeu de \texttt{500} données, nous sommes passé d'un paramétrage moyen nécessitant \texttt{3 750} (respectivement \texttt{10 000}) contraintes à un paramétrage optimisé ne nécessitant que \texttt{950} (respectivement \texttt{1 750}) contraintes pour atteindre un seuil de \texttt{90}\% (respectivement \texttt{100}\%) \texttt{v-measure}.
-			L'ordre de grandeur de la charge de travail demandée aux annotateurs est donc située entre \texttt{2} et \texttt{4} fois la taille du jeu de données.
+			En nous basant sur le tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} de l'étude de convergence, et dans le cadre de l'annotation d'un jeu de $500$ données, nous sommes passé d'un paramétrage moyen nécessitant $3~750$ (respectivement $10~000$) contraintes à un paramétrage optimisé ne nécessitant que $950$ (respectivement $1~750$) contraintes pour atteindre un seuil de $90$\% (respectivement $100$\%) \texttt{v-measure}.
+			L'ordre de grandeur de la charge de travail demandée aux annotateurs est donc située entre $2$ et $4$ fois la taille du jeu de données.
 			
 			% Avantage 2: La méthode devient réaliste !
 			En considérant que les annotations sont binaires et demandent a priori une charge mental plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quel est l'étiquette de cette donnée ?}"), nous pouvons conclure que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \textit{clustering} interactif est comparable à celles des méthodes traditionnelles.
