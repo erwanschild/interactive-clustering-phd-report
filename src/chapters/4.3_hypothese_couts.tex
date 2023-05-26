@@ -211,10 +211,11 @@
 			%%% Clustering
 			
 			% Première analyse.
-			En ce qui concerne la tâche de \textbf{clustering}, une première analyse montre que les modélisations des six implémentations sont différentiables  (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous ferons donc une modélisation par algorithme.
+			En ce qui concerne la tâche de \textbf{\textit{clustering} sous contraintes}, une première analyse montre que les modélisations des six implémentations sont différentiables  (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous ferons donc une modélisation par algorithme.
 			
 			% Modélisation du temps de calcul (clust.kmeans.cop).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.kmeans.cop}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (r: $0.837$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.kmeans.cop}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (r: $0.837$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.545$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.904$, \texttt{llf}: $-9.20\cdot10^{4}$, \texttt{llf\_null}: $-1.00\cdot10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -223,7 +224,8 @@
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.sing).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.hier.sing}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.940$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.sing}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.940$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.729$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.38\cdot10^{4}$, \texttt{llf\_null}: $-6.10\cdot10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -232,7 +234,8 @@
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.comp).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.hier.comp}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.938$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.comp}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.938$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.736$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.40\cdot10^{4}$, \texttt{llf\_null}: $-6.11\cdot10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -241,7 +244,8 @@
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.avg).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.hier.avg}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.915$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.avg}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.915$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.713$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.942$, \texttt{llf}: $-5.82\cdot10^{4}$, \texttt{llf\_null}: $-6.45\cdot10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -250,7 +254,8 @@
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.ward).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.hier.ward}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.945$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.ward}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.945$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.734$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.39\cdot10^{4}$, \texttt{llf\_null}: $-6.14\cdot10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -259,7 +264,8 @@
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.spec).
-			Pour les algorithmes du \textit{clustering} \texttt{clust.spec}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.658$).
+			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.spec}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{(dataset\_size})^{2}$ (r: $0.658$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_clusters)$ (r: $0.595$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.534$, \texttt{llf}: $-7.88\cdot10^{5}$, \texttt{llf\_null}: $-8.27\cdot10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
@@ -281,15 +287,47 @@
 			%%% Sampling
 			
 			% Première analyse.
-			\todo[inline]{A REDIGER: }
+			En ce qui concerne la tâche d'\textbf{échantillonnage de contraintes}, une première analyse montre que les modélisations des quatre implémentations sont différentiables  (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous ferons donc une modélisation par algorithme.
+			
 			% Modélisation du temps de calcul (samp.rand.full).
-			\todo[inline]{A REDIGER: }
+			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.rand.full}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.993$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(previous\_nb\_clusters)$ (r: $0.791$).
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.33\cdot10^{4}$, \texttt{llf\_null}: $-1.17\cdot10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
+			%
+			\begin{equation}
+				time(clust.kmeans.cop)
+				\simeq -4.78\cdot10^{-1} + 8.47\cdot10^{-7}\cdot(\texttt{dataset\_size})^{2}
+			\end{equation}
+			
 			% Modélisation du temps de calcul (samp.rand.same).
-			\todo[inline]{A REDIGER: }
+			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.rand.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.939$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(algorithm\_nb\_constraints)$ (r: $0.611$).
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-3.17\cdot10^{4}$, \texttt{llf\_null}: $-6.84\cdot10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
+			%
+			\begin{equation}
+				time(clust.kmeans.cop)
+				\simeq -1.36\cdot10^{-1} + 1.92\cdot10^{-7}\cdot(\texttt{dataset\_size})^{2}
+			\end{equation}
+			
 			% Modélisation du temps de calcul (samp.farhtest.same).
-			\todo[inline]{A REDIGER: }
+			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.farhtest.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.981$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(previous\_nb\_clusters)$ (r: $0.700$).
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.52\cdot10^{4}$, \texttt{llf\_null}: $-1.02\cdot10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
+			%
+			\begin{equation}
+				time(clust.kmeans.cop)
+				\simeq -2.25\cdot10^{-1} + 5.32\cdot10^{-7}\cdot(\texttt{dataset\_size})^{2}
+			\end{equation}
+			
 			% Modélisation du temps de calcul (samp.closest.diff).
-			\todo[inline]{A REDIGER: }
+			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.closest.diff}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $(\texttt{dataset\_size})^{2}$ (r: $0.995$).
+			Le second facteur le plus corrélé (mais non retenu) est l'interaction $(\texttt{dataset\_size})^{2}\cdot(previous\_nb\_clusters)$ (r: $0.815$).
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.80\cdot10^{4}$, \texttt{llf\_null}: $-1.36\cdot10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
+			%
+			\begin{equation}
+				time(clust.kmeans.cop)
+				\simeq -6.58\cdot10^{-1} + 1.46\cdot10^{-6}\cdot(\texttt{dataset\_size})^{2}
+			\end{equation}
 			
 			% Affichage du temps de calcul.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING} représente ces simulations de temps de calcul des algorithmes d'échantillonnage en comparaison avec les mesures réalisées lors de l'expérience.
@@ -298,7 +336,7 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.8\textwidth]{figures/etude-temps-calcul-modelisation-4samp}
-				\caption{Estimation du temps nécessaire (en secondes) pour effectuer une tâche d'\textbf{échantillonnage} en fonction du nombre de données à traiter.}
+				\caption{Estimation du temps nécessaire (en secondes) pour effectuer une tâche d'\textbf{échantillonnage de contraintes} en fonction du nombre de données à traiter.}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}
 			\end{figure}
 
