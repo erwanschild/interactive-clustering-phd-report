@@ -187,6 +187,7 @@ dict_of_texts = {
 		
 		%%% Subsection 3.3.1: Gestion des données.
 		\subsection{Gestion des données}
+		\label{section:3.3.1-GESTION-DES-DONNEES}
 				
 		% cognitivefactory.interactive-clustering.utils
 		Tout d'abord, en ce qui concerne la \textbf{manipulation de données}, nous utilisons le module \texttt{utils} de la librairie \texttt{cognitivefactory-interactive-clustering}. Les données sont stockées dans un dictionnaire Python afin de tracer les manipulations à l'aide d'une clé servant d'identifiant de la donnée.
@@ -272,6 +273,7 @@ dict_of_vectors = vectorize(
 		
 		%%%	Subsection 3.3.2: Gestion des contraintes
 		\subsection{Gestion des contraintes}
+		\label{section:3.3.2-GESTION-DES-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.constraints
 		En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/constraints/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
@@ -384,6 +386,7 @@ connected_components = constraints_manager.get_connected_components()
 		
 		%%%	Subsection 3.3.3: Algorithme de clustering sous contraintes.
 		\subsection{Algorithme de clustering sous contraintes}
+		\label{section:3.3.3-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.clustering
 		En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
@@ -438,13 +441,18 @@ clustering_result = clustering_model.cluster(
 """
 		\end{lstlisting}
 		
-		% cognitivefactory.interactive-clustering.utils.clustering : Historique.
-		Les algorithmes KMeans (COP), hiérarchique et spectral (SPEC) ont été implémentés au début de ce doctorat.
-		Dans le cadre d'un projet industriel au sein de l'école Télécom Physique Strasbourg, les implémentations des algorithmes KMeans (MPC), C-DBScan et propagation par affinité ont été ajoutées\todo{citation + footnote}. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul\todo{travaux TPS en annexe ?}.
+		% cognitivefactory.interactive-clustering.utils.clustering : Historique.		
+		\begin{leftBarInformation}
+			Dans le cadre d'un projet étudiant au sein de l'école Télécom Physique Strasbourg, les implémentations des algorithmes KMeans (MPC), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
+			Les autres algorithmes (KMeans (COP), hiérarchique et spectral (SPEC)) ont été implémentés au début de ce doctorat.
+		\end{leftBarInformation}
+		\todo{citation + footnote}
+		\todo{travaux TPS en annexe ?}.
 		
 		
 		%%%	Subsection 3.3.4: Algorithme d'échantillonnage de contraintes.
 		\subsection{Algorithme d'échantillonnage de contraintes}
+		\label{section:3.3.4-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.sampling
 		En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/sampling/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
