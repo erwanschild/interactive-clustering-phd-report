@@ -54,7 +54,7 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons c-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}.
 			%
 			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
@@ -87,12 +87,38 @@
 			L'échantillon résultant est décrit en annexe~\todo{TODO: ANNEXE JEU DE DONNEES}.
 			
 			% Détails de l'expérience : sélection des contraintes à annoter. 
-			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter. Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas la vitesse de convergence vers la vérité terrain), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).			
+			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter. Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas le nombre d'itérations de la méthode), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).			
 			
 			% Détails de l'expérience : annotations et consignes.
-			Ensuite ...
-			\todo[inline]{A REDIGER: consignes annotateurs}
-			\todo[inline]{A REDIGER: description interface}
+			Ensuite, un groupe de $14$ annotateurs vont annoter la sélection de $1~000$ contraintes en plusieurs sessions.
+			Les directives données aux opérateurs sont les suivantes:
+			\begin{itemize}
+				\item \textbf{Contexte de l'opérateur} :
+				« \textit{Vous êtes des \textbf{experts de la presse et de l’actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles} » ;
+				\item \textbf{Contexte sur le jeu de données} :
+				« \textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre 10 et 20 catégories parmi les plus communes de la presse ; La vérité terrain contient entre 30 et 100 articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez} » ;
+				\item \textbf{Objectif de l'expérience} :
+				« \textit{Je veux savoir le temps nécessaire pour annoter un certain nombre de contraintes ; Autrement dit : \textbf{Pour annoter 1000 contraintes, combien de temps me faut-il ?}} » ;
+				\item \textbf{Consignes d'annotations} :
+				« \textit{Faites des séries de \textbf{15 minutes minimum} pour avoir de la régularité ; Si possible, \textbf{isolez-vous} pour ne pas être dérangé et ne pas fausser les résultats ; Pour chaque série, \textbf{notez le temps et le nombre de contraintes annotés} ; Si vous ne savez pas quoi annoter (trop ambigu, vocabulaire inconnu, ...), \textbf{passez au suivant sans annoter} (vous êtes sensés être des experts de la presse !)} ».
+			\end{itemize}
+			%
+			Pour réaliser l'annotation, les opérateurs auront accès à l'application web développée au cours de ce doctorat.
+			Des captures d'écran sont disponibles en figures~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}et~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}.
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}\todo{description à faire}
+			%
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-0application-annotation}
+				\caption{Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'annotation)}
+				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}
+			\end{figure}
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-0application-liste-contraintes}
+				\caption{Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'inventaire des contraintes à annoter)}
+				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}
+			\end{figure}
 			
 			
 			% Détails de l'expérience : modélisation.
@@ -109,11 +135,21 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 		
-			% Modélisation du temps d'annotation.
-			\todo[inline]{A REDIGER: Description statistiques des résultats}
-			\todo[inline]{A REDIGER: Modélisation du temps}
-			\todo[inline]{A REDIGER: équation du temps}
+			% Taux de participation.
+			Durant cette expérience, $14$ annotateurs ont participé à l'annotation de $1~000$ contraintes aléatoires sur un jeu de données.
+			Par manque de disponibilités, $4$ annotateurs n'ont que partiellement réalisé leur tâche : nous avons toutefois intégré leurs participations car elles contenaient toutes au moins $150$ annotations.
 			
+			% Statistiques descriptives.
+			D'après les observations, un annotateur réalisait en moyenne $170.70$ contraintes par session d'annotation (min: $43$, max: $547$, médiane: $138$, écart-type: $106.37$) ce qui lui demandait en moyenne $23.05$ minutes (min: $3.00$, max: $92.00$, écart-type: $14.41$).
+			De plus, la vitesse d'annotation moyenne était de $7.74$ contraintes par minute (min: $3.46$, max: $14.33$, écart-type: $2.93$).
+			
+			% Modélisation du temps d'annotation.
+			Le modèle linéaire généralisé entraîné sur les mesures de temps d'annotations (\texttt{R²}: $0.922$, \texttt{llf}: $-497.37$, \texttt{llf\_null}: $-539.95$) nous permet de déduire l'équation suivante :
+			%
+			\begin{equation}
+				time.annotation~(secondes)~
+				\simeq~202 + 6.92 \cdot \texttt{constraints\_number}
+			\end{equation}
 		
 			% Affichage du temps d'annotation.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION} représente cette modélisation du temps d'annotation en comparaison avec les mesures réalisées lors de l'expérience.
@@ -124,8 +160,17 @@
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION}
 			\end{figure}
 		
+			% Complément: Temps d'annotation d'une annotation partielle ou d'une annotation suffisante.
+			A l'aide de la modélisation temporelle réalisée ci-dessus, nous pouvons estimer qu'un lot de $50$ contraintes (comme employé dans nos précédentes études) nécessite en moyenne $548$ secondes, soit $9.13$ minutes.
+			De plus, en considérant les résultats de l'étude d'efficience (cf. section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}) sur un jeu de $500$ points de données, nous pouvons déduire que :
+			\begin{itemize}
+				\item l'obtention d'une annotation partielle (atteindre $90$\% de \texttt{v-measure}) peut se faire avec $950$ contraintes, soit $19$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $2.89$ heures d'annotations ;
+				\item l'obtention d'une annotation suffisante (atteindre $100$\% de \texttt{v-measure}) peut se faire en $1~730$ contraintes, soit $34.6$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $5.27$ heures d'annotations.
+			\end{itemize}
+		
 			% Etude de cas.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE} représente l'évolution de la vitesse d'annotation de quatre opérateurs (les deux plus rapides et les deux plus lents). Ces données sont l'objet d'une étude de cas dans la discussion ci-dessous.
+			\todo{A SUPPRIMER car non essentiel ?}
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-3-etude-de-cas}
@@ -136,8 +181,79 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			\todo[inline]{A REDIGER: Discussion temps moyen}
-			\todo[inline]{A REDIGER: Discussion vitesse d'annotation}
+			\paragraph{Analyse du temps nécessaire :}
+			% Généralités sur la modélisation du temps d'annotation.
+			L'étude d'annotation réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $202 + 6.92 \cdot \texttt{constraints\_number}$ le temps nécessaire (en secondes) pour annoter un lot de contraintes.
+			Malgré une forte dispersion des résultats, cette modélisation est en accord avec une annotation de contraintes binaires et permet de confirmer les tendances suivantes :
+			\begin{itemize}
+				\item nous avons un \textbf{coût fixe} (environ $200$ secondes) qui peut représenter une partie du temps d'adaptation nécessaire à l'opérateur pour commencer sa tâche \todo{citation: Anderson (2013)} : cela comprend le temps de s'habituer à la tâche et de (ré)intégrer le contexte du sujet traité ;
+				\item nous avons un \textbf{coût variable faible} (inférieur à $7$ secondes par contrainte) concorde avec l'hypothèse d'une caractérisation rapide d'une similitude ou d'une différence entre deux données \todo{citation: Kahneman (2011), Hancock (1988)}.
+			\end{itemize}
+			Afin de \textbf{rentabiliser} le coût fixe à investir, il peut être judicieux de ne pas définir des lots d’annotation trop petits. 
+			Comme le nombre médian de contraintes annotées durant les sessions d'annotation de cette expérience est de $138$ (moyenne à $170.70$), nous pouvons par exemple fixer la taille par défaut des lots à $100$ contraintes ($14.9$ minutes) ou $150$ contraintes ($20.7$ minutes).
+			Attention toutefois à ne pas faire des lots trop conséquents (au delà de $200$), d'une part pour garder l'aspect itératif et interactif de la méthode, et d'autre part pour ne pas atteindre un pallier de \textbf{fatigue de} l'annotateur.\todo{citation: Jones et al. (2015), Elkosantini et Gien (2009)}
+
+
+			\paragraph{Comparaison à d'autres références :}
+			% Commentaire sur la difficulté de comparer les durées totales.
+			En ce qui concerne les durées totales pour annoter un jeu de $500$ points de données, estimées respectivement à $2.89$ et à $5.27$ heures suivant les seuils d'annotation, il est difficile de discuter de leur compétitivité à cause du manque de repères concrets.
+			En effet, les références dépendent de la tâche d'annotation, des données manipulées, du nombre de choix proposés à l'opérateur, de la complexité sémantique des données, des compétences des annotateurs, ...
+			\footnote{De plus, la plupart des études des tâches d'annotation en \textit{machine learning} se concentrent sur la cohérence inter-annotateurs plutôt que sur le temps nécessaire.}
+			Pour pallier ce problème, nous proposons de comparer nos estimations de temps d'annotations grâce aux pistes ci-dessous.
+			Ces repères sont approximatifs et assez disparates, mais ils nous permettront de discuter des ordres de grandeurs à manipuler.
+			
+			% Cas de taches de complexité similaire.
+			D'une part, comparons nos estimations à trois exemples de tâches ayant une \textbf{complexité similaire} à la vérité terrain que nous manipulons lors de cette expérience. Ces points de repères font appel à la catégorisation du thème traité par des textes courts.
+			%
+			\begin{enumerate}
+				% Conception du JDD bank cards.
+				\item Pour concevoir le jeu de données~\todo{citation: bank cards} ($10$ classes équilibrées, $500$ points de données) servant de vérité terrain aux études d'efficacité et d'efficience, nous avons requis approximativement $5$ heures, dont $2.5$ d'annotation
+				\footnote{La conception de $bank cards$ a demandé $\sim 2$ heure de définition du périmètre (1 personne), $\sim 2$ heures de collecte et d'annotation des étiquettes des données (1 personne), et $\sim 1$ heure de revue de la cohérence des annotations (2 personne)} ;
+				% Conception du JDD MLSUM subset.
+				\item Pour adapter le jeu de données~\todo{citation: mlsum} en~\todo{citation: mlsum subset SCHILD} ($14$ classes retenues, $744$ points de données sélectionnées sur un échantillon de $1~050$) servant de base à notre étude du coût de l'annotation, nous avons requis approximativement $5$ heures, dont $2$ d'annotation binaire
+				\footnote{L'adaptation de $TODO:mlsum$ a demandé $\sim 1$ heure de collecte des catégories les plus communes (1 personne), $\sim 2$ heures d'annotation binaire de la pertinence des données (2 personnes) et $\sim 2$ heures de revue de la cohérence des annotations (2 personne)} ;
+				% Article Cheap and Fast — But is it Good? (Word Sense Disambiguation)
+				\item Selon~\todo{citation: Snow et al. (2008) / Yuret (2007)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de phrases pour catégoriser leur contexte parmi trois possibilités préformatés, il faut $8.59$ heures pour étiqueter $1~770$ données. En pondérant cette approximation pour un jeu de $500$ points de données, on peut estimer le temps d'annotation à $2.43$ heures environ ;
+			\end{enumerate}
+			%
+			À l'aide de ces trois exemples, on remarque qu'une annotation partielle ($950$ contraintes pour atteindre $90$\% de \texttt{v-measure}) nécessite une durée comparable à une annotation par label ($2.89$ heures vs. entre $2$ et $3$ heures), mais une annotation suffisante ($1~730$ contraintes pour atteindre $100$\% de \texttt{v-measure}) nécessite 2 à 3 fois plus de temps ($5.27$ heures).
+			Il est donc préférable de nous concentrer sur une \textbf{annotation partielle} afin de garder une méthode efficiente. \todo{lien vers la section 4.4 a faire dans la discussion globale de cette section}
+				% Ce choix implique de pouvoir compléter la différence qualité en remaniant manuellement certains \textit{clusters} obtenus lors d'une phase de revue.
+				% Cet aspect sera complété à partir de l'étude décrite dans la section~\ref{section:4.4-HYPOTHESE-PERTINENCE} (hypothèse de pertinence).
+			
+			% cas de taches de complexité différentes
+			D'autre part, comparons nos estimations à deux exemples de tâches ayant des \textbf{complexité différentes} (une premier presque triviale, une seconde plutôt complexe) :
+			%
+			\begin{enumerate}
+				\setcounter{enumi}{3}
+				% Article Cheap and Fast — But is it Good? (Word Similarity)
+				\item Selon~\todo{citation: Snow et al. (2008) / Rubenstein et Goodenough (1965)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de couples de mots pour identifier par similarité des synonymes, il faut $0.17$ heures pour ordonner $300$ paires de données de la plus à la moins similair
+				\footnote{La tâche d'annotation de synonymes par ordonnancement peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{laquelle de ces deux paires est la plus adéquate ? »}. Cette tâche est relativement simple (similarité intrinsèque triviale, peu de vocabulaire).}. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $0.53$ heures ;
+				% Article Cheap and Fast — But is it Good? (Recognizing Textual Entailment)
+				\item Encore selon~\todo{citation: Snow et al. (2008) / Dagan et Magnini (2005)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation binaire de la véracité d'une implication, il faut $89.3$ heures pour étiqueter $8~000$ données
+				\footnote{La tâche d'annotation de la véracité d'une implication peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{est-ce que l'implication est vraie ? »}. Cette tâche est relativement complexe (implication logique non trivial). }. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $10.60$ heures ;
+			\end{enumerate}
+			%
+			Avec ces deux exemples, on constate que les variations peuvent être très grandes (allant du cinquième au quadruple !).
+			Il est donc important de nuancer nos précédentes conclusions en fonction de la complexité de la thématique traitée.
+			Toutefois, 
+			\todo[inline]{données intrinsèquement différentes : peuvent être caractérisées très rapidement}
+			\todo[inline]{données ambiguës : peuvent demander plus de temps, plus de réflexion}			
+			
+			
+			\paragraph{Autres études :}
+			% Autres analyses sans conclusions
+			Sur d'autres aspects, nous avons analysé l'évolution de la vitesse d'annotation au cours des sessions d'annotation, en espérant observer une accélération des annotations au fur et à mesure que l'annotateur s'habitue avec la tâche. Cependant, aucune de nos analyses n'a montré de résultats significatifs. Nous ne pouvons donc pas conclure sur de telles tendances.
+			\begin{leftBarAuthorOpinion}
+				Nos intuitions initiales concernaient trois points :
+				\begin{itemize}
+					\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions ;
+					\item l'intervention d'\textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs.
+				\end{itemize}
+				Ces différentes intuitions ont aussi été remontées par les annotateurs de notre expériences, mais aucun effet significatif n'a pu être observé. Cela est probablement dû au faible nombre d'opérateurs que nous avions à disposition pour cette expérience, à la forte disparité de ces individus (cf. figure\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE} où deux opérateurs sont constants alors que deux autres semblent s'améliorer au cours des sessions), ou encore à cause de leurs affinités avec l'application dont l'ergonomie doit jouer un rôle important.
+			\end{leftBarAuthorOpinion}
+			\todo{citation: Anderson (2013), Nielsen (1993)}
+			\todo{citation: Jones et al. (2015), Elkosantini et Gien (2009)}
 	
 
 	%%%
@@ -269,8 +385,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-379.35$, \texttt{llf\_null}: $-1~353.98$) nous permet de déduire l'équation suivante\footnote{Cette déduction est en accord avec la complexité théorique de l'algorithme qui est en $ \mathcal{O}(\texttt{dataset\_size}) $.}\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(prep)
-				\simeq 8.39 \cdot 10^{-1} + 6.31 \cdot 10^{-3} \cdot \texttt{dataset\_size}
+				time.prep~(secondes)~
+				\simeq~0.84 + 6.31 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -294,8 +410,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $262.35$, \texttt{llf\_null}: $70.04$) nous permet de déduire l'équation suivante\footnote{Cette déduction est en accord avec la complexité théorique de l'algorithme qui est en $ \mathcal{O}(\texttt{dataset\_size}) $.}\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(vect.tfidf)
-				\simeq -1.40 \cdot 10^{-2} + 9.54 \cdot 10^{-5} \cdot \texttt{dataset\_size}
+				time.vect.tfidf~(secondes)~
+				\simeq~-0.014 + 9.54 \cdot 10^{-5} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (vect.frcorenewsmd).
@@ -303,8 +419,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-186.80$, \texttt{llf\_null}: $-399.39$) nous permet de déduire l'équation suivante\footnote{Cette déduction est en accord avec la complexité théorique de l'algorithme qui est en $ \mathcal{O}(\texttt{dataset\_size}) $.}\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(vect.frcorenewsmd)
-				\simeq 1.89 + 4.11 \cdot 10^{-3} \cdot \texttt{dataset\_size}
+				time.vect.frcorenewsmd~(secondes)~
+				\simeq~1.89 + 4.11 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -329,8 +445,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.904$, \texttt{llf}: $-9.20 \cdot 10^{4}$, \texttt{llf\_null}: $-1.00 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.kmeans.cop)
-				\simeq -2.40 \cdot 10^{2} + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
+				time.clust.kmeans.cop~(secondes)~
+				\simeq~-240 + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.sing).
@@ -339,8 +455,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.38 \cdot 10^{4}$, \texttt{llf\_null}: $-6.10 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.hier.sing)
-				\simeq -8.87 \cdot 10^{2} + 6.37 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				time.clust.hier.sing~(secondes)~
+				\simeq~-887 + 6.37 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.comp).
@@ -349,8 +465,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.40 \cdot 10^{4}$, \texttt{llf\_null}: $-6.11 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.hier.comp)
-				\simeq -9.25 \cdot 10^{2} + 6.42 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				time.clust.hier.comp~(secondes)~
+				\simeq~-925 + 6.42 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.avg).
@@ -359,8 +475,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.942$, \texttt{llf}: $-5.82 \cdot 10^{4}$, \texttt{llf\_null}: $-6.45 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.hier.avg)
-				\simeq -1.10 \cdot 10^{3} + 1.02 \cdot 10^{-3} \cdot \texttt{dataset\_size}^{2}
+				time.clust.hier.avg~(secondes)~
+				\simeq~-1100 + 1.02 \cdot 10^{-3} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.ward).
@@ -369,8 +485,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.39 \cdot 10^{4}$, \texttt{llf\_null}: $-6.14 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.hier.ward)
-				\simeq -9.79 \cdot 10^{2} + 6.82 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				time.clust.hier.ward~(secondes)~
+				\simeq~-979 + 6.82 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.spec).
@@ -379,8 +495,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.534$, \texttt{llf}: $-7.88 \cdot 10^{5}$, \texttt{llf\_null}: $-8.27 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(clust.spec)
-				\simeq 11.00 + 7.56 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
+				time.clust.spec~(secondes)~
+				\simeq~11 + 7.56 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -405,8 +521,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.33 \cdot 10^{4}$, \texttt{llf\_null}: $-1.17 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(samp.rand.full)
-				\simeq -4.78 \cdot 10^{-1} + 8.47 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				time.samp.rand.full~(secondes)~
+				\simeq~-0.48 + 8.47 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.rand.same).
@@ -415,8 +531,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-3.17 \cdot 10^{4}$, \texttt{llf\_null}: $-6.84 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(samp.rand.same)
-				\simeq -1.36 \cdot 10^{-1} + 1.92 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				time.samp.rand.same~(secondes)~
+				\simeq~-0.14 + 1.92 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.farhtest.same).
@@ -425,8 +541,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.52 \cdot 10^{4}$, \texttt{llf\_null}: $-1.02 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(samp.farhtest.same)
-				\simeq -2.25 \cdot 10^{-1} + 5.32 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				time.samp.farhtest.same~(secondes)~
+				\simeq~-0.23 + 5.32 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.closest.diff).
@@ -435,8 +551,8 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.80 \cdot 10^{4}$, \texttt{llf\_null}: $-1.36 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref annexe} :
 			%
 			\begin{equation}
-				time(samp.closest.diff)
-				\simeq -6.58 \cdot 10^{-1} + 1.46 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
+				time.samp.closest.diff~(secondes)~
+				\simeq~-0.66 + 1.46 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -499,8 +615,8 @@
 			On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Pour $1~000$ données : environ $30$ secondes ; Pour $5~000$ données : environ $15$ minutes.} :
 			%
 			\begin{equation}
-				time(parametrage.favori)
-				\simeq -1.80 \cdot 10^{2} + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
+				time.parametrage.favori~(secondes)~
+				\simeq~-180 + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Ouverture sur le temps de coût total.
