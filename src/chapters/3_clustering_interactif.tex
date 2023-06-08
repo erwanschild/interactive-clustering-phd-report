@@ -129,9 +129,9 @@
 		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{ligne 7}).
 		Pour alléger la charge d'annotation, nous avons décidé de discriminer les données de l'échantillon par des contraintes binaires simples : \texttt{MUST-LINK} et \texttt{CANNOT-LINK}. Ces contraintes représentent respectivement la similitude ou la différence entre deux données, et seront utilisées pour regrouper ou séparer certaines données dans la prochain segmentation.
 		En fonction de l'orientation du projet et afin de rester au plus proche des compétences réelles de l'expert, la formulation de l'énoncer d'annotation doit être judicieusement définie : par exemple, les contraintes peuvent représenter une similitude
-		sur la thématique concernée\footnote{thématique : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...},
-		sur l'action désirée\footnote{action : \textit{souscrire} vs. \textit{résilier} ; \textit{activer} vs. \textit{désactiver} ; \textit{s'informer} vs. \textit{réaliser}, ...},
-		ou encore sur le besoin de l'utilisateur\footnote{besoin : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...}.
+		sur la thématique concernée\footnote{Exemples de thématiques : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...},
+		sur l'action désirée\footnote{Exemples d'actions : \textit{souscrire} vs. \textit{résilier} ; \textit{activer} vs. \textit{désactiver} ; \textit{s'informer} vs. \textit{réaliser}, ...},
+		ou encore sur le besoin de l'utilisateur\footnote{Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...}.
 		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaire et différentes deux données\todo{figure, ref subsection:3.3.2.}.
 		
 		% Description du clustering.
@@ -446,7 +446,7 @@ clustering_result = clustering_model.cluster(
 			Dans le cadre d'un projet étudiant au sein de l'école Télécom Physique Strasbourg, les implémentations des algorithmes KMeans (MPC), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
 			Les autres algorithmes (KMeans (COP), hiérarchique et spectral (SPEC)) ont été implémentés au début de ce doctorat.
 		\end{leftBarInformation}
-		\todo{citation + footnote}
+		\todo{citation}
 		\todo{travaux TPS en annexe ?}.
 		
 		

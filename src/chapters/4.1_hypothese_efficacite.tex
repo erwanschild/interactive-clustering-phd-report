@@ -32,19 +32,19 @@
 	\end{tcolorbox}
 	
 	%%%
-	%%% Subsection 4.1.1: Étude de convergence
+	%%% Subsection 4.1.1: Étude de convergence vers une vérité terrain pré-établie en simulant l'annotation d'une base d'apprentissage et mesurant la vitesse de sa création
 	%%%
-	\subsection{Étude de convergence vers une vérité terrain pré-établie}
+	\subsection{Étude de convergence vers une vérité terrain pré-établie en simulant l'annotation d'une base d'apprentissage et mesurant la vitesse de sa création}
 	\label{section:4.1.1-ETUDE-CONVERGENCE}
 			
 		% Référence articles.
 		\begin{leftBarInformation}
 			Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~\citep{schild:conception-interactive-clustering:2021}, et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~\citep{schild:extension-interactive-clustering:2022}.
-			\footnote{Les résultats et la discussion ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
+			\footnote{Les résultats et la discussion de ces articles ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
 		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
-		\subsubsection{Protocole expérimental : simuler l'annotation d'une base d'apprentissage}
+		\subsubsection{Protocole expérimental}
 		
 			% Objectif de l'expérience.
 			Nous voulons vérifier qu'une méthodologie d'annotation basée sur notre implémentation du \textit{clustering} interactif permet de créer une base d'apprentissage pour un assistant conversationnel.
@@ -57,16 +57,17 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons c-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}.
 			%
 			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
 					\Require jeu de données annoté (vérité terrain)
 					\ForAll{arrangement d'algorithmes et de paramètres à tester}
-						\State \textbf{initialisation}: récupérer les données de la vérité terrain sans leur label, créer une liste vide de contraintes
+						\State \textbf{initialisation (données)}: récupérer les données et la vérité terrain
+						\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
 						\State \textbf{prétraitement}: supprimer le bruit dans les données
 						\State \textbf{vectorisation}: transformer les données en vecteurs
-						\State \textbf{clustering initial}: regrouper les données par similarité
+						\State \textbf{clustering initial}: regrouper les données par similarité des vecteurs
 						\State \textbf{évaluation}: estimer l'équivalence entre le clustering obtenu et la vérité terrain
 						\Repeat
 							\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
@@ -83,8 +84,10 @@
 			\end{algorithm}
 			
 			% Détails de l'expérience.
+			\todo[inline]{description JDD}
 			Lors de cette expérience, chaque tentative de la méthode commencera sur la version non labellisée de la vérité terrain à disposition, sans aucune contrainte connue à l'avance.
-			Au fur et à mesure des itérations de la méthode, nous simulerons l'annotation de l'expert métier en comparant les labels de la vérité terrain : ainsi, deux données ont une contrainte \texttt{MUST-LINK} si elles ont le même label, et une contrainte \texttt{CANNOT-LINK} sinon. Cela traduit le prérequis d'avoir un annotateur qui soit capable, dans son domaine d'expertise,  de différencier deux données selon leur ressemblance.
+			Au fur et à mesure des itérations de la méthode, nous simulerons l'annotation de l'expert métier en comparant les labels de la vérité terrain : ainsi, deux données ont une contrainte \texttt{MUST-LINK} si elles ont le même label, et une contrainte \texttt{CANNOT-LINK} sinon.
+			Cela traduit le prérequis d'avoir un annotateur qui soit capable, dans son domaine d'expertise, de différencier deux données selon leur ressemblance.
 			Une tentative de l'application de notre méthode s'arrête lorsque toutes les contraintes possibles entre les données ont été annotés par l'expert.
 
 			% Description implémentation de l'interactive clustering.

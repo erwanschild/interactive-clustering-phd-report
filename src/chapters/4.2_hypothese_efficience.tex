@@ -33,23 +33,24 @@
 	\end{tcolorbox}
 	
 	%%%
-	%%% Subsection 4.2.1: Étude d'optimisation des paramètres de convergence.
+	%%% Subsection 4.2.1: Étude d'optimisation des paramètres d’implémentation en analysant leurs tailles d'effets sur la vitesse de création d'une base d'apprentissage.
 	%%%
-	\subsection{Étude d'optimisation des paramètres de convergence}
+	\subsection{Étude d'optimisation des paramètres d’implémentation en analysant leurs tailles d'effets sur la vitesse de création d'une base d'apprentissage}
 	\label{section:4.2.1-ETUDE-OPTIMISATION}
 			
 		% Référence articles.
 		\begin{leftBarInformation}
 			Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~\citep{schild:conception-interactive-clustering:2021}, et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~\citep{schild:extension-interactive-clustering:2022}.
-			\footnote{Les résultats et la discussion ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
+			\footnote{Les résultats et la discussion de ces articles ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.}
 		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
-		\subsubsection{Protocole expérimental : analyser la taille d'effet des paramètres d’implémentation sur la vitesse de création d'une base d'apprentissage}
+		\subsubsection{Protocole expérimental}
 
 			% Objectif de l'expérience.
 			Nous voulons étudier l'influence des paramètres de notre implémentation du \textit{clustering} interactif sur la vitesse de création d'une base d'apprentissage pour un assistant conversationnel.
 			Nous allons donc compléter le protocole expérimental de l'étude de convergence en section~\ref{section:4.1.1-ETUDE-CONVERGENCE} visant à simuler la création d'une base d'apprentissage\todo{référence, lien vers ANNEXE}.
+			\todo[inline]{description JDD}
 			
 			% Axiome.
 			\begin{leftBarWarning}
@@ -57,13 +58,14 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons c-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}.
+			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}.
 			%
 			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
 					\Require jeu de données annoté (vérité terrain)
 					\ForAll{arrangement d'algorithmes et de paramètres à tester}
-						\State \textbf{initialisation}: récupérer les données de la vérité terrain sans leur label, créer une liste vide de contraintes
+						\State \textbf{initialisation (données)}: récupérer les données et la vérité terrain
+						\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
 						\State \textbf{prétraitement}: supprimer le bruit dans les données
 						\State \textbf{vectorisation}: transformer les données en vecteurs
 						\State \textbf{clustering initial}: regrouper les données par similarité
@@ -91,8 +93,8 @@
 			% Description de l'évaluation et Seuils d'évaluation.
 			Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 			\begin{enumerate}
-				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, section~\ref{section:4.1-HYPOTHESE-EFFICACITE}).} ;
-				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure} entre le résultat obtenu et la vérité terrain, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
+				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, section~\ref{section:4.1-HYPOTHESE-EFFICACITE}).} ;
+				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
 				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier.
 			\end{enumerate}
 			
