@@ -162,12 +162,14 @@
 		
 			% Complément: Temps d'annotation d'une annotation partielle ou d'une annotation suffisante.
 			\todo[inline]{RESULTATS TOTAUX POUR UNE ANNOTATION PARTIELLE / SUFFISANTE: Probablement mettre ces résultats dans la partie finale de cette section (pour 500 données : partielle=2.89heures, suffisante=5.27 heures)}
-		%%	A l'aide de la modélisation temporelle réalisée ci-dessus, nous pouvons estimer qu'un lot de $50$ contraintes (comme employé dans nos précédentes études) nécessite en moyenne $548$ secondes, soit $9.13$ minutes.
-		%%	De plus, en considérant les résultats de l'étude d'efficience (cf. section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}) sur un jeu de $500$ points de données, nous pouvons déduire que :
-		%%	\begin{itemize}
-		%%		\item l'obtention d'une annotation partielle (atteindre $90$\% de \texttt{v-measure}) peut se faire avec $950$ contraintes, soit $19$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $2.89$ heures d'annotations ;
-		%%		\item l'obtention d'une annotation suffisante (atteindre $100$\% de \texttt{v-measure}) peut se faire en $1~730$ contraintes, soit $34.6$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $5.27$ heures d'annotations.
-		%%	\end{itemize}
+			\todo[inline]{START}
+			A l'aide de la modélisation temporelle réalisée ci-dessus, nous pouvons estimer qu'un lot de $50$ contraintes (comme employé dans nos précédentes études) nécessite en moyenne $548$ secondes, soit $9.13$ minutes.
+			De plus, en considérant les résultats de l'étude d'efficience (cf. section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}) sur un jeu de $500$ points de données, nous pouvons déduire que :
+			\begin{itemize}
+				\item l'obtention d'une annotation partielle (atteindre $90$\% de \texttt{v-measure}) peut se faire avec $950$ contraintes, soit $19$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $2.89$ heures d'annotations ;
+				\item l'obtention d'une annotation suffisante (atteindre $100$\% de \texttt{v-measure}) peut se faire en $1~730$ contraintes, soit $34.6$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $5.27$ heures d'annotations.
+			\end{itemize}
+			\todo[inline]{END}
 		
 			% Etude de cas.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE} représente l'évolution de la vitesse d'annotation de quatre opérateurs (les deux plus rapides et les deux plus lents). Ces données sont l'objet d'une étude de cas dans la discussion ci-dessous.
@@ -200,49 +202,54 @@
 			\todo[inline]{DISCUSSION RESULTATS TOTAUX POUR UNE ANNOTATION PARTIELLE / SUFFISANTE: Probablement mettre ces discussions dans la partie finale de cette section (pour 500 données : partielle=2.89heures, suffisante=5.27 heures ; comparer à 3 références équivalentes de et deux bornes extrême de Snow et al. (2008))}
 		
 			% Commentaire sur la difficulté de comparer les durées totales.
-		%%	En ce qui concerne les durées totales pour annoter un jeu de $500$ points de données, estimées respectivement à $2.89$ et à $5.27$ heures suivant les seuils d'annotation, il est difficile de discuter de leur compétitivité à cause du manque de repères concrets.
-		%%	En effet, les références dépendent de la tâche d'annotation, des données manipulées, du nombre de choix proposés à l'opérateur, de la complexité sémantique des données, des compétences des annotateurs, ...
-		%%	\footnote{De plus, la plupart des études des tâches d'annotation en \textit{machine learning} se concentrent sur la cohérence inter-annotateurs plutôt que sur le temps nécessaire.}
-		%%	Pour pallier ce problème, nous proposons de comparer nos estimations de temps d'annotations grâce aux pistes ci-dessous.
-		%%	Ces repères sont approximatifs et assez disparates, mais ils nous permettront de discuter des ordres de grandeurs à manipuler.
+			\todo[inline]{START}
+			
+			
+			En ce qui concerne les durées totales pour annoter un jeu de $500$ points de données, estimées respectivement à $2.89$ et à $5.27$ heures suivant les seuils d'annotation, il est difficile de discuter de leur compétitivité à cause du manque de repères concrets.
+			En effet, les références dépendent de la tâche d'annotation, des données manipulées, du nombre de choix proposés à l'opérateur, de la complexité sémantique des données, des compétences des annotateurs, ...
+			\footnote{De plus, la plupart des études des tâches d'annotation en \textit{machine learning} se concentrent sur la cohérence inter-annotateurs plutôt que sur le temps nécessaire.}
+			Pour pallier ce problème, nous proposons de comparer nos estimations de temps d'annotations grâce aux pistes ci-dessous.
+			Ces repères sont approximatifs et assez disparates, mais ils nous permettront de discuter des ordres de grandeurs à manipuler.
 			
 			% Cas de taches de complexité similaire.
-		%%	D'une part, comparons nos estimations à trois exemples de tâches ayant une \textbf{complexité similaire} à la vérité terrain que nous manipulons lors de cette expérience. Ces points de repères font appel à la catégorisation du thème traité par des textes courts.
+			D'une part, comparons nos estimations à trois exemples de tâches ayant une \textbf{complexité similaire} à la vérité terrain que nous manipulons lors de cette expérience. Ces points de repères font appel à la catégorisation du thème traité par des textes courts.
 			%
-		%%	\begin{enumerate}
-		%%		% Conception du JDD bank cards.
-		%%		\item Pour concevoir le jeu de données~\todo{citation: bank cards} ($10$ classes équilibrées, $500$ points de données) servant de vérité terrain aux études d'efficacité et d'efficience, nous avons requis approximativement $5$ heures, dont $2.5$ d'annotation
-		%%		\footnote{La conception de $bank cards$ a demandé $\sim 2$ heure de définition du périmètre (1 personne), $\sim 2$ heures de collecte et d'annotation des étiquettes des données (1 personne), et $\sim 1$ heure de revue de la cohérence des annotations (2 personne)} ;
-		%%		% Conception du JDD MLSUM subset.
-		%%		\item Pour adapter le jeu de données~\todo{citation: mlsum} en~\todo{citation: mlsum subset SCHILD} ($14$ classes retenues, $744$ points de données sélectionnées sur un échantillon de $1~050$) servant de base à notre étude du coût de l'annotation, nous avons requis approximativement $5$ heures, dont $2$ d'annotation binaire
-		%%		\footnote{L'adaptation de $TODO:mlsum$ a demandé $\sim 1$ heure de collecte des catégories les plus communes (1 personne), $\sim 2$ heures d'annotation binaire de la pertinence des données (2 personnes) et $\sim 2$ heures de revue de la cohérence des annotations (2 personne)} ;
-		%%		% Article Cheap and Fast — But is it Good? (Word Sense Disambiguation)
-		%%		\item Selon~\todo{citation: Snow et al. (2008) / Yuret (2007)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de phrases pour catégoriser leur contexte parmi trois possibilités préformatés, il faut $8.59$ heures pour étiqueter $1~770$ données. En pondérant cette approximation pour un jeu de $500$ points de données, on peut estimer le temps d'annotation à $2.43$ heures environ ;
-		%%	\end{enumerate}
+			\begin{enumerate}
+				% Conception du JDD bank cards.
+				\item Pour concevoir le jeu de données~\todo{citation: bank cards} ($10$ classes équilibrées, $500$ points de données) servant de vérité terrain aux études d'efficacité et d'efficience, nous avons requis approximativement $5$ heures, dont $2.5$ d'annotation
+				\footnote{La conception de $bank cards$ a demandé $\sim 2$ heure de définition du périmètre (1 personne), $\sim 2$ heures de collecte et d'annotation des étiquettes des données (1 personne), et $\sim 1$ heure de revue de la cohérence des annotations (2 personne)} ;
+				% Conception du JDD MLSUM subset.
+				\item Pour adapter le jeu de données~\todo{citation: mlsum} en~\todo{citation: mlsum subset SCHILD} ($14$ classes retenues, $744$ points de données sélectionnées sur un échantillon de $1~050$) servant de base à notre étude du coût de l'annotation, nous avons requis approximativement $5$ heures, dont $2$ d'annotation binaire
+				\footnote{L'adaptation de $TODO:mlsum$ a demandé $\sim 1$ heure de collecte des catégories les plus communes (1 personne), $\sim 2$ heures d'annotation binaire de la pertinence des données (2 personnes) et $\sim 2$ heures de revue de la cohérence des annotations (2 personne)} ;
+				% Article Cheap and Fast — But is it Good? (Word Sense Disambiguation)
+				\item Selon~\todo{citation: Snow et al. (2008) / Yuret (2007)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de phrases pour catégoriser leur contexte parmi trois possibilités préformatés, il faut $8.59$ heures pour étiqueter $1~770$ données. En pondérant cette approximation pour un jeu de $500$ points de données, on peut estimer le temps d'annotation à $2.43$ heures environ ;
+			\end{enumerate}
 			%
-		%%	À l'aide de ces trois exemples, on remarque qu'une annotation partielle ($950$ contraintes pour atteindre $90$\% de \texttt{v-measure}) nécessite une durée comparable à une annotation par label ($2.89$ heures vs. entre $2$ et $3$ heures), mais une annotation suffisante ($1~730$ contraintes pour atteindre $100$\% de \texttt{v-measure}) nécessite 2 à 3 fois plus de temps ($5.27$ heures).
-		%%	Il est donc préférable de nous concentrer sur une \textbf{annotation partielle} afin de garder une méthode efficiente. \todo{lien vers la section 4.4 a faire dans la discussion globale de cette section}
+			À l'aide de ces trois exemples, on remarque qu'une annotation partielle ($950$ contraintes pour atteindre $90$\% de \texttt{v-measure}) nécessite une durée comparable à une annotation par label ($2.89$ heures vs. entre $2$ et $3$ heures), mais une annotation suffisante ($1~730$ contraintes pour atteindre $100$\% de \texttt{v-measure}) nécessite 2 à 3 fois plus de temps ($5.27$ heures).
+			Il est donc préférable de nous concentrer sur une \textbf{annotation partielle} afin de garder une méthode efficiente. \todo{lien vers la section 4.4 a faire dans la discussion globale de cette section}
 				% Ce choix implique de pouvoir compléter la différence qualité en remaniant manuellement certains \textit{clusters} obtenus lors d'une phase de revue.
 				% Cet aspect sera complété à partir de l'étude décrite dans la section~\ref{section:4.4-HYPOTHESE-PERTINENCE} (hypothèse de pertinence).
 			
-			% cas de taches de complexité différentes
-		%%	D'autre part, comparons nos estimations à deux exemples de tâches ayant des \textbf{complexité différentes} (une premier presque triviale, une seconde plutôt complexe) :
+			% Cas de taches de complexité différentes
+			D'autre part, comparons nos estimations à deux exemples de tâches ayant des \textbf{complexité différentes} (une premier presque triviale, une seconde plutôt complexe) :
 			%
-		%%	\begin{enumerate}
-		%%		\setcounter{enumi}{3}
-		%%		% Article Cheap and Fast — But is it Good? (Word Similarity)
-		%%		\item Selon~\todo{citation: Snow et al. (2008) / Rubenstein et Goodenough (1965)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de couples de mots pour identifier par similarité des synonymes, il faut $0.17$ heures pour ordonner $300$ paires de données de la plus à la moins similair
-		%%		\footnote{La tâche d'annotation de synonymes par ordonnancement peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{laquelle de ces deux paires est la plus adéquate ? »}. Cette tâche est relativement simple (similarité intrinsèque triviale, peu de vocabulaire).}. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $0.53$ heures ;
-		%%		% Article Cheap and Fast — But is it Good? (Recognizing Textual Entailment)
-		%%		\item Encore selon~\todo{citation: Snow et al. (2008) / Dagan et Magnini (2005)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation binaire de la véracité d'une implication, il faut $89.3$ heures pour étiqueter $8~000$ données
-		%%		\footnote{La tâche d'annotation de la véracité d'une implication peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{est-ce que l'implication est vraie ? »}. Cette tâche est relativement complexe (implication logique non trivial). }. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $10.60$ heures ;
-		%%	\end{enumerate}
+			\begin{enumerate}
+				\setcounter{enumi}{3}
+				% Article Cheap and Fast — But is it Good? (Word Similarity)
+				\item Selon~\todo{citation: Snow et al. (2008) / Rubenstein et Goodenough (1965)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de couples de mots pour identifier par similarité des synonymes, il faut $0.17$ heures pour ordonner $300$ paires de données de la plus à la moins similair
+				\footnote{La tâche d'annotation de synonymes par ordonnancement peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{laquelle de ces deux paires est la plus adéquate ? »}. Cette tâche est relativement simple (similarité intrinsèque triviale, peu de vocabulaire).}. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $0.53$ heures ;
+				% Article Cheap and Fast — But is it Good? (Recognizing Textual Entailment)
+				\item Encore selon~\todo{citation: Snow et al. (2008) / Dagan et Magnini (2005)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation binaire de la véracité d'une implication, il faut $89.3$ heures pour étiqueter $8~000$ données
+				\footnote{La tâche d'annotation de la véracité d'une implication peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{est-ce que l'implication est vraie ? »}. Cette tâche est relativement complexe (implication logique non trivial). }. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $10.60$ heures ;
+			\end{enumerate}
 			%
-		%%	Avec ces deux exemples, on constate que les variations peuvent être très grandes (allant du cinquième au quadruple !).
-		%%	Il est donc important de nuancer nos précédentes conclusions en fonction de la complexité de la thématique traitée.
-		%%	Toutefois, 
-		%%	\todo[inline]{données intrinsèquement différentes : peuvent être caractérisées très rapidement}
-		%%	\todo[inline]{données ambiguës : peuvent demander plus de temps, plus de réflexion}
+			Avec ces deux exemples, on constate que les variations peuvent être très grandes (allant du cinquième au quadruple !).
+			Il est donc important de nuancer nos précédentes conclusions en fonction de la complexité de la thématique traitée.
+			Toutefois, ...A REDIGER/COMPLETER\\
+			
+			(1) données intrinsèquement différentes : peuvent être caractérisées très rapidement\\
+			(2) données ambiguës : peuvent demander plus de temps, plus de réflexion
+			\todo[inline]{END}
 			
 		%%	\paragraph{Autres études :}
 			% Autres analyses sans conclusions
@@ -675,7 +682,7 @@
 							\State \textbf{évaluation}: estimer l'équivalence entre le clustering obtenu et la vérité terrain
 						\Until{annotation de toutes les contraintes possibles}
 					\EndFor						
-					\State \textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires à la convergence
+					\State \textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires
 					\Ensure modélisation du nombre de contraintes nécessaires pour un jeu de données
 				\end{algorithmic}
 				\caption{Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.}
@@ -720,9 +727,65 @@
 	%%%
 	\subsection{Estimation du temps total d'un projet d'annotation en combinant les précédentes études de coûts}
 	\label{section:4.3.4-ETUDE-COUTS-TOTAL}
+	
+		\todo[inline]{A REDIGER : Equation temporelle globale en fonction de la taille du jeu de données}
+		
+		\todo[inline]{A REDIGER : Calcul total pour le dataset de 500 points de données. Rejetter l'annotation suffisante car trop longue.}
+		
+		%%	A l'aide de la modélisation temporelle réalisée ci-dessus, nous pouvons estimer qu'un lot de $50$ contraintes (comme employé dans nos précédentes études) nécessite en moyenne $548$ secondes, soit $9.13$ minutes.
+		%%	De plus, en considérant les résultats de l'étude d'efficience (cf. section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}) sur un jeu de $500$ points de données, nous pouvons déduire que :
+		%%	\begin{itemize}
+		%%		\item l'obtention d'une annotation partielle (atteindre $90$\% de \texttt{v-measure}) peut se faire avec $950$ contraintes, soit $19$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $2.89$ heures d'annotations ;
+		%%		\item l'obtention d'une annotation suffisante (atteindre $100$\% de \texttt{v-measure}) peut se faire en $1~730$ contraintes, soit $34.6$ itérations de $50$ contraintes, ce qui équivaut à une moyenne de $5.27$ heures d'annotations.
+		%%	\end{itemize}
+		
+		\todo[inline]{A REDIGER : comparaison du total avec 5 points : le temps nécessaire à créer banking cards, le temps nécessaire à adapter MLSUM, et trois études de Snow et al. (2008)}
+		
+			% Commentaire sur la difficulté de comparer les durées totales.
+		%%	En ce qui concerne les durées totales pour annoter un jeu de $500$ points de données, estimées respectivement à $2.89$ et à $5.27$ heures suivant les seuils d'annotation, il est difficile de discuter de leur compétitivité à cause du manque de repères concrets.
+		%%	En effet, les références dépendent de la tâche d'annotation, des données manipulées, du nombre de choix proposés à l'opérateur, de la complexité sémantique des données, des compétences des annotateurs, ...
+		%%	\footnote{De plus, la plupart des études des tâches d'annotation en \textit{machine learning} se concentrent sur la cohérence inter-annotateurs plutôt que sur le temps nécessaire.}
+		%%	Pour pallier ce problème, nous proposons de comparer nos estimations de temps d'annotations grâce aux pistes ci-dessous.
+		%%	Ces repères sont approximatifs et assez disparates, mais ils nous permettront de discuter des ordres de grandeurs à manipuler.
+			
+			% Cas de taches de complexité similaire.
+		%%	D'une part, comparons nos estimations à trois exemples de tâches ayant une \textbf{complexité similaire} à la vérité terrain que nous manipulons lors de cette expérience. Ces points de repères font appel à la catégorisation du thème traité par des textes courts.
+			%
+		%%	\begin{enumerate}
+		%%		% Conception du JDD bank cards.
+		%%		\item Pour concevoir le jeu de données~\todo{citation: bank cards} ($10$ classes équilibrées, $500$ points de données) servant de vérité terrain aux études d'efficacité et d'efficience, nous avons requis approximativement $5$ heures, dont $2.5$ d'annotation
+		%%		\footnote{La conception de $bank cards$ a demandé $\sim 2$ heure de définition du périmètre (1 personne), $\sim 2$ heures de collecte et d'annotation des étiquettes des données (1 personne), et $\sim 1$ heure de revue de la cohérence des annotations (2 personne)} ;
+		%%		% Conception du JDD MLSUM subset.
+		%%		\item Pour adapter le jeu de données~\todo{citation: mlsum} en~\todo{citation: mlsum subset SCHILD} ($14$ classes retenues, $744$ points de données sélectionnées sur un échantillon de $1~050$) servant de base à notre étude du coût de l'annotation, nous avons requis approximativement $5$ heures, dont $2$ d'annotation binaire
+		%%		\footnote{L'adaptation de $TODO:mlsum$ a demandé $\sim 1$ heure de collecte des catégories les plus communes (1 personne), $\sim 2$ heures d'annotation binaire de la pertinence des données (2 personnes) et $\sim 2$ heures de revue de la cohérence des annotations (2 personne)} ;
+		%%		% Article Cheap and Fast — But is it Good? (Word Sense Disambiguation)
+		%%		\item Selon~\todo{citation: Snow et al. (2008) / Yuret (2007)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de phrases pour catégoriser leur contexte parmi trois possibilités préformatés, il faut $8.59$ heures pour étiqueter $1~770$ données. En pondérant cette approximation pour un jeu de $500$ points de données, on peut estimer le temps d'annotation à $2.43$ heures environ ;
+		%%	\end{enumerate}
+			%
+		%%	À l'aide de ces trois exemples, on remarque qu'une annotation partielle ($950$ contraintes pour atteindre $90$\% de \texttt{v-measure}) nécessite une durée comparable à une annotation par label ($2.89$ heures vs. entre $2$ et $3$ heures), mais une annotation suffisante ($1~730$ contraintes pour atteindre $100$\% de \texttt{v-measure}) nécessite 2 à 3 fois plus de temps ($5.27$ heures).
+		%%	Il est donc préférable de nous concentrer sur une \textbf{annotation partielle} afin de garder une méthode efficiente. \todo{lien vers la section 4.4 a faire dans la discussion globale de cette section}
+				% Ce choix implique de pouvoir compléter la différence qualité en remaniant manuellement certains \textit{clusters} obtenus lors d'une phase de revue.
+				% Cet aspect sera complété à partir de l'étude décrite dans la section~\ref{section:4.4-HYPOTHESE-PERTINENCE} (hypothèse de pertinence).
+			
+			% cas de taches de complexité différentes
+		%%	D'autre part, comparons nos estimations à deux exemples de tâches ayant des \textbf{complexité différentes} (une premier presque triviale, une seconde plutôt complexe) :
+			%
+		%%	\begin{enumerate}
+		%%		\setcounter{enumi}{3}
+		%%		% Article Cheap and Fast — But is it Good? (Word Similarity)
+		%%		\item Selon~\todo{citation: Snow et al. (2008) / Rubenstein et Goodenough (1965)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de couples de mots pour identifier par similarité des synonymes, il faut $0.17$ heures pour ordonner $300$ paires de données de la plus à la moins similair
+		%%		\footnote{La tâche d'annotation de synonymes par ordonnancement peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{laquelle de ces deux paires est la plus adéquate ? »}. Cette tâche est relativement simple (similarité intrinsèque triviale, peu de vocabulaire).}. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $0.53$ heures ;
+		%%		% Article Cheap and Fast — But is it Good? (Recognizing Textual Entailment)
+		%%		\item Encore selon~\todo{citation: Snow et al. (2008) / Dagan et Magnini (2005)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation binaire de la véracité d'une implication, il faut $89.3$ heures pour étiqueter $8~000$ données
+		%%		\footnote{La tâche d'annotation de la véracité d'une implication peut s'apparenter à de l'annotation de contraintes en se demandant : « \textit{est-ce que l'implication est vraie ? »}. Cette tâche est relativement complexe (implication logique non trivial). }. En pondérant cette approximation pour un lot de $950$ contraintes, on peut estimer le temps d'annotation à environ $10.60$ heures ;
+		%%	\end{enumerate}
+			%
+		%%	Avec ces deux exemples, on constate que les variations peuvent être très grandes (allant du cinquième au quadruple !).
+		%%	Il est donc important de nuancer nos précédentes conclusions en fonction de la complexité de la thématique traitée.
+		%%	Toutefois, 
+		%%	\todo[inline]{données intrinsèquement différentes : peuvent être caractérisées très rapidement}
+		%%	\todo[inline]{données ambiguës : peuvent demander plus de temps, plus de réflexion}
+		
+		\todo[inline]{A REDIGER : TRANSISTION VERS PERTINENCE car la notion de v-measure est impossible à calculer en situation réelle}
 
-		%%% Résultats
-		\subsubsection{Résultats obtenus}
 
-		%%% Discussion
-		\subsubsection{Discussion}
