@@ -96,7 +96,7 @@
 				\item \textbf{Contexte de l'opérateur} :
 				« \textit{Vous êtes des \textbf{experts de la presse et de l’actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles} » ;
 				\item \textbf{Contexte sur le jeu de données} :
-				« \textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre 10 et 20 catégories parmi les plus communes de la presse ; La vérité terrain contient entre 30 et 100 articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez} » ;
+				« \textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre $10$ et $20$ catégories parmi les plus communes de la presse ; La vérité terrain contient entre $30$ et $100$ articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez} » ;
 				\item \textbf{Objectif de l'expérience} :
 				« \textit{Je veux savoir le temps nécessaire pour annoter un certain nombre de contraintes ; Autrement dit : \textbf{Pour annoter 1000 contraintes, combien de temps me faut-il ?}} » ;
 				\item \textbf{Consignes d'annotations} :
@@ -122,7 +122,8 @@
 			
 			
 			% Détails de l'expérience : modélisation.
-			Une fois les sessions d'annotations terminées, nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour estimer le temps d'annotation moyen pour un lot de contraintes. Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}, la log-vraisemblance \texttt{llf} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
+			Une fois les sessions d'annotations terminées, nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour estimer le temps d'annotation moyen pour un lot de contraintes (dont la taille est notée $\texttt{batch\_size}$).
+			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}, la log-vraisemblance \texttt{llf} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
 			Nous discuterons aussi de l'évolution de la vitesse d'un opérateur au cours des différentes sessions d'annotation.
 
 			% Référence scripts.
@@ -147,8 +148,8 @@
 			Le modèle linéaire généralisé entraîné sur les mesures de temps d'annotations (\texttt{R²}: $0.922$, \texttt{llf}: $-497.37$, \texttt{llf\_null}: $-539.95$) nous permet de déduire l'équation suivante :
 			%
 			\begin{equation}
-				time.annotation~(secondes)~
-				\simeq~202 + 6.92 \cdot \texttt{constraints\_number}
+				\texttt{annotation\_time}~[secondes]~
+				\simeq~202 + 6.92 \cdot \texttt{batch\_size}
 			\end{equation}
 		
 			% Affichage du temps d'annotation.
@@ -156,7 +157,7 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-1-modelisation-temps}
-				\caption{Estimation du temps nécessaire (en secondes) pour annoter un lot de contraintes.}
+				\caption{Estimation du temps nécessaire (en minutes) pour annoter un lot de contraintes.}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION}
 			\end{figure}
 		
@@ -186,7 +187,7 @@
 		
 		%%	\paragraph{Analyse du temps nécessaire :}
 			% Généralités sur la modélisation du temps d'annotation sur une session.
-			L'étude réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $202 + 6.92 \cdot \texttt{constraints\_number}$ le temps nécessaire (en secondes) pour annoter un lot de contraintes.
+			L'étude réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $202 + 6.92 \cdot \texttt{batch\_size}$ le temps nécessaire (en secondes) pour annoter un lot de contraintes.
 			Malgré une forte dispersion des résultats, cette modélisation permet de confirmer les tendances suivantes :
 			\begin{itemize}
 				\item Nous avons un \textbf{coût fixe} (environ $200$ secondes), qui peut représenter une partie du temps d'adaptation nécessaire à l'opérateur pour commencer sa tâche \todo{citation: Anderson (2013)} : cela comprend le temps de s'habituer à la tâche et de (ré)intégrer le contexte du sujet traité ;
@@ -401,7 +402,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-379.35$, \texttt{llf\_null}: $-1~353.98$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.prep~(secondes)~
+				\texttt{computation\_time}(\texttt{prep})~[secondes]~
 				\simeq~0.84 + 6.31 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
@@ -426,7 +427,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $262.35$, \texttt{llf\_null}: $70.04$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.vect.tfidf~(secondes)~
+				\texttt{computation\_time}(\texttt{vect.tfidf})~[secondes]~
 				\simeq~-0.014 + 9.54 \cdot 10^{-5} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
@@ -435,7 +436,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-186.80$, \texttt{llf\_null}: $-399.39$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.vect.frcorenewsmd~(secondes)~
+				\texttt{computation\_time}(\texttt{vect.frcorenewsmd})~[secondes]~
 				\simeq~1.89 + 4.11 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
@@ -461,7 +462,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.904$, \texttt{llf}: $-9.20 \cdot 10^{4}$, \texttt{llf\_null}: $-1.00 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.kmeans.cop~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.kmeans.cop})~[secondes]~
 				\simeq~-240 + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
@@ -471,7 +472,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.38 \cdot 10^{4}$, \texttt{llf\_null}: $-6.10 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.hier.sing~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.hier.sing})~[secondes]~
 				\simeq~-887 + 6.37 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -481,7 +482,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.40 \cdot 10^{4}$, \texttt{llf\_null}: $-6.11 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.hier.comp~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.hier.comp})~[secondes]~
 				\simeq~-925 + 6.42 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
@@ -491,7 +492,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.942$, \texttt{llf}: $-5.82 \cdot 10^{4}$, \texttt{llf\_null}: $-6.45 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.hier.avg~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.hier.avg})~[secondes]~
 				\simeq~-1100 + 1.02 \cdot 10^{-3} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
@@ -501,7 +502,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.39 \cdot 10^{4}$, \texttt{llf\_null}: $-6.14 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.hier.ward~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.hier.ward})~[secondes]~
 				\simeq~-979 + 6.82 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -511,7 +512,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.534$, \texttt{llf}: $-7.88 \cdot 10^{5}$, \texttt{llf\_null}: $-8.27 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.clust.spec~(secondes)~
+				\texttt{computation\_time}(\texttt{clust.spec})~[secondes]~
 				\simeq~11 + 7.56 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -537,7 +538,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.33 \cdot 10^{4}$, \texttt{llf\_null}: $-1.17 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.samp.rand.full~(secondes)~
+				\texttt{computation\_time}(\texttt{samp.rand.full})~[secondes]~
 				\simeq~-0.48 + 8.47 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -547,7 +548,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-3.17 \cdot 10^{4}$, \texttt{llf\_null}: $-6.84 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.samp.rand.same~(secondes)~
+				\texttt{computation\_time}(\texttt{samp.rand.same})~[secondes]~
 				\simeq~-0.14 + 1.92 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -557,7 +558,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.52 \cdot 10^{4}$, \texttt{llf\_null}: $-1.02 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.samp.farhtest.same~(secondes)~
+				\texttt{computation\_time}(\texttt{samp.farhtest.same})~[secondes]~
 				\simeq~-0.23 + 5.32 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -567,7 +568,7 @@
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.80 \cdot 10^{4}$, \texttt{llf\_null}: $-1.36 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
-				time.samp.closest.diff~(secondes)~
+				\texttt{computation\_time}(\texttt{samp.closest.diff})~[secondes]~
 				\simeq~-0.66 + 1.46 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
@@ -632,8 +633,9 @@
 			On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $30$ secondes pour $1~000$ données ; environ $15$ minutes pour $5~000$ données.} :
 			%
 			\begin{equation}
-				time.parametrage.favori~(secondes)~
-				\simeq~-180 + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
+				\label{equation:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PARAMETRAGE-FAVORI}
+				\texttt{computation\_time}(\texttt{settings.favorite})~[secondes]~
+				\simeq~-180 + 0.211 \cdot \texttt{dataset\_size}
 			\end{equation}
 	
 	%%%
@@ -701,7 +703,7 @@
 			Il y a donc $510$ tentatives de \textit{clustering} interactif réalisées.
 			
 			% Description de l'évaluation.
-			Pour chacune de ces tentatives, nous nous intéresserons au nombre de contraintes nécessaires pour atteindre le seuil d'annotation partielle (caractérisé par $90$\% de \texttt{v-measure} entre la vérité terrain et la segmentation des données obtenue), et nous entraînerons un modèle linéaire généralisé (\textit{GLM}) pour modéliser le nombre de contraintes requis en fonction de la taille du jeu de données.
+			Pour chacune de ces tentatives, nous nous intéresserons au nombre de contraintes nécessaires pour atteindre le seuil d'annotation partielle (caractérisé par $90$\% de \texttt{v-measure} entre la vérité terrain et la segmentation des données obtenue), et nous entraînerons un modèle linéaire généralisé (\textit{GLM}) pour modéliser le nombre de contraintes requis en fonction de la taille du jeu de données (noté $\texttt{dataset\_size}$).
 			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}, la log-vraisemblance \texttt{llf} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
 			Pour finir, nous discuterons des valeurs des coefficients obtenus sur l'impact du nombre d'itérations de la méthode à prévoir.
 
@@ -714,8 +716,27 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 		
-			\todo[inline]{figure évolution nb contraintes par rapport à la taille du JDD}
-			\todo[inline]{équation évolution nb contraintes par rapport à la taille du JDD}
+			% Modélisation du nombre de contraintes.
+			Le modèle linéaire généralisé entraîné sur les mesures du nombre de contraintes requis pour atteindre $90$\% de \texttt{v-measure} (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4~324.2$, \texttt{llf\_null}: $-4~942.9$) nous permet de déduire l'équation suivante :
+			%
+			\begin{equation}
+				\label{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
+				\texttt{constraints\_needed}(\texttt{settings.favorite})~[\#]~
+				\simeq~356 + 3.05 \cdot \texttt{dataset\_size}
+			\end{equation}
+			%
+			La figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} représente cette modélisation.
+			On remarque aussi l'influence du jeu de référence utilisé sur la modélisation (\texttt{p-valeur}: $> 0.999$).
+			La différence de pente mesurée est de $0.14$, soit un écart moyen d'environ $4.5$\% par rapport à la modélisation générale.
+			Comme l'impact semble ici limité, nous gardons donc la modélisation générale représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}.
+			\newline
+			%		
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.8\textwidth]{figures/etude-nombre-contraintes-1-modelisation-nombre}
+				\caption{Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.}
+				\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
+			\end{figure}
 
 		%%% Discussion
 		\subsubsection{Discussion}
@@ -728,7 +749,41 @@
 	\subsection{Estimation du temps total d'un projet d'annotation en combinant les précédentes études de coûts}
 	\label{section:4.3.4-ETUDE-COUTS-TOTAL}
 	
-		\todo[inline]{A REDIGER : Equation temporelle globale en fonction de la taille du jeu de données}
+		% Equation finale.
+		D'après les modélisations réalisées dans les sections précédentes (\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}), nous pouvons estimer le temps nécessaires à un projet d'annotation utilisant une méthodologie basée \textit{clustering} interactif grâce aux équations suivantes :	
+		%
+		\begin{equation}
+			\label{equation:4.3.4-ETUDE-COUT-TOTAL}
+			\begin{cases}
+				% Cconstraints number and Iteration number.
+				\texttt{constraints\_needed} &
+					~\simeq~356 + 3.05 \cdot \texttt{dataset\_size} \\
+				\texttt{iteration\_needed} &
+					~\simeq~\texttt{constraints\_needed} / \texttt{batch\_size} \\
+				% Annotatim time.
+				\texttt{total\_annotation\_time} &
+					~\simeq~(202 + 6.92 \cdot \texttt{batch\_size}) \cdot \texttt{iteration\_needed} \\
+				% Computation time.
+				\texttt{total\_computation\_time} &
+					~\simeq~(-180 + 0.211 \cdot \texttt{dataset\_size}) \cdot \texttt{iteration\_needed} \\
+				% Total time.
+				\texttt{total\_time} &
+					~\simeq~ \texttt{total\_annotation\_time} + \texttt{total\_computation\_time}
+			\end{cases}
+		\end{equation}
+		où $\texttt{dataset\_size}$ est la taille du jeu de données à modéliser, $\texttt{batch\_size}$ est la taille d'un lot d'annotation, et les estimations sont valables pour notre \textbf{paramétrage favori}
+		\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation TF-IDF (\texttt{vect.tfidf}), clustering KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})}
+		du \textit{clustering} interactif.
+		La figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL} représente cette estimation en fonction de plusieurs taille de jeu de données et plusieurs tailles de lots d'annotation.
+		%		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[width=0.8\textwidth]{figures/etude-temps-total-1-modelisation}
+			\caption{Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de la taille du jeu de données et de la taille des lots d'annotations.}
+			\label{figure:4.3.4-ETUDE-COUT-TOTAL}
+		\end{figure}
+	
+		
 		
 		\todo[inline]{A REDIGER : Calcul total pour le dataset de 500 points de données. Rejetter l'annotation suffisante car trop longue.}
 		
