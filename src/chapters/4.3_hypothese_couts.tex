@@ -726,36 +726,83 @@
 			\end{equation}
 			%
 			La figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} représente cette modélisation.
-			On remarque aussi l'influence du jeu de référence utilisé sur la modélisation (\texttt{p-valeur}: $> 0.999$).
-			La différence de pente mesurée est de $0.14$, soit un écart moyen d'environ $4.5$\% par rapport à la modélisation générale.
-			Comme l'impact semble ici limité, nous gardons donc la modélisation générale représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}.
 			\newline
-			%		
+			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.8\textwidth]{figures/etude-nombre-contraintes-1-modelisation-nombre}
 				\caption{Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.}
 				\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
 			\end{figure}
+		
+			% Note de l'auteur.
+			\begin{leftBarAuthorOpinion}
+				% Estimation de points de références.
+				On peut considérer les points de références suivants :
+				%
+				\begin{itemize}
+					% Estimation grossière.
+					\item le nombre de contraintes possibles (avec doublons) est de $\texttt{dataset\_size}^{2}$
+					(\textit{caractériser chaque couple de données présent dans la matrice d'adjacence}) ;
+					% Estimation sans doublon.
+					\item le nombre de contraintes possibles (sans doublons) est de $\frac{1}{2} \cdot (\texttt{dataset\_size}^{2} - \texttt{dataset\_size})$
+					(\textit{considérer la symétrie des contraintes, donc seul le triangle supérieur de la matrice d'adjacence a besoin d'être renseigné}) ;
+					% Estimation minimale.
+					\item le nombre minimal de contraintes à annoter sur une partition en $k$ \textit{clusters} $\{K_{1}, K_{2}, ..., K_{k}\} $ du jeu de données et en étant exhaustif est estimé à ${\displaystyle \sum\limits_{0 \leq i < k}{\|K_{i}\|-1} + \sum\limits_{0 \leq i < k}{k-1-i}} $ (
+					\textit{considérer d'abord le chemin minimal pour créer des composants connexes avec des contraintes \texttt{MUST-LINK}, puis ajouter le nombre minimal des contraintes \texttt{CANNOT-LINK} pour distinguer les composants connexes en \textit{cluster}}).
+				\end{itemize}
+				%
+				% Annonce de la figure.
+				La figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES} illustre ces propos sur un jeu d'exemple comportant $10$ points de données réparties en $3$ classes, et met en avant l'explosion du nombre de contraintes possibles même sur un petit jeu de données (cf.~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}~\textbf{(2)}).
+				
+				% Application de ces points de référence.
+				Avec ces références, le nombre de contraintes est borné approximativement
+				entre $1~035$ et $499~500$ pour un jeu de $1~000$ données équilibré en $10$ classes,
+				et entre $6~175$ et $12~497~500$ pour un jeu de $5~000$ données équilibré en $50$ classes.
+				%
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.7\textwidth]{figures/etude-nombre-contraintes-2-bornes-limites}
+					\caption{Exemple de caractérisation exhaustive d'un jeu de données ($10$ données, $3$ classes) en ajoutant un nombre minimal de contraintes (cf. \textbf{(1)}) ou en ajoutant toutes les contraintes possibles (cf. \textbf{(2)}).}
+					\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}
+				\end{figure}
+			\end{leftBarAuthorOpinion}
 
 		%%% Discussion.
 		\subsubsection{Discussion}
 		
-			\todo[inline]{A REDIGER : linéaire ? diffères des deux JDD ?}
+			% Rappel de l'objectif.
+			L'objectif de cette étude était de déterminer le nombre moyen de contraintes à devoir annoter pour modéliser un jeu de données avec un accord $90$\% de \texttt{v-measure} avec la vérité terrain utilisée.
+			Cette estimation, dépendant de la taille du jeu de données manipulé, est représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}.
+			
+			% Discussion générale sur la pente.
+			On peut constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.05$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
+			\todo[inline]{A REDIGER: Ca aurait pu être pire (cf. notes de l'auteur)}
+			\todo[inline]{A REDIGER: Toutefois, ça parait beaucoup et ça pourrait gêner... cf. 4.3.4}
+			
+			% Influence du jeu de données.
+			Bien évidemment, une telle estimation est sensible au jeu de données utilisé comme référence (cf. figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}).
+			Ici, la différence de pente mesurée est de $0.14$ (\texttt{p-valeur}: $> 0.999$), soit un écart moyen d'environ $4.5$\% par rapport à la modélisation moyenne.
+			Toutefois, comme l'impact semble limité, nous maintenons la modélisation moyenne représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} pour la suite de nos estimations de coûts.
+		
+			% Note de l'auteur.
+			\begin{leftBarAuthorOpinion}
+				Il n'y a pas davantage de matière à discussion pour cette étude, car le principal résultat (l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) est un résultat temporaire nécessaire à l'estimation du coût global d'un projet utilisant une méthodologie de \textit{clustering} interactif.
+			\end{leftBarAuthorOpinion}
 	
 	%%%
 	%%% Subsection 4.3.4: Estimation du temps total d'un projet d'annotation en combinant les précédentes études de coûts
 	%%%
 	\subsection{Estimation du temps total d'un projet d'annotation en combinant les précédentes études de coûts}
 	\label{section:4.3.4-ETUDE-COUTS-TOTAL}
+	
+		% Equation finale.
+		Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \textit{clustering} interactif et utilisant notre \textbf{paramétrage favori}
+		\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal).}.
+		Dans les notations, $\texttt{dataset\_size}$ représente la taille du jeu de données à modéliser, et $\texttt{batch\_size}$ représente le nombre de contraintes que l'expert annote à chaque itération.
 
 		%%% Résultats.
 		\subsubsection{Synthèse des résultats}
-	
-			% Equation finale.
-			Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \textit{clustering} interactif et utilisant notre \textbf{paramétrage favori}
-			\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal).}.
-			Dans les notations, $\texttt{dataset\_size}$ représente la taille du jeu de données à modéliser, et $\texttt{batch\_size}$ représente le nombre de contraintes que l'expert annote à chaque itération.
 			
 			% Temps pour une itération.
 			Tout d'abord, nous pouvons estimer le \textbf{temps moyen d'une itération de la méthode}, comprenant les temps de d'exécution des algorithmes (\textit{prétraitement}, \textit{vectorisation}, \textit{clustering}, \textit{échantillonnage}) et le temps d'annotation d'un lot de contraintes, grâce aux équations suivantes :
@@ -764,7 +811,7 @@
 				\begin{cases}
 					% Computation time.
 					\texttt{computation\_time}~[s]&
-						~\simeq~(-180 + 0.211 \cdot \texttt{dataset\_size} \\
+						~\simeq~-180 + 0.211 \cdot \texttt{dataset\_size} \\
 					% Annotatim time.
 					\texttt{annotation\_time}~[s]&
 						~\simeq~202 + 6.92 \cdot \texttt{batch\_size} \\
@@ -811,7 +858,13 @@
 
 		%%% Discussion finale.
 		\subsubsection{Discussion finale}
-	
+		
+		
+			\todo[inline]{A REDIGER: (1) Rappel sur l'objectif des précédentes études}
+			\todo[inline]{A REDIGER: (2) Annonce des résultats : c'est long !}
+			\todo[inline]{A REDIGER: (3) Comparer avec une annotation classique}
+			\todo[inline]{A REDIGER: (4) Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering}
+			\todo[inline]{A REDIGER: (5) Estimer la rentabilité d'une nouvelle itération pour savoir quand s'arrêter}
 		
 		
 		\todo[inline]{A REDIGER : Calcul total pour le dataset de 500 points de données. Rejetter l'annotation suffisante car trop longue.}
