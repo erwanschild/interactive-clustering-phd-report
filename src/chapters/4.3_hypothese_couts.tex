@@ -145,11 +145,11 @@
 			De plus, la vitesse d'annotation moyenne était de $7.74$ contraintes par minute (min: $3.46$, max: $14.33$, écart-type: $2.93$).
 			
 			% Modélisation du temps d'annotation.
-			Le modèle linéaire généralisé entraîné sur les mesures de temps d'annotations (\texttt{R²}: $0.922$, \texttt{llf}: $-497.37$, \texttt{llf\_null}: $-539.95$) nous permet de déduire l'équation suivante :
+			Le modèle linéaire généralisé entraîné sur les mesures de temps d'annotations (\texttt{R²}: $0.910$, \texttt{llf}: $-499.15$, \texttt{llf\_null}: $-539.95$) nous permet de déduire l'équation suivante :
 			%
 			\begin{equation}
 				\texttt{annotation\_time}~[s]~
-				\simeq~202 + 6.92 \cdot \texttt{batch\_size}
+				\simeq~7.77 \cdot \texttt{batch\_size}
 			\end{equation}
 		
 			% Affichage du temps d'annotation.
@@ -187,11 +187,16 @@
 		
 		%%	\paragraph{Analyse du temps nécessaire :}
 			% Généralités sur la modélisation du temps d'annotation sur une session.
-			L'étude réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $202 + 6.92 \cdot \texttt{batch\_size}$ le temps nécessaire (en minutes) pour annoter un lot de contraintes.
+			L'étude réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $7.77 \cdot \texttt{batch\_size}$ le temps nécessaire (en secondes) pour annoter un lot de contraintes.
 			Malgré une forte dispersion des résultats, cette modélisation permet de confirmer les tendances suivantes :
+			\todo[inline]{
+				Note Mathieu: ne pas disserter sur l'Intercept, ça peut juste être une erreur de modélisation.
+				Déplacer ce point dans les notes de l'auteur (discussion sans preuve formelle).
+				Ancienne équation à $202 + 6.92 \cdot \texttt{batch\_size}$
+			}
 			\begin{itemize}
 				\item Nous avons un \textbf{coût fixe} (environ $200$ secondes, soit $3.33$ minutes), qui peut représenter une partie du temps d'adaptation nécessaire à l'opérateur pour commencer sa tâche \todo{citation: Anderson (2013)} : cela comprend le temps de s'habituer à la tâche et de (ré)intégrer le contexte du sujet traité ;
-				\item Nous avons un \textbf{coût variable faible} (inférieur à $7$ secondes par contrainte), qui concorde avec l'hypothèse d'une caractérisation rapide d'une similitude ou d'une différence entre deux données \todo{citation: Kahneman (2011), Hancock (1988)}.
+				\item Nous avons un \textbf{coût variable faible} (inférieur à $8$ secondes par contrainte), qui concorde avec l'hypothèse d'une caractérisation rapide d'une similitude ou d'une différence entre deux données \todo{citation: Kahneman (2011), Hancock (1988)}.
 			\end{itemize}
 			Afin de \textbf{rentabiliser} le coût fixe à investir, il peut être judicieux de ne pas définir des lots d’annotation trop petits. 
 			Comme le nombre médian de contraintes annotées durant les sessions d'annotation de cette expérience est de $138$ (moyenne à $170.70$), nous pouvons par exemple fixer la taille par défaut des lots à $100$ contraintes ($14.9$ minutes) ou $150$ contraintes ($20.7$ minutes).
@@ -399,11 +404,11 @@
 			
 			% Modélisation du temps de calcul (prep.simple + prep.lemma + prep.filter).
 			Pour les algorithmes de prétraitements (\texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter}), l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.997$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-379.35$, \texttt{llf\_null}: $-1~353.98$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-432.43$, \texttt{llf\_null}: $-1~353.98$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{prep})~[s]~
-				\simeq~0.84 + 6.31 \cdot 10^{-3} \cdot \texttt{dataset\_size}
+				\simeq~6.55 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -424,20 +429,20 @@
 		
 			% Modélisation du temps de calcul (vect.tfidf).
 			Pour les algorithmes de vectorisation \texttt{vect.tfidf}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.977$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $262.35$, \texttt{llf\_null}: $70.04$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $259.89$, \texttt{llf\_null}: $70.04$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{vect.tfidf})~[s]~
-				\simeq~-0.014 + 9.54 \cdot 10^{-5} \cdot \texttt{dataset\_size}
+				\simeq~-9.16 \cdot 10^{-5} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (vect.frcorenewsmd).
 			Pour les algorithmes de vectorisation \texttt{vect.frcorenewsmd}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.983$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-186.80$, \texttt{llf\_null}: $-399.39$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-214.44$, \texttt{llf\_null}: $-399.39$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{vect.frcorenewsmd})~[s]~
-				\simeq~1.89 + 4.11 \cdot 10^{-3} \cdot \texttt{dataset\_size}
+				\simeq~4.62 \cdot 10^{-3} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -456,64 +461,70 @@
 			% Première analyse.
 			En ce qui concerne la tâche de \textbf{\textit{clustering} sous contraintes}, une première analyse montre que les modélisations des six implémentations sont différentiables  (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous ferons donc une modélisation par algorithme.
 			
+			% Remarques: hiérarchique trop long.
+			\begin{leftBarWarning}
+				Plusieurs exécutions des algorithmes de type \textit{hiérarchique} ont été annulées pour les jeux données de tailles supérieures à $4~000$ car la durée excédé plusieurs heures.
+				Nous limitons dons l'analyse de \texttt{clust.hier.sing}, \texttt{clust.hier.comp}, \texttt{clust.hier.avg} et \texttt{clust.hier.ward} aux tailles de $1~000$ à $3~000$.
+			\end{leftBarWarning}
+			
 			% Modélisation du temps de calcul (clust.kmeans.cop).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.kmeans.cop}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.837$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.545$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.904$, \texttt{llf}: $-9.20 \cdot 10^{4}$, \texttt{llf\_null}: $-1.00 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.802$, \texttt{llf}: $-9.37 \cdot 10^{4}$, \texttt{llf\_null}: $-1.00 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.kmeans.cop})~[s]~
-				\simeq~-240 + 2.11 \cdot 10^{-1} \cdot \texttt{dataset\_size}
+				\simeq~1.45 \cdot 10^{-1} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.sing).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.sing}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.940$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.729$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.38 \cdot 10^{4}$, \texttt{llf\_null}: $-6.10 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.987$, \texttt{llf}: $-5.54 \cdot 10^{4}$, \texttt{llf\_null}: $-6.10 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.sing})~[s]~
-				\simeq~-887 + 6.37 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\simeq~-5.00 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.comp).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.comp}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.938$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.736$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.40 \cdot 10^{4}$, \texttt{llf\_null}: $-6.11 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.984$, \texttt{llf}: $-5.56 \cdot 10^{4}$, \texttt{llf\_null}: $-6.11 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.comp})~[s]~
-				\simeq~-925 + 6.42 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\simeq~-4.99 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.avg).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.avg}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.915$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.713$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.942$, \texttt{llf}: $-5.82 \cdot 10^{4}$, \texttt{llf\_null}: $-6.45 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.981$, \texttt{llf}: $-5.90 \cdot 10^{4}$, \texttt{llf\_null}: $-6.45 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.avg})~[s]~
-				\simeq~-1100 + 1.02 \cdot 10^{-3} \cdot \texttt{dataset\_size}^{2}
+				\simeq~-8.51 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.ward).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.hier.ward}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.945$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.734$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.39 \cdot 10^{4}$, \texttt{llf\_null}: $-6.14 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.989$, \texttt{llf}: $-5.57 \cdot 10^{4}$, \texttt{llf\_null}: $-6.14 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.ward})~[s]~
-				\simeq~-979 + 6.82 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\simeq~-5.30 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.spec).
 			Pour les algorithmes du \textit{clustering} sous contraintes \texttt{clust.spec}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.658$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_clusters$ (\texttt{r}: $0.595$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.534$, \texttt{llf}: $-7.88 \cdot 10^{5}$, \texttt{llf\_null}: $-8.27 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $0.527$, \texttt{llf}: $-7.89 \cdot 10^{5}$, \texttt{llf\_null}: $-8.27 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.spec})~[s]~
-				\simeq~11 + 7.56 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
+				\simeq~8.18 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -535,41 +546,41 @@
 			% Modélisation du temps de calcul (samp.rand.full).
 			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.rand.full}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.993$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot previous\_nb\_clusters$ (\texttt{r}: $0.791$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.33 \cdot 10^{4}$, \texttt{llf\_null}: $-1.17 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.52 \cdot 10^{4}$, \texttt{llf\_null}: $-1.17 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{samp.rand.full})~[s]~
-				\simeq~-0.48 + 8.47 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				\simeq~-8.20 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.rand.same).
 			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.rand.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.939$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot algorithm\_nb\_constraints$ (\texttt{r}: $0.611$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-3.17 \cdot 10^{4}$, \texttt{llf\_null}: $-6.84 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-3.20 \cdot 10^{4}$, \texttt{llf\_null}: $-6.84 \cdot 10^{4}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{samp.rand.same})~[s]~
-				\simeq~-0.14 + 1.92 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				\simeq~1.85 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.farhtest.same).
 			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.farhtest.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.981$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot previous\_nb\_clusters$ (\texttt{r}: $0.700$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.52 \cdot 10^{4}$, \texttt{llf\_null}: $-1.02 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.56 \cdot 10^{4}$, \texttt{llf\_null}: $-1.02 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{samp.farhtest.same})~[s]~
-				\simeq~-0.23 + 5.32 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				\simeq~5.19 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.closest.diff).
 			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.closest.diff}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{2}$ (\texttt{r}: $0.995$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{2} \cdot previous\_nb\_clusters$ (\texttt{r}: $0.815$).
-			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.80 \cdot 10^{4}$, \texttt{llf\_null}: $-1.36 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
+			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-5.96 \cdot 10^{4}$, \texttt{llf\_null}: $-1.36 \cdot 10^{5}$) nous permet de déduire l'équation suivante\todo{ref complexité théorique algo en annexe} :
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{samp.closest.diff})~[s]~
-				\simeq~-0.66 + 1.46 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
+				\simeq~1.43 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Affichage du temps de calcul.
@@ -611,7 +622,7 @@
 			
 			% Cas du clustering.
 			En ce qui concerne la tâche de \textit{clustering}, on note des différences significatives dans les temps d'exécution des divers algorithmes implémentés.
-			En effet, l'algorithme KMeans (modèle COP) est nettement plus rapide (complexité en $ \mathcal{O}(\texttt{dataset\_size}) $, nécessitant quelques dizaines de minutes pour $5~000$ données) que les implémentations du \textit{clustering} hiérarchique (complexité en $ \mathcal{O}(\texttt{dataset\_size}^{2}) $, nécessitant plusieurs heures pour $5~000$ données).
+			En effet, l'algorithme KMeans (modèle COP) est nettement plus rapide (complexité en $ \mathcal{O}(\texttt{dataset\_size}) $, nécessitant quelques dizaines de minutes pour $5~000$ données) que les implémentations du \textit{clustering} hiérarchique (complexité en $ \mathcal{O}(\texttt{dataset\_size}^{2}) $, nécessitant plusieurs heures dès $3~000$ données).
 			Cette différence, visible en figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-CLUSTERING}, a un réel impact sur l'expérience utilisateur de l'opérateur.
 			En effet, bien qu'il soit théoriquement plus efficient pour atteindre une annotation suffisante (cf. hypothèse d'efficience en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}), l'usage d'un \textit{clustering} hiérarchique imposerait de longs temps d'attente à l'opérateur, interdisant des interactions rapides avec la machines.
 			Or l'intérêt principal de notre méthodologie d'annotation à l'aide du \textit{clustering} interactif repose sur ces interactions homme-machine via l'ajout régulier de contraintes pertinentes (cf. hypothèse d'efficacité en section~\ref{section:4.1-HYPOTHESE-EFFICACITE}).
@@ -623,19 +634,19 @@
 			\end{leftBarInformation}
 			
 			% Cas du prétraitement + vectorisation + échantillonnage.
-			En ce qui concerne les tâches de prétraitements (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}), de vectorisation (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}), et d'échantillonnage de contraintes (cf. figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}) ont des complexités presque négligeables au regard des temps d'exécution du \textit{clustering} (pour $5~000$ données : environ $1$ minute contre près de $14$ minutes pour \texttt{clust.kmeans.cop} et près de $4.1$ heures pour \texttt{clust.hier.sing}).
-			Nous maintenons donc les paramétrages obtenus pour ces tâches en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} sans analyses complémentaires et simplifions l'ensemble des ces temps de calcul par un temps constant inférieur à $1$ minutes.
+			En ce qui concerne les tâches de prétraitements (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}), de vectorisation (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}), et d'échantillonnage de contraintes (cf. figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}) ont des complexités presque négligeables au regard des temps d'exécution du \textit{clustering} (pour $5~000$ données : moins de $2$ minute contre près de $12.1$ minutes pour \texttt{clust.kmeans.cop} et près de $3.5$ heures pour \texttt{clust.hier.sing}).
+			Nous maintenons donc les paramétrages obtenus pour ces tâches en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} sans analyses complémentaires.
 			
 			% Conclusion.
 			Pour conclure, dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure}
 			\footnote{$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}}
 			avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du clustering KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
-			On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $30$ secondes pour $1~000$ données ; environ $15$ minutes pour $5~000$ données.} :
+			On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $2.6$ minutes pour $1~000$ données ; environ $13.3$ minutes pour $5~000$ données.} :
 			%
 			\begin{equation}
 				\label{equation:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PARAMETRAGE-FAVORI}
 				\texttt{computation\_time}(\texttt{settings.favorite})~[s]~
-				\simeq~-180 + 0.211 \cdot \texttt{dataset\_size}
+				\simeq~1.52 \cdot 10^{-1} \cdot \texttt{dataset\_size} + 1.43 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 	
 	%%%
@@ -717,12 +728,12 @@
 		\subsubsection{Résultats obtenus}
 		
 			% Modélisation du nombre de contraintes.
-			Le modèle linéaire généralisé entraîné sur les mesures du nombre de contraintes requis pour atteindre $90$\% de \texttt{v-measure} (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4~324.2$, \texttt{llf\_null}: $-4~942.9$) nous permet de déduire l'équation suivante :
+			Le modèle linéaire généralisé entraîné sur les mesures du nombre de contraintes requis pour atteindre $90$\% de \texttt{v-measure} (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4~327.6$, \texttt{llf\_null}: $-4~942.9$) nous permet de déduire l'équation suivante :
 			%
 			\begin{equation}
 				\label{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
 				\texttt{constraints\_needed}(\texttt{settings.favorite})~[\#]~
-				\simeq~356 + 3.05 \cdot \texttt{dataset\_size}
+				\simeq~3.15 \cdot \texttt{dataset\_size}
 			\end{equation}
 			%
 			La figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} représente cette modélisation.
@@ -776,13 +787,13 @@
 			Cette estimation, dépendant de la taille du jeu de données manipulé, est représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}.
 			
 			% Discussion générale sur la pente.
-			On peut constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.05$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
+			On peut constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.15$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
 			\todo[inline]{A REDIGER: Ca aurait pu être pire (cf. notes de l'auteur)}
 			\todo[inline]{A REDIGER: Toutefois, ça parait beaucoup et ça pourrait gêner... cf. 4.3.4}
 			
 			% Influence du jeu de données.
 			Bien évidemment, une telle estimation est sensible au jeu de données utilisé comme référence (cf. figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}).
-			Ici, la différence de pente mesurée est de $0.14$ (\texttt{p-valeur}: $> 0.999$), soit un écart moyen d'environ $4.5$\% par rapport à la modélisation moyenne.
+			Ici, la différence de pente mesurée est de $0.25$ (\texttt{p-valeur}: $> 0.999$), soit un écart moyen d'environ $8$\% par rapport à la modélisation moyenne.
 			Toutefois, comme l'impact semble limité, nous maintenons la modélisation moyenne représentée par l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} pour la suite de nos estimations de coûts.
 		
 			% Note de l'auteur.
@@ -811,13 +822,13 @@
 				\begin{cases}
 					% Computation time.
 					\texttt{computation\_time}~[s]&
-						~\simeq~-180 + 0.211 \cdot \texttt{dataset\_size} \\
+						~\simeq~1.52 \cdot 10^{-1} \cdot \texttt{dataset\_size} + 1.43 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2} \\
 					% Annotatim time.
 					\texttt{annotation\_time}~[s]&
-						~\simeq~202 + 6.92 \cdot \texttt{batch\_size} \\
+						~\simeq~7.77 \cdot \texttt{batch\_size} \\
 					% One iteration time.
 					\texttt{one\_iteration\_time}~[s]&
-						~\simeq~22 + 0.211 \cdot \texttt{dataset\_size} + 6.92 \cdot \texttt{batch\_size} \\
+						~\simeq~\texttt{computation\_time} + \texttt{annotation\_time} \\
 				\end{cases}
 			\end{equation}
 			
@@ -828,7 +839,7 @@
 				\begin{cases}
 					% Constraints number.
 					\texttt{constraints\_number\_needed}~[\#] &
-						~\simeq~356 + 3.05 \cdot \texttt{dataset\_size} \\
+						~\simeq~3.15 \cdot \texttt{dataset\_size} \\
 					% Iterations number.
 					\texttt{iterations\_number\_needed}~[\#] &
 						~\simeq~\texttt{constraints\_number\_needed} / \texttt{batch\_size} \\
