@@ -45,5 +45,23 @@
 
 	\minitoc
 
-    \section{french bank cards}
-    \section{DNA press title}
+    \section{BANK CARDS: french bank cards}
+	\label{annex:C.1-DATASET-BANK-CARDS}
+	
+		[FR] Jeu d'entraînement en français d'assistants conversationnels traitant des demandes courantes sur les cartes bancaires.
+		
+		Description : Cet ensemble de données représente des exemples de demandes usuelles des clients concernant la gestion des cartes bancaires. Il peut être utilisé comme jeu d'entraînement pour un assistant conversationnel destiné à traiter ces demandes courantes.
+		
+		Contenu : Les questions sont formulées en français. L'ensemble de données est divisé en 10 intentions de 50 questions chacune, pour un total de 500 questions.
+		
+		Périmètre des intentions : Les intentions sont construites de telle manière que toutes les questions issues d'une même intention ont la même réponse ou action. Le périmètre couvert concerne : la perte ou le vol de cartes ; la carte avalée ; la commande des cartes ; la consultation du solde bancaire ; l'assurance fournie par une carte ; le déverrouillage de la carte ; la gestion de cartes virtuelles ; la gestion du découvert bancaire ; la gestion des plafonds de paiement ; la gestion du mode sans contact.
+		
+		Origine : Le périmètre des intentions est inspiré par un chatbot actuellement en production, et la formulation des questions est inspirée de demandes courantes de clients.
+	
+    \section{MLSUM: press titles}
+	\label{annex:C.2-DATASET-MLSUM-SUBSET-SCHILD}
+	
+		We present MLSUM, the first large-scale MultiLingual SUMmarization dataset.
+		Obtained from online newspapers, it contains 1.5M+ article/summary pairs in five different languages -- namely, French, German, Spanish, Russian, Turkish. Together with English newspapers from the popular CNN/Daily mail dataset, the collected data form a large scale multilingual dataset which can enable new research directions for the text summarization community. We report cross-lingual comparative analyses based on state-of-the-art systems. These highlight existing biases which motivate the use of a multi-lingual dataset.
+		
+		For constraints annotation experiment based on data similarity, this dataset have been subsetted (randomly pick 75 articles in the following 14 most used topics: 'economie', 'politique', 'sport', 'planete' (renamed in 'ecologie'), 'sciences', 'police-justice', 'disparitions', 'emploi', 'sante', 'musiques', 'arts', 'educations', 'climat' (renamed in 'meteo'), 'immobilier') and filtered (keep articles that have an obvious topics regarding their titles, without their bodies). Two reviewers have working on this task in order to limit the subjectivity of the filtering. This subsetted dataset is used (1) to estimate needed time to annotate titles similarity with constraints (MUST-LINK, CANNOT-LINK) and (2) to test interactive clustering methodology (constraints annotation and constrained clustering).
