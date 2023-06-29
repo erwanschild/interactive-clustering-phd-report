@@ -137,6 +137,16 @@
     \end{leftbar}
 }  % \begin{leftBarWarning} \lipsum[1] \end{leftBarWarning}
 
+% Définition de l'encadré des points à retenir.
+\definecolor{colorLeftBarSummary}{rgb}{0.01, 0.75, 0.24}  % Dark pastel green
+\newenvironment{leftBarSummary}{
+	\begin{leftbar}{colorLeftBarSummary}
+	\noindent
+	\textbf{\textcolor{colorLeftBarSummary}{\faBookmark}~Points à retenir :}
+}{
+    \end{leftbar}
+}  % \begin{leftBarSummary} \lipsum[1] \end{leftBarSummary}
+
 % Définition de l'encadré d'idée.
 \definecolor{colorLeftBarIdea}{rgb}{1.00, 0.88, 0.21}  % Banana Yellow
 \newenvironment{leftBarIdea}{

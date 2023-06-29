@@ -48,20 +48,14 @@
 			% Objectif de l'expérience.
 			Nous voulons estimer le temps nécessaire à un opérateur pour annoter un lot de contraintes.
 			Pour cela, nous allons chronométrer plusieurs experts métiers en train d'annoter un même échantillon et modéliser le nombre de contraintes par minute, ainsi que son évolution au cours de plusieurs sessions d'annotation.
+			De plus, nous aimerions aussi confirmer que l'ajout de contraintes dans notre contexte s'apparente à une tâche "intuitive", c'est-à-dire que l'annotation se fait dans la réaction et non dans la réflexion (voir CITATION (Kahneman (2011))\todo{citation: Kahneman (2011). Thinking, fast and slow.} qui distingue un \textit{système 1} intuitif, rapide, de l'ordre de l'émotion, et un \textit{système 2} plus lent, logique et réfléchi).
+			Pour ce faire, nous estimerons grossièrement le temps nécessaire à l'annotation réactive d'une contrainte, nous la comparerons au temps moyen estimé lors de notre expérience, et nous nous demanderons si la différence observée peut cacher un mécanisme cognitif plus complexe.
 			
 			% Axiome.
 			\begin{leftBarWarning}
 				Dans cette étude, nous supposons que les annotateurs de l'expérience connaissent parfaitement le domaine traité dans le jeu de données, et qu'ils sont capables de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
 				Afin de pourvoir faire cette hypothèse forte, et ainsi limiter les bruits dans l'analyse des résultats, le jeu de données devra traiter d'un sujet de culture générale (ne nécessitant donc pas de connaissance particulière) et des réviseurs supprimeront en amont et d'un commun accord les données trop spécifiques ou trop ambiguës.
 			\end{leftBarWarning}
-			
-			% Objectif supplémentaire.
-			Pour aller plus loin, nous aimerions aussi confirmer que le temps d'annotation est caractéristique d'une tâche "courte".
-			En utilisant des approximations communes en neuroscience (cf. CITATION)\todo{CITATION: Purves et al. (2008). Principles of Cognitive Neuroscience}, nous pouvons estimer le temps d'annotation d'une contraintes à environ $5$ secondes.
-			En effet, il faut $1~200$ms pour lire et traiter deux phrases (on utilise la \texttt{P600} pour estimer la réaction à un stimulus pour une phrase), auquel on ajoute à nouveau $600$ ms pour traiter la concordance entre les deux phrases.
-			En considérant une réponse motrice au alentours de $1$ seconde (clic de bouton) et un délais application de $1$ seconde (rechargement de la page), nous sommes autour des $5$ secondes ($4.6$ estimé).
-			Bien entendu, cette estimation reste approximative, et dépend fortement de la taille des phrases ainsi que de leur proximité sémantique.
-			Toutefois, cela donne un ordre de grandeur pour notre étude du temps d'annotation.
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}.
@@ -72,6 +66,7 @@
 					\Require plusieurs réviseurs, plusieurs annotateurs
 					\State \textbf{initialisation} définir et revoir le jeu de données entre réviseurs
 					\State \textbf{échantillonnage} sélectionner une base de contraintes avec \texttt{samp.rand.full}
+					\State \textbf{temps théorique} estimation du temps nécessaire à l'annotation d'une contrainte
 					\ForAll{annotateur}
 						\While{la base de contraintes n'a pas été entièrement annotée}
 							\State \textbf{chronomètre: START}
@@ -90,7 +85,7 @@
 			\end{algorithm}
 			
 			% Détails de l'expérience : préparation du jeu de données.
-			Pour cette étude, nous procéderons en plusieurs étapes.
+			Nous allons procéder en plusieurs étapes.
 			D'abord, il faut choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétence de nos annotateurs, nous cherchons un jeu de données traitant d'un sujet de culture général.
 			Pour cette expérience, nous avons donc choisi \texttt{MLSUM} : une collecte d'articles de journaux, classés par catégorie de publication et décrits par leur titre et leur résumé.
 			Nous nous intéressons ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
@@ -99,7 +94,18 @@
 			Pour plus de détails, consultez l'annexe~\ref{annex:C.2-DATASET-MLSUM-SUBSET-SCHILD}.
 			
 			% Détails de l'expérience : sélection des contraintes à annoter. 
-			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter. Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas le nombre d'itérations de la méthode), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).			
+			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter.
+			Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas le nombre d'itérations de la méthode), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).
+			
+			% Détails de l'expérience : estimation du temps théorique nécessaire à l'annotation d'une contrainte.
+			Sur la base de cette échantillon, nous pouvons approximer le temps théorique nécessaire à l'annotation d'une contrainte à $6.8$ secondes.
+			En effet, il faut d'abord considérer la taille moyenne des titres d'article à lire et en déduire le temps dédié à la lecture des deux textes de la contraintes.
+			En utilisant l'approximation d'une lecture silencieuse par un adulte à $238$ mots par minute (cf. CITATION)\todo{CITATION: Brysbaert, M. (2019). How many words do we read per minute? A review and meta-analysis of reading rate.} et en mesurant la taille moyenne des titre d'article à $10.1$ mots, on en déduit que le temps de lecture d'un texte est environ de $2.55$ secondes.
+			Ensuite, il convient d'intégrer la durée de traitement cognitif requis pour estimer si les deux phrases sont similaires ou discordantes.
+			À cet effet, nous retenons $600$ ms, en faisant le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf. CITATION)\todo{CITATION: Purves et al. (2008). Principles of Cognitive Neuroscience}.
+			Enfin, nous ajoutons $1$ seconde supplémentaire pour représenter la réaction motrice (clic de bouton) et le délais applicatif (rechargement de la page).
+			Au total, nous obtenons ainsi un temps d'annotation moyen de $6.7$ secondes (ecart-type: $1.5$).
+			Bien entendu, cette durée reste approximatives, mais elle nous permet de discuter de l'ordre de grandeur à manipuler durant l'annotation.
 			
 			% Détails de l'expérience : annotations et consignes.
 			Ensuite, un groupe de $14$ annotateurs vont annoter la sélection de $1~000$ contraintes en plusieurs sessions.
@@ -148,7 +154,7 @@
 			\todo{citation}
 
 		%%% Résultats.
-		\subsubsection{Résultats obtenus}
+		\subsubsection{Résultats obtenus}			
 		
 			% Taux de participation.
 			Durant cette expérience, $14$ annotateurs ont participé à l'annotation de $1~000$ contraintes aléatoires sur un jeu de données.
@@ -162,12 +168,15 @@
 			Le modèle linéaire généralisé entraîné sur les mesures de temps d'annotations (\texttt{R²}: $0.910$, \texttt{llf}: $-499.15$, \texttt{llf\_null}: $-539.95$) nous permet de déduire l'équation suivante :
 			%
 			\begin{equation}
+				\label{equation:4.3.1-ETUDE-COUT-COUTS-TEMPS-ANNOTATION}
 				\texttt{annotation\_time}~[s]~
 				\propto~7.8 \cdot \texttt{batch\_size}
 			\end{equation}
 		
 			% Affichage du temps d'annotation.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION} représente cette modélisation du temps d'annotation en comparaison avec les mesures réalisées lors de l'expérience.
+			Pour rappel, le temps théorique estimé précédemment est de $6.7$ secondes par contrainte.
+			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-1-modelisation-temps}
@@ -177,8 +186,9 @@
 		
 			% Etude de cas.
 			En ce qui concerne l'évolution de la vitesse d'annotation au cours des sessions, aucune tendance significative n'a été identifiée. 
-			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE} représente cette évolution de vitesse d'annotation pour quatre opérateurs (les deux plus rapides et les deux plus lents).
+			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE} représente l'évolution de vitesse d'annotation pour quatre opérateurs (les deux plus rapides et les deux plus lents).
 			Ces données sont l'objet d'une étude de cas dans la discussion ci-dessous.
+			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=\textwidth]{figures/etude-temps-annotation-3-etude-de-cas}
@@ -188,64 +198,153 @@
 
 		%%% Discussion.
 		\subsubsection{Discussion}
+
 		
 		% Généralités sur la modélisation du temps d'annotation sur une session.
 		L'étude réalisée avec $14$ annotateurs sur des lots de $1~000$ contraintes a permis d'estimer à $7.8 \cdot \texttt{batch\_size}$ le temps nécessaire (en secondes) pour annoter un lot de contraintes (cf. figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION})
 		
 		% Compliqué de comparer ...
 		\begin{leftBarAuthorOpinion}
-			Avant poursuivre la discussion, il est nécessaire de préciser qu'il est compliqué de comparer ces résultats.
+			Avant poursuivre la discussion, il est nécessaire de préciser qu'il est difficile de comparer ces résultats.
 			% Forte disparité des mesures.
 			D'une part, il y a une forte disparité des mesures, et il est idyllique de penser qu'une étude sur $14$ annotateurs peut représenter la diversité du comportement humain sur une tâche aussi complexe que l'annotation de données textuelles.
 			% Peu de repères concrets.
-			D'autre part, il y a un manque de repères concrets dans la littérature scientifique, entre autre à cause des nombreux facteurs intervenant dans une tâche d'annotation (\textit{objectifs à réaliser, données à manipuler, nombre de choix proposés à l'opérateur, complexité sémantique des données, des compétences de l'opérateur, fréquence d'exécution de la tâche, ...}), mais aussi en raison du manque d'intérêt du temps nécessaire au profit de l'analyse de la cohérence et de la qualité intra-ou-inter-annotateur.
+			D'autre part, il y a un manque de repères concrets dans la littérature scientifique, entre autre à cause des nombreux facteurs intervenant dans une tâche d'annotation (\textit{objectifs à réaliser, données à manipuler, nombre de choix proposés à l'opérateur, complexité sémantique des données, des compétences de l'opérateur, fréquence d'exécution de la tâche, ...}), mais aussi en raison du manque d'intérêt à l'analyse du temps nécessaire au profit de l'analyse de la cohérence et de la qualité intra- ou inter-annotateur (CITATION Baledent (2022)).
 			% Diversité des données.
 			De plus, les résultats peuvent différer en fonction des contraintes à caractériser : on peut supposer que des couples de données très similaires ou très différentes sont simples à annoter, mais que des données plus ambiguës peuvent nécessiter davantage de temps pour être intégrées et étiquetées.
 			
 			% Angle d'attaque.
-			Pour pallier ce problème, nous proposons de comparer nos estimations de temps d'annotations grâce aux pistes ci-dessous. Certes, ces repères sont approximatifs, mais ils nous permettront de discuter des ordres de grandeurs à manipuler.
+			Pour pallier ce problème, nous proposons confronter nos estimations à des mesures réalisées sur des tâches n'ayant pas le même objectif mais dont la complexité est comparable.
+			Cette approche, bien qu'un peu rudimentaire, nous permettra ainsi de discuter des ordres de grandeurs à manipuler.
 		\end{leftBarAuthorOpinion}
+		\todo{Citation: Baledent (2022). De la complexité de l'annotation manuelle : méthodologie, biais et recommandations}
 		
-		% 8 secondes, ce n'est pas "court".
-		\todo[inline]{A REDIGER: 8 secondes c'est pas courts}
-			%%%% (OLD) tache courte : caractérisation rapide d'une similitude ou d'une différence entre deux données \todo{citation: Kahneman (2011), Hancock (1988)}.
-			%%%% comparé à 5 secondes, il y a quelques chose en plus
-			%%%% hypothèse 1 : il y a un traitement cognitif en plus
-			%%%% hypothèse 2 : il y a un problème applicatif
+		
+		%%% A. Analyse de l'annotation d'une contraintes.
+		\paragraph{Analyse de l'annotation d'une contraintes.}
+		
+			% Avantage 1: 8 secondes, c'est acceptable.
+			En premier lieu, nous voulions confirmer que l'annotation de contraintes est une tâche intuitive dont la durée est est caractéristique d'un mécanisme de réaction et non d'une réflexion.
+			Pour ce faire, nous avons estimé la durée théorique d'une annotation à $6.7$ secondes par contrainte, comprenant les temps de lecture, d'analyse de la similitude et d'action de l'opérateur, et nous avons mesuré la durée d'annotation réelle à $7.8$ secondes par contrainte.
+			Bien que l'écart constaté ($1.1$ seconde) soit compris dans les bornes d'approximation ($1.5$ seconde d'écart-type), cette différence n'est pas suffisamment insignifiante pour nous permettre d'exclure avec certitude la présence d'un mécanisme cognitif supplémentaire.
+				
+			% Avantage 2: Dans tous les cas, 8 secondes, c'est mieux que 17 secondes ou 40 secondes.
+			Pour nous permettre de discuter du temps d'annotation mesuré et de son approximation théorique, nous utilisons utiliser plusieurs points de référence extraits de (CITATION: Snow et al (2008))\todo{CITATION: Article Cheap and Fast — But is it Good?}.
+			Dans cette étude, les auteurs délèguent quelques tâches d'annotation à \texttt{Amazon Mechanical Turk} :
+			%
+			\begin{leftBarInformation}
+				\texttt{Amazon Mechanical Turk} est une plateforme de travail collaboratif (\textit{crowdsourcing}) sur laquelle n'importe quel internaute peut contribuer à une tâche plus ou moins complexe en échange d'une rémunération.
+				Certaines entreprises utilisent ce service pour réaliser de l'analyse de données, comme l’étiquetage de données, la traduction de textes, la rédaction d'avis et de critiques, la modération de contenu, ...
+				Cette approche comporte quelques inconvénients : d'une part, les travailleurs ne sont généralement pas experts du domaine traité (ce sont n'importe quel internaute ayant du temps  à offrir) ; d'autre part, le travail est parfois réalisé à la hâte à cause de la faible taux de rémunération des opérateurs (environ de $2$ \$ l'heure).
+				Afin garantir la qualité des réalisations, il est donc commun de demander plusieurs exécution d'une même tâche par différents opérateurs et de récupérer le résultat faisant le plus grand consensus.
+			\end{leftBarInformation}
+			%
+			\begin{enumerate}
+				% Task 1: (Word Sense Disambiguation)
+				\item Tâche de "\textit{désambiguïsation du sens des mots}" (CITATION: Pradhan et al. (2007)) \todo{CITATION: Pradhan et al. (2007) SemEval-2007 Task 17: English Lexical Sample, SRL and All Words} :
+				Elle consiste à catégoriser le contexte de phrases comportant le mot "\textit{président}" suivant $3$ options préformatées (\textit{dirigeant d'une entreprise, dirigeant des États Unis, dirigeant d'un autre pays}).
+				Il y a $177$ phrases à labelliser par $10$ annotateurs, et la tâche a été réalisée en un total de $8.59$ heures, soit une moyenne de $17.5$ secondes par annotation.
+				Nous utilisons ce point de repère car la tâche s'apparente à une annotation d'une tâche de classification ($3$ catégories).
+				% Task 2: (Word Similarity)
+				\item Tâche de "\textit{caractérisation de similitude des mots}" (CITATION: Miller et Charles (1991)) \todo{CITATION: Miller et Charles (1991). Contextual correlates of semantic similarity} :
+				Elle consiste à ordonner des couples de mots du plus similaire au moins similaire en fonction de leur proximité sémantique afin de mettre en avant les meilleurs couples de synonymes.
+				Il y a $30$ paires de synonymes à ordonner par $10$ annotateur, et la tâche a été réalisée en un total de $0.17$ heures, soit une moyenne de $2.0$ secondes par annotation.
+				Nous utilisons ce point de repère car la tâche s'apparente à l'annotation de contraintes (\textit{laquelle de ces deux paires est la plus adéquate ?}) qui ne fait pas appel à un mécanisme de réflexion (\textit{peu de vocabulaire, similarité intrinsèque triviale entre deux mots}).
+				% Task 3: (Recognizing Textual Entailment)
+				\item Tâche de "\textit{reconnaissance de l'implication textuelle}" (CITATION: Dagan et al. (2006)) \todo{CITATION: Dagan et al. (2006). The PASCAL Recognising Textual Entailment Challenge} :
+				Elle consiste à confirmer ou infirmer si une phrase est la conséquence d'une autre (\textit{l'annotation est donc binaire}).
+				Il y a $800$ paires de phrases à valider par $10$ annotateur, et la tâche a été réalisée en un total de $89.3$ heures, soit une moyenne de $40.2$ secondes par annotation.
+				Nous utilisons ce point de repère car la tâche s'apparente à l'annotation de contraintes (\textit{est-ce que l'implication est vraie ?}) faisant intervenir un mécanisme de réflexion (\textit{comprendre une implication logique}).
+			\end{enumerate}
+			%
+			% Comparaison à Task 1: (Word Sense Disambiguation).
+			En utilisant la tâche de "\textit{désambiguïsation du sens des mots}" (1.), nous avons déjà un point de comparaison entre notre annotation de contraintes et une annotation classique de classes.
+			Nous constatons une nette différence entre les deux approches ($7.8$ secondes par contrainte vs $17.5$ secondes par donnée), cela met en avant qu'une annotation de contraintes est plus rapide qu'une annotation par label.
 			
-		% ... mais 8 secondes, c'est mieux que 17 secondes.
-		\todo[inline]{A REDIGER: 8 secondes c'est mieux que 17}
-			% Article Cheap and Fast — But is it Good? (Word Sense Disambiguation)
-			%%%% Selon~\todo{citation: Snow et al. (2008) / Yuret (2007)}, qui délègue à \texttt{Amazon Mechanical Turk} l'annotation de phrases pour catégoriser leur contexte parmi trois possibilités préformatés, il faut $8.59$ heures pour étiqueter $1~770$ données, soit $17.8$ secondes par annotation ;
-			%%%% ajouter du contexte du AMT (pourquoi c'est utilisable, sont-ils payés, ...)
+			% Comparaison à Task 2: (Word Similarity).
+			Ensuite, en utilisant la tâche de "\textit{caractérisation de similitude des mots}" (2.), nous pouvons confirmer que notre approximation théorique (faisant intervenir une composante \texttt{P600}) semble adaptée pour représenter un mécanisme de l'ordre de la réaction.
+			En effet, le coût très faible de la caractérisation d'une similarité entre deux mots ($2.0$ secondes par paire de mots) s'avère être en adéquation avec cette approximation ($2.1$ secondes par paire de phrases de taille $1$).
 			
+			% Comparaison à Task 3: (Recognizing Textual Entailment).
+			Enfin, en utilisant la tâche de "\textit{reconnaissance de l'implication textuelle}" (3.), nous comparons deux annotations binaires dont une fait nettement appel à un mécanisme de réflexion (déduction logique dans une implication).
+			Nous constatons une très nette différence entre les deux approches ($7.8$ secondes par contrainte vs $40.2$ secondes par implication), ce qui nous permet d'exclure la présence de mécanisme cognitif trop complexe.
+	
+			% Conclusion sur l'analyse de l'annotation d'une contraintes.
+			\begin{leftBarSummary}
+				Mettant bout à bout ces comparaisons, et en gardant à l'esprit que ces références restent approximatives, nous pouvons conclure que (1) \textbf{l'annotation de contraintes est une tâche plus rapide qu'une annotation par label} et que (2) \textbf{cette annotation binaire ne semble pas faire pas intervenir de mécanisme cognitif lourd} (\textit{c'est une piste à explorer plus en détails pour expliquer le gain de temps observé}).
+			\end{leftBarSummary}
 		
-		% Autres analyses sans conclusions.
-		Sur d'autres aspects, nous avons analysé l'évolution de la vitesse d'annotation au cours des sessions d'annotation, en espérant observer une accélération des annotations au fur et à mesure que l'annotateur s'habitue avec la tâche, ainsi qu'un effet de fatigue pour des sessions d'annotations trop longues.
-		Cependant, aucune de nos analyses n'a montré de résultats significatifs (on peut constater la forte dispersion des résultats grâce à la figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE}).
-		Nous ne pouvons donc pas conclure sur de telles tendances.
-		\begin{leftBarAuthorOpinion}
-			Nos intuitions initiales concernaient deux points :
-			\begin{itemize}
-				\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions. D'après (CITATION: Anderson (2013)), ce temps d'adaptation pourrait se définir en trois étapes : une phase déclarative (\textit{besoin d'instructions détaillées, exécution lente et avec erreurs}), une phase associative (\textit{quelques rappels clés suffisent pour retrouver les instructions, donc gain de vitesse}) et une phase autonome (\textit{les consignes sont acquises, donc exécution rapide et sans erreur}) ;
-				\item l'intervention d'un \textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs. D'après (CITATION: Jones et al. (2015)), la fatigue est considérée comme un inconfort qui s'installe après une tâche excessive, et (CITATION: Elkosantini et Gien (2009)) décrit cet état de fatigue par des capacités de travail réduites.
-			\end{itemize}
-			Ces différentes intuitions ont aussi été remontées par les annotateurs de notre expériences, mais aucun effet significatif n'a pu être observé.
-		\end{leftBarAuthorOpinion}
-		\todo{citation temps d'adaptation: Anderson (2013)}
-		\todo{citation effet de fatigue: Jones et al. (2015), Elkosantini et Gien (2009)}
 		
-		% remarque sur le nombre médian de contraintes à annoter
-		\todo[inline]{A REDIGER: taille batch}
-		Par extension, nous ne pouvons pas non plus conclure sur la taille optimale d’échantillon de contraintes à sélection pour une session d'annotation.
-		Toutefois, ...
-			%%%% nombre médian de contraintes annotées durant les sessions d'annotation de cette expérience est de $138$ (moyenne à $170.70$), nous pouvons par exemple fixer la taille par défaut des lots à $100$ contraintes ($14.9$ minutes) ou $150$ contraintes ($20.7$ minutes).
-			%%%% Attention toutefois à ne pas faire des lots trop conséquents (au delà de $200$), d'une part pour garder l'aspect itératif et interactif de la méthode, et d'autre part pour ne pas atteindre un pallier de \textbf{fatigue de} l'annotateur.\todo{citation: Jones et al. (2015), Elkosantini et Gien (2009)}
+		%%% B. Analyse d'une session d'annotation de contraintes.
+		\paragraph{Analyse d'une session d'annotation de contraintes.}
 		
-		% Autres remontées applicatives.
-		\todo[inline]{A REDIGER: ergo appli}
-		Enfin, diverses remontées des opérateurs de l'expérience concerne l'ergonomie de l'application.
-		En effet, il est logique de penser que la conception du logiciel peut grandement impacté 
+			% Ouverture 1: Autres analyses sans conclusions.
+			Nous avons analysé l'évolution de la vitesse d'annotation au cours des sessions d'annotation, en espérant observer une accélération des annotations au fur et à mesure que l'annotateur s'habitue avec la tâche, ainsi qu'un effet de fatigue pour des sessions d'annotations trop longues.
+			Cependant, aucune de nos analyses n'a montré de résultats significatifs (on peut constater la forte dispersion des résultats grâce à la figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE}).
+			Nous ne pouvons donc pas conclure sur de telles tendances.
+			
+			\begin{leftBarAuthorOpinion}
+				Nos intuitions initiales concernaient deux points :
+				%
+				\begin{itemize}
+					\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions. D'après (CITATION: Anderson (2013)), ce temps d'adaptation pourrait se définir en trois étapes : une phase déclarative (\textit{besoin d'instructions détaillées, exécution lente et avec erreurs}), une phase associative (\textit{quelques rappels clés suffisent pour retrouver les instructions, donc gain de vitesse}) et une phase autonome (\textit{les consignes sont acquises, donc exécution rapide et sans erreur}) ;
+					\item l'intervention d'un \textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs. D'après (CITATION: Jones et al. (2015)), la fatigue est considérée comme un inconfort qui s'installe après une tâche excessive, et (CITATION: Elkosantini et Gien (2009)) décrit cet état de fatigue par des capacités de travail réduites.
+				\end{itemize}
+				%
+				Ces différentes intuitions ont aussi été remontées par les annotateurs de notre expériences, mais aucun effet significatif n'a pu être observé.
+			\end{leftBarAuthorOpinion}
+			\todo{citation temps d'adaptation: Anderson (2013)}
+			\todo{citation effet de fatigue: Jones et al. (2015), Elkosantini et Gien (2009)}
+		
+			% Ouverture 2: Remarque sur le nombre maximal moyen de contraintes à annoter.
+			Par extension, nous ne pouvons pas non plus conclure sur la taille optimale d’échantillon de contraintes à sélectionner pour une session d'annotation.
+			Dans nos précédentes études, nous avions arbitrairement fixé la taille de lot à $50$ pour bénéficier d'itérations brèves, permettant à l'algorithme de \textit{clustering} de l'améliorer régulièrement avec les dernières contraintes.
+			Mais des petits lots d'annotation démultiplient le nombre d'itérations à réaliser, et donc le nombre d'algorithmes à exécuter.
+			Il serait donc judicieux d'adapter le nombre d'annotations à réaliser pour d'améliorer l'expérience utilisateur en situation réelle de l'opérateur.
+			Malheureusement, aucun repère significatif ne peut être déduit de nos résultats pour prédire la fin d'un temps d'adaptation ou le début d'un effet de fatigue.
+			
+			Afin de proposer tout de même un ordre de grandeur de taille de lot, nous pouvons nous intéresser au nombre moyen de contraintes annotées lors des sessions réalisées par les opérateurs de notre expérience.
+			Bien que ces informations n'ont pas été collectées initialement à cette fin, on peut supposer que les opérateurs ont interrompu leur session pour se reposer (\textit{par fatigue, ennui, agacement, ...}) ou répondre à une autre sollicitation (\textit{intervention d'un collègue, mail important, pause café, ...})
+			Après un entretien avec les opérateurs de notre expérience, il semble y avoir deux possibilités : soit l'opérateur ne se fixait pas d'objectif et s'arrêtait par fatigue ; soit il se fixait un objectif (\textit{de nombre ou de durée}), mais adaptait son prochain objectif en fonction de la fatigue ressentie en fin de session.
+			Dans les deux cas, nous pouvons faire l'hypothèse que le nombre moyen d'annotation par session tend à représenter une borne supérieure de la taille maximale d'un lot à considérer pour ne pas entamer l'effet de fatigue.
+			Sur l'expérience réalisée, cette moyenne est de $170.70$ contraintes annotées par session (écart-type: $106.37$, erreur standard: $13.19$).
+			En prenant en compte une marge d'erreur pour minimiser ce résultat, nous retiendrons $150$ contraintes.
+			
+			% Conclusion sur l'analyse d'une session d'annotation de contraintes.
+			\begin{leftBarSummary}
+				Pour une session d'annotation, \textbf{nous conseillons une taille d'échantillon entre $50$ et $150$ contraintes}.
+				Attention aux échantillons trop petits qui multiplient le nombre d'itérations à réaliser ;
+				Attention aussi aux échantillons trop gros qui peuvent introduire un effet de fatigue chez l'opérateur et casser la dynamique d'interactions avec la machine.
+			\end{leftBarSummary}
+			
+
+		%%% C. Analyse des fonctionnalité de l'application d'annotation
+		\paragraph{Analyse des fonctionnalité de l'application d'annotation.}
+		
+			% Ouverture 3: Autres remontées applicatives.
+			Pour finir cette discussion, nous nous intéressons à l'utilisation du logiciel par nos opérateurs au cours de cette étude.
+			En effet, il est logique de penser que la conception de l'application et les fonctionnalités qu'elle dispose peut grandement impacter l'expérience utilisateur de notre méthodologie de \textit{clustering} itératif.
+			Un entretien avec les opérateurs a permis de remonter plusieurs pistes d'amélioration sur son ergonomie.
+			
+			Un premier point concerne l'affichage des textes d'une contraintes.
+			Comme montré en figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}, nous avions choisi d'affichée des données normalisées à l'écran pour masquer le bruit provoqué par les accents, les majuscules, la ponctuation.
+			Bien que cette fonctionnalité peut servir pour des textes bruts (issues de conversation clients ou de forum par exemple), cela a plutôt nuit à la compréhension des données par les opérateurs.
+			Nous avons donc envisager de laisser la données brutes à disposition, dans une infobulle ou grâce à une option permettant d'interchanger le format des données.
+			
+			Une seconde proposition concerne l'ordre des contraintes à annoter.
+			Nous pouvons facilement admettre que la compréhension rapide d'un grand nombre de texte est un tâche pénible.
+			Pour soulager les opérateurs et limiter le nombre de transitions, nous avons trier les contraintes par ordre alphabétique.
+			Ainsi, toutes les contraintes associées à une même donnée peuvent être traitées à la suite.
+			Cette solution permet de limiter le nombre de changement de contexte et peut faciliter la caractérisation d'une similitude en analysant à la chaîne plusieurs données du même type.
+			A cet effet, une option e tri à été ajouté sur la liste de contraintes à traiter (cf. figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}).
+
+			Enfin, une dernière idée concerne l'affichage des données à annoter.
+			Nous avions jusqu'à présent considérer l'annotation entre deux données (cf. figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}), mais il peut être judicieux d'afficher plusieurs données à caractériser simultanément.
+			Une telle fonctionnalité permettrait ainsi de regrouper rapidement un grand nombre de données similaires ou de distinguer avec moins d'ambiguïté certaines données en s'appuyant sur leur voisinage.
+			
+			\begin{leftBarAuthorOpinion}
+				Ces différentes évolutions sont en cours d'analyse ou déjà intégrés dans l'application que nous proposons.
+			\end{leftBarAuthorOpinion}
 	
 
 	%%%
@@ -413,7 +512,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{vect.tfidf})~[s]~
-				\propto~-9.16 \cdot 10^{-5} \cdot \texttt{dataset\_size}
+				\propto~9.16 \cdot 10^{-5} \cdot \texttt{dataset\_size}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (vect.frcorenewsmd).
@@ -444,7 +543,7 @@
 			% Remarques: hiérarchique trop long.
 			\begin{leftBarWarning}
 				Plusieurs exécutions des algorithmes de type \textit{hiérarchique} ont été annulées pour les jeux données de tailles supérieures à $4~000$ car la durée excédé plusieurs heures.
-				Nous limitons dons l'analyse de \texttt{clust.hier.sing}, \texttt{clust.hier.comp}, \texttt{clust.hier.avg} et \texttt{clust.hier.ward} aux tailles de $1~000$ à $3~000$.
+				Nous limitons donc l'analyse de \texttt{clust.hier.sing}, \texttt{clust.hier.comp}, \texttt{clust.hier.avg} et \texttt{clust.hier.ward} aux tailles de $1~000$ à $3~000$.
 			\end{leftBarWarning}
 			
 			% Modélisation du temps de calcul (clust.kmeans.cop).
@@ -464,7 +563,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.sing})~[s]~
-				\propto~-5.00 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\propto~5.00 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.hier.comp).
@@ -474,7 +573,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.comp})~[s]~
-				\propto~-4.99 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\propto~4.99 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.avg).
@@ -484,7 +583,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.avg})~[s]~
-				\propto~-8.51 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\propto~8.51 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 
 			% Modélisation du temps de calcul (clust.hier.ward).
@@ -494,7 +593,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{clust.hier.ward})~[s]~
-				\propto~-5.30 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
+				\propto~5.30 \cdot 10^{-4} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (clust.spec).
@@ -530,7 +629,7 @@
 			%
 			\begin{equation}
 				\texttt{computation\_time}(\texttt{samp.rand.full})~[s]~
-				\propto~-8.20 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
+				\propto~8.20 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{2}
 			\end{equation}
 			
 			% Modélisation du temps de calcul (samp.rand.same).
@@ -614,20 +713,22 @@
 			\end{leftBarInformation}
 			
 			% Cas du prétraitement + vectorisation + échantillonnage.
-			En ce qui concerne les tâches de prétraitements (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}), de vectorisation (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}), et d'échantillonnage de contraintes (cf. figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}) ont des complexités presque négligeables au regard des temps d'exécution du \textit{clustering} (pour $5~000$ données : moins de $2$ minute contre près de $12.1$ minutes pour \texttt{clust.kmeans.cop} et près de $3.5$ heures pour \texttt{clust.hier.sing}).
-			Nous maintenons donc les paramétrages obtenus pour ces tâches en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} sans analyses complémentaires.
+			En ce qui concerne les tâches de prétraitements (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}), de vectorisation (figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}), et d'échantillonnage de contraintes (cf. figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}) ont des complexités presque négligeables en représentant moins de $10$\% des temps d'exécution du \textit{clustering} (pour $5~000$ données : moins de $1$ minute pour les trois algorithmes, contre $12.1$ minutes pour \texttt{clust.kmeans.cop} et $3.5$ heures pour \texttt{clust.hier.sing}).
+			Nous maintenons donc les paramétrages obtenus pour ces tâches en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} sans analyses complémentaires, et nous utiliserons l'estimation temporelle du \textit{clustering} \texttt{clust.kmeans.cop} majorée de $10$\%.
 			
 			% Conclusion.
-			Pour conclure, dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure}
-			\footnote{$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}}
-			avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
-			On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $2.6$ minutes pour $1~000$ données ; environ $13.3$ minutes pour $5~000$ données.} :
-			%
-			\begin{equation}
-				\label{equation:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PARAMETRAGE-FAVORI}
-				\texttt{computation\_time}(\texttt{settings.favorite})~[s]~
-				\propto~1.52 \cdot 10^{-1} \cdot \texttt{dataset\_size} + 1.43 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2}
-			\end{equation}
+			\begin{leftBarSummary}
+				Dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure}
+				\footnote{$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}}
+				avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $2.8$ minutes pour $1~000$ données ; environ $14.5$ minutes pour $5~000$ données.} :
+				%
+				\begin{equation}
+					\label{equation:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PARAMETRAGE-FAVORI}
+					\texttt{computation\_time}(\texttt{settings.favorite})~[s]~
+					\propto~1.67 \cdot 10^{-1} \cdot \texttt{dataset\_size}
+				\end{equation}
+			\end{leftBarSummary}
 	
 	%%%
 	%%% Subsection 4.3.3: Étude du nombre de contraintes nécessaires à la convergence vers une vérité terrain pré-établie en fonction de la taille du jeu de données 
@@ -768,8 +869,10 @@
 			
 			% Discussion générale sur la pente.
 			On peut constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.15$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
-			\todo[inline]{A REDIGER: Ca aurait pu être pire (cf. notes de l'auteur)}
-			\todo[inline]{A REDIGER: Toutefois, ça parait beaucoup et ça pourrait gêner... cf. 4.3.4}
+			À première vue, une telle estimation peut être décourageante, car caractériser $15~750$ contraintes pour un jeu de $5~000$ données représente une lourde charge : environ $34$ heures d'annotation d'après l'équation~\ref{equation:4.3.1-ETUDE-COUT-COUTS-TEMPS-ANNOTATION} !
+			Néanmoins, comme le nombre de contraintes possibles évolue en $ \mathcal{O}(\texttt{dataset\_size}) $, cette estimation aurait pu être bien pire et représenter $12~497~500$ contraintes (cf. figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES} dans notre précédente précédente).
+			Mieux encore, le nombre théorique minimal moyen de contraintes à annoter pour $5~000$ données n'est que $2.55$ fois plus faible que notre estimation ($6~175$ vs $15~750$, cf. notre précédente précédente), alors que cette borne minimale nécessite un échantillonnage "\textit{parfait}" permettant d'identifier le chemin minimal parcourant les clusters.
+			Nous pouvons donc relativiser l'estimation faite avec l'équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES} et en conclure que notre méthode un nombre de contraintes raisonnable à annoter.
 			
 			% Influence du jeu de données.
 			Bien évidemment, une telle estimation est sensible au jeu de données utilisé comme référence (cf. figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}).
@@ -802,10 +905,10 @@
 				\begin{cases}
 					% Computation time.
 					\texttt{computation\_time}~[s]&
-						~\propto~1.52 \cdot 10^{-1} \cdot \texttt{dataset\_size} + 1.43 \cdot 10^{-6} \cdot \texttt{dataset\_size}^{2} \\
-					% Annotatim time.
+						\propto~1.67 \cdot 10^{-1} \cdot \texttt{dataset\_size}\\
+					% Annotation time.
 					\texttt{annotation\_time}~[s]&
-						~\propto~7.77 \cdot \texttt{batch\_size} \\
+						~\propto~7.8 \cdot \texttt{batch\_size} \\
 					% One iteration time.
 					\texttt{one\_iteration\_time}~[s]&
 						~\propto~\texttt{computation\_time} + \texttt{annotation\_time} \\
