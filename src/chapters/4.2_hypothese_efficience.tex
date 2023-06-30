@@ -27,7 +27,7 @@
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
-			\includegraphics[width=0.8\textwidth]{figures/hypotheses-02-efficience}
+			\includegraphics[width=0.95\textwidth]{figures/hypotheses-02-efficience}
 			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 2/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
 			\label{figure:4.2-HYPOTHESE-EFFICIENCE}
 		\end{figure}
@@ -91,11 +91,11 @@
 			En s'appuyant sur les résultats précédemment obtenus,
 			nous allons analyser l'influence des différentes tâches employées (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) et de leurs paramètres sur la vitesse de convergence vers la vérité terrain.
 			% Description implémentation de l'interactive clustering.
-			Nous utilisons toujours le jeu de données \texttt{bank cards (v1.0.0)} (cf. annexe~\ref{annex:C.1-DATASET-BANK-CARDS}) comme vérité terrain, sur lequel nous testons $192$ combinaisons de paramétrage, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
+			Nous utilisons à nouveau le jeu de données \texttt{Bank Cards (v1.0.0)} (cf. annexe~\ref{annex:C.1-DATASET-BANK-CARDS}) comme vérité terrain, sur lequel nous testons $192$ combinaisons de paramétrage, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
 			Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}.
 			
 			% Description de l'évaluation et Seuils d'évaluation.
-			Comme lors de l'étude sur la convergence de la méthode, nous nous intéresserons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinerons notre évaluation en portant attention aux trois seuils d'annotations suivants :
+			Comme lors de l'étude sur la convergence de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 			\begin{enumerate}
 				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, section~\ref{section:4.1-HYPOTHESE-EFFICACITE}, coude de la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).} ;
 				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
@@ -103,7 +103,7 @@
 			\end{enumerate}
 			
 			% Description de l'analyse ANOVA.
-			Enfin, nous utiliserons une \texttt{ANOVA} à mesures répétées afin de déterminer l’effet des paramètres de notre implémentation sur le nombre d’annotations requis pour converger vers la vérité terrain.
+			Enfin, nous utilisons une \texttt{ANOVA} à mesures répétées afin de déterminer l’effet des paramètres de notre implémentation sur le nombre d’annotations requis pour converger vers la vérité terrain.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -127,7 +127,7 @@
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-partielle}
+				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-histogramme-annotation-partielle}
 				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE}
 			\end{figure}
@@ -327,7 +327,7 @@
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-suffisante}
+				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-histogramme-annotation-suffisante}
 				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE}
 			\end{figure}
@@ -526,7 +526,7 @@
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.7\textwidth]{figures/etude-efficience-histogramme-annotation-exhaustive}
+				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-histogramme-annotation-exhaustive}
 				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE}
 			\end{figure}
@@ -720,7 +720,7 @@
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=\textwidth]{figures/etude-efficience-evolution-moyenne-par-vmeasure-par-facteur}
+				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-evolution-moyenne-par-vmeasure-par-facteur}
 				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenir un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes valeurs que peuvent prendre les facteurs analysés et affichées par facteur : \textbf{(1)} prétraitement, \textbf{(2)} vectorisation, \textbf{(3)} \textit{clustering} et \textbf{(4)} échantillonnage. \\
 				Note : \textit{Le seuil d'annotation exhaustive (annoter toutes les contraintes possibles) n'étant pas exprimé en terme de \texttt{v-measure}, ce seuil n'est pas affiché ici.}}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-PAR-FACTEURS}
@@ -728,7 +728,7 @@
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.8\textwidth]{figures/etude-efficience-evolution-moyenne-5best-par-vmeasure}
+				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-evolution-moyenne-5best-par-vmeasure}
 				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenu un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}
 			\end{figure}
