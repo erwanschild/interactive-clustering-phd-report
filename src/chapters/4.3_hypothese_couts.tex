@@ -20,7 +20,7 @@
 		} » \\
 
 		% Résumé des études.
-		Afin de vérifier cette hypothèse, nous organiserons plusieurs expériences pour simuler ou déterminer ces durées : une étude du temps d'annotation par un expert métier (cf. section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}), une étude du temps de calcul des algorithmes (cf. section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}) et une étude du nombre de contraintes nécessaires (cf. section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}). Nous conclurons l'estimation du temps total d'un projet d'annotation en section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}.
+		Afin de vérifier cette hypothèse, nous organiserons plusieurs expériences pour simuler ou déterminer ces durées : une étude du temps d'annotation par un expert métier (cf. sous-section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}), une étude du temps de calcul des algorithmes (cf. sous-section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}) et une étude du nombre de contraintes nécessaires (cf. sous-section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}). Nous conclurons l'estimation du temps total d'un projet d'annotation en section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}.
 		
 		% Figure.
 		La figure~\ref{figure:4.3-HYPOTHESE-COUTS} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'un coût temporel au lieu d'un nombre abstrait d'itérations de la méthode. 
@@ -102,10 +102,13 @@
 			En effet, il faut d'abord considérer la taille moyenne des titres d'article à lire et en déduire le temps dédié à la lecture des deux textes de la contraintes.
 			En utilisant l'approximation d'une lecture silencieuse par un adulte à $238$ mots par minute (cf. CITATION)\todo{CITATION: Brysbaert, M. (2019). How many words do we read per minute? A review and meta-analysis of reading rate.} et en mesurant la taille moyenne des titre d'article à $10.1$ mots, on en déduit que le temps de lecture d'un texte est environ de $2.55$ secondes.
 			Ensuite, il convient d'intégrer la durée de traitement cognitif requis pour estimer si les deux phrases sont similaires ou discordantes.
-			À cet effet, nous retenons $600$ ms, en faisant le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf. CITATION)\todo{CITATION: Purves et al. (2008). Principles of Cognitive Neuroscience}.
+			À cet effet, nous retenons $1$ seconde
+			\footnote{Nous pourrions faire le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf. CITATION). Nous arrondissons à $1$ seconde pour garder une marge d'erreur.
+			}\todo{CITATION: Purves et al. (2008). Principles of Cognitive Neuroscience}
+			en admettant que cette tâche est rapide.
 			Enfin, nous ajoutons $1$ seconde supplémentaire pour représenter la réaction motrice (clic de bouton) et le délais applicatif (rechargement de la page).
-			Au total, nous obtenons ainsi un temps d'annotation moyen de $6.7$ secondes (ecart-type: $1.5$).
-			Bien entendu, cette durée reste approximatives, mais elle nous permet de discuter de l'ordre de grandeur à manipuler durant l'annotation.
+			Au total, nous obtenons ainsi un temps d'annotation moyen de $7$ secondes.
+			Bien entendu, cette durée reste approximative, mais elle nous permet de discuter de l'ordre de grandeur à manipuler durant l'annotation.
 			
 			% Détails de l'expérience : annotations et consignes.
 			Ensuite, un groupe de $14$ annotateurs vont annoter la sélection de $1~000$ contraintes en plusieurs sessions.
@@ -175,7 +178,7 @@
 		
 			% Affichage du temps d'annotation.
 			La figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION} représente cette modélisation du temps d'annotation en comparaison avec les mesures réalisées lors de l'expérience.
-			Pour rappel, le temps théorique estimé précédemment est de $6.7$ secondes par contrainte.
+			Pour rappel, le temps théorique estimé précédemment est de $7$ secondes par contrainte.
 			%
 			\begin{figure}[!htb]
 				\centering
@@ -225,8 +228,8 @@
 		
 			% Avantage 1: 8 secondes, c'est acceptable.
 			En premier lieu, nous voulions confirmer que l'annotation de contraintes est une tâche intuitive dont la durée est est caractéristique d'un mécanisme de réaction et non d'une réflexion.
-			Pour ce faire, nous avons estimé la durée théorique d'une annotation à $6.7$ secondes par contrainte, comprenant les temps de lecture, d'analyse de la similitude et d'action de l'opérateur, et nous avons mesuré la durée d'annotation réelle à $7.8$ secondes par contrainte.
-			Bien que l'écart constaté ($1.1$ seconde) soit compris dans les bornes d'approximation ($1.5$ seconde d'écart-type), cette différence n'est pas suffisamment insignifiante pour nous permettre d'exclure avec certitude la présence d'un mécanisme cognitif supplémentaire.
+			Pour ce faire, nous avons estimé la durée théorique d'une annotation à $7$ secondes par contrainte, comprenant les temps de lecture, d'analyse de la similitude et d'action de l'opérateur, et nous avons mesuré la durée d'annotation réelle à $7.8$ secondes par contrainte.
+			Bien que l'écart constaté ($0.8$ seconde) soit compris dans les bornes d'approximation, cette différence n'est pas suffisamment insignifiante pour nous permettre d'exclure avec certitude la présence d'un mécanisme cognitif supplémentaire.
 				
 			% Avantage 2: Dans tous les cas, 8 secondes, c'est mieux que 17 secondes ou 40 secondes.
 			Pour nous permettre de discuter du temps d'annotation mesuré et de son approximation théorique, nous utilisons utiliser plusieurs points de référence extraits de (CITATION: Snow et al (2008))\todo{CITATION: Article Cheap and Fast — But is it Good?}.
@@ -262,8 +265,8 @@
 			Nous constatons une nette différence entre les deux approches ($7.8$ secondes par contrainte vs $17.5$ secondes par donnée), cela met en avant qu'une annotation de contraintes est plus rapide qu'une annotation par label.
 			
 			% Comparaison à Task 2: (Word Similarity).
-			Ensuite, en utilisant la tâche de "\textit{caractérisation de similitude des mots}" (2.), nous pouvons confirmer que notre approximation théorique (faisant intervenir une composante \texttt{P600}) semble adaptée pour représenter un mécanisme de l'ordre de la réaction.
-			En effet, le coût très faible de la caractérisation d'une similarité entre deux mots ($2.0$ secondes par paire de mots) s'avère être en adéquation avec cette approximation ($2.1$ secondes par paire de phrases de taille $1$).
+			Ensuite, en utilisant la tâche de "\textit{caractérisation de similitude des mots}" (2.), nous pouvons confirmer que notre approximation théorique (faisant intervenir un traitement cognitif de $1$ seconde) semble adaptée pour représenter un mécanisme de l'ordre de la réaction.
+			En effet, le coût très faible de la caractérisation d'une similarité entre deux mots ($2.0$ secondes par paire de mots) s'avère être en adéquation avec cette approximation ($2.5$ secondes par paire de phrases de taille $1$).
 			
 			% Comparaison à Task 3: (Recognizing Textual Entailment).
 			Enfin, en utilisant la tâche de "\textit{reconnaissance de l'implication textuelle}" (3.), nous comparons deux annotations binaires dont une fait nettement appel à un mécanisme de réflexion (déduction logique dans une implication).
@@ -271,7 +274,7 @@
 	
 			% Conclusion sur l'analyse de l'annotation d'une contraintes.
 			\begin{leftBarSummary}
-				Mettant bout à bout ces comparaisons, et en gardant à l'esprit que ces références restent approximatives, nous pouvons conclure que (1) \textbf{l'annotation de contraintes est une tâche plus rapide qu'une annotation par label} et que (2) \textbf{cette annotation binaire ne semble pas faire pas intervenir de mécanisme cognitif lourd} (\textit{c'est une piste à explorer plus en détails pour expliquer le gain de temps observé}).
+				Mettant bout à bout ces comparaisons, et en gardant à l'esprit que ces références restent approximatives, nous pouvons conclure que (1) \textbf{l'annotation de contraintes est une tâche plus rapide qu'une annotation par label} et que (2) \textbf{cette annotation binaire ne semble pas faire pas intervenir de traitement cognitif complexe} (\textit{c'est une piste à explorer plus en détails pour expliquer le gain de temps observé}).
 			\end{leftBarSummary}
 		
 		
@@ -904,7 +907,7 @@
 		%%% Résultats.
 		\subsubsection{Synthèse des résultats}
 			
-			% Temps pour une itération (séquentielle).
+			% Equation: Temps pour une itération (séquentielle).
 			Tout d'abord, nous pouvons estimer le \textbf{temps moyen d'une itération de la méthode}, comprenant d'une part les temps d'exécution des algorithmes (\textit{prétraitement}, \textit{vectorisation}, \textit{clustering}, \textit{échantillonnage}) et d'autre part le temps d'annotation d'un lot de contraintes, grâce aux équations suivantes :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}
@@ -921,10 +924,10 @@
 				\end{cases}
 			\end{equation}
 			
-			% Nombre d'itérations.
+			% Equation: Nombre d'itérations (séquentielle).
 			Ensuite, nous sommes en mesure d'anticiper le \textbf{nombre moyen de contraintes à annoter} pour modéliser le jeu de données avec un seuil de $90$\% de \texttt{v-measure}, et donc de déduire le nombre d'itérations nécessaire de la méthode, grâce aux équations suivantes :
 			\begin{equation}
-				\label{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS}
+				\label{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL}
 				\begin{cases}
 					% Constraints number.
 					\texttt{constraints\_needed}~[\#] &
@@ -935,8 +938,8 @@
 				\end{cases}
 			\end{equation}
 			
-			% Temps total pour un projet.
-			Enfin, il suffit de combiner les deux équations~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE} et~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS} pour estimer le temps total nécessaire à un projet d'annotation utilisant le \textit{clustering} interactif (c'est-à-dire en enchaînant successivement des étapes d'échantillonnage, d'annotation et de \textit{clustering}) pour converger vers $90$\% de \texttt{v-measure} :
+			% Equation: Temps total pour un projet (séquentielle).
+			Enfin, il suffit de combiner les deux équations~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE} et~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL} pour estimer le temps total nécessaire à un projet d'annotation utilisant le \textit{clustering} interactif (c'est-à-dire en enchaînant successivement des étapes d'échantillonnage, d'annotation et de \textit{clustering}, cf. figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE} (1)) pour converger vers $90$\% de \texttt{v-measure} :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}
 				\begin{cases}
@@ -947,18 +950,10 @@
 			\end{equation}
 			
 			% Figure.
-			La figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL} représente ces estimations globales en fonction de plusieurs taille de jeu de données et plusieurs tailles de lots d'annotation.
-			\todo{Une seule figure avec la partie ouverture en annotation parallèle ?}
-			%		
-			\begin{figure}[!htb]
-				\centering
-				\includegraphics[width=0.95\textwidth]{figures/etude-temps-total-1-modelisation-sequentielle}
-				\caption{Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de la taille du jeu de données et de la taille des lots d'annotations.}
-				\label{figure:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}
-			\end{figure}
+			Ces estimations globales sont représentées sur la figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL} en fonction de plusieurs taille de jeu de données et plusieurs tailles de lots d'annotation.
 
 		%%% Discussion finale.
-		\subsubsection{Discussion}
+		\subsubsection{Discussion du coût total}
 		
 			% Rappel des objectifs.
 			L'objectif de cette section consistait à déterminer les coûts relatifs à la tâche d'annotation de contraintes par un expert métier et au temps d'exécution des algorithmes intervenant dans notre implémentation du \textit{clustering} interactif.
@@ -969,32 +964,73 @@
 			Enfin, pour atteindre cet objectif de \texttt{v-measure}, le nombre moyen de contraintes à annoter avec notre méthodologie semble rester linéairement proportionnel à la taille du jeu de données à modéliser, ce qui est encourageant au regard de la combinatoire de contraintes possibles.
 			
 			% Annonce des résultats : c'est long !
-			La mise en commun de ces résultats se retrouvent dans les équations~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}, \ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS} et \ref{equation:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}.
+			La mise en commun de ces résultats se retrouvent dans les équations~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}, \ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL} et \ref{equation:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}.
 			Comme le nombre de données à annoter est inversement proportionnel au nombre d'itération à réaliser, nous avons le dilemme suivant : soit nous annotons de petits lots ($50$ contraintes) pour rapidement intégrer les contraintes et permettre à l'annotateur de se reposer régulièrement, mais ce dernier va en contrepartie devoir attendre plus souvent la fin des exécutions du \textit{clustering} ; soit nous annotons des lots plus conséquents ($150$ contraintes) pour diminuer le nombre d'itérations et exécuter moins de \textit{clustering}, mais cela risque d'épuiser l'opérateur avec des grosses charges d'annotation.
-			Dans les deux cas, \textbf{le coût total semble élevé} : pour un jeu de $5~000$ points de données, il faut entre $59$ heures de travail en annotant par lots de $150$ contraintes (\textit{$105$ itérations, total de $34$ heures d'annotations en gros lots et $25$ heures d'exécution}) et $110$ heures de travail avec des lots de taille $50$ (\textit{$315$ itérations, total de $34$ heures d'annotations en petits lots et $76$ heures d'exécution}).
-			En considérant un journée de travail de $7$, cela représente une charge contenue entre $9$ et $16$ jours pour avoir un jeu de donnée fiable à $90$\% de \texttt{v-measure}.
-			Nous estimons arbitrairement à $1$ jour supplémentaire ce coût pour corriger le résultat obtenu et traiter les $10$\% de \texttt{v-measure} manquant.
+			Dans les deux cas, \textbf{le coût total semble élevé} : pour un jeu de $5~000$ points de données, et avec des tailles d'échantillons compris entre $50$ et $150$ contraintes, il faut entre $59$ et $110$ heures de travail (\textit{$34$ heures d'annotations et entre $25$ et $76$ heures d'attente de la fin d'exécution d'algorithmes suivant la taille des lots}).
+			En considérant une journée de travail de $7$ heures, cela représente une charge contenue entre $8.4$ et $15.7$ jours pour avoir un jeu de donnée fiable à $90$\% de \texttt{v-measure}.
+			Pour finir, nous ajoutons $1$ jour pour combler l'écart théorique de $10$\% de \texttt{v-measure} en corrigeant manuellement le résultat obtenu, et $1$ jour supplémentaire pour interpréter et nommer chaque \textit{cluster}.
+			Au final, pour un ensemble de $5~000$ données, il faut donc entre $10.4$ et $17.7$ jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie basée sur le \textit{clustering} interactif.
 			
-			% Critique du résultat : comparaison avec une annotation classique, avoir plusieurs annotateurs, ...		
-			\todo[inline]{A REDIGER: (1) Critique du résultat : comparaison avec une annotation classique, avoir plusieurs annotateurs, ...}
-			\todo[inline]{A REDIGER: (2) Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering}
+			% Critique du résultat : comparaison avec une annotation classique, avoir plusieurs annotateurs, ...
+			Pour critiquer l'approximation que nous avons faite lors de cette section, nous essayons de la comparer le temps nécessaire qu'il aurait fallu à un projet d'annotation traditionnelle, comme décrit en section (REFERENCE)\todo{ref: chapitre 3} et en figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE} (1).
+			En nous basant sur un ensemble de $5~000$ données à annoter, nous estimons qu'il faut :
+			$1$ jour de travail pour définir une représentation des données en modèle de classification ;
+			$4$ jours de travail pour annoter $5~000$ données (à raison de $20$ secondes par données, estimation haute inspirée de (CITATION: Pradhan et al. (2007)) \todo{CITATION: Pradhan et al. (2007) SemEval-2007 Task 17: English Lexical Sample, SRL and All Words} où la "\textit{désambiguïsation du sens des mots}", présentée comme une tâche de classification, demande $17.5$ secondes par données) ;
+			$2$ jours de marge d'erreur pour changer de modèle de représentation s'il ne semble pas adapté aux données en cours d'annotation.
+			Au total, nous estimons donc qu'il faut $7$ jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
+			En l'état, nous pouvons donc conclure que le \textit{clustering} interactif que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($10.4$ à $17.7$ jours vs $7$ jours), ce qui peut être un frein à son utilisation en situation réelle.
+			
+			% Pistes d'amélioration : Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering, ...
+			Afin d'accélérer la phase d'annotation et de diminuer le nombre d'itérations, il est bien entendu possible d'augmenter la taille des échantillons de contraintes à annoter ou d'ajouter plusieurs opérateurs.
+			Cependant, une telle solution ne permet toujours pas d'être compétitif avec l'annotation traditionnelle si cette dernière dispose aussi de plusieurs opérateurs (\textit{avec $2$ annotateurs : de $8.5$ à $15.3$ jours vs $5$ jours ; avec $4$ annotateurs : de $6.8$ à $14.1$ jours vs $4$ jours}).
+			Une autre piste, plus prometteuse, consiste plutôt à adapter notre méthode pour exploiter les temps d'attente lors de l'exécution d'un \textit{clustering}.
+			
 
 		%%% Ouverture
-		\subsection{Ouverture}
+		\subsection{Ouverture vers une annotation en parallèle du \textit{clustering}}
 		
-			% Idée : paralléliser annotation et clustering !
-			\todo[inline]{A REDIGER: (1) Idée : paralléliser annotation et clustering !}
+			% Idée : Optimiser le temps d'attente.
+			Notre méthodologie d'annotation basée sur le \textit{clustering} interactif est pénalisée par la séquentialité des actions à réaliser.
+			En effet, l'annotateur doit attendre la fin d'un de l'exécution des algorithmes de \textit{clustering} et d'échantillonnage avant de pouvoir travailler.
+			D'après nos précédentes estimations sur un jeu de $5~000$ données, l'opérateur doit attendre entre $25$ et $76$ heures en fonction de la taille de lots d'annotation choisie, et une idée à explorer consiste à optimiser ce temps d'attente.
 			
-			% Résultats : linéaire, 25 x dataset size, 5 + 1 jours de travail
-			\todo[inline]{A REDIGER: (2) Résultats : linéaire, 25 x dataset size, 5 + 1 jours de travail}
+			% Réalisation : Paralléliser annotation et clustering !
+			L'amélioration envisagée consiste à \textbf{réaliser l'annotation de contraintes en parallèle de l'exécution du \textit{clustering}}, comme représenté dans la figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE} (2).
+			Dans cette version, l'échantillonnage se base toujours sur le résultat du \textit{clustering} de l'itération précédente, mais le \textit{clustering} intègre les contraintes annotées avec un décalage d'une itération.
+			Un tel changement permet de limiter le temps d'attente de l'opérateur et d'optimiser l’enchaînement des algorithmes.
+
+			% Figure architecture.
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle-vs-parallele}
+				\caption{Schéma comparatif des architectures du \textit{clustering} interactif : \textbf{(1)} représente la version séquentielle initialement présentée en chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF} où le \textit{clustering} s'adapte avec les annotation de l'itération en cours ; \textbf{(2)} représente l'évolution en mode \textit{parallèle} où le \textit{clustering} s'adapte avec les annotations de l'itération précédente (décalage d'une itération).}
+				\label{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}
+			\end{figure}
 			
-			% Temps pour une itération (parallèle).
+			% Equation : Adaptation du Temps pour une itération (parallèle).
+			Avec cette version, le temps nécessaire à une itération correspond à la durée la plus longue entre le temps d'annotation et le temps de calcul des algorithmes.
+			Nous pouvons donc adapter l'équation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE} par l'équation suivante :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-PARALLELE}
 				\begin{cases}
+					% Computation time.
+					\texttt{computation\_time}~[s]&
+						~\propto~0.17 \cdot \texttt{dataset\_size}\\
+					% Annotation time.
+					\texttt{annotation\_time}~[s]&
+						~\propto~7.8 \cdot \texttt{batch\_size} \\
 					% One iteration time (parallel).
 					\texttt{iteration\_time(parallel)}~[s]&
 						~\propto~max(\texttt{computation\_time}, \texttt{annotation\_time}) \\
+				\end{cases}
+			\end{equation}
+			
+			% Equation : Adaptation du Nombre d'itérations (parallèle).
+			Ensuite, afin de limiter les pertes de temps (humain et machine), nous pouvons choisir une taille de lot d'annotation rendre les deux durées équivalentes.
+			Nous déduisons donc les changements suivants dans l'équation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL} :
+			\begin{equation}
+				\label{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-PARALLELE}
+				\begin{cases}
 					% Batch size.
 					\texttt{optimal\_batch\_size}~[\#]&
 						~\propto~\frac{\texttt{computation\_time}}{7.8}
@@ -1003,24 +1039,26 @@
 					\texttt{iterations\_needed}~[\#] &
 						~\propto~\frac{\texttt{nb\_constraints}}{\texttt{optimal\_batch\_size}}
 						~\propto~144.5 \\
-					% Total time (parallel).
-					\texttt{total\_time(parallel)}~[s] &
-						~\propto~\texttt{iteration\_time} \cdot \texttt{iterations\_needed}
 				\end{cases}
 			\end{equation}
 			
+			% Equation: Adaptation du Temps total pour un projet (parallèle).
+			Enfin, il suffit de combiner les deux équations~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-PARALLELE} et~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-PARALLELE} pour estimer le temps total nécessaire à un projet d'annotation pour converger vers $90$\% de \texttt{v-measure} utilisant la version parallèle du \textit{clustering} interactif :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-TOTAL-PARALLELE}
 				\begin{cases}
 					% Total time (parallel).
+					\texttt{total\_time(parallel)}~[s] &
+						~\propto~\texttt{iteration\_time} \cdot \texttt{iterations\_needed} \\
 					\texttt{total\_time(parallel)}~[s] &
 						~\propto~24.6 \cdot \texttt{dataset\_size}
 				\end{cases}
 			\end{equation}
 			
 			% Figure.
-			La figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-PARALLEL} représente ces estimations globales mises à jour, en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).
-			\todo{Une seule figure avec la partie ouverture en annotation parallèle ?}
+			Ces estimations mises à jour sont représentées sur la figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL} en fonction de plusieurs taille de jeu de données, et permettent de faire la comparaison avec la version séquentielle initialement présentée.
+			
+			% Figures.
 			%		
 			\begin{figure}[!htb]
 				\centering
@@ -1028,9 +1066,27 @@
 				\caption{Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).}
 				\label{figure:4.3.4-ETUDE-COUT-TOTAL-PARALLEL}
 			\end{figure}
+			
+			% Résultats et discussion : linéaire, 25 x dataset size : c'est acceptable !
+			Nous pouvons déjà remarquer que le coût d'annotation du projet devient linéaire en nombre de données (pente de $24.6$ secondes) et nécessite un nombre fixe de $145$ itérations.
+			En reprenant une base de $5~000$ données et une marge de $2$ jours pour corriger et nommer les \textit{clusters}, cela représente $6.8$ jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $7$ jours de travail d'après nos approximations.
+			De plus, si nous ajoutons des plusieurs opérateurs, cette version parallèle reste compétitive (\textit{avec $2$ annotateurs : $4.5$ jours vs $5$ jours ; avec $4$ annotateurs : $3.3$ jours vs $4$ jours}).
+			Cette découverte est très encourageante, car cela confirme qu'une méthodologie basée sur notre implémentation du \textit{clustering} interactif \textbf{permet d'obtenir une base d'apprentissage avec un coût temporel équivalent à un projet traditionnel} utilisant une annotation par label.
+			Cette méthode est d'autant plus intéressante qu'elle fait intervenir un mécanisme d'annotation rapide et intuitif pour un expert métier.
+			
+			% Conclusion.
+			\begin{leftBarSummary}
+				Dans cette section, nous avons pu déduire que :
+				\begin{itemize}
+					\item L'annotation d'une contrainte nécessite en moyenne $8$ secondes : cette tâche est rapide et intuitive (cf. sous-section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}) ;
+					\item Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Ce paramétrage a un coût moyen de $0.17 \cdot \texttt{dataset\_size}$ secondes (cf. sous-section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}) ;
+					\item Une adaptation optimale de notre méthodologie consiste à paralléliser l'exécution du \textit{clustering} et l'annotation de contraintes afin de limiter les temps d'attente inutiles. Une telle méthode a un coût moyen de $24.6 \cdot \texttt{dataset\_size}$ pour atteindre $90$\% de \texttt{v-measure}, auquel on ajoute $2$ jours de travail pour raffiner les clusters et les nommer. Ce temps est compétitif à une annotation traditionnelle (cf. sous-section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}) ;
+					\item Cette étude met en avant l'intérêt des interactions homme-machine : (1) l'expert métier se recentre sur son domaine de compétence avec une caractérisation proche de ses connaissances ("\textit{les données sont-elles similaires ?}") et (2) la machine optimise l'intervention de l'expert pour que ce dernier soit toujours pertinent dans ses contributions.
+				\end{itemize}
+			\end{leftBarSummary}
 		
-		
-		\todo[inline]{A REDIGER : TRANSISTION VERS PERTINENCE: La notion de v-measure est impossible à calculer en situation réelle}
-		\todo[inline]{A REDIGER: TRANSISTION VERS RENTABILITE: Estimer si une nouvelle itération peut être rentable}
-
-
+		% Transition: Vers Pertinence et rentabilité.
+		Dans les sections suivantes, nous allons nous intéressé à l'analyse des résultats de cette méthode.
+		En effet, en situation réelle, nous n'avons pas accès à la vérité terrain car elle est justement en cours de construction.
+		Il nous est donc impossible d'estimer notre seuil de \texttt{v-measure}, et donc incapable de s'arrêter à $90$\% de \texttt{v-measure}.
+		Dans les prochaines sections, Nous nous intéressons donc à l'estimation de la valeur métier d'un résultat de \textit{clustering} (cf. hypothèse de pertinence en section~\ref{section:4.4-HYPOTHESE-PERTINENCE}) et à la définition de cas d'arrêt agnostique d'une vérité terrain  (cf. hypothèse de rentabilité en section~\ref{section:4.5-HYPOTHESE-RENTABILITE}).
