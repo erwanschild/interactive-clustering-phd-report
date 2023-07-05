@@ -1,39 +1,132 @@
-\section{Hypothèse de rentabilité : « \textit{quel gain à chaque itération ?} »}
+\section{Hypothèse de rentabilité}
 \label{section:4.5-HYPOTHESE-RENTABILITE}
 
+	%%% Introduction / Transition.
+	Jusqu'à présent, nous avons analysé le cas d'arrêt de notre méthodologie d'annotation basée sur le \textit{clustering} interactif à l'aide d'une comparaison à la vérité terrain.
+	En effet, nous utilisions un seuil de $90$\% de \texttt{v-measure}, caractérisant une annotation dite "partielle".
+	Cependant, une telle référence n'est pas accessible en situation réelle (l'objectif de notre méthode est précisément de la construire).
+	Nous devons donc nous intéresser à d'autres moyens d'estimer ce cas d'arrêt de notre méthode.
+	Ainsi, nous aimerions vérifier l'hypothèse suivante :
+	
 	%%% Formulation des hypothèses:
-	Nous aimerions vérifier l'hypothèse suivante :
-	\todo{à reformuler}
-
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse de rentabilité}~\faVial,
 		colback=colorTcolorboxHypothesis!15,  % gray!20
 		colframe=colorTcolorboxHypothesis!75,  % gray!50!black!75,
 		width=\linewidth
 	]
-		« Il est possible d'estimer quand méthodologie d'annotation basée sur le \textit{clustering} interactif \textbf{a convergé} vers un résultat satisfaisant (cf. figure~\ref{figure:4.5-HYPOTHESE-RENTABILITE}. »
+		« \textbf{
+			En cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d’apprentissage satisfaisante.
+		} » \\
 		
+		% Résumé de l'étude.
+		Afin de vérifier cette hypothèse, nous explorons deux approches : l'accord entre l'annotation de l'expert et le \textit{clustering} sur lequel est basé l'échantillon d'annotation (cf. sous-section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}) et la différence de résultats de \textit{clustering} entre deux itérations de la méthode (cf. sous-section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}).
 		
+		% Figure.
+		La figure~\ref{figure:4.5-HYPOTHESE-RENTABILITE} illustre cette hypothèse et l'espoir de pouvoir trouver des cas d'arrêt de la méthode.
+		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-05-rentabilite}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).}
 			\label{figure:4.5-HYPOTHESE-RENTABILITE}
 		\end{figure}
 
 	\end{tcolorbox}
 	
+	
 	%%%
-	%%% Subsection 4.5.1: Étude d'estimation des cas d'arrêts de la méthode
+	%%% Subsection 4.5.1: Etude de l'accord entre annotation et \textit{clustering}
 	%%%
-	\subsection{Étude d'estimation des cas d'arrêts de la méthode}
+	\subsection{Etude de l'accord entre annotation et \textit{clustering}}
+	\label{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-			\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
+			\todo[inline]{A REDIGER}
+		
+			% Objectif de l'expérience.
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			\todo[inline]{A REDIGER}
+			
+			% Figure.
+			%
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/etude-rentabilite-accord-annotation}
+				\caption{Évolution de l'accord entre annotation de contraintes d'un expert et le résultat de \textit{clustering} sur lequel est basé l'échantillonnage de contraintes.
+				Les évolutions moyenne de différents paramétrages de la méthode sont exposées :
+				\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
+				\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
+				\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
+				et \textbf{(4)} paramétrage favori.
+				} 
+				\label{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}
+			\end{figure}
 
 		%%% Discussion
 		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques.
+			\todo[inline]{A REDIGER: C'est assez instable, cf. échantillonnage optomisé}
+			
+			% Conclusions et suggestion.
+	
+	
+	
+	%%%
+	%%% Subsection 4.5.2: Etude de la différence de résultats de \textit{clustering} entre deux itérations
+	%%%
+	\subsection{Étude de la différence de résultats de \textit{clustering} entre deux itérations}
+	\label{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}
+	
+		%%% Protocole expérimental.
+		\subsubsection{Protocole expérimental}
+			\todo[inline]{A REDIGER}
+		
+			% Objectif de l'expérience.
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
+
+		%%% Résultats
+		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			\todo[inline]{A REDIGER}
+			
+			% Figure.
+			%
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/etude-rentabilite-similarite-clustering}
+				\caption{Évolution de la différence de résultats entre deux itérations de \textit{clustering}.
+				Les évolutions moyenne de différents paramétrages de la méthode sont exposées :
+				\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
+				\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
+				\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
+				et \textbf{(4)} paramétrage favori.
+				}
+				\label{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}
+			\end{figure}
+
+		%%% Discussion
+		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques.
+			\todo[inline]{A REDIGER: Ca montre quand plus rien bouge, fixer un seuil}
+			
+			% Conclusions et suggestion.

@@ -1,6 +1,5 @@
 \section{Évaluation de l'hypothèse sur les coûts}
 \label{section:4.3-HYPOTHESE-COUTS}
-% : « \textit{combien dois-je investir ?} »
 
 	%%% Introduction / Transition.
 	Dans les deux sections précédentes, nous avons estimé le paramétrage du \textit{clustering} interactif le plus efficient pour atteindre $90$\% de \texttt{v-measure} avec la vérité terrain, correspondant à ce que nous appelons une annotation partielle.
@@ -16,7 +15,8 @@
 	]
 		% Hypothèse.
 		«\textbf{
-			Il est possible d'\textbf{estimer les coûts nécessaires} d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable. Nous étudierons en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
+			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable.
+			Nous étudierons en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
 		} » \\
 
 		% Résumé des études.
@@ -25,11 +25,10 @@
 		% Figure.
 		La figure~\ref{figure:4.3-HYPOTHESE-COUTS} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'un coût temporel au lieu d'un nombre abstrait d'itérations de la méthode. 
 		%
-		
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-03-couts}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).}
 			\label{figure:4.3-HYPOTHESE-COUTS}
 		\end{figure}
 
@@ -93,7 +92,7 @@
 			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
 			Pour plus de détails, consultez l'annexe~\ref{annex:C.2-DATASET-MLSUM-SUBSET-SCHILD}.
 			
-			% Détails de l'expérience : sélection des contraintes à annoter. 
+			% Détails de l'expérience : sélection des contraintes à annoter.
 			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter.
 			Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas le nombre d'itérations de la méthode), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).
 			
@@ -1064,7 +1063,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-total-2-modelisation-parallele}
 				\caption{Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).}
-				\label{figure:4.3.4-ETUDE-COUT-TOTAL-PARALLEL}
+				\label{figure:4.3.4-ETUDE-COUT-TOTAL}
 			\end{figure}
 			
 			% Résultats et discussion : linéaire, 25 x dataset size : c'est acceptable !

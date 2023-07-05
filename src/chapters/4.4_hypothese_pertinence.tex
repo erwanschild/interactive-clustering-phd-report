@@ -1,63 +1,209 @@
 \section{Hypothèse de pertinence}
 \label{section:4.4-HYPOTHESE-PERTINENCE}
-% « \textit{est-ce le résultat est exploitable ?} »
 
+	%%% Introduction / Transition.
+	Jusqu'à présent, nous avons analysé la performance et l'évolution des résultats de notre implémentation du \textit{clustering} interactif à l'aide d'une vérité terrain (cf. calcul de \texttt{v-measure}).
+	Cependant, une telle référence n'est pas accessible en situation réelle (l'objectif de notre méthode est précisément de la construire).
+	Nous devons donc nous intéresser à d'autres moyens d'estimer la pertinence des bases d'apprentissages obtenus et de définir comment définir l'exploitabilité d'un résultat.
+	Ainsi, nous aimerions vérifier l'hypothèse suivante :
+	
 	%%% Formulation des hypothèses:
-	Nous aimerions vérifier l'hypothèse suivante :
-	\todo{à compléter}
-
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse de pertinence}~\faVial,
 		colback=colorTcolorboxHypothesis!15,  % gray!20
 		colframe=colorTcolorboxHypothesis!75,  % gray!50!black!75,
 		width=\linewidth
 	]
-		« La vitesse de convergence du \textit{clustering} interactif \textbf{peut être optimisée} en réglant différents paramètres. Nous étudierons l'influence du prétraitement des données, de la vectorisation des données, de l'échantillonnage des contraintes à annoter et du \textit{clustering} sous contraintes (cf. figure~\ref{figure:4.4-HYPOTHESE-PERTINENCE}. »
+		« \textbf{
+			En cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible à un expert métier d'évaluer rapidement la pertinence de la base d'apprentissage en cours de construction sans utiliser de vérité terrain.
+		} » \\
 		
+		% Résumé de l'étude.
+		Afin de vérifier cette hypothèse, nous explorons trois approches : une vérification manuelle des \textit{clusters} obtenus (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}), une étude des patterns linguistiques saillants de chaque \textit{cluster} (cf. sous-section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}), et une approche utilisant un résumé automatique des \textit{cluster} par un modèle de langue (cf. sous-section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}).
 		
+		% Figure.
+		La figure~\ref{figure:4.4-HYPOTHESE-PERTINENCE} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'une valeur métier exprimée par un expert.
+		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-04-pertinence}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 4/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 4/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).}
 			\label{figure:4.4-HYPOTHESE-PERTINENCE}
 		\end{figure}
 
 	\end{tcolorbox}
 	
+	
 	%%%
-	%%% Subsection 4.4.1: Étude de la cohérence statistique de la base d'apprentissage en cours de construction
+	%%% Subsection 4.4.1: Etude d'une vérification manuelle de la pertinence sémantique d'une base d'apprentissage
 	%%%
-	\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
+	\subsection{Étude d'une vérification manuelle de la pertinence sémantique d'une base d'apprentissage}
+	\label{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-			\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
+			\todo[inline]{A REDIGER}
+		
+			% Objectif de l'expérience.
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			\todo[inline]{A REDIGER: On peut voir 3 phases: INEXPLOITABLE / DE PLUS EN PLUS EXPLOITABLE / EXPLOITABLE ; les partiellement exploitables servent de transition.}
+			
+			% Exemple.
+			\todo[inline]{A REDIGER: tableau avec exemples ?}
+			
+			% Figure.
 			%
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-consistence}
-				\caption{Évolution du score de cohérence moyen des tentatives en fonction de leur paramétrage : \textbf{(1)} meilleur paramétrage moyen une annotation partielle (\texttt{90}\% de \texttt{v-measure}), \textbf{(2)} meilleur paramétrage moyen une annotation suffisante (\texttt{100}\% de \texttt{v-measure}), \textbf{(3)} meilleur paramétrage moyen une annotation exhaustive (annoter toutes les contraintes possibles), et \textbf{(4)} paramétrage favori (\texttt{90}\% de \texttt{v-measure} avec un coût minimal). \\
-				Note : \textit{Le score de cohérence de la vérité terrain peut varier en fonction des méthodes de prétraitements et de vectorisation utilisées.}}
-				\label{figure:4.3.1-ETUDE-PERTINENCE-CONHERENCE-ANNOTATION}
+				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-llm-check-clustering-annotation-favori}
+				\caption{Évolution de la pertinence métier moyenne d'un résultat en fonction du nombre d'itérations de la méthode.
+				La pertinence est estimée manuellement en trois niveaux (\texttt{non exploitable}, \texttt{partiellement exploitable} et \texttt{exploitable}) sur la base du contenu des \textit{clusters} et est exprimée en proportion du nombre de \textit{clusters} concernés.}
+				\label{figure:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
 			\end{figure}
 
 		%%% Discussion
 		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques expérience utilisateur.
+			\todo[inline]{A REDIGER: C'est super fastidieux, sensible à l’inattention, ...}
+			
+			% Conclusions et suggestion.
+	
 	
 	%%%
-	%%% Subsection 4.4.2: Étude de la pertinence sémentique de la base d'apprentissage en cours de construction
+	%%% Subsection 4.4.2: Etude des patterns linguistiques pertinents à l'aide de la \textit{Features Maximization}
 	%%%
-	\subsection{Étude de la pertinence sémantique de la base d'apprentissage en cours de construction}
+	\subsection{Étude des patterns linguistiques pertinents à l'aide de la \textit{Features Maximization}}
+	\label{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-			\todo[inline]{Description succincte du protocole expérimental dans l'encadré d'hypothèse ?}
+			\todo[inline]{A REDIGER}
+		
+			% Objectif de l'expérience.
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			
+			% Exemple.
+			\todo[inline]{A REDIGER: tableau avec exemples ?}
 
 		%%% Discussion
 		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques expérience utilisateur.
+			\todo[inline]{A REDIGER: C'est pas adapté pour un expert métier, mais ça peut être utilisé pour de l'affichage}
+			
+			% Exemple.
+			\todo[inline]{A REDIGER: tableau avec exemples ?}
+			
+			% Conclusions et suggestion.
+	
+	
+	
+	%%%
+	%%% Subsection 4.4.3: Etude d'un résumé automatique des \textit{clusters} à l'aide d'un modèle de langue.
+	%%%
+	\subsection{Étude d'un résumé automatique des \textit{clusters} à l'aide d'un modèle de langue}
+	\label{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
+	
+		%%% Protocole expérimental.
+		\subsubsection{Protocole expérimental}
+			\todo[inline]{A REDIGER}
+		
+			% Objectif de l'expérience.
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
+
+		%%% Résultats
+		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			\todo[inline]{A REDIGER: On peut voir 3 phases: INEXPLOITABLE / DE PLUS EN PLUS EXPLOITABLE / EXPLOITABLE ; les partiellement exploitables sont pas très présents.}
+			
+			% Exemple.
+			\todo[inline]{A REDIGER: tableau avec exemples ?}
+			
+			% Figure.
+			%
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-llm-check-resume-annotation-favori}
+				\caption{Évolution de la pertinence métier moyenne d'un résultat en fonction du nombre d'itérations de la méthode.
+				La pertinence est estimée en trois niveaux (\texttt{non exploitable}, \texttt{partiellement exploitable} et \texttt{exploitable}) sur la base du résumé automatique des \textit{clusters} par un modèle de langue et est exprimée en proportion du nombre de \textit{résumés} concernés.}
+				\label{figure:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
+			\end{figure}
+
+		%%% Discussion
+		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques expérience utilisateur.
+			\todo[inline]{A REDIGER: C'est super pratique, super accessible}
+			\todo[inline]{A REDIGER: C'est parfois un peu ambigu...}
+			
+			% Conclusions et suggestion.
+	
+	
+	%%%
+	%%% Subsection 4.4.4: Étude de la cohérence statistique de la base d'apprentissage en cours de construction
+	%%%
+	%\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
+	%\label{section:4.4.4-ETUDE-PERTINENCE-COHERENCE}
+	%
+	%	%%% Protocole expérimental.
+	%	\subsubsection{Protocole expérimental}
+	%		\todo[inline]{A REDIGER}
+	%	
+	%		% Objectif de l'expérience.
+	%		% Axiome.
+	%		% Pseudo-code.
+	%		% Détails de l'expérience.
+	%		% Référence scripts.
+	%
+	%	%%% Résultats
+	%	\subsubsection{Résultats obtenus}
+	%		\todo[inline]{A REDIGER}
+	%	
+	%		% Description statistiques.
+	%		
+	%		% Exemple.
+	%		
+	%		% Figure.
+	%		%
+	%		\begin{figure}[!htb]
+	%			\centering
+	%			\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-consistence}
+	%			\caption{Évolution du score de cohérence moyen des tentatives en fonction de leur paramétrage : \textbf{(1)} meilleur paramétrage moyen une annotation partielle (\texttt{90}\% de \texttt{v-measure}), \textbf{(2)} meilleur paramétrage moyen une annotation suffisante (\texttt{100}\% de \texttt{v-measure}), \textbf{(3)} meilleur paramétrage moyen une annotation exhaustive (annoter toutes les contraintes possibles), et \textbf{(4)} paramétrage favori (\texttt{90}\% de \texttt{v-measure} avec un coût minimal). \\
+	%			Note : \textit{Le score de cohérence de la vérité terrain peut varier en fonction des méthodes de prétraitements et de vectorisation utilisées.}}
+	%			\label{figure:4.4.4-ETUDE-PERTINENCE-COHERENCE-ANNOTATION}
+	%		\end{figure}
+	%
+	%	%%% Discussion
+	%	\subsubsection{Discussion}
+	%		\todo[inline]{A REDIGER}
+	%	
+	%		% Remaques expérience utilisateur.
+	%		
+	%		% Conclusions et suggestion.
