@@ -10,16 +10,13 @@
 	%%% Formulation des hypothèses:
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse de pertinence}~\faVial,
-		colback=colorTcolorboxHypothesis!15,  % gray!20
-		colframe=colorTcolorboxHypothesis!75,  % gray!50!black!75,
+		colback=colorTcolorboxHypothesis!15,
+		colframe=colorTcolorboxHypothesis!75,
 		width=\linewidth
 	]
 		« \textbf{
-			En cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible à un expert métier d'évaluer rapidement la pertinence de la base d'apprentissage en cours de construction sans utiliser de vérité terrain.
+			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible à un expert métier d'évaluer rapidement la pertinence de la base d'apprentissage en construction sans utiliser de vérité terrain.
 		} » \\
-		
-		% Résumé de l'étude.
-		Afin de vérifier cette hypothèse, nous explorons trois approches : une vérification manuelle des \textit{clusters} obtenus (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}), une étude des patterns linguistiques saillants de chaque \textit{cluster} (cf. sous-section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}), et une approche utilisant un résumé automatique des \textit{cluster} par un modèle de langue (cf. sous-section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}).
 		
 		% Figure.
 		La figure~\ref{figure:4.4-HYPOTHESE-PERTINENCE} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'une valeur métier exprimée par un expert.
@@ -32,19 +29,29 @@
 		\end{figure}
 
 	\end{tcolorbox}
+		
+	% Résumé de l'étude.
+	Afin de vérifier cette hypothèse, nous explorons trois approches :
+	\begin{itemize}
+		\item une \textbf{vérification par un expert} du partitionnement des données obtenus, en parcourant manuellement le contenu des \textit{clusters} et en donnant un avis sur l'exploitabilité de ces derniers (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}) ;
+		\item une analyse des \textbf{patterns linguistiques saillants} dans la base d'apprentissage à l'aide d'une stratégie de sélection des composantes principales d'un modèle (cf. sous-section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}),
+		\item et une approche utilisant un \textbf{résumé automatique de thématique} par un modèle de langue, permettant de décrire succinctement le contenu des \textit{clusters} en une phrase. (cf. sous-section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}).
+	\end{itemize}
 	
 	
 	%%%
-	%%% Subsection 4.4.1: Etude d'une vérification manuelle de la pertinence sémantique d'une base d'apprentissage
+	%%% Subsection 4.4.1: Étude d'une vérification manuelle de la valeur métier d'une base d'apprentissage par un expert
 	%%%
-	\subsection{Étude d'une vérification manuelle de la pertinence sémantique d'une base d'apprentissage}
+	\subsection{Étude d'une vérification manuelle de la valeur métier d'une base d'apprentissage par un expert}
 	\label{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
+		Afin d'estimer la pertinence d'un résultat de \textit{clustering}, notre première intuition consiste à demander l'avis d'un expert sur la base d'apprentissage en cours de construction.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
-		
-			% Objectif de l'expérience.
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
@@ -85,12 +92,13 @@
 	%%%
 	\subsection{Étude des patterns linguistiques pertinents à l'aide de la \textit{Features Maximization}}
 	\label{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
-		
-			% Objectif de l'expérience.
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
@@ -124,12 +132,13 @@
 	%%%
 	\subsection{Étude d'un résumé automatique des \textit{clusters} à l'aide d'un modèle de langue}
 	\label{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
-		
-			% Objectif de l'expérience.
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
@@ -152,7 +161,7 @@
 				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-llm-check-resume-annotation-favori}
 				\caption{Évolution de la pertinence métier moyenne d'un résultat en fonction du nombre d'itérations de la méthode.
 				La pertinence est estimée en trois niveaux (\texttt{non exploitable}, \texttt{partiellement exploitable} et \texttt{exploitable}) sur la base du résumé automatique des \textit{clusters} par un modèle de langue et est exprimée en proportion du nombre de \textit{résumés} concernés.}
-				\label{figure:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
+				\label{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
 			\end{figure}
 
 		%%% Discussion
@@ -171,12 +180,13 @@
 	%%%
 	%\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
 	%\label{section:4.4.4-ETUDE-PERTINENCE-COHERENCE}
+	%	
+	%	% Objectif de l'expérience.
+	%	\todo[inline]{A REDIGER: objectif de l'expérience}
 	%
 	%	%%% Protocole expérimental.
 	%	\subsubsection{Protocole expérimental}
 	%		\todo[inline]{A REDIGER}
-	%	
-	%		% Objectif de l'expérience.
 	%		% Axiome.
 	%		% Pseudo-code.
 	%		% Détails de l'expérience.

@@ -11,16 +11,13 @@
 	%%% Formulation des hypothèses:
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse de rentabilité}~\faVial,
-		colback=colorTcolorboxHypothesis!15,  % gray!20
-		colframe=colorTcolorboxHypothesis!75,  % gray!50!black!75,
+		colback=colorTcolorboxHypothesis!15,
+		colframe=colorTcolorboxHypothesis!75,
 		width=\linewidth
 	]
 		« \textbf{
-			En cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d’apprentissage satisfaisante.
+			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d’apprentissage satisfaisante.
 		} » \\
-		
-		% Résumé de l'étude.
-		Afin de vérifier cette hypothèse, nous explorons deux approches : l'accord entre l'annotation de l'expert et le \textit{clustering} sur lequel est basé l'échantillon d'annotation (cf. sous-section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}) et la différence de résultats de \textit{clustering} entre deux itérations de la méthode (cf. sous-section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}).
 		
 		% Figure.
 		La figure~\ref{figure:4.5-HYPOTHESE-RENTABILITE} illustre cette hypothèse et l'espoir de pouvoir trouver des cas d'arrêt de la méthode.
@@ -33,6 +30,13 @@
 		\end{figure}
 
 	\end{tcolorbox}
+		
+	% Résumé de l'étude.
+	Afin de vérifier cette hypothèse, nous explorons deux approches :
+	\begin{itemize}
+		\item l'évolution de l'\textbf{accord entre l'annotation de l'expert et le \textit{clustering}} sur lequel est basé l'échantillon d'annotation, permettant d'estimer si la machine doit encore être corrigée par l'annotateur  (cf. sous-section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}) ;
+		\item et l'évolution de la \textbf{différence entre deux \textit{clustering} successifs}, permettant de mesurer s'il y a eu des changements visibles dans le partitionnement des données après l'ajout des dernières contraintes (cf. sous-section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}).
+	\end{itemize}
 	
 	
 	%%%
@@ -40,12 +44,13 @@
 	%%%
 	\subsection{Etude de l'accord entre annotation et \textit{clustering}}
 	\label{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
-		
-			% Objectif de l'expérience.
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
@@ -89,12 +94,13 @@
 	%%%
 	\subsection{Étude de la différence de résultats de \textit{clustering} entre deux itérations}
 	\label{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
-		
-			% Objectif de l'expérience.
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.

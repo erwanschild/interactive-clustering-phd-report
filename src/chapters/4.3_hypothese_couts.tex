@@ -18,9 +18,6 @@
 			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable.
 			Nous étudierons en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
 		} » \\
-
-		% Résumé des études.
-		Afin de vérifier cette hypothèse, nous organiserons plusieurs expériences pour simuler ou déterminer ces durées : une étude du temps d'annotation par un expert métier (cf. sous-section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}), une étude du temps de calcul des algorithmes (cf. sous-section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}) et une étude du nombre de contraintes nécessaires (cf. sous-section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}). Nous conclurons l'estimation du temps total d'un projet d'annotation en section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}.
 		
 		% Figure.
 		La figure~\ref{figure:4.3-HYPOTHESE-COUTS} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'un coût temporel au lieu d'un nombre abstrait d'itérations de la méthode. 
@@ -33,6 +30,15 @@
 		\end{figure}
 
 	\end{tcolorbox}
+
+	% Résumé des études.
+	Afin de vérifier cette hypothèse, nous organisons plusieurs expériences pour simuler ou déterminer ces durées :
+	\begin{itemize}
+		\item une étude du \textbf{temps d'annotation} par un expert métier, mesuré lors d'une expérience d'annotation de contraintes faisant intervenir plusieurs opérateurs (cf. sous-section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}) ;
+		\item une étude du \textbf{temps de calcul} des algorithmes, modélisé en exécutant les différentes implémentations du \textit{clustering} interactif avec diverses valeurs d'arguments (cf. sous-section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}) ;
+		\item et une étude du \textbf{nombre de contraintes} nécessaires en fonction du nombre de données à traiter, estimé en simulant la création d'une base d'annotation avec notre méthodologie sur des jeux de données de différentes tailles (cf. sous-section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}).
+	\end{itemize}
+	Nous exposons nos conclusions sur l'estimation du \textbf{temps total} à investir et réalisons une comparaison avec une organisation plus traditionnelle d'un projet d'annotation en sous-section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}.
 	
 	
 	%%%
@@ -40,15 +46,15 @@
 	%%%
 	\subsection{Étude du temps d'annotation nécessaire pour traiter un lot de contraintes en chronométrant des opérateurs en situation réelle}
 	\label{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}
+		
+		% Objectif de l'expérience.
+		Nous voulons estimer le temps nécessaire à un opérateur pour annoter un lot de contraintes.
+		Pour cela, nous allons chronométrer plusieurs experts métiers en train d'annoter un même échantillon et modéliser le nombre de contraintes par minute, ainsi que son évolution au cours de plusieurs sessions d'annotation.
+		De plus, nous aimerions aussi confirmer que l'ajout de contraintes dans notre contexte s'apparente à une tâche "intuitive", c'est-à-dire que l'annotation se fait dans la réaction et non dans la réflexion (voir \cite{kahneman:2011:thinking-fast-slow} qui distingue un \textit{système 1} intuitif, rapide, de l'ordre de l'émotion, et un \textit{système 2} plus lent, logique et réfléchi).
+		Pour ce faire, nous estimons grossièrement le temps nécessaire à l'annotation réactive d'une contrainte, nous le comparons au temps moyen estimé lors de notre expérience, et nous nous demandons si la différence observée peut cacher un mécanisme cognitif plus complexe.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-		
-			% Objectif de l'expérience.
-			Nous voulons estimer le temps nécessaire à un opérateur pour annoter un lot de contraintes.
-			Pour cela, nous allons chronométrer plusieurs experts métiers en train d'annoter un même échantillon et modéliser le nombre de contraintes par minute, ainsi que son évolution au cours de plusieurs sessions d'annotation.
-			De plus, nous aimerions aussi confirmer que l'ajout de contraintes dans notre contexte s'apparente à une tâche "intuitive", c'est-à-dire que l'annotation se fait dans la réaction et non dans la réflexion (voir CITATION (Kahneman (2011))\todo{citation: Kahneman (2011). Thinking, fast and slow.} qui distingue un \textit{système 1} intuitif, rapide, de l'ordre de l'émotion, et un \textit{système 2} plus lent, logique et réfléchi).
-			Pour ce faire, nous estimons grossièrement le temps nécessaire à l'annotation réactive d'une contrainte, nous le comparons au temps moyen estimé lors de notre expérience, et nous nous demandons si la différence observée peut cacher un mécanisme cognitif plus complexe.
 			
 			% Axiome.
 			\begin{leftBarWarning}
@@ -99,11 +105,11 @@
 			% Détails de l'expérience : estimation du temps théorique nécessaire à l'annotation d'une contrainte.
 			Sur la base de cette échantillon, nous pouvons approximer le temps théorique nécessaire à l'annotation d'une contrainte à $6.8$ secondes.
 			En effet, il faut d'abord considérer la taille moyenne des titres d'article à lire et en déduire le temps dédié à la lecture des deux textes de la contraintes.
-			En utilisant l'approximation d'une lecture silencieuse par un adulte à $238$ mots par minute (cf. CITATION)\todo{CITATION: Brysbaert, M. (2019). How many words do we read per minute? A review and meta-analysis of reading rate.} et en mesurant la taille moyenne des titre d'article à $10.1$ mots, on en déduit que le temps de lecture d'un texte est environ de $2.55$ secondes.
+			En utilisant l'approximation d'une lecture silencieuse par un adulte à $238$ mots par minute (\cite{brysbaert:2019:how-many-words}) et en mesurant la taille moyenne des titre d'article à $10.1$ mots, on en déduit que le temps de lecture d'un texte est environ de $2.55$ secondes.
 			Ensuite, il convient d'intégrer la durée de traitement cognitif requis pour estimer si les deux phrases sont similaires ou discordantes.
 			À cet effet, nous retenons $1$ seconde
-			\footnote{Nous pourrions faire le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf. CITATION). Nous arrondissons à $1$ seconde pour garder une marge d'erreur.
-			}\todo{CITATION: Purves et al. (2008). Principles of Cognitive Neuroscience}
+			\footnote{Nous pourrions faire le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf.). Nous arrondissons à $1$ seconde pour garder une marge d'erreur.
+			} (\cite{purves-brannon:2013:principles-cognitive-neuroscience})
 			en admettant que cette tâche est rapide.
 			Enfin, nous ajoutons $1$ seconde supplémentaire pour représenter la réaction motrice (clic de bouton) et le délais applicatif (rechargement de la page).
 			Au total, nous obtenons ainsi un temps d'annotation moyen de $7$ secondes.
@@ -145,15 +151,14 @@
 			
 			% Détails de l'expérience : modélisation.
 			Une fois les sessions d'annotations terminées, nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour estimer le temps d'annotation moyen pour un lot de contraintes (dont la taille est notée $\texttt{batch\_size}$).
-			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}\todo{CITATION}, la log-vraisemblance \texttt{llf}\todo{CITATION} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
+			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel} (\cite{diamond-etal:1990:analysis-binary-data}), la log-vraisemblance \texttt{llf} (\cite{edwards:1992:likelihood}) et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
 			Nous discutons aussi de l'évolution de la vitesse d'un opérateur au cours des différentes sessions d'annotation.
 
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Ces analyses sont réalisées en Python à l'aide des librairies \texttt{datetime} et \texttt{statsmodels} (\cite{seabold:2010}).
-				Le projet à importer dans l'outil d'annotation ainsi que les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+				Ces analyses sont réalisées en Python à l'aide des librairies \texttt{datetime} et \texttt{statsmodels} (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Le projet à importer dans l'outil d'annotation ainsi que les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
-			\todo{citation}
 
 		%%% Résultats.
 		\subsubsection{Résultats obtenus}			
@@ -211,7 +216,7 @@
 			% Forte disparité des mesures.
 			D'une part, il y a une forte disparité des mesures, et il est idyllique de penser qu'une étude sur $14$ annotateurs peut représenter la diversité du comportement humain sur une tâche aussi complexe que l'annotation de données textuelles.
 			% Peu de repères concrets.
-			D'autre part, il y a un manque de repères concrets dans la littérature scientifique, entre autre à cause des nombreux facteurs intervenant dans une tâche d'annotation (\textit{objectifs à réaliser, données à manipuler, nombre de choix proposés à l'opérateur, complexité sémantique des données, des compétences de l'opérateur, fréquence d'exécution de la tâche, ...}), mais aussi en raison du manque d'intérêt à l'analyse du temps nécessaire au profit de l'analyse de la cohérence et de la qualité intra- ou inter-annotateur (CITATION Baledent (2022)).
+			D'autre part, il y a un manque de repères concrets dans la littérature scientifique, entre autre à cause des nombreux facteurs intervenant dans une tâche d'annotation (\textit{objectifs à réaliser, données à manipuler, nombre de choix proposés à l'opérateur, complexité sémantique des données, des compétences de l'opérateur, fréquence d'exécution de la tâche, ...}), mais aussi en raison du manque d'intérêt à l'analyse du temps nécessaire au profit de l'analyse de la cohérence et de la qualité intra- ou inter-annotateur (\cite{baledent:2022:complexite-annotation-manuelle}).
 			% Diversité des données.
 			De plus, les résultats peuvent différer en fonction des contraintes à caractériser : on peut supposer que des couples de données très similaires ou très différentes sont simples à annoter, mais que des données plus ambiguës peuvent nécessiter davantage de temps pour être intégrées et étiquetées.
 			
@@ -219,7 +224,6 @@
 			Pour pallier ce problème, nous proposons confronter nos estimations à des mesures réalisées sur des tâches n'ayant pas le même objectif mais dont la complexité est comparable.
 			Cette approche, bien qu'un peu rudimentaire, nous permettra ainsi de discuter des ordres de grandeurs à manipuler.
 		\end{leftBarAuthorOpinion}
-		\todo{Citation: Baledent (2022). De la complexité de l'annotation manuelle : méthodologie, biais et recommandations}
 		
 		
 		%%% A. Analyse de l'annotation d'une contraintes.
@@ -231,7 +235,7 @@
 			Bien que l'écart constaté ($0.8$ seconde) soit compris dans les bornes d'approximation, cette différence n'est pas suffisamment insignifiante pour nous permettre d'exclure avec certitude la présence d'un mécanisme cognitif supplémentaire.
 				
 			% Avantage 2: Dans tous les cas, 8 secondes, c'est mieux que 17 secondes ou 40 secondes.
-			Pour nous permettre de discuter du temps d'annotation mesuré et de son approximation théorique, nous utilisons utiliser plusieurs points de référence extraits de (CITATION: Snow et al (2008))\todo{CITATION: Article Cheap and Fast — But is it Good?}.
+			Pour nous permettre de discuter du temps d'annotation mesuré et de son approximation théorique, nous utilisons utiliser plusieurs points de référence extraits de (\cite{snow-etal:2008:cheap-fast-it}).
 			Dans cette étude, les auteurs délèguent quelques tâches d'annotation à \texttt{Amazon Mechanical Turk} :
 			%
 			\begin{leftBarInformation}
@@ -243,17 +247,17 @@
 			%
 			\begin{enumerate}
 				% Task 1: (Word Sense Disambiguation)
-				\item Tâche de "\textit{désambiguïsation du sens des mots}" (CITATION: Pradhan et al. (2007)) \todo{CITATION: Pradhan et al. (2007) SemEval-2007 Task 17: English Lexical Sample, SRL and All Words} :
+				\item Tâche de "\textit{désambiguïsation du sens des mots}" (\cite{pradhan-etal:2007:semeval2007-task-17}) :
 				Elle consiste à catégoriser le contexte de phrases comportant le mot "\textit{président}" suivant $3$ options préformatées (\textit{dirigeant d'une entreprise, dirigeant des États Unis, dirigeant d'un autre pays}).
 				Il y a $177$ phrases à labelliser par $10$ annotateurs, et la tâche a été réalisée en un total de $8.59$ heures, soit une moyenne de $17.5$ secondes par annotation.
 				Nous utilisons ce point de repère car la tâche s'apparente à une annotation d'une tâche de classification ($3$ catégories).
 				% Task 2: (Word Similarity)
-				\item Tâche de "\textit{caractérisation de similitude des mots}" (CITATION: Miller et Charles (1991)) \todo{CITATION: Miller et Charles (1991). Contextual correlates of semantic similarity} :
+				\item Tâche de "\textit{caractérisation de similitude des mots}" (\cite{miller-charles:1991:contextual-correlates-semantic}) :
 				Elle consiste à ordonner des couples de mots du plus similaire au moins similaire en fonction de leur proximité sémantique afin de mettre en avant les meilleurs couples de synonymes.
 				Il y a $30$ paires de synonymes à ordonner par $10$ annotateur, et la tâche a été réalisée en un total de $0.17$ heures, soit une moyenne de $2.0$ secondes par annotation.
 				Nous utilisons ce point de repère car la tâche s'apparente à l'annotation de contraintes (\textit{laquelle de ces deux paires est la plus adéquate ?}) qui ne fait pas appel à un mécanisme de réflexion (\textit{peu de vocabulaire, similarité intrinsèque triviale entre deux mots}).
 				% Task 3: (Recognizing Textual Entailment)
-				\item Tâche de "\textit{reconnaissance de l'implication textuelle}" (CITATION: Dagan et al. (2006)) \todo{CITATION: Dagan et al. (2006). The PASCAL Recognising Textual Entailment Challenge} :
+				\item Tâche de "\textit{reconnaissance de l'implication textuelle}" (\cite{dagan-etal:2005:pascal-recognising-textual}) :
 				Elle consiste à confirmer ou infirmer si une phrase est la conséquence d'une autre (\textit{l'annotation est donc binaire}).
 				Il y a $800$ paires de phrases à valider par $10$ annotateur, et la tâche a été réalisée en un total de $89.3$ heures, soit une moyenne de $40.2$ secondes par annotation.
 				Nous utilisons ce point de repère car la tâche s'apparente à l'annotation de contraintes (\textit{est-ce que l'implication est vraie ?}) faisant intervenir un mécanisme de réflexion (\textit{comprendre une implication logique}).
@@ -289,14 +293,12 @@
 				Nos intuitions initiales concernaient deux points :
 				%
 				\begin{itemize}
-					\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions. D'après (CITATION: Anderson (2013)), ce temps d'adaptation pourrait se définir en trois étapes : une phase déclarative (\textit{besoin d'instructions détaillées, exécution lente et avec erreurs}), une phase associative (\textit{quelques rappels clés suffisent pour retrouver les instructions, donc gain de vitesse}) et une phase autonome (\textit{les consignes sont acquises, donc exécution rapide et sans erreur}) ;
-					\item l'intervention d'un \textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs. D'après (CITATION: Jones et al. (2015)), la fatigue est considérée comme un inconfort qui s'installe après une tâche excessive, et (CITATION: Elkosantini et Gien (2009)) décrit cet état de fatigue par des capacités de travail réduites.
+					\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions. D'après \cite{anderson:2013:architecture-cognition}, ce temps d'adaptation pourrait se définir en trois étapes : une phase déclarative (\textit{besoin d'instructions détaillées, exécution lente et avec erreurs}), une phase associative (\textit{quelques rappels clés suffisent pour retrouver les instructions, donc gain de vitesse}) et une phase autonome (\textit{les consignes sont acquises, donc exécution rapide et sans erreur}) ;
+					\item l'intervention d'un \textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs. D'après \cite{jones-etal:2015:demographic-occupational-predictors}, la fatigue est considérée comme un inconfort qui s'installe après une tâche excessive, et \cite{elkosantini-gien:2009:integration-human-behavioural} décrit cet état de fatigue par des capacités de travail réduites.
 				\end{itemize}
 				%
 				Ces différentes intuitions ont aussi été remontées par les annotateurs de notre expériences, mais aucun effet significatif n'a pu être observé.
 			\end{leftBarAuthorOpinion}
-			\todo{citation temps d'adaptation: Anderson (2013)}
-			\todo{citation effet de fatigue: Jones et al. (2015), Elkosantini et Gien (2009)}
 		
 			% Ouverture 2: Remarque sur le nombre maximal moyen de contraintes à annoter.
 			Par extension, nous ne pouvons pas non plus conclure sur la taille optimale d’échantillon de contraintes à sélectionner pour une session d'annotation.
@@ -346,9 +348,8 @@
 			Une telle fonctionnalité permettrait ainsi de regrouper rapidement un grand nombre de données similaires ou de distinguer avec moins d'ambiguïté certaines données en s'appuyant sur leur voisinage.
 			
 			\begin{leftBarInformation}
-				Ces différentes évolutions sont en cours d'analyse ou ont déjà été intégrées dans l'application que nous proposons (CITATION).
+				Ces différentes évolutions sont en cours d'analyse ou ont déjà été intégrées dans l'application que nous proposons (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}).
 			\end{leftBarInformation}
-			\todo{CITATION application ICGUI}
 	
 
 	%%%
@@ -356,16 +357,16 @@
 	%%%
 	\subsection{Étude du temps de calcul nécessaire aux algorithmes implémentés en chronométrant des exécutions dans différentes situations}
 	\label{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}
+		
+		% Transition.
+		Maintenant que nous avons pu modéliser le temps nécessaire à un expert pour annoter un lot de contraintes, nous nous intéressons au temps nécessaire à la machine pour interpréter ces annotations et proposer une nouvelle segmentation des données.
+		
+		% Objectif de l'expérience.
+		Pour cela, nous allons chronométrer plusieurs exécutions des algorithmes intervenant dans notre implémentation du \textit{clustering} interactif, et nous évaluons l'importance de leurs différents arguments d'entrée (la taille du jeu de données, le nombre de clusters et le nombre de contraintes annotées, ...).
+		Nous profitons aussi de ces modélisations du temps de calcul pour confirmer le choix de paramétrage réalisé lors de l'étude d'efficience en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}, et ainsi faire un compromis entre l'algorithme le plus efficient et l'algorithme le plus rapide.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-		
-			% Transition.
-			Maintenant que nous avons pu modéliser le temps nécessaire à un expert pour annoter un lot de contraintes, nous nous intéressons au temps nécessaire à la machine pour interpréter ces annotations et proposer une nouvelle segmentation des données.
-			
-			% Objectif de l'expérience.
-			Pour cela, nous allons chronométrer plusieurs exécutions des algorithmes intervenant dans notre implémentation du \textit{clustering} interactif, et nous évaluons l'importance de leurs différents arguments d'entrée (la taille du jeu de données, le nombre de clusters et le nombre de contraintes annotées, ...).
-			Nous profitons aussi de ces modélisations du temps de calcul pour confirmer le choix de paramétrage réalisé lors de l'étude d'efficience en section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}, et ainsi faire un compromis entre l'algorithme le plus efficient et l'algorithme le plus rapide.
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer aux pseudo-code décrit dans Alg.~\ref{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}.
@@ -467,14 +468,14 @@
 			
 			% Description de la modélisation.
 			Sur la base de ces mesures, nous cherchons à modéliser le temps d'exécution de chaque algorithme en fonction de son contexte d'utilisation (dépendant de ses arguments d'entrée), et les interactions doubles entre paramètres sont envisagées.
-			Afin de réduire la complexité des modélisations, nous ordonnons les interactions de facteurs possibles en fonction de leur corrélation avec le temps mesuré (la corrélation \texttt{r} de \textit{Pearson}\todo{CITATION} est utilisée) et nous nous limitons aux variables responsables d'un maximum de la variance des mesures (la méthode d'\textit{Elbow}\todo{CITATION} est utilisée pour choisir les facteurs pertinents).
-			Sur cette base, nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour représenter le temps d'exécution moyen de l'algorithme : ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}\todo{CITATION}, la log-vraisemblance \texttt{llf}\todo{CITATION} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
+			Afin de réduire la complexité des modélisations, nous ordonnons les interactions de facteurs possibles en fonction de leur corrélation avec le temps mesuré (la corrélation \texttt{r} de \textit{Pearson} (\cite{kirch:2008:pearson-correlation-coefficient}) est utilisée) et nous nous limitons aux variables responsables d'un maximum de la variance des mesures (la méthode d'\textit{Elbow} (\cite{thorndike:1953:who-belongs-family}) est utilisée pour choisir les facteurs pertinents).
+			Sur cette base, nous entraînons un modèle linéaire généralisé (\textit{GLM}, cf. \cite{nelder-wedderburn:1972:generalized-linear-models}) pour représenter le temps d'exécution moyen de l'algorithme : ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel} (\cite{diamond-etal:1990:analysis-binary-data}), la log-vraisemblance \texttt{llf} (\cite{edwards:1992:likelihood}) et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
 			Pour finir, nous discutons des valeurs des coefficients obtenus sur l'impact du temps d'exécution.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Ces analyses sont réalisées en Python à l'aide des librairies \texttt{datetime} et \texttt{statsmodels} (\cite{seabold:2010}).
-				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+				Ces analyses sont réalisées en Python à l'aide des librairies \texttt{datetime} et \texttt{statsmodels} (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 
 		%%% Résultats.
@@ -508,7 +509,7 @@
 			%%% Vectorization
 			
 			% Première analyse.
-			En ce qui concerne la tâche de \textbf{vectorisation}, une première analyse montre que les modélisations des deux implémentations sont différentiables  (\texttt{p-valeur}: $< 10^{-3}$). Nous faisons donc une modélisation par algorithme.
+			En ce qui concerne la tâche de \textbf{vectorisation}, une première analyse montre que les modélisations des deux implémentations sont différentiables (\texttt{p-valeur}: $< 10^{-3}$). Nous faisons donc une modélisation par algorithme.
 		
 			% Modélisation du temps de calcul (vect.tfidf).
 			Pour les algorithmes de vectorisation \texttt{vect.tfidf}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.977$).
@@ -542,7 +543,7 @@
 			%%% Clustering
 			
 			% Première analyse.
-			En ce qui concerne la tâche de \textbf{\textit{clustering} sous contraintes}, une première analyse montre que les modélisations des six implémentations sont différentiables  (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous faisons donc une modélisation par algorithme.
+			En ce qui concerne la tâche de \textbf{\textit{clustering} sous contraintes}, une première analyse montre que les modélisations des six implémentations sont différentiables (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous faisons donc une modélisation par algorithme.
 			
 			% Remarques: hiérarchique trop long.
 			\begin{leftBarWarning}
@@ -739,19 +740,19 @@
 	%%%
 	\subsection{Étude du nombre de contraintes nécessaires à la convergence vers une vérité terrain pré-établie en fonction de la taille du jeu de données}
 	\label{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
+			
+		% Transition.
+		Avec les deux précédentes études, nous sommes capable d'estimer le temps nécessaire à un expert pour annoter des contraintes et le temps nécessaire à la machine pour proposer un nouveau \textit{clustering} adapté aux suggestions de l'expert.
+		Pour poursuivre nos études et pouvoir estimer le coût total d'un projet d'annotation, il nous reste à estimer le nombre total de contraintes à devoir renseigner en fonction de la taille du jeu de données.
+		
+		% Objectif de l'expérience.
+		Pour cela, nous allons simuler la création de cette base d'apprentissage en adaptant le protocole utilisé lors de notre étude d'efficacité (cf. section~\ref{section:4.1.1-ETUDE-CONVERGENCE}) :
+		nous employons notre méthode de \textit{clustering} interactif avec notre \textbf{paramétrage favori}
+		\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation TF-IDF (\texttt{vect.tfidf}), \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})}
+		sur des jeux de données de différentes tailles et mesurons le nombre de contraintes nécessaires pour converger vers la vérité terrain.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-			
-			% Transition.
-			Avec les deux précédentes études, nous sommes capable d'estimer le temps nécessaire à un expert pour annoter des contraintes et le temps nécessaire à la machine pour proposer un nouveau \textit{clustering} adapté aux suggestions de l'expert.
-			Pour poursuivre nos études et pouvoir estimer le coût total d'un projet d'annotation, il nous reste à estimer le nombre total de contraintes à devoir renseigner en fonction de la taille du jeu de données.
-			
-			% Objectif de l'expérience.
-			Pour cela, nous allons simuler la création de cette base d'apprentissage en adaptant le protocole utilisé lors de notre étude d'efficacité (cf. section~\ref{section:4.1.1-ETUDE-CONVERGENCE}) :
-			nous employons notre méthode de \textit{clustering} interactif avec notre \textbf{paramétrage favori}
-			\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation TF-IDF (\texttt{vect.tfidf}), \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})}
-			sur des jeux de données de différentes tailles et mesurons le nombre de contraintes nécessaires pour converger vers la vérité terrain.
 			
 			% Axiome.
 			\begin{leftBarWarning}
@@ -810,13 +811,13 @@
 			
 			% Description de l'évaluation.
 			Pour chacune de ces tentatives, nous nous intéressons au nombre de contraintes nécessaires pour atteindre le seuil d'annotation partielle (caractérisé par $90$\% de \texttt{v-measure} entre la vérité terrain et la segmentation des données obtenue), et nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour modéliser le nombre de contraintes requis en fonction de la taille du jeu de données (noté $\texttt{dataset\_size}$).
-			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel}\todo{CITATION}, la log-vraisemblance \texttt{llf}\todo{CITATION} et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
+			Ce modèle sera caractérisé par le coefficient de détermination généralisé \texttt{R²} de \textit{Cox et Snel} (\cite{diamond-etal:1990:analysis-binary-data}), la log-vraisemblance \texttt{llf} (\cite{edwards:1992:likelihood}) et la log-vraisemblance \texttt{llf\_null} du modèle \textit{null}.
 			Pour finir, nous discutons des valeurs des coefficients obtenus sur l'impact du nombre d'itérations de la méthode à prévoir.
 
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Ces analyses sont réalisées en Python à l'aide de la librairie \texttt{statsmodels} (\cite{seabold:2010}).
-				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:cognitivefactory-interactive-clustering-comparative-study:2021}.
+				Ces analyses sont réalisées en Python à l'aide de la librairie \texttt{statsmodels} (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Les scripts de l'expérience (\textit{notebooks} Python) sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 
 		%%% Résultats.
@@ -862,7 +863,7 @@
 				%
 				\begin{figure}[H]
 					\centering
-					\includegraphics[width=0.7\textwidth]{figures/etude-nombre-contraintes-2-bornes-limites}
+					\includegraphics[width=0.5\textwidth]{figures/etude-nombre-contraintes-2-bornes-limites}
 					\caption{Exemple de caractérisation exhaustive d'un jeu de données ($10$ données, $3$ classes) en ajoutant un nombre minimal de contraintes (cf. \textbf{(1)}) ou en ajoutant toutes les contraintes possibles (cf. \textbf{(2)}).}
 					\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}
 				\end{figure}
@@ -968,20 +969,20 @@
 			Dans les deux cas, \textbf{le coût total semble élevé} : pour un jeu de $5~000$ points de données, et avec des tailles d'échantillons compris entre $50$ et $150$ contraintes, il faut entre $59$ et $110$ heures de travail (\textit{$34$ heures d'annotations et entre $25$ et $76$ heures d'attente de la fin d'exécution d'algorithmes suivant la taille des lots}).
 			En considérant une journée de travail de $7$ heures, cela représente une charge contenue entre $8.4$ et $15.7$ jours pour avoir un jeu de donnée fiable à $90$\% de \texttt{v-measure}.
 			Pour finir, nous ajoutons $1$ jour pour combler l'écart théorique de $10$\% de \texttt{v-measure} en corrigeant manuellement le résultat obtenu, et $1$ jour supplémentaire pour interpréter et nommer chaque \textit{cluster}.
-			Au final, pour un ensemble de $5~000$ données, il faut donc entre $10.4$ et $17.7$ jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie basée sur le \textit{clustering} interactif.
+			Au final, pour un ensemble de $5~000$ données, il faut donc entre $8.4$ {\footnotesize $(+2)$} et $15.7$ {\footnotesize $(+2)$} jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie basée sur le \textit{clustering} interactif.
 			
 			% Critique du résultat : comparaison avec une annotation classique, avoir plusieurs annotateurs, ...
 			Pour critiquer l'approximation que nous avons faite lors de cette section, nous essayons de la comparer le temps nécessaire qu'il aurait fallu à un projet d'annotation traditionnelle, comme décrit en section (REFERENCE)\todo{ref: chapitre 3} et en figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE} (1).
 			En nous basant sur un ensemble de $5~000$ données à annoter, nous estimons qu'il faut :
 			$1$ jour de travail pour définir une représentation des données en modèle de classification ;
-			$4$ jours de travail pour annoter $5~000$ données (à raison de $20$ secondes par données, estimation haute inspirée de (CITATION: Pradhan et al. (2007)) \todo{CITATION: Pradhan et al. (2007) SemEval-2007 Task 17: English Lexical Sample, SRL and All Words} où la "\textit{désambiguïsation du sens des mots}", présentée comme une tâche de classification, demande $17.5$ secondes par données) ;
+			$4$ jours de travail pour annoter $5~000$ données (à raison de $20$ secondes par données, estimation haute inspirée de \cite{pradhan-etal:2007:semeval2007-task-17} où la "\textit{désambiguïsation du sens des mots}", présentée comme une tâche de classification, demande $17.5$ secondes par données) ;
 			$2$ jours de marge d'erreur pour changer de modèle de représentation s'il ne semble pas adapté aux données en cours d'annotation.
-			Au total, nous estimons donc qu'il faut $7$ jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
-			En l'état, nous pouvons donc conclure que le \textit{clustering} interactif que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($10.4$ à $17.7$ jours vs $7$ jours), ce qui peut être un frein à son utilisation en situation réelle.
+			Au total, nous estimons donc qu'il faut $5$ {\footnotesize $(+2)$} jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
+			\textbf{En l'état, nous pouvons donc conclure que le \textit{clustering} interactif que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($8.4$ {\footnotesize $(+2)$} à $15.7$ {\footnotesize $(+2)$} jours vs $5$ {\footnotesize $(+2)$} jours), ce qui peut être un frein à son utilisation en situation réelle}.
 			
 			% Pistes d'amélioration : Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering, ...
 			Afin d'accélérer la phase d'annotation et de diminuer le nombre d'itérations, il est bien entendu possible d'augmenter la taille des échantillons de contraintes à annoter ou d'ajouter plusieurs opérateurs.
-			Cependant, une telle solution ne permet toujours pas d'être compétitif avec l'annotation traditionnelle si cette dernière dispose aussi de plusieurs opérateurs (\textit{avec $2$ annotateurs : de $8.5$ à $15.3$ jours vs $5$ jours ; avec $4$ annotateurs : de $6.8$ à $14.1$ jours vs $4$ jours}).
+			Cependant, une telle solution ne permet toujours pas d'être compétitif avec l'annotation traditionnelle si cette dernière dispose aussi de plusieurs opérateurs (\textit{avec $2$ annotateurs : de $6.5$ {\footnotesize $(+2)$} à $13.3$ {\footnotesize $(+2)$} jours vs $3$ {\footnotesize $(+2)$} jours ; avec $4$ annotateurs : de $4.8$ {\footnotesize $(+2)$} à $12.1$ {\footnotesize $(+2)$} jours vs $2$ {\footnotesize $(+2)$} jours}).
 			Une autre piste, plus prometteuse, consiste plutôt à adapter notre méthode pour exploiter les temps d'attente lors de l'exécution d'un \textit{clustering}.
 			
 
@@ -1068,8 +1069,8 @@
 			
 			% Résultats et discussion : linéaire, 25 x dataset size : c'est acceptable !
 			Nous pouvons déjà remarquer que le coût d'annotation du projet devient linéaire en nombre de données (pente de $24.6$ secondes) et nécessite un nombre fixe de $145$ itérations.
-			En reprenant une base de $5~000$ données et une marge de $2$ jours pour corriger et nommer les \textit{clusters}, cela représente $6.8$ jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $7$ jours de travail d'après nos approximations.
-			De plus, si nous ajoutons des plusieurs opérateurs, cette version parallèle reste compétitive (\textit{avec $2$ annotateurs : $4.5$ jours vs $5$ jours ; avec $4$ annotateurs : $3.3$ jours vs $4$ jours}).
+			En reprenant une base de $5~000$ données et une marge de $2$ jours pour corriger et nommer les \textit{clusters}, cela représente $4.8$ {\footnotesize $(+2)$} jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $5 $ {\footnotesize $(+2)$} jours de travail d'après nos approximations.
+			De plus, si nous ajoutons des plusieurs opérateurs, cette version parallèle reste compétitive (\textit{avec $2$ annotateurs : $2.5$ {\footnotesize $(+2)$} jours vs $3$ {\footnotesize $(+2)$} jours ; avec $4$ annotateurs : $1.3$ jours vs $2$ {\footnotesize $(+2)$} jours}).
 			Cette découverte est très encourageante, car cela confirme qu'une méthodologie basée sur notre implémentation du \textit{clustering} interactif \textbf{permet d'obtenir une base d'apprentissage avec un coût temporel équivalent à un projet traditionnel} utilisant une annotation par label.
 			Cette méthode est d'autant plus intéressante qu'elle fait intervenir un mécanisme d'annotation rapide et intuitif pour un expert métier.
 			

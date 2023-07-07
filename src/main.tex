@@ -208,11 +208,11 @@
 
 %%% Pour le code Python:
 \usepackage{listings}
-\definecolor{colorCodeString}{rgb}{0.60, 0.00, 0.00}
-\definecolor{colorCodeComment}{rgb}{0.00 ,0.50, 0.00}
-\definecolor{colorCodeKeyword}{rgb}{0.00, 0.00, 1.00}
-\definecolor{colorCodeEmphasize}{rgb}{0.97, 0.15, 0.45}
-\definecolor{colorCodeBackground}{rgb}{0.90, 0.90, 0.90}
+\definecolor{colorCodeString}{rgb}{0.60, 0.00, 0.00}  % Dark red
+\definecolor{colorCodeComment}{rgb}{0.00 ,0.50, 0.00}  % Dark Green
+\definecolor{colorCodeKeyword}{rgb}{0.00, 0.00, 0.70}  % Medium Blue
+\definecolor{colorCodeEmphasize}{rgb}{0.97, 0.15, 0.45}  % Deep Pink
+\definecolor{colorCodeBackground}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
 \renewcommand{\lstlistingname}{Code}
 \lstset{
   inputencoding=utf8,
@@ -224,7 +224,7 @@
   showstringspaces=false,
   morekeywords=[1]{,as,assert,nonlocal,with,yield,self,True,False,None,}
   basicstyle=\tiny,%\ttfamily,
-  backgroundcolor=\color{colorCodeBackground},
+  backgroundcolor=\color{colorCodeBackground!15},
   commentstyle=\color{colorCodeComment},
   keywordstyle=\color{colorCodeKeyword}\bfseries,
   stringstyle=\color{colorCodeString},
