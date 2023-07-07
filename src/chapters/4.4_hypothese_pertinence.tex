@@ -52,10 +52,48 @@
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			\todo[inline]{A REDIGER}
+			
 			% Axiome.
+			\begin{leftBarWarning}
+				Par manque de personnes compétentes sur le jeu de données utilisé, les annotations réalisées dans cette étude n'ont pu être faites que par un seul annotateur.
+				Afin de limiter les biais pouvant surgir à cause de cette contraintes, nous avons reproduit plusieurs fois l'analyse sur des \textit{clusters} différents et nous discutons de la moyenne des résultats obtenus.
+			\end{leftBarWarning}
+			
 			% Pseudo-code.
+			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}.
+			%
+			\begin{algorithm}[!htb]
+				\begin{algorithmic}[1]
+					\Require jeux de données annotés (vérité terrain) de tailles différentes
+					\State \textbf{initialisation (données)}: récupérer ou générer les données et la vérité terrain
+					\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
+					\State \textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple}
+					\State \textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf}
+					\State \textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop}
+					\State \textbf{évaluation manuelle}: juger de l'exploitabilité de chaque \textit{cluster}
+					\Repeat
+						\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
+						\State \textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff}
+						\State \textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop}
+						\State \textbf{évaluation manuelle}: juger de l'exploitabilité de chaque \textit{cluster}
+						\State \textbf{labellisation manuelle}: nommer chaque \textit{cluster} exploitable
+					\Until{annotation de toutes les contraintes possibles}
+					\State \textbf{analyse}: afficher l'évolution de l'exploitabilité de chaque itération de \textit{clustering}
+					\Ensure discussion sur la complexité de la tâche et sur l'évolution de l'exploitabilité
+				\end{algorithmic}
+				\caption{Description en pseudo-code du protocole expérimental de l'étude de vérification manuelle de la valeur métier d'une base d'apprentissage.}
+				\label{algorithm:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
+			\end{algorithm}
+				
+			
 			% Détails de l'expérience.
+			
+			
 			% Référence scripts.
+			\begin{leftBarInformation}
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+			\end{leftBarInformation}
+			
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
@@ -102,7 +140,12 @@
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
+			
 			% Référence scripts.
+			\begin{leftBarInformation}
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				L'implémentation de la maximisation des traits est accessible ici dans~\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}.
+			\end{leftBarInformation}
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
@@ -142,7 +185,12 @@
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
+			
 			% Référence scripts.
+			\begin{leftBarInformation}
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				L'appel à un modèle de langue se fait grâce à la librairie \texttt{openai}.
+			\end{leftBarInformation}
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
