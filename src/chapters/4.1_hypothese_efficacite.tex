@@ -31,7 +31,7 @@
 	\end{tcolorbox}
 		
 	% Résumé de l'étude.
-	Afin de vérifier cette hypothèse, nous mettons en place une \textbf{expérience de ré-annotation} d'une base d'apprentissage (qui servira ici de vérité terrain) à l'aide de notre méthode, en simulant l'annotation d'un expert, et nous critiquons l'évolution de la nouvelle base d'apprentissage obtenue et sa similitude avec la base d'apprentissage initiale (cf. sous-section~\ref{section:4.1.1-ETUDE-CONVERGENCE}).
+	Afin de vérifier cette hypothèse, nous mettons en place une \textbf{expérience de ré-annotation} d'une base d'apprentissage (qui servira ici de vérité terrain) à l'aide de notre méthode, en simulant l'annotation d'un expert, et nous critiquons l'évolution de la nouvelle base d'apprentissage obtenue ainsi que sa similitude avec la base d'apprentissage initiale (cf. sous-section~\ref{section:4.1.1-ETUDE-CONVERGENCE}).
 	
 	
 	%%%
@@ -101,7 +101,6 @@
 
 			% Description implémentation de l'interactive clustering.
 			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètre de notre implémentation du \textit{clustering} interactif (cf. section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}). Cela comprend les tâches et leurs paramètres respectifs suivants :
-			%
 			\begin{enumerate}
 				\item le \textbf{prétraitement} des données, avec les niveaux suivants : \textbf{aucun} (noté \texttt{prep.no}), \textbf{simple} (noté \texttt{prep.simple}), avec \textbf{lemmatisation} (noté \texttt{prep.lemma}) et avec \textbf{filtres} (noté \texttt{prep.filter}) ;
 				\item la \textbf{vectorisation} des données, avec les niveaux suivants : \textbf{TF-IDF} (noté \texttt{vect.tfidf}) et \textbf{SpaCy} (noté \texttt{vect.frcorenewsmd}) ;
@@ -208,7 +207,7 @@
 		\subsubsection{Discussion}
 			
 			%%% Avantages : il y a convergence !
-			Au regard des résultats décrit ci-dessus, les différentes simulations de la méthode ont bien convergé vers la vérité terrain (atteinte de l'asymptote à $100$\% de \texttt{v-measure}).
+			Au regard des résultats décrits ci-dessus, les différentes simulations de la méthode ont bien convergé vers la vérité terrain (atteinte de l'asymptote à $100$\% de \texttt{v-measure}).
 			Cette expérience permet donc de confirmer plusieurs espoirs portés sur la méthode.
 			
 			% Avantage 1 : Émergence d'une modélisation sur la base des contraintes

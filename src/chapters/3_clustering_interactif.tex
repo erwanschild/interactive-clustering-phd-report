@@ -201,7 +201,6 @@ dict_of_texts = {
 		% cognitivefactory.interactive-clustering.utils.preprocessing : Implémentation.
 		Nous avons d'une part la partie \texttt{utils.preprocessing}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/preprocessing/}} qui permet de normaliser les données.
 		Par défaut :
-
 		\begin{itemize}
 			\item[\(\bullet\)] le texte est passé en \textit{minuscule} (de "\texttt{Bonjour}" à "\texttt{bonjour}"),
 			\item[\(\bullet\)] la \textit{ponctuation} est supprimée, %(\texttt{.}, \texttt{,}, \texttt{;}, \texttt{:}, \texttt{!}, \texttt{¡}, \texttt{?}, \texttt{¿}, \texttt{…}, \texttt{•}, \texttt{(}, \texttt{)}, \texttt{\{}, \texttt{\}}, \texttt{[}, \texttt{]}, \texttt{«}, \texttt{»}, \texttt{^}, \texttt{\`}, \texttt{'}, \texttt{"}, \texttt{\\}, \texttt{/}, \texttt{|}, \texttt{-}, \texttt{\_}, \texttt{#}, \texttt{\&}, \texttt{\~}, \texttt{\@}),
@@ -210,7 +209,6 @@ dict_of_texts = {
 		\end{itemize}
 		
 		Si besoin, trois options "avancées" sont disponibles pour réaliser un prétraitement plus destructif :
-
 		\begin{itemize}
 			\item[\(\bullet\)] la suppression des mots vides (\cite{nothman-etal:2018:stop-word-lists}),
 			\item[\(\bullet\)] la conversion des mots vers leur forme racine (\cite{manning-schutze:2000:foundations-statistical-natural}),
@@ -233,7 +231,6 @@ dict_of_texts = {
 		% cognitivefactory.interactive-clustering.utils.vectorization
 		D'autre part, la partie \texttt{utils.vectorization}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/vectorization/}} permet de transformer les données en une représentation exploitable pour la machine.
 		Deux modes de vectorisation sont mis à disposition :
-		
 		\begin{enumerate}
 			\item \textbf{TF-IDF} (\cite{sparck-jones:1972:statistical-interpretation-term}), utilisant la fréquence d'occurrence des mots pour représenter une phrase, et noté \texttt{vect.tfidf} pour nos études ;
 			\item \textbf{SpaCy} (\cite{honnibal-montani:2017:spacy-natural-language}), utilisant le modèle de langue \texttt{fr-core-news-md}, et noté \texttt{vect.frcorenewsmd}.
@@ -286,7 +283,6 @@ dict_of_vectors = vectorize(
 		
 		% cognitivefactory.interactive-clustering.constraints: Types
 		Deux types de contraintes sont prises en charge (cf.~\cite{wagstaff-cardie:2000:clustering-instancelevel-constraints}) :
-		
 		\begin{itemize}
 			\item[\(\bullet\)] les contraintes \texttt{MUST-LINK} permettant de réunir deux données,
 			\item[\(\bullet\)] et les contraintes \texttt{CANNOT-LINK} permettant à l'inverse de les séparer.
@@ -399,7 +395,6 @@ connected_components = constraints_manager.get_connected_components()
 		
 		% cognitivefactory.interactive-clustering.utils.clustering : Implémentation.
 		Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes (référez-vous à la section \todo{ref:section2:clustering} pour les détails de fonctionnement des algorithmes non contraints) :
-		
 		\begin{enumerate}
 			\item \textbf{KMeans}, dans sa version \textit{COP} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \textit{MPC} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
 			\item \textbf{DBscan}, dans sa version \textit{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
@@ -474,7 +469,6 @@ clustering_result = clustering_model.cluster(
 		
 		% cognitivefactory.interactive-clustering.utils.sampling : Par défaut.
 		Sur cette base, nous définissons quatre niveaux d'échantillonnage facilement identifiables pour nos études :
-		
 		\begin{enumerate}
 			\item Un échantillonnage \textbf{purement aléatoire} en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
 			\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même cluster}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;

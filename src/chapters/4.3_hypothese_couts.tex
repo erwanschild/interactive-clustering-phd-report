@@ -238,14 +238,14 @@
 			% Avantage 2: Dans tous les cas, 8 secondes, c'est mieux que 17 secondes ou 40 secondes.
 			Pour nous permettre de discuter du temps d'annotation mesuré et de son approximation théorique, nous utilisons utiliser plusieurs points de référence extraits de (\cite{snow-etal:2008:cheap-fast-it}).
 			Dans cette étude, les auteurs délèguent quelques tâches d'annotation à \texttt{Amazon Mechanical Turk} :
-			%
+			
 			\begin{leftBarInformation}
 				\texttt{Amazon Mechanical Turk} est une plateforme de travail collaboratif (\textit{crowdsourcing}) sur laquelle n'importe quel internaute peut contribuer à une tâche plus ou moins complexe en échange d'une rémunération.
 				Certaines entreprises utilisent ce service pour réaliser de l'analyse de données, comme l’étiquetage de données, la traduction de textes, la rédaction d'avis et de critiques, la modération de contenu, ...
 				Cette approche comporte quelques inconvénients : d'une part, les travailleurs ne sont généralement pas experts du domaine traité (ce sont n'importe quel internaute ayant du temps  à offrir) ; d'autre part, le travail est parfois réalisé à la hâte à cause de la faible taux de rémunération des opérateurs (environ de $2$ \$ l'heure).
 				Afin garantir la qualité des réalisations, il est donc commun de demander plusieurs exécution d'une même tâche par différents opérateurs et de récupérer le résultat faisant le plus grand consensus.
 			\end{leftBarInformation}
-			%
+			
 			\begin{enumerate}
 				% Task 1: (Word Sense Disambiguation)
 				\item Tâche de "\textit{désambiguïsation du sens des mots}" (\cite{pradhan-etal:2007:semeval2007-task-17}) :
@@ -292,7 +292,6 @@
 			
 			\begin{leftBarAuthorOpinion}
 				Nos intuitions initiales concernaient deux points :
-				%
 				\begin{itemize}
 					\item la diminution du \textbf{temps d'adaptation} au cours de sessions d'annotations : au fur et à mesure qu'il annote, l'opérateur pourrait entrer plus facilement dans sa tâche, lui permettant d'atteindre plus rapidement sa vitesse de croisière et ainsi gagner en efficacité sur plusieurs sessions. D'après \cite{anderson:2013:architecture-cognition}, ce temps d'adaptation pourrait se définir en trois étapes : une phase déclarative (\textit{besoin d'instructions détaillées, exécution lente et avec erreurs}), une phase associative (\textit{quelques rappels clés suffisent pour retrouver les instructions, donc gain de vitesse}) et une phase autonome (\textit{les consignes sont acquises, donc exécution rapide et sans erreur}) ;
 					\item l'intervention d'un \textbf{effet de fatigue} : si une session d'annotation dure trop longtemps, l'opérateur pourrait perdre en efficacité par manque de concentration et augmenter ses chances de faire des erreurs. D'après \cite{jones-etal:2015:demographic-occupational-predictors}, la fatigue est considérée comme un inconfort qui s'installe après une tâche excessive, et \cite{elkosantini-gien:2009:integration-human-behavioural} décrit cet état de fatigue par des capacités de travail réduites.
@@ -433,7 +432,6 @@
 			% Description des tâches, des algorithmes et des contextes.
 			À l'aide de ces données, nous lançons plusieurs exécutions de chaque algorithme de notre implémentation du \textit{clustering} interactif (cf. section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}) avec différentes variations de contexte d'utilisation.
 			Cela comprend les tâches, algorithmes et contextes d'utilisation suivants :
-			%
 			\begin{enumerate}
 				% Prétraitement.
 				\item le \textbf{prétraitement} des données...
@@ -847,7 +845,6 @@
 			\begin{leftBarAuthorOpinion}
 				% Estimation de points de références.
 				On peut considérer les points de références suivants :
-				%
 				\begin{itemize}
 					\item le nombre de contraintes possibles (avec doublons) est de $\texttt{dataset\_size}^{2}$ (\textit{caractériser chaque couple de données présent dans la matrice d'adjacence}) ;
 					\item le nombre de contraintes possibles (sans doublons) est de $\frac{1}{2} \cdot (\texttt{dataset\_size}^{2} - \texttt{dataset\_size})$ (\textit{considérer la symétrie des contraintes, donc seul le triangle supérieur de la matrice d'adjacence a besoin d'être renseigné}) ;
