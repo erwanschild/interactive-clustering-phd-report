@@ -1,3 +1,12 @@
+@software{alammar-grefenstette:2022:cohere-sandbox,
+  title = {Cohere {{Sandbox}}},
+  author = {Alammar, Jay and Grefenstette, Edward},
+  date = {2022},
+  url = {https://github.com/cohere-ai/sandbox-topically},
+  organization = {{Cohere.ai}},
+  keywords = {*CITATION}
+}
+
 @article{alexa-internet:2018:keyword-research-competitor,
   title = {Keyword {{Research}}, {{Competitor Analysis}}, \& {{Website Ranking}} | {{Alexa}}},
   author = {Alexa Internet},
@@ -31,6 +40,19 @@
   file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\PK64N4R8\\Baledent - 2022 - De la complexité de l'annotation manuelle  méthod.pdf}
 }
 
+@article{blei-etal:2003:latent-dirichlet-allocation,
+  title = {Latent {{Dirichlet Allocation}}},
+  author = {Blei, David M and Ng, Andrew Y. and Jordan, Michael I.},
+  date = {2003},
+  journaltitle = {Journal of machine Learning research},
+  number = {3},
+  pages = {993--1022},
+  abstract = {We describe latent Dirichlet allocation (LDA), a generative probabilistic model for collections of discrete data such as text corpora. LDA is a three-level hierarchical Bayesian model, in which each item of a collection is modeled as a finite mixture over an underlying set of topics. Each topic is, in turn, modeled as an infinite mixture over an underlying set of topic probabilities. In the context of text modeling, the topic probabilities provide an explicit representation of a document. We present efficient approximate inference techniques based on variational methods and an EM algorithm for empirical Bayes parameter estimation. We report results in document modeling, text classification, and collaborative filtering, comparing to a mixture of unigrams model and the probabilistic LSI model.},
+  langid = {english},
+  keywords = {*CITATION},
+  file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\WW295LFP\\Blei - 2003 - Latent Dirichlet Allocation.pdf}
+}
+
 @unpublished{bocklisch-etal:2017:rasa-open-source,
   title = {Rasa: {{Open Source Language Understanding}} and {{Dialogue Management}}},
   shorttitle = {Rasa},
@@ -55,6 +77,18 @@
   eprinttype = {arxiv},
   keywords = {*CITATION,⛔ No DOI found,Computation and Language,Machine learning},
   file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\BZMD9R5Y\\Bojanowski et al. - 2016 - Enriching Word Vectors with Subword Information.pdf}
+}
+
+@article{brown-etal:2020:language-models-are,
+  title = {Language {{Models}} Are {{Few-Shot Learners}}},
+  author = {Brown, Tom B. and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and Agarwal, Sandhini and Herbert-Voss, Ariel and Krueger, Gretchen and Henighan, Tom and Child, Rewon and Ramesh, Aditya and Ziegler, Daniel M. and Wu, Jeffrey and Winter, Clemens and Hesse, Christopher and Chen, Mark and Sigler, Eric and Litwin, Mateusz and Gray, Scott and Chess, Benjamin and Clark, Jack and Berner, Christopher and McCandlish, Sam and Radford, Alec and Sutskever, Ilya and Amodei, Dario},
+  date = {2020},
+  doi = {10.48550/ARXIV.2005.14165},
+  url = {https://arxiv.org/abs/2005.14165},
+  urldate = {2023-07-17},
+  abstract = {Recent work has demonstrated substantial gains on many NLP tasks and benchmarks by pre-training on a large corpus of text followed by fine-tuning on a specific task. While typically task-agnostic in architecture, this method still requires task-specific fine-tuning datasets of thousands or tens of thousands of examples. By contrast, humans can generally perform a new language task from only a few examples or from simple instructions - something which current NLP systems still largely struggle to do. Here we show that scaling up language models greatly improves task-agnostic, few-shot performance, sometimes even reaching competitiveness with prior state-of-the-art fine-tuning approaches. Specifically, we train GPT-3, an autoregressive language model with 175 billion parameters, 10x more than any previous non-sparse language model, and test its performance in the few-shot setting. For all tasks, GPT-3 is applied without any gradient updates or fine-tuning, with tasks and few-shot demonstrations specified purely via text interaction with the model. GPT-3 achieves strong performance on many NLP datasets, including translation, question-answering, and cloze tasks, as well as several tasks that require on-the-fly reasoning or domain adaptation, such as unscrambling words, using a novel word in a sentence, or performing 3-digit arithmetic. At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. We discuss broader societal impacts of this finding and of GPT-3 in general.},
+  keywords = {*CITATION,Computation and Language (cs.CL),FOS: Computer and information sciences},
+  file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\X8K8BLEW\\Brown et al. - 2020 - Language Models are Few-Shot Learners.pdf}
 }
 
 @article{brysbaert:2019:how-many-words,
@@ -408,6 +442,19 @@
   file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\KWERLC9W\\Lampert et al. - 2019 - PRÉSENTATION.pdf;C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\UNDG3ZHC\\Lampert et al. - 2019 - Constrained Distance based K-Means Clustering for .pdf}
 }
 
+@article{lewis-etal:2019:bart-denoising-sequencetosequence,
+  title = {{{BART}}: {{Denoising Sequence-to-Sequence Pre-training}} for {{Natural Language Generation}}, {{Translation}}, and {{Comprehension}}},
+  shorttitle = {{{BART}}},
+  author = {Lewis, Mike and Liu, Yinhan and Goyal, Naman and Ghazvininejad, Marjan and Mohamed, Abdelrahman and Levy, Omer and Stoyanov, Ves and Zettlemoyer, Luke},
+  date = {2019},
+  doi = {10.48550/ARXIV.1910.13461},
+  url = {https://arxiv.org/abs/1910.13461},
+  urldate = {2023-07-17},
+  abstract = {We present BART, a denoising autoencoder for pretraining sequence-to-sequence models. BART is trained by (1) corrupting text with an arbitrary noising function, and (2) learning a model to reconstruct the original text. It uses a standard Tranformer-based neural machine translation architecture which, despite its simplicity, can be seen as generalizing BERT (due to the bidirectional encoder), GPT (with the left-to-right decoder), and many other more recent pretraining schemes. We evaluate a number of noising approaches, finding the best performance by both randomly shuffling the order of the original sentences and using a novel in-filling scheme, where spans of text are replaced with a single mask token. BART is particularly effective when fine tuned for text generation but also works well for comprehension tasks. It matches the performance of RoBERTa with comparable training resources on GLUE and SQuAD, achieves new state-of-the-art results on a range of abstractive dialogue, question answering, and summarization tasks, with gains of up to 6 ROUGE. BART also provides a 1.1 BLEU increase over a back-translation system for machine translation, with only target language pretraining. We also report ablation experiments that replicate other pretraining schemes within the BART framework, to better measure which factors most influence end-task performance.},
+  keywords = {*CITATION,Computation and Language (cs.CL),FOS: Computer and information sciences,Machine Learning (cs.LG),Machine Learning (stat.ML)},
+  file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\HMB79SIK\\Lewis et al. - 2019 - BART Denoising Sequence-to-Sequence Pre-training .pdf}
+}
+
 @inproceedings{li-etal:2009:constrained-clustering-spectral,
   title = {Constrained Clustering via Spectral Regularization},
   booktitle = {2009 {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}}},
@@ -597,6 +644,20 @@
   url = {https://www.R-project.org/},
   langid = {english},
   keywords = {*CITATION}
+}
+
+@article{radford-etal:2019:language-models-are,
+  title = {Language {{Models}} Are {{Unsupervised Multitask Learners}}},
+  author = {Radford, Alec and Wu, Jeffrey and Child, Rewon and Luan, David and Amodei, Dario and Sutskever, Ilya},
+  date = {2019},
+  journaltitle = {OpenAI blog},
+  volume = {1},
+  number = {8},
+  pages = {9},
+  abstract = {Natural language processing tasks, such as question answering, machine translation, reading comprehension, and summarization, are typically approached with supervised learning on taskspecific datasets. We demonstrate that language models begin to learn these tasks without any explicit supervision when trained on a new dataset of millions of webpages called WebText. When conditioned on a document plus questions, the answers generated by the language model reach 55 F1 on the CoQA dataset - matching or exceeding the performance of 3 out of 4 baseline systems without using the 127,000+ training examples. The capacity of the language model is essential to the success of zero-shot task transfer and increasing it improves performance in a log-linear fashion across tasks. Our largest model, GPT-2, is a 1.5B parameter Transformer that achieves state of the art results on 7 out of 8 tested language modeling datasets in a zero-shot setting but still underfits WebText. Samples from the model reflect these improvements and contain coherent paragraphs of text. These findings suggest a promising path towards building language processing systems which learn to perform tasks from their naturally occurring demonstrations.},
+  langid = {english},
+  keywords = {*CITATION},
+  file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\ARNHQL4P\\Radford et al. - Language Models are Unsupervised Multitask Learner.pdf}
 }
 
 @article{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased,
@@ -882,4 +943,17 @@
   pages = {165--193},
   abstract = {Data analysis is used as a common method in modern science research, which is across communication science, computer science and biology science. Clustering, as the basic composition of data analysis, plays a significant role. On one hand, many tools for cluster analysis have been created, along with the information increase and subject intersection. On the other hand, each clustering algorithm has its own strengths and weaknesses, due to the complexity of information. In this review paper, we begin at the definition of clustering, take the basic elements involved in the clustering process, such as the distance or similarity measurement and evaluation indicators, into consideration, and analyze the clustering algorithms from two perspectives, the traditional ones and the modern ones. All the discussed clustering algorithms will be compared in detail and comprehensively shown in Appendix Table 22.},
   keywords = {*CITATION,Clustering,Comparaison}
+}
+
+@article{zhang-etal:2019:pegasus-pretraining-extracted,
+  title = {{{PEGASUS}}: {{Pre-training}} with {{Extracted Gap-sentences}} for {{Abstractive Summarization}}},
+  shorttitle = {{{PEGASUS}}},
+  author = {Zhang, Jingqing and Zhao, Yao and Saleh, Mohammad and Liu, Peter J.},
+  date = {2019},
+  doi = {10.48550/ARXIV.1912.08777},
+  url = {https://arxiv.org/abs/1912.08777},
+  urldate = {2023-07-17},
+  abstract = {Recent work pre-training Transformers with self-supervised objectives on large text corpora has shown great success when fine-tuned on downstream NLP tasks including text summarization. However, pre-training objectives tailored for abstractive text summarization have not been explored. Furthermore there is a lack of systematic evaluation across diverse domains. In this work, we propose pre-training large Transformer-based encoder-decoder models on massive text corpora with a new self-supervised objective. In PEGASUS, important sentences are removed/masked from an input document and are generated together as one output sequence from the remaining sentences, similar to an extractive summary. We evaluated our best PEGASUS model on 12 downstream summarization tasks spanning news, science, stories, instructions, emails, patents, and legislative bills. Experiments demonstrate it achieves state-of-the-art performance on all 12 downstream datasets measured by ROUGE scores. Our model also shows surprising performance on low-resource summarization, surpassing previous state-of-the-art results on 6 datasets with only 1000 examples. Finally we validated our results using human evaluation and show that our model summaries achieve human performance on multiple datasets.},
+  keywords = {*CITATION,Computation and Language (cs.CL),FOS: Computer and information sciences},
+  file = {C\:\\Users\\SCHILDEW\\Documents\\Zotero\\storage\\UWWCFCEF\\Zhang et al. - 2019 - PEGASUS Pre-training with Extracted Gap-sentences.pdf}
 }

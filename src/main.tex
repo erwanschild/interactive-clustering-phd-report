@@ -80,6 +80,7 @@
 %%% Pour les tableaux:
 \usepackage{array}
 \usepackage{multirow}
+\usepackage{tabularx}
 
 %%% Pour les figures:
 \usepackage{float}
@@ -181,6 +182,16 @@
 }{
     \end{leftbar}
 }  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}
+
+% Définition de l'encadré d'exemples
+\definecolor{colorLeftBarExamples}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
+\newenvironment{leftBarExamples}{
+	\begin{leftbar}{colorLeftBarExamples}
+	\noindent
+	\textbf{Exemples :}
+}{
+    \end{leftbar}
+}  % \begin{leftBarExamples} \lipsum[1] \end{leftBarExamples}
 
 
 %%% Pour les algorithmes:

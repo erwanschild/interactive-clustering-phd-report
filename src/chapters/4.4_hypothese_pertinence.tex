@@ -42,12 +42,12 @@
 	%%%
 	%%% Subsection 4.4.1: Étude d'une vérification manuelle de la valeur métier d'une base d'apprentissage par un expert
 	%%%
-	\subsection{Étude d'une vérification manuelle de la valeur métier d'une base d'apprentissage par un expert}
+	\subsection{Étude d'une vérification manuelle et non assistée de la valeur métier d'une base d'apprentissage par un expert}
 	\label{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}
 		
 		% Objectif de l'expérience.
 		Afin d'estimer la pertinence d'un résultat de \textit{clustering}, notre première intuition consiste à demander simplement l'avis d'un expert sur la base d'apprentissage en cours de construction.
-		En lui posant certaines questions, nous espérons obtenir une description qualitative de chaque \textit{cluster}et ainsi déduire quand le résultat du \textit{clustering} interactif devient exploitable pour définir et entraîner un modèle de classification.
+		En lui posant certaines questions, nous espérons obtenir une description qualitative de chaque \textit{cluster} et ainsi déduire quand le résultat du \textit{clustering} interactif devient exploitable pour définir et entraîner un modèle de classification.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
@@ -74,7 +74,7 @@
 					\State \textbf{analyse}: afficher l'évolution de l'exploitabilité de chaque itération de \textit{clustering}
 					\Ensure discussion sur la complexité de la tâche et sur l'évolution de l'exploitabilité
 				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude de vérification manuelle de la valeur métier d'une base d'apprentissage.}
+				\caption{Description en pseudo-code du protocole expérimental de l'étude de vérification manuelle non assistée de la valeur métier d'une base d'apprentissage.}
 				\label{algorithm:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE-PROTOCOLE}
 			\end{algorithm}
 			
@@ -195,7 +195,7 @@
 			Il est donc nécessaire de considérer des pistes d'amélioration pour ne pas abandonner l'expert métier à lui-même dans cette tâche cruciale.
 			
 			% Conclusions et suggestion.
-			Quelques pistes peuvent être étudier pour accompagner l'opérateur :
+			Quelques pistes peuvent être étudiées pour accompagner l'opérateur :
 			\begin{itemize}
 				\item employer plusieurs experts pour valider par consensus leurs appréciation sur un résultat de \textit{clustering} : cette méthode est efficace pour rattraper les thématiques non identifiées et pour s'accorder sur la valeur d'un \textit{cluster} ;
 				\item prémâcher le travail d'analyse en réalisant une étude linguistique des \textit{clusters}, et permettre ainsi d'identifier grossièrement les thématiques présentes en fonction du vocabulaire employé (cf. sous-section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}) ;
@@ -206,7 +206,7 @@
 	%%%
 	%%% Subsection 4.4.2: Etude des patterns linguistiques pertinents à l'aide de la \textit{Features Maximization}
 	%%%
-	\subsection{Étude des patterns linguistiques pertinents à l'aide de la \textit{Features Maximization}}
+	\subsection{Étude des patterns linguistiques pertinents à l'aide de la Maximisation des Traits pour assister la vérification d'une base d'apprentissage}
 	\label{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}
 		
 		% Objectif de l'expérience.
@@ -248,8 +248,9 @@
 			
 			% Ajout de l'analyse linguistique.
 			Cependant, avant de demander l'avis de l'expert, nous réalisons une analyse du vocabulaire employé.
-			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf.~\cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver des composantes caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{mot})$.
-			À l'aide de cette analyse statistique, nous pouvons ainsi mettre en avant des mots clés du \textit{cluster} et surligner ces mots dans les questions à parcourir.
+			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf.~\cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver les composantes vectorielle caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{composante})$.
+			Dans notre cas, en utilisant une vectorisation basée sur la fréquence du vocabulaire dans un document comme \textbf{TF-IDF} (\cite{sparck-jones:1972:statistical-interpretation-term}), nous pouvons déterminer les mots les plus représentatif de chaque \textit{cluster}.
+			Ainsi, nous pouvons à la fois décrire chaque groupe de questions par une liste de mots clés caractéristiques, mais aussi surligner ces mots dans les questions à parcourir pour attirer l'attention de l'expert sur ce qui semble être statistiquement discriminant.
 			
 			% Description de l'évaluation semi-manuelle.
 			Nous adaptons aussi la tâche de l'expert afin qu'il donne son avis sur chaque \textit{cluster} en répondant aux questions suivantes :
@@ -260,7 +261,7 @@
 			
 			\begin{leftBarIdea}
 				Nous pourrions aussi analyser l'impact ergonomique qu'apporte la mise en exergue des patterns linguistiques pertinents dans le texte de chaque \textit{cluster}.
-				Cette étude pourrait ainsi mesurer le gain de temps et de qualité par rapport à une vérification manuelle non assistée comme présentée en sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}.
+				Une telle étude pourrait ainsi mesurer le gain de temps et de qualité par rapport à une vérification manuelle non assistée comme présentée en sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}.
 			\end{leftBarIdea}
 			
 			% Référence scripts.
@@ -280,7 +281,7 @@
 			
 			% Description de deux cas d'études.
 			Prenons quelques \textit{clusters} et suivons l'évolution de leur analyse linguistiques au cours des itérations.
-			Nous nous référons aux tableaux ci-contre pour afin le top $10$ des termes caractéristiques des \textit{clusters} ainsi qu'un extrait de questions issus de ces \textit{clusters} avec une mise en évidence des termes caractéristiques dans le texte.
+			Nous nous référons aux tableaux ci-contre pour connaître le top $10$ des termes caractéristiques des différents \textit{clusters} ainsi qu'un extrait de questions issu de ces \textit{clusters} avec une mise en évidence des termes caractéristiques dans le texte.
 			
 			% Exemple d'un cluster qui est bien formé dès le début.
 			D'abord, prenons l'exemple suivi dans le tableau~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}.
@@ -290,8 +291,9 @@
 			
 			\begin{table}[!htb]
 				\begin{center}
-				\def\arraystretch{0.8}
+				\def\arraystretch{0.8}  % interligne
 				\begin{tabular}{|c|l|l|}
+				
 					\hline
 					% ENTETE DU TABLEAU
 					\multicolumn{1}{|c|}{\shortstack[c]{
@@ -306,12 +308,11 @@
 						\tabularnewline
 						\hline
 					
-					% Exemple 1:
+					% Exemple 1.1:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
 						{ \footnotesize Itération: $0$ } \\
 						{ \footnotesize Cluster: $0$ } \\
-						\_\_\_\_\_ \\
 						{ \footnotesize Avis initial: } \\
 						{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
 					}}
@@ -360,12 +361,11 @@
 						\tabularnewline
 						\hline
 					
-					% Exemple 2:
+					% Exemple 1.2:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
 						{ \footnotesize Itération: $15$ } \\
 						{ \footnotesize Cluster: $0$ } \\
-						\_\_\_\_\_ \\
 						{ \footnotesize Avis initial: } \\
 						{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
 					}}
@@ -416,22 +416,26 @@
 					
 				\end{tabular}
 				\end{center}
-				\caption{extrait de l'évolution de l'analyse linguistique du \textit{cluster} ...}
+				\caption{Extrait de l'analyse linguistique de \textit{clusters} exploitables dès la première itération.
+				Ces \textit{clusters} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+				La troisième colonne expose un aperçu du contenu des \textit{clusters} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
+				}
 				\label{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}
 			\end{table}
 			
 			% Exemple d'un cluster qui se forme.
-			Ensuite, prenons l'exemple décrit dans le tableau~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE}.
+			Ensuite, prenons l'exemple décrit dans le tableau~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}.
 			A l'itération $0$, il est impossible d'exploiter ce \textit{cluster} : il n'y a que deux patterns mis en avant ne traitant pas d'une ma thématique, et les questions semblent toutes traiter de sujets différents.
 			A l'itération $10$, le résultat semble un peu plus exploitable.
-			Nous pouvons d'ailleurs déduire deux thématiques principales : la première, mise en avant par des patterns linguistiques de type "\textit{numero}", "\textit{online}",  et "\textit{de carte virtuelle}", permet d'imaginer un sujet sur la gestion des numéro de cartes virtuelles ; la seconde, identifiée par les termes "\textit{débloquer}" et "\textit{réactiver}", oriente plutôt vers la création d'un thème pour débloquer une carte bancaire.
+			Nous pouvons d'ailleurs déduire deux thématiques principales : la première, mise en avant par des patterns linguistiques de type "\textit{numero}", "\textit{online}", et "\textit{de carte virtuelle}", permet d'imaginer un sujet sur la gestion des numéro de cartes virtuelles ; la seconde, identifiée par les termes "\textit{débloquer}" et "\textit{réactiver}", oriente plutôt vers la création d'un thème pour débloquer une carte bancaire.
 			Quelques bruits sont présent, mais ce \textit{cluster} à l'itération $10$ peut donc être associé aux classes \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}.
-			Dès l'itération $15$, ces thématiques se séparent en deux clusters ($2$ et $3$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
+			Dès l'itération $15$, ces thématiques se séparent en deux clusters ($1$ et $4$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
 			
 			\begin{table}[!htb]
 				\begin{center}
-				\def\arraystretch{0.8}
+				\def\arraystretch{0.8}  % interligne
 				\begin{tabular}{|c|l|l|}
+				
 					\hline
 					% ENTETE DU TABLEAU
 					\multicolumn{1}{|c|}{\shortstack[c]{
@@ -446,12 +450,11 @@
 						\tabularnewline
 						\hline
 					
-					% Exemple 1:
+					% Exemple 2.1:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
 						{ \footnotesize Itération: $0$ } \\
 						{ \footnotesize Cluster: $1$ } \\
-						\_\_\_\_\_ \\
 						{ \footnotesize Avis initial: } \\
 						{ \footnotesize \color{colorDarkPastelRed} \texttt{Non exploitable} }
 					}}
@@ -500,38 +503,37 @@
 						\tabularnewline
 						\hline
 
-					% Exemple 2:
+					% Exemple 2.2:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
 						{ \footnotesize Itération: $10$ } \\
 						{ \footnotesize Cluster: $2$ } \\
-						\_\_\_\_\_ \\
 						{ \footnotesize Avis initial: } \\
 						{ \footnotesize \color{colorCadmiumOrange} \texttt{Partiellement} } \\
 						{ \footnotesize \color{colorCadmiumOrange} \texttt{exploitable} }
 					}}
 						& { \scriptsize - un numero }
-						& { \scriptsize - activer les \textbf{ACHATS} avec \textbf{UN NUMERO} \textbf{VIRTUEL} }
+						& { \scriptsize - activer les \textbf{achats} avec \textbf{un numero} \textbf{virtuel} }
 						\tabularnewline
 						
 						& { \scriptsize - numero }
-						& { \scriptsize - comment \textbf{DEBLOQUER MA} mastercard }
+						& { \scriptsize - comment \textbf{debloquer ma} mastercard }
 						\tabularnewline
 						
 						& { \scriptsize - de carte virtuelle }
-						& { \scriptsize - comment \textbf{REACTIVER SA} carte }
+						& { \scriptsize - comment \textbf{reactiver sa} carte }
 						\tabularnewline
 						
 						& { \scriptsize - un numero de }
-						& { \scriptsize - j aimerai \textbf{DEBLOQUER MA} carte svp }
+						& { \scriptsize - j aimerai \textbf{debloquer ma} carte svp }
 						\tabularnewline
 						
 						& { \scriptsize - numero de carte }
-						& { \scriptsize - pouvez vous \textbf{DEBLOQUER MA} carte }
+						& { \scriptsize - pouvez vous \textbf{debloquer ma} carte }
 						\tabularnewline
 						
 						& { \scriptsize - numero de }
-						& { \scriptsize - obtenir une carte \textbf{ONLINE} }
+						& { \scriptsize - obtenir une carte \textbf{online} }
 						\tabularnewline
 						
 						& { \scriptsize - numeros }
@@ -539,11 +541,11 @@
 						\tabularnewline
 						
 						& { \scriptsize - debloquer ma }
-						& { \scriptsize - ou puis je gerer mes \textbf{NUMERO}s \textbf{VIRTUEL}s }
+						& { \scriptsize - ou puis je gerer mes \textbf{numero}s \textbf{virtuel}s }
 						\tabularnewline
 						
 						& { \scriptsize - débloquer ma carte }
-						& { \scriptsize - supprimer \textbf{UNE CARTE VIRTUELLE} }
+						& { \scriptsize - supprimer \textbf{une carte virtuelle} }
 						\tabularnewline
 						
 						& \multicolumn{1}{c|}{
@@ -555,50 +557,103 @@
 						\tabularnewline
 						\hline
 
-					% Exemple 3:
+					% Exemple 2.3a:
+					\multirow{10}{*}{\shortstack[c]{
+						{ \footnotesize Tentative: $1$ } \\
+						{ \footnotesize Itération: $15$ } \\
+						{ \footnotesize Cluster: $2$ } \\
+						{ \footnotesize Avis initial: } \\
+						{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+					}}
+						
+						& { \scriptsize - virtuelle }
+						& { \scriptsize - \textbf{activer les} \textbf{achats} avec \textbf{un numero} \textbf{virtuel} }
+						\tabularnewline
+						
+						& { \scriptsize - carte virtuelle }
+						& { \scriptsize - comment consulter \textbf{ses} \textbf{numero}s de carte \textbf{virtuelle} }
+						\tabularnewline
+						
+						& { \scriptsize - un numero }
+						& { \scriptsize - comment obtenir \textbf{un numero} de carte \textbf{virtuelle} }
+						\tabularnewline
+						
+						& { \scriptsize - numero }
+						& { \scriptsize - comment supprimer \textbf{un numero} de carte \textbf{online} }
+						\tabularnewline
+						
+						& { \scriptsize - de carte virtuelle }
+						& { \scriptsize - \textbf{creer} une carte bancaire \textbf{virtuelle} }
+						\tabularnewline
+						
+						& { \scriptsize - un numero de }
+						& { \scriptsize - faire un achat avec \textbf{un numero} de carte \textbf{online} }
+						\tabularnewline
+						
+						& { \scriptsize - numero de carte }
+						& { \scriptsize - j aimerai utiliser une carte \textbf{virtuelle} }
+						\tabularnewline
+						
+						& { \scriptsize - numero de }
+						& { \scriptsize - ou peut on gerer \textbf{ses} \textbf{numero}s \textbf{virtuel}s }
+						\tabularnewline
+						
+						& { \scriptsize - numeros }
+						& { \scriptsize - supprimer \textbf{un numero} de carte \textbf{virtuel} }
+						\tabularnewline
+						
+						& \multicolumn{1}{c|}{
+							\scriptsize (Total: 34)
+						}
+						& \multicolumn{1}{c|}{
+							\scriptsize (Total: 49)
+						}
+						\tabularnewline
+						\hline
+
+					% Exemple 3b:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
 						{ \footnotesize Itération: $15$ } \\
 						{ \footnotesize Cluster: $4$ } \\
-						\_\_\_\_\_ \\
 						{ \footnotesize Avis initial: } \\
 						{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
 					}}
 						
 						& { \scriptsize - reactiver }
-						& { \scriptsize - bonjour pouvez vous \textbf{DEBLOQUER} ma carte merci }
+						& { \scriptsize - bonjour pouvez vous \textbf{debloquer} ma carte merci }
 						\tabularnewline
 						
 						& { \scriptsize - debloquer }
-						& { \scriptsize - comment \textbf{DEVERROUILLER} sa carte }
+						& { \scriptsize - comment \textbf{deverrouiller} sa carte }
 						\tabularnewline
 						
 						& { \scriptsize - debloquer ma }
-						& { \scriptsize - comment reutiliser une carte bancaire \textbf{BLOQUEE} }
+						& { \scriptsize - comment reutiliser une carte bancaire \textbf{bloquee} }
 						\tabularnewline
 						
 						& { \scriptsize - debloquer ma carte }
-						& { \scriptsize - \textbf{DEBLOQUER} sa carte apres trois \textbf{MAUVAIS} codes }
+						& { \scriptsize - \textbf{debloquer} sa carte apres trois \textbf{mauvais} codes }
 						\tabularnewline
 						
 						& { \scriptsize - bloquee }
-						& { \scriptsize - j ai besoin de \textbf{DEVERROUILLER} ma carte de paiement }
+						& { \scriptsize - j ai besoin de \textbf{deverrouiller} ma carte de paiement }
 						\tabularnewline
 						
 						& { \scriptsize - reactiver sa }
-						& { \scriptsize - j ai retrouve ma carte puis je la \textbf{REACTIVER} }
+						& { \scriptsize - j ai retrouve ma carte puis je la \textbf{reactiver} }
 						\tabularnewline
 						
 						& { \scriptsize - reactiver ma }
-						& { \scriptsize - je souhaite \textbf{DEBLOQUER} ma carte bleue }
+						& { \scriptsize - je souhaite \textbf{debloquer} ma carte bleue }
 						\tabularnewline
 						
 						& { \scriptsize - deverrouiller }
-						& { \scriptsize - pouvez vous \textbf{DEBLOQUER} ma carte }
+						& { \scriptsize - pouvez vous \textbf{debloquer} ma carte }
 						\tabularnewline
 						
 						& { \scriptsize - reactiver sa carte }
-						& { \scriptsize - \textbf{REACTIVER} une carte suspendue }
+						& { \scriptsize - \textbf{reactiver} une carte suspendue }
 						\tabularnewline
 						
 						& \multicolumn{1}{c|}{
@@ -612,35 +667,91 @@
 					
 				\end{tabular}
 				\end{center}
-				\caption{Détails ...}
-				\label{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE}
+				\caption{Extrait de l'analyse linguistique de \textit{clusters} évoluant de non exploitables à exploitables.
+				Ces \textit{clusters} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+				La troisième colonne expose un aperçu du contenu des \textit{clusters} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
+				}
+				\label{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}
 			\end{table}
 
 		%%% Discussion
 		\subsubsection{Discussion}
-			\todo[inline]{A REDIGER}
 		
-			% Remaques expérience utilisateur.
-			\todo[inline]{A REDIGER: C'est pas adapté pour un expert métier, mais ça peut être utilisé pour de l'affichage}
+			% Rappel de l'objectif.
+			Cette seconde étude avait pour objectif de proposer une assistance à la vérification manuelle des \textit{clusters} par un expert métier afin d'en qualifier la pertinence métier.
+			Pour cela, nous avons choisi une analyse linguistique à l'aide de la maximisation de traits pour mettre en avant les mots représentatif et discriminants de chaque groupe de questions.
+			Nous discutons ici de l'intérêt d'une telle analyse.
+			
+			% La FMC est très utile pour distinguer les clusters exploitables.
+			Tout d'abord, concernant les \textit{clusters} jugés exploitables, nous constatons que la \texttt{FMC} permet d'identifier aisément la thématique principale.
+			C'est le cas dans les exemples présentés dans les tableaux~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT} et~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}), où les thématiques sont bien représentées par leurs patterns (\texttt{gestion\_sans\_contact} avec "\textit{mode}", "\textit{sans}", "\textit{contact}", "\textit{nfc}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{numero}", "\textit{virtuel}", "\textit{online}" ; \texttt{deblocage\_carte} avec "\textit{debloquer}", "\textit{deverrouiller}", "\textit{carte}")
+			De plus, la présence des différentes variantes d'un même pattern (avec ses pluriels, au sein d'un groupe de termes, ...) permet de rapidement d'intégrer le champ lexical présent, aidant ainsi à interpréter le \textit{cluster} comme probablement exploitable.
+			
+			% La FMC est utile : on distingue les thématiques d'un cluster partiellement exploitable.
+			Les thématiques présentent dans les \textit{clusters} partiellement exploitables sont aussi identifiables grâce à la \texttt{FMC}, mais à moindre mesure.
+			En effet, comme plusieurs thématiques se mélangent, l'ensemble de termes caractéristiques est aussi plus hétérogène, des variantes ne sont pas identifiées, et des patterns dénués de sens peuvent être mis en avant.
+			Par exemple, dans le \textit{cluster} $2$ de la tentative $1$ à l'itération $0$, deux classes sont présentes avec leurs termes caractéristiques (\texttt{consultation\_solde} avec "\textit{solde}" et "\textit{compte}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{carte virtuelle}" et "\textit{numero}"), mais certains termes quelconque sont pourtant sont présentés comme représentatifs ("\textit{de mes}", "\textit{avec un}") et d'autres termes intéressants ne sont pas identifiés ("\textit{compte}" et "\textit{numeros}" ne sont présents qu'au singulier).
+			Ces petits indices peuvent donc aiguiller l'expert sur des ajustements nécessaires ou un \textit{cluster} réalisé sur des bases fragiles.
+			
+			% La FMC est utile : on ne distingue pas de thématiques dans un cluster inexploitable.
+			Enfin, en ce qui concerne les \textit{clusters} jugés non exploitables, la \texttt{FMC} permet de confirmer leur manque de cohérence (pour le \textit{cluster} $1$ de la tentative $2$ à l'itération $0$ : "\textit{carte gold}", "\textit{numeros virtuels}", "\textit{découvert bancaire}", "\textit{carte paiement differe}", ...) ou leur absence de valeur métier (seulement $2$ termes caractéristiques pour le \textit{cluster} $1$ de la tentative $1$ à l'itération $0$).
+			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{clusters} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir~\cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
+			
+			% Remaques expérience utilisateur : toujours une tâche complexe.
+			Cependant, une telle approche pour qualifier les \textit{clusters} risque de ne pas répondre à nos attentes en l'état.
+			D'une part, certains problèmes identifiés dans la sous-section précédente (\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}) sur une approche purement manuelle subsistent.
+			Entre autres, malgré une abstraction des \textit{clusters} par leur termes les plus caractéristiques (cf. deuxième colonne dans les tableaux~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT} et~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir l'ensemble de ces données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
+			
+			% Remaques expérience utilisateur : affiner les résultats
+			D'autre part, les résultats remontés par l'analyse linguistiques pourraient être davantage affinés et mis en avant pour faciliter leur interprétation.
+			Par exemple, les mots pourraient être réduits à leur forme racine (lemmatisation) pour éviter de considérer les nombreuses variations possibles (formes conjuguées, pluriels, ...)et les mots vides (stopwords) pourraient être supprimés pour accentuer l'absence de termes caractéristiques des \textit{clusters} inexploitables.
+			En ce qui concerne l'affichage des patterns identifiés dans les textes, un code couleur peut être introduit pour faciliter la lecture, avec un vert pour les patterns associés au \textit{cluster} courant et un rouge pour ceux associés aux autres \textit{cluster}.
+			Des nuances de couleurs pourraient même être utilisées en fonction de la prépondérance d'un terme pour chaque \textit{cluster}.
+			L'exemple ci-dessous (issu du \textit{cluster} $0$ de la tentative $1$ à l'itération $0$) permet de se faire un aperçu de l'intérêt de cette coloration : on distingue facilement que le \textit{cluster} traite des paiements sans contact (\texttt{NFC}) mais que les cartes \textit{Visa} ont dû être regroupées au sein d'un autre \textit{cluster}.
+
+			\begin{leftBarExamples}
+				\begin{quote}
+					« \textit{ est ce que le \textcolor{colorDarkPastelGreen}{\textbf{mode}} de \textcolor{colorDarkPastelGreen}{\textbf{paiement nfc}} est disponible \textcolor{colorDarkPastelGreen}{\textbf{sur ma carte}} \textcolor{colorDarkPastelRed}{\textbf{visa}} } »
+				\end{quote}
+			\end{leftBarExamples}
+			
+			% Remaques expérience utilisateur : tâche hors compétences d'un expert.
+			Pour finir, il est probable qu'une analyse linguistique soit trop éloignée des compétences réelles des experts : ces derniers disposent de connaissances sur leur domaine métier (dans notre cas, des sujets concernant la banque, l’assurance et la finance), mais ne disposent pas forcément d'aptitudes permettant d'examiner les nuances linguistiques présentes dans un \textit{cluster}, ni l'impact de la prépondérance des pluriels, des bigrams, des mots vides de sens, ...
+		
+			% Note de l'auteur.
+			\begin{leftBarAuthorOpinion}
+				% Expérience personnelle.
+				Nous utilisons notre expérience personnelle pour avancer cet avis.
+				En effet, lors de précédents travaux industriels (non publiés), nous avons réalisé une modélisation thématique (\textit{topic modeling}) sur des corps de mail en utilisant la \texttt{LDA} (\cite{blei-etal:2003:latent-dirichlet-allocation}).
+				Comme il est coutume, nous avons réaliser une abstraction en énumérant le vocabulaire employé par chaque \textit{topic}.
+				Puis, nous avons fait intervenir des experts métiers afin d'estimer la valeur de chaque \textit{topic}, de les raffiner, et de les nommer grâce aux abstractions réalisées.
+				Toutefois, nous avons constaté que les expert intervenants dans ce projet avaient du mal à manipuler de telles abstractions, notamment car ils n'arrivaient pas à se projeter sur les \textit{topic} peu ou pas exploitable.
+				Au final, les experts ont préféré modéliser manuellement le corpus de mail, sans utiliser les résultats de la \texttt{LDA}.
+				
+				% Avis sur cette expérience personnelle.
+				Une partie de cet échec est probablement lié à l'utilisation en tant que telle de la \texttt{LDA} (peu d'interactivité entre l'expert et l'algorithme de modélisation), mais nous avons aussi eu des retours directs des experts sur leur difficulté à utiliser des champs lexicaux pour juger de la qualité et de la cohérence d'une modélisation.
+				Ainsi, même si une abstraction linguistique semble sémantiquement pertinente, il se peut que les intervenants du projet ne soient pas à l'aise avec son utilisation.
+				Une étude spécifique à ce sujet pourrait vérifier ce ressenti.
+			\end{leftBarAuthorOpinion}
 			
 			% Conclusions et suggestion.
-	
+			Pour conclure, nous retenons que l'analyse linguistique est pleine de potentielle et qu'elle permet de mettre en exergue des mots importants lors de l'affichage du contenu des clusters. Toutefois, nous avons des doutes sur l'expérience utilisateur d'une telle approche pour des experts métier qui ne sont pas des experts en linguistique, et nous anticipons .
+			De fait, si une approche linguistique est trop abstraite pour qualifier un \textit{cluster}, nous nous intéressons à une approche plus pragmatique pour identifier sa thématique principale (cf. sous-section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}).
 	
 	
 	%%%
-	%%% Subsection 4.4.3: Etude d'un résumé automatique des \textit{clusters} à l'aide d'un modèle de langue.
+	%%% Subsection 4.4.3: Etude d'un résumé automatique des \textit{clusters} à l'aide d'un large modèle de langue.
 	%%%
-	\subsection{Étude d'un résumé automatique des \textit{clusters} à l'aide d'un modèle de langue}
+	\subsection{Étude d'un résumé automatique des \textit{clusters} à l'aide d'un large modèle de langue}
 	\label{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
 		
 		% Objectif de l'expérience.
 		Comme nous l'avons vu dans la section précédente, une analyse linguistique peut paraître trop abstraite pour un expert métier.
 		Nous nous intéressons donc à un moyen de simplifier l'identification de thématiques dans un \textit{cluster}, et envisageons l'automatisation de cette tâche en utilisant les capacités d'un large modèle de langage.
-		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents, une fonctionnalité que nous allons adapter et étudier ici.
+		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents (\cite{zhang-etal:2019:pegasus-pretraining-extracted}, \cite{lewis-etal:2019:bart-denoising-sequencetosequence}, \cite{radford-etal:2019:language-models-are}, \cite{brown-etal:2020:language-models-are}), une fonctionnalité que nous allons adapter\footnote{Nous nous inspirons notamment de~\cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.} et étudier ici.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-			\todo[inline]{A REDIGER}
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}.
@@ -707,13 +818,8 @@
 		
 			% Description statistiques.
 			La figure~\ref{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE} met en avant l'évolution de le pertinence moyenne estimée par l'opérateur sur la base des résumés automatiques des \textit{clusters}.
-			Comme dans l'analyse manuelle (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}), nous retrouvons trois phases se distinguant.
-		
-			% Description statistiques.
-			\todo[inline]{A REDIGER: On peut voir 3 phases: INEXPLOITABLE / DE PLUS EN PLUS EXPLOITABLE / EXPLOITABLE ; les partiellement exploitables sont pas très présents.}
-			
-			% Exemple.
-			\todo[inline]{A REDIGER: tableau avec exemples ?}
+			Comme lors de l'analyse manuelle (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}), il est normal de retrouver une tendance générale à la diminution du nombre de \textit{clusters} inexploitables au profit de \textit{clusters} exploitables.
+			La différence principale réside dans l'absence du pic de croissance du nombre de \textit{clusters} partiellement exploitables, dont l'apogée était précédemment situé à l'itération $10$.
 			
 			% Figure.
 			%
@@ -724,57 +830,209 @@
 				Cette pertinence, exprimée en proportion du nombre de \textit{clusters}, est estimée sur la base du résumé automatique des \textit{clusters} par un modèle de langue et est retranscrite en trois niveaux : \texttt{exploitable} en vert, \texttt{partiellement exploitable} en orange, et \texttt{non exploitable} en rouge.}
 				\label{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
 			\end{figure}
+			
+			% Description de deux cas d'études.
+			Pour aller plus loin, reprenons les \textit{clusters} que nous avons utilisé comme cas d'étude lors de l'analyse linguistique à l'aide de la maximisation des traits (cf. sous-section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}).
+			
+			% Exemple d'un cluster qui est bien formé dès le début.
+			D'abord, reprenons l'exemple de l'évolution d'un \textit{cluster} bien formé dès l'itération $0$, précédemment détaillé dans le tableau~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT} et dont les résumés automatiques sont présentés dans le tableau~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}.
+			Nous constatons effectivement que les synthèses générées par le modèle identifie sans ambiguïté le thème du paiement sans contact, même si le résumé de l'itération $0$ énumère longuement les actions réalisables sur ce sujet.
+			
+			\todo[inline]{A REDIGER: tableau avec exemples ?}
+			
+			\begin{table}[!htb]
+				\begin{center}
+				\def\arraystretch{0.8}  % interligne
+				\begin{tabular}{|c|c|}
+				
+				\hline
+				% ENTETE DU TABLEAU
+				\multicolumn{1}{|c|}{\shortstack[c]{
+					Identification \\ du cluster
+				}}
+					& \multicolumn{1}{c|}{\shortstack[c]{
+						Résumé du cluster
+					}}
+					\tabularnewline
+					\hline
+				
+				% Exemple 1.1:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $0$ }
+					& { \footnotesize La thématique traitée dans ces textes est la gestion de l'activation, }
+					\tabularnewline
+				{ \footnotesize Cluster: $0$ }
+					& { \footnotesize la désactivation, la modification ou la nécessité d'utiliser le paiement sans contact }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					& { \footnotesize ou le NFC (Near Field Communication) sur les cartes de paiement bancaires. }
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				% Exemple 1.2:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $15$ }
+					& { \footnotesize Les textes traitent de la gestion et de l'utilisation du }
+					\tabularnewline
+				{ \footnotesize Cluster: $0$ }
+					& { \footnotesize paiement sans contact (NFC) sur les cartes bancaires. }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					&
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				\end{tabular}
+				\end{center}
+				\caption{Extrait de de l'analyse de résumés automatiques de \textit{clusters} exploitables dès la première itération.
+				Ces \textit{clusters} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+				La seconde colonne expose le résumé obtenu en appelant un large modèle de langue (\texttt{gpt-3.5-turbo}) sur une tâche de résumé.
+				}
+				\label{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}
+			\end{table}
+			
+			% Exemple d'un cluster qui se forme.
+			Ensuite, intéressons nous l'exemple de l'évolution des \textit{clusters} en cours de formations détaillés dans le tableau~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT} et dont les résumés automatiques sont présentés dans le tableau~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}.
+			À l'itération $0$, le résumé proposé est une longue énumération de $9$ thématiques différentes sur la gestion de carte bancaires : puisque le jeu de données entier traite des cartes bancaires, nous identifions clairement ce \textit{cluster} comme non exploitable.
+			À l'itération $10$, nous ne distinguons plus que deux sujets principaux : le déblocage de carte, et l'utilisation de numéros de cartes virtuelles, ce qui est en accord avec notre précédente analyse.
+			À partir de l'itération $15$, ces deux thématiques se retrouvent bien séparées dans deux \textit{clusters} différents, et chacune est identifiable via le résumé proposé : on note toutefois que si la thématique principale est identifiée, alors l'énumération de détails est plutôt portée sur les actions réalisables avec cette thématique ("\textit{création}", "\textit{activation}", "\textit{suppression}" pour la classe \texttt{gestion\_carte\_virtuelle}).
+			
+			\begin{table}[!htb]
+				\begin{center}
+				\def\arraystretch{0.8}  % interligne
+				\begin{tabular}{|c|c|}
+				
+				\hline
+				% ENTETE DU TABLEAU
+				\multicolumn{1}{|c|}{\shortstack[c]{
+					Identification \\ du cluster
+				}}
+					& \multicolumn{1}{c|}{\shortstack[c]{
+						Résumé du cluster
+					}}
+					\tabularnewline
+					\hline
+
+				% Exemple 2.1:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $0$ }
+					& { \footnotesize La thématique des textes est la gestion des cartes bancaires, incluant la sécurité, }
+					\tabularnewline
+				{ \footnotesize Cluster: $1$ }
+					& { \footnotesize les pertes, les vols, les blocages, les récupérations, le changement ou la }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					& { \footnotesize commande de cartes, les garanties et assurances, les découverts, les paiements }
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelRed} \texttt{Non} }
+					& { \footnotesize virtuels, les numéros virtuels et les plafonds de paiement autorisés. }
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelRed} \texttt{exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				% Exemple 2.2:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $10$ }
+					& { \footnotesize Les textes traitent principalement de la gestion des cartes de paiement, }
+					\tabularnewline
+				{ \footnotesize Cluster: $2$ }
+					& { \footnotesize de leur déblocage ou leur réactivation, et de l'utilisation de numéros }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					& { \footnotesize de carte virtuelle pour les achats en ligne. }
+					\tabularnewline
+				{ \footnotesize \color{colorCadmiumOrange} \texttt{Partiellement} }
+					&
+					\tabularnewline
+				{ \footnotesize \color{colorCadmiumOrange} \texttt{exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				% Exemple 2.3a:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $15$ }
+					& { \footnotesize  Les textes concernent la gestion et l'utilisation des numéros de carte virtuelle }
+					\tabularnewline
+				{ \footnotesize Cluster: $2$ }
+					& { \footnotesize pour les achats en ligne, notamment la création, l'activation, la suppression }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					& { \footnotesize et la gestion de ces numéros virtuels. }
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				% Exemple 2.3b:
+				{ \footnotesize Tentative: $1$ }
+					& 
+					\tabularnewline
+				{ \footnotesize Itération: $15$ }
+					& { \footnotesize La thématique traitée dans ces textes est le déblocage, le déverrouillage }
+					\tabularnewline
+				{ \footnotesize Cluster: $4$ }
+					& { \footnotesize ou la réactivation de cartes bancaires bloquées. }
+					\tabularnewline
+				{ \footnotesize Avis initial: }
+					&
+					\tabularnewline
+				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+					&
+					\tabularnewline
+					\hline
+					
+				\end{tabular}
+				\end{center}
+				\caption{Extrait de de l'analyse de résumés automatiques de \textit{clusters} évoluant de non exploitables à exploitables.
+				Ces \textit{clusters} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+				La seconde colonne expose le résumé obtenu en appelant un large modèle de langue (\texttt{gpt-3.5-turbo}) sur une tâche de résumé.
+				}
+				\label{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}
+			\end{table}
+			
+			% Présence de quelques cas abhérants.
+			De manière générale, le résumé obtenu par le modèle donne une image assez fidèle des différents \textit{clusters}.
+			En effet, en considérant les $376$ \textit{clusters} évalués lors des itérations n'ayant pas encore atteint la vérité terrain, les résumés automatiques permettent d'identifient les mêmes thématiques qu'une vérification manuelle dans $85$\% des cas ($312$ \textit{clusters}).
+			Concernant les $15$\% de différences, nous avons différents cas de figure :
+			\begin{itemize}
+				\item si le modèle génère un résumé concis, certaines thématiques peuvent être minimisées voire ignorées : par exemple, le \textit{cluster} $2$ de la tentative $3$ à l'itération $20$ contient les thématiques \texttt{consultation\_solde} et \texttt{gestion\_carte\_virtuelle}, mais seule la seconde est mentionnée dans le résumé ;
+				\item à l'inverse, les données aberrantes ou isolées d'un \textit{cluster} peuvent influencer le résumé, donnant l'illusion que plusieurs thématiques sont présentes alors qu'une seule ne l'est réellement (voir le \textit{cluster} $9$ de la tentative $5$ à l'itération $15$, où les thématiques \texttt{couverture\_assurrance} et \texttt{deblocage\_carte} représentent $4$ questions sur $51$ et sont néanmoins citées dans le résumé) ;
+				\item le résumé issu du large modèle de langue peut aussi identifier des thématiques auquel l'expert n'aurait pas pensé : c'est le cas dans les \textit{clusters} $7$ et $8$ de la tentative $1$ à l'itération $0$, où les thématiques \texttt{gestion\_carte\_mastercard} et \texttt{gestion\_carte\_visa} sont proposées dans la synthèse, mais n'aurait pas été par un expert (il n'y a pas de différences aussi significatives entre les deux réseaux de cartes bancaires pour justifier une gestion séparée) ;
+				\item enfin, le modèle peut aussi générer des hallucinations n'ayant rien à voir avec les données en entrée : c'est le cas avec le cluster $9$ de la tentative $2$ à l'itération $10$, où le cluster est composé de $2$ questions (« \textit{Comment obtenir une Mastercard ?} » et « \textit{Désactiver les numéros virtuels.} ») et où le résumé parle de "\textit{sécurisation des transactions bancaires}"
+			\end{itemize}
 
 		%%% Discussion
 		\subsubsection{Discussion}
-			\todo[inline]{A REDIGER}
+			
+			% Rappel de l'objectif.
+			Dans cette dernière étude sur l'évaluation de la valeur métier d'un résultat de \textit{clustering}, nous avons adapté les capacités d'un large modèle de langue pour résumer les thématiques présentes dans chaque regroupement de questions.
+			Comme lors de la vérification manuelle (cf. sous-section~\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}), ces résumés ont été annotés en trois catégories : exploitable, partiellement exploitable et non exploitable.
 		
 			% Remaques expérience utilisateur.
-			\todo[inline]{A REDIGER: C'est super pratique, super accessible}
-			\todo[inline]{A REDIGER: C'est parfois un peu ambigu...}
+			La principale remarque concerne la facilité d'utilisation et le gain de temps d'analyse qui est possible avec une telle approche.
+			En effet, en disposant d'une synthèse écrite qui tiens en une ou deux phrases, nous avons là un moyen de réduire grandement la pénibilité du travail d'analyse réalisé par les experts métiers.
+			Bien que ces résumés peuvent avoir quelques biais (hallucinations, oublis, erreurs de reformulations), ils permettent de donner rapidement un aperçu du contenu des \textit{clusters} obtenus.
+			De plus, la structure du résumé peut parfois aiguiller l'analyse de la qualité du regroupement des questions, notamment car le modèle met généralement l'emphase sur les thématiques principales et énumère les thématiques secondaires à la fin de sa génération.
 			
 			% Conclusions et suggestion.
-	
-	
-	%%%
-	%%% Subsection 4.4.4: Étude de la cohérence statistique de la base d'apprentissage en cours de construction
-	%%%
-	%\subsection{Étude de la cohérence statistique de la base d'apprentissage en cours de construction}
-	%\label{section:4.4.4-ETUDE-PERTINENCE-COHERENCE}
-	%	
-	%	% Objectif de l'expérience.
-	%	\todo[inline]{A REDIGER: objectif de l'expérience}
-	%
-	%	%%% Protocole expérimental.
-	%	\subsubsection{Protocole expérimental}
-	%		\todo[inline]{A REDIGER}
-	%		% Axiome.
-	%		% Pseudo-code.
-	%		% Détails de l'expérience.
-	%		% Référence scripts.
-	%
-	%	%%% Résultats
-	%	\subsubsection{Résultats obtenus}
-	%		\todo[inline]{A REDIGER}
-	%	
-	%		% Description statistiques.
-	%		
-	%		% Exemple.
-	%		
-	%		% Figure.
-	%		%
-	%		\begin{figure}[!htb]
-	%			\centering
-	%			\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-consistence}
-	%			\caption{Évolution du score de cohérence moyen des tentatives en fonction de leur paramétrage : \textbf{(1)} meilleur paramétrage moyen une annotation partielle (\texttt{90}\% de \texttt{v-measure}), \textbf{(2)} meilleur paramétrage moyen une annotation suffisante (\texttt{100}\% de \texttt{v-measure}), \textbf{(3)} meilleur paramétrage moyen une annotation exhaustive (annoter toutes les contraintes possibles), et \textbf{(4)} paramétrage favori (\texttt{90}\% de \texttt{v-measure} avec un coût minimal). \\
-	%			Note : \textit{Le score de cohérence de la vérité terrain peut varier en fonction des méthodes de prétraitements et de vectorisation utilisées.}}
-	%			\label{figure:4.4.4-ETUDE-PERTINENCE-COHERENCE-ANNOTATION}
-	%		\end{figure}
-	%
-	%	%%% Discussion
-	%	\subsubsection{Discussion}
-	%		\todo[inline]{A REDIGER}
-	%	
-	%		% Remaques expérience utilisateur.
-	%		
-	%		% Conclusions et suggestion.
+			\todo[inline]{A REDIGER: rappeler quelques soucis de la générations}

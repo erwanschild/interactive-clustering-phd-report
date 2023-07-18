@@ -58,7 +58,7 @@
 		Toutefois, l'annotation de contraintes semble elle aussi fastidieuse.
 		En effet, pour faire émerger une base d'apprentissage, il faut annoter un grand nombre de contraintes et être attentifs aux éventuelles incohérences pour ne pas introduire de contraintes contradictoires.
 		\todo{citation}
-		Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine. Ce choix est motivé entre autre par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.\todo{à reformuler plus tard.}
+		Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine. Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.\todo{à reformuler plus tard.}
 
 		% TR:
 		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d’entraînement de notre assistant conversationnel.
@@ -90,7 +90,7 @@
 		        \Until{segmentation satisfaisante OU budget épuisé}
 		        \Ensure données segmentées (i.e. base d'apprentissage)
 		    \end{algorithmic}
-		    \caption{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif}
+		    \caption{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif.}
 		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
@@ -311,7 +311,7 @@ dict_of_vectors = vectorize(
 		
 		\begin{equation}
 			\begin{cases}
-				& \textcolor{red}{\texttt{CANNOTLINK}(D_0,D_n)} \\
+				& \textcolor{colorDarkPastelRed}{\texttt{CANNOTLINK}(D_0,D_n)} \\
 				(\exists \{D_i | i\in[0,n]\})
 				& \bigwedge_{i\in[0,n-1]} \texttt{MUSTLINK}(D_i,D_{i+1})
 			\end{cases}
@@ -319,7 +319,7 @@ dict_of_vectors = vectorize(
 		
 		\begin{equation}
 			\begin{cases}
-				& \textcolor{red}{\texttt{MUSTLINK}(D_0,D'_0)} \\
+				& \textcolor{colorDarkPastelRed}{\texttt{MUSTLINK}(D_0,D'_0)} \\
 				(\exists \{D_i | i\in[0,n]\})
 				& \bigwedge_{i\in[0,n-1]} \texttt{MUSTLINK}(D_i,D_{i+1})\\
 				(\exists \{D'_j | j\in[0,m]\})
