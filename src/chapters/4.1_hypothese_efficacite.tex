@@ -19,7 +19,7 @@
 		} » \\
 		
 		% Figure.
-		La figure~\ref{figure:4.1-HYPOTHESE-EFFICACITE} illustre cette hypothèse et l'espoir de convergence d'une base d'apprentissage en cours de construction vers sa vérité terrain.
+		La \textsc{Figure~\ref{figure:4.1-HYPOTHESE-EFFICACITE}} illustre cette hypothèse et l'espoir de convergence d'une base d'apprentissage en cours de construction vers sa vérité terrain.
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
@@ -31,7 +31,7 @@
 	\end{tcolorbox}
 		
 	% Résumé de l'étude.
-	Afin de vérifier cette hypothèse, nous mettons en place une \textbf{expérience de ré-annotation} d'une base d'apprentissage (qui servira ici de vérité terrain) à l'aide de notre méthode, en simulant l'annotation d'un expert, et nous critiquons l'évolution de la nouvelle base d'apprentissage obtenue ainsi que sa similitude avec la base d'apprentissage initiale (cf. sous-section~\ref{section:4.1.1-ETUDE-CONVERGENCE}).
+	Afin de vérifier cette hypothèse, nous mettons en place une \textbf{expérience de ré-annotation} d'une base d'apprentissage (qui servira ici de vérité terrain) à l'aide de notre méthode, en simulant l'annotation d'un expert, et nous critiquons l'évolution de la nouvelle base d'apprentissage obtenue ainsi que sa similitude avec la base d'apprentissage initiale (cf. \textsc{Section~\ref{section:4.1.1-ETUDE-CONVERGENCE}}).
 	
 	
 	%%%
@@ -58,11 +58,11 @@
 			\begin{leftBarWarning}
 				Dans le cadre de cette étude, nous supposons que l'expert métier connaît parfaitement le domaine traité dans ce jeu de données, et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
 				Cependant, cette hypothèse forte n'est pas toujours vérifiée en pratique, surtout lorsque l'on manipule des données non structurées.
-				L'impact de ce point sur les résultats obtenus sera discuté en fin en fin de partie, et nous nous y intéresserons plus en détails dans la section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE} (hypothèse de robustesse).
+				L'impact de ce point sur les résultats obtenus sera discuté en fin en fin de partie, et nous nous y intéresserons plus en détails dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans Alg.~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}}.
 			%
 			\begin{algorithm}[!htb]
 				\begin{algorithmic}[1]
@@ -100,17 +100,17 @@
 			Une tentative de l'application de notre méthode s'arrête lorsque toutes les contraintes possibles entre les données ont été annotés par l'expert.
 
 			% Description implémentation de l'interactive clustering.
-			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètre de notre implémentation du \textit{clustering} interactif (cf. section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}). Cela comprend les tâches et leurs paramètres respectifs suivants :
+			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètre de notre implémentation du \textit{clustering} interactif (cf. \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}). Cela comprend les tâches et leurs paramètres respectifs suivants :
 			\begin{enumerate}
 				\item le \textbf{prétraitement} des données, avec les niveaux suivants : \textbf{aucun} (noté \texttt{prep.no}), \textbf{simple} (noté \texttt{prep.simple}), avec \textbf{lemmatisation} (noté \texttt{prep.lemma}) et avec \textbf{filtres} (noté \texttt{prep.filter}) ;
 				\item la \textbf{vectorisation} des données, avec les niveaux suivants : \textbf{TF-IDF} (noté \texttt{vect.tfidf}) et \textbf{SpaCy} (noté \texttt{vect.frcorenewsmd}) ;
 				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants : \textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}). Le choix du nombre de clusters n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants : \textbf{purement aléatoire} (noté \texttt{samp.random.full}), \textbf{pseudo-aléatoire} (noté \texttt{samp.random.same}), \textbf{même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et \textbf{clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}). Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$
-				\footnote{Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données. Ce choix sera discuté en fin en fin de partie, et nous nous y intéresserons davantage dans la section~\ref{section:4.3-HYPOTHESE-COUTS} (hypothèse sur les coûts).}.
+				\footnote{Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données. Ce choix sera discuté en fin en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).}.
 			\end{enumerate}
 			
 			Il y a donc $192$ combinaisons testées, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des algorithmes de \textit{clustering} (\textit{initialisation du \texttt{clust.kmeans.cop}, ...}) et d'échantillonnage (\textit{choix des contraintes au hasard avec \texttt{samp.random.full}, ...}).
-			Pour plus de détails sur ces algorithmes, référez-vous à la section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION} pour avoir accès à leur description, à leurs paramètres et aux choix d'implémentation.
+			Pour plus de détails sur ces algorithmes, référez-vous à la \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}} pour avoir accès à leur description, à leurs paramètres et aux choix d'implémentation.
 			
 			% Description de l'évaluation.
 			Pour évaluer l'équivalence entre la vérité terrain et notre segmentation des données obtenue au cours de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) entre ces deux jeu de données.
@@ -125,17 +125,17 @@
 		\subsubsection{Résultats obtenus}
 			
 			% Graphe d'évolution de la v-measure moyenne, min et max.
-			La figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} et le tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION} représentent l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode. Les tentatives les plus rapides et les plus lentes sont représentées sur la figure.
+			La \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}} et la \textsc{Table~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}} représentent l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode. Les tentatives les plus rapides et les plus lentes sont représentées sur la figure.
 							
 			% Tendance: Forte dispersion, Croissance générale.
 			Malgré une forte dispersion des résultats (écart-type de \texttt{v-measure} pouvant être supérieur à $20$\%, forte différence entre les tentatives la plus rapide et la plus lente) et quelques sauts de performances (cf. à-coups de la tentative la plus lente sur la figure), une convergence générale vers la vérité terrain peut être constatée.
 			
 			% Tendance à courts termes: Croissance linéaire
 			A l'itération $0$, une tentative commence avec une moyenne de $19.05$\% de \texttt{v-measure}  entre son \textit{clustering} initial (sans contraintes) et la vérité terrain.
-			Cette \texttt{v-measure} moyenne croît presque linéairement (pente de $0.97$) jusqu'à l'itération $75$ où elle atteint la performance de $92.08$\% (cf. tableau~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+			Cette \texttt{v-measure} moyenne croît presque linéairement (pente de $0.97$) jusqu'à l'itération $75$ où elle atteint la performance de $92.08$\% (cf. \textsc{Table~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 
 			% Tendance à longs termes: Asymptote.
-			Au delà de l'itération $75$, la courbe de la \texttt{v-measure} moyenne tend vers une asymptote de $100$\% (cf. figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+			Au delà de l'itération $75$, la courbe de la \texttt{v-measure} moyenne tend vers une asymptote de $100$\% (cf. \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 			Cette asymptote est atteinte par toute les $960$ tentatives ($192$ combinaisons de paramètres, $5$ tentatives pour chaque combinaison), la tentative l'ayant atteinte le plus tôt à l'itération $19$ et celle le plus tard à l'itération $326$.
 			
 			% Tendances à terminer sans avoir toutes les contraintes.
@@ -217,14 +217,14 @@
 			Cela représente un net avantage pour l'opérateur qui n'a ainsi pas à maintenir en mémoire une modélisation complexe de la structure de données, rendant la tâche d'annotation plus accessible.
 			
 			% Avantage 2 : Annotations plus simples et plus concrètes
-			D'autre part, ces contraintes ont été l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}).
+			D'autre part, ces contraintes ont été l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les clusters en cours de construction, améliorant ainsi la cohérence des clusters (cf. pentes croissantes) ; soit en remaniant les clusters mal formés pour repartir sur de bonnes bases, détériorant la cohérence des clusters le temps de la réorganisation (cf. oscillations ou pentes décroissantes).
 			Une telle assistance limite ainsi le nombre de contraintes non utiles au \textit{clustering}, même si certains paramétrages semblent plus efficaces que d'autres (voir la forte dispersion des résultats).
 			
 			% Avantage 3 : Pas besoins d'une exhaustivité de contraintes.
 			De plus, nous remarquons que $76.75$\% des tentatives convergent vers la vérité terrain sans bénéficier d'une annotation exhaustive de toutes les contraintes possibles.
 			Cela montre l'intérêt des interactions homme/machine afin d'obtenir plus efficacement un résultat qu'un expert métier (aussi parfait soit-il) aurait obtenu seul. 
-			L'intérêt serait maintenant de déterminer la meilleure combinaison de paramétrage demandant d'annoter un nombre \textbf{suffisant} de contraintes afin d'obtenir ce même résultat de la manière la plus efficiente (cf. section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}) et la plus robuste aux erreurs d'annotation (cf. section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}).\\
+			L'intérêt serait maintenant de déterminer la meilleure combinaison de paramétrage demandant d'annoter un nombre \textbf{suffisant} de contraintes afin d'obtenir ce même résultat de la manière la plus efficiente (cf. \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}) et la plus robuste aux erreurs d'annotation (cf. \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}).\\
 
 			
 			%%% Limites.
@@ -243,16 +243,16 @@
 			Cela peut décourager les experts métiers en début de projet, surtout pour des projets ayant des jeux de données de plus grandes tailles.
 			Toutefois, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire, et certaines tentatives ont été bien plus efficientes dans l'utilisation de leurs contraintes. La tentative la plus rapide a convergé à l'itération $19$, soit $950$ contraintes, ce qui est un volume d'annotation bien plus abordable !
 			On peut donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre moyen de contraintes nécessaires afin d'obtenir une base d'apprentissage exploitable avec un volume d'annotations acceptable.
-			Cet aspect fait l'objet de l'étude décrite dans la section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} (hypothèse d'efficience).
+			Cet aspect fait l'objet de l'étude décrite dans la \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}} (hypothèse d'efficience).
 			
 			% Limite 2 : Exhaustivité des annotations ==> evaluation de la rentabilité.
 			D'autre part, le choix d'annoter toutes les contraintes possibles sur les données (\textbf{annotation exhaustive}) n'est pas forcément judicieux.
-			En effet, si nous nous regardons la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}), une moyenne de $90$\% de \texttt{v-measure} est déjà atteinte autour de l'itération $75$, alors que l'asymptote à $100$\% n'est atteinte qu'au delà de l'itération $200$.
-			Afin d'être plus efficient, il faudrait envisager une \textbf{annotation partielle} permettant d'obtenir rapidement ces $90$\% de \texttt{v-measure} (cf. coude sur la figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}), quitte à affiner le résultat manuellement pour combler la "perte" moyenne de $10$\% de \texttt{v-measure}.
-			Cet aspect sera ajouté à l'objectif de l'étude décrite dans la section~\ref{section:4.2-HYPOTHESE-EFFICIENCE} (hypothèse d'efficience).
+			En effet, si nous nous regardons la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}, une moyenne de $90$\% de \texttt{v-measure} est déjà atteinte autour de l'itération $75$, alors que l'asymptote à $100$\% n'est atteinte qu'au delà de l'itération $200$.
+			Afin d'être plus efficient, il faudrait envisager une \textbf{annotation partielle} permettant d'obtenir rapidement ces $90$\% de \texttt{v-measure} (cf. coude sur la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}), quitte à affiner le résultat manuellement pour combler la "perte" moyenne de $10$\% de \texttt{v-measure}.
+			Cet aspect sera ajouté à l'objectif de l'étude décrite dans la \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}} (hypothèse d'efficience).
 			
 			% Limite 3 : Expert métier parfait ==> simuler les erreurs.
 			Pour finir, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
 			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des erreurs d'annotations peuvent intervenir (ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
 			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
-			Cet aspect sera traité à la fin de ce chapitre dans la section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE} (hypothèse de robustesse).
+			Cet aspect sera traité à la fin de ce chapitre dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).

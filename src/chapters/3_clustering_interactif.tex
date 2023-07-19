@@ -70,8 +70,9 @@
     \section{Description théorique de notre clustering interactif}
 	\label{section:3.2-DESCRIPTION-THEORIQUE}
     
-	    	% Rappel de l'objectif.
-		Nous proposons la méthode suivante pour transformer une collecte de données brut en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel. Cette méthode, que nous appelons "\textit{clustering interactif}", est décrite formellement à l'aide du pseudo-code figurant dans Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}.
+	    % Rappel de l'objectif.
+		Nous proposons la méthode suivante pour transformer une collecte de données brut en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel.
+		Cette méthode, que nous appelons \textit{clustering interactif}, est décrite formellement à l'aide du pseudo-code figurant dans \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}} et est illustrée par la \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}.
 
 		\begin{algorithm}[!htb]
 		    \begin{algorithmic}[1]
@@ -94,10 +95,13 @@
 		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
-		\todo[inline]{
-			AJOUTER SCHEMA :
-			Diagramme d'état ? du point de vue de l'utilisateur ?
-		}
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
+			\captionof{figure}{Schéma illustrant l'architecture architectures du \textit{clustering} interactif. La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.}
+			\label{figure:3.2-CLUSTERING-INTERACTIF}
+		\end{figure}
 		
 		% Présentation succinte.
 		La méthode repose principalement sur l'alternance successive entre deux phases clefs :
@@ -114,14 +118,14 @@
 		En effet, à chaque itération, l'expert métier obtiendra une proposition de segmentation des données qu'il pourra raffiner pour corriger le fonctionnement de la machine et ainsi obtenir une segmentation plus pertinente à l'itération suivante.
 		
 		% Description de l'initialisation.
-		Pour l'\textbf{initialisation} de la méthode (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, cette liste contiendra l'ensemble de la connaissance que l'expert transmettra au système sous la forme de contraintes simple sur les données (nous entrerons en détails en décrivant la phase d'annotation).
+		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, cette liste contiendra l'ensemble de la connaissance que l'expert transmettra au système sous la forme de contraintes simple sur les données (nous entrerons en détails en décrivant la phase d'annotation).
 		De plus, il faut une première segmentation des données par la machine : celle-ci se réalise par l'exécution d'un algorithme de clustering.
 		Nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de clustering et ses hyper-paramètres.
 		Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter ou laissés par défaut\todo{cf. partie étude}.
 		Il est à noter que cette segmentation des données est réalisée sans bénéficier de la connaissance de l'expert, il est donc peu probable que le résultat soit pertinent à ce stade.
 		
 		% Description de l'échantillonnage.
-		Nous entrons dans le coeur de la boucle itérative par la phase d'\textbf{échantillonnage} (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{lignes 5 et 6}).
+		Nous entrons dans le coeur de la boucle itérative par la phase d'\textbf{échantillonnage} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 5 et 6}).
 		Comme mentionné au préalable, savoir quelles contraintes ajouter pour corriger efficacement le clustering est un problème NP-difficile (le nombre de possibilité croît proportionnellement au carré du nombre de données).
 		De plus, l'intervention d'expert est chiffrée et représente en général la majeure partie des coûts à investir dans un projet\todo{citation}.
 		Il est donc inconcevable de laisser un expert métier annoter des contraintes "seul" et "au hasard".
@@ -130,7 +134,7 @@
 		\todo{description technique plus tard ? ref subsection:3.3.4}
 		
 		% Description de l'annotation.
-		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{ligne 7}).
+		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 7}).
 		Pour alléger la charge d'annotation, nous avons décidé de discriminer les données de l'échantillon par des contraintes binaires simples : \texttt{MUST-LINK} et \texttt{CANNOT-LINK}. Ces contraintes représentent respectivement la similitude ou la différence entre deux données, et seront utilisées pour regrouper ou séparer certaines données dans la prochain segmentation.
 		En fonction de l'orientation du projet et afin de rester au plus proche des compétences réelles de l'expert, la formulation de l'énoncer d'annotation doit être judicieusement définie : par exemple, les contraintes peuvent représenter une similitude
 		sur la thématique concernée\footnote{Exemples de thématiques : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...},
@@ -139,13 +143,13 @@
 		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaire et différentes deux données\todo{figure, ref subsection:3.3.2.}.
 		
 		% Description du clustering.
-		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{lignes 8 et 9}). Cette devra respecter les contraintes préalablement définies par l'expert, nous nous tournons donc vers l'utilisation d'un clustering sous contraintes.
+		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 8 et 9}). Cette devra respecter les contraintes préalablement définies par l'expert, nous nous tournons donc vers l'utilisation d'un clustering sous contraintes.
 		Au fur et à mesure des itérations, de plus en plus de contraintes seront ajoutées pour corriger le clustering. ainsi, au bout d'un certain nombre d'itérations, la segmentation des données reflétera la vision que l'expert aura voulu transmettre.
 		Comme précédemment, nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de clustering et ses hyper-paramètres. Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter, estimés en fonction de l'itération et des contraintes disponibles, ou laissés par défaut.\todo{cf. partie étude}
 		\todo{description technique plus tard ? ref subsection:3.3.3}
 		
 		% Description de l'évaluation.
-		Comme la méthode est itérative, il faut pouvoir estimer des \textbf{cas d'arrêt} (cf. Alg.~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}, \textit{lignes 10 à 12}).
+		Comme la méthode est itérative, il faut pouvoir estimer des \textbf{cas d'arrêt} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 10 à 12}).
 		Le cas d'arrêt le plus évident n'est pas technique mais relatif aux coûts investis dans l'opération : si le projet n'a plus de budget dédié à l'annotation, il faudra créer la base d'apprentissage avec le résultat à disposition, quel que soit la pertinence de la segmentation obtenue sur les données. Ce cas d'arrêt par défaut peut malheureusement être synonyme d'échec pour le projet si les résultats sont inexploitables.
 		D'autres cas d'arrêts plus techniques peuvent être envisagés en fonction de la qualité de la segmentation.
 		D'une part, nous pouvons comparer l'évolution de la segmentation des données : si les segmentations sont similaires sur plusieurs itérations, il est possible que la modélisation atteint un optimum local ou un palier de performance.
@@ -169,7 +173,7 @@
 		\end{enumerate}
 		
 		% Exemple.
-		Pour les sections suivantes, nous suivrons l'exemple suivant (cf. Code~\ref{code:3.3-IMPLEMENTATION-DATA}) pour présenter nos implémentations.
+		Pour les sections suivantes, nous suivrons l'exemple suivant (cf. \textsc{Code~\ref{code:3.3-IMPLEMENTATION-DATA}}) pour présenter nos implémentations.
 		
 		\begin{lstlisting}[
 			language=Python,
@@ -237,7 +241,7 @@ dict_of_texts = {
 		\end{enumerate}
 		
 		% cognitivefactory.interactive-clustering.utils : Exemple.
-		Vous avez un exemple d'utilisation des modules de prétraitements et de vectorisation dans Code~\ref{code:3.3-IMPLEMENTATION-GESTION-DONNEES}.
+		Vous avez un exemple d'utilisation des modules de prétraitements et de vectorisation dans \textsc{Code~\ref{code:3.3-IMPLEMENTATION-GESTION-DONNEES}}.
 		
 		\begin{lstlisting}[
 			language=Python,
@@ -289,47 +293,42 @@ dict_of_vectors = vectorize(
 		\end{itemize}
 
 		% cognitivefactory.interactive-clustering.constraints: Transitivité.
-		Ces types de contraintes respectent les propriétés de transitivités suivantes (cf. figure.~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}):
+		Ces types de contraintes respectent les propriétés de transitivités suivantes (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}}, \textsc{Equation~\ref{equation:3.3-CONTRAINTES-TRANSITIVITE-MUST-LINK}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-TRANSITIVITE-CANNOT-LINK}}):
 		
 		\begin{equation}
-			(\forall D_1,D_2,D_3) \\
-			\texttt{MUSTLINK}(D_1,D_2) \wedge \texttt{MUSTLINK}(D_2,D_3)
-			\Rightarrow \texttt{MUSTLINK}(D_1,D_3)
+			\label{equation:3.3-CONTRAINTES-TRANSITIVITE-MUST-LINK}
+			(\forall D_1,D_2,D_3)
+			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_2)
+			~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_2,D_3)
+			~\Rightarrow~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_3)
 		\end{equation}
 		
 		\begin{equation}
-			(\forall D_1,D_2,D_3) \\
-			\texttt{MUSTLINK}(D_1,D_2) \wedge \texttt{CANNOTLINK}(D_2,D_3)
-			\Rightarrow \texttt{CANNOTLINK}(D_1,D_3)
+			\label{equation:3.3-CONTRAINTES-TRANSITIVITE-CANNOT-LINK}
+			(\forall D_1,D_2,D_3)
+			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_2)
+			~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(D_2,D_3)
+			~\Rightarrow~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(D_1,D_3)
 		\end{equation}
 		
 		Pour respecter ces propriétés, le gestionnaire de contraintes doit calculer les transitivités à chaque ajout ou suppression de contraintes. On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
 		
 		% cognitivefactory.interactive-clustering.constraints: Conflits.
-		Il se peut que la contrainte en cours d'ajout contredise les contraintes déduites : nous parlons alors d'incohérence ou de conflit (cf. Fig.~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}). Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
+		Il se peut que la contrainte en cours d'ajout contredise les contraintes déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-CONFLITS}}).
+		Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
 		Ce conflit peut venir simplement venir d'une erreur d’inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés .
 		
 		\begin{equation}
+			\label{equation:3.3-CONTRAINTES-CONFLITS}
+			(\exists \{D_i | i\in[0,n]\})~
 			\begin{cases}
-				& \textcolor{colorDarkPastelRed}{\texttt{CANNOTLINK}(D_0,D_n)} \\
-				(\exists \{D_i | i\in[0,n]\})
-				& \bigwedge_{i\in[0,n-1]} \texttt{MUSTLINK}(D_i,D_{i+1})
-			\end{cases}
-		\end{equation}
-		
-		\begin{equation}
-			\begin{cases}
-				& \textcolor{colorDarkPastelRed}{\texttt{MUSTLINK}(D_0,D'_0)} \\
-				(\exists \{D_i | i\in[0,n]\})
-				& \bigwedge_{i\in[0,n-1]} \texttt{MUSTLINK}(D_i,D_{i+1})\\
-				(\exists \{D'_j | j\in[0,m]\})
-				& \bigwedge_{j\in[0,m-1]} \texttt{MUSTLINK}(D'_j,D'_{j+1})\\
-				& \texttt{CANNOTLINK}(D_n,D'_m)
+				\bigwedge_{i\in[0,n-1]}~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_i,D_{i+1})  \\
+				\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}(D_0,D_n)}
 			\end{cases}
 		\end{equation}
 		
 		% cognitivefactory.interactive-clustering.constraints: Composants connexe.
-		A partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. Fig.~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}).
+		A partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}}).
 		Ce composant peut être vu comme un noyau de \textit{cluster}. Il pourra être associé à d'autres noyau par similarité pour former un plus \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
 
 		\begin{figure}[!htb]
@@ -340,7 +339,7 @@ dict_of_vectors = vectorize(
 		\end{figure}
 		
 		% cognitivefactory.interactive-clustering.constraints : Exemple.
-		Un exemple d'utilisation du module de gestion de contraintes est consultable dans Code~\ref{code:3.3-IMPLEMENTATION-GESTION-CONTRAINTES}.
+		Un exemple d'utilisation du module de gestion de contraintes est consultable dans \textsc{Code~\ref{code:3.3-IMPLEMENTATION-GESTION-CONTRAINTES}}.
 		
 		\begin{lstlisting}[
 			language=Python,
@@ -405,7 +404,7 @@ connected_components = constraints_manager.get_connected_components()
 		
 		Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{cluster}) et une \textit{factory} est disponible pour instancier rapidement un objet de \textit{clustering}.
 		% cognitivefactory.interactive-clustering.clustering : Exemple.
-		Enfin, un exemple d'utilisation ce module est consultable dans Code~\ref{code:3.3-IMPLEMENTATION-CLUSTERING}.
+		Enfin, un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:3.3-IMPLEMENTATION-CLUSTERING}}.
 		
 		
 		\begin{lstlisting}[
@@ -472,8 +471,8 @@ clustering_result = clustering_model.cluster(
 		\begin{enumerate}
 			\item Un échantillonnage \textbf{purement aléatoire} en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
 			\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même cluster}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;
-			\item Un échantillonnage des données issues d'un \textbf{même cluster} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. Fig~\ref{figure:3.3-CONTRAINTES-SAMPLING}) ;
-			\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. Fig~\ref{figure:3.3-CONTRAINTES-SAMPLING}).
+			\item Un échantillonnage des données issues d'un \textbf{même cluster} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-SAMPLING}}) ;
+			\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-SAMPLING}}).
 		\end{enumerate}
 		
 		\begin{figure}[!htb]
@@ -485,7 +484,7 @@ clustering_result = clustering_model.cluster(
 
 		Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{sample}) et une \textit{factory} est disponible pour instancier rapidement un objet d'échantillonnage.
 		% cognitivefactory.interactive-clustering.sampling : Exemple.
-		Un exemple d'utilisation ce module est consultable dans Code~\ref{code:3.3-IMPLEMENTATION-SAMPLING}.
+		Un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:3.3-IMPLEMENTATION-SAMPLING}}.
 		
 		\begin{lstlisting}[
 			language=Python,

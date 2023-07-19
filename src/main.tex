@@ -53,6 +53,7 @@
 \definecolor{colorCadmiumOrange}{rgb}{0.93, 0.53, 0.18}  % Cadmium Orange
 \definecolor{colorDarkPastelRed}{rgb}{0.76, 0.23, 0.13}  % Dark Pastel Red
 \definecolor{colorDarkPastelBlue}{rgb}{0.47, 0.62, 0.80}  % Dark Pastel Blue
+\definecolor{colorDimGray}{rgb}{0.45, 0.45, 0.45}  % Dim Gray
 
 %%% Pour les symbols:
 \usepackage{fontawesome5}  % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
@@ -80,7 +81,12 @@
 %%% Pour les tableaux:
 \usepackage{array}
 \usepackage{multirow}
-\usepackage{tabularx}
+\definecolor{colorCaption}{rgb}{0.45, 0.45, 0.45}  % Dim Gray
+\usepackage[
+	font={color=colorCaption},
+	labelfont={sc, bf},
+	textfont={it},
+]{caption}
 
 %%% Pour les figures:
 \usepackage{float}
@@ -198,10 +204,10 @@
 \usepackage{algorithm} % algorithm2e
 \usepackage{algpseudocode}
 \makeatletter 
-\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}} 
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
 \@addtoreset{algorithm}{chapter} 
 \makeatother
-\floatname{algorithm}{Algorithme}
+\floatname{algorithm}{\textsc{Algorithme}}
 \renewcommand{\algorithmicreturn}{\textbf{retourne}}
 \renewcommand{\algorithmicprocedure}{\textbf{procédure}}
 \renewcommand{\algorithmicrequire}{\textbf{Entrée(s):}}
@@ -232,7 +238,7 @@
 \lstset{
   inputencoding=utf8,
   breaklines=true,
-  %captionpos=b,
+  captionpos=b,
   escapeinside={\%*}{*)},
   frame=lines,
   numbers=left,
