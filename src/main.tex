@@ -83,6 +83,7 @@
 \usepackage{multirow}
 \definecolor{colorCaption}{rgb}{0.45, 0.45, 0.45}  % Dim Gray
 \usepackage[
+	labelsep=endash,
 	font={color=colorCaption},
 	labelfont={sc, bf},
 	textfont={it},
@@ -201,31 +202,18 @@
 
 
 %%% Pour les algorithmes:
-\usepackage{algorithm} % algorithm2e
 \usepackage{algpseudocode}
-\makeatletter 
-\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
-\@addtoreset{algorithm}{chapter} 
-\makeatother
-\floatname{algorithm}{\textsc{Algorithme}}
-\renewcommand{\algorithmicreturn}{\textbf{retourne}}
-\renewcommand{\algorithmicprocedure}{\textbf{procédure}}
-\renewcommand{\algorithmicrequire}{\textbf{Entrée(s):}}
-\renewcommand{\algorithmicensure}{\textbf{Sortie(s):}}
-\renewcommand{\algorithmiccomment}[1]{\{#1\}}
-\renewcommand{\algorithmicend}{\textbf{fin}}
-\renewcommand{\algorithmicif}{\textbf{si}}
-\renewcommand{\algorithmicthen}{\textbf{alors}}
-\renewcommand{\algorithmicelse}{\textbf{sinon}}
-\renewcommand{\algorithmicfor}{\textbf{pour}}
-\renewcommand{\algorithmicforall}{\textbf{pour tout}}
-\renewcommand{\algorithmicdo}{\textbf{faire}}
-\renewcommand{\algorithmicwhile}{\textbf{tant que}}
-\renewcommand{\algorithmicrepeat}{\textbf{répéter}}
-\renewcommand{\algorithmicuntil}{\textbf{jusqu'à}}
-\newcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
-\newcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
-\newcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
+\usepackage[
+	vlined,
+	boxed,
+	algochapter,
+	linesnumbered,
+	french,
+	onelanguage,
+]{algorithm2e} % algorithm
+\SetAlgoCaptionSeparator{--}
+\SetAlCapFnt{ \bfseries\scshape }
+\renewcommand\AlCapSty{ \color{colorCaption} }
 
 %%% Pour le code Python:
 \usepackage{listings}
@@ -575,7 +563,8 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génère la liste des algorithmes:
-\renewcommand{\listalgorithmname}{Liste des algorithmes}
+%\renewcommand{\listalgorithmname}{Liste des algorithmes}
+\renewcommand{\listalgorithmcfname}{Liste des algorithmes}
 \listofalgorithms  % ERROR TABLE MATIERES
 
 %%%%%--------------------------------------------------------------------
@@ -583,7 +572,7 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génère la liste des codes:
-\renewcommand{\lstlistlistingname}{Liste de codes}
+\renewcommand{\lstlistlistingname}{Liste de codes informatiques}
 \lstlistoflistings
 
 %%%%%--------------------------------------------------------------------
