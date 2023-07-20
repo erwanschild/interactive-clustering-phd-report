@@ -64,28 +64,29 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}}.
-			%
-			\begin{algorithm}[!htb]
-				\begin{algorithmic}[1]
-					\Require jeu de données annoté (vérité terrain)
-					\Require plusieurs réviseurs, plusieurs annotateurs
-					\State \textbf{initialisation} définir et revoir le jeu de données entre réviseurs
-					\State \textbf{échantillonnage} sélectionner une base de contraintes avec \texttt{samp.rand.full}
-					\State \textbf{temps théorique} estimation du temps nécessaire à l'annotation d'une contrainte
-					\ForAll{annotateur}
-						\While{la base de contraintes n'a pas été entièrement annotée}
-							\State \textbf{chronomètre: START}
-							\State \textbf{annotation}: annoter une partie des contraintes
-							\State \textbf{revue}: revue des contraintes en conflits d'annotation
-							\State \textbf{chronomètre: STOP}
-							\State \textbf{mesure}: estimer la différence de chronomètre pour cette session
-						\EndWhile
-					\EndFor
-					\State \textbf{modélisation}: entraîner un modèle linéaire généralisé du temps d'annotation
-					\State \textbf{simulation}: écrire l'équation du temps d'annotation d'un lot de contraintes
-					\Ensure modélisation du temps d'annotation d'un lot de contraintes
-				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude du temps d'annotation d'un lot de contraintes par un expert métier.}
+
+			\begin{algorithm}
+				\KwData{jeu de données annoté (vérité terrain)}
+				\KwIn{plusieurs réviseurs, plusieurs annotateurs}
+				%
+				\textbf{initialisation}: définir et revoir le jeu de données entre réviseurs \;
+				\textbf{échantillonnage}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
+				\textbf{temps théorique}: estimation du temps nécessaire à l'annotation d'une contrainte \;
+				\ForEach{annotateur}{
+					 \While{la base de contraintes n'a pas été entièrement annotée}{
+						\textbf{chronomètre}: \textbf{START} \;
+						\textbf{annotation}: annoter une partie des contraintes \;
+						\textbf{revue}: revue des contraintes en conflits d'annotation \;
+						\textbf{chronomètre}: \textbf{STOP} \;
+						\textbf{mesure}: estimer la différence de chronomètre pour cette session \;
+					}
+				}
+				\textbf{modélisation}: entraîner un modèle linéaire généralisé du temps d'annotation \;
+				\textbf{simulation}: écrire l'équation du temps d'annotation d'un lot de contraintes \;
+				%
+				\KwResult{modélisation du temps d'annotation d'un lot de contraintes}
+				%
+				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du temps d'annotation d'un lot de contraintes par un expert métier.}}
 				\label{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}
 			\end{algorithm}
 			
@@ -307,6 +308,7 @@
 			Il serait donc judicieux d'adapter le nombre d'annotations à réaliser pour d'améliorer l'expérience utilisateur en situation réelle de l'opérateur.
 			Malheureusement, aucun repère significatif ne peut être déduit de nos résultats pour prédire la fin d'un temps d'adaptation ou le début d'un effet de fatigue.
 			
+			% Idées : nombre de contraintes moyen par session.
 			Afin de proposer tout de même un ordre de grandeur de taille de lot, nous pouvons nous intéresser au nombre moyen de contraintes annotées lors des sessions réalisées par les opérateurs de notre expérience.
 			Bien que ces informations n'ont pas été collectées initialement à cette fin, on peut supposer que les opérateurs ont interrompu leur session pour se reposer (\textit{par fatigue, ennui, agacement, ...}) ou répondre à une autre sollicitation (\textit{intervention d'un collègue, mail important, pause café, ...})
 			Après un entretien avec les opérateurs de notre expérience, il semble y avoir deux possibilités : soit l'opérateur ne se fixait pas d'objectif et s'arrêtait par fatigue ; soit il se fixait un objectif (\textit{de nombre ou de durée}), mais adaptait son prochain objectif en fonction de la fatigue ressentie en fin de session.
@@ -331,18 +333,21 @@
 			En effet, il est logique de penser que la conception de l'application et les fonctionnalités qu'elle dispose peut grandement impacter l'expérience utilisateur de notre méthodologie de \textit{clustering} itératif.
 			Un entretien avec les opérateurs a permis de remonter plusieurs pistes d'amélioration sur son ergonomie.
 			
+			% Idées 1: Données non prétraitées.
 			Un premier point concerne l'affichage des textes d'une contraintes.
 			Comme montré en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}}, nous avions choisi d'affichée des données normalisées à l'écran pour masquer le bruit provoqué par les accents, les majuscules, la ponctuation.
 			Bien que cette fonctionnalité peut servir pour des textes bruts (issues de conversation clients ou de forum par exemple), cela a plutôt nuit à la compréhension des données par les opérateurs.
 			Nous avons donc envisager de laisser la données brutes à disposition, dans une infobulle ou grâce à une option permettant d'interchanger le format des données.
 			
+			% Idée 2: Ordonner les données.
 			Une seconde proposition concerne l'ordre des contraintes à annoter.
 			Nous pouvons facilement admettre que la compréhension rapide d'un grand nombre de texte est un tâche pénible.
 			Pour soulager les opérateurs et limiter le nombre de transitions, nous avons trier les contraintes par ordre alphabétique.
 			Ainsi, toutes les contraintes associées à une même donnée peuvent être traitées à la suite.
 			Cette solution permet de limiter le nombre de changement de contexte et peut faciliter la caractérisation d'une similitude en analysant à la chaîne plusieurs données du même type.
 			A cet effet, une option e tri à été ajouté sur la liste de contraintes à traiter (cf. \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}).
-
+			
+			% Idée 3: Annotation multi-contraintes.
 			Enfin, une dernière idée concerne l'affichage des données à annoter.
 			Nous avions jusqu'à présent considérer l'annotation entre deux données (cf. \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}}), mais il peut être judicieux d'afficher plusieurs données à caractériser simultanément.
 			Une telle fonctionnalité permettrait ainsi de regrouper rapidement un grand nombre de données similaires ou de distinguer avec moins d'ambiguïté certaines données en s'appuyant sur leur voisinage.
@@ -370,50 +375,55 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer aux pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}}.
-			%
-			\begin{algorithm}[!htb]
-				\begin{algorithmic}[1]
-					\Require jeux de données annotés (vérité terrain) de tailles différentes
-					\ForAll{arrangement d'algorithmes et de paramètres à tester}
-						\State \textbf{initialisation}: récupérer ou générer le jeu de données
-						\If{estimation de la tâche de \textbf{prétraitement}}
-							\State \textbf{chronomètre: START}
-							\State \textbf{prétraitement (à étudier)}: supprimer le bruit dans les données
-							\State \textbf{chronomètre: STOP}
-						\ElsIf {estimation de la tâche de \textbf{vectorisation}}
-							\State \textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple}
-							\State \textbf{chronomètre: START}
-							\State \textbf{vectorisation (à étudier)}: transformer les données en vecteurs
-							\State \textbf{chronomètre: STOP}
-						\ElsIf {estimation de la tâche de \textbf{clustering}}
-							\State \textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple}
-							\State \textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf}
-							\State \textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full}
-							\State \textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain
-							\State \textbf{chronomètre: START}
-							\State \textbf{clustering (à étudier)}: regrouper les données par similarité
-							\State \textbf{chronomètre: STOP}
-						\ElsIf {estimation de la tâche d'\textbf{échantillonnage}}
-							\State \textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple}
-							\State \textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf}
-							\State \textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full}
-							\State \textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain
-							\State \textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop}
-							\State \textbf{chronomètre: START}
-							\State \textbf{échantillonnage (à étudier)}: sélectionner de nouvelles contraintes à annoter
-							\State \textbf{chronomètre: STOP}
-						\EndIf
-						\State \textbf{mesure}: estimer la différence de chronomètre pour cet algorithme
-					\EndFor
-					\ForAll{algorithme à modéliser}
-						\State \textbf{cadrage}: définir les facteurs et les interactions intervenant dans la modélisation
-						\State \textbf{simplification}: restreindre la modélisation aux facteurs les plus corrélés
-						\State \textbf{modélisation}: entraîner un modèle linéaire généralisé avec les facteurs retenus
-						\State \textbf{simulation}: écrire l'équation du temps d'exécution avec des paramètres obtenus
-					\EndFor
-					\Ensure modélisation du temps d'exécution des différents algorithmes
-				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \textit{clustering} interactif.}
+			
+			\begin{algorithm}
+				\KwData{jeux de données annotés (vérité terrain) de tailles différentes}
+				\KwIn{arrangements d'algorithmes et de paramètres à tester}
+				%
+				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
+					\textbf{initialisation (données)}: récupérer ou générer le jeu de données \;
+					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
+					\If{estimation de la tâche de \textbf{prétraitement}}{
+						\textbf{chronomètre}: \textbf{START} \;
+						\textbf{prétraitement (à étudier)}: supprimer le bruit dans les données \;
+						\textbf{chronomètre}: \textbf{STOP} \;
+					}
+					\ElseIf {estimation de la tâche de \textbf{vectorisation}}{
+						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{chronomètre}: \textbf{START} \;
+						\textbf{vectorisation (à étudier)}: transformer les données en vecteurs \;
+						\textbf{chronomètre}: \textbf{STOP} \;
+					}
+					\ElseIf {estimation de la tâche de \textbf{clustering}}{
+						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
+						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
+						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{chronomètre}: \textbf{START} \;
+						\textbf{clustering (à étudier)}: regrouper les données par similarité \;
+						\textbf{chronomètre}: \textbf{STOP} \;
+					}
+					\ElseIf {estimation de la tâche d'\textbf{échantillonnage}}{
+						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
+						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
+						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
+						\textbf{chronomètre}: \textbf{START} \;
+						\textbf{échantillonnage (à étudier)}: sélectionner de nouvelles contraintes à annoter \;
+						\textbf{chronomètre}: \textbf{STOP} \;
+					}
+				}
+				\ForEach{algorithme à modéliser}{
+					\textbf{cadrage}: définir les facteurs et les interactions intervenant dans la modélisation \;
+					\textbf{simplification}: restreindre la modélisation aux facteurs les plus corrélés \;
+					\textbf{modélisation}: entraîner un modèle linéaire généralisé avec les facteurs retenus \;
+					\textbf{simulation}: écrire l'équation du temps d'exécution avec des paramètres obtenus \;
+				}
+				%
+				\KwResult{modélisation du temps d'exécution des différents algorithmes}
+				%	
+				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \textit{clustering} interactif.}}
 				\label{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}
 			\end{algorithm}
 			
@@ -683,6 +693,7 @@
 			% Rappel de l'objectif : estimer le temps d'exécution.
 			Dans cette étude, nous avons estimé le temps de calcul des différents algorithmes implémentés afin de confirmer le choix de paramétrage pour une convergence optimal (cf. hypothèse d'efficience en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}).
 			Ces estimations ont été réalisées sur la base de plusieurs exécutions et fonction de divers contextes d'utilisation : nombre de données, nombre de contraintes annotées, nombre de contraintes à sélectionner, nombre de \textit{clusters} existant, nombre de \textit{clusters} à trouver.
+			\\
 			
 			% Remarque générale : Dépend principalement du nombre de données.
 			En premier lieu, on peut constater que les différentes modélisations dépendent majoritairement de la taille du jeu de données manipulé ($\texttt{dataset\_size}$ ou $\texttt{dataset\_size}^{2}$) avec un score de corrélation \texttt{r} avec le temps mesuré généralement supérieur à $0.9$ et des modèles \textit{GLM} avec des coefficients de détermination généralisé \texttt{R²} généralement proches de $0.999$.
@@ -760,28 +771,30 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-PROTOCOLE}}.
-			%
-			\begin{algorithm}[!htb]
-				\begin{algorithmic}[1]
-					\Require jeux de données annotés (vérité terrain) de tailles différentes
-					\ForAll{jeux de données à tester}
-						\State \textbf{initialisation (données)}: récupérer ou générer les données et la vérité terrain
-						\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
-						\State \textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple}
-						\State \textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf}
-						\State \textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop}
-						\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Repeat
-							\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
-							\State \textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff}
-							\State \textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop}
-							\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Until{annotation de toutes les contraintes possibles}
-					\EndFor						
-					\State \textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires
-					\Ensure modélisation du nombre de contraintes nécessaires pour un jeu de données
-				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.}
+			
+			\begin{algorithm}
+				\KwData{jeux de données annotés (vérité terrain) de tailles différentes}
+				%
+				\ForEach{jeux de données à tester}{
+					\textbf{initialisation (données)}: récupérer ou générer les données et la vérité terrain \;
+					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
+					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
+					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
+					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					\Repeat{annotation de toutes les contraintes possibles}{
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
+						\textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
+						\textbf{évaluation}: estimer l'équivalence entre le \; \textit{clustering} obtenu et la vérité terrain \;
+					}
+				}
+				\textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires \;
+				%
+				\KwResult{modélisation du nombre de contraintes nécessaires pour un jeu de données}
+				%	
+				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.}}
 				\label{algorithm:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-PROTOCOLE}
 			\end{algorithm}
 			
@@ -873,6 +886,7 @@
 			% Rappel de l'objectif.
 			L'objectif de cette étude était de déterminer le nombre moyen de contraintes à devoir annoter pour modéliser un jeu de données avec un accord $90$\% de \texttt{v-measure} avec la vérité terrain utilisée.
 			Cette estimation, dépendant de la taille du jeu de données manipulé, est représentée par l'\textsc{Equation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}.
+			\\
 			
 			% Discussion générale sur la pente.
 			On peut constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.15$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
@@ -960,6 +974,7 @@
 			Sur le paramétrage de la méthode, nous avons rejeté l'usage d'algorithmes de \textit{clustering} de type hiérarchiques à cause de leur lenteur, au profit du KMeans (\texttt{clust.kmeans.cop}).
 			Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est ainsi constitué d'un prétraitement simple (\texttt{prep.simple}), d'une vectorisation TF-IDF (\texttt{vect.tfidf}), d'un \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et d'un échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}.
 			Enfin, pour atteindre cet objectif de \texttt{v-measure}, le nombre moyen de contraintes à annoter avec notre méthodologie semble rester linéairement proportionnel à la taille du jeu de données à modéliser, ce qui est encourageant au regard de la combinatoire de contraintes possibles.
+			\\
 			
 			% Annonce des résultats : c'est long !
 			La mise en commun de ces résultats se retrouvent dans \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}}, \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL}} et \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}}.
@@ -1074,7 +1089,7 @@
 			
 			% Conclusion.
 			\begin{leftBarSummary}
-				Dans cette section, nous avons pu déduire que :
+				Au cours de cette étude de coûts, nous avons pu déduire que :
 				\begin{itemize}
 					\item L'annotation d'une contrainte nécessite en moyenne $8$ secondes : cette tâche est rapide et intuitive (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}) ;
 					\item Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Ce paramétrage a un coût moyen de $0.17 \cdot \texttt{dataset\_size}$ secondes (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
@@ -1083,8 +1098,8 @@
 				\end{itemize}
 			\end{leftBarSummary}
 		
-		% Transition: Vers Pertinence et rentabilité.
+		% Transition: Vers Pertinence et Rentabilité.
 		Dans les sections suivantes, nous allons nous intéressé à l'analyse des résultats de cette méthode.
 		En effet, en situation réelle, nous n'avons pas accès à la vérité terrain car elle est justement en cours de construction.
 		Il nous est donc impossible d'estimer notre seuil de \texttt{v-measure}, et donc incapable de s'arrêter à $90$\% de \texttt{v-measure}.
-		Dans les prochaines sections, Nous nous intéressons donc à l'estimation de la valeur métier d'un résultat de \textit{clustering} (cf. hypothèse de pertinence en \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) et à la définition de cas d'arrêt agnostique d'une vérité terrain  (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+		Nous nous intéressons donc à l'estimation de la valeur métier d'un résultat de \textit{clustering} (cf. hypothèse de pertinence en \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) et à la définition de cas d'arrêt agnostique d'une vérité terrain (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).

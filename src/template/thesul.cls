@@ -877,7 +877,6 @@
         \setcounter{section}{0}
         \setcounter{equation}{0}
         \setcounter{figure}{0}
-        \setcounter{algorithm}{0}
         \setcounter{table}{0}
         \if@twocolumn
             \if@notop@page
@@ -948,7 +947,6 @@
         \renewcommand\@thesection@prefix{#1}
         \renew@continuous{equation}{#1}
         \renew@continuous{figure}{#1}
-        \renew@continuous{algorithm}{#1}
         \renew@continuous{table}{#1}
     }
     \newcommand\ChapterPrefix{\C@Prefix{\thechapter.}}
@@ -1664,7 +1662,6 @@
             }
             \newif\if@equations@continuous
             \newif\if@figures@continuous
-            \newif\if@algorithms@continuous
             \newif\if@tables@continuous
             \newcommand\ContinuousNumbering[1]{
                 \@removefromreset{#1}{chapter}
@@ -1685,7 +1682,6 @@
             \@addtoreset{section}{annex}
             \@addtoreset{equation}{annex}
             \@addtoreset{figure}{annex}
-            \@addtoreset{algorithm}{annex}
             \@addtoreset{table}{annex}
             \newcommand\Annex{
                 \if@openright\cleardoublepage\else\clearpage\fi

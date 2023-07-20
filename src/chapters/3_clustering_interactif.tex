@@ -73,25 +73,26 @@
 	    % Rappel de l'objectif.
 		Nous proposons la méthode suivante pour transformer une collecte de données brut en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel.
 		Cette méthode, que nous appelons \textit{clustering interactif}, est décrite formellement à l'aide du pseudo-code figurant dans \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}} et est illustrée par la \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}.
-
-		\begin{algorithm}[!htb]
-		    \begin{algorithmic}[1]
-		        \Require données non segmentées ; budget à disposition
-				\State \textbf{initialisation}: créer une liste vide de contraintes
-		        \State \textit{optionnel}: évaluer les hyper-paramètres de la segmentation automatique
-		        \State \textbf{segmentation initial}: regrouper les données par similarité
-		        \Repeat
-		            \State \textit{optionnel}: évaluer les hyper-paramètres de l'échantillonnage
-		            \State \textbf{échantillonnage}: sélectionner une partie de la segmentation à corriger
-		            \State \textbf{annotation}: corriger la segmentation en ajoutant des contraintes sur l'échantillon
-		            \State \textit{optionnel}: ré-évaluer les hyper-paramètres de la segmentation automatique
-			        \State \textbf{segmentation}: regrouper les données par similarité avec les contraintes
-			        \State \textbf{évaluation (1)}: estimer la pertinence et la stabilité de la segmentation
-			        \State \textbf{évaluation (2)}: estimer le budget restant et les coûts restant à investir
-		        \Until{segmentation satisfaisante OU budget épuisé}
-		        \Ensure données segmentées (i.e. base d'apprentissage)
-		    \end{algorithmic}
-		    \caption{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif.}
+		
+		\begin{algorithm}
+			\KwIn{données non segmentées ; budget à disposition}
+			%
+			\textbf{initialisation}: créer une liste vide de contraintes \;
+			\textit{optionnel}: évaluer les hyper-paramètres de la segmentation automatique \;
+		    \textbf{segmentation initial}: regrouper les données par similarité \;
+			\Repeat{segmentation satisfaisante OU budget épuisé}{
+		        \textit{optionnel}: évaluer les hyper-paramètres de l'échantillonnage \;
+		        \textbf{échantillonnage}: sélectionner une partie de la segmentation à corriger \;
+		        \textbf{annotation}: corriger la segmentation en ajoutant des contraintes sur l'échantillon \;
+		        \textit{optionnel}: ré-évaluer les hyper-paramètres de la segmentation automatique \;
+			    \textbf{segmentation}: regrouper les données par similarité avec les contraintes \;
+			    \textbf{évaluation (1)}: estimer la pertinence et la stabilité de la segmentation \;
+			    \textbf{évaluation (2)}: estimer le budget restant et les coûts restant à investir \;
+			}
+			%
+			\KwResult{données segmentées (i.e. base d'apprentissage)}
+			%
+			\caption{\textit{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif.}}
 		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
@@ -99,7 +100,7 @@
 		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
-			\captionof{figure}{Schéma illustrant l'architecture architectures du \textit{clustering} interactif. La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.}
+			\caption{Schéma illustrant l'architecture architectures du \textit{clustering} interactif. La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.}
 			\label{figure:3.2-CLUSTERING-INTERACTIF}
 		\end{figure}
 		
@@ -293,43 +294,45 @@ dict_of_vectors = vectorize(
 		\end{itemize}
 
 		% cognitivefactory.interactive-clustering.constraints: Transitivité.
-		Ces types de contraintes respectent les propriétés de transitivités suivantes (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}}, \textsc{Equation~\ref{equation:3.3-CONTRAINTES-TRANSITIVITE-MUST-LINK}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-TRANSITIVITE-CANNOT-LINK}}):
+		Ces types de contraintes respectent les propriétés de transitivités décrites dans l'\textsc{Equation~\ref{equation:3.3-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
+		On note ainsi qu'il est possible de déduire la troisième contrainte d'un triangle de trois points si nous connaissons déjà les deux premières.
 		
 		\begin{equation}
-			\label{equation:3.3-CONTRAINTES-TRANSITIVITE-MUST-LINK}
-			(\forall D_1,D_2,D_3)
-			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_2)
-			~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_2,D_3)
-			~\Rightarrow~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_3)
+			\label{equation:3.3-CONTRAINTES-TRANSITIVITE}
+			(\forall A,B,C)~
+			\begin{cases}
+				% ML + ML => ML
+				~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+				~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(B,C)
+				~\Rightarrow~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,C)  \\
+				% ML + CL => CL
+				~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+				~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(B,C)
+				~\Rightarrow~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(A,C)
+			\end{cases}
 		\end{equation}
 		
-		\begin{equation}
-			\label{equation:3.3-CONTRAINTES-TRANSITIVITE-CANNOT-LINK}
-			(\forall D_1,D_2,D_3)
-			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_1,D_2)
-			~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(D_2,D_3)
-			~\Rightarrow~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(D_1,D_3)
-		\end{equation}
-		
-		Pour respecter ces propriétés, le gestionnaire de contraintes doit calculer les transitivités à chaque ajout ou suppression de contraintes. On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
+		Pour respecter ces propriétés, le gestionnaire de contraintes doit ainsi calculer les transitivités à chaque ajout ou suppression de contraintes.
+		On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
 		
 		% cognitivefactory.interactive-clustering.constraints: Conflits.
 		Il se peut que la contrainte en cours d'ajout contredise les contraintes déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-CONFLITS}}).
 		Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
-		Ce conflit peut venir simplement venir d'une erreur d’inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés .
+		Ce conflit peut venir simplement venir d'une erreur d’inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
+		Sémantiquement, un conflit indique une contradiction dans la gestion des données, car les données concernées doivent à la fois être réunies et séparées...
 		
 		\begin{equation}
 			\label{equation:3.3-CONTRAINTES-CONFLITS}
-			(\exists \{D_i | i\in[0,n]\})~
-			\begin{cases}
-				\bigwedge_{i\in[0,n-1]}~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(D_i,D_{i+1})  \\
-				\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}(D_0,D_n)}
-			\end{cases}
+			(\exists A,B,C)~
+			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+			~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(B,C)
+			~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(A,C)
 		\end{equation}
 		
 		% cognitivefactory.interactive-clustering.constraints: Composants connexe.
 		A partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}}).
-		Ce composant peut être vu comme un noyau de \textit{cluster}. Il pourra être associé à d'autres noyau par similarité pour former un plus \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
+		Ce composant peut être vu comme un noyau de \textit{cluster}.
+		Il pourra être associé à d'autres noyau par similarité pour former un \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
 
 		\begin{figure}[!htb]
 			\centering

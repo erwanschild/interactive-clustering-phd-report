@@ -63,28 +63,30 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}}.
-			%
-			\begin{algorithm}[!htb]
-				\begin{algorithmic}[1]
-					\Require jeu de données annoté (vérité terrain)
-					\ForAll{arrangement d'algorithmes et de paramètres à tester}
-						\State \textbf{initialisation (données)}: récupérer les données et la vérité terrain
-						\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
-						\State \textbf{prétraitement}: supprimer le bruit dans les données
-						\State \textbf{vectorisation}: transformer les données en vecteurs
-						\State \textbf{clustering initial}: regrouper les données par similarité
-						\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Repeat
-							\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
-							\State \textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain
-							\State \textbf{clustering}: regrouper les données par similarité avec les contraintes
-							\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Until{annotation de toutes les contraintes possibles}
-					\EndFor
-					\State \textbf{analyse}: déterminer les tailles d'effets des algorithmes et paramètres
-					\Ensure meilleurs arrangements d'algorithmes et de paramètres
-				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}
+			
+			\begin{algorithm}
+				\KwData{jeu de données annoté (vérité terrain)}
+				\KwIn{arrangements d'algorithmes et de paramètres à tester}
+				%
+				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
+					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
+					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
+					\textbf{prétraitement}: supprimer le bruit dans les données \;
+					\textbf{vectorisation}: transformer les données en vecteurs \;
+					\textbf{clustering initial}: regrouper les données par similarité des vecteurs \;
+					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					\Repeat{annotation de toutes les contraintes possibles}{
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
+						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{clustering}: regrouper les données par similarité avec les contraintes \;
+						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					}
+				}
+				\textbf{analyse}: déterminer les tailles d'effets des algorithmes et paramètres \;
+				%
+				\KwResult{meilleurs arrangements d'algorithmes et de paramètres}
+				%	
+				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}}
 				\label{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}
 			\end{algorithm}
 			
@@ -735,6 +737,7 @@
 			% Rappel de l'objectif : être efficient.
 			L'objectif de l'étude est de trouver une implémentation "efficiente" du \textit{clustering} interactif permettant d'obtenir une base d'apprentissage correctement annotée en un minimum d'annotation.
 			Pour trouver si une telle implémentation existe et quels en sont les paramètres optimaux, nous avons analysé l'impact de différentes paramétrages sur les tâches principales de la méthode (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) en nous basant sur des simulations d'annotation d'un jeu de données.
+			\\
 			
 			% Première remarque : Choix d'un seuil à 90\% de v-measure.
 			Dans l'optique d'être efficient, nous excluons le désir d'annoter \textbf{exhaustivement} le jeu de données car la charge de travail estimée est trop importante.
@@ -759,6 +762,7 @@
 			% Avantage 2: La méthode devient réaliste !
 			Cette estimation est plus raisonnable que celle réalisée en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}.
 			De plus, en considérant que les annotations sont binaires et demandent a priori une charge mental plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quel est l'étiquette de cette donnée ?}", cf. \cite{hart-staveland:1988:development-nasatlx-task}), nous pouvons espérer que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \textit{clustering} interactif est comparable à celles des méthodes traditionnelles.
+			\\
 			
 			%%% Limites.
 			Afin de compléter cette analyse d'efficience, quelques pistes sont encore à explorer.

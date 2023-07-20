@@ -63,28 +63,30 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}}.
-			%
-			\begin{algorithm}[!htb]
-				\begin{algorithmic}[1]
-					\Require jeu de données annoté (vérité terrain)
-					\ForAll{arrangement d'algorithmes et de paramètres à tester}
-						\State \textbf{initialisation (données)}: récupérer les données et la vérité terrain
-						\State \textbf{initialisation (contraintes)}: créer une liste vide de contraintes
-						\State \textbf{prétraitement}: supprimer le bruit dans les données
-						\State \textbf{vectorisation}: transformer les données en vecteurs
-						\State \textbf{clustering initial}: regrouper les données par similarité des vecteurs
-						\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Repeat
-							\State \textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter
-							\State \textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain
-							\State \textbf{clustering}: regrouper les données par similarité avec les contraintes
-							\State \textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain
-						\Until{annotation de toutes les contraintes possibles}
-						\State \textbf{évaluation finale}: espérer avoir un score d'équivalence de $100$\% entre le \textit{clustering} obtenu et la vérité terrain
-					\EndFor
-					\Ensure arrangements d'algorithmes et de paramètres ayant un score d'équivalence de $100$\%
-				\end{algorithmic}
-				\caption{Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}
+			
+			\begin{algorithm}
+				\KwData{jeu de données annoté (vérité terrain)}
+				\KwIn{arrangements d'algorithmes et de paramètres à tester}
+				%
+				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
+					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
+					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
+					\textbf{prétraitement}: supprimer le bruit dans les données \;
+					\textbf{vectorisation}: transformer les données en vecteurs \;
+					\textbf{clustering initial}: regrouper les données par similarité des vecteurs \;
+					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					\Repeat{annotation de toutes les contraintes possibles}{
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
+						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{clustering}: regrouper les données par similarité avec les contraintes \;
+						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					}
+					\textbf{évaluation finale}: espérer avoir un score d'équivalence de $100$\% entre le \textit{clustering} obtenu et la vérité terrain \;
+				}
+				%
+				\KwResult{arrangements d'algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
+				%	
+				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}}
 				\label{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}
 			\end{algorithm}
 			
@@ -224,7 +226,8 @@
 			% Avantage 3 : Pas besoins d'une exhaustivité de contraintes.
 			De plus, nous remarquons que $76.75$\% des tentatives convergent vers la vérité terrain sans bénéficier d'une annotation exhaustive de toutes les contraintes possibles.
 			Cela montre l'intérêt des interactions homme/machine afin d'obtenir plus efficacement un résultat qu'un expert métier (aussi parfait soit-il) aurait obtenu seul. 
-			L'intérêt serait maintenant de déterminer la meilleure combinaison de paramétrage demandant d'annoter un nombre \textbf{suffisant} de contraintes afin d'obtenir ce même résultat de la manière la plus efficiente (cf. \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}) et la plus robuste aux erreurs d'annotation (cf. \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}).\\
+			L'intérêt serait maintenant de déterminer la meilleure combinaison de paramétrage demandant d'annoter un nombre \textbf{suffisant} de contraintes afin d'obtenir ce même résultat de la manière la plus efficiente (cf. \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}) et la plus robuste aux erreurs d'annotation (cf. \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}).
+			\\
 
 			
 			%%% Limites.
@@ -233,13 +236,6 @@
 			% Limite 1 : Nombre d'annotations ==> besoin d'optimisation.
 			D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes : pour $500$ points de données, et en considérant que l'asymptote à $100$\% est atteinte en moyenne autour de l'itération $200$, il faudrait $10~000$ annotations de contraintes pour être exhaustif, ce qui correspond à près de $20$ fois plus de contraintes que de données.
 			Bien que l'annotation binaire demande a priori une charge mentale plus faible (\cite{hart-staveland:1988:development-nasatlx-task}) et que l'opérateur n'a pas besoin de définir ou de maintenir en mémoire une structure de données complexe, un tel volume d'annotation représente tout de même une grande quantité de travail.
-			%%%%\todo{
-			%%%%	Commentaire Gautier 22/05/2023 :
-			%%%%	(A DÉTAILLER AILLEURS ?)
-			%%%%	Oui, complètement d'accord ici, mais en fait ça va plus loin que ça non ?
-			%%%%	Déjà, on a une quantité de ressources allouées à la tâche en effet plus fabile (car choisir entre "similaire" et "non similaire" est clairement plus simple que d'assigner un label parmi N).
-			%%%%	Mais on a aussi une diminution des ressources allouées au maintien d'une stratégie d'annotation : en effet, pas besoin de définir à l'avance de type system ou autre, tout est construit à la volée. Ce deuxième point est particulièrement intéressant à discuter je pense, car on sait normalement que le maintien d'objectifs en mémoire de travail peut aider à maintenir un niveau d'engagement sur une tâche cognitive. Du coup, ça pose d'autant plus la question de l'expérience utilisateur : annoter avec un CI sera-t-il moins engageant qu'annoter avec une méthode classique ?
-			%%%%}
 			Cela peut décourager les experts métiers en début de projet, surtout pour des projets ayant des jeux de données de plus grandes tailles.
 			Toutefois, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire, et certaines tentatives ont été bien plus efficientes dans l'utilisation de leurs contraintes. La tentative la plus rapide a convergé à l'itération $19$, soit $950$ contraintes, ce qui est un volume d'annotation bien plus abordable !
 			On peut donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre moyen de contraintes nécessaires afin d'obtenir une base d'apprentissage exploitable avec un volume d'annotations acceptable.
