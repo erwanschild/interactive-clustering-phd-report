@@ -2,9 +2,9 @@
 \label{section:4.4-HYPOTHESE-PERTINENCE}
 
 	%%% Introduction / Transition.
-	Jusqu'à présent, nous avons analysé la performance et l'évolution des résultats de notre implémentation du \textit{clustering} interactif à l'aide d'une vérité terrain (cf. calcul de \texttt{v-measure}).
-	Cependant, une telle référence n'est pas accessible en situation réelle (l'objectif de notre méthode est précisément de la construire).
-	Nous devons donc nous intéresser à d'autres moyens d'estimer la pertinence des bases d'apprentissages obtenus et de définir comment définir l'exploitabilité d'un résultat.
+	Jusqu'à présent, nous avons analysé la performance et l'évolution des résultats de notre implémentation du \textit{clustering} interactif en calculant la similarité (en \texttt{v-measure}) avec une vérité terrain.
+	Cependant, une telle référence n'est pas accessible en situation réelle car l'objectif de notre méthode est précisément de la construire cette vérité terrain.
+	Nous devons donc nous intéresser à d'autres moyens pour estimer la pertinence et l'exploitabilité des bases d'apprentissages obtenues.
 	Ainsi, nous aimerions vérifier l'hypothèse suivante :
 	
 	%%% Formulation des hypothèses:
@@ -53,7 +53,7 @@
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE-PROTOCOLE}]}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotés (vérité terrain)}
@@ -711,25 +711,25 @@
 			\\
 			
 			% Limite 1: toujours une tâche complexe.
-			Cependant, une telle approche pour qualifier les \textit{clusters} risque de ne pas répondre à nos attentes en l'état.
-			D'une part, certains problèmes identifiés dans la sous-section précédente (\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}) sur une approche purement manuelle subsistent.
-			Entre autres, malgré une abstraction des \textit{clusters} par leur termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir l'ensemble de ces données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
+			Cependant, une telle approche pour qualifier les \textit{clusters} risque de ne pas répondre à nos attentes en l'état, car certains problèmes identifiés dans la section précédente subsistent (\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}).
+			Entre autres, malgré une abstraction des \textit{clusters} par leur termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir un grand nombre de données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
+			Ainsi, même si le travail est simplifié par l'identification rapide des termes importants du corpus, la charge de travail reste élevée.
 			
 			% Limite 2: résultats encore à affiner.
-			D'autre part, les résultats remontés par l'analyse linguistiques pourraient être davantage affinés et mis en avant pour faciliter leur interprétation.
-			Par exemple, les mots pourraient être réduits à leur forme racine (lemmatisation) pour éviter de considérer les nombreuses variations possibles (formes conjuguées, pluriels, ...)et les mots vides (stopwords) pourraient être supprimés pour accentuer l'absence de termes caractéristiques des \textit{clusters} inexploitables.
-			En ce qui concerne l'affichage des patterns identifiés dans les textes, un code couleur peut être introduit pour faciliter la lecture, avec un vert pour les patterns associés au \textit{cluster} courant et un rouge pour ceux associés aux autres \textit{cluster}.
-			Des nuances de couleurs pourraient même être utilisées en fonction de la prépondérance d'un terme pour chaque \textit{cluster}.
-			L'exemple ci-dessous (issu du \textit{cluster} $0$ de la tentative $1$ à l'itération $0$) permet de se faire un aperçu de l'intérêt de cette coloration : on distingue facilement que le \textit{cluster} traite des paiements sans contact (\texttt{NFC}) mais que les cartes \textit{Visa} ont dû être regroupées au sein d'un autre \textit{cluster}.
+			D'autre part, les résultats remontés par l'analyse linguistiques sont à affinés davantage pour faciliter leur interprétation.
+			Par exemple, les mots pourraient être réduits à leur forme racine (lemmatisation) afin d'éviter de considérer les nombreuses variations possibles (formes conjuguées, pluriels, ...) et les mots vides (\textit{stopwords}) pourraient être supprimés pour accentuer l'absence de termes caractéristiques à valeur métier dans les \textit{clusters} inexploitables.
+			En ce qui concerne l'affichage des patterns identifiés dans les textes, un code couleur pourrait être introduit pour faciliter la lecture, avec l'usage de nuance de couleurs pour marquer la prépondérance d'un terme en fonction du \textit{cluster}.
+			L'exemple ci-dessous (issu du \textit{cluster} $0$ de la tentative $1$ à l'itération $0$) illustre l'intérêt de cette coloration : nous y distinguons facilement que le \textit{cluster} traite des paiements sans contact (\texttt{NFC} en vert) mais que les cartes \textit{Visa} (en rouge) ont dû être regroupées au sein d'un autre \textit{cluster}.
 
 			\begin{leftBarExamples}
+				Possibilité d'affichage en couleur d'un texte et de son analyse linguistique : les patterns caractéristiques du \textit{cluster} auquel appartient le texte en vert, les patterns caractéristiques des autres \textit{clusters} en rouge, les patterns non caractéristiques en noir.
 				\begin{quote}
 					« \textit{ est ce que le \textcolor{colorDarkPastelGreen}{\textbf{mode}} de \textcolor{colorDarkPastelGreen}{\textbf{paiement nfc}} est disponible \textcolor{colorDarkPastelGreen}{\textbf{sur ma carte}} \textcolor{colorDarkPastelRed}{\textbf{visa}} } »
 				\end{quote}
 			\end{leftBarExamples}
 			
 			% Limite 3: tâche hors compétences d'un expert.
-			Pour finir, il est probable qu'une analyse linguistique soit trop éloignée des compétences réelles des experts : ces derniers disposent de connaissances sur leur domaine métier (dans notre cas, des sujets concernant la banque, l’assurance et la finance), mais ne disposent pas forcément d'aptitudes permettant d'examiner les nuances linguistiques présentes dans un \textit{cluster}, ni l'impact de la prépondérance des pluriels, des bigrams, des mots vides de sens, ...
+			Mais malgré ces améliorations de l'approche linguistique, il est probable qu'elle soit trop éloignée des compétences réelles des experts : en effet, ces derniers disposent de connaissances sur leur domaine métier (dans notre cas, des sujets concernant la banque, l’assurance et la finance), mais ils ne disposent pas forcément d'aptitudes permettant d'examiner les nuances linguistiques présentes dans un \textit{cluster}, ni l'impact de la prépondérance des pluriels, des bigrams, des mots vides de sens, ...
 		
 			% Note de l'auteur.
 			\begin{leftBarAuthorOpinion}
@@ -748,8 +748,9 @@
 			\end{leftBarAuthorOpinion}
 			
 			% Conclusions et suggestion.
-			Pour conclure, nous retenons que l'analyse linguistique est pleine de potentielle et qu'elle permet de mettre en exergue des mots importants lors de l'affichage du contenu des clusters. Toutefois, nous avons des doutes sur l'expérience utilisateur d'une telle approche pour des experts métier qui ne sont pas des experts en linguistique, et nous anticipons .
-			De fait, si une approche linguistique est trop abstraite pour qualifier un \textit{cluster}, nous nous intéressons à une approche plus pragmatique pour identifier sa thématique principale (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
+			Pour conclure, nous retenons que l'analyse linguistique est pleine de potentielle et qu'elle permet de mettre en exergue des mots importants lors de l'affichage du contenu des clusters.
+			Toutefois, nous conservons quelques des doutes sur l'expérience utilisateur d'une telle approche pour des experts métier qui, n'étant pas des experts en linguistique, pourraient se perdre sur des considérations trop techniques durant leur analyse.
+			De fait, si une approche linguistique est trop abstraite pour qualifier un \textit{cluster}, nous nous intéressons pour la suite à une approche plus pragmatique pour identifier sa thématique principale (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 	
 	
 	%%%
@@ -804,7 +805,8 @@
 			
 			% Ajout d'un résumé automatique.
 			Cependant, avant de demander l'avis de l'expert, nous utilisons un large modèle de langage pour résumer automatiquement le contenu du \textit{cluster} à analyser.
-			Pour cela, nous utilisons le modèle \texttt{gpt-3.5-turbo} mis à disposition par \texttt{OpenAI}\todo{footenote avec détails sur OpenAI ?}.
+			Pour cela, nous utilisons le modèle \texttt{gpt-3.5-turbo} mis à disposition par \texttt{OpenAI}
+			\footnote{\texttt{OpenAI} est une entreprise fournissant des services d'intelligence artificielle sur le Cloud. Elle est entre autres connue pour les modèles d'IA \texttt{DALL-E} (\cite{ramesh-etal:2021:zeroshot-texttoimage-generation}) et \texttt{GPT} (\cite{brown-etal:2020:language-models-are}, \cite{openai:2023:chatgpt})}.
 			Le \textit{prompt} du modèle, adapté à l'usage de notre jeu de données, est composé de trois parties :
 			\begin{itemize}
 				\item un \textbf{contexte d'utilisation}, destiné à centrer les réponses sur le domaine général traité : « \textit{Tu es un expert des secteurs banque, assurance et finance.} » ;
@@ -1107,22 +1109,22 @@
 		
 		
 	%%%
-	%%% Subsection 4.4.4: Mise en commun des stratégie d'évaluation de la pertinence métier d'un résultat de \textit{clustering} interactif
+	%%% Subsection 4.4.4: Mise en commun des stratégies d'évaluation de la pertinence métier d'un résultat de \textit{clustering} interactif
 	%%%
-	\subsection{Mise en commun des stratégie d'évaluation de la pertinence métier d'un résultat de \textit{clustering} interactif}
+	\subsection{Mise en commun des stratégies d'évaluation de la pertinence métier d'un résultat de \textit{clustering} interactif}
 	\label{section:4.4.4-ETUDE-PERTINENCE-MISE-EN-COMMUN}
 			
 		% Conclusion.
 		\begin{leftBarSummary}
 			Au cours de cette étude de pertinence, nous avons pu voir que :
 			\begin{itemize}
-				\item[\itemok] La tâche de vérification et de labellisation de résultats de \textit{clustering} est plutôt complexe et fastidieuse si elle n'est pas assistée : il est donc conseillé de faire intervenir plusieurs experts afin de consolider leurs analyses ;
+				\item[\itemok] La tâche de vérification et de labellisation de résultats de \textit{clustering} est plutôt complexe et fastidieuse si elle n'est pas assistée : il est donc conseillé de faire intervenir plusieurs experts afin de consolider leurs analyses et confronter les points de vues ;
 				\item[\itemok] Nous pouvons utiliser des larges modèles de langage (\texttt{LLM}) pour réaliser une synthèse automatique d'un \textit{cluster} : cela permet d'estimer rapidement la pertinence d'un regroupement de questions et d'identifier les thématiques qui y sont présentes, offrant ainsi un gain d'efficacité et de confort aux experts métier (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}) ;
 				\item[\itemok] Cette approche automatisée n'étant pas infaillible, il est recommandé de tout de même vérifier manuellement le contenu des \textit{clusters} avant d'arrêter le projet d'annotation : pour faciliter cette revue, il est possible de réaliser une analyse linguistique grâce à la \texttt{FMC} pour identifier les termes caractéristique de chaque \textit{cluster} et les mettre en avant dans le texte (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
 			\end{itemize}
 		\end{leftBarSummary}
 		
 		% Transition: Vers Rentabilité.
-		Pour compléter l'étude que nous venons de réaliser, il peut être intéressant de définir un cas d'arrêt des itérations du \textit{clustering} interactif afin de pouvoir prédire quand arrêter l'annotation et demander à l'expert d'évaluer la pertinence de la base d'apprentissage obtenue.
-		Nous étudierons cette aspect dans la prochaine section (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+		Pour compléter l'étude que nous venons de réaliser, il peut être intéressant de définir un cas d'arrêt des itérations du \textit{clustering} interactif afin de pouvoir prédire quand stopper l'annotation et demander aux experts d'évaluer la pertinence de la base d'apprentissage obtenue.
+		Nous étudierons cet aspect dans la prochaine section (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
 		
