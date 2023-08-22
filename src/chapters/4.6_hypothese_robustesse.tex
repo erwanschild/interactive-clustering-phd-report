@@ -34,6 +34,7 @@
 		
 	% Résumé de l'étude.
 	Afin de vérifier cette hypothèse, nous analysons l'impact d'une différence d'annotation sur les performances en simulant l'ajout de contraintes erronées, et nous discuterons de l'intérêt de prédire ou corriger les conflits d'annotation (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-SIMULATION-ERREURS-ANNOTATION}}).
+	Nous présenterons aussi les résultats de scores inter-annotateurs obtenus lors d'une expériences d'annotations de contraintes avec plusieurs annotateurs (cf. \textsc{Section~\ref{table:4.6.2-ETUDE-ROBUSTESSE-CALCUL-SCORE-INTER-ANNOTATEURS}}).
 	
 	
 	%%%
@@ -85,34 +86,113 @@
 	
 	
 	%%%
-	%%% Subsection 4.6.2: Étude d'annotation avec des paradigmes différents
+	%%% Subsection 4.6.2: Étude du score inter-annotateurs pour annoter des contraintes en situation réelle
 	%%%
-	%\subsection{Étude d'annotation avec des paradigmes différents}
-	%\label{section:4.6.2-ETUDE-ROBUSTESSE-ANNOTATIONS-DIFFERENTES}
-	%	
-	%	% Objectif de l'expérience.
-	%	\todo[inline]{A REDIGER: objectif de l'expérience}
-	%
-	%	%%% Protocole expérimental.
-	%	\subsubsection{Protocole expérimental}
-	%		\todo[inline]{A REDIGER}
-	%		% Axiome.
-	%		% Pseudo-code.
-	%		% Détails de l'expérience.
-	%		% Référence scripts.
-	%
-	%	%%% Résultats
-	%	\subsubsection{Résultats obtenus}
-	%		\todo[inline]{A REDIGER}
-	%	
-	%		% Description statistiques.
-	%		
-	%		% Exemple.
-	%
-	%	%%% Discussion
-	%	\subsubsection{Discussion}
-	%		\todo[inline]{A REDIGER}
-	%	
-	%		% Remaques expérience utilisateur.
-	%		
-	%		% Conclusions et suggestion.
+	\subsection{Étude du score inter-annotateurs pour annoter des contraintes en situation réelle}
+	\label{section:4.6.2-ETUDE-ROBUSTESSE-CALCUL-SCORE-INTER-ANNOTATEURS}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{A REDIGER: objectif de l'expérience}
+	
+		%%% Protocole expérimental.
+		\subsubsection{Protocole expérimental}
+			\todo[inline]{A REDIGER}
+			% Axiome.
+			% Pseudo-code.
+			% Détails de l'expérience.
+			% Référence scripts.
+	
+		%%% Résultats
+		\subsubsection{Résultats obtenus}
+			\todo[inline]{A REDIGER}
+		
+			% Description statistiques.
+			La \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-CALCUL-SCORE-INTER-ANNOTATEURS}} expose les scores inter-annotateurs sur les $3$ opérateurs et le réviseur de cette expérience, ainsi que l'accord avec la vérité terrain.
+			Le score d'accord moyen avec la vérité terrain est de $0.86$ (écart-type: $0.01$), et le score inter-annotateurs moyen (sans le réviseur) est de $0.84$ (écart-type: $0.02$).
+			
+			\begin{table}[!htb]
+				\begin{center}
+				\begin{tabular}{|c|r|r|r|r|}
+				
+					\hline
+					% ENTETE DU TABLEAU
+					
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							1 (Relecteur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							7 (Annotateur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							9 (Annotateur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							12 (Annotateur)
+						}}
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						Vérité terrain
+					}}
+						& $0.95$
+						& $0.86$
+						& $0.84$
+						& $0.87$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						1 (Relecteur)
+					}}
+						&
+						& $0.91$
+						& $0.86$
+						& $0.89$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						7 (Annotateur)
+					}}
+						&
+						&
+						& $0.86$
+						& $0.85$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						9 (Annotateur)
+					}}
+						&
+						&
+						&
+						& $0.80$
+						\tabularnewline
+						\hline
+					
+				\end{tabular}
+				\end{center}
+				\caption{Score d'accord inter-annotateurs.
+				}
+				\label{table:4.6.2-ETUDE-ROBUSTESSE-CALCUL-SCORE-INTER-ANNOTATEURS}
+			\end{table}
+			
+			% Note.
+			\begin{leftBarInformation}
+				Dans une autres expérience, où $14$ opérateurs devaient annoter une base de $1~000$ contraintes aléatoires, nous obtenons un accord moyen avec la vérité terrain de $0.93$ (écart-type: $0.02$) et un score inter-annotateurs moyen de $0.91$ (écart-type: $0.03$).
+				Toutefois, nous ne mettons pas en avant ces résultats car le lot de contraintes à annoté est déséquilibré à cause de l'utilisation de l'échantillonnage aléatoire ($932$ \texttt{CANNOT-LINK}, $68$ \texttt{MUST-LINK}).
+			\end{leftBarInformation}
+	
+		%%% Discussion
+		\subsubsection{Discussion}
+			\todo[inline]{A REDIGER}
+		
+			% Remaques expérience utilisateur.
+			
+			% Conclusions et suggestion.
