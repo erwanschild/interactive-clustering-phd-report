@@ -92,7 +92,9 @@
 			%
 			\KwResult{données segmentées (i.e. base d'apprentissage)}
 			%
-			\caption{\textit{Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif.}}
+			\caption{\textit{
+				Description en pseudo-code de la méthode d'annotation proposée employant le clustering interactif.
+			}}
 		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
@@ -100,7 +102,9 @@
 		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
-			\caption{Schéma illustrant l'architecture architectures du \textit{clustering} interactif. La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.}
+			\caption{
+				Schéma illustrant l'architecture architectures du \textit{clustering} interactif. La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.
+			}
 			\label{figure:3.2-CLUSTERING-INTERACTIF}
 		\end{figure}
 		
@@ -337,7 +341,9 @@ dict_of_vectors = vectorize(
 		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.7\textwidth]{figures/example-constraints-transitivity}
-			\caption{Exemples des propriétés de transitivité des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges). \textbf{(1)} et \textbf{(2)} représente les possibilités de déduction d'une contrainte (\texttt{(c)}) en fonction des deux autres (\texttt{(a)} et \texttt{(b)}). \textbf{(3)} représente deux composants connexes définis par la transitivité des contraintes \texttt{MUST-LINK}. Enfin, \textbf{(4)} représente un cas de conflit où une contrainte (\texttt{(c)}) ne correspond pas à sa déduction faite à partir des autres contraintes (\texttt{(a)} et \texttt{(b)}).}
+			\caption{
+				Exemples des propriétés de transitivité des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges). \textbf{(1)} et \textbf{(2)} représente les possibilités de déduction d'une contrainte (\texttt{(c)}) en fonction des deux autres (\texttt{(a)} et \texttt{(b)}). \textbf{(3)} représente deux composants connexes définis par la transitivité des contraintes \texttt{MUST-LINK}. Enfin, \textbf{(4)} représente un cas de conflit où une contrainte (\texttt{(c)}) ne correspond pas à sa déduction faite à partir des autres contraintes (\texttt{(a)} et \texttt{(b)}).
+			}
 			\label{figure:3.3-CONTRAINTES-TRANSITIVITE}
 		\end{figure}
 		
@@ -481,7 +487,9 @@ clustering_result = clustering_model.cluster(
 		\begin{figure}[!htb]
 			\centering
 			\includegraphics[width=0.35\textwidth]{figures/example-sampling}
-			\caption{Exemples d’échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).}
+			\caption{
+				Exemples d’échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
+			}
 			\label{figure:3.3-CONTRAINTES-SAMPLING}
 		\end{figure}
 

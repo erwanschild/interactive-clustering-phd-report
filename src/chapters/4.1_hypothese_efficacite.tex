@@ -6,7 +6,6 @@
 	Nous aimerions donc vérifier l'hypothèse suivante :
 	
 	%%% Formulation des hypothèses
-
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse d'efficacité}~\faVial,
 		colback=colorTcolorboxHypothesis!15,
@@ -24,10 +23,11 @@
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-01-efficacite}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\caption{
+				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
+			}
 			\label{figure:4.1-HYPOTHESE-EFFICACITE}
 		\end{figure}
-
 	\end{tcolorbox}
 		
 	% Résumé de l'étude.
@@ -77,7 +77,8 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec les contraintes \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
@@ -86,7 +87,9 @@
 				%
 				\KwResult{arrangements d'algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.
+				}}
 				\label{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}
 			\end{algorithm}
 			
@@ -148,8 +151,10 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-efficacite-evolution-moyenne-0par-iteration}
-				\caption{Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
-				Représentation des tentatives ayant été les plus rapides (\textit{un prétraitement \texttt{prep.simple}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage \texttt{samp.closest.diff}}) et les plus lentes (\textit{un prétraitement \texttt{prep.no}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}}) pour atteindre $100$\% de \texttt{v-measure}.}
+				\caption{
+					Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
+					Représentation des tentatives ayant été les plus rapides (\textit{un prétraitement \texttt{prep.simple}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage \texttt{samp.closest.diff}}) et les plus lentes (\textit{un prétraitement \texttt{prep.no}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}}) pour atteindre $100$\% de \texttt{v-measure}.
+				}
 				\label{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
 			\end{figure}
 			%
@@ -201,7 +206,9 @@
 					
 				\end{tabular}
 				\end{center}
-				\caption{Détails de l'évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.}
+				\caption{
+					Détails de l'évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
+				}
 				\label{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
 			\end{table}
 

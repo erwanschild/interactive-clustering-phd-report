@@ -25,10 +25,11 @@
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-02-efficience}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 2/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).}
+			\caption{
+				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 2/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
+			}
 			\label{figure:4.2-HYPOTHESE-EFFICIENCE}
 		\end{figure}
-
 	\end{tcolorbox}
 	
 	% Résumé de l'étude.
@@ -77,7 +78,8 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec les contraintes \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
@@ -86,7 +88,9 @@
 				%
 				\KwResult{meilleurs arrangements d'algorithmes et de paramètres}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.
+				}}
 				\label{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}
 			\end{algorithm}
 			
@@ -128,7 +132,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-partielle}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
+				\caption{
+					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
+				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE}
 			\end{figure}
 			%
@@ -310,7 +316,9 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de $90$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{
+					ANOVA du nombre d'itérations nécessaires pour l'obtention de $90$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}
 			\end{table}
 			
@@ -327,7 +335,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-suffisante}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
+				\caption{
+					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
+				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE}
 			\end{figure}
 			%
@@ -509,7 +519,9 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour l'obtention de $100$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{
+					ANOVA du nombre d'itérations nécessaires pour l'obtention de $100$\% de v-mesure. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}
 			\end{table}
 			
@@ -525,7 +537,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-exhaustive}
-				\caption{Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.}
+				\caption{
+					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées. L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
+				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE}
 			\end{figure}
 			%
@@ -707,7 +721,9 @@
 						\hline
 				\end{tabular}
 				\end{center}
-				\caption{ANOVA du nombre d'itérations nécessaires pour annoter toutes les contraintes possibles. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.}
+				\caption{
+					ANOVA du nombre d'itérations nécessaires pour annoter toutes les contraintes possibles. Les (\textit{$*$}) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE}
 			\end{table}
 		
@@ -727,7 +743,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-evolution-moyenne-5best-par-vmeasure}
-				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenu un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).}
+				\caption{
+					Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \textit{clustering} interactif pour obtenu un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).
+				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}
 			\end{figure}
 

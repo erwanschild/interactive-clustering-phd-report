@@ -25,10 +25,11 @@
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-05-rentabilite}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).}
+			\caption{
+				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).
+			}
 			\label{figure:4.5-HYPOTHESE-RENTABILITE}
 		\end{figure}
-
 	\end{tcolorbox}
 		
 	% Résumé de l'étude.
@@ -72,8 +73,9 @@
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{estimer rentabilité}: calculer l'accord entre l'annotation et le \textit{clustering} précédent \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					}
@@ -83,7 +85,9 @@
 				%
 				\KwResult{discussion sur la rentabilité d'après l'accord entre annotation et \textit{clustering}}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude de l'évolution d'accord entre l'annotation et le \textit{clustering}.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude de l'évolution d'accord entre l'annotation et le \textit{clustering}.
+				}}
 				\label{algorithm:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-PROTOCOLE}
 			\end{algorithm}
 			
@@ -108,8 +112,10 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.7\textwidth]{figures/example-accord-annotation-clustering}
-				\caption{Exemples d'accords et de désaccord entre les annotations d'une itération et le résultat du \textit{clustering} de l'itération précédente.
-				Des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges) sont représentées dans deux situations : \textbf{(1)} montre des cas d'accords (\texttt{MUST-LINK} dans un même \textit{cluster}, \texttt{CANNOT-LINK} entre deux \textit{clusters} différents), et \textbf{(2)} montre des cas de désaccords (\texttt{MUST-LINK} entre deux \textit{clusters} différents, \texttt{CANNOT-LINK} dans un même \textit{cluster}).}
+				\caption{
+					Exemples d'accords et de désaccord entre les annotations d'une itération et le résultat du \textit{clustering} de l'itération précédente.
+					Des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges) sont représentées dans deux situations : \textbf{(1)} montre des cas d'accords (\texttt{MUST-LINK} dans un même \textit{cluster}, \texttt{CANNOT-LINK} entre deux \textit{clusters} différents), et \textbf{(2)} montre des cas de désaccords (\texttt{MUST-LINK} entre deux \textit{clusters} différents, \texttt{CANNOT-LINK} dans un même \textit{cluster}).
+				}
 				\label{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE}
 			\end{figure}
 			
@@ -132,14 +138,15 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-rentabilite-accord-annotation}
-				\caption{Évolution au cours des itérations de l'accord entre l'annotation de contraintes d'un expert et le résultat de \textit{clustering} sur lequel est basé l'échantillonnage de contraintes.
-				Ces accords sont exprimés grâce à des lots de $50$ contraintes annotées.
-				Les évolutions moyennes de différents paramétrages de la méthode sont exposées :
-				\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
-				\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
-				\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
-				et \textbf{(4)} paramétrage favori.
-				À titre d'information, les courbes en noir représentent l'évolution de la \texttt{v-measure} entre le \textit{clustering} et la vérité terrain.
+				\caption{
+					Évolution au cours des itérations de l'accord entre l'annotation de contraintes d'un expert et le résultat de \textit{clustering} sur lequel est basé l'échantillonnage de contraintes.
+					Ces accords sont exprimés grâce à des lots de $50$ contraintes annotées.
+					Les évolutions moyennes de différents paramétrages de la méthode sont exposées :
+					\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
+					\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
+					\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
+					et \textbf{(4)} paramétrage favori.
+					À titre d'information, les courbes en noir représentent l'évolution de la \texttt{v-measure} entre le \textit{clustering} et la vérité terrain.
 				} 
 				\label{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}
 			\end{figure}
@@ -194,7 +201,8 @@
 					
 				\end{tabular}
 				\end{center}
-				\caption{Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score d'accord entre annotation et \textit{clustering}.
+				\caption{
+					Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score d'accord entre annotation et \textit{clustering}.
 				}
 				\label{table:4.5.1-ETUDE-RENTABILITE-CORRELATION-ACCORD-PERFORMANCE}
 			\end{table}
@@ -276,8 +284,9 @@
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{estimer rentabilité}: calculer la différence entre les deux derniers \textit{clusterings} \;
 					}
@@ -287,7 +296,9 @@
 				%
 				\KwResult{discussion sur la rentabilité de chaque itération d'après la différence entre \textit{clusterings}}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude de l'évolution de la différence entre deux \textit{clustering} consécutifs.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude de l'évolution de la différence entre deux \textit{clustering} consécutifs.
+				}}
 				\label{algorithm:4.5.1-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING-PROTOCOLE}
 			\end{algorithm}
 
@@ -318,13 +329,14 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-rentabilite-similarite-clustering}
-				\caption{Évolution de la différence de résultats entre deux itérations de \textit{clustering}.
-				Les évolutions moyennes de différents paramétrages de la méthode sont exposées :
-				\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
-				\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
-				\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
-				et \textbf{(4)} paramétrage favori.
-				À titre d'information, les courbes en noir représentent l'évolution de la \texttt{v-measure} entre le \textit{clustering} et la vérité terrain.
+				\caption{
+					Évolution de la différence de résultats entre deux itérations de \textit{clustering}.
+					Les évolutions moyennes de différents paramétrages de la méthode sont exposées :
+					\textbf{(1)} meilleur paramétrage moyen pour atteindre une annotation partielle ;
+					\textbf{(2)} meilleur paramétrage moyen pour atteindre une annotation suffisante ;
+					\textbf{(3)} meilleur paramétrage moyen pour atteindre une annotation exhaustive ;
+					et \textbf{(4)} paramétrage favori.
+					À titre d'information, les courbes en noir représentent l'évolution de la \texttt{v-measure} entre le \textit{clustering} et la vérité terrain.
 				}
 				\label{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}
 			\end{figure}
@@ -385,7 +397,8 @@
 					
 				\end{tabular}
 				\end{center}
-				\caption{Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score de différence entre deux \textit{clusterings} consécutifs.
+				\caption{
+					Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score de différence entre deux \textit{clusterings} consécutifs.
 				}
 				\label{table:4.5.2-ETUDE-RENTABILITE-CORRELATION-SIMILARITE-PERFORMANCE}
 			\end{table}
@@ -439,4 +452,4 @@
 		% Transition: Vers Simulation d'erreurs.
 		Pour terminer nos différentes analyses, il convient maintenant d'anticiper la présence d'erreurs d’annotation.
 		En effet, nous avons fait jusqu'à présent l'hypothèse que l'annotateur ne se trompe jamais, mais cette hypothèse forte n'est pas toujours vérifiée en pratique.
-		Pour estimer l'impact de ces erreurs ou incohérences d'annotation, nous devons donc réaliser une analyse de robustesse de notre méthode d'annotation : celle-ci sera réalisé en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}
+		Pour estimer l'impact de ces erreurs ou incohérences d'annotation, nous devons donc réaliser une analyse de robustesse de notre méthode d'annotation : celle-ci sera réalisé en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.

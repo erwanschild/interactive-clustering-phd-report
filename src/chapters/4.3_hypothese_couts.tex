@@ -25,14 +25,15 @@
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-03-couts}
-			\caption{Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).}
+			\caption{
+				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).
+			}
 			\label{figure:4.3-HYPOTHESE-COUTS}
 		\end{figure}
-
 	\end{tcolorbox}
 
 	% Résumé des études.
-	Afin de vérifier cette hypothèse, nous organisons plusieurs expériences pour simuler ou déterminer ces durées :
+	Afin de vérifier cette hypothèse, nous organisons plusieurs expériences pour simuler et déterminer ces durées :
 	\begin{itemize}
 		\item une étude du \textbf{temps d'annotation} par un expert métier, mesuré lors d'une expérience d'annotation de contraintes faisant intervenir plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}) ;
 		\item une étude du \textbf{temps de calcul} des algorithmes, modélisé en exécutant les différentes implémentations du \textit{clustering} interactif avec diverses valeurs d'arguments (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
@@ -85,13 +86,15 @@
 				%
 				\KwResult{modélisation du temps d'annotation d'un lot de contraintes}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du temps d'annotation d'un lot de contraintes par un expert métier.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude du temps d'annotation d'un lot de contraintes par plusieurs experts métiers en situation réelle.
+				}}
 				\label{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}
 			\end{algorithm}
 			
 			% Détails de l'expérience : préparation du jeu de données.
 			Nous allons procéder en plusieurs étapes.
-			D'abord, il faut choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétence de nos annotateurs, nous cherchons un jeu de données traitant d'un sujet de culture général.
+			D'abord, il faut choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétences de nos annotateurs, nous cherchons un jeu de données traitant d'un sujet de culture général.
 			Pour cette expérience, nous avons donc choisi \texttt{MLSUM} : une collecte d'articles de journaux, classés par catégorie de publication et décrits par leur titre et leur résumé.
 			Nous nous intéressons ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
 			Comme certains titres peuvent porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs sont chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
@@ -131,20 +134,24 @@
 			%
 			Pour réaliser l'annotation, les opérateurs auront accès à l'application web développée au cours de ce doctorat.
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
-			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}.
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-0application-annotation}
-				\caption{Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'annotation). Les deux textes à annoter sont disposés à gauche et droite de l'écran. Chacun dispose d'un cache à cocher si le texte n'est pas pertinent à analyser (\textit{ambigu, hors périmètre, incompréhensible, ...}).\\
-				Les boutons à disposition permettent respectivement d'annoter un \texttt{MUST-LINK} si les données sont similaires (\textit{bouton en vert}), un \texttt{CANNOT-LINK} si les données ne sont pas similaire (\textit{bouton en rouge}), d'ignorer la contrainte pour laisser la main à l'algorithme de \textit{clustering} (\textit{bouton en bleu}), et d'ajouter un commentaire pour revoir la contrainte plus tard (\textit{case à choser et champ de texte libre}). Deux éléments déroulant permettent d'avoir des informations supplémentaires (\textit{metadata de sélection et de \textit{clustering}, représentation graphique des liens entre contraintes annotées}). Les boutons de navigation (\textit{boutons flèches et liste}) sont disponibles en bas de page.}
+				\caption{
+					Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'annotation). Les deux textes à annoter sont disposés à gauche et droite de l'écran. Chacun dispose d'un cache à cocher si le texte n'est pas pertinent à analyser (\textit{ambigu, hors périmètre, incompréhensible, ...}).\\
+					Les boutons à disposition permettent respectivement d'annoter un \texttt{MUST-LINK} si les données sont similaires (\textit{bouton en vert}), un \texttt{CANNOT-LINK} si les données ne sont pas similaire (\textit{bouton en rouge}), d'ignorer la contrainte pour laisser la main à l'algorithme de \textit{clustering} (\textit{bouton en bleu}), et d'ajouter un commentaire pour revoir la contrainte plus tard (\textit{case à choser et champ de texte libre}). Deux éléments déroulant permettent d'avoir des informations supplémentaires (\textit{metadata de sélection et de \textit{clustering}, représentation graphique des liens entre contraintes annotées}). Les boutons de navigation (\textit{boutons flèches et liste}) sont disponibles en bas de page.
+				}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}
 			\end{figure}
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-0application-liste-contraintes}
-				\caption{Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'inventaire des contraintes à annoter).\\
-				La partie supérieure permet d'identifier le nombre de textes et de contraintes sur le projet, ainsi que les boutons destinés à calculer les transitivités entre les contraintes et à approuver le travail réalisé si aucune transitivité n'entre en conflit avec un contrainte annotée. La partie inférieure liste l'ensemble des contraintes du projet, avec les annotations réalisées, l'itération à laquelle la contraintes a été sélectionnée et annotée, si elle est à revoir ou si une incohérence la concernant est détectée.}
+				\caption{
+					Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif pour annoter des contraintes (page d'inventaire des contraintes à annoter).\\
+					La partie supérieure permet d'identifier le nombre de textes et de contraintes sur le projet, ainsi que les boutons destinés à calculer les transitivités entre les contraintes et à approuver le travail réalisé si aucune transitivité n'entre en conflit avec un contrainte annotée. La partie inférieure liste l'ensemble des contraintes du projet, avec les annotations réalisées, l'itération à laquelle la contraintes a été sélectionnée et annotée, si elle est à revoir ou si une incohérence la concernant est détectée.
+				}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}
 			\end{figure}
 			
@@ -188,7 +195,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-1-modelisation-temps}
-				\caption{Estimation du temps nécessaire (en minutes) pour annoter un lot de contraintes.}
+				\caption{
+					Estimation du temps nécessaire (en minutes) pour annoter un lot de contraintes.
+				}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-SIMULATION}
 			\end{figure}
 		
@@ -200,7 +209,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-3-etude-de-cas}
-				\caption{Etude de cas d'évolution de la vitesse d'annotation de contraintes (en contraintes par minutes) en fonction des différentes sessions d'annotations.}
+				\caption{
+					Etude de cas d'évolution de la vitesse d'annotation de contraintes (en contraintes par minutes) en fonction des différentes sessions d'annotations.
+				}
 				\label{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-EXEMPLE}
 			\end{figure}
 
@@ -397,7 +408,8 @@
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{clustering (à étudier)}: regrouper les données par similarité \;
 						\textbf{chronomètre}: \textbf{STOP} \;
@@ -406,7 +418,8 @@
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: ajouter des contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{échantillonnage (à étudier)}: sélectionner de nouvelles contraintes à annoter \;
@@ -421,7 +434,9 @@
 				%
 				\KwResult{modélisation du temps d'exécution des différents algorithmes}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \textit{clustering} interactif.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \textit{clustering} interactif.
+				}}
 				\label{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}
 			\end{algorithm}
 			
@@ -509,7 +524,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-calcul-modelisation-1prep}
-				\caption{Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{prétraitement} en fonction du nombre de données à traiter. Les paramétrages \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ayant des temps de calculs similaires, leurs modélisations n'ont pas été séparées.}
+				\caption{
+					Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{prétraitement} en fonction du nombre de données à traiter. Les paramétrages \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ayant des temps de calculs similaires, leurs modélisations n'ont pas été séparées.
+				}
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}
 			\end{figure}
 			
@@ -543,7 +560,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-calcul-modelisation-2vect}
-				\caption{Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{vectorisation} en fonction du nombre de données à traiter.}
+				\caption{
+					Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{vectorisation} en fonction du nombre de données à traiter.
+				}
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}
 			\end{figure}
 			
@@ -625,7 +644,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-calcul-modelisation-3clust}
-				\caption{Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{clustering} en fonction du nombre de données à traiter.}
+				\caption{
+					Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{clustering} en fonction du nombre de données à traiter.
+				}
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-CLUSTERING}
 			\end{figure}
 			
@@ -681,7 +702,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-calcul-modelisation-4samp}
-				\caption{Estimation du temps nécessaire (en minutes) pour effectuer une tâche d'\textbf{échantillonnage de contraintes} en fonction du nombre de données à traiter.}
+				\caption{
+					Estimation du temps nécessaire (en minutes) pour effectuer une tâche d'\textbf{échantillonnage de contraintes} en fonction du nombre de données à traiter.
+				}
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}
 			\end{figure}
 
@@ -780,19 +803,21 @@
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
-					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: ajouter des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{évaluation}: estimer l'équivalence entre le \; \textit{clustering} obtenu et la vérité terrain \;
+						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
 				}
 				\textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires \;
 				%
 				\KwResult{modélisation du nombre de contraintes nécessaires pour un jeu de données}
 				%
-				\caption{\textit{Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.}}
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.
+				}}
 				\label{algorithm:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-PROTOCOLE}
 			\end{algorithm}
 			
@@ -848,7 +873,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-nombre-contraintes-1-modelisation-nombre}
-				\caption{Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.}
+				\caption{
+					Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.
+				}
 				\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
 			\end{figure}
 		
@@ -873,7 +900,9 @@
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.5\textwidth]{figures/etude-nombre-contraintes-2-bornes-limites}
-					\caption{Exemple de caractérisation exhaustive d'un jeu de données ($10$ données, $3$ classes) en ajoutant un nombre minimal de contraintes (cf. \textbf{(1)}) ou en ajoutant toutes les contraintes possibles (cf. \textbf{(2)}).}
+					\caption{
+						Exemple de caractérisation exhaustive d'un jeu de données ($10$ données, $3$ classes) en ajoutant un nombre minimal de contraintes (cf. \textbf{(1)}) ou en ajoutant toutes les contraintes possibles (cf. \textbf{(2)}).
+					}
 					\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}
 				\end{figure}
 			\end{leftBarAuthorOpinion}
@@ -1014,7 +1043,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle-vs-parallele}
-				\caption{Schéma comparatif des architectures du \textit{clustering} interactif : \textbf{(1)} représente la version séquentielle initialement présentée en \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}} où le \textit{clustering} s'adapte avec les annotation de l'itération en cours ; \textbf{(2)} représente l'évolution en mode \textit{parallèle} où le \textit{clustering} s'adapte avec les annotations de l'itération précédente (décalage d'une itération).}
+				\caption{
+					Schéma comparatif des architectures du \textit{clustering} interactif : \textbf{(1)} représente la version séquentielle initialement présentée en \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}} où le \textit{clustering} s'adapte avec les annotation de l'itération en cours ; \textbf{(2)} représente l'évolution en mode \textit{parallèle} où le \textit{clustering} s'adapte avec les annotations de l'itération précédente (décalage d'une itération).
+				}
 				\label{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}
 			\end{figure}
 			
@@ -1074,7 +1105,9 @@
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-total-2-modelisation-parallele}
-				\caption{Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).}
+				\caption{
+					Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).
+				}
 				\label{figure:4.3.4-ETUDE-COUT-TOTAL}
 			\end{figure}
 			
