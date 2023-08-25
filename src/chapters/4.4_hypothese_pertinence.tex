@@ -68,8 +68,8 @@
 					\textbf{évaluation manuelle}: juger de l'exploitabilité de chaque \textit{cluster} \;
 					\textbf{labellisation manuelle}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation manuelle}: juger de l'exploitabilité de chaque \textit{cluster} \;
@@ -232,6 +232,7 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-PROTOCOLE}}.
+			\todo{FORMAT: ajuster l’enchaînement pour ne pas avoir de page "blanche" avec l'algorithme.}
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotés (vérité terrain)}
@@ -242,15 +243,15 @@
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-					\textbf{analyse linguistique}: déterminer le vocabulaire caractéristique de chaque \textit{cluster} avec la \texttt{FMC} \;
+					\textbf{analyse linguistique}: caractériser les \textit{clusters} grâce à la \texttt{FMC} \;
 					\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{analyse linguistique}: déterminer le vocabulaire caractéristique de chaque \textit{cluster} avec la \texttt{FMC} \;
+						\textbf{analyse linguistique}: caractériser les \textit{clusters} grâce à la \texttt{FMC} \;
 						\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 						\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					}
@@ -270,8 +271,8 @@
 			
 			% Ajout de l'analyse linguistique.
 			Cependant, avant de demander l'avis de l'expert, nous réalisons une analyse du vocabulaire employé.
-			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf.~\cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver les composantes vectorielle caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{composante})$.
-			Dans notre cas, en utilisant une vectorisation basée sur la fréquence du vocabulaire dans un document comme \textbf{TF-IDF} (\cite{sparck-jones:1972:statistical-interpretation-term}), nous pouvons déterminer les mots les plus représentatif de chaque \textit{cluster}.
+			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf.~\cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver les composantes vectorielles caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{composante})$.
+			Dans notre cas, en utilisant une vectorisation basée sur la fréquence du vocabulaire dans un document comme \textbf{TF-IDF} (\cite{sparck-jones:1972:statistical-interpretation-term}), nous pouvons déterminer les mots les plus représentatifs de chaque \textit{cluster}.
 			Ainsi, nous pouvons à la fois décrire chaque groupe de questions par une liste de mots clés caractéristiques, mais aussi surligner ces mots dans les questions à parcourir pour attirer l'attention de l'expert sur ce qui semble être statistiquement discriminant.
 			
 			% Description de l'évaluation semi-manuelle.
@@ -707,25 +708,25 @@
 			Nous discutons ici de l'intérêt d'une telle analyse.
 			\\
 			
-			% Avantage 1: Unitlité de la FMC pour les clusters exploitables.
+			% Avantage 1: Utilité de la FMC pour les clusters exploitables.
 			Tout d'abord, concernant les \textit{clusters} jugés exploitables, nous constatons que la \texttt{FMC} permet d'identifier aisément la thématique principale.
 			C'est le cas dans les exemples présentés dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}), où les thématiques sont bien représentées par leurs patterns (\texttt{gestion\_sans\_contact} avec "\textit{mode}", "\textit{sans}", "\textit{contact}", "\textit{nfc}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{numero}", "\textit{virtuel}", "\textit{online}" ; \texttt{deblocage\_carte} avec "\textit{debloquer}", "\textit{deverrouiller}", "\textit{carte}")
 			De plus, la présence des différentes variantes d'un même pattern (avec ses pluriels, au sein d'un groupe de termes, ...) permet de rapidement d'intégrer le champ lexical présent, aidant ainsi à interpréter le \textit{cluster} comme probablement exploitable.
 			
-			% Avantage 2: Unitlité de la FMC pour les clusters partiellement exploitables.
+			% Avantage 2: Utilité de la FMC pour les clusters partiellement exploitables.
 			Les thématiques présentent dans les \textit{clusters} partiellement exploitables sont aussi identifiables grâce à la \texttt{FMC}, mais à moindre mesure.
 			En effet, comme plusieurs thématiques se mélangent, l'ensemble de termes caractéristiques est aussi plus hétérogène, des variantes ne sont pas identifiées, et des patterns dénués de sens peuvent être mis en avant.
 			Par exemple, dans le \textit{cluster} $2$ de la tentative $1$ à l'itération $0$, deux classes sont présentes avec leurs termes caractéristiques (\texttt{consultation\_solde} avec "\textit{solde}" et "\textit{compte}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{carte virtuelle}" et "\textit{numero}"), mais certains termes quelconque sont pourtant sont présentés comme représentatifs ("\textit{de mes}", "\textit{avec un}") et d'autres termes intéressants ne sont pas identifiés ("\textit{compte}" et "\textit{numeros}" ne sont présents qu'au singulier).
 			Ces petits indices peuvent donc aiguiller l'expert sur des ajustements nécessaires ou un \textit{cluster} réalisé sur des bases fragiles.
 			
-			% Avantage 3: Unitlité de la FMC pour les clusters non exploitables.
+			% Avantage 3: Utilité de la FMC pour les clusters non exploitables.
 			Enfin, en ce qui concerne les \textit{clusters} jugés non exploitables, la \texttt{FMC} permet de confirmer leur manque de cohérence (pour le \textit{cluster} $1$ de la tentative $2$ à l'itération $0$ : "\textit{carte gold}", "\textit{numeros virtuels}", "\textit{découvert bancaire}", "\textit{carte paiement differe}", ...) ou leur absence de valeur métier (seulement $2$ termes caractéristiques pour le \textit{cluster} $1$ de la tentative $1$ à l'itération $0$).
 			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{clusters} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir~\cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
 			\\
 			
 			% Limite 1: toujours une tâche complexe.
 			Cependant, une telle approche pour qualifier les \textit{clusters} risque de ne pas répondre à nos attentes en l'état, car certains problèmes identifiés dans la section précédente subsistent (\ref{section:4.4.1-ETUDE-PERTINENCE-VERIFICATION-MANUELLE}).
-			Entre autres, malgré une abstraction des \textit{clusters} par leur termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir un grand nombre de données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
+			Entre autres, malgré une abstraction des \textit{clusters} par leurs termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir un grand nombre de données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
 			Ainsi, même si le travail est simplifié par l'identification rapide des termes importants du corpus, la charge de travail reste élevée.
 			
 			% Limite 2: résultats encore à affiner.
@@ -782,6 +783,7 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}}.
+			\todo{FORMAT: ajuster l’enchaînement pour ne pas avoir de page "blanche" avec l'algorithme.}
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotés (vérité terrain)}
@@ -792,16 +794,15 @@
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-					\textbf{résumé automatique}: utiliser un \texttt{LLM} pour synthétiser les thématiques de chaque \textit{cluster} \;
+					\textbf{synthèse automatique}: résumer les thématiques des \textit{clusters} par un \texttt{LLM} \;
 					\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{analyse linguistique}: déterminer le vocabulaire caractéristique de chaque \textit{cluster} avec la \texttt{FMC} \;
-						\textbf{résumé automatique}: utiliser un \texttt{LLM} pour synthétiser les thématiques de chaque \textit{cluster} \;
+						\textbf{synthèse automatique}: résumer les thématiques des \textit{clusters} par un \texttt{LLM} \;
 						\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 						\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					}

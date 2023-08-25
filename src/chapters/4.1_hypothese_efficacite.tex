@@ -58,7 +58,7 @@
 			\begin{leftBarWarning}
 				Dans le cadre de cette étude, nous supposons que l'expert métier connaît parfaitement le domaine traité dans ce jeu de données, et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
 				Cependant, cette hypothèse forte n'est pas toujours vérifiée en pratique, surtout lorsque l'on manipule des données non structurées.
-				L'impact de ce point sur les résultats obtenus sera discuté en fin en fin de partie, et nous nous y intéresserons plus en détails dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).
+				L'impact de ce point sur les résultats obtenus sera discuté en fin de partie, et nous nous y intéresserons plus en détails dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
@@ -68,7 +68,7 @@
 				\KwData{jeu de données annoté (vérité terrain)}
 				\KwIn{arrangements d'algorithmes et de paramètres à tester}
 				%
-				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
+				\ForEach{algorithmes et de paramètres à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitement}: supprimer le bruit dans les données \;
@@ -77,15 +77,15 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner de nouvelles contraintes à annoter \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec les contraintes \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
-					\textbf{évaluation finale}: espérer avoir un score d'équivalence de $100$\% entre le \textit{clustering} obtenu et la vérité terrain \;
+					\textbf{évaluation finale}: espérer avoir un score d'équivalence de $100$\% avec la vérité terrain \;
 				}
 				%
-				\KwResult{arrangements d'algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
+				\KwResult{algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
 				%
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.
@@ -111,7 +111,7 @@
 				\item la \textbf{vectorisation} des données, avec les niveaux suivants : \textbf{TF-IDF} (noté \texttt{vect.tfidf}) et \textbf{SpaCy} (noté \texttt{vect.frcorenewsmd}) ;
 				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants : \textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}). Le choix du nombre de clusters n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants : \textbf{purement aléatoire} (noté \texttt{samp.random.full}), \textbf{pseudo-aléatoire} (noté \texttt{samp.random.same}), \textbf{même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et \textbf{clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}). Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$
-				\footnote{Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données. Ce choix sera discuté en fin en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).}.
+				\footnote{Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données. Ce choix sera discuté en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).}.
 			\end{enumerate}
 			
 			Il y a donc $192$ combinaisons testées, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des algorithmes de \textit{clustering} (\textit{initialisation du \texttt{clust.kmeans.cop}, ...}) et d'échantillonnage (\textit{choix des contraintes au hasard avec \texttt{samp.random.full}, ...}).

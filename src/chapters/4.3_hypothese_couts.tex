@@ -407,8 +407,8 @@
 					\ElseIf {estimation de la tâche de \textbf{clustering}}{
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
-						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{clustering (à étudier)}: regrouper les données par similarité \;
@@ -417,10 +417,10 @@
 					\ElseIf {estimation de la tâche d'\textbf{échantillonnage}}{
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
-						\textbf{échantillonnage initial}: sélectionner une base de contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
-						\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
+						\textbf{clustering initial}: regrouper les données avec \texttt{clust.kmeans.cop} \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{échantillonnage (à étudier)}: sélectionner de nouvelles contraintes à annoter \;
 						\textbf{chronomètre}: \textbf{STOP} \;
@@ -804,8 +804,8 @@
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;

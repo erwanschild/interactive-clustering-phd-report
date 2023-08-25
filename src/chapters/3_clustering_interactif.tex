@@ -320,7 +320,7 @@ dict_of_vectors = vectorize(
 		On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
 		
 		% cognitivefactory.interactive-clustering.constraints: Conflits.
-		Il se peut que la contrainte en cours d'ajout contredise les contraintes déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-CONFLITS}}).
+		Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-CONFLITS}}).
 		Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
 		Ce conflit peut venir simplement venir d'une erreur d’inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
 		Sémantiquement, un conflit indique une contradiction dans la gestion des données, car les données concernées doivent à la fois être réunies et séparées...
