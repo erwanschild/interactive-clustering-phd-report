@@ -40,11 +40,6 @@
 		\item une simulation de l'\textbf{impact des incohérences d'annotation} sur les performances de la méthode (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}}) ;
 		\item une étude de cas sur le \textbf{score inter-annotateurs} obtenu lors d'une annotation de contraintes en situation réelle avec plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}).
 	\end{itemize}
-	%%%%\begin{itemize}
-	%%%%	\item une étude du \textbf{score inter-annotateurs} obtenu lors d'une expérience d’annotation de contraintes avec plusieurs opérateurs en situation réelle (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}) ;
-	%%%%	\item une étude de l'intérêt de la correction des incohérences d'annotation (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}}) ;
-	%%%%	\item et une simulation de l'impact des incohérences d'annotation sur les performances de la méthode (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}}).
-	%%%%\end{itemize}
 	
 	
 	%%%
@@ -68,6 +63,7 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS-PROTOCOLE}}.
+			\todo{FORMAT: ajuster l’enchaînement pour ne pas avoir de page "blanche" avec l'algorithme.}
 			
 			\begin{algorithm}
 				\KwData{jeu de données annoté (vérité terrain)}
@@ -81,17 +77,17 @@
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
-						\textbf{échantillonnage}: sélectionner de nouvelles contraintes avec \texttt{samp.closest.diff} \;
+						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
 						\textbf{échantillonnage d'erreurs}: définir les contraintes qui seront erronées \;
-						\textbf{simulation d'annotation}: caractériser les contraintes en utilisant la vérité terrain \;
+						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\If{absence de correction des conflits d'annotation}{
-							\textbf{intégration naïve}: ajouter les nouvelles contraintes au gestionnaire de contraintes, ignorer les contraintes incohérentes avec la base existante \;
+							\textbf{intégration naïve}: ignorer les conflits avec le gestionnaire de contraintes \;
 						}
 						\ElseIf{détection et correction des conflits d'annotation}{
-							\textbf{intégration avec correction}: ajouter les nouvelles contraintes au gestionnaire de contraintes, annuler les annotations erronées qui sont détectées par le gestionnaire \;
+							\textbf{intégration corrective}: changer les annotations erronées en conflit \;
 						}
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{évaluation}: estimer l'équivalence entre le \; \textit{clustering} obtenu et la vérité terrain \;
+						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
 				}
 				\textbf{analyse}: déterminer l'impact par itération et par taux d'erreurs de la correction \;
@@ -101,7 +97,7 @@
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude d'intérêt de la correction des incohérences d'annotation.
 				}}
-				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}
+				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS-PROTOCOLE}
 			\end{algorithm}
 			
 			% Description de la vérité terrain.
@@ -109,36 +105,31 @@
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
 			Pour plus de détails, consultez l'annexe~\ref{annex:C.1-DATASET-BANK-CARDS}.
 			
-			% Description des tentatives de la méthode avec simulation d'erreurs
+			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète
 			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
 			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes erronées à chaque itération :
 			\begin{itemize}
 				\item Le taux d'erreurs insérées, variant de $0$\% à $50$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux d'erreur fixe sur les performances au courant des itérations ;
-				\item Les contraintes à insérer en erreur sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans erreur : ainsi, nous pouvons comparer toutes ces simulations itération par itération car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
+				\item Les contraintes erronées à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans erreur : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
 			\end{itemize}
 			
+			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des erreurs d'annotations, des conflits vont apparaître dans le gestionnaire de contraintes.
-			Comme énoncé plus haut, nous utilisons deux approches pour les traiter :
+			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
+			Pour les traiter, nous testons deux approches :
 			\begin{itemize}
-				\item %todo
-				\item %todo
+				\item l'approche naïve ignorant simplement les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
+				\item l'approche avec correction des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arrivent qu'à l'ajout d'une contrainte erronée, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
 			\end{itemize}
 			
-			Ainsi, il y a donc $11$ taux d'erreurs différents à simuler, chacun suivant $2$ approches de travail (avec et sans correction), et chacune de ces simulations d'erreurs seront répétées $10$ fois sur chaque tentative complète de la méthode pour limiter contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $220$ simulation par tentatives.
+			% Description des tentatives de la méthode avec les répétitions.
+			Ainsi, il y a donc $11$ taux d'erreurs différents à simuler, chacun suivant $2$ approches de gestion de conflits différentes, et chacune de ces simulations d'erreurs seront répétées $10$ fois sur chaque tentative complète de la méthode pour limiter contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $220$ simulation par tentatives.
 			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $1100$ tentatives complètes à simuler.
-			
-			% Remarques.
-			\begin{leftBarWarning}
-				Pour nous permettre de comparer facilement les résultats, ces erreurs sont choisies aléatoirement parmi l'échantillonnage de contraintes qu'il y aurait eu lieu si n'y avait pas de contraintes.
-			\end{leftBarWarning}
 
-			contraint
-			ajoutons au cours des itérations, nous simulons des erreurs d'annotations représentant entre $0$ et $50$\% du lot de contraintes.
-			
-		
-			\todo[inline]{A REDIGER}
+			% Description de l'analyse.
+			Enfin, nous afficherons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux d'erreurs simulés, et discuterons de l'impact au cours des itérations de la présence ou de l'absence de corrections des conflits d'annotations détectés.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -147,21 +138,31 @@
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
-			\todo[inline]{A REDIGER}
 		
 			% Description statistiques.
-			\todo[inline]{A REDIGER: Avec et sans corrections, avec sans sans closest.}
-			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}} ...
+			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode, déclinée avec les $11$ taux d'erreurs simulés et les $2$ approches de gestion des conflits.
+			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives sans erreurs : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
+			
+			\begin{leftBarWarning}
+				Toutefois, il est important de noter que les tentatives sans contraintes ont besoin de maximum $3~000$ contraintes pour annoter toutes les contraintes possibles et leurs transitivités (moyenne: $2~488$, écart-type: $327$).
+				Ainsi, toutes les courbes simulant les différents taux d'erreurs sont tronquées à $3~000$ contraintes, que les tentatives aient convergé ou non.
+				Nous serons sensible à cette information pour ne pas faire de mauvaises interprétations, car le dernier point des différentes courbes ne représente pas forcément le point de convergence des tentatives associées.
+			\end{leftBarWarning}
 			
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-closest}
 				\caption{
-					Évolutions de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre de contraintes annotées au cours des itérations du \textit{clustering} interactif et en prenant en compte un taux d'erreurs d'annotations compris entre $0$\% et $50$\%.
-					\textbf{(1)} représente l'évolution de la performance si les incohérences ne sont pas corrigées, \textbf{(2)} représente la même évolution avec correction des incohérences dès qu'elles sont détectées.
+					Évolutions de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre de contraintes annotées au cours des itérations du \textit{clustering} interactif.
+					Les courbes en dégradé de couleur représentent les déclinaisons de cette évolution en intégrant un pourcentage d'annotations erronées (allant de $0$\% et $50$\%).
+					\textbf{(1)} et \textbf{(2)} représente respectivement l'approche ignorant les conflits dans les contraintes et l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
+					Toutes les courbes sont tronquées à $3~000$ contraintes.
 				}
 				\label{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}
 			\end{figure}
+			
+			% Description de la figure.
+			\todo[inline]{A REDIGER: description de la figure}
 
 		%%% Discussion
 		\subsubsection{Discussion}
@@ -188,11 +189,11 @@
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
-		
-			\todo[inline]{A REDIGER}
+			
 			% Axiome.
 			% Pseudo-code.
 			% Détails de l'expérience.
+			\todo[inline]{A REDIGER}
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -237,7 +238,7 @@
 			\todo[inline]{A REDIGER: rappel de l'objectif}
 		
 			% Remaques expérience utilisateur.
-			\todo[inline]{A REDIGER: prédiction retard}
+			\todo[inline]{A REDIGER: prédiction de retard}
 			
 			% Conclusions et suggestion.
 			\todo[inline]{FIN}
@@ -316,11 +317,8 @@
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
 			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}.
 			
-			
-			\todo[inline]{A REDIGER}
-			% Axiome.
-			% Pseudo-code.
 			% Détails de l'expérience.
+			\todo[inline]{A REDIGER / A COMPLETER}
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -429,3 +427,21 @@
 			
 			% Conclusions et suggestion.
 			\todo[inline]{A REDIGER: ouverture sur l'impact des non-corrections}
+			
+	%%%
+	%%% Subsection 4.6.3: Bilan concernant la robustesse du \textit{clustering} interactif
+	%%%
+	\subsection{Bilan concernant la robustesse du \textit{clustering} interactif}
+	\label{section:4.6.3-ETUDE-ROBUSTESSE-MISE-EN-COMMUN}
+	
+		\todo[inline]{A REDIGER}
+	
+		% Conclusion.
+		\begin{leftBarSummary}
+			Au cours de cette étude de pertinence, nous avons pu voir que :
+			\begin{itemize}
+				\item[\itemok] ...
+				\item[\itemok] ...
+				\item[\itemok] ...
+			\end{itemize}
+		\end{leftBarSummary}
