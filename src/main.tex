@@ -50,11 +50,18 @@
 	pifont,
 	xcolor,  % http://latexcolor.com/
 }
-\definecolor{colorDarkPastelGreen}{rgb}{0.01, 0.75, 0.24}  % Dark Pastel Green
-\definecolor{colorCadmiumOrange}{rgb}{0.93, 0.53, 0.18}  % Cadmium Orange
-\definecolor{colorDarkPastelRed}{rgb}{0.76, 0.23, 0.13}  % Dark Pastel Red
-\definecolor{colorDarkPastelBlue}{rgb}{0.47, 0.62, 0.80}  % Dark Pastel Blue
-\definecolor{colorDimGray}{rgb}{0.45, 0.45, 0.45}  % Dim Gray
+
+\definecolor{colorDarkPastelRed}{HTML}{C23B21}  % Dark Pastel Red (#C23B21)
+\definecolor{colorCarrotOrange}{HTML}{F39A27}  % Carrot Orange (#F39A27)
+	%\definecolor{colorCadmiumOrange}{HTML}{ED872E}  % Cadmium Orange (#ED872E)
+\definecolor{colorMinionYellow}{HTML}{EADA52}  % Minion Yellow (#EADA52)
+\definecolor{colorDarkPastelGreen}{HTML}{03C03C}  % Dark Pastel Green (#03C03C)
+	%\definecolor{colorDarkPastelGreen}{HTML}{03BF3D}  % Dark Pastel Green (#03BF3D)
+\definecolor{colorSilverLakeBlue}{HTML}{579ABE}  % Silver Lake Blue (#579ABE)
+	%\definecolor{colorDarkPastelBlue}{HTML}{789ECC}  % Dark Pastel Blue (#789ECC)
+\definecolor{colorDarkPastelPurple}{HTML}{976ED7}  % Dark Pastel Purple (#976ED7)
+\definecolor{colorDimGray}{HTML}{737373}  % Dim Gray (#737373)
+\definecolor{colorBlack}{HTML}{000000}  % Black (#000000)
 
 %%% Pour les symbols:
 \usepackage{fontawesome5}  % https://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
@@ -81,8 +88,9 @@
 
 %%% Pour les tableaux:
 \usepackage{array}
+\usepackage{arydshln}
 \usepackage{multirow}
-\definecolor{colorCaption}{rgb}{0.45, 0.45, 0.45}  % Dim Gray
+\definecolor{colorCaption}{HTML}{737373}  % Dim Gray (#737373)
 \usepackage[
 	labelsep=endash,
 	font={color=colorCaption},
@@ -107,7 +115,7 @@
 
 %%% Pour les encadrés:
 \usepackage{tcolorbox}
-\definecolor{colorTcolorboxHypothesis}{rgb}{0.53, 0.66, 0.42}  % Asparagus
+\definecolor{colorTcolorboxHypothesis}{HTML}{87A86B}  % Asparagus (#87A86B)
 
 %%% Pour les paragraphes indentés:
 \usepackage{framed}  % provide \leftbar
@@ -126,14 +134,14 @@
 {\endMakeFramed}
 
 % Définition de l'encadré important.
-\definecolor{colorLeftBarImportantGreen}{rgb}{0.01, 0.75, 0.24}  % Dark pastel green
+\definecolor{colorLeftBarImportantGreen}{HTML}{03C03C}  % Dark Pastel Green (#03C03C)
 \newenvironment{leftBarImportantGreen}{
 	\begin{leftbar}{colorLeftBarImportantGreen}
 	\noindent
 }{
     \end{leftbar}
 }  % \begin{leftBarImportantGreen} \lipsum[1] \end{leftBarImportantGreen}
-\definecolor{colorLeftBarImportantRed}{rgb}{0.76, 0.23, 0.13}  % Dark pastel red
+\definecolor{colorLeftBarImportantRed}{HTML}{C23B21}  % Dark Pastel Red (#C23B21)
 \newenvironment{leftBarImportantRed}{
 	\begin{leftbar}{colorLeftBarImportantRed}
 	\noindent
@@ -142,7 +150,8 @@
 }  % \begin{leftBarImportantRed} \lipsum[1] \end{leftBarImportantRed}
 
 % Définition de l'encadré d'attention.
-\definecolor{colorLeftBarWarning}{rgb}{0.93, 0.53, 0.18}  % Cadmium Orange
+\definecolor{colorLeftBarWarning}{HTML}{F39A27}  % Carrot Orange (#F39A27)
+	%\definecolor{colorLeftBarWarning}{HTML}{ED872E}  % Cadmium Orange (#ED872E)
 \newenvironment{leftBarWarning}{
 	\begin{leftbar}{colorLeftBarWarning}
 	\noindent
@@ -152,7 +161,7 @@
 }  % \begin{leftBarWarning} \lipsum[1] \end{leftBarWarning}
 
 % Définition de l'encadré des points à retenir.
-\definecolor{colorLeftBarSummary}{rgb}{0.01, 0.75, 0.24}  % Dark pastel green
+\definecolor{colorLeftBarSummary}{HTML}{03C03C}  % Dark Pastel Green (#03C03C)
 \newenvironment{leftBarSummary}{
 	\begin{leftbar}{colorLeftBarSummary}
 	\noindent
@@ -162,7 +171,8 @@
 }  % \begin{leftBarSummary} \lipsum[1] \end{leftBarSummary}
 
 % Définition de l'encadré d'idée.
-\definecolor{colorLeftBarIdea}{rgb}{1.00, 0.88, 0.21}  % Banana Yellow
+\definecolor{colorLeftBarIdea}{HTML}{EADA52}  % Minion Yellow (#EADA52)
+	%\definecolor{colorLeftBarIdea}{HTML}{FFE036}  % Banana Yellow (#FFE036)
 \newenvironment{leftBarIdea}{
 	\begin{leftbar}{colorLeftBarIdea}
 	\noindent
@@ -172,7 +182,8 @@
 }  % \begin{leftBarIdea} \lipsum[1] \end{leftBarIdea}
 
 % Définition de l'encadré de notes de l'auteur.
-\definecolor{colorLeftBarAuthorOpinion}{rgb}{0.13 ,0.67, 0.80}  % Ball blue
+\definecolor{colorLeftBarAuthorOpinion}{HTML}{579ABE}  % Silver Lake Blue (#579ABE)
+	%\definecolor{colorLeftBarAuthorOpinion}{HTML}{21ABCC}  % Ball blue (#21ABCC)
 \newenvironment{leftBarAuthorOpinion}{
 	\begin{leftbar}{colorLeftBarAuthorOpinion}
 	\noindent
@@ -182,7 +193,8 @@
 }  % \begin{leftBarAuthorOpinion} \lipsum[1] \end{leftBarAuthorOpinion}
 
 % Définition de l'encadré d'informations
-\definecolor{colorLeftBarInformation}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
+\definecolor{colorLeftBarInformation}{HTML}{737373}  % Dim Gray (#737373)
+	%\definecolor{colorLeftBarInformation}{HTML}{91A3B0}  % Cadet grey (#91A3B0)
 \newenvironment{leftBarInformation}{
 	\begin{leftbar}{colorLeftBarInformation}
 	\noindent
@@ -192,7 +204,8 @@
 }  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}
 
 % Définition de l'encadré d'exemples
-\definecolor{colorLeftBarExamples}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
+\definecolor{colorLeftBarExamples}{HTML}{737373}  % Dim Gray (#737373)
+	%\definecolor{colorLeftBarExamples}{HTML}{91A3B0}  % Cadet grey (#91A3B0)
 \newenvironment{leftBarExamples}{
 	\begin{leftbar}{colorLeftBarExamples}
 	\noindent
@@ -218,11 +231,11 @@
 
 %%% Pour le code Python:
 \usepackage{listings}
-\definecolor{colorCodeString}{rgb}{0.60, 0.00, 0.00}  % Dark red
-\definecolor{colorCodeComment}{rgb}{0.00 ,0.50, 0.00}  % Dark Green
-\definecolor{colorCodeKeyword}{rgb}{0.00, 0.00, 0.70}  % Medium Blue
-\definecolor{colorCodeEmphasize}{rgb}{0.97, 0.15, 0.45}  % Deep Pink
-\definecolor{colorCodeBackground}{rgb}{0.57, 0.64, 0.69}  % Cadet grey
+\definecolor{colorCodeString}{HTML}{990000}  % Dark red (#990000)
+\definecolor{colorCodeComment}{HTML}{008000}  % Dark Green (#008000)
+\definecolor{colorCodeKeyword}{HTML}{0000B3}  % Medium Blue (#0000B3)
+\definecolor{colorCodeEmphasize}{HTML}{F72673}  % Deep Pink (#F72673)
+\definecolor{colorCodeBackground}{HTML}{91A3B0}  % Cadet grey (#91A3B0)
 \renewcommand{\lstlistingname}{Code}
 \lstset{
   inputencoding=utf8,
@@ -260,6 +273,8 @@
 %%% Pour le brouillon:
 \usepackage{lipsum}
 
+%%% Pour les partitions:
+\usepackage{guitar}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Paramètres des en-têtes
@@ -369,7 +384,7 @@
 
 %%% Date:
 \ThesisDate{
-    01 septembre 2023
+    01 décembre 2023
 }  % 8 semaine après la date du rendu
 
 %%% Auteur:
