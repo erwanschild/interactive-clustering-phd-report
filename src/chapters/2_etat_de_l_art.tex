@@ -61,60 +61,178 @@
 		\label{section:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES}
 			
 			% Transition: définitions assez généralistes car champ d'application très vaste.
-			Les définitions données dans la \textsc{Section~\ref{section:2.1.1-PRESENTATION-ANNOTATION-DEFINITION}} sont volontairement assez générales car il est difficile de
-			dépeindre la vaste diversité d'applications faisant intervenir de l'annotation.
-			Pour mieux dresser le portrait de cette tâche, nous proposons de présenter quelques exemples sur différents cas d'usages.
+			Les définitions données dans la section précédente sont volontairement abstraites car il est difficile de dépeindre la vaste diversité d'applications nécessitant une tâche d'annotation.
+			En effet, il y a une telle multiplicité de types de données (\textit{données tabulaires, textuelles, visuelles, auditives, ...}) et de cas d'usages (\textit{prédiction d'une valeur numérique (tâche de régression), prédiction d'une catégorie (tâche de classification), détection d'objets (tâche d'extraction), création de nouvelles données (tâche de génération), ... }) qu'une unique définition ne peut être que purement théorique.
+			%Ainsi, on constate dans la littérature que les présentations de la tâche d'annotation (comme les ouvrages cités plus haut) partent d'une définition générale pour rapidement l'appliquer à une activité bien précise (\textit{l'étiquettage grammaticale dans \cite{garside-etal:1997:corpus-annotation-linguistic} par exemple}).
 			
-			% Exemples données tabulaire: régression linéaire d'un prix, d'une surface, ...
-			\paragraph{Exemples d'annotations de données tabulaires.}
-				Certaines catégories de problèmes sont 
-				\todo[inline]{SECTION: À RÉDIGER}
+			% Annonce: prendre des exemples sur l'univers de la bande dessinée.
+			Ainsi, nous pensons qu'il est préférable de compléter ces définitions par quelques exemples concrets : nous pourrons ainsi mieux dresser le portait d'une tâche d'annotation, avec ses intérêts et ses complications.
+			Pour cela, nous allons prendre le thème de la bande dessinée et de ses dérivés, et explorer ensemble les différentes cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
+			Pour faciliter la lecture, nous regrouperons ces applications en fonction du type de données qu'elles manipulent.
 			
-			% Exemples images: classification de document, catégorisation, détection d'objets, ...
-			\paragraph{Exemples d'annotations d'images.}
+			%%% A. Annotation de données structurées: régression linéaire d'un prix.
+			\paragraph{Annotation de données structurées.}
+			
+				% Cas d'usage: évaluer le juste prix.
+				Les acheteurs et les vendeurs de bandes dessinées s'interrogent forcément sur le juste prix de l'oeuvre qu'ils veulent acquérir ou céder.
+				Répondre à cette question avec précision nécessite diverses informations, à la fois sur l'oeuvre (comme son identification ou l'avis de ses lecteurs), sur le document en tant que tel (comme son état de conservation), mais aussi sur le prestige de son édition (éditions originales ou de collection).
+				Sans un regard d'expert, il est possible de trouver certaines oeuvres rares vendues pour presque rien sur le marché d'occasion, ou à l'inverse voir certaines \texttt{BD} achetées à prix d'or alors que le document est en piteux état.
 				
-				\todo[inline]{SECTION: À RÉDIGER}
+				% Entrainer un modèle: régression linéaire.
+				Afin d'aiguiller les acquéreurs, il est possible d’utiliser un modèle de \textbf{régression linéaire}\footnote{Pour plus de détails sur la régression linéaire: voir la revue de \cite{maalouf:2011:logistic-regression-data} et voir \cite{zdaniuk:2014:ordinary-leastsquares-ols} pour un exemple basé sur la méthode des moindres carrés.} permettant de prédire le prix d'une \texttt{BD} à partir des différentes métadonnées discutées ci-dessus.
+				Mais pour entraîner un tel modèle, une base d'exemples reliant une transaction à son prix de vente est nécessaire.
+				La tâche d'annotation peut alors consister à renseigner pour chaque transaction :
+				\begin{itemize}
+					\item l'identification objective d'après des sources officielles (titre, auteur, édition, ... ),
+					\item l'état du document grâce à un regard d'expert (l'état peut par exemple être défini par une variable catégorielle dont les valeur seraient "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état})", "\texttt{Neuf}") ;
+					\item le prix du document, estimé ou réel (défini par une variable numérique).
+				\end{itemize}
 				
+				% Citation de l'exemple.
+				Un exemple de résultat d'annotation de ces données structurées sont disponibles dans la \textsc{Table~\ref{table:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-TABLE-VENTE-BD}}.
+				%
 				\begin{leftBarExamples}
-					Annotation d'une reconnaissance optique de caractères (\texttt{OCR}) sur une image (\textsc{Figure~\ref{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-OCR}}).
+					\begin{table}[H]  % keep [H] to be in the tcolorbox.
+						\begin{center}
+						\def\arraystretch{0.8}  % interligne
+						\begin{tabular}{|c|l|c|c|c|r|}
+						
+						\hline
+						% ENTETE DU TABLEAU
+						Collection
+							& N°: Titre
+							& Édition
+							& Note
+							& État
+							& Prix (€)
+							\tabularnewline
+							\hline
+						% BD1.
+						Lucky Luke
+							& $01$: La mine d'or de Dick Digger
+							& $1949$
+							& $3.2/5$
+							& Très bon
+							& $5~000,00$
+							\tabularnewline
+							\hline
+						% BD2.
+						Lucky Luke
+							& $12$: Les cousins Dalton
+							& $1958$
+							& $4.3/5$
+							& Bon
+							& $40,00$
+							\tabularnewline
+							\hline
+						% BD3.
+						Lucky Luke
+							& $12$: Les cousins Dalton
+							& $1962$
+							& $4.3/5$
+							& Très bon
+							& $65,00$
+							\tabularnewline
+							\hline
+						% BD4.
+						Lucky Luke
+							& $12$: Les cousins Dalton
+							& $1985$
+							& $4.3/5$
+							& Très bon
+							& $6,00$
+							\tabularnewline
+							\hline
+						% BD5.
+						Lucky Luke
+							& $15$: L'évasion des Dalton
+							& $1960$
+							& $4.1/5$
+							& Mauvais
+							& $3,00$
+							\tabularnewline
+							\hline
+						% ...
+						\multicolumn{6}{|c|}{ \shortstack{ ... } }
+							\tabularnewline
+							\hline
+					
+						\end{tabular}
+						\end{center}
+						\caption{
+							Exemple d'annotation du prix de vente de bandes dessinées en fonction de leur édition, de la note de leur lecteurs et de leur état (source: \url{https://www.bedetheque.com/serie-213-BD-Lucky-Luke.html}).
+						}
+						\label{table:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-TABLE-VENTE-BD}
+					\end{table}
+				\end{leftBarExamples}
+				
+				% Autres cas d'usage.
+				\todo[inline]{autre cas d'usage: classification ? statistiques ?}
+			
+			
+			%%% B. Annotation d' images: classification de document, catégorisation, détection d'objets, ...
+			\paragraph{Annotation d'images.}
+				
+				% Cas d'usage: identifier une bande dessinée
+				Identifier une bande dessinée n'est pas toujours facile, et recopier l'ensemble des informations l'identifiant peut prendre du temps.
+				Les libraires ou les collectionneurs désirant faire l'inventaire des oeuvres en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des \texttt{BD} dans leur registre.
+				
+				% Entrainer un modèle: extraction de caractères.
+				Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \textbf{reconnaissance optique des caractères} (\texttt{OCR})\footnote{Pour plus de détails sur l'\texttt{OCR}: voir la revue de \cite{berchmans-kumar:2014:optical-character-recognition} ou de \cite{awel-abidi:2019:review-optical-character}.} pour identifier les informations importantes présentes sur les couvertures des oeuvres à identifier.
+				Mais pour entraîner un tel modèle, une base d'exemples reliant des captures de la page de couverture, la position des informations sur ces captures ainsi que la valeur de ces informations est nécessaire.
+				La tâche d'annotation peut alors consister à renseigner pour chaque couverture de \texttt{BD} :
+				\begin{itemize}
+					\item la position des informations en l'entourant sur l'image (avec un rectangle par exemple) ;
+					\item la valeur écrite à chaque information positionnée.
+				\end{itemize}
+				
+				% Citation de l'exemple.
+				Un exemple d'annotation de textes dans un image est disponible dans la \textsc{Figure~\ref{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-OCR}}.
+				%
+				\begin{leftBarExamples}
 					\begin{figure}[H]
 						\centering
 						\includegraphics[width=0.95\textwidth]{figures/etatdelart-morris-1958-lucky-luke-12}
 						\caption{
-							Exemple d'annotation de textes présents dans une image, exemple réalisé sur la couverture de \texttt{BD} (\cite{morris-goscinny:1958:cousins-dalton}).
+							Exemple d'annotation de textes présents sur la couverture d'une bande dessinée \texttt{BD} (ici: \cite{morris-goscinny:1958:cousins-dalton}).
 						}
 						\label{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-OCR}
 					\end{figure}
 				\end{leftBarExamples}
+				
+				% Autres cas d'usage.
+				\todo[inline]{autre cas d'usage: identification par une description ? classification de l'état ?}
 			
-			% Exemples audio: transcription de la parole, classification de sentiment, extraction de séquence, ...
-			\paragraph{Exemples d'annotations d'audios.}
+			% C. Annotation textes: catégorisation, détection de sentiment, extraction d'entités nommées, ...
+			\paragraph{Annotation de textes.}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
-			% Exemples textes: catégorisation, détection de sentiment, extraction d'entités nommées, ...
-			\paragraph{Exemples d'annotations de textes.}
-				\todo[inline]{SECTION: À RÉDIGER}
+				% Cas d'usage: 
+				% Entrainer un modèle:
+				% Citation de l'exemple.
 				
 				\begin{leftBarExamples}
 					Annotation d'une classification de textes suivant leur langue.
-					\begin{quote}
+					\begin{center}
+					\begin{tabular}{ c l }
 						« \textit{
-							Je m'appelle Erwan.
-						} » \texttt{Français} \\
+							Les cousins Dalton ont dévalisé la diligence.
+						} » & $\implies$ \textcolor{colorSilverLakeBlue}{\texttt{Français}} \\
 						« \textit{
-							My name is Erwan.
-						} » \texttt{Anglais} \\
+							The Dalton cousins robbed the stagecoach.
+						} » & $\implies$ \textcolor{colorDarkPastelGreen}{\texttt{Anglais}} \\
 						« \textit{
-							Ich hei{\ss}e Erwan.
-						} » \texttt{Français}
-					\end{quote}
+							Die Dalton-Cousins haben die Postkutsche ausgeraubt.
+						} » & $\implies$ \textcolor{colorDarkPastelRed}{\texttt{Allemand}}
+					\end{tabular}
+					\end{center}
 				\end{leftBarExamples}
 				
 				\begin{leftBarExamples}
 					Annotation d'entités nommés dans un texte.
 					\begin{quote}
 						« \textit{
-							$\textbf{\text{Erwan}}_{\texttt{(personne)}}$, un $\textbf{\text{alsacien}}_{\texttt{(origine)}}$ né en $\textbf{\text{02/09/1995}}_{\texttt{(date)}}$, réalise sa thèse avec le $\textbf{\text{LORIA}}_{\texttt{(organisation)}}$ et $\textbf{\text{Euro Information}}_{\texttt{(organisation)}}$.
+							$\textbf{\text{Lucky Luke}}_{\textcolor{colorDarkPastelRed}{\texttt{(personnage)}}}$, le $\textbf{\text{cow-boy}}_{\textcolor{colorDarkPastelPurple}{\texttt{(métier)}}}$ solitaire, a attrapé les $\textbf{\text{Dalton}}_{\textcolor{colorDarkPastelRed}{\texttt{(personnage)}}}$ à $\textbf{\text{Coyote Gulch}}_{\textcolor{colorCarrotOrange}{\texttt{(lieu)}}}$ et a touché $\textbf{\text{50.000\$}}_{\textcolor{colorSilverLakeBlue}{\texttt{(argent)}}}$ en les livrant au $\textbf{\text{pénitencier}}_{\textcolor{colorCarrotOrange}{\texttt{(lieu)}}}$. Ils se sont évadés le $\textbf{\text{jeudi suivant}}_{\textcolor{colorDarkPastelGreen}{\texttt{(date)}}}$.
 						} »
 					\end{quote}
 				\end{leftBarExamples}
@@ -123,34 +241,87 @@
 					Annotation des étiquettes grammaticales dans un texte.
 					\begin{quote}
 						« \textit{
-							$\text{Hier}_{\texttt{(ADV)}}$,
-							$\text{Erwan}_{\texttt{(PROPN)}}$
-							$\text{était}_{\texttt{(AUX)}}$
-							$\text{heureux}_{\texttt{(ADJ)}}$
-							$\text{car}_{\texttt{(CCONJ)}}$
-							$\text{il}_{\texttt{(PRON)}}$
-							$\text{avait}_{\texttt{(AUX)}}$
-							$\text{mangé}_{\texttt{(VERB)}}$
-							$\text{une}_{\texttt{(DET)}}$
-							$\text{excellente}_{\texttt{(ADJ)}}$
-							$\text{glace}_{\texttt{(NOUN)}}$
-							$\text{à}_{\texttt{(ADP)}}$
-							$\text{la}_{\texttt{(DET)}}$
-							$\text{vanille}_{\texttt{(NOUN)}}$.
-						} »
+							$\text{Les}_{\textcolor{colorDarkPastelPurple}{\texttt{(DET)}}}$
+							$\text{dangereux}_{\textcolor{colorMinionYellow}{\texttt{(ADJ)}}}$
+							$\text{Dalton}_{\textcolor{colorDarkPastelRed}{\texttt{(PROPN)}}}$
+							$\text{se}_{\textcolor{colorCarrotOrange}{\texttt{(PRON)}}}$
+							$\text{sont}_{\textcolor{colorDarkPastelGreen}{\texttt{(AUX)}}}$
+							$\text{encore}_{\textcolor{colorSilverLakeBlue}{\texttt{(ADV)}}}$
+							$\text{évadés}_{\textcolor{colorDarkPastelGreen}{\texttt{(VERB)}}}$
+							$\text{de}_{\textcolor{colorDimGray}{\texttt{(ADP)}}}$
+							$\text{prison}_{\textcolor{colorDarkPastelRed}{\texttt{(NOUN)}}}$
+							$\text{et}_{\textcolor{colorBlack}{\texttt{(CCONJ)}}}$
+							$\text{ils}_{\textcolor{colorCarrotOrange}{\texttt{(PRON)}}}$
+							$\text{ont}_{\textcolor{colorDarkPastelGreen}{\texttt{(AUX)}}}$
+							$\text{déjà}_{\textcolor{colorSilverLakeBlue}{\texttt{(ADV)}}}$
+							$\text{dévalisé}_{\textcolor{colorDarkPastelGreen}{\texttt{(VERB)}}}$
+							$\text{une}_{\textcolor{colorDarkPastelPurple}{\texttt{(DET)}}}$
+							$\text{banque}_{\textcolor{colorDarkPastelRed}{\texttt{(NOUN)}}}$
+							$\text{à}_{\textcolor{colorDimGray}{\texttt{(ADP)}}}$
+							$\text{Daisy Town}_{\textcolor{colorDarkPastelRed}{\texttt{(PROPN)}}}$.
+						} » \\
+						%{ \center \scriptsize (
+						%	Adjectif: {\textcolor{colorMinionYellow}{\texttt{(ADJ)}}} ;
+						%	Adverbe: {\textcolor{colorSilverLakeBlue}{\texttt{(ADV)}}} ;
+						%	Conjonction: {\textcolor{colorBlack}{\texttt{(CCONJ)}}} ;
+						%	Déterminant: {\textcolor{colorDarkPastelPurple}{\texttt{(DET)}}} ;
+						%	Nom: {\textcolor{colorDarkPastelRed}{\texttt{(NOUN)}}}, {\textcolor{colorDarkPastelRed}{\texttt{(PROPN)}}} ;
+						%	Préposition: {\textcolor{colorDimGray}{\texttt{(ADP)}}} ;
+						%	Pronom: {\textcolor{colorCarrotOrange}{\texttt{(PRON)}}}, ;
+						%	Verbe: {\textcolor{colorDarkPastelGreen}{\texttt{(AUX)}}}, {\textcolor{colorDarkPastelGreen}{\texttt{(VERB)}}}.
+						%)}
 					\end{quote}
 				\end{leftBarExamples}
+				
+				% Autres cas d'usage.
 			
-			% Exemples multi-modale: donner une description à une image, générer et aligner l'audio-description ou les sous-titres dans une vidéo, ...
-			\paragraph{Exemples d'annotations multi-modales.}
+			%%% D. Annotation d'audio: transcription de la parole, classification de sentiment, extraction de séquence, ...
+			\paragraph{Annotations d'audios.}
+			
 				\todo[inline]{SECTION: À RÉDIGER}
+				% Cas d'usage: 
+				% Entrainer un modèle:
+				% Citation de l'exemple.
+				
+				\begin{leftBarExamples}
+					
+					Annotation des paroles d'une chanson (\cite{woods:1971:poor-lonesome-cowboy}). \\
+					
+					\begin{guitar}
+						\textbf{Im A Poor Lonesome Cowboy}
+						\textit{
+							~~~~from \texttt{Lucky Luke - Daisy Town OST} ($1971$)
+							~~~~composed by \texttt{Claude Bolling}
+							~~~~performed by \texttt{Pat Woods}
+						}
+						\texttt{Intro}
+						\textit{
+							[D]Lonesome [D7]cowboy, [G]Lonesome [G7]cowboy, [D]You're a [Bm]long [Bm7]long [E]way from [A]home.
+							[D]Lonesome cowboy, [G]Lonesome cowboy, [D]You've a [Bm]long [Bm7]long [E]way [A7]to [D]roam.
+						}
+						\texttt{Couplet}
+						\textit{
+							I'm a [D]poor lonesome cowboy, I'm a long long way from home,
+							And this poor lonesome [F\#m]cowboy, Has got a [Em]long long way [A]to roam.
+							Over [D]mountains and over [D7]prairies, From [G]dawn 'til day is [Em]done,
+							My [Bm]horse and me keep [F\#]ridin', [G]into the [A]settin' [D]sun.
+						}
+						{ \center \textbf{...} }
+					\end{guitar}
+				\end{leftBarExamples}
+				
+				% Autres cas d'usage.
+			
+			%%% E/ Annotation multi-modale: donner une description à une image, générer et aligner l'audio-description ou les sous-titres dans une vidéo, ...
+			\paragraph{Annotations multi-modales.}
+				\todo[inline]{SECTION: À RÉDIGER (OCR ? sous-titre de vidéo ?)}
 		
 		
 		% Conclusion.
 		\begin{leftBarSummary}
 			\begin{todolist}
-				\item[\itemok] Annoter une donnée, c'est ajouter un complément d'information pour lui donner une valeur ajoutée et ainsi pouvoir mieux l'exploiter.
-				\item[\itemok] Le type d'annotation a réaliser dépend du problème concerné (\textit{régression linéaire, classification, extraction d'information, génération de données, ...}).
+				\item[\itemok] Annoter une donnée consiste à ajouter un complément d'information pour pouvoir mieux l'interpréter ou l'exploiter.
+				\item[\itemok] Le type d'annotation à réaliser dépend du problème à traiter : régression linéaire, classification, extraction d'information, génération de données, ...
 			\end{todolist}
 		\end{leftBarSummary}
 	
@@ -195,27 +366,27 @@
 			% Revise
 			
 			% Step 1: Modelisation
-			\paragraph{1. Modelize.}
+			\paragraph{1. « Modelize ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
 			% Step 2: Annotate
-			\paragraph{2. Annotate.}
+			\paragraph{2. « Annotate ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
 			% Step 3: Train
-			\paragraph{3. Train.}
+			\paragraph{3. « Train ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
 			% Step 4: Test
-			\paragraph{4. Test.}
+			\paragraph{4. « Test ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
 			% Step 5: Evaluate
-			\paragraph{5. Evaluate.}
+			\paragraph{5. « Evaluate ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 			
 			% Step 6: Revise
-			\paragraph{6. Revise.}
+			\paragraph{6. « Revise ».}
 				\todo[inline]{SECTION: À RÉDIGER}
 		
 		
