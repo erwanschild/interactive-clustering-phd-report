@@ -14,10 +14,10 @@
 		width=\linewidth
 	]
 		% Hypothèse.
-		«\textbf{
+		\textguillemets{\textbf{
 			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable.
 			Nous étudierons en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
-		} » \\
+		}} \\
 		
 		% Figure.
 		La \textsc{Figure~\ref{figure:4.3-HYPOTHESE-COUTS}} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'un coût temporel au lieu d'un nombre abstrait d'itérations de la méthode. 
@@ -124,13 +124,13 @@
 			Les directives données aux opérateurs sont les suivantes:
 			\begin{itemize}
 				\item \textbf{Contexte de l'opérateur} :
-				« \textit{Vous êtes des \textbf{experts de la presse et de l’actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles} » ;
+				\textguillemets{\textit{Vous êtes des \textbf{experts de la presse et de l’actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles}} ;
 				\item \textbf{Contexte sur le jeu de données} :
-				« \textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre $10$ et $20$ catégories parmi les plus communes de la presse ; La vérité terrain contient entre $30$ et $100$ articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez (disponible dans l'onglet \texttt{TEXTS} de l'application)} » ;
+				\textguillemets{\textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre $10$ et $20$ catégories parmi les plus communes de la presse ; La vérité terrain contient entre $30$ et $100$ articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez (disponible dans l'onglet \texttt{TEXTS} de l'application)}} ;
 				\item \textbf{Objectif de l'expérience} :
-				« \textit{Je veux savoir le temps nécessaire pour annoter un certain nombre de contraintes ; Autrement dit : \textbf{Pour annoter 1000 contraintes, combien de temps me faut-il ?}} » ;
+				\textguillemets{\textit{Je veux savoir le temps nécessaire pour annoter un certain nombre de contraintes ; Autrement dit : \textbf{Pour annoter 1000 contraintes, combien de temps me faut-il ?}}} ;
 				\item \textbf{Consignes d'annotations} :
-				« \textit{Faites des séries de \textbf{15 minutes minimum} pour avoir de la régularité ; Si possible, \textbf{isolez-vous} pour ne pas être dérangé et ne pas fausser les résultats ; Pour chaque série, \textbf{notez le temps et le nombre de contraintes annotés} ; Si vous ne savez pas quoi annoter (trop ambigu, vocabulaire inconnu, ...), \textbf{passez au suivant sans annoter} (vous êtes sensés être des experts de la presse !)} ».
+				\textguillemets{\textit{Faites des séries de \textbf{15 minutes minimum} pour avoir de la régularité ; Si possible, \textbf{isolez-vous} pour ne pas être dérangé et ne pas fausser les résultats ; Pour chaque série, \textbf{notez le temps et le nombre de contraintes annotés} ; Si vous ne savez pas quoi annoter (trop ambigu, vocabulaire inconnu, ...), \textbf{passez au suivant sans annoter} (vous êtes sensés être des experts de la presse !)}}.
 			\end{itemize}
 			%
 			Pour réaliser l'annotation, les opérateurs auront accès à l'application web développée au cours de ce doctorat.

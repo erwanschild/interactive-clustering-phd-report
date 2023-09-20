@@ -33,6 +33,8 @@
 %%% Pour la langue:
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
+\usepackage [utf8]{inputenc}
+\usepackage{xspace}
 \usepackage{lettrine}
 
 %%% Pour un PDF avec des hyperliens:
@@ -75,6 +77,9 @@
 	% Information, Questions ou Plus d'info: \faInfoCircle \faQuestionCircle % \faPlusCircle
 	% Eprouvette: \faVial
 	% Github: \faGit \faGithub
+	
+%%% Pour les guillemets:
+\newcommand{\textguillemets}[1]{\og #1 \fg}
 
 %%% Pour les listes:
 \usepackage{enumitem}
@@ -112,6 +117,7 @@
 	positioning,
 	calc
 }
+
 
 %%% Pour les encadrés:
 \usepackage{tcolorbox}

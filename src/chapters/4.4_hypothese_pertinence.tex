@@ -14,9 +14,9 @@
 		colframe=colorTcolorboxHypothesis!75,
 		width=\linewidth
 	]
-		« \textbf{
+		\textguillemets{\textbf{
 			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible à un expert métier d'évaluer rapidement la pertinence de la base d'apprentissage en construction sans utiliser de vérité terrain.
-		} » \\
+		}} \\
 		
 		% Figure.
 		La \textsc{Figure~\ref{figure:4.4-HYPOTHESE-PERTINENCE}} illustre cette hypothèse et l'espoir de pouvoir caractériser la qualité de la base d'apprentissage en cours de construction en fonction d'une valeur métier exprimée par un expert.
@@ -738,7 +738,7 @@
 			\begin{leftBarExamples}
 				Possibilité d'affichage en couleur d'un texte et de son analyse linguistique : les patterns caractéristiques du \textit{cluster} auquel appartient le texte en vert, les patterns caractéristiques des autres \textit{clusters} en rouge, les patterns non caractéristiques en noir.
 				\begin{quote}
-					« \textit{ est ce que le \textcolor{colorDarkPastelGreen}{\textbf{mode}} de \textcolor{colorDarkPastelGreen}{\textbf{paiement nfc}} est disponible \textcolor{colorDarkPastelGreen}{\textbf{sur ma carte}} \textcolor{colorDarkPastelRed}{\textbf{visa}} } »
+					\textguillemets{\textit{ est ce que le \textcolor{colorDarkPastelGreen}{\textbf{mode}} de \textcolor{colorDarkPastelGreen}{\textbf{paiement nfc}} est disponible \textcolor{colorDarkPastelGreen}{\textbf{sur ma carte}} \textcolor{colorDarkPastelRed}{\textbf{visa}} }}
 				\end{quote}
 			\end{leftBarExamples}
 			
@@ -826,8 +826,8 @@
 			\footnote{\texttt{OpenAI} est une entreprise fournissant des services d'intelligence artificielle sur le Cloud. Elle est entre autres connue pour les modèles d'IA \texttt{DALL-E} (\cite{ramesh-etal:2021:zeroshot-texttoimage-generation}) et \texttt{GPT} (\cite{brown-etal:2020:language-models-are}, \cite{openai:2023:chatgpt})}.
 			Le \textit{prompt} du modèle, adapté à l'usage de notre jeu de données, est composé de trois parties :
 			\begin{itemize}
-				\item un \textbf{contexte d'utilisation}, destiné à centrer les réponses sur le domaine général traité : « \textit{Tu es un expert des secteurs banque, assurance et finance.} » ;
-				\item une \textbf{description de la tâche} avec les consignes de restitution : « \textit{Résume-moi en une phrase la thématique traitée dans les textes suivants :} » ;
+				\item un \textbf{contexte d'utilisation}, destiné à centrer les réponses sur le domaine général traité : \textguillemets{\textit{Tu es un expert des secteurs banque, assurance et finance.}} ;
+				\item une \textbf{description de la tâche} avec les consignes de restitution : \textguillemets{\textit{Résume-moi en une phrase la thématique traitée dans les textes suivants :}} ;
 				\item les \textbf{textes} du \textit{cluster}, énumérés sous la forme d'une liste à puces. Si la taille maximale du \textit{prompt} ne peut pas prendre en compte l'ensemble des données du \textit{cluster}, il est possible de ne prendre qu'un échantillon.
 			\end{itemize}
 			
@@ -1122,7 +1122,7 @@
 			Bien entendu, l'automatisation de cette tâche peut aussi orienter l'expert vers d'autres conclusions, voire le mener vers une fausse piste.
 			Nous estimons à $14$\% le taux de différences d'identification de thématiques avec une approche purement manuelle, et nous constatons que la majorité des écarts entre ces approche résident dans les cas de figure suivants :
 			\begin{itemize}
-				\item le modèle peut générer des hallucinations n'ayant rien à voir avec les données en entrée : c'est le cas avec le cluster $9$ de la tentative $2$ à l'itération $10$, où le cluster est composé de $2$ questions (« \textit{Comment obtenir une Mastercard ?} » et « \textit{Désactiver les numéros virtuels.} ») et où le résumé parle de "\textit{sécurisation des transactions bancaires}" ;
+				\item le modèle peut générer des hallucinations n'ayant rien à voir avec les données en entrée : c'est le cas avec le cluster $9$ de la tentative $2$ à l'itération $10$, où le cluster est composé de $2$ questions (\textguillemets{\textit{Comment obtenir une Mastercard ?}} et \textguillemets{\textit{Désactiver les numéros virtuels.}}) et où le résumé parle de "\textit{sécurisation des transactions bancaires}" ;
 				\item le résumé peut être trop concis et certaines thématiques peuvent être ignorées dans la synthèse : l'expert sera tenté de conclure à un \textit{cluster} exploitable alors qu'il est potentiellement bruité ;
 				\item à l'inverse, les données aberrantes ou isolées d'un \textit{cluster} peuvent influencer le résumé : cela peut donner l'illusion que plusieurs thématiques sont présentes alors qu'une seule ne l'est réellement (voir aussi \cite{falke-etal:2019:ranking-generated-summaries} qui met en avant l'importance de l'ordre des informations transmises au modèle) ;
 				\item le résumé peut aussi mettre en avant des thématiques auxquelles l'expert n'aurait pas pensé : c'est le cas dans les \textit{clusters} $7$ et $8$ de la tentative $1$ à l'itération $0$, où les thématiques \texttt{gestion\_carte\_mastercard} et \texttt{gestion\_carte\_visa} sont proposées dans la synthèse, mais auraient probablement été considérées par un expert (il n'y a pas de différences si significatives entre les deux réseaux de cartes bancaires pour justifier une gestion séparée, même si les clusters sont pourtant bien formés).
