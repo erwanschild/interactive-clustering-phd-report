@@ -155,6 +155,7 @@
 			- **problème de format, de mise en page, ...
 		
 		### 2.3.2. (coûts)
+			[fort:2022:manual-annotation-what], [bohmova-etal:2003:prague-dependency-treebank]
 			- temps: atelier, annotation, volume traité, ...
 			- argent: dev logiciel, recrutement, formation
 			- investissement : demander plus de boulot à ceux à qui ont veut simplifier la vie
@@ -163,7 +164,7 @@
 	
 		### 2.3.3. (complexité tâche)
 			- **complexité**:
-				> - [fort-etal:2012:modeling-complexity-manuala]: caractérise la difficulté en expressivité, délimitation, discrimination, Poids du contexte, Ambiguïté, Dimension des annotations
+				> - [fort-etal:2012:modeling-complexity-manuala] et [fort:2022:manual-annotation-what]: caractérise la difficulté en expressivité, délimitation, discrimination, Poids du contexte, Ambiguïté, Dimension des annotations
 			- **ambiguïté** de la modélisation:
 			- **spécificité** et non réutilisation:
 			- **non-scalabilité** des modélisation:
@@ -237,6 +238,7 @@
 				> - Amazon Mechanical Turk [Callison-Burch & Dredze, 2010] https://www.mturk.com/
 				> - LanguageARC [Fiumara et al., 2020] https://languagearc.com/
 				> - [snow-etal:2008:cheap-fast-it] coût, performances, ...
+				> - [fort:2017:experts-ou-foule] différents types d'experts
 	
 	----------
 	## 2.5. RETOURS D'EXPÉRIENCES (CM-CIC):
