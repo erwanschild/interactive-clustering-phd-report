@@ -8,19 +8,26 @@
 	%%%
 	%%% Subsection 2.1.1: Définition et objectifs de l'annotation de données.
 	%%%
-	\subsection{Quelques définitionsDéfinition et objectifs de l'annotation de données}
+	\subsection{Définition et objectifs de l'annotation de données}
 	\label{section:2.1.1-PRESENTATION-ANNOTATION-DEFINITION}
 	
 		%%% 2.1.1.A. Qu'est que l'\textguillemets{\texttt{apprentissage automatique}} ?
-		\paragraph{Qu'est que l'\textguillemets{\texttt{apprentissage automatique}} ?}
+		\subsubsection{Qu'est que l'\textguillemets{\texttt{apprentissage automatique}} ?}
+		\label{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}
 			
 			% Définition.
 			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de reproduire une tâche par l'exemple : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle statistique.
 			% Applications.
 			Cette approche, très populaire en ce moment, permet d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
 			
+			% References.
+			\begin{leftBarInformation}
+				Si vous voulez revoir les bases de l'apprentissage automatique, des livres comme \cite{zhou:2021:machine-learning} ou \cite{raschka-mirjalili:2019:python-machine-learning} traitent des notions principales et de leur mise en application.
+			\end{leftBarInformation}
+			
 		%%% 2.1.1.B. Qu'est qu'un \textguillemets{\texttt{corpus d’entraînement}}?
-		\paragraph{Qu'est qu'un \textguillemets{\texttt{corpus d’entraînement}} ?}
+		\subsubsection{Qu'est qu'un \textguillemets{\texttt{corpus d’entraînement}} ?}
+		\label{section:2.1.1.B-PRESENTATION-ANNOTATION-DEFINITION-BASE-APPRENTISSAGE}
 
 			% Définitions.
 			Pour concevoir un modèle statistique en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
@@ -37,7 +44,8 @@
 			\end{leftBarInformation}
 		
 		%%% 2.1.1.C. Qu'est que l'\textguillemets{\texttt{annotation}} ?
-		\paragraph{Qu'est que l'\textguillemets{\texttt{annotation}} ?}
+		\subsubsection{Qu'est que l'\textguillemets{\texttt{annotation}} ?}
+		\label{section:2.1.1.C-PRESENTATION-ANNOTATION-DEFINITION-ANNOTATION}
 			
 			% Définition.
 			Les données d'un corpus manquent parfois d'information pour bien cerner un phénomène, il est alors nécessaire de faire intervenir un humain pour introduire des connaissances supplémentaires qui ne sont pas explicitement présentes dans ces données.
@@ -63,8 +71,9 @@
 		Pour cela, nous allons prendre le thème de la bande dessinée et de ses dérivés, et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
 		
 		
-		%%% 2.1.2.A. Estimation du prix d'une \texttt{BD}.
-		\paragraph{Estimation du prix d'une \texttt{BD}.}
+		%%% 2.1.2.A. Estimation du prix d'une bande dessinée.
+		\subsubsection{Estimation du prix d'une bande dessinée.}
+		\label{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}
 		
 			% Cas d'usage: évaluer le juste prix.
 			Les acheteurs et les vendeurs de bandes dessinées s'interrogent forcément sur le juste prix de l'oeuvre qu'ils veulent acquérir ou céder.
@@ -82,7 +91,7 @@
 			\end{itemize}
 			
 			% Citation de l'exemple.
-			Un exemple de résultat d'annotation de ces données est disponible dans la \textsc{Table~\ref{table:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-TABLE-VENTE-BD}}.
+			Un exemple de résultat d'annotation de ces données est disponible dans la \textsc{Table~\ref{table:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}.
 			%
 			\begin{leftBarExamples}
 				\begin{table}[H]  % keep [H] to be in the tcolorbox.
@@ -155,12 +164,12 @@
 					\caption{
 						Exemple d'annotation du prix de vente de bandes dessinées en fonction de leur édition, de la note de leur lecteurs et de leur état (source: \url{https://www.bedetheque.com/serie-213-BD-Lucky-Luke.html}).
 					}
-					\label{table:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-TABLE-VENTE-BD}
+					\label{table:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}
 				\end{table}
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Ainsi, si quelqu'un s'intéresse au prix d'une nouvelle \texttt{BD} pour lequel il n'y a pas de référence tarifaire, il peut interroger le modèle de régression qui proposera un prix en accord avec les exemples dont il dispose dans sa base d'apprentissage.
+			Ainsi, si quelqu'un s'intéresse au prix d'une nouvelle bande dessinée pour lequel il n'y a pas de référence tarifaire, il peut interroger le modèle de régression qui proposera un prix en accord avec les exemples dont il dispose dans sa base d'apprentissage.
 			
 			% Autre cas d'usage similaire: Identifier la langue de la BD.
 			\begin{leftBarInformation}
@@ -169,18 +178,19 @@
 			\end{leftBarInformation}
 		
 		
-		%%% 2.1.2.B. Catégorisation de l'état d'une \texttt{BD} à partir d'une photo.
-		\paragraph{Catégorisation de l'état d'une \texttt{BD} à partir d'une photo.}
+		%%% 2.1.2.B. Classification de l'état d'une bande dessinée à partir d'une photo.
+		\subsubsection{Classification de l'état d'une bande dessinée à partir d'une photo.}
+		\label{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}
 			
 			% Cas d'usage: classifier l'état.
-			Il est d'usage d'adapter le prix de vente d'un produit en fonction de son état, et nous avons intégré ce facteur dans l'estimation du prix d'une \texttt{BD} (voir exemple précédent).
+			Il est d'usage d'adapter le prix de vente d'un produit en fonction de son état, et nous avons intégré ce facteur dans l'estimation du prix d'une bande dessinée (voir exemple précédent).
 			Cependant, l'état de conservation n'est pas une notion objective et chacun peut avoir des références différentes.
 			Au final, c'est souvent un libraire qui détermine si l'oeuvre est en bon ou en mauvais état, et, sans un regard d'expert, nous pouvons nous omettre un détail ou nous tromper lors de notre appréciation.
 			
 			% Entrainer un modèle: classification d'image.
-			Afin de nous aider à estimer l'état d'une \texttt{BD}, il est possible d'utiliser un modèle de \texttt{classification}\footnote{Pour plus de détails sur la classification: voir les revues de \cite{aized-amin-soofi-arshad-awan:2017:classification-techniques-machine} ou de \cite{kotsiantis-etal:2006:machine-learning-review} ; voir un exemple basé sur les machine à vecteurs de support (\texttt{SVM}) dans \cite{cortes-vapnik:1995:supportvector-networks}.} permettant, à partir d'une image, de d'affecter chaque \texttt{BD} à une catégorie prédéfinie (par exemple: "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}").
+			Afin de nous aider à estimer l'état d'une bande dessinée, il est possible d'utiliser un modèle de \texttt{classification}\footnote{Pour plus de détails sur la classification: voir les revues de \cite{aized-amin-soofi-arshad-awan:2017:classification-techniques-machine} ou de \cite{kotsiantis-etal:2006:machine-learning-review} ; voir un exemple basé sur les machine à vecteurs de support (\texttt{SVM}) dans \cite{cortes-vapnik:1995:supportvector-networks}.} permettant, à partir d'une image, de d'affecter chaque \texttt{BD} à une catégorie prédéfinie (par exemple: "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}").
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'image de \texttt{BD} associée avec leur catégorie d'état.
-			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de \texttt{BD} la catégorie d'état qui lui correspond le plus.
+			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de bande dessinée la catégorie d'état qui lui correspond le plus.
 			
 			% Citation de l'exemple.
 			Un exemple d'annotation de la classification de l'image est disponible dans la \textsc{Figure~\ref{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-CLASSIFICATION}}.
@@ -193,12 +203,12 @@
 						Exemple d'annotation de l'état d'une \texttt{BD} (ici: \cite{morris-goscinny:1950:rodeo} et \cite{morris-goscinny:1952:sous-ciel-ouest}).
 						La première est en très bon état (couverture comme neuve, tranches légèrement usées, pages intactes) tandis que la seconde est en mauvais état (couverture usée, dos abimée, traces sur les pages, ...)
 					}
-					\label{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-CLASSIFICATION}
+					\label{figure:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}
 				\end{figure}
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Ainsi, si quelqu'un s'interroge sur l'état d'une \texttt{BD} en sa possession, ce modèle peut identifier la catégorie d'état la plus probable d'après les exemples disponibles dans sa base d'apprentissage.
+			Ainsi, si quelqu'un s'interroge sur l'état d'une bande dessinée en sa possession, ce modèle peut identifier la catégorie d'état la plus probable d'après les exemples disponibles dans sa base d'apprentissage.
 			
 			% Autre cas d'usage similaire: Identifier la langue de la BD.
 			\begin{leftBarInformation}
@@ -220,31 +230,32 @@
 			\end{leftBarInformation}
 		
 		
-		%%% 2.1.2.C. Identification d'une \texttt{BD} à partir de sa couverture.
-		\paragraph{Identification d'une \texttt{BD} à partir de sa couverture.}
+		%%% 2.1.2.C. Identification d'une bande dessinée à partir de sa couverture.
+		\subsubsection{Identification d'une bande dessinée à partir de sa couverture.}
+		\label{section:2.1.2.C-PRESENTATION-ANNOTATION-EXEMPLES-EXTRACTION}
 			
 			% Cas d'usage: identifier une bande dessinée
 			Identifier une bande dessinée n'est pas toujours facile, et recopier l'ensemble des informations l'identifiant peut prendre du temps.
-			Les libraires ou les collectionneurs désirant faire l'inventaire des ouvrages en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des \texttt{BD} dans leur registre.
+			Les libraires ou les collectionneurs désirant faire l'inventaire des ouvrages en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des bande dessinée dans leur registre.
 			
 			% Entrainer un modèle: extraction de caractères.
 			Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \texttt{reconnaissance optique des caractères} (\texttt{OCR})\footnote{Pour plus de détails sur l'\texttt{OCR}: voir la revue de \cite{berchmans-kumar:2014:optical-character-recognition} ou de \cite{awel-abidi:2019:review-optical-character}.} pour extraire automatiquement les informations importantes présentes sur les couvertures d'une \texttt{BD} à identifier.
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de pages de couverture avec la position et la valeur des informations pertinentes à extraire.
-			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de \texttt{BD} :
+			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de bande dessinée :
 			\begin{itemize}
 				\item la position des informations en l'entourant sur l'image (avec un rectangle par exemple) ;
 				\item la valeur écrite dans encadré sur l'image.
 			\end{itemize}
 			
 			% Citation de l'exemple.
-			Un exemple d'annotation de textes dans une image est disponible dans la \textsc{Figure~\ref{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-OCR}}.
+			Un exemple d'annotation de textes dans une image est disponible dans la \textsc{Figure~\ref{figure:2.1.2.C-PRESENTATION-ANNOTATION-EXEMPLES-EXTRACTION}}.
 			%
 			\begin{leftBarExamples}
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.80\textwidth]{figures/etatdelart-morris-1958-lucky-luke-12}
 					\caption{
-						Exemple d'annotation de textes présents sur la couverture d'une \texttt{BD} (ici: \cite{morris-goscinny:1958:cousins-dalton}).
+						Exemple d'annotation de textes présents sur la couverture d'une bande dessinée (ici: \cite{morris-goscinny:1958:cousins-dalton}).
 						Les informations essentielles telles que la collection, le numéro, le titre, l'auteur et l'éditeur y sont présentes. 
 					}
 					\label{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-IMAGE-OCR}
@@ -252,7 +263,7 @@
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Ainsi, si quelqu'un veut identifier une nouvelle \texttt{BD}, il peut interroger le modèle d'extraction de caractères pour récupérer les informations textuelles présentes dans la couverture, à l'image des exemples disponibles dans sa base d'apprentissage.
+			Ainsi, si quelqu'un veut identifier une nouvelle bande dessinée, il peut interroger le modèle d'extraction de caractères pour récupérer les informations textuelles présentes dans la couverture, à l'image des exemples disponibles dans sa base d'apprentissage.
 			
 			% Autres cas d'usage: Extraire les information d'un texte.
 			\begin{leftBarInformation}
@@ -267,8 +278,9 @@
 			\end{leftBarInformation}
 		
 		
-		%%% 2.1.2.D. Interprétation audio d'une \texttt{BD}.
-		\paragraph{Interprétation audio d'une \texttt{BD}.}
+		%%% 2.1.2.D. Interprétation audio d'une bande dessinée.
+		\subsubsection{Interprétation audio d'une bande dessinée.}
+		\label{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}
 		
 			% Cas d'usage: générer une lecture audio.
 			\todo{peut-être simplifier (juste faire dire une phrase à un narrateur) pour mettre en avant la synthèse vocale, et laisser les complexités sur les plusieurs modèles acoustiques, ...}
@@ -276,16 +288,16 @@
 			Il est de plus en plus commun de trouver des livres disponibles avec une lecture audio.
 			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducatives ou simplement disponibles pour le loisir.
 			Mais dans le cadre de notre exemple sur le thème des bandes dessinées, peu de \texttt{BD} disposent d'une lecture audio.
-			Toutefois, certaines saga ont eu une adaptation de quelques-uns leur numéro à l'écran : une idée serait donc d'interpréter une lecture audio de ces \texttt{BDs} à l'aide des voix présentes dans les adaptations télévisées.
+			Toutefois, certaines saga ont eu une adaptation de quelques-uns leur numéro à l'écran : une idée serait donc d'interpréter une lecture audio de ces bandes dessinées à l'aide des voix présentes dans les adaptations télévisées.
 			
 			% Entrainer un modèle: synthétiseur vocal.
-			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.} pour générer automatiquement la lecture des bulles d'une \texttt{BD}.
+			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.} pour générer automatiquement la lecture des bulles d'une bande dessinée.
 			Mais pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs dans l'adaptation télévisée) avec la transcription de leur paroles dans l'audio.
 			La tâche d'annotation peut alors consister à renseigner pour chaque audio le personnage et les paroles qu'il a prononcées.
 			\todo{commentaire Marie: pour l'audio, on annote en général simplement la transcription. Le modèle dispose en effet d'un dictionnaire phonétique qui fait le lien mot-phonème. Pour l'alignement, c'est fait automatiquement aussi en général car on coupe les silences}
 			
 			% Citation de l'exemple.
-			Un exemple d'annotation phonétique est illustré dans la \textsc{Figure~\ref{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-AUDIO-STT}}.
+			Un exemple d'annotation phonétique est illustré dans la \textsc{Figure~\ref{figure:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}.
 			%
 			\begin{leftBarExamples}
 				\begin{figure}[H]
@@ -296,7 +308,7 @@
 						Ici, la voix de Lucky Luke est interprétée par Jacques THEBAULT. Le texte prononcé est  \textguillemets{\texttt{Ils sont à vous chef, et j'vous s'rai reconnaissant de bien les garder cette fois.}}, et les phonèmes en alphabet phonétique international sont associés à chaque séquence de l'audio.
 						%[il sɔ̃ a vu ʃɛf, e ʒvu sʁe ʁə.kɔ.nɛ.sɑ̃ də bjɛ̃ vu.lwaʁ le ɡaʁ.de sɛt fwa].
 					}
-					\label{figure:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES-AUDIO-STT}
+					\label{figure:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}
 				\end{figure}
 			\end{leftBarExamples}
 			
@@ -308,7 +320,6 @@
 				Nous pourrions compléter le cas d'usage (1) en extrayant automatiquement le texte d'une planche de \texttt{BD} par \texttt{OCR}, (2) en détectant automatiquement le personnage prononçant la bulle de \texttt{BD} par classification, puis (3) en générant du texte à prononcer par le personnage par synthèse vocale.
 				Bien entendu, la conception et l’enchaînement de ces différents modèles est une tâche très complexe, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour sa base d'apprentissage.
 			\end{leftBarInformation}
-			\todo{faire un exemple d'architecture simplifiée de l'appel de ces modèles ?}
 			
 			
 		%%% Exemple: Annotation génération musicale
