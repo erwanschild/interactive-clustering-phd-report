@@ -1,8 +1,8 @@
 \chapter{Proposition d'un \textit{Clustering Interactif}}
 \label{chapter:3-CLUSTERING-INTERACTIF}
-    
-    % RÉSUMÉ DES ÉPISODES PRÉCÉDENTS: L'ANNOTATION C'EST COMPLIQUÉ !
-    Dans le chapitre précédent, nous avons vu les points essentiels suivants :
+	
+	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTS: L'ANNOTATION C'EST COMPLIQUÉ !
+	Dans le chapitre précédent, nous avons vu les points essentiels suivants :
 	\begin{leftBarImportantGreen}
 		\begin{todolist}
 			% 1. Importance du jeu de données.
@@ -31,20 +31,20 @@
 	\end{leftBarImportantRed}
 
 	% TABLE DES MATIÈRES DU CHAPITRE
-    \minitoc
+	\minitoc
 
 
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 3.1: Intuitions à l'origine de notre méthode.
-    %%%%%--------------------------------------------------------------------
-    \section{Intuitions à l'origine de notre méthode}
-    \label{section:3.1-DESCRIPTION-INTUITIONS}
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 3.1: Intuitions à l'origine de notre méthode.
+	%%%%%--------------------------------------------------------------------
+	\section{Intuitions à l'origine de notre méthode}
+	\label{section:3.1-DESCRIPTION-INTUITIONS}
 
 		% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
 		La pierre angulaire de notre méthode repose sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie :
 		cela l'éloigne de ses compétences initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
 		\todo{citation}
-        \todo[inline]{
+		\todo[inline]{
 			Remarque Gautier 20/02/2023:
 			erreur de routine, erreur par manque de connaissance, ...
 			Il faudra discuter les causes de ces erreurs
@@ -64,10 +64,10 @@
 		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d’entraînement de notre assistant conversationnel.
 
 
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 3.2: Description théorique de notre \textit{clustering} interactif.
-    %%%%%--------------------------------------------------------------------
-    \section{Description théorique de notre \textit{clustering} interactif}
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 3.2: Description théorique de notre \textit{clustering} interactif.
+	%%%%%--------------------------------------------------------------------
+	\section{Description théorique de notre \textit{clustering} interactif}
 	\label{section:3.2-DESCRIPTION-THEORIQUE}
 
 		%%% A. Description détaillée.
@@ -107,15 +107,15 @@
 			%
 			\textbf{initialisation}: créer une liste vide de contraintes \;
 			\textit{optionnel}: évaluer les hyper-paramètres de la segmentation automatique \;
-		    \textbf{segmentation initial}: regrouper les données par similarité \;
+			\textbf{segmentation initial}: regrouper les données par similarité \;
 			\Repeat{segmentation satisfaisante OU budget épuisé}{
-		        \textit{optionnel}: évaluer les hyper-paramètres de l'échantillonnage \;
-		        \textbf{échantillonnage}: sélectionner une partie de la segmentation à corriger \;
-		        \textbf{annotation}: corriger la segmentation en ajoutant des contraintes sur l'échantillon \;
-		        \textit{optionnel}: ré-évaluer les hyper-paramètres de la segmentation automatique \;
-			    \textbf{segmentation}: regrouper les données par similarité avec les contraintes \;
-			    \textbf{validation}: estimer la pertinence et la stabilité de la segmentation \;
-			    \textbf{coûts}: estimer le budget restant et les coûts restant à investir \;
+				\textit{optionnel}: évaluer les hyper-paramètres de l'échantillonnage \;
+				\textbf{échantillonnage}: sélectionner une partie de la segmentation à corriger \;
+				\textbf{annotation}: corriger la segmentation en ajoutant des contraintes sur l'échantillon \;
+				\textit{optionnel}: ré-évaluer les hyper-paramètres de la segmentation automatique \;
+				\textbf{segmentation}: regrouper les données par similarité avec les contraintes \;
+				\textbf{validation}: estimer la pertinence et la stabilité de la segmentation \;
+				\textbf{coûts}: estimer le budget restant et les coûts restant à investir \;
 			}
 			\textbf{interprétation}: trier et nommer les clusters pour les exploiter \;
 			%
@@ -124,7 +124,7 @@
 			\caption{\textit{
 				Description en pseudo-code de la méthode d'annotation proposée employant le \textit{clustering} interactif.
 			}}
-		    \label{algorithm:3.2-CLUSTERING-INTERACTIF}
+			\label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
 		
 		% Description de l'initialisation.
@@ -171,10 +171,10 @@
 		Cela commence par leur attribuer un nom au lieu de leur identifiant technique, de les définir en les rapprochant d'un cas d'usage métier, et éventuellement de les raffiner manuellement en supprimant certaines données aberrantes.
 		
 		
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 3.3: Description technique et implémentation.
-    %%%%%--------------------------------------------------------------------
-    \section{Description technique et implémentation}
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 3.3: Description technique et implémentation.
+	%%%%%--------------------------------------------------------------------
+	\section{Description technique et implémentation}
 	\label{section:3.3-DESCRIPTION-IMPLEMENTATION}
 		
 		% Généralités.
@@ -195,14 +195,14 @@
 		]
 # Définir les données.
 dict_of_texts = {
-    "0": "Comment signaler un vol de carte bancaire ?",
-    "1": "J'ai égaré ma carte bancaire, que faire ?",
-    "2": "J'ai perdu ma carte de paiement",
-    "3": "Le distributeur a avalé ma carte !",
-    "4": "En retirant de l'argent, le GAB a gardé ma carte...",
-    "5": "Le distributeur ne m'a pas rendu ma carte bleue.",
-    # ...
-    "N": "Pourquoi le sans contact ne fonctionne pas ?",
+	"0": "Comment signaler un vol de carte bancaire ?",
+	"1": "J'ai égaré ma carte bancaire, que faire ?",
+	"2": "J'ai perdu ma carte de paiement",
+	"3": "Le distributeur a avalé ma carte !",
+	"4": "En retirant de l'argent, le GAB a gardé ma carte...",
+	"5": "Le distributeur ne m'a pas rendu ma carte bleue.",
+	# ...
+	"N": "Pourquoi le sans contact ne fonctionne pas ?",
 }
 		\end{lstlisting}
 		
@@ -267,27 +267,27 @@ from cognitivefactory.interactive_clustering.utils.vectorization import vectoriz
 
 # Prétraitement des données.
 dict_of_preprocess_texts = preprocess(
-    dict_of_texts=dict_of_texts,
-    apply_stopwords_deletion=False,
-    apply_parsing_filter=False,
-    apply_lemmatization=False,
-    spacy_language_model="fr_core_news_md",
+	dict_of_texts=dict_of_texts,
+	apply_stopwords_deletion=False,
+	apply_parsing_filter=False,
+	apply_lemmatization=False,
+	spacy_language_model="fr_core_news_md",
 )
 """
-    {"0": "comment signaler un vol de carte bancaire",
-     "1": "j ai egare ma carte bancaire, que faire",
-     "2": "j ai perdu ma carte de paiement",
-     "3": "le distributeur a avale ma carte",
-     "4": "en retirant de l argent le gab a garde ma carte",
-     "5": "le distributeur ne m a pas rendu ma carte bleue",
-     # ...
-     "N": "pourquoi le sans contact ne fonctionne pas"}
+	{"0": "comment signaler un vol de carte bancaire",
+	 "1": "j ai egare ma carte bancaire, que faire",
+	 "2": "j ai perdu ma carte de paiement",
+	 "3": "le distributeur a avale ma carte",
+	 "4": "en retirant de l argent le gab a garde ma carte",
+	 "5": "le distributeur ne m a pas rendu ma carte bleue",
+	 # ...
+	 "N": "pourquoi le sans contact ne fonctionne pas"}
 """
 
 # Vectorisation des données.
 dict_of_vectors = vectorize(
-    dict_of_texts=dict_of_preprocess_texts,
-    vectorizer_type="tfidf",
+	dict_of_texts=dict_of_preprocess_texts,
+	vectorizer_type="tfidf",
 )
 		\end{lstlisting}
 		
@@ -368,25 +368,25 @@ from cognitivefactory.interactive_clustering.constraints.factory import managing
 
 # Création du gestionnaire de contraintes.
 constraints_manager = managing_factory(
-    manager="binary",
-    list_of_data_IDs = list(dict_of_texts.keys()),  # ["0", "1", "2", "3", "4", "5", ..., "N"]
+	manager="binary",
+	list_of_data_IDs = list(dict_of_texts.keys()),  # ["0", "1", "2", "3", "4", "5", ..., "N"]
 )
 
 # Ajout de contraintes.
 constraints_manager.add_constraint(
-    data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
-    data_ID2="1",  # "J'ai égaré ma carte bancaire, que faire ?"
-    constraint_type="MUST_LINK",
+	data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
+	data_ID2="1",  # "J'ai égaré ma carte bancaire, que faire ?"
+	constraint_type="MUST_LINK",
 )
 constraints_manager.add_constraint(
-    data_ID1="3",  # "Le distributeur a avalé ma carte !"
-    data_ID2="4",  # "En retirant de l'argent, le GAB a gardé ma carte..."
-    constraint_type="MUST_LINK",
+	data_ID1="3",  # "Le distributeur a avalé ma carte !"
+	data_ID2="4",  # "En retirant de l'argent, le GAB a gardé ma carte..."
+	constraint_type="MUST_LINK",
 )
 constraints_manager.add_constraint(
-    data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
-    data_ID2="N",  # "Pourquoi le sans contact ne fonctionne pas ?"
-    constraint_type="CANNOT_LINK",
+	data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
+	data_ID2="N",  # "Pourquoi le sans contact ne fonctionne pas ?"
+	constraint_type="CANNOT_LINK",
 )
 	# NB: ajouter une contrainte "MUST_LINK" entre "1" et "N" lèverait une erreur.
 
@@ -434,26 +434,26 @@ from cognitivefactory.interactive_clustering.clustering.factory import clusterin
 
 # Initialiser un objet de clustering.
 clustering_model = clustering_factory(
-    algorithm="kmeans",
-    model="COP",
-    random_seed=42,
+	algorithm="kmeans",
+	model="COP",
+	random_seed=42,
 )
 
 # Lancer le clustering.
 clustering_result = clustering_model.cluster(
-    constraints_manager=constraints_manager,  # contient les contraintes
-    nb_clusters=2,
-    vectors=dict_of_vectors,
+	constraints_manager=constraints_manager,  # contient les contraintes
+	nb_clusters=2,
+	vectors=dict_of_vectors,
 )
 """
-    {"0": 0,  # "Comment signaler un vol de carte bancaire ?"
-     "1": 0,  # "J'ai égaré ma carte bancaire, que faire ?"
-     "2": 0,  # "J'ai perdu ma carte de paiement"
-     "3": 1,  # "Le distributeur a avalé ma carte !"
-     "4": 1,  # "En retirant de l'argent, le GAB a gardé ma carte..."
-     "5": 1,  # "Le distributeur ne m'a pas rendu ma carte bleue."
-     # ...
-     "N": 1}  # "Pourquoi le sans contact ne fonctionne pas ?"
+	{"0": 0,  # "Comment signaler un vol de carte bancaire ?"
+	 "1": 0,  # "J'ai égaré ma carte bancaire, que faire ?"
+	 "2": 0,  # "J'ai perdu ma carte de paiement"
+	 "3": 1,  # "Le distributeur a avalé ma carte !"
+	 "4": 1,  # "En retirant de l'argent, le GAB a gardé ma carte..."
+	 "5": 1,  # "Le distributeur ne m'a pas rendu ma carte bleue."
+	 # ...
+	 "N": 1}  # "Pourquoi le sans contact ne fonctionne pas ?"
 """
 		\end{lstlisting}
 		
@@ -516,7 +516,7 @@ from cognitivefactory.interactive_clustering.sampling.factory import sampling_fa
 # Initialiser un objet d'échantillonnage.
 sampler = sampling_factory(
 	algorithm="random",
-    random_seed=42,
+	random_seed=42,
 )
 
 # Run sampling.
@@ -541,15 +541,15 @@ selection = sampler.sample(
 		\todo[inline]{SECTION À RÉDIGER: IC-GUI gestion d'état de l'application}
 		\todo[inline]{SECTION À RÉDIGER: IC-GUI page d'analyse (en cours)}
 
-    
-    %%%%%--------------------------------------------------------------------
-    %%%%% Section 3.4:
-    %%%%%--------------------------------------------------------------------
-    \section{Espoirs de la méthode proposée}
+	
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 3.4:
+	%%%%%--------------------------------------------------------------------
+	\section{Espoirs de la méthode proposée}
 		\todo[inline]{SECTION À RÉDIGER}
 
-        •	Moins de formations, d’ateliers, …
-        •	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
-        •	Permettre de trouver la base d’apprentissage
-        •	Méthode réaliste / pas trop coûteuse
-        •	…
+		•	Moins de formations, d’ateliers, …
+		•	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
+		•	Permettre de trouver la base d’apprentissage
+		•	Méthode réaliste / pas trop coûteuse
+		•	…

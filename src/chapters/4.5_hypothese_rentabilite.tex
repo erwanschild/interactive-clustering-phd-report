@@ -1,14 +1,18 @@
 \section{Évaluation de l'hypothèse de rentabilité}
 \label{section:4.5-HYPOTHESE-RENTABILITE}
 
+	%%%
 	%%% Introduction / Transition.
+	%%%
 	Dans les études précédentes, le cas d'arrêt de notre méthodologie d'annotation basée sur le \textit{clustering} interactif était conditionné à la vérité terrain.
 	En effet, nous utilisions un seuil de $90$\% de \texttt{v-measure}, caractérisant une annotation dite "partielle" de la base d'apprentissage.
 	Cependant, une telle référence n'est pas accessible en situation réelle car l'objectif de notre méthode est précisément de la construire cette vérité terrain.
 	Nous devons donc nous intéresser à d'autres moyens pour estimer la rentabilité d'une itération supplémentaire et pouvoir ainsi définir de nouveaux cas d'arrêt pour le \textit{clustering} interactif.
 	Pour cela, nous aimerions vérifier l'hypothèse suivante :
 	
-	%%% Formulation des hypothèses:
+	%%%
+	%%% Formulation des hypothèses.
+	%%%
 	\begin{tcolorbox}[
 		title=\faVial~\textbf{Hypothèse de rentabilité}~\faVial,
 		colback=colorTcolorboxHypothesis!15,
