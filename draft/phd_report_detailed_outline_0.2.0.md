@@ -94,7 +94,6 @@
 			- **Test**:
 			- **Evaluate**:
 			- **Revise**:
-			> - [bonneau-maynard-etal:2005:semantic-annotation-french] première tentatvie de réviser un modèle ?
 			> - [voormann-gut:2008:agile-corpus-creationa] formalisation du besoin de réviser sa modélisation
 	
 		### 2.2.2. (acteurs)
