@@ -14,7 +14,8 @@
 		% \cite{pustejovsky-stubbs:2012:natural-language-annotation} et \cite{stubbs:2013:methodology-using-professional} formalisation MATTER
 		
 		%%% Introduction au cycle MATTER.
-		Une référence en matière d'organisation de projet d'annotation est proposé par \cite{pustejovsky-stubbs:2012:natural-language-annotation} : les auteurs y formalisent la conception et l'amélioration \textbf{cyclique} d'un modèle de \textit{Machine Learning}.
+		Une référence en matière d'organisation de projet d'annotation est proposée par \cite{pustejovsky-stubbs:2012:natural-language-annotation} et est complétée dans \cite{stubbs:2013:methodology-using-professional}.
+		Les auteurs y formalisent la conception et l'amélioration \textbf{cyclique} d'un modèle de \textit{Machine Learning}.
 		Ce cycle est appelé cycle \texttt{MATTER} en référence aux six étapes de conception qui le composent : \textit{\textbf{M}odelize}, \textit{\textbf{A}nnotate}, \textit{\textbf{T}rain}, \textit{\textbf{T}est}, \textit{\textbf{E}valuate} et \textit{\textbf{R}evise}.
 		Ces étapes sont schématisées en \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}} et nous détaillons chacune d'entre elles ci-dessous.
 		%
@@ -26,6 +27,10 @@
 			}
 			\label{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}
 		\end{figure}
+		%
+		\begin{leftBarAuthorOpinion}
+			Nous conseillons \cite{finlayson-erjavec:2016:overview-annotation-creation} pour son excellente revue de littérature qui détaille pas à pas le cycle \texttt{MATTER} tout en dressant la liste des points importants importants de chacune des étapes.
+		\end{leftBarAuthorOpinion}
 		
 		%%% 2.2.1.A. Concevoir la base d'apprentissage (\textbf{M}odelize}, \textit{\textbf{A}nnotate}).
 		\subsubsection{Concevoir la base d'apprentissage (\textit{\textbf{M}odelize}, \textit{\textbf{A}nnotate}).}
@@ -41,11 +46,11 @@
 			
 			% Importance de la modélisation.
 			Afin de garantir la qualité de cette labellisation, \textbf{il est important de ne pas précipiter la tâche d'annotation}.
-			En effet, l'objectif de cette tâche et les informations nécessaires à annoter sur chaque données peuvent considérablement changer en fonction du phénomène à décrire, des données à disposition et de la finalité du modèle de \textit{Machine Learning} à entraîner.
+			En effet, l'objectif de cette tâche ainsi que les informations à annoter peuvent considérablement changer en fonction du phénomène à décrire, des données à disposition et de la finalité du modèle de \textit{Machine Learning} à entraîner.
 			Il est donc fortement conseillé de bien \textbf{modéliser le problème} pour clarifier les attendus et les modalités de cette annotation (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 1. \textit{\textbf{M}odelize}).
 			
 			% Modélisation vs Spécification, Guide d'annotation et exemple.
-			\cite{pustejovsky-stubbs:2012:natural-language-annotation} distinguent ici deux concepts importants de cette phase :
+			\cite{pustejovsky-stubbs:2012:natural-language-annotation} précisent notamment deux concepts importants de cette phase :
 			\begin{itemize}
 				\item la \textbf{modélisation} du problème, représentation de manière abstraite l'objectif à atteindre et décrivant ainsi la logique générale de l'annotation dans un \textit{schéma d'annotation} ;
 				\item les \textbf{spécifications}, compilant dans un \textit{guide d'annotation} l'ensemble des règles concrètes à respecter pour mettre en application la modélisation.
@@ -81,12 +86,19 @@
 				\end{itemize}
 			\end{leftBarExamples}
 			
+			% Aide à la formalisation.
+			\begin{leftBarInformation}
+				Pour aider à concevoir le guide d'annotation et afin de se poser les bonnes questions, \cite{dipper-etal:2004:useradaptive-annotation-guidelines} dresse une liste de définitions et de recommandations à prendre en considération.
+				Bien que ces conseils soient issus du traitement de données linguistiques, ils permettent d'identifier les sections importantes d'un guide d'annotation en fonction des attentes des différents acteurs de l'annotation (\textit{l'auteur, l'annotateur, l'explorateur de données, ...}) et de les rédiger en suivants certaines règles simples (\textit{introduire les objectifs, ordonner les règles par complexité, traiter en premier les cas par défaut, trier les valeurs des variables catégorielles par ordre alphabétiques, ...}).
+				Des exemples reconnus pour leur bonne conception y sont notamment cités si vous avez besoin de référence pour concevoir votre propre guide.
+			\end{leftBarInformation}
+			
 			
 			%%% c. Annotation
 			
 			% Annotation en tant que telle.
 			Lorsque le guide d'annotation est rédigé, la \textbf{phase de labellisation} peut commencer (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 2. \textit{\textbf{A}nnotate}).
-			Cette tâche est traditionnellement réalisée par un groupe d'experts choisi en fonction de leur connaissance du problème à caractériser (dans nos exemples sur les bandes dessinées, ce serait plutôt des libraires ou des collectionneurs).
+			Cette tâche est traditionnellement réalisée par un groupe d'experts choisi en fonction de leur connaissance sur problème à caractériser (dans nos exemples sur les bandes dessinées, ce serait plutôt des libraires ou des collectionneurs).
 			Après leur avoir expliqué l'objectif de leur travail et partagé les règles de labellisation contenues dans le guide, les annotateurs se partagent les données et réalisent chacun une partie du corpus d'apprentissage.
 			
 			%%% d. Mini-cycle MAMA.
@@ -94,7 +106,8 @@
 			\begin{leftBarInformation}
 				% La théorie rencontre le réel.
 				C'est généralement à ce stade que la théorie rencontre la pratique : certaines règles d'annotation peuvent difficilement être applicables, certains données peuvent être ambiguës ou hors-sujet, et deux annotateurs peuvent aussi avoir des avis différents sur l'annotation la plus adéquate.
-				\cite{pustejovsky-stubbs:2012:natural-language-annotation} introduisent donc le premier sous-cycle \texttt{MAMA} en référence à la boucle entre \textit{\textbf{M}odelize} et \textit{\textbf{A}nnotate} qui peut avoir lieu tant que le guide d'annotation n'est pas adapté aux données manipulées.
+				Il est aussi important de rappeler que l’annotation est un acte d'interprétation, et que les données sont donc labellisées par un humain dont l'avis n'est pas infaillible. 
+				\cite{pustejovsky-stubbs:2012:natural-language-annotation} introduisent donc le premier sous-cycle \texttt{MAMA} en référence à la boucle entre \textit{\textbf{M}odelize} et \textit{\textbf{A}nnotate} qui peut avoir lieu tant que le guide d'annotation n'est pas adapté aux données manipulées ou que différents points de vues opposent les annotateurs.
 				
 				% Exemple.
 				Par exemple, lors de l'annotation de la transcription audio en \textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}, il peut y avoir une voix principale accompagnée de plusieurs voix en arrière plan : une première adaptation du guide serait de clarifier si ces voix secondaires doivent être transcrites ou ignorées, voire si l'audio entier doit être considéré comme inexploitable.
@@ -163,7 +176,7 @@
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Nous bouclons ainsi le cycle \texttt{MATTER} qui préfigure le besoin d'amélioration continue de tout modèle de \textit{Machine Learning}.
+			Nous bouclons ainsi le cycle \texttt{MATTER} qui préfigure le besoin d'une amélioration continue d'un modèle de \textit{Machine Learning} pour que celui-ci soit le plus adapté à son environnement d'utilisation.
 			
 	
 	%%%
@@ -171,57 +184,149 @@
 	%%%
 	\subsection{Portraits des acteurs intervenant sur un projet d'annotation}
 	\label{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}
-		\todo[inline]{SECTION: À RÉDIGER: \\
-			- Acteurs: Objectifs, Rôles, Compétences, ... ; \\
-			~~~~ - Axe métier (business expert) ; \\
-			~~~~ - Axe technique (data scientist) ; \\
-			~~~~ - Axe manipulation (data analyst) ; \\
-			~~~~ - Axe projet (project leader) ;
-			% [fort:2017:experts-ou-foule] caractérise trois types d’expert :
-				% du domaine du corpus (médical, juridique, politique),
-				% du domaine de l’annotation (sémantique, transcription de l’oral, syntaxique),
-				% de la tâche
-			% choix / formation d'annotateurs (experts métiers, pas des experts en IA ou en annotation)
-				% minimum 2 pour engager des débats
-				% [bayerl-paul:2011:what-determines-intercoder] : plus on est nombreux, moins on est d'accord
-		}
-
-% [stubbs:2013:methodology-using-professional]
-% For example, the following list of guideline users is paraphrased/restructured from Dipper et al. (2004a):
-% > The annotator: Annotators apply the annotation specification (the tags and attributes) to the chosen corpus by following the annotation guideline instructions. Interests: the goal of the annotation, and how to apply the annotation specification to the corpus.
-% > The corpus explorer : Explorers are interested in using the corpus to examine linguistic theories. Interests: how to find examples of linguistic phenomena and interpret the annotation, information about the corpus itself.
-% > The language engineer : Engineers want to use automatic methods to explore the corpus and annotations; for example: through extracting linguistic information through evaluation scripts, or using the corpus to train machine learning algorithms. Interests: tagsets, corpus creation methods.
-% > The guideline explorer: The annotation guidelines themselves are of interest to linguists who want to understand the theory behind the annotation, or people who want to create their own guidelines for a different annotation task. Interests: guideline creation and underlying theory.
-% > The guideline author: Because guidelines often have to be revised multiple times before a task, the guideline authors themselves will often need to refer back to their own work to ensure the coverage of the guidelines is complete. Interests: clear organization of instructions.
-% >It should be noted that Dipper et al. (2004a) use the term 'guidelines' to refer to all the information relevant to researchers, including information about the corpus, the linguistic theory, the annotation, and so on, while this dissertation uses the traditional definition of `guidelines', as described at the beginning of this section.
-% >However, despite this terminological difference, Dipper et al. make excellent points about the information that should be made available when an annotated corpus is released to the public based on the different interests of various types of researchers. Another recent study by Bayerl and Paul (2011) examined what factors in an annotation task may in uence inter-annotator agreement (IAA) scores.
+	
+		% Introduction: grande diversité de métiers.
+		Au cours du cycle \texttt{MATTER}, nous pouvons constater que divers acteurs interviennent pour concevoir la base d'apprentissage et entraîner un modèle de \textit{Machine Learning}.
+		Cette diversité de métiers qui gravitent autour du traitement automatique des données semble difficile à détailler, tant à cause de leur grand nombre que de leurs subtiles différences.
+		Pour avoir un aperçu, vous pouvez consulter les offres d'emplois du marché actuel (voir \cite{team-datascientest:2022:metiers-data-mieux} ou \cite{databird:2023:10-metiers-data}) ou certaines formations professionnelles (voir \cite{isoz:2017:decouvrir-metiers-data}) pour pouvoir faire la distinction entre \textit{data scientist}, \textit{data analyst}, \textit{data librarian}, \textit{data journalist}, \textit{data architect}, \textit{data engineer}, \textit{data steward}, \textit{data archivist}, ou encore \textit{machine learning engineer}...
+		
+		% Approche par compétences.
+		Afin d'avoir une approche moins commerciale de ces métiers, nous proposons plutôt de dresser les compétences requises au diverses phases du cycle, à l'image de \cite{radovilsky-etal:2018:skills-requirements-business} qui présente les acteurs de la science des données grâce à quatre groupes de compétences :
+		\begin{enumerate}
+			% Business expert.
+			\item les compétences \textbf{métiers} : elles sont liées aux connaissances et à l'expertise sur le phénomène à modéliser ou le problème à résoudre.
+			Ce sont grâce à ces compétences qu'un acteur peut être apte à annoter une donnée ou à qualifier la pertinence de la prédiction d'un modèle de \textit{Machine Learning}.
+			Les métier(s) associé(s) sont : l'\texttt{expert métier} (\textit{business expert}) ;
+			% Data analyst.
+			\item les compétences \textbf{analytiques} : elles concernent entre autres la modélisation du problème, la gestion des données, et les analyses statistiques sur les biais et les performances.
+			Ce sont grâce à ses compétences qu'un acteur peut concevoir le guide d'annotation, estimer le taux d'accord inter-annotateurs, ou encore réaliser l'évaluation statistique d'un modèle de \textit{Machine Learning}.
+			Les métier(s) associé(s) sont : l'\texttt{analyste des données} (\textit{data analyst}) ou le \texttt{scientifique des données} (\textit{data scientist}) ;
+			% Data scientist.
+			\item les compétences \textbf{techniques} : elles portent sur l'ingénierie autour du modèle de \textit{Machine Learning}, comme le choix du meilleur algorithme d'entraînement et réglage fin des hyper-paramètres, l'archivage des différentes versions du modèle ainsi que son déploiement dans un environnement de production.
+			Les métier(s) associé(s) sont : le \texttt{scientifique des données} (\textit{data scientist}), l'\texttt{ingénieur en Machine Learning} (\textit{Machine Learning Engineer}) ou l'\texttt{architecte des des données} (\textit{data architecte}) ;
+			% Projet leader.
+			\item et les compétences en \textbf{gestion} ou en \textbf{communication} : elles permettent d'aborder le cadrage du projet et la définition des objectifs, ainsi que diverses aptitudes transverses comme l'établissement de rapports, la gestion de projet, la vérification des normes, ...
+			Les métier(s) associé(s) sont : le \texttt{chef de projet} (\textit{project leader}) ou le \texttt{responsable de la protection des données} (\textit{data protection officer}).
+		\end{enumerate}
+		\begin{leftBarInformation}
+			On peut compléter cette vision par compétences avec la vision donnée par \cite{fort:2017:experts-ou-foule}, selon laquelle il y a trois types d'experts lors d'un projet d'annotation :
+			\begin{itemize}
+				\item les \textbf{experts du corpus} de données, ayant par exemple les connaissances sur les bandes dessinées, s'approchant donc de compétences \texttt{métiers} ;
+				\item les \textbf{experts de l'annotation}, ayant par exemple les connaissances sur l'annotation de textes dans une image, s'approchant donc de compétences \texttt{analytiques} ;
+				\item et les \textbf{experts de la tâche} de \textit{Machine Learning}, ayant par exemple les connaissances sur les techniques d'\texttt{OCR}, s'approchant donc des compétences \texttt{techniques}.
+			\end{itemize}
+		\end{leftBarInformation}
+		
+		% Application au cycle \texttt{MATER}.
+		Ainsi, durant le cycle \texttt{MATTER}, nous pouvons voir les compétences ci-dessus se compléter :
+		\begin{enumerate}
+			% Concevoir la base d'apprentissage.
+			\item la conception de la \textbf{base d'apprentissage} (étapes \textit{\textbf{M}odelize} et \textit{\textbf{A}nnotate}) nécessite :
+			\begin{itemize}
+				\item des compétences de \texttt{gestion} pour cadrer l'objectif du modèle à entraîner, et ainsi définir l'objectif auquel doit répondre l'annotation de données ;
+				\item des compétences \texttt{analytiques} pour proposer une modélisation stable du phénomène et un guide d'annotation précis pour limiter les biais de conception ;
+				\item des compétences \texttt{métiers} pour vérifier que la proposition de modélisation est pertinente vis-à-vis du cas d'usage, mais aussi pour réaliser l'annotation des données.
+			\end{itemize}
+			% Concevoir le modèle.
+			\item la conception du \textbf{modèle de \textit{Machine Learning}} (étapes \textit{\textbf{T}rain}, \textit{\textbf{T}est}, \textit{\textbf{E}valuate}) nécessite :
+			\begin{itemize}
+				\item des compétences \texttt{analytiques} pour gérer les jeux de données (\textit{entraînement, développement, test}) et évaluer les performances statistiques du modèle ;
+				\item des compétences \texttt{techniques} pour manipuler l'écosystème de développement du modèle, régler les hyper-paramètres, versionner les changements, et planifier la distribution du modèle ;
+				\item des compétences de \texttt{gestion} pour s'assurer du respect des normes et des caractères privée ou confidentielle de certaines données.
+			\end{itemize}
+			% Revoir la base d'apprentissage
+			\item la \textbf{révision} de la base d'apprentissage (étape \textit{\textbf{R}evise}) nécessite :
+			\begin{itemize}
+				\item des compétences \texttt{métiers} pour identifier le manque de pertinence du modèle vis-à-vis de certains cas d'usage ;
+				\item des compétences \texttt{analytiques} pour disserter des performances réelles du modèle face à des données de production et remettre en question les précédents choix de modélisation pour espérer améliorer le modèle.
+			\end{itemize}
+		\end{enumerate}
+		
+		% Remarque sur la distance entre métier et technique.
+		On notera que les compétences transverses de \textbf{gestion} ou \textbf{communication} ne sont pas spécifiques à une étape du cycle \texttt{MATTER} (\textit{le cadrage, la gestion de projet et l'établissement de rapports étant réalisés tout au long du projet}), alors que les compétences \texttt{métier} et \texttt{techniques} n'interviennent généralement pas au même moment du cycle : autrement dit, des experts métiers croisent rarement des experts techniques et ne partagent donc que très rarement leurs connaissances.
 	
 	
 	%%%
-	%%% Subsection 2.2.3: Exemples de logiciels utilisés pour annoter.
+	%%% Subsection 2.2.3: Choix du logiciel d'annotation.
 	%%%
-	\subsection{Exemples de logiciels utilisés pour annoter}
+	\subsection{Choix du logiciel d'annotation}
 	\label{section:2.2.3-ORGANISATION-ANNOTATION-LOGICIELS}
-		\todo[inline]{SECTION: À RÉDIGER: \\
-			% [finlayson-erjavec:2016:overview-annotation-creation]: tools
-			- Outils: Liste, Avantages, Inconvénients, Fonctionnalités ;
-			~~~~ - Excel
-			~~~~ - prodigy
-				% - Glozz [Widlöcher & Mathet, 2009] http://www.glozz.org/
-				% - Callisto [Day et al., 2004]
-				% - MMAX2 [Müller, 2006] https://github.com/ottiram/MMAX2
-				% - PALinkA [Orăsan, 2003]
-				% - Gate [Cunningham_2022] https://gate.ac.uk/
-				% - Brat [Stenetorp et al., 2012] http://brat.nlplab.org/
-				% - WebAnno [Yimam et al., 2013] https://webanno.github.io/webanno/
-				% - Inception [Klie et al., 2018] https://inception-project.github.io/
-		}
 	
+		% Introduction: besoin d'un outil d'annotation.
+		Pour terminer la description de l'organisation d'un projet d'annotation, attardons nous sur le choix du logiciel à utiliser pour labelliser les données.
+		En effet, une diversité d'applications existent pour répondre aux besoins des annotateurs, mais il est important de noter que l'absence de certaines fonctionnalités essentielles risque de gêner le projet d'annotation, soit par l'introduction de biais, soit à cause de son manque d'inter-opérabilité avec d'autres tâches d'analyses ou d'annotation.
+		
+		% Liste des fonctionnalités importantes.
+		Nous faisons référence à \cite{finlayson-erjavec:2016:overview-annotation-creation} pour dresser ci-dessous une liste des fonctionnalités principales (voire essentielles) d'un logiciel d'annotation.
+		Pour simplifier la lecture, nous proposons de regrouper ces fonctionnalités dans les catégories suivantes :
+		\begin{itemize}
+			% Répondre à la \textbf{besoin d'annotation}.
+			\item répondre à la \textbf{besoin d'annotation} :
+				cette fonctionnalité est bien entendu obligatoire, car un logiciel ne permettant pas d'annoter vos données ne vous sera d'aucune utilité.
+				Cette remarque semble être une évidence, mais nous nous permettons aussi d'étendre l’avertissement aux logiciels n'étant pas destinés à votre besoin d'annotation mais qui peuvent être détournés pour y répondre indirectement : de telles contournements peuvent introduire des biais et offrent généralement une expérience utilisateur assez médiocre ;
+			% Intégrer le \texbf{guide d'annotation}.
+			\item intégrer le \textbf{guide d'annotation} :
+				ce livrable issu de la phase de modélisation du cycle \texttt{MATTER} doit être facilement accessible par les annotateurs car il contient la documentation et les instructions à appliquer lors de la labellisation.
+				Les logiciels permettant d'intégrer directement ces définitions (\textit{avec exemples et contre-exemples}) ainsi que les règles d'annotation (\textit{comme les labels mutuellement exclusifs, les détails obligatoires, ...}) ont donc un net avantage ergonomique pour respecter la modélisation définie et ainsi garantir la qualité de la base d'apprentissage ; 
+			% Autoriser l'\textbf{annotation multiple}.
+			\item autoriser l'\textbf{annotation multiple} et l'\textbf{annotation multi-modale}: 
+				il est fréquent de devoir annoter plusieurs une même donnée suivant des modélisations ou des paradigmes différents pour répondre à plusieurs cas d'usage (\textit{en prenant l'exemple de l'annotation d'images, on peut détourer les objets présents, identifier les textes inscrits, proposer une ou plusieurs catégories générales, proposer une description textuelle, ...}) ou encore de devoir annoter des données de natures différentes (\textit{en combinant texte, image et voix comme dans l'annotation des sous-titres d'une vidéo}).
+				Les logiciels permettant ainsi de labelliser plusieurs informations et de manipuler plusieurs types de données sont donc plus facilement réutilisables et permettent de centraliser les annotations ;
+			% Evaluer la \textbf{qualité de l'annotation}.
+			\item évaluer la \textbf{qualité de l'annotation} :
+				les erreurs d'annotation et les divergences d'opinions sur la modélisation sont inévitables.
+				Il est donc appréciable de pouvoir les identifier, soit sur la base d'une comparaison directe entre deux annotateurs, soit en comparant avec l'annotation la plus probable issue d'une base de référence.
+				Il peut aussi être intéressant de pouvoir calculer les scores d'accord inter-annotateurs sur un même échantillon de données pour estimer la qualité de la base d'apprentissage, de pouvoir corriger les erreurs lors de revues ou encore de trancher les cas de conflits apparent lors d'avis discordants ;
+			% Permettre l'\textbf{inter-opérabilité} technique.
+			\item permettre l'\textbf{inter-opérabilité} technique :
+				il est toujours frustrant de ne pas pouvoir réutiliser des annotations d'un projet à l'autre car le format de stockage n'est pas compatible.
+				Les logiciels prenant donc en considération plusieurs format de données (\textit{\texttt{PNG}/\texttt{JPG}, \texttt{MP3}/\texttt{WAV}, \texttt{XLSX}/\texttt{XML}/\texttt{JSON}, ...}) et respectant les standards de la tâche d'annotation lors des imports et exports sont donc à privilégier.
+				De plus, il est conseillé de ne pas écrire directement les annotation dans les données (\textguillemets{\textit{\textbf{[Lucky Luke]}{\textcolor{colorDarkPastelRed}{\texttt{/(personnage)}}}, le \textbf{[cow-boy]}{\textcolor{colorDarkPastelPurple}{\texttt{/(métier)}}} solitaire, a ...}}), mais de les stocker dans des fichiers séparés pour garder une meilleure gestion et permettre les annotations multiples ;
+			% Gérer le \textbf{flux de travail} et le \textbf{suivi de projet}.
+			\item gérer le \textbf{flux de travail} et le \textbf{suivi de projet} :
+				certaines fonctionnalités simples sont nécessaires à l'organisation de l'équipe d'annotation.
+				Cela peut comprendre la répartition de la charge de travail, l'historisation des changements pour permettre les retours arrières, la possibilité d'émettre des appels d'aide ou d'écrire des commentaires sur les choix d'annotation, ou encore l'accompagnement des nouveaux annotateurs lors de leur monté en compétence ;
+			% Favoriser le \textbf{confort de l'annotateur}.
+			\item favoriser le \textbf{confort de l'annotateur} :
+				le logiciel choisi sera utilisé au quotidien par l'équipe d'annotation, il semble donc essentiel de leur offrir une expérience utilisateur agréable pour réaliser leur tâche.
+				Cela peut passer par une customisation de l'interface utilisateur afin d'être adapter à l'objectif d'annotation et par le paramétrage de raccourcis claviers.
+				Simplifier l'accès et l'installation du logiciel peut aussi s'avérer utile pour favoriser son adoption, en favorisant par exemple les applications web permettant plus facilement le travail collaboratif ;
+			% Permettre des \texbf{annotations et d'analyses avancées}.
+			\item permettre des \textbf{annotations et d'analyses avancées} :
+				la littérature scientifique regorge de techniques pouvant assister un annotateur dans son travail (\textit{pré-annotation, apprentissage actif, visualisation, interaction, ...}).
+				Nous détaillerons plusieurs de ces techniques dans la \textsc{Section~\ref{section:2.4-AVANCEES-ANNOTATION}}.
+		\end{itemize}
+		
+		% Quelques exemples.
+		Considérant la diversité de cas d'usage d'annotation, une liste exhaustive des outils de labellisation n'est bien entendu pas possible.
+		Nous tenons toutefois à présenter quelques exemples illustrés dans la \textsc{Figure~\ref{figure:2.2.3-ORGANISATION-ANNOTATION-LOGICIELS}}.
+		%
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[width=0.95\textwidth]{figures/etatdelart-logiciel-exemples}
+			\caption{
+				Quatre exemples d'outils d'annotation :
+				\textbf{(1)} \texttt{INCEpTION} pour le texte (\cite{klie-etal:2018:inception-platform-machineassisted}),
+				\textbf{(2)} \texttt{prodigy} pour le texte ou l'image (\cite{montani-honnibal:2017:prodigy-modern-scriptable}),
+				\textbf{(3)} \texttt{Audacity} pour l'audio (\cite{audacity-team:2000:audacity-free-audio}
+				et \textbf{(4)} \texttt{CVAT} pour l'image (\cite{cvat.ai-corporation:2019:computer-vision-annotation}).
+			}
+			\label{figure:2.2.3-ORGANISATION-ANNOTATION-LOGICIELS}
+		\end{figure}
+		
+		% Avis sur la sur-utilisation d'Excel.
+		\begin{leftBarAuthorOpinion}
+			De part notre expérience, nous constatons malheureusement que plusieurs projets industriels n'utilisent pas ou peu d'outils d'annotation dédiés, et se contentent d'outils rudimentaires comme des traitement de textes ou des tableurs tels que \texttt{Microsoft Excel} (\cite{microsoft-corporation:2018:microsoft-excel}).
+			Une étude serait à mener pour étudier cette tendance et expliquer le manque d'intérêt porté aux outils spécialement conçus pour les tâches d'annotations.
+		\end{leftBarAuthorOpinion}
 	
-	% Conclusion.
+	%%%
+	%%% Conclusion.
+	%%%
 	\begin{leftBarSummary}
 		\begin{todolist}
-			\item[\itemok] Un projet d'annotation s'organise généralement en cycle (\texttt{MATTER}) au cours duquel l'annotateur créé une modélisation abstraite des données, définit ses règles d'annotation, réalise sa labellisation, puis entraîne son modèle. Il peut être amené à réviser sa modélisation des données en fonction des performances obtenues.
-			\item[\itemok] Un tel projet d'annotation nécessite une diversité de connaissances et de compétences (\textit{connaissances métiers, connaissances techniques, maîtrise de l'apprentissage automatique, ...}), faisant ainsi collaborer un grand nombre d'acteurs qualifiés pour une ou plusieurs phase du cycle d'annotation.
+			\item[\itemok] Un projet d'annotation s'organise généralement en cycle (\texttt{MATTER}) au cours duquel nous réalisons une modélisation abstraite des données que nous formalisons dans un guide (\textit{\textbf{M}odelize}), nous appliquons ce guide pour labelliser notre base d'apprentissage (\textit{\textbf{A}nnotate}), puis nous entraînons et testons un modèle de \textit{Machine Learning} (\textit{\textbf{T}rain}, \textit{\textbf{T}est} et \textit{\textbf{E}valuate}). Ensuite, l'évaluation du modèle peut mener à une révision de la modélisation des données en fonction des performances obtenues (\textit{\textbf{R}evise}) ;
+			\item[\itemok] Un tel projet d'annotation nécessite une diversité de connaissances et de compétences qui peuvent être réparties en quatre catégories : \texttt{métier}, \texttt{analytique}, \texttt{technique} et \texttt{gestion/communication} ;
+			\item[\itemok] Un tel projet nécessite aussi un outil d'annotation dédié possédant certaines fonctionnalités essentielles comme la possibilité d'\texttt{intégrer le guide} d'annotation, le besoin de \texttt{contrôler la qualité} des annotation, la capacité de réaliser des \texttt{annotation multiples ou multimodales}, ou encore l'assimilation d'éléments de \texttt{gestion de projet}.
 		\end{todolist}
 	\end{leftBarSummary}

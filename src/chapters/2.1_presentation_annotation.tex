@@ -283,18 +283,15 @@
 		\label{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}
 		
 			% Cas d'usage: générer une lecture audio.
-			\todo{peut-être simplifier (juste faire dire une phrase à un narrateur) pour mettre en avant la synthèse vocale, et laisser les complexités sur les plusieurs modèles acoustiques, ...}
-			Prenons maintenant un cas d'usage un peu plus insolite.
 			Il est de plus en plus commun de trouver des livres disponibles avec une lecture audio.
 			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducatives ou simplement disponibles pour le loisir.
-			Mais dans le cadre de notre exemple sur le thème des bandes dessinées, peu de \texttt{BD} disposent d'une lecture audio.
-			Toutefois, certaines saga ont eu une adaptation de quelques-uns leur numéro à l'écran : une idée serait donc d'interpréter une lecture audio de ces bandes dessinées à l'aide des voix présentes dans les adaptations télévisées.
+			Mais dans le cadre de notre exemple sur le thème des bandes dessinées, peu d'entre elles disposent d'une lecture audio.
+			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l’oeuvre n'a pas été portée à l'écran).
 			
 			% Entrainer un modèle: synthétiseur vocal.
 			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.} pour générer automatiquement la lecture des bulles d'une bande dessinée.
-			Mais pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs dans l'adaptation télévisée) avec la transcription de leur paroles dans l'audio.
-			La tâche d'annotation peut alors consister à renseigner pour chaque audio le personnage et les paroles qu'il a prononcées.
-			\todo{commentaire Marie: pour l'audio, on annote en général simplement la transcription. Le modèle dispose en effet d'un dictionnaire phonétique qui fait le lien mot-phonème. Pour l'alignement, c'est fait automatiquement aussi en général car on coupe les silences}
+			Mais pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs de l'adaptation télévisée) avec la transcription de leur paroles pour chaque audio.
+			La tâche d'annotation peut alors consister à renseigner le personnage et les paroles qu'il a prononcées.
 			
 			% Citation de l'exemple.
 			Un exemple d'annotation phonétique est illustré dans la \textsc{Figure~\ref{figure:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}.
@@ -304,8 +301,10 @@
 					\centering
 					\includegraphics[width=0.95\textwidth]{figures/etatdelart-thebault-transcription}
 					\caption{
-						Exemple d'annotation des paroles prononcées dans un audio.
-						Ici, la voix de Lucky Luke est interprétée par Jacques THEBAULT. Le texte prononcé est  \textguillemets{\texttt{Ils sont à vous chef, et j'vous s'rai reconnaissant de bien les garder cette fois.}}, et les phonèmes en alphabet phonétique international sont associés à chaque séquence de l'audio.
+						Exemple de paroles prononcées dans un audio.
+						Ici, la voix de \textit{Lucky Luke} est interprétée par Jacques THEBAULT.
+						Le texte annoté, c'est-à-dire celui prononcé dans l'audio, est  \textguillemets{\texttt{Ils sont à vous chef, et j'vous s'rai reconnaissant de bien les garder cette fois.}}.
+						Les phonèmes en alphabet phonétique international associés à chaque séquence de l'audio sont disponibles si besoin.
 						%[il sɔ̃ a vu ʃɛf, e ʒvu sʁe ʁə.kɔ.nɛ.sɑ̃ də bjɛ̃ vu.lwaʁ le ɡaʁ.de sɛt fwa].
 					}
 					\label{figure:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}
@@ -313,12 +312,15 @@
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Ainsi, nous pourrions consulter le modèle de synthèse vocale d'un personnage (ici: celui de Lucky luke) avec un nouveau texte à prononcer pour en obtenir une lecture audio dont la voix se rapproche des enregistrements de la base d'apprentissage (ici: celle de Jacques THEBAULT).
+			Ainsi, nous pourrions consulter le modèle de synthèse vocale d'un personnage (ici: celui de \texttt{Lucky Luke}) avec un nouveau texte à prononcer pour en obtenir une lecture audio dont la voix se rapproche des enregistrements de la base d'apprentissage (ici: celle de Jacques THEBAULT).
 			
 			% Autres cas d'usage: comuler OCR + Classification + TTS
 			\begin{leftBarInformation}
-				Nous pourrions compléter le cas d'usage (1) en extrayant automatiquement le texte d'une planche de \texttt{BD} par \texttt{OCR}, (2) en détectant automatiquement le personnage prononçant la bulle de \texttt{BD} par classification, puis (3) en générant du texte à prononcer par le personnage par synthèse vocale.
-				Bien entendu, la conception et l’enchaînement de ces différents modèles est une tâche très complexe, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour sa base d'apprentissage.
+				Nous pourrions compléter le cas d'usage
+				(1) en extrayant automatiquement le texte d'une planche de \texttt{BD} par \texttt{OCR},
+				(2) en détectant automatiquement le personnage prononçant la bulle de \texttt{BD} par classification,
+				puis (3) en générant du texte à prononcer par le personnage par synthèse vocale.
+				Bien entendu, la conception et l’enchaînement de ces différents modèles est une tâche plutôt complexe, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour construire une base d'apprentissage.
 			\end{leftBarInformation}
 			
 			
@@ -389,7 +391,9 @@
 		%\end{leftBarExamples}
 	
 	
+	%%%
 	%%% Conclusion.
+	%%%
 	\begin{leftBarSummary}
 		\begin{todolist}
 			\item[\itemok] \textguillemets{\texttt{Annoter}} une donnée consiste à ajouter un complément d'information pour pouvoir mieux interpréter puis reproduire un phénomène.
