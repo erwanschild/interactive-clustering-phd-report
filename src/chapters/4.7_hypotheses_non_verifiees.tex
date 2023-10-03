@@ -1,33 +1,86 @@
 \section{Autres hypothèses non vérifiées}
 \label{section:4.7-HYPOTHESES-NON-VERIFIEES}
-	\todo[inline]{SECTION À RÉDIGER}
 
 	%%%
-	%%% Subsection 4.7.1: Choix du nombre de clusters.
+	%%% Introduction / Transition.
 	%%%
-	\subsection{Choix du nombre de clusters}
-		\todo[inline]{SECTION À RÉDIGER}
-		o Complexe à définir, Complexe à trouver \\
-		o Piste de résolution : plusieurs clusterings + vote collaboratif ? algorithmes sans le nombre de clusters en hyper-paramètres
-
+	Lors des études précédentes, nous avons vérifié un certain nombre d'hypothèses et avons exploré plusieurs détails pratiques pour mettre en oeuvre une méthodologie d'annotation basée sur le \textit{clustering} interactif.
+	Toutefois, certains points n'ont pas pu être étudiés en profondeurs lors de ce doctorat, par manque de temps ou de moyens.
+	Nous exposons ici un ensemble de pistes intéressantes pouvant nourrir de futurs travaux afin d'améliorer la notre méthode.
+	
+	
 	%%%
-	%%% Subsection 4.7.2: Choix du nombre de clusters.
+	%%% Subsection 4.7.1: Etude du nombre de clusters optimal.
 	%%%
-	\subsection{Impact d'un modèle de langage}
-		\todo[inline]{SECTION À RÉDIGER}
-		o nécessite de nombreuses données spécifiques au domaine \\
-		o Piste de résolution : script d'étude comparative déjà prêt, mais il manque les données opensources… 
-
+	\subsection{Etude du nombre de clusters optimal.}
+	\label{section:4.7.1-HYPOTHESES-NON-VERIFIEES-NOMBRE-CLUSTERS}
+	
+		% Problème ouvert de la recherche: Estimer le nombre optimal de clusters.
+		Un problème ouvert de la recherche lors de l'utilisation d'algorithmes de \textit{clustering} concerne le choix du nombre de \textit{clusters} à trouver.
+		En effet, à part une connaissance à priori du nombre de thématiques présentes dans le jeu de données, il est difficile d'estimer le nombre optimal de \textit{clusters}, d'autant plus que celui-ci peut changer en fonction de la granularité de modélisation requise pour répondre au cas d'usage.
+		
+		% Pistes déjà explorées.
+		Nous avons déjà exploré partiellement deux pistes :
+		\begin{itemize}
+			\item l'\textbf{exploration du graphe de contraintes} : en effet, il est possible d'estimer le nombre maximal de \textit{clusters} grâce aux composants connexes de contraintes \texttt{MUST-LINK}, et d'estimer le nombre minimal de \textit{clusters} grâce à la coloration du graphe de contraintes \textit{CANNOT-LINK} ;
+			\item les \textbf{études de pertinence} avec l'analyse des patterns linguistiques et le résumé thématique des \textit{clusters} (cf. \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) : ces deux approches permettent de rapidement constater si les thématiques obtenues sont trop générales (\textit{i.e. s'il n'y a pas assez de clusters}) ou si elles semblent trop spécifiques (\textit{i.e. s'il y en a trop}).
+		\end{itemize}
+		
+		% Piste potentielles à explorer.
+		Toutefois, pour aller plus loin, deux pistes potentielles pourraient être explorées :
+		\begin{itemize}
+			\item l'exploration brute du nombre de \textit{clusters} par la \textbf{méthode du coude} : bien que ces approches sont plus coûteuses en temps de calcul, elles permettent d'estimer le nombre de \textit{clusters} pour lequel la stabilité du \textit{clustering} est la plus élevée ;
+			\item l'utilisation d'algorithme n'ayant pas de nombre de clusters en paramètres comme des versions contraintes de \textbf{DBscan} (par exemple dans sa version \textit{C-DBScan}, \cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) ou de la \textbf{propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}) : ces alternatives semblent prometteuses car elles retirent la complexité due à ce paramétrage abstrait.
+		\end{itemize}
+		
+		\begin{leftBarInformation}
+			L'étude de \texttt{C-DBScan} a été en partie réalisée dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg.
+			Les résultats montraient que le temps de calcul était similaire à celui du KMeans (dans sa version \texttt{COP}).
+			La difficulté d'utilisation résidait plutôt sur la définition du rayon de voisinage \texttt{eps} à parcourir pour établir des liens entre données.
+			Celui-ci peut être estimé en analysant la densité vectorielle du jeu de données.
+			Le code informatique est disponible dans \cite{schild:2022:cognitivefactory-interactiveclustering} (\textit{\textit{Pull Request} en attente pour une version \texttt{0.6.0}}).
+		\end{leftBarInformation}
+	
+	
 	%%%
-	%%% Subsection 4.7.3: Choix du nombre de clusters.
+	%%% Subsection 4.7.2: Etude d'autres méthodes de vectorisation.
 	%%%
-	\subsection{Paradigme d’annotation}
-		\todo[inline]{SECTION À RÉDIGER}
-		o (intention vs dialogue) ==> problème d'UX + objectif métier \\
-		o Etude Ergo, sort de mon domaine d'expertise
-
+	\subsection{Etude d'autres méthodes de vectorisation}
+	\label{section:4.7.2-HYPOTHESES-NON-VERIFIEES-VECTORISATION}
+	
+		% Introduction.
+		Au début de ce doctorat, nous avons conclu que les algorithmes de vectorisation n'avaient pas d'impact réel sur l'efficience de notre méthodologie d'annotation.
+		Toutefois, les modèles de langues se sont largement développés, et il est fort probable que l'utilisation d'un \textbf{modèle pré-entraîné} permettent désormais d'avoir un gain de performance.
+		
+		% Piste potentielles à explorer.
+		Nous pourrions par exemple tester les \textbf{architectures à base de \textit{Transformers}} (\cite{uszkoreit:2017:transformer-novel-neural}) comme \texttt{BERT} (\cite{devlin-etal:2019:bert-pretraining-deep}) et essayer différents modèles pré-entraînés sur des données françaises pour compléter nos études réalisées dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}
+	
+	
 	%%%
-	%%% Subsection 4.7.4: Choix du nombre de clusters.
+	%%% Subsection 4.7.3: Etude d'autres méthodes d'échantillonnage.
 	%%%
-	\subsection{(et plein d'autres que j'ajouterai au fur et à mesure de ma rédaction)}
-		\todo[inline]{SECTION À RÉDIGER}
+	\subsection{Etude d'autres méthodes d'échantillonnage}
+	\label{section:4.7.3-HYPOTHESES-NON-VERIFIEES-ECHANTILLONNAGE}
+	
+		% Introduction.
+		Comme nous avons pu le voir dans \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}, il peut-être intéressant d'introduire un mécanisme de création de redondance dans le graphe de contraintes annotées pour identifier les erreurs d'annotation.
+		Un tel mécanisme n'a pas encore été implémenté mais pourrait facilement être intégré aux implémentations \texttt{Python} déjà existantes (\cite{schild:2022:cognitivefactory-interactiveclustering}).
+		
+		% Piste potentielles à explorer.
+		Pour ce faire, le parcours de graphe et la création de cycle permettraient de vérifier la présence de conflits et ainsi de \textbf{provoquer des phases de revues de contraintes} si cela est nécessaire.
+		Une telle page de revue pourrait aussi être complétée par des analyses complémentaires, comme l'estimation du taux de contraintes n'ayant pas de redondance et représentant ainsi des erreurs cachées potentielles.
+	
+	
+	%%%
+	%%% Subsection 4.7.4: Etude ergonomique de l'interface d'annotation.
+	%%%
+	\subsection{Etude ergonomique de l'interface d'annotation}
+	\label{section:4.7.4-HYPOTHESES-NON-VERIFIEES-ERGONOMIQUE}
+	
+	% Introduction.
+	L'application web développée au cours de ce doctorat (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}) permet d'essayer rapidement notre méthodologie d'annotation.
+	Cependant, cette dernière n'a pu faire l'objet d'études poussées pour estimer la meilleure disposition des composants ou l'intérêt de certaines fonctionnalités d'annotation.
+	
+	% Piste potentielles à explorer.
+	Parmi les pistes potentielles à explorer, nous avons évoqué la possibilité d'\textbf{annoter plusieurs contraintes} dans une même interface (\textit{par exemple : annoter visuellement un mini-graphes de $4$ données plutôt que d'annoter simplement un couple de données}) et le besoin de \textbf{réaliser des analyses rapides} sur les \textit{clusters} ou sur le graphe de contraintes (voir \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}} et \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+	Toutes ces idées pourraient être l'objet d'études dédiées avec des groupes d'annotateurs différentes pour voir l'impact sur les performances et les biais de conception de modèles.
