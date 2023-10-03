@@ -102,7 +102,6 @@
 			- ...
 		
 		### 2.2.3. (logiciels)
-		>> ```Commentaire Erwan: revue à faire...```
 			- Glozz [Widlöcher & Mathet, 2009] http://www.glozz.org/
 			- Callisto [Day et al., 2004]
 			- MMAX2 [Müller, 2006] https://github.com/ottiram/MMAX2
@@ -113,8 +112,6 @@
 			- Inception [Klie et al., 2018] https://inception-project.github.io/
 			- Prodigy
 			- Excel
-			
-			> tri par niveaux de fonctionnalités / d'assistance ? assistance pas adapté ?
 		
 		
 	----------
@@ -154,7 +151,10 @@
 			- **problème de format, de mise en page, ...
 		
 		### 2.3.2. (coûts)
-			[fort:2022:manual-annotation-what], [bohmova-etal:2003:prague-dependency-treebank]
+			[fort:2022:manual-annotation-what]
+			[bohmova-etal:2003:prague-dependency-treebank]: entre 1996 et 2004, 22 personnes pour 600k$, 1.8m tokens
+			[marcus-mitchell-p.-etal:1999:treebank3]:
+			[candito-seddah:2012:corpus-sequoia-annotation] 59k€ pour 3.2k phrases (Morph.: morpho-syntactic annotation, Const: Phrase-based annotation, Dep: dependency conversion, Deep Synt: Deep syntax).
 			- temps: atelier, annotation, volume traité, ...
 			- argent: dev logiciel, recrutement, formation
 			- investissement : demander plus de boulot à ceux à qui ont veut simplifier la vie
@@ -209,6 +209,8 @@
 		
 		### 2.4.1. Avancées techniques:
 			- **Pré-annotation**: utiliser un modèle ou une heuristique pour pré-annoter
+				> - [dandapat-etal:2009:complex-linguistic-annotation] importance de l'assistance, mais biais de confirmation possible
+				> - [fort-sagot:2010:influence-preannotation-postagged]
 			- **Apprentissage actif**: utiliser un modèle pour sélectionner les données intéressante
 				> - [settles:2010:active-learning-literature] base active learning
 				> - [lampert-etal:2019:constrained-distance-based] A RELIRE !
@@ -221,7 +223,6 @@
 		
 		### 2.4.1. Avancées organisationnelles:
 			- **Création de guide**: y renseigner les règles, les définitions, les exemples, les contre-exemples, ...
-				> - [perrotin-etal:2018:annotation-actes-dialogue] dont manuel d’annotation est disponible en [asher-etal:2017:manuel-annotation-actes]
 				> - [fort-etal:2009:vers-methodologie-annotation] conseil pour normaliser certaine srègles
 				> - [dipper-etal:2004:useradaptive-annotation-guidelines] décrire le JDD, les intuitions linguistiques associées, ...
 			- **Redondance et adjudications**: confronter les visions et identifier les désaccords, utiliser les votes majoritaires, ...
