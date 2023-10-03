@@ -39,10 +39,6 @@
 				> - [shorten-etal:2021:text-data-augmentation] Review, rappel que c'est spécifique à la tâche et qu'il y a besoin de contrôler les biais de création
 				> - [shorten-khoshgoftaar:2019:survey-image-data] Review pour les images
 				> - [nicoletti-bass:2023:generative-ai-takes] biais data generation
-			- **Transfert d'apprentissage**: ré-utiliser un modèle pour ne pas reprendre à zéro
-				> - [zhuang-etal:2021:comprehensive-survey-transfer], [iman-etal:2023:review-deep-transfer]: nécessite moins de données
-			- **OpenSource**
-				> - [hugging-face:2016:hugging-face-ai]
 		
 		
 	### 2.3.2. Donc nos standards introduisent de la complexité.
@@ -127,6 +123,8 @@
 		- **Pré-annotation**: utiliser un modèle ou une heuristique pour pré-annoter
 			> - [dandapat-etal:2009:complex-linguistic-annotation] importance de l'assistance, mais biais de confirmation possible
 			> - [fort-sagot:2010:influence-preannotation-postagged]
+		- **Transfert d'apprentissage**: ré-utiliser un modèle pour ne pas reprendre à zéro et ainsi avoir moins de données à annoter
+			> - [zhuang-etal:2021:comprehensive-survey-transfer], [iman-etal:2023:review-deep-transfer]: nécessite moins de données
 		- **Apprentissage actif**: utiliser un modèle pour sélectionner les données intéressante
 			> - [settles:2010:active-learning-literature] base active learning
 			> - [lampert-etal:2019:constrained-distance-based] A RELIRE !

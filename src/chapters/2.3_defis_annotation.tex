@@ -5,14 +5,15 @@
 	%%% Introduction: annoncer la complexité due (1) aux données (2) à la tâche et (3) aux humains.
 	%%%
 	
-	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de zones d'ombres pouvant introduire des complications ou des biais, explicites ou implicites, dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
+	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de zones d'ombres pouvant introduire des complications dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
 	Pour aborder cette partie, nous alors voir :
 	\begin{itemize}
-		\item qu'il y a une forte pression sur la qualité des données constituant le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
-		\item que ce standard de qualité entretien une complexité inhérente aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
-		\item et que cette complexité provoque des différences de comportements chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
+		\item qu'il y a une forte pression sur la \textbf{qualité des données} devant constituer le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
+		\item que ce standard de qualité entretient une \textbf{complexité inhérente} aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
+		\item et que cette complexité provoque des \textbf{différences de comportements} chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
 	\end{itemize}
-	Nous profiterons aussi de ces points pour discuter des techniques et bonnes pratiques permettant de limiter les désagréments lors d'un projet d'annotation et identifier les freins lors de mises en application industrielles.
+	En détaillant chacun de ces trois points, nous discuterons de l'ensemble de techniques et bonnes pratiques mises en avant dans la littérature pour limiter les désagréments d'un projet d'annotation.
+	Nous identifierons aussi les freins récurant pouvant intervenir dans les mises en application industrielles.
 	
 	
 	%%%
@@ -23,7 +24,7 @@
 	
 		% Introduction: Machine Learning = reproduire par l'exemple.
 		Comme nous l'avons défini en \textsc{Section\ref{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}}, l'\textguillemets{\texttt{apprentissage automatique}} regroupe un ensemble de techniques dont l'objectif est de reproduire une tâche \textbf{par l'exemple} : il est donc normal de porter une attention particulière aux données utilisées, car la qualité du modèle de \textit{Machine Learning} va fortement dépendre de la qualité de sa base d'apprentissage.
-		Nous allons ici détailler trois défis actuels concernant le création d'un jeu de données.
+		Nous allons ici détailler trois défis actuels concernant cette création d'un jeu de données.
 		
 		
 		%%% 2.3.1.A. Problèmes de représentativité.
@@ -31,57 +32,116 @@
 		\label{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}
 			
 			% Problème représentativité.
-			Tout d'abord, accordons-nous sur le fait que certains phénomènes sont par essence complexes à représenter avec fidélité.
-			C'est par exemple le cas avec :
+			La phase de collecte de données est une étape importante du projet d'annotation.
+			Malheureusement, la littérature scientifique associée à cette tâche est assez légère alors que c'est précisément à ce moment que ce joue une caractéristique cruciale de la future base d'apprentissage : la \textbf{représentativité} du phénomène à modéliser.
+			
+			% Définir la représentativité à partir de la méthode de l'échantillon.
+			Cette notion est assez ambiguë, notamment car le terme technique \textguillemets{représentatif}fait écho à un mot de la vie courante qui peut avoir plusieurs sens au quotidien.
+			Dans \cite{kruskal-mosteller:1979:representative-sampling-nonscientific}, cinq définitions communes sont recensées :
 			\begin{itemize}
-				\item le traitement du langage :
+				\item \textguillemets{\textit{assertive claim}} : l'opérateur déclare que ses données sont représentatives du problème sans apporter d'arguments. Bien entendu, cette option est à bannir ;
+				\item \textguillemets{\textit{absence or presence of selective force}} : la représentativité du phénomène est supposée en sélectionnant des données de manière \textbf{purement aléatoire} ou en sélectionnant des données selon des critères particulièrement intéressants ; 
+				\item \textguillemets{\textit{miniature}} : aussi appelée \textbf{sélection stratifiée}, cette approche consiste à dire qu'un échantillon est représentatif d'un phénomène si la proportion de chacune de ses parties y est respecté ;
+				\item \textguillemets{\textit{typical/ideal case}} : cette définition consiste à représenter chaque partie du phénomène en utilisant \textbf{un exemple emblématique} ;
+				\item \textguillemets{\textit{population coverage}} : ici, la représentativité est associée à la présence \textbf{exhaustive} de l'ensemble des caractéristiques importantes du phénomène par au moins un exemple.
 			\end{itemize}
-			\todo[inline]{SUITE A REDIGER}
-			% \textsc{Section~\ref{section:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES}}
-			% donc collecte nombreuse ==> beaucoup de volume
 			
-			% exemple transaction BD: combinatoire des facteurs à prendre en compte
-			% exemple du langage: argot, ...
+			% Définir la représentativité à partir de la méthode d'échantillonnage.
+			Pour compléter ces définitions, \cite{kruskal-mosteller:1979:representative-sampling-ii} incitent sur le besoin de \textbf{définir avec précision la méthode d'\textit{échantillonnage}} plutôt que l'\textit{échantillon} lui-même : en effet, il est important de caractériser le phénomène à modéliser, de définir l'objectif de la collecte de données et de détailler comment cette collecte va être réalisée. 
+			De telles informations sont essentielles pour pouvoir juger de la valeur d'un échantillon par rapport à un cas d'usage et déterminer s'il est réutilisable dans un autre cas d'usage.
+			%
 			\begin{leftBarExamples}
-			
+				Illustrons nos propos avec la classification de l'état d'une bande dessinée à partir d'une photo.
+				Afin de représenter correctement le cas d'usage, nous pourrions collecter des exemples de \texttt{BD} de manière proportionnelles en fonction de dégradations fréquemment rencontrées par les libraires : la base d'apprentissage pourrait alors contenir des photos de documents en bon état, de couvertures froissées, de pages déchirées, de couleurs délavées, ... et tout ceci réparties de manière homogène dans le jeu de données.
+				Toutefois, cette base d'apprentissage ne sera plus représentative si nous voulons détecter la langue de la bande dessinée (auquel cas, une répartition sera plus adéquate).
 			\end{leftBarExamples}
 			
+			% Besoin de beaucoup d'exemples.
+			La description d'un phénomène reste cependant une \textbf{tâche difficile}, notamment lorsque que celui-ci possède un ensemble vaste et abstrait de caractéristiques à décrire.
+			Cette complexité de représentation conditionne alors le nombre d'exemples nécessaires pour dresser un portrait fidèle du phénomène, imposant parfois des volumes colossaux de données.
+			%
+			\begin{leftBarExamples}
+				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de millier de mots, il existe des variantes régionales ou divers jargons techniques, certains termes peuvent avoir plusieurs sens et certaines expressions peuvent dépendre de leur contexte comme l'humour ou les critiques, ...
+				Toutes ces spécificités, si elles doivent être représentées dans la base d'apprentissage, nécessitent de nombreux exemples pour permettre de capturer les différents aspects du langage à traiter.
+				On peut citer par exemple \texttt{MLSUM: The Multilingual Summarization Corpus} (\cite{scialom-etal:2020:mlsum-multilingual-summarization}), une base de $1.5$ millions d'articles de journaux sur $5$ langues pour entraîner un modèle de résumé automatique, ou encore \texttt{The Multilingual Amazon Reviews Corpus} (\cite{keung-etal:2020:multilingual-amazon-reviewsa}), une base de $1.26$ millions de commentaires de produits sur $6$ langues pour entraîner un modèle de classification de la note d'un commentaire sur $5$ étoiles.
+			\end{leftBarExamples}
 			
-			% citation biber: prendre le temps de caractériser son problème et son JDD
-			% data augmentation (attention aux biais), donc prenez le temps de bien décrire votre cas d'usage
+			% Discussion sur les biais de représentativités.
+			\todo[inline]{Biais de représentation dans les données, problème de discriminations, ...}
 			
-			
-			% donc beaucoup à annoter...
-			% transfert d'apprentissage
-			
+			% Augmentaire artificiellement les données.
+			\todo[inline]{Données artificielles et data augmentation pour corriger les biais ou représenter les données peu observables}
+				% \cite{clemmensen-kjaersgaard:2022:data-representativity-machine} ==> importance des données artificielle
+					% > [shorten-etal:2021:text-data-augmentation] Review, rappel que c'est spécifique à la tâche et qu'il y a besoin de contrôler les biais de création
+					% > [shorten-khoshgoftaar:2019:survey-image-data] Review pour les images
+					% > [nicoletti-bass:2023:generative-ai-takes] biais data generation
 		
 		%%% 2.3.1.B. Problèmes de bruits.
-			\subsubsection{Problèmes de bruits}
-			\label{section:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}
+		\subsubsection{Problèmes de bruits}
+		\label{section:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}
 			
-				% 
+			\todo[inline]{Exemple de bruits}
+			\todo[inline]{Besoins de prétraitements}
 		
 		
 		%%% 2.3.1.C. Problèmes de droits d'utilisation.
-			\subsubsection{Problèmes de droits d'utilisation}
-			\label{section:2.3.1.C-DEFIS-ANNOTATION-ASPECT-DONNEES-DROITS}
+		\subsubsection{Problèmes de droits d'utilisation}
+		\label{section:2.3.1.C-DEFIS-ANNOTATION-ASPECT-DONNEES-DROITS}
 			
+			\todo[inline]{Données opensources}
+			\todo[inline]{Droits d'utilisations limités}
+			\todo[inline]{Besoin d'auditabilité et réglementations}
+		
+	%%%
+	%%% Subsection 2.3.2: Défis concernant la complexité inhérente à la tâche d'annotation.
+	%%%
+	\subsection{Défis concernant la complexité inhérente à la tâche d'annotation}
+	\label{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}
+		\todo[inline]{SECTION: À RÉDIGER}
+		
+		%%% 2.3.2.A. Estimation de la complexité.
+		\subsubsection{Estimation de la complexité}
+		\label{section:2.3.2.A-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-ESTIMATION}
+		
+			\todo[inline]{citer et détailler [gut-bayerl:2004:measuring-reliability-manual]: juste le score IAA}
+			\todo[inline]{citer et détailler [fort-etal:2012:modeling-complexity-manual]: 6 points}
+			
+			\todo[inline]{quelques solutions: aproche non supervisée ou semi-supervisée (apprentissage actif, approche itérative)}
+		
+		%%% 2.3.2.B. Problèmes de coûts.
+		\subsubsection{Problèmes de coûts}
+		\label{section:2.3.2.B-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-COUTS}
+		
+			\todo[inline]{liste des coûts: temps, argents, recrutement, ...}
+			\todo[inline]{conséquence: charge de travail élevée}
+			\todo[inline]{quelques solutions: transfert d'apprentissage, pré-annotation, apprentissage actif}
 		
 		
-		%%%
-		%%% Subsection 2.3.2: Défis concernant la complexité inhérente à la tâche d'annotation.
-		%%%
-		\subsection{Défis concernant la complexité inhérente à la tâche d'annotation}
-		\label{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}
-			\todo[inline]{SECTION: À RÉDIGER}
+	%%%
+	%%% Subsection 2.3.3: Défis concernant les différences de comportements d'annotation.
+	%%%
+	\subsection{Défis concernant les différences de comportements d'annotation}
+	\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
+		\todo[inline]{SECTION: À RÉDIGER}
 		
+		%%% 2.3.3.A. Différences inter-annotateurs.
+		\subsubsection{Différences inter-annotateurs}
+		\label{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}
 		
-		%%%
-		%%% Subsection 2.3.3: Défis concernant les différences de comportements intra- et inter-annotateurs.
-		%%%
-		\subsection{Défis concernant les différences de comportements intra- et inter-annotateurs}
-		\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
-			\todo[inline]{SECTION: À RÉDIGER}
+			\todo[inline]{subjectivité}
+			\todo[inline]{expertise et formation}
+			
+			\todo[inline]{quelques solutions palliatives: évaluation, redondances}
+			\todo[inline]{quelques solutions de fonds: revues, subdiviser la tâche, guide, crowd-sourcing}
+		
+		%%% 2.3.3.B. Différences intra-annotateurs.
+		\subsubsection{Différences intra-annotateurs}
+		\label{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEURS}
+		
+			\todo[inline]{régulation charge de travail}
+			\todo[inline]{troubles}
+			\todo[inline]{travail mal reconnu voire ingrat}
+			\todo[inline]{quelques solutions: guide, revues, limiter le changement de contexte, gamification}
 	
 	
 	%%%
