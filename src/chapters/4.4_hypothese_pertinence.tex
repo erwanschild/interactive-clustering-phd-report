@@ -93,7 +93,7 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:C.1-DATASET-BANK-CARDS}.
+			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
 			
 			% Description des tentatives de la méthode.
 			Sur ce jeu de données, nous exécutons une tentative complète
@@ -236,7 +236,6 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-PROTOCOLE}}.
-			\todo{FORMAT: ajuster l’enchaînement pour ne pas avoir de page "blanche" avec l'algorithme.}
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotés (vérité terrain)}
@@ -787,7 +786,6 @@
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}}.
-			\todo{FORMAT: ajuster l’enchaînement pour ne pas avoir de page "blanche" avec l'algorithme.}
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotés (vérité terrain)}
@@ -885,7 +883,7 @@
 		
 			% Description statistiques.
 			La \textsc{Figure~\ref{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}} met en avant l'évolution de le pertinence moyenne estimée par l'opérateur
-			\todo{commentaire Gautier: est ce que ça vaudrait le coup d'en dire plus sur cet opérateur ? (c'est toi ?). Sinon par exemple décrire son expertise (ce qui le qualifie comme compétent pour rendre un avis sur l'exploitabilité des données)}
+			\todo{commentaire Gautier: décrire l'opérateur, son expertise, ...}
 			sur la base des résumés automatiques des \textit{clusters}.
 			Comme lors de l'analyse manuelle (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}), il est normal de retrouver une tendance générale à la diminution du nombre de \textit{clusters} inexploitables au profit de \textit{clusters} exploitables.
 			La différence principale réside dans l'absence du pic de croissance du nombre de \textit{clusters} partiellement exploitables, dont l'apogée était précédemment situé à l'itération $10$.

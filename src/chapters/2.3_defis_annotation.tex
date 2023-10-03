@@ -5,35 +5,83 @@
 	%%% Introduction: annoncer la complexité due (1) aux données (2) à la tâche et (3) aux humains.
 	%%%
 	
-	\todo[inline]{SECTION: À RÉDIGER: \\
-		- Les données doivent être représentatives (Qualité, Biais, Equilibrage, ...) ; \\
-		- Donc la tâche est complexe (...) ; \\
-		- Donc les opérateurs régulent leur charge de travail () !
-	}
+	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de zones d'ombres pouvant introduire des complications ou des biais, explicites ou implicites, dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
+	Pour aborder cette partie, nous alors voir :
+	\begin{itemize}
+		\item qu'il y a une forte pression sur la qualité des données constituant le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
+		\item que ce standard de qualité entretien une complexité inhérente aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
+		\item et que cette complexité provoque des différences de comportements chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
+	\end{itemize}
+	Nous profiterons aussi de ces points pour discuter des techniques et bonnes pratiques permettant de limiter les désagréments lors d'un projet d'annotation et identifier les freins lors de mises en application industrielles.
 	
 	
 	%%%
 	%%% Subsection 2.3.1: Défis concernant le besoin de qualité des données.
 	%%%
-	\subsection{Défis concernant le problème de qualité des données}
+	\subsection{Défis concernant le besoin de qualité des données}
 	\label{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}
-		\todo[inline]{SECTION: À RÉDIGER}
 	
-	
-	%%%
-	%%% Subsection 2.3.2: Défis concernant la complexité inhérente à la tâche d'annotation.
-	%%%
-	\subsection{Défis concernant la complexité inhérente à la tâche d'annotation}
-	\label{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}
-		\todo[inline]{SECTION: À RÉDIGER}
-	
-	
-	%%%
-	%%% Subsection 2.3.3: Défis concernant les différences de comportements intra- et inter-annotateurs.
-	%%%
-	\subsection{Défis concernant les différences de comportements intra- et inter-annotateurs}
-	\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
-		\todo[inline]{SECTION: À RÉDIGER}
+		% Introduction: Machine Learning = reproduire par l'exemple.
+		Comme nous l'avons défini en \textsc{Section\ref{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}}, l'\textguillemets{\texttt{apprentissage automatique}} regroupe un ensemble de techniques dont l'objectif est de reproduire une tâche \textbf{par l'exemple} : il est donc normal de porter une attention particulière aux données utilisées, car la qualité du modèle de \textit{Machine Learning} va fortement dépendre de la qualité de sa base d'apprentissage.
+		Nous allons ici détailler trois défis actuels concernant le création d'un jeu de données.
+		
+		
+		%%% 2.3.1.A. Problèmes de représentativité.
+		\subsubsection{Problèmes de représentativité}
+		\label{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}
+			
+			% Problème représentativité.
+			Tout d'abord, accordons-nous sur le fait que certains phénomènes sont par essence complexes à représenter avec fidélité.
+			C'est par exemple le cas avec :
+			\begin{itemize}
+				\item le traitement du langage :
+			\end{itemize}
+			\todo[inline]{SUITE A REDIGER}
+			% \textsc{Section~\ref{section:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES}}
+			% donc collecte nombreuse ==> beaucoup de volume
+			
+			% exemple transaction BD: combinatoire des facteurs à prendre en compte
+			% exemple du langage: argot, ...
+			\begin{leftBarExamples}
+			
+			\end{leftBarExamples}
+			
+			
+			% citation biber: prendre le temps de caractériser son problème et son JDD
+			% data augmentation (attention aux biais), donc prenez le temps de bien décrire votre cas d'usage
+			
+			
+			% donc beaucoup à annoter...
+			% transfert d'apprentissage
+			
+		
+		%%% 2.3.1.B. Problèmes de bruits.
+			\subsubsection{Problèmes de bruits}
+			\label{section:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}
+			
+				% 
+		
+		
+		%%% 2.3.1.C. Problèmes de droits d'utilisation.
+			\subsubsection{Problèmes de droits d'utilisation}
+			\label{section:2.3.1.C-DEFIS-ANNOTATION-ASPECT-DONNEES-DROITS}
+			
+		
+		
+		%%%
+		%%% Subsection 2.3.2: Défis concernant la complexité inhérente à la tâche d'annotation.
+		%%%
+		\subsection{Défis concernant la complexité inhérente à la tâche d'annotation}
+		\label{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}
+			\todo[inline]{SECTION: À RÉDIGER}
+		
+		
+		%%%
+		%%% Subsection 2.3.3: Défis concernant les différences de comportements intra- et inter-annotateurs.
+		%%%
+		\subsection{Défis concernant les différences de comportements intra- et inter-annotateurs}
+		\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
+			\todo[inline]{SECTION: À RÉDIGER}
 	
 	
 	%%%
@@ -41,9 +89,8 @@
 	%%%
 	\begin{leftBarSummary}
 		\begin{todolist}
-			\item[\itemok] L'enjeu d'un projet d'annotation consiste à avoir des données de qualité qui soient représentatives du problème à traiter ;
-			\item[\itemok] Or la tâche d'annotation et son exigence de qualité engendre de la complexité, et donc une charge de travail élevée ;
-			\item[\itemok] Pour réguler cette charge de travail élevée, chaque opérateur va adapter sa tâche pour la rendre supportable, créant alors des différences de comportement.
-			% [bayerl-paul:2011:what-determines-intercoder] : plus on est nombreux, moins on est d'accord
+			\item[\itemok] L'enjeu d'un projet d'annotation consiste à avoir des \textbf{données de qualité} qui soient représentatives du problème à traiter ;
+			\item[\itemok] Or la tâche d'annotation et son exigence de qualité engendre de la \textbf{complexité}, et donc une \textbf{charge de travail élevée} ;
+			\item[\itemok] Pour réguler cette charge de travail élevée, chaque opérateur va \textbf{adapter sa tâche} pour la rendre supportable, créant alors des \textbf{différences de comportement}.
 		\end{todolist}
 	\end{leftBarSummary}

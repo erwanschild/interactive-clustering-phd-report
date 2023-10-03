@@ -102,7 +102,7 @@
 			En s'appuyant sur les résultats précédemment obtenus,
 			nous allons analyser l'influence des différentes tâches employées (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) et de leurs paramètres sur la vitesse de convergence vers la vérité terrain.
 			% Description implémentation de l'interactive clustering.
-			Nous utilisons à nouveau le jeu de données \texttt{Bank Cards (v1.0.0)} (cf. annexe~\ref{annex:C.1-DATASET-BANK-CARDS}) comme vérité terrain, sur lequel nous testons $192$ combinaisons de paramétrage, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
+			Nous utilisons à nouveau le jeu de données \texttt{Bank Cards (v1.0.0)} (cf. annexe~\ref{annex:A.1-DATASET-BANK-CARDS}) comme vérité terrain, sur lequel nous testons $192$ combinaisons de paramétrage, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
 			Pour plus de détails sur ces algorithmes, référez-vous à la \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}.
 			
 			% Description de l'évaluation et Seuils d'évaluation.
@@ -770,14 +770,28 @@
 			Nous préférons donc nous concentrer sur deux seuils d'annotation plus réalistes : celui d'une \textbf{annotation partielle} (atteindre $90$\% de \texttt{v-measure} avec la vérité terrain) et celui d'une \textbf{annotation suffisante} (atteindre $100$\% de \texttt{v-measure} avec la vérité terrain en un minimum de contraintes). 
 			
 			% Meilleur paramétrage.
-			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitement}\todo{remarque sur la valeur de eta2}, \textbf{vectorisation}\todo{remarque sur la valeur de eta2}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
+			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{\textit{clustering} sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
 			\begin{enumerate}
-				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne $950$ annotations de contraintes pour obtenir une \texttt{v-measure} de $90$\% ;
-				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Avec ce paramétrage, il faut en moyenne $1~750$ annotations de contraintes pour obtenir une \texttt{v-measure} de $100$\% ;
+				% Annotation partielle.
+				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				Avec ce paramétrage, il faut en moyenne $950$ annotations de contraintes pour obtenir une \texttt{v-measure} de $90$\% ;
+				% Annotation suffisante.
+				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				Avec ce paramétrage, il faut en moyenne $1~750$ annotations de contraintes pour obtenir une \texttt{v-measure} de $100$\% ;
+				% Annotation exhaustive.
 				\item le cas d'une \textbf{annotation exhaustive} (annoter toutes les contraintes possibles sur les données) n'est pas explicité ici mais peut se déduire des résultats décrits plus haut.
 			\end{enumerate}
-			
-			\todo[inline]{A REDIGER: Note d'auteur sur l'intérêt du \texttt{samp.closest} qui semble être adapté}
+			%
+			\begin{leftBarAuthorOpinion}
+				% Prétraitement et Vectorisation.
+				On note que les facteurs de prétraitement et de vectorisation sont significatifs possèdent toutefois de faibles valeurs de variance expliquée ($\eta^{2} < 0.40$).
+				
+				% Echantillonnage et Clustering.
+				Les facteurs de \textit{clustering} et d'échantillonnage ont quand à eux des valeurs plus fortes ($\eta^{2} > 0.70$), dénotant ainsi un plus grand pouvoir explicatif de la variance des résultats.
+				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{clusters} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tord.
+				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, on sait que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, ont sait qu'il faut séparer les deux données sans exprimer dans quels \textit{clusters} ils doivent aller}).
+				Ainsi, nous sommes d'avis que l'échantillonnage \texttt{sampl.closest.diff} est efficiente car elle permet d'introduire efficacement des contraintes dont l'utilité est immédiate pour corriger le \textit{clustering}.
+			\end{leftBarAuthorOpinion}
 
 			%%% Avantages.
 			Ainsi, cette étude permet de répondre à la limite du nombre de contraintes requis (discutée dans l'hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}).

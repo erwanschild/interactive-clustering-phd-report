@@ -1,4 +1,4 @@
-\chapter{Proposition d'un \textit{Clustering Interactif}}
+\chapter{Proposition d'un \textit{Clustering Interactif} pour assister la modélisation d'un jeu de données}
 \label{chapter:3-CLUSTERING-INTERACTIF}
 	
 	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTS: L'ANNOTATION C'EST COMPLIQUÉ !
@@ -35,9 +35,9 @@
 
 
 	%%%%%--------------------------------------------------------------------
-	%%%%% Section 3.1: Intuitions à l'origine de notre méthode.
+	%%%%% Section 3.1: Intuitions à l'origine.
 	%%%%%--------------------------------------------------------------------
-	\section{Intuitions à l'origine de notre méthode}
+	\section{Intuitions à l'origine}
 	\label{section:3.1-DESCRIPTION-INTUITIONS}
 
 		% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
@@ -65,9 +65,9 @@
 
 
 	%%%%%--------------------------------------------------------------------
-	%%%%% Section 3.2: Description théorique de notre \textit{clustering} interactif.
+	%%%%% Section 3.2: Description théorique.
 	%%%%%--------------------------------------------------------------------
-	\section{Description théorique de notre \textit{clustering} interactif}
+	\section{Description théorique}
 	\label{section:3.2-DESCRIPTION-THEORIQUE}
 
 		%%% A. Description détaillée.
@@ -131,7 +131,7 @@
 		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, nous y ajouterons les contraintes annotées par l'expert grâce à ses connaissances métiers (nous entrerons en détails en décrivant la phase d'annotation).
 		Il faut aussi une première segmentation des données par la machine : celle-ci se réalise par l'exécution d'un algorithme de \textit{clustering}.
 		Nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de le réglage de l'algorithme de \textit{clustering} et ses hyper-paramètres.
-		Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter ou laissés par défaut.
+		Ces derniers pourront être déterminés par un \textit{data scientist} en fonction du problème à traiter ou laissés par défaut.
 		Il est à noter que cette première segmentation des données est réalisée sans bénéficier de la connaissance de l'expert, il est donc peu probable que le résultat soit pertinent à ce stade.
 		
 		% Description de l'échantillonnage.
@@ -149,12 +149,13 @@
 		sur la thématique concernée\footnote{Exemples de thématiques : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...},
 		sur l'action désirée\footnote{Exemples d'actions : \textit{souscrire} vs. \textit{résilier} ; \textit{activer} vs. \textit{désactiver} ; \textit{s'informer} vs. \textit{réaliser}, ...},
 		ou encore sur le besoin de l'utilisateur\footnote{Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...}.
-		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaire et différentes deux données\todo{figure, ref subsection:3.3.2.}.
+		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données (voir la gestion des conflits en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
 		
 		% Description du clustering.
 		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 8 et 9}). Cette devra respecter les contraintes préalablement définies par l'expert, nous nous tournons donc vers l'utilisation d'un \textit{clustering} sous contraintes.
 		Au fur et à mesure des itérations, de plus en plus de contraintes seront ajoutées pour corriger le \textit{clustering}. ainsi, au bout d'un certain nombre d'itérations, la segmentation des données reflétera la vision que l'expert aura voulu transmettre.
-		Comme précédemment, nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de \textit{clustering} et ses hyper-paramètres. Ces derniers pourront être déterminés par un data scientist en fonction du problème à traiter, estimés en fonction de l'itération et des contraintes disponibles, ou laissés par défaut.
+		Comme précédemment, nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de l'algorithme de \textit{clustering} et ses hyper-paramètres.
+		Ces derniers pourront être déterminés par un \textit{data scientist} en fonction du problème à traiter, estimés en fonction de l'itération et des contraintes disponibles, ou laissés par défaut.
 		
 		% Description de l'évaluation.
 		Comme la méthode est itérative, il faut pouvoir estimer des \textbf{cas d'arrêt} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 10 à 12}).
@@ -410,12 +411,12 @@ connected_components = constraints_manager.get_connected_components()
 		En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 		
 		% cognitivefactory.interactive-clustering.utils.clustering : Implémentation.
-		Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes (référez-vous à la section \todo{ref:section2:clustering} pour les détails de fonctionnement des algorithmes non contraints) :
+		Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes :
 		\begin{enumerate}
-			\item \textbf{KMeans}, dans sa version \textit{COP} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \textit{MPC} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
-			\item \textbf{DBscan}, dans sa version \textit{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
+			\item \textbf{KMeans}, dans sa version \texttt{COP} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \texttt{MPC} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
+			\item \textbf{DBscan}, dans sa version \texttt{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
 			\item \textbf{Hiérarchique} (\cite{davidson-ravi:2005:agglomerative-hierarchical-clustering}), avec quatre métriques de distances : \textit{single} (noté \texttt{clust.hier.sing}), \textit{complete} (noté \texttt{clust.hier.comp}), \textit{average} (noté \texttt{clust.hier.avg}) et \textit{ward} (noté \texttt{clust.hier.ward}) ;
-			\item \textbf{Spectral}, dans sa version \textit{SPEC} (\cite{kamvar-etal:2003:spectral-learning}), noté \texttt{clust.spec} ;
+			\item \textbf{Spectral}, dans sa version \texttt{SPEC} (\cite{kamvar-etal:2003:spectral-learning}), noté \texttt{clust.spec} ;
 			\item \textbf{Propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}), noté \texttt{clust.affprop}.
 		\end{enumerate}
 		
@@ -457,10 +458,10 @@ clustering_result = clustering_model.cluster(
 """
 		\end{lstlisting}
 		
-		% cognitivefactory.interactive-clustering.utils.clustering : Historique.		
+		% cognitivefactory.interactive-clustering.utils.clustering : Historique.
 		\begin{leftBarInformation}
-			Dans le cadre d'un projet étudiant au sein de l'école Télécom Physique Strasbourg, les implémentations des algorithmes KMeans (MPC), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
-			Les autres algorithmes (KMeans (COP), hiérarchique et spectral (SPEC)) ont été implémentés au début de ce doctorat.
+			Dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg, les implémentations des algorithmes  KMeans (\texttt{MPC}), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
+			Les autres algorithmes (KMeans (\texttt{COP}), hiérarchique et spectral (\texttt{SPEC})) ont été implémentés au début de ce doctorat.
 		\end{leftBarInformation}
 		
 		
