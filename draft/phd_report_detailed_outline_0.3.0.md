@@ -13,7 +13,7 @@
 			- Variabilité inter- et intra-domaines (*Exemple du langage: argot, expression contextuelles, variations régionales, humour caché, appropriation d'autres langues, coréférence, ...*)
 			> `Exemple 1`: [biber:1993:representativeness-corpus-design]: propose de caractériser les features d'un dataset linguistique avant de passer à l'annotation pour bien cerner les données présentes (nombre, taille du vocabulaire, ...)
 			> `Exemple 2`: [martinez-alonso-etal-2016-noisy] exemple de difficultés avec des textes de chat de jeux vidéos
-		#### Qualité
+		#### Bruits
 			- **Bruits et dégradation**
 				> flou, fautes de frappes, bruits parasites, ...
 				> format, mise en page,cadrage, ...

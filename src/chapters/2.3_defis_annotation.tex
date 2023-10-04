@@ -31,66 +31,198 @@
 		\subsubsection{Problèmes de représentativité}
 		\label{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}
 			
-			% Problème représentativité.
+			% Introduction : Une collecte doit être "représentative" du problème.
 			La phase de collecte de données est une étape importante du projet d'annotation.
 			Malheureusement, la littérature scientifique associée à cette tâche est assez légère alors que c'est précisément à ce moment que ce joue une caractéristique cruciale de la future base d'apprentissage : la \textbf{représentativité} du phénomène à modéliser.
 			
 			% Définir la représentativité à partir de la méthode de l'échantillon.
-			Cette notion est assez ambiguë, notamment car le terme technique \textguillemets{représentatif}fait écho à un mot de la vie courante qui peut avoir plusieurs sens au quotidien.
-			Dans \cite{kruskal-mosteller:1979:representative-sampling-nonscientific}, cinq définitions communes sont recensées :
+			Cette notion est assez ambiguë, notamment car le terme technique \textguillemets{représentatif}fait écho à un mot de la vie courante qui peut avoir plusieurs sens.
+			Dans \cite{kruskal-mosteller:1979:representative-sampling-nonscientific} et \cite{clemmensen-kjaersgaard:2022:data-representativity-machine}, plusieurs usages communs de ce terme sont recensés :
 			\begin{itemize}
-				\item \textguillemets{\textit{assertive claim}} : l'opérateur déclare que ses données sont représentatives du problème sans apporter d'arguments. Bien entendu, cette option est à bannir ;
-				\item \textguillemets{\textit{absence or presence of selective force}} : la représentativité du phénomène est supposée en sélectionnant des données de manière \textbf{purement aléatoire} ou en sélectionnant des données selon des critères particulièrement intéressants ; 
-				\item \textguillemets{\textit{miniature}} : aussi appelée \textbf{sélection stratifiée}, cette approche consiste à dire qu'un échantillon est représentatif d'un phénomène si la proportion de chacune de ses parties y est respecté ;
-				\item \textguillemets{\textit{typical/ideal case}} : cette définition consiste à représenter chaque partie du phénomène en utilisant \textbf{un exemple emblématique} ;
-				\item \textguillemets{\textit{population coverage}} : ici, la représentativité est associée à la présence \textbf{exhaustive} de l'ensemble des caractéristiques importantes du phénomène par au moins un exemple.
+				\item \textguillemets{\textit{assertive claim}} :
+				l'opérateur déclare que ses données sont représentatives du problème sans apporter d'arguments. Bien entendu, cette option est à bannir car elle n'apporte aucune information et peut cacher des vices de conception du modèle ;
+				\item \textguillemets{\textit{absence or presence of selective force}} :
+				la représentativité du phénomène est supposée en sélectionnant des données de \textbf{manière aléatoire} et en limitant le nombre de critères de sélection à ceux nécessaires pour l'étude réalisée ; 
+				\item \textguillemets{\textit{miniature}} :
+				aussi appelée \textbf{sélection stratifiée}, cette approche consiste à dire qu'un échantillon est représentatif d'un phénomène si la proportion de chacune de ses parties y est respectée
+				(\textit{par exemple, un sondage peut respecter la répartition des tranches d'âge d'une population}) ;
+				\item \textguillemets{\textit{typical/ideal case}} :
+				cette définition consiste à représenter chaque partie du phénomène par un \textbf{exemple emblématique} ou un \textbf{exemple moyen}
+				(\textit{par exemple, on peut illustrer l'univers de la bande dessinée française par un numéro de la saga \texttt{Astérix \& Obélix}}) ;
+				\item \textguillemets{\textit{population coverage}} :
+				ici, la représentativité est associée à la présence \textbf{exhaustive} de l'ensemble des caractéristiques importantes du phénomène avec au moins un exemple par caractéristique
+				(\textit{par exemple, dans l'arche de Noé, il y devait y avoir au moins un couple de chaque animaux}).
 			\end{itemize}
 			
 			% Définir la représentativité à partir de la méthode d'échantillonnage.
-			Pour compléter ces définitions, \cite{kruskal-mosteller:1979:representative-sampling-ii} incitent sur le besoin de \textbf{définir avec précision la méthode d'\textit{échantillonnage}} plutôt que l'\textit{échantillon} lui-même : en effet, il est important de caractériser le phénomène à modéliser, de définir l'objectif de la collecte de données et de détailler comment cette collecte va être réalisée. 
-			De telles informations sont essentielles pour pouvoir juger de la valeur d'un échantillon par rapport à un cas d'usage et déterminer s'il est réutilisable dans un autre cas d'usage.
+			Pour compléter ces définitions, \cite{kruskal-mosteller:1979:representative-sampling-ii} incitent sur le besoin de \textbf{définir avec précision la méthode d'\textit{échantillonnage}} plutôt que l'\textit{échantillon} lui-même : en effet, il est important de caractériser le phénomène à modéliser, de définir l'objectif de la collecte de données et de détailler comment cette collecte va être réalisée.
+			\cite{clemmensen-kjaersgaard:2022:data-representativity-machine} introduisent à leur tour trois mesures pour aider à caractériser une collecte : la \textit{réflexion} (est-ce l'échantillon respecte la distribution de la population ?), la \textit{couverture} (est-ce que l'échantillon illustre la diversité de la population ?) et la \textit{présence de représentants} (est-ce que l'échantillon contient les exemples emblématiques de la population ?).
+			De telles informations sont essentielles pour pouvoir juger de la valeur d'un échantillon par rapport à un cas d'usage et déterminer s'il est réutilisable dans pour une autre application.
 			%
 			\begin{leftBarExamples}
-				Illustrons nos propos avec la classification de l'état d'une bande dessinée à partir d'une photo.
-				Afin de représenter correctement le cas d'usage, nous pourrions collecter des exemples de \texttt{BD} de manière proportionnelles en fonction de dégradations fréquemment rencontrées par les libraires : la base d'apprentissage pourrait alors contenir des photos de documents en bon état, de couvertures froissées, de pages déchirées, de couleurs délavées, ... et tout ceci réparties de manière homogène dans le jeu de données.
-				Toutefois, cette base d'apprentissage ne sera plus représentative si nous voulons détecter la langue de la bande dessinée (auquel cas, une répartition sera plus adéquate).
+				% Cas d'usage : classification d'état.
+				Illustrons nos propos avec la classification de l'état d'une bande dessinée à partir d'une photo (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}).
+				Afin de représenter correctement le cas d'usage, nous pourrions collecter des exemples de \texttt{BD} couvrant l'ensemble des dégradations fréquemment identifiées par les libraires (couvertures froissées, pages déchirées, couleurs délavées, ...) et les intégrer de manière proportionnelle dans la base d'apprentissage.
+				Nous pourrions aussi nous assurer de la présence de cas emblématiques permettant de catégoriser les \texttt{BD} en "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}".
+				
+				% Autre cas d'usage : pas représentatif.
+				Toutefois, cette base d'apprentissage ne sera plus représentative si nous voulons détecter la langue de la bande dessinée (auquel cas, une répartition par langue sera a priori plus adéquate).
 			\end{leftBarExamples}
 			
 			% Besoin de beaucoup d'exemples.
 			La description d'un phénomène reste cependant une \textbf{tâche difficile}, notamment lorsque que celui-ci possède un ensemble vaste et abstrait de caractéristiques à décrire.
-			Cette complexité de représentation conditionne alors le nombre d'exemples nécessaires pour dresser un portrait fidèle du phénomène, imposant parfois des volumes colossaux de données.
+			Nous comptons généralement sur la loi des grands nombres pour espérer dresser un portrait fidèle du phénomène, mais cela impose parfois de traiter des volumes colossaux de données.
 			%
 			\begin{leftBarExamples}
-				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de millier de mots, il existe des variantes régionales ou divers jargons techniques, certains termes peuvent avoir plusieurs sens et certaines expressions peuvent dépendre de leur contexte comme l'humour ou les critiques, ...
-				Toutes ces spécificités, si elles doivent être représentées dans la base d'apprentissage, nécessitent de nombreux exemples pour permettre de capturer les différents aspects du langage à traiter.
+				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de millier de mots, il existe des variantes régionales et divers jargons techniques, certains termes peuvent avoir plusieurs sens et des expressions peuvent dépendre de leur contexte (comme l'humour ou les critiques).
+				Pour représenter ces spécificités (listées de manière non exhaustive), une base d'apprentissage devra contenir de nombreux exemples afin de capturer les différents aspects du langage à traiter.
 				On peut citer par exemple \texttt{MLSUM: The Multilingual Summarization Corpus} (\cite{scialom-etal:2020:mlsum-multilingual-summarization}), une base de $1.5$ millions d'articles de journaux sur $5$ langues pour entraîner un modèle de résumé automatique, ou encore \texttt{The Multilingual Amazon Reviews Corpus} (\cite{keung-etal:2020:multilingual-amazon-reviewsa}), une base de $1.26$ millions de commentaires de produits sur $6$ langues pour entraîner un modèle de classification de la note d'un commentaire sur $5$ étoiles.
 			\end{leftBarExamples}
 			
-			% Discussion sur les biais de représentativités.
-			\todo[inline]{Biais de représentation dans les données, problème de discriminations, ...}
-			
-			% Augmentaire artificiellement les données.
-			\todo[inline]{Données artificielles et data augmentation pour corriger les biais ou représenter les données peu observables}
-				% \cite{clemmensen-kjaersgaard:2022:data-representativity-machine} ==> importance des données artificielle
-					% > [shorten-etal:2021:text-data-augmentation] Review, rappel que c'est spécifique à la tâche et qu'il y a besoin de contrôler les biais de création
-					% > [shorten-khoshgoftaar:2019:survey-image-data] Review pour les images
-					% > [nicoletti-bass:2023:generative-ai-takes] biais data generation
+			% Discussion sur les biais de sur-représentativités ou sous-représentativités.
+			Toutefois, la masse de données ne résout pas toujours tous les problèmes de représentativité.
+			Une des difficultés récurrentes concerne les aspects peu fréquents d'un phénomène qui se retrouvent ainsi \textbf{sous-représentés} : si l'enjeu du modèle à concevoir consiste justement à détecter ou reproduire ces aspects, il peut être intéressant de volontairement biaiser les proportions du corpus d'entraînement pour mieux les illustrer.
+			À l'inverse, des cas communs ou fréquents peuvent être \textbf{sur-représentées} : il est parfois nécessaire de limiter leur occurrence dans le corpus d'apprentissage pour ne pas concevoir un modèle véhiculant des généralités ou des stéréotypes.
+			Dans les deux cas, \textbf{toute intervention va introduire un biais} : l'opération doit donc être réfléchie et judicieusement réalisée pour contribuer à la finalité du modèle, d'où l'intérêt de bien la documenter pour faire entendre ce que vous voulez signifier par \textguillemets{échantillon représentatif}.
+			%
+			\begin{leftBarExamples}
+				% Problème de sous-représentation: Détecter la langue latine ou la langue corse.
+				D'une part, considérons le besoin de détecter la langue d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}).
+				Il est fort probable que la base d'apprentissage contiennent peu de données sur les parutions en langues régionales (en Corse, en Wallon, en Alsacien, ...).
+				Nous serons peut-être amener à ajouter des exemples supplémentaires pour espérer mieux les détecter et ainsi augmenter la \textit{couverture} de notre jeu de données.
+				
+				% Problème d'équilibrage: Stéréotypes de Stable Diffusion.
+				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion} réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
+				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière.
+				Ici, ce modèle dépeint les inégalités de notre société en représentant ses stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
+			\end{leftBarExamples}
+			%
+			\begin{leftBarIdea}
+				% Équilibrage par la génération de données.
+				Une piste pour équilibrer efficacement les corpus d'entraînement et permettre de corriger leurs biais consiste à utiliser des \textbf{données synthétiques} (\cite{jaipuria-etal:2020:deflating-dataset-bias}).
+				Ces données peuvent être créées manuellement ou être générées automatiquement (voir \cite{shorten-etal:2021:text-data-augmentation} pour une revue de génération de textes et \cite{shorten-khoshgoftaar:2019:survey-image-data} pour la génération d'image).
+				Bien entendue, une telle approche doit restée réfléchie pour ne pas introduire davantage de biais et pour répondre à un objectif précis d'équilibrage du jeu de données.
+			\end{leftBarIdea}
+		
 		
 		%%% 2.3.1.B. Problèmes de bruits.
 		\subsubsection{Problèmes de bruits}
 		\label{section:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}
+		
+			% Introduction : données bruités.
+			La qualité d'une base d'apprentissage dépend fortement du bruit qu'elle contient.
+			Ce bruit est inévitablement inséré lors de la collecte :
+			d'une part, la méthode de collecte elle-même peut en introduire (\textit{instrument de mesure faillible, erreur humaine, ...}) ;
+			d'autre part, par soucis de représentativité, le bruit intrinsèque du phénomène va être capturé (\textit{forte variabilité, présence d'irrégularité, ...}).
+			Un échantillon de données va donc forcément devoir se confronter 
+
+			% Classification des types de bruits.
+			En s'inspirant de \cite{maharana-etal:2022:review-data-preprocessing} et de \cite{alasadi-bhaya:2017:review-data-preprocessing}, nous dressons la liste suivante de problèmes récurrents sur les données suite à une collecte :
+			\begin{itemize}
+				% données non pertinentes
+				\item présence de \textbf{données non pertinentes} par rapport au cas d'usage ;
+				% variations parasites
+				\item dégradation des données par des \textbf{variations parasites} ;
+				% absence de valeurs
+				\item \textbf{absence de valeurs} descriptives essentielles ;
+				% incohérences / ambiguïté
+				\item présence d'\textbf{incohérences} ou d'\textbf{ambiguïté} entre les données ;
+			\end{itemize}
+			%
+			\begin{leftBarExamples}
+				% Problèmes: estimation du prix d'une BD.
+				Pour illustrer ces problèmes, considérons la tâche d'estimation du prix d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}) :
+				\begin{itemize}
+					% Exemple: données non pertinentes.
+					\item une donnée concernant le prix d'un roman ou d'une encyclopédie avoir été inséré par mégarde et pourrait être considéré comme données non pertinentes pour ce cas d'usage ;
+					% Exemple: variations parasites.
+					\item un changement de typographie (\textit{majuscules, minuscules, accents, ponctuation}) dans l'écriture d'un titre pourrait mal identifier une bande dessinée ;
+					% Exemple: absence de valeurs.
+					\item une information peut ne pas avoir été renseigné lors d'une transaction (l'année d'édition par exemple), alors que c'est une caractéristique importante de la prise de décision ;
+					% Exemple: incohérences / ambiguïté.
+					\item une même bande dessinée (avec les mêmes caractéristiques) peut avoir été vendue à deux prix radicalement différent, introduisant ainsi une légère ambiguïté dans les données.
+				\end{itemize}
+				
+				% Autres problèmes.
+				Des problèmes similaires peuvent impacter le traitement du texte (\textit{fautes de grammaticales ou syntaxiques, ambiguïtés ou sémantiques, omissions, ...}), des images (\textit{flous, mauvais cadrages, colorimétries gênantes, ...}) et de l'audio (\textit{bruits en arrière plan, saturations, coupures inopportunes, ...}).
+				% Problème d'image flou: classification de l'état d'une BD.
+				Par exemple, dans la tâche de classification de l'état d'une bande dessinée à partir d'une photo (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}), comment juger correctement de l'état d'une \texttt{BD} si la photo capturée est flou ?
+			\end{leftBarExamples}
 			
-			\todo[inline]{Exemple de bruits}
-			\todo[inline]{Besoins de prétraitements}
+			% Correction des données par le prétraitement et le nettoyage.
+			Pour limiter l'impact du bruit dans les données, \cite{alasadi-bhaya:2017:review-data-preprocessing} structurent les étapes de prétraitement de données entre quatre catégories :
+			\begin{itemize}
+				% 1. data cleaning: completer les données (mean, random, model, constante) et corriger le bruit des données (prétraitement, regroupement pour numérique).
+				\item le \textbf{nettoyage des données} : cette étape consiste à compléter les données manquantes (\textit{en prenant la valeur moyenne par exemple}), à filtrer les données aberrantes ou inintéressantes, et surtout à lisser le bruit dans les données en gommant les variations parasites ;
+				% 2. data integration: associer plusieurs sources de données pour les rendre consistente
+				\item l'\textbf{intégration des données} : dans certains cas, plusieurs sources de données sont disponibles, il peut être donc intéressant de croiser ces sources de données pour augmenter la consistance de la base d'apprentissage et identifier les incohérences ;
+				% 3. data transformation: transformer les données pour les exploiter plus facilement (en les lisant, les normalisant, ...)
+				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$});
+				% 4. data reduction: réduire la dimensionnalité et les features peu utiles
+				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, on peut quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimer pour réduire la complexité de la base d'apprentissage.
+			\end{itemize}
+			\cite{baledent:2022:complexite-annotation-manuelle} rappelle néanmoins que le document source (ou ici : la donnée brute) doit rester accessible pour la phase d'annotation pour ne pas manquer d'information potentiellement intéressante.
+			%
+			\begin{leftBarExamples}
+				% Correction: estimation du prix d'une BD.
+				Reprenons les problèmes évoqués précédemment sur la tâche d'estimation du prix d'une bande dessinée :
+				\begin{itemize}
+					% Correction: données non pertinentes.
+					\item une donnée inintéressante peut simplement être supprimée ;
+					% Correction: variations parasites.
+					\item normaliser les champs décrivant une bande dessinée en passant tout en minuscules limiterait les chances de mal l'identifier ;
+					% Correction: absence de valeurs.
+					\item une année d'édition manquante pourrait être identifiée par l'étiquette \texttt{inconnue} et un prix manquant pourrait être complété par la moyenne du prix des \texttt{BD} ayant les mêmes caractéristiques ;
+					% Correction: incohérences / ambiguïté
+					\item une prix faussé pourrait être identifié comme incohérent en analysant les prix des \texttt{BD} ayant les mêmes caractéristiques ;
+				\end{itemize}
+			\end{leftBarExamples}
 		
 		
-		%%% 2.3.1.C. Problèmes de droits d'utilisation.
-		\subsubsection{Problèmes de droits d'utilisation}
+		%%% 2.3.1.C. Problèmes d'exploitation et de diffusion.
+		\subsubsection{Problèmes d'exploitation et de diffusion}
 		\label{section:2.3.1.C-DEFIS-ANNOTATION-ASPECT-DONNEES-DROITS}
+		
+			% Introduction: toutes les données ne sont pas disponibles.
+			En plus des difficultés techniques sur la réalisation d'une collecte de données, il y a aussi contraintes législatives et stratégiques à prendre en compte.
 			
-			\todo[inline]{Données opensources}
-			\todo[inline]{Droits d'utilisations limités}
-			\todo[inline]{Besoin d'auditabilité et réglementations}
+			% Contraintes sur la propriété intellectuelle des données.
+			D'une part, il faut considérer le fait que certaines données sont protégées et ne peuvent pas être collectées ou exploitées librement.
+			C'est le cas de données soumises aux droits de \textbf{propriétés intellectuelles} qui empêchent cet usage : on peut citer par exemple \cite{loignon:2023:ia-medias-francais} qui évoque le levé de bouclier des médias français contre l'utilisation de leur article pour entraîner des modèles de langues, mais aussi \cite{les-echos:2023:ia-auteur-game} qui questionne la violation du \textbf{droit d'auteur} lorsque qu'un modèle est entraîné sur l'oeuvre d'un artiste et qu'il est capable de la reproduire.
+			
+			% Contraintes sur le consentement.
+			Ces limites concernent aussi la Réglementation Générale européenne sur la Protection des Données (\texttt{RGPD}, \cite{european-commission:2016:regulation-eu-2016}) restreignant les \textbf{collectes et usages non consenties} de données personnelles.
+			Ainsi, il n'est pas possible d’entraîner n'importe quel modèle sur n'importe quelles données, et une telle contrainte impose de manipuler les données en garantissant l'anonymat et la confidentialité des personnes consentantes.
+			
+			% Contraintes stratégiques.
+			Pour aller plus loin, cette notion de confidentialité touche les données personnelles, mais aussi le \textbf{caractère stratégique} d'une organisation.
+			En effet, dans le monde académique, les données manipulées sont le plus souvent publiques et peuvent être employées pour contribuer à la recherche scientifique.
+			Mais dans le secteur industriel, les jeux de données sont liés au domaine d'activité de l'entreprise : ils ont généralement requis un investissement conséquent en temps et en moyens, et ils représentent donc son avantage concurrentiel (\textit{par leur spécificité, leur caractère secret ou novateur, leur qualité compétitive, ...}).
+			Il est donc rare de voir une entreprise partager ses jeux de données car elle pourrait perdre un de ses atouts stratégiques.
+			
+			% Exemple OpenSource, mais limitation commerciale, donc beaucoup de recréation.
+			Un solution est de ce tourner les jeu de données \textbf{accessibles en \textit{Open Source}}.
+			Plusieurs plateformes mettre en effet à disposition des données ou des modèles, comme \textit{Hugging Face} (\cite{hugging-face:2016:hugging-face-ai}) ou \texttt{Zenodo} (\cite{re3data.org:2013:zenodo}).
+			Toutefois, deux limites subsistent à l'usage de ces données :
+			\begin{itemize}
+				\item les données mises à dispositions publiquement sont souvent assez générales et ne reflète pas la spécificité des cas d'usage de l'entreprise, limitant ainsi leur intérêt ;
+				\item les données publiques ne sont pas forcément ouvertes à un usage commercial (\textit{elles peuvent par exemple employé la licence \texttt{CC BY-NC 4.0}, \cite{creative-commons:2013:cc-bync-legal}}), restreignant ainsi les seules applications au domaine de la recherche et veille scientifique.
+			\end{itemize}
+			Pour ne pas faire de faux pas juridique, \cite{rajbahadur-etal:2022:can-use-this} propose une approche pour vérifier si une licence permet d'exploiter un jeu de données.
+			
+			% Besoin de tracabilité.
+			\begin{leftBarInformation}
+				Pour terminer nous mentionnons aussi une proposition de législation européenne concernant la futures réglementation des modèles d'intelligence artificielle (\texttt{IA Act}, \cite{european-commission:2021:proposal-regulation-european}).
+				Cette loi concerne les quatre objectifs suivants :
+				\begin{itemize}
+					\item \textguillemets{veiller à ce que les systèmes d'\texttt{IA} mis sur le marché de l'Union et utilisés soient sûrs et respectent la législation en vigueur en matière de droits fondamentaux et les valeurs de l'Union} ;
+					\item \textguillemets{garantir la sécurité juridique pour faciliter les investissements et l'innovation dans le domaine de l'\texttt{IA}} ;
+					\item \textguillemets{renforcer la gouvernance et l'application effective de la législation existante en matière de droits fondamentaux et des exigences de sécurité applicables aux systèmes d'\texttt{IA}} ;
+					\item \textguillemets{faciliter le développement d'un marché unique pour des applications d'\texttt{IA} légales, sûres et dignes de confiance, et empêcher la fragmentation du marché}.
+				\end{itemize}
+				Un besoin de traçabilité des données et des modèles se fait donc sentir, renforçant les recommandations à documenter et détailler les traitement et choix pour garantir la représentativité et la qualité des données des bases d'apprentissage.
+			\end{leftBarInformation}
+		
 		
 	%%%
 	%%% Subsection 2.3.2: Défis concernant la complexité inhérente à la tâche d'annotation.
@@ -106,7 +238,7 @@
 			\todo[inline]{citer et détailler [gut-bayerl:2004:measuring-reliability-manual]: juste le score IAA}
 			\todo[inline]{citer et détailler [fort-etal:2012:modeling-complexity-manual]: 6 points}
 			
-			\todo[inline]{quelques solutions: aproche non supervisée ou semi-supervisée (apprentissage actif, approche itérative)}
+			\todo[inline]{quelques solutions: approche non supervisée ou semi-supervisée (apprentissage actif, approche itérative)}
 		
 		%%% 2.3.2.B. Problèmes de coûts.
 		\subsubsection{Problèmes de coûts}
