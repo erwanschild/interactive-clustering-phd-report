@@ -94,7 +94,8 @@
 				% Problème d'équilibrage: Stéréotypes de Stable Diffusion.
 				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion} réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
 				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière.
-				Ici, ce modèle dépeint les inégalités de notre société en représentant ses stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
+				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation, ou sommes-nous plutôt favorables à modifier intentionnellement notre base d'apprentissage pour effacer les clichés de faciès ?
+				% Exemple pour faire réagir (non utilisé) : Si on veut générer une nouvelle BD Lucky Luke à partir des anciennes BDs, veut-on vraiment encore avoir un chinois à la blanchisserie ?
 			\end{leftBarExamples}
 			%
 			\begin{leftBarIdea}
@@ -119,27 +120,35 @@
 			% Classification des types de bruits.
 			Nous nous inspirons de \cite{maharana-etal:2022:review-data-preprocessing} et de \cite{alasadi-bhaya:2017:review-data-preprocessing} pour dresser une liste de problèmes récurrents sur les données suite à une collecte :
 			\begin{itemize}
-				% données non pertinentes
-				\item présence de \textbf{données non pertinentes} par rapport au cas d'usage : une collecte est automatique ou trop aléatoire peut sélectionner des données n'ayant pas de rapport avec le phénomène à modéliser. Garder de telles données peut introduire de la confusion dans le modèle à entraîner ;
-				% variations parasites
-				\item dégradation des données par des \textbf{variations parasites} : comme décrit en introduction de cette partie, les bruits peuvent être intrinsèques au phénomène ou être introduit par la méthode de collecte ;
-				% absence de valeurs
-				\item \textbf{absence de valeurs} descriptives essentielles : un oubli ou un erreur de mesure peuvent en être à l'origine. L'absence de certaines caractéristiques peuvent rendre inutiles une donnée ;
-				% incohérences / ambiguïté
-				\item présence d'\textbf{incohérences} ou d'\textbf{ambiguïté} entre les données :  ;
+				% Bruit: 1. Données non pertinentes.
+				\item présence de \textbf{données non pertinentes} par rapport au cas d'usage :
+				une collecte automatique ou aléatoire peut sélectionner des données n'ayant pas ou peu de rapport avec le phénomène à modéliser.
+				Garder de telles données peut introduire de la confusion dans le modèle à entraîner ;
+				% Bruit: 2. Variations parasites.
+				\item dégradation des données par des \textbf{variations parasites} :
+				comme décrit en introduction de cette partie, les bruits peuvent être intrinsèques au phénomène ou être introduits par la méthode de collecte.
+				Il convient de lisser ou limiter ces bruits pour ne pas perturber le modèle ;
+				% Bruit: 3. Absence de valeurs.
+				\item \textbf{absence de valeurs} descriptives essentielles :
+				cette absence peut venir d'une erreur de mesure, d'une méconnaissance du phénomène à caractériser, ou simplement d'un oubli.
+				Cependant, un trou de description peut rendre inutile une donnée si cela concerne une caractéristique importante du phénomène ;
+				% Bruit: 4. Incohérences et ambiguïtés.
+				\item présence d'\textbf{incohérences} ou d'\textbf{ambiguïté} entre les données :
+				les données sont rarement catégoriques et plusieurs interprétations sont parfois possibles (voir la discussion sur la subjectivité en \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}).
+				Toutefois, des contradictions entre les données peuvent pénaliser le modèle à entraîner.
 			\end{itemize}
 			%
 			\begin{leftBarExamples}
 				% Problèmes: estimation du prix d'une BD.
 				Pour illustrer ces problèmes, considérons la tâche d'estimation du prix d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}) :
 				\begin{itemize}
-					% Exemple: données non pertinentes.
+					% Exemple: 1. Données non pertinentes.
 					\item une donnée concernant le prix d'un roman ou d'une encyclopédie avoir été inséré par mégarde et pourrait être considéré comme données non pertinentes pour ce cas d'usage ;
-					% Exemple: variations parasites.
+					% Exemple: 2. Variations parasites.
 					\item un changement de typographie (\textit{majuscules, minuscules, accents, ponctuation}) dans l'écriture d'un titre pourrait mal identifier une bande dessinée ;
-					% Exemple: absence de valeurs.
+					% Exemple: 3. Absence de valeurs.
 					\item une information peut ne pas avoir été renseigné lors d'une transaction (l'année d'édition par exemple), alors que c'est une caractéristique importante de la prise de décision ;
-					% Exemple: incohérences / ambiguïté.
+					% Exemple: 4. Incohérences et ambiguïtés.
 					\item une même bande dessinée (avec les mêmes caractéristiques) peut avoir été vendue à deux prix radicalement différent, introduisant ainsi une légère ambiguïté dans les données.
 				\end{itemize}
 				
@@ -152,13 +161,13 @@
 			% Correction des données par le prétraitement et le nettoyage.
 			Pour limiter l'impact du bruit dans les données, \cite{alasadi-bhaya:2017:review-data-preprocessing} structurent les étapes de prétraitement de données entre quatre catégories :
 			\begin{itemize}
-				% 1. data cleaning: completer les données (mean, random, model, constante) et corriger le bruit des données (prétraitement, regroupement pour numérique).
+				% Approche: Data cleaning.
 				\item le \textbf{nettoyage des données} : cette étape consiste à compléter les données manquantes (\textit{en prenant la valeur moyenne par exemple}), à filtrer les données aberrantes ou inintéressantes, et surtout à lisser le bruit dans les données en gommant les variations parasites ;
-				% 2. data integration: associer plusieurs sources de données pour les rendre consistente
+				% Approche: Data integration.
 				\item l'\textbf{intégration des données} : dans certains cas, plusieurs sources de données sont disponibles, il peut être donc intéressant de croiser ces sources de données pour augmenter la consistance de la base d'apprentissage et identifier les incohérences ;
-				% 3. data transformation: transformer les données pour les exploiter plus facilement (en les lisant, les normalisant, ...)
+				% Approche: Data transformation.
 				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$});
-				% 4. data reduction: réduire la dimensionnalité et les features peu utiles
+				% Approche: Data reduction.
 				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, on peut quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimer pour réduire la complexité de la base d'apprentissage.
 			\end{itemize}
 			\cite{baledent:2022:complexite-annotation-manuelle} rappelle néanmoins que le document source (ou ici : la donnée brute) doit rester accessible pour la phase d'annotation pour ne pas manquer d'information potentiellement intéressante.
@@ -167,13 +176,13 @@
 				% Correction: estimation du prix d'une BD.
 				Reprenons les problèmes évoqués précédemment sur la tâche d'estimation du prix d'une bande dessinée :
 				\begin{itemize}
-					% Correction: données non pertinentes.
+					% Correction: 1. Données non pertinentes.
 					\item une donnée inintéressante peut simplement être supprimée ;
-					% Correction: variations parasites.
+					% Correction: 2. Variations parasites.
 					\item normaliser les champs décrivant une bande dessinée en passant tout en minuscules limiterait les chances de mal l'identifier ;
-					% Correction: absence de valeurs.
+					% Correction: 3. Absence de valeurs.
 					\item une année d'édition manquante pourrait être identifiée par l'étiquette \texttt{inconnue} et un prix manquant pourrait être complété par la moyenne du prix des \texttt{BD} ayant les mêmes caractéristiques ;
-					% Correction: incohérences / ambiguïté
+					% Correction: 4. Incohérences et ambiguïtés
 					\item une prix faussé pourrait être identifié comme incohérent en analysant les prix des \texttt{BD} ayant les mêmes caractéristiques ;
 				\end{itemize}
 			\end{leftBarExamples}
@@ -194,13 +203,20 @@
 			Ces limites concernent aussi la Réglementation Générale européenne sur la Protection des Données (\texttt{RGPD}, \cite{european-commission:2016:regulation-eu-2016}) restreignant les \textbf{collectes et usages non consenties} de données personnelles.
 			Ainsi, il n'est pas possible d’entraîner n'importe quel modèle sur n'importe quelles données, et une telle contrainte impose de manipuler les données en garantissant l'anonymat et la confidentialité des personnes consentantes.
 			
+			% Exemple 1 : propriété intellectuelle et consentement.
+			\begin{leftBarExamples}
+				Considérons la conception d'un modèle de synthèse vocale pour réaliser une audio-\texttt{BD} (voir \textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}).
+				D'une part, un tel projet nécessiterait déjà de demander les droits d'adaptation pour entrainer un modèle de synthèse vocale avec les doublage de l'adaptation télévisée de \texttt{Lucky Luke}.
+				D'autre part, l'utilisation de la voix d'une personne se confrontera probablement à plusieurs restrictions pour éviter que ce modèle ne soit détourné pour des usages non consentis par le doubleur.
+			\end{leftBarExamples}
+			
 			% Contraintes stratégiques.
 			Pour aller plus loin, cette notion de confidentialité touche les données personnelles, mais aussi le \textbf{caractère stratégique} d'une organisation.
 			En effet, dans le monde académique, les données manipulées sont le plus souvent publiques et peuvent être employées pour contribuer à la recherche scientifique.
 			Mais dans le secteur industriel, les jeux de données sont liés au domaine d'activité de l'entreprise : ils ont généralement requis un investissement conséquent en temps et en moyens, et ils représentent donc son avantage concurrentiel (\textit{par leur spécificité, leur caractère secret ou novateur, leur qualité compétitive, ...}).
 			Il est donc rare de voir une entreprise partager ses jeux de données car elle pourrait perdre un de ses atouts stratégiques.
 			
-			% Exemple OpenSource, mais limitation commerciale, donc beaucoup de recréation.
+			% Exemple OpenSource, mais limitation commerciale.
 			Un solution est de ce tourner les jeu de données \textbf{accessibles en \textit{Open Source}}.
 			Plusieurs plateformes mettre en effet à disposition des données ou des modèles, comme \textit{Hugging Face} (\cite{hugging-face:2016:hugging-face-ai}) ou \texttt{Zenodo} (\cite{re3data.org:2013:zenodo}).
 			Toutefois, deux limites subsistent à l'usage de ces données :
