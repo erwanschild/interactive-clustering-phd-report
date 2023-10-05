@@ -9,18 +9,20 @@ thesul.zip
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
+*.bak*
+*.cb
+*.flg
+*.fls
+*.fmt
+*.fot
 *.ist
 *.lof
 *.log
 *.lot
-*.fls
+*.mtc
 *.out
 *.toc
-*.fmt
-*.fot
-*.cb
 *.cb2
-*.bak*
 .*.lb
 
 ## Intermediate documents:
