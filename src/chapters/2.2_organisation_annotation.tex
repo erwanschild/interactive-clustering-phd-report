@@ -48,8 +48,8 @@
 			
 			% Importance de la modélisation.
 			Afin de garantir la qualité de cette labellisation, \textbf{il est important de ne pas précipiter la tâche d'annotation}.
-			En effet, l'objectif de cette tâche ainsi que les informations à annoter peuvent considérablement changer en fonction du phénomène à décrire, des données à disposition et de la finalité du modèle de \textit{Machine Learning} à entraîner.
-			Il est donc fortement conseillé de bien \textbf{modéliser le problème} pour clarifier les attendus et les modalités de cette annotation (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 1. \textit{\textbf{M}odelize}).
+			En effet, l'objectif de cette tâche peut considérablement changer en fonction du phénomène à décrire, des données à disposition et de la finalité du modèle de \textit{Machine Learning} à entraîner.
+			Il est donc fortement conseillé de bien \textbf{modéliser le problème} pour clarifier en amont les modalités et les attendus de l'annotation (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 1. \textit{\textbf{M}odelize}).
 			
 			% Modélisation vs Spécification, Guide d'annotation et exemple.
 			\cite{pustejovsky-stubbs:2012:natural-language-annotation} précisent notamment deux concepts importants de cette phase :
@@ -76,6 +76,7 @@
 				\item la balance entre \textit{généralité} et \textit{spécificité} : le niveau de détail requis dépend sans conteste du problème à modéliser : annoter trop peu de détail ne permet pas d'exploiter les données, mais en annoter trop peut rapidement complexifier la tâche et introduire des erreurs.
 				Il faut donc trouver le juste milieu pour réaliser un travail de qualité qui ne soit pas trop pénible.
 			\end{itemize}
+			%
 			\begin{leftBarExamples}
 				Dans la classification de langue exposée en \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}, nous y avons annoté chaque texte grâce à trois classes : "\texttt{Français}", "\texttt{Anglais}" et "\texttt{Allemand}".
 				\begin{itemize}
@@ -165,6 +166,7 @@
 				\item le modèle peut ne pas convenir aux utilisateurs finaux par manque d'ergonomie ou à cause d'une utilisation non prévue initialement ;
 				\item ou encore, un nouvel algorithme de \textit{Machine Learning} a priori plus performant requiert une modélisation différente pour traiter le problème.
 			\end{itemize}
+			%
 			\begin{leftBarExamples}
 				% Exemple Inflation prix
 				Pour illustrer nos propos, prenons la tâche d'estimation du prix d'une bande dessinée (cf. \textsc{Section~\ref{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}) : il se peut que les prix annoté sur les transactions ne soient plus d'actualité à cause de l'inflation, et que les données doivent être ré-annotées pour prendre en compte les nouvelles valeurs du marché.

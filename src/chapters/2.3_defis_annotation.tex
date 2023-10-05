@@ -95,7 +95,7 @@
 				% Problème d'équilibrage: Stéréotypes de Stable Diffusion.
 				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion} réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
 				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière.
-				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation, ou sommes-nous plutôt favorables à modifier intentionnellement notre base d'apprentissage pour effacer les clichés de faciès ?
+				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
 				% Exemple pour faire réagir (non utilisé) : Si on veut générer une nouvelle BD Lucky Luke à partir des anciennes BDs, veut-on vraiment encore avoir un chinois à la blanchisserie ?
 			\end{leftBarExamples}
 			%
@@ -278,31 +278,43 @@
 		\label{section:2.3.2.A-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-MODELISATION}
 		
 			% Introduction : Modélisation importante, mais compliquée !
-			Comme nous l'avons énoncé lors de la présentation au cours du cycle \texttt{MATTER} en \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}, la phase de modélisation est une étape importante du processus de conception de la base d'apprentissage.
-			% MAIS c'est complexe
+			Comme nous l'avons énoncé lors de la présentation au cours du cycle \texttt{MATTER} en \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}, la modélisation est une étape importante du processus de conception car elle permet de clarifier ce qu'il faut annoter et avec quel(s) objectif(s).
+			Toutefois, plusieurs aspects rendent cette tâche difficile à réaliser.
 			
-			\todo[inline]{A REDIGER}
-			% Complexité car il faut faire un choix (discutable). 
-				% \cite{baledent:2022:complexite-annotation-manuelle} rappelle que toute modélisation relève d'un choix.
-				% Pour éviter des ambiguïtés, il faut être stricte, mais pour pouvoir s'adapter, il faut être souple...
-				% Besoin d'écrire un guide :
-					% citer un guide pour montrer le travail accompli
-					% citer
+			% Complexité due à l'intervention d'experts métiers.
+			Tout d'abord, le projet d'annotation concerne généralement un cas d'usage précis dont la spécificité requiert l'intervention d'experts ayant des \textbf{connaissances métiers}.
+			Cependant, de tels experts n'ont pas forcément les compétences analytiques requises pour établir une représentation abstraite de leurs connaissances.
+			En effet, diverses questions sont à discuter concernant la modélisation à choisir :
+			\begin{itemize}
+				\item quel standard existe-t-il qui soit réutilisable dans ce cas d'usage ?
+				\item sera-t-elle stable et explicite à l'annotation ?
+				\item sera-t-elle traduite en un seul ou en plusieurs modèle(s) de \textit{Machine Laening} ?
+				\item sera-t-elle maintenable avec de grands volumes de données ?
+			\end{itemize}
+			Pour y répondre, ateliers de conception sont généralement organiser avec les experts, permettant ainsi d'identifier les notions pertinentes à intégrer dans la modélisation finale du problème.
+			Si le phénomène est intrinsèquement complexe, il est possible néanmoins que ces ateliers se réalisent en mode essai-erreur (à l'image du mini-cycle \texttt{MAMA}) jusqu'à trouver une modélisation qui puisse convenir, rendant cette tâche particulièrement pénible.
+			%
+			\begin{leftBarExamples}
+				Pour se rendre compte de cette difficulté, essayons par exemple de détailler l'ensemble des actions que peut entreprendre un robot conversationnel en domotique (comme \texttt{Alexa}, \cite{alexa-internet:2018:keyword-research-competitor}), et modélisons ensuite les diverses instructions verbales pouvant déclencher ces actions.
+			\end{leftBarExamples}
 			
-			\todo[inline]{A REDIGER}
-			% Complexité venant de la difficulté de spécification : mise à jour constante, ambiguités, ...
-				% > Organiser son schéma d'annotation
-				% > [nedellec-etal:2006:annotation-guidelines-machine] la précision des règles d'annotation est une des raison de leur performance
-				% > [lefeuvre-etal:2014:annotation-temporalite-corpus] détails de la limite de la norme ISO TimeML et les cas ou la norme s'applique mal sur certaines données
+			% Complexité due à la rigueur requise pour la conception.
+			Dans un second temps, il est nécessaire de structurer cette modélisation dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
+			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clareté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin, rigueur et précision.
+			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble des règles sans introduire de biais ni de confusion.
+			%
+			\begin{leftBarInformation}
+				Nous rappelons que \cite{dipper-etal:2004:useradaptive-annotation-guidelines} a dressé une liste de recommandations pour rédiger un guide d'annotation fiable.
+			\end{leftBarInformation}
 			
-			\todo[inline]{A REDIGER}
-			% Complexité venant du cas d'usage : spécifique, multi-tâche, non-scalable, confusion, ...
-			
-			
+			% Complexité due à la subjectivité de la tâche.
+			Malgré tout, \cite{baledent:2022:complexite-annotation-manuelle} rappelle que l'établissement d'une modélisation d'un phénomène \textbf{relève d'un choix}, et que celui-ci est par conséquent subjectif.
+			En effet, plusieurs représentations peuvent convenir à un même cas d'usage, et celui retenu devra être celui qui correspondra le plus à la finalité de votre modèle.
+			Ce choix, aussi avisé soit-il, entrera inévitablement en friction avec certaines données collectées qui s'inséreront difficilement au sein de la modélisation choisie.
+			Lors de la rédaction du guide d'annotation, il faut donc trouver l'équilibre entre entre la rigueur (\textit{pour fiabiliser la qualité de la labellisation}) et la flexibilité (\textit{pour pouvoir s'adapter aux données contrariantes}).
 			
 			% Solution pour limiter la complexité de modélisation.
 			\begin{leftBarIdea}
-				\todo[inline]{A REDIGER}
 				Quelques pistes approches peuvent être mises en places pour assister la modélisation d'un problème :
 				\begin{itemize}
 					% Solution: Modélisation non-supervisées (clustering ou topic modelling).
@@ -400,26 +412,45 @@
 			% Introduction : Une conséquence de la complexité est le coût de l'annotation.
 			Cette complexité a un impact non négligeable sur les coûts à engager dans un projet de conception de jeu de données.
 			
-			% Coûts temporels: il faut du temps.
-				% 
+			% Liste de coûts.
+			Nous pouvons notamment lister les exemples de coûts suivants :
+			\todo[inline]{A REDIGER}
+			\begin{itemize}
+				% Coûts temporels.
+				\item \textbf{coûts temporels} :
+				% Coûts en personnel.
+				\item \textbf{coûts en personnel} :
+				% Coûts financiers.
+				\item \textbf{coûts financiers} :
+			\end{itemize}
+			%
+			\begin{leftBarExamples}
+				\todo[inline]{A REDIGER}
+				Exemple bateau de 10~000 données à 10 secondes => 27,7h de travail (presque une semaine!) \\
+				\cite{bohmova-etal:2003:prague-dependency-treebank}: entre 1996 et 2004, $22$ personnes pour $600~k\$$, $1.8~m$ tokens \\
+				\cite{candito-seddah:2012:corpus-sequoia-annotation} $59~k€$ pour $3.2~k$ phrases (Morph.: morpho-syntactic annotation, Const: Phrase-based annotation, Dep: dependency conversion, Deep Synt: Deep syntax).
+			\end{leftBarExamples}
 			
-			% Coûts financiers.
+			% Solutions pour limiter les coûts
+			\begin{leftBarIdea}
+				\todo[inline]{A REDIGER}
+				Pour limiter les coûts, diverses solutions ont été proposées :
+				\begin{itemize}
+					% Solution: Pré-annotation pour préparer le travail de l'annotateur.
+					\item la \textbf{pré-annotation} :
+					% Solution: Apprentissage actif pour cibler le travail de l'annotateur.
+					\item l'\textbf{apprentissage actif} :
+					% Solution: Transfert d'apprentissage pour demander moins de données annotées.
+					\item le \textbf{transfert d'apprentissage} :
+				\end{itemize}
+			\end{leftBarIdea}
 			
-			% Coûts temporels.
-			% Coûts temporels.
-			% Coûts temporels.
-			
-			% Liste des coûts.
-			\todo[inline]{liste des coûts: temps, argents, recrutement, ...}
-			\todo[inline]{conséquence: charge de travail élevée}
-			
-			% 
-		\todo[inline]{quelques solutions pour limiter la complexité et diminuer les coûts: transfert d'apprentissage, pré-annotation, apprentissage actif}
-		\begin{leftBarIdea}
-			% Solution: Pré-annotation pour préparer le travail de l'annotateur.
-			% Solution: Apprentissage actif pour cibler le travail de l'annotateur.
-			% Solution: Transfert d'apprentissage pour demander moins de données annotées.
-		\end{leftBarIdea}
+			% Dérives dues aux coûts.
+			\begin{leftBarExamples}
+				\todo[inline]{A REDIGER}
+				\cite{perrigo-zorthian:2023:exclusive-openai-used}: Polémique OpenAI sur l'annotation par des Kényan à bas coûts \\
+				\cite{dzieza:2023:ai-lot-work} Payé pour 3 fois rien, une sous classe de travail mal payé émerge
+			\end{leftBarExamples}
 		
 		
 	%%%
@@ -433,8 +464,8 @@
 		\subsubsection{Différences inter-annotateurs}
 		\label{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}
 		
-			\todo[inline]{subjectivité}
-			\todo[inline]{expertise et formation}
+			\todo[inline]{intervention de la subjectivité}
+			\todo[inline]{importance de l'expertise et de la formation}
 			
 			\todo[inline]{quelques solutions palliatives: évaluation, redondances}
 			\todo[inline]{quelques solutions de fonds: revues, subdiviser la tâche, guide, crowd-sourcing}

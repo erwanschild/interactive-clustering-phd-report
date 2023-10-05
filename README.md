@@ -12,7 +12,12 @@ _TODO_
 - `MikTeX`: https://miktex.org/
 - `TeXMaker`: https://www.xm1math.net/texmaker/
 
-## Compilation
+### Packages LaTeX
+
+- morewrites
+- babel-french
+
+### Compilation
 
 Pour configurer `TeXMaker` (`Options` > `Configurer Texmaker` > `Compil rapide` > `utilisateur`) :
 ```TeXMaker
