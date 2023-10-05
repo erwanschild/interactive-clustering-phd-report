@@ -71,9 +71,10 @@
 			
 			% Besoin de beaucoup d'exemples.
 			La description d'un phénomène reste cependant une \textbf{tâche difficile}, notamment lorsque que celui-ci possède un ensemble vaste et abstrait de caractéristiques à décrire.
-			Nous comptons généralement sur la loi des grands nombres pour espérer dresser un portrait fidèle du phénomène, mais cela impose parfois de traiter des volumes colossaux de données.
+			Nous comptons généralement sur la loi des grands nombres pour espérer dresser un portrait fidèle du phénomène, mais cela impose parfois de traiter des \textbf{immenses quantités de données}.
 			%
 			\begin{leftBarExamples}
+				% Exemple de la variabilité du langage.
 				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de millier de mots, il existe des variantes régionales et divers jargons techniques, certains termes peuvent avoir plusieurs sens et des expressions peuvent dépendre de leur contexte (comme l'humour ou les critiques).
 				Pour représenter ces spécificités (listées de manière non exhaustive), une base d'apprentissage devra contenir de nombreux exemples afin de capturer les différents aspects du langage à traiter.
 				On peut citer par exemple \texttt{MLSUM: The Multilingual Summarization Corpus} (\cite{scialom-etal:2020:mlsum-multilingual-summarization}), une base de $1.5$ millions d'articles de journaux sur $5$ langues pour entraîner un modèle de résumé automatique, ou encore \texttt{The Multilingual Amazon Reviews Corpus} (\cite{keung-etal:2020:multilingual-amazon-reviewsa}), une base de $1.26$ millions de commentaires de produits sur $6$ langues pour entraîner un modèle de classification de la note d'un commentaire sur $5$ étoiles.
@@ -99,11 +100,24 @@
 			\end{leftBarExamples}
 			%
 			\begin{leftBarIdea}
-				% Équilibrage par la génération de données.
+				% Solution: Équilibrage par la génération de données.
 				Une piste pour équilibrer efficacement les corpus d'entraînement et permettre de corriger leurs biais consiste à utiliser des \textbf{données synthétiques} (\cite{jaipuria-etal:2020:deflating-dataset-bias}).
 				Ces données peuvent être créées manuellement ou être générées automatiquement (voir \cite{shorten-etal:2021:text-data-augmentation} pour une revue de génération de textes et \cite{shorten-khoshgoftaar:2019:survey-image-data} pour la génération d'image).
 				Bien entendue, une telle approche doit restée réfléchie pour ne pas introduire davantage de biais et pour répondre à un objectif précis d'équilibrage du jeu de données.
 			\end{leftBarIdea}
+			
+			% Problème d'obsolescence des données.
+			Une dernière difficulté concerne l'\textbf{obsolescence} des données au cours du temps.
+			En effet, peu de phénomènes sont immuables, et il est courant de devoir questionner la représentativité d'un problème pour prendre en compte des nouveaux aspects ou corriger des caractéristiques devenues inexactes.
+			%
+			\begin{leftBarExamples}
+				% Exemple de l'estimation du prix d'une BD.
+				Ce problème est particulièrement impactant si nous voulons estimer le prix d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}) car les oeuvres vont gagner ou perdre de la valeur avec le temps.
+				Par exemple, en $1949$, le premier album de \texttt{Lucky Luke} devait s'acheter pour quelques francs, alors qu'aujourd'hui, cette édition est estimée à plusieurs milliers d'euros.
+				
+				% Exemple de l'évolution du langage.
+				De manière similaire, le traitement du langage constate aussi des évolutions au cours du temps (\textit{nouveaux mots de vocabulaire, nouvelles expressions, influence de langues étrangères, ...}), imposant ainsi la mise à jour des jeux de données.
+			\end{leftBarExamples}
 		
 		
 		%%% 2.3.1.B. Problèmes de bruits.
@@ -166,7 +180,7 @@
 				% Approche: Data integration.
 				\item l'\textbf{intégration des données} : dans certains cas, plusieurs sources de données sont disponibles, il peut être donc intéressant de croiser ces sources de données pour augmenter la consistance de la base d'apprentissage et identifier les incohérences ;
 				% Approche: Data transformation.
-				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$});
+				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$, limiter les caractères spéciaux dans un texte});
 				% Approche: Data reduction.
 				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, on peut quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimer pour réduire la complexité de la base d'apprentissage.
 			\end{itemize}
@@ -245,24 +259,167 @@
 	%%%
 	\subsection{Défis concernant la complexité inhérente à la tâche d'annotation}
 	\label{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}
-		\todo[inline]{SECTION: À RÉDIGER}
+	
+		% Introduction: Se rendre compte de la complexité.
+		Selon \cite{baledent:2022:complexite-annotation-manuelle}, deux types de complexités sont à différencier :
+		\begin{itemize}
+			% Complexité propre aux données.
+			\item la \textbf{complexité propre au phénomène} que l'on veut modéliser :
+			nous avons pu apercevoir celle-ci dans la \textsc{Section~\ref{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}}, notamment en considérant la nécessité de collecter une grande quantité de données pour représenter la diversité du phénomène et le besoin de contrôler les bruits pour en assurer la qualité, ...
+			% Complexité propre à la procédure d'annotation.
+			\item et la \textbf{complexité propre à la procédure d'annotation} mise en place :
+			cet aspect est abordée brièvement dans la \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}} en exposant le besoin d'établir une modélisation du problème avec son guide d'annotation, le recours à un processus itératif pour affiner les problèmes de conception et différences d'interprétation (cycles \texttt{MATTER} et \texttt{MAMA}), ou encore l'intervention de différents utilisateurs ayant des compétences différentes.
+		\end{itemize}
+		Dans cette section, nous allons voir comment analyser et mesurer cette complexité, puis nous nous intéresserons aux coûts qu'elle peut engendrer lors de la conception du jeu de données.
 		
-		%%% 2.3.2.A. Estimation de la complexité.
-		\subsubsection{Estimation de la complexité}
-		\label{section:2.3.2.A-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-ESTIMATION}
 		
-			\todo[inline]{citer et détailler [gut-bayerl:2004:measuring-reliability-manual]: juste le score IAA}
-			\todo[inline]{citer et détailler [fort-etal:2012:modeling-complexity-manual]: 6 points}
+		%%% 2.3.2.A. Modélisation difficile du phénomène.
+		\subsubsection{Modélisation difficile du phénomène}
+		\label{section:2.3.2.A-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-MODELISATION}
+		
+			% Introduction : Modélisation importante, mais compliquée !
+			Comme nous l'avons énoncé lors de la présentation au cours du cycle \texttt{MATTER} en \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}, la phase de modélisation est une étape importante du processus de conception de la base d'apprentissage.
+			% MAIS c'est complexe
 			
-			\todo[inline]{quelques solutions: approche non supervisée ou semi-supervisée (apprentissage actif, approche itérative)}
+			\todo[inline]{A REDIGER}
+			% Complexité car il faut faire un choix (discutable). 
+				% \cite{baledent:2022:complexite-annotation-manuelle} rappelle que toute modélisation relève d'un choix.
+				% Pour éviter des ambiguïtés, il faut être stricte, mais pour pouvoir s'adapter, il faut être souple...
+				% Besoin d'écrire un guide :
+					% citer un guide pour montrer le travail accompli
+					% citer
+			
+			\todo[inline]{A REDIGER}
+			% Complexité venant de la difficulté de spécification : mise à jour constante, ambiguités, ...
+				% > Organiser son schéma d'annotation
+				% > [nedellec-etal:2006:annotation-guidelines-machine] la précision des règles d'annotation est une des raison de leur performance
+				% > [lefeuvre-etal:2014:annotation-temporalite-corpus] détails de la limite de la norme ISO TimeML et les cas ou la norme s'applique mal sur certaines données
+			
+			\todo[inline]{A REDIGER}
+			% Complexité venant du cas d'usage : spécifique, multi-tâche, non-scalable, confusion, ...
+			
+			
+			
+			% Solution pour limiter la complexité de modélisation.
+			\begin{leftBarIdea}
+				\todo[inline]{A REDIGER}
+				Quelques pistes approches peuvent être mises en places pour assister la modélisation d'un problème :
+				\begin{itemize}
+					% Solution: Modélisation non-supervisées (clustering ou topic modelling).
+					\item les approches \textbf{non supervisées} :
+					elles consistent à laisser la machine extraire et structurer automatiquement la connaissance contenue dans les données collectées.
+					Par exemple pour le traitement du texte, nous pouvons citer les méthodes d'exploration utilisant le regroupement automatique (\textit{clustering}) comme KMeans (\cite{macqueen:1967:methods-classification-analysis}), ou la modélisation thématique (\textit{topic modeling}) comme \text{LDA} (\cite{blei-etal:2003:latent-dirichlet-allocation}) ;
+					% Solution: Modélisation semi-supervisées (active learning)
+					\item les approches \textbf{semi-supervisées} :
+					elles consistent à travailler main dans la main avec la machine pour explorer les données collectées.
+					On peut citer par exemple les méthodes d'apprentissage actif (\textit{active learning}) dont une revue est proposée par \cite{settles:2010:active-learning-literature} ;
+					% Solution: Modélisation itératives.
+					\item les approches \textbf{itératives} :
+					elles consistent à concevoir d’abord un petit modèle dont le périmètre est limité, puis d'étendre pas à pas son périmètre suite aux retours de son utilisation.
+					Une organisation fait bien entendu écho à la philosophie du cycle \texttt{MATTER}.
+				\end{itemize}
+				Toutefois, plusieurs handicaps pénalisent ces approches, notamment lorsque les données bruitées, déséquilibrées ou dont l'interprétation nécessite une forte connaissance métier.
+			\end{leftBarIdea}
+			
+			% Avis de l'auteur : pas d'assistance à la modélisation !
+			\begin{leftBarAuthorOpinion}
+				% Constat: conception généralement manuelle et peu assister.
+				De part notre expérience, nous constatons que peu d'approches non-supervisés ou semi-supervisées sont utilisées, notamment parce que leur résultats sont jugés peu pertinents sur des phénomènes complexes.
+				Les experts métiers réalisent alors cette étape de modélisation manuellement, absorbant la complexité de cette tâche en organisant de nombreux ateliers de conception en mode essai-erreur.
+				
+				% Exemple des chatbots.
+				C'est particulièrement le cas lors de la concevoir de la base d'apprentissage d'un assistant conversationnelle (\textit{task-oriented}) : la tâche de modélisation consiste généralement à identifier l'intention formulée dans une demande utilisateur en fonction du verbe d'action (\textguillemets{\textit{je veux \textbf{réserver} un billet}}, \textguillemets{\textit{\textbf{joue} moi du jazz !}}, \textguillemets{\textit{comment \textbf{éditer} une attestation ?}}).
+				Cependant, la vaste diversité du langage permet rarement d'identifier les thématiques présents dans une collecte de données.
+				L'étape de modélisation est alors réalisée manuellement par les experts du domaine couvert par l'assistant conversationnel.
+			\end{leftBarAuthorOpinion}
 		
-		%%% 2.3.2.B. Problèmes de coûts.
+		%%% 2.3.2.B. Estimation de la complexité.
+		\subsubsection{Estimation de la complexité}
+		\label{section:2.3.2.B-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-ESTIMATION}
+			
+			% Estimation par une approche analytique.
+			Dans \cite{fort-etal:2012:modeling-complexity-manual} puis dans \cite{fort-etal:2012:modeling-complexity-manual}, une approche analytique est proposée pour mesurer la complexité des tâches de modélisation et d'annotation.
+			Six dimensions sont détaillées, réparties en trois axes :
+			\begin{itemize}
+				% Aspect localisation.
+				\item la complexité de \textbf{localisation} de l'annotation (\textit{discrimination}, \textit{délimitation}) :
+				y a-t-il plusieurs parties à annoter dans une donnée ?
+				quel est le ratio entre les parties à annoter et les parties potentiellement annotables ?
+				est-ce que ces parties sont clairement délimitées ou ont-elles des bornes floues ?
+				% Aspect caractérisation.
+				\item la complexité de \textbf{caractérisation} de l'annotation (\textit{expressivité}, \textit{dimensionnalité}, \textit{ambiguïté}) :
+				doit-on annoter une variable catégorielle ou numérique ?
+				s'il y a plusieurs variables entre elles, y a-t-il des relations entre elles ?
+				leur cardinalité est-elle finie ou infinie ?
+				quelle est la proportion de confusion ou de désaccord d'interprétation de cette modélisation ?
+				% Aspect contexte.
+				\item la complexité de \textbf{situation} de l'annotation (\textit{poids du contexte}) :
+				a-t-on besoin d'informations complémentaires pour être capable d'interpréter la donnée ?
+			\end{itemize}
+			
+			% Estimation par une approche statistique.
+			Une autre manière de mesurer la complexité d'une tâche d'annotation consiste à \textbf{évaluer les différences entre annotateurs}.
+			En effet, \cite{gut-bayerl:2004:measuring-reliability-manual} ont notamment montré qu'un nombre élevé de désaccords de labellisation peut mettre en avant une ambiguïté de modélisation, une différence d'interprétation entre annotateurs, ou encore une difficulté à saisir pleinement la subtilité des données manipulées : dans tous les cas, ces désaccords témoignent de la complexité de la tâche.
+			Pour mesurer cet accord, différents scores ont été développés comme peut en témoigner la revue de \cite{artstein-poesio:2008:intercoder-agreement-computational}.
+			Nous reviendrons plus en détails sur ces différences de comportement dans la \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}.
+			\begin{leftBarInformation}
+				L'un des plus scores les plus utilisé est $\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}).
+				Le score est normalisé entre $0$ (\textit{aucun accord}) et $1$ (\textit{accord parfait}).
+				On considère un accord fort lorsque le score est supérieur à $0.8$,
+				et l'accord reste acceptable si la valeur est supérieure à $0.667$.
+			\end{leftBarInformation}
+			
+			% Exemples
+			\begin{leftBarExamples}
+				% Exemple: Identification d'une bande dessinée à partir de sa couverture.
+				Considérons l'identification d'une bande dessinée à partir de sa couverture, pour laquelle l'annotation de textes présents sur une image sont nécessaires pour entraîner un modèle de reconnaissance optique de caractères (voir \textsc{Section~\ref{section:2.1.2.C-PRESENTATION-ANNOTATION-EXEMPLES-EXTRACTION}}).
+				Nous pouvons voir que :
+				\begin{itemize}
+					% Aspect localisation.
+					\item la localisation des annotations est assez évidente car l'information est visuelle : 
+					(1) En général, il y a peu de textes sur une couverture de \texttt{BD}, l'information est donc facilement identifiable (\textit{bonne discrimination}) ;
+					(2) Cependant, il peut y avoir de légères différences sur la position exacte des boxes entourant les textes (\textit{délimitation délicate}) ;
+					% Aspect caractérisation.
+					\item la caractérisation concerne du texte mais son annotation est explicite :
+					(1) L'annotation concerne du texte et des nombres, il y a donc une grande variabilité parmi les valeurs possibles (\textit{forte expressivité}).
+					(2) Plusieurs informations sont attendues, comme le nom de la collection, l'auteur, le titre, ou la date de parution (\textit{dimensionnalité modérée}) ;
+					(3) Toutefois, il y a assez peu de doute sur les valeurs à indiquer car ces dernières sont explicitement liées aux inscriptions sur l'image (\textit{peu d'ambiguïté}) ;
+					% Aspect contexte.
+					\item la situation de l'annotation n'a pas d'impact :
+					en effet, peu d'informations complémentaires sont requise pour interpréter les textes de l'image (\textit{poids du contexte faible}).
+				\end{itemize}
+				Au final, l'analyse révèle que cette tâche est relativement peu complexe.
+				Le calcul d'un score d'accord entre annotateurs permettrait de confirmer cette hypothèse et d'en déduire la confiance que nous pouvons accordé à la qualité des données labellisées.
+			\end{leftBarExamples}
+			
+			
+		%%% 2.3.2.C. Problèmes de coûts.
 		\subsubsection{Problèmes de coûts}
-		\label{section:2.3.2.B-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-COUTS}
+		\label{section:2.3.2.C-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-COUTS}
 		
+			% Introduction : Une conséquence de la complexité est le coût de l'annotation.
+			Cette complexité a un impact non négligeable sur les coûts à engager dans un projet de conception de jeu de données.
+			
+			% Coûts temporels: il faut du temps.
+				% 
+			
+			% Coûts financiers.
+			
+			% Coûts temporels.
+			% Coûts temporels.
+			% Coûts temporels.
+			
+			% Liste des coûts.
 			\todo[inline]{liste des coûts: temps, argents, recrutement, ...}
 			\todo[inline]{conséquence: charge de travail élevée}
-			\todo[inline]{quelques solutions: transfert d'apprentissage, pré-annotation, apprentissage actif}
+			
+			% 
+		\todo[inline]{quelques solutions pour limiter la complexité et diminuer les coûts: transfert d'apprentissage, pré-annotation, apprentissage actif}
+		\begin{leftBarIdea}
+			% Solution: Pré-annotation pour préparer le travail de l'annotateur.
+			% Solution: Apprentissage actif pour cibler le travail de l'annotateur.
+			% Solution: Transfert d'apprentissage pour demander moins de données annotées.
+		\end{leftBarIdea}
 		
 		
 	%%%
