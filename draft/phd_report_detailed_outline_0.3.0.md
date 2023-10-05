@@ -57,7 +57,7 @@
 					> [lefeuvre-etal:2014:annotation-temporalite-corpus] détails de la limite de la norme ISO TimeML et les cas ou la norme s'applique mal sur certaines données
 				6. *poids du contexte*: attend-t-on besoin du contexte pour comprendre et annoter ?
 			
-			- Pour éviter des ambiguïtés, il faut être stricte, mais pour pouvoir s'adapter, il faut être souple... 
+			- Pour éviter des ambiguïtés, il faut être stricte, mais pour pouvoir s'adapter, il faut être souple...
 				> Organiser son schéma d'annotation
 				> [nedellec-etal:2006:annotation-guidelines-machine] la précision des règles d'annotation est une des raison de leur performance
 				> [lefeuvre-etal:2014:annotation-temporalite-corpus] détails de la limite de la norme ISO TimeML et les cas ou la norme s'applique mal sur certaines données
@@ -90,6 +90,7 @@
 				- Ambiguïté/Interprétation/Visualisation/Règles floues/
 				> [neuendorf:2009:reliability-content-analysis] au moins deux annotateurs pour confronter les points de vue
 				> [bayerl-paul:2011:what-determines-intercoder] plus il y en a, moins ils sont d'accord
+				> [bayerl-paul:2011:what-determines-intercoder] plus il y a d'étiquettes possibles, moins ils y a d'accord
 			- **Expertise** / **Formation**
 				- maîtrise du logiciel, impact ergonomique
 				> [bayerl-paul:2011:what-determines-intercoder]: influence sur le score inter-annotateur: domaine d'annotation, du nombre de catégories du schéma, du nombre d'annotateurs, de la formation et de l'expertise des annotateurs, la méthode de calcul du score
