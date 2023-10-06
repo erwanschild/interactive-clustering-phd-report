@@ -19,8 +19,10 @@
 			
 			% Définition.
 			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de \textbf{reproduire une tâche par l'exemple} : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle statistique.
+			Cette apprentissage peut être \textit{supervisé} (l'interprétation de les exemples est fournie par un humain), \textit{non-supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux approches).
+			
 			% Applications.
-			Cette approche, très populaire en ce moment, permet d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
+			L'apprentissage automatique, très populaire en ce moment, permet ainsi d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
 			
 			% References.
 			\begin{leftBarInformation}
@@ -34,7 +36,6 @@
 			% Définitions.
 			Pour concevoir un modèle statistique en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
 			Nous utilisons alors les termes \textguillemets{\texttt{corpus d’entraînement}}, \textguillemets{\texttt{jeu de d’entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
-			%Par aspect pratique, il est généralement stocké dans un format exploitable par une machine (\textit{fichier texte, base de données, ...}).
 			
 			% Carcatéristique importante : la représentativité !
 			Il est important de noter qu'un corpus n'est qu'un échantillon de taille finie d'un phénomène pouvant être infini ou indénombrable.
@@ -52,11 +53,11 @@
 			
 			% Définition.
 			Les données d'un corpus manquent parfois d'information pour bien cerner un phénomène, il est alors nécessaire de faire intervenir un humain pour introduire des connaissances supplémentaires qui ne sont pas explicitement présentes dans ces données.
-			Nous appelons \textguillemets{\texttt{annotation}} (ou \textguillemets{\texttt{étiquetage}}, \textguillemets{\texttt{labellisation}}) cette tâche consistant à décrire les données d'un corpus, et nous distinguons ainsi les données dites \textguillemets{\texttt{brutes}} des données dites \textguillemets{\texttt{annotées}} en fonction de l'absence ou de la présence d'un complément d'informations.
+			Nous appelons \textguillemets{\texttt{annotation}} (ou \textguillemets{\texttt{étiquetage}}, \textguillemets{\texttt{labellisation}}) cette tâche consistant à décrire les données d'un corpus, et nous distinguons ainsi les données dites \textguillemets{\texttt{brutes}} (utilisées par les approches non-supervisées) des données dites \textguillemets{\texttt{annotées}} (utilisées par les approches supervisées) en fonction de l'absence ou de la présence d'un complément d'informations.
 			
 			% Valeurs associées: valeur ajoutée, information d'interprétation.
-			Les informations renseignées peuvent porter sur la donnée en entité ou sur une partie seulement, peuvent concerner des variables catégorielles (ensemble fini) ou numériques (ensemble infini), et peuvent aussi être cumulatives ou mutuellement exclusives.
-			Dans la littérature, \cite{garside-etal:1997:corpus-annotation-linguistic} présente l'annotation comme la tâche permettant de donner une \textguillemets{\texttt{valeur ajoutée}} aux données ; de son côté, \cite{leech:2004:adding-linguistic-annotation} précise que l'annotation est une action d'\textguillemets{\texttt{interprétation}} qui aide à la compréhension et à la reproduction d'un phénomène (en entraînant par exemple un modèle d'apprentissage automatique).
+			Les informations renseignées peuvent porter sur la donnée entière ou seulement sur une partie seulement, peuvent concerner des variables catégorielles (ensemble fini) ou numériques (ensemble infini), et peuvent aussi être cumulatives ou mutuellement exclusives.
+			Dans la littérature, \cite{garside-etal:1997:corpus-annotation-linguistic} présente l'annotation comme la tâche permettant de donner une \textguillemets{\texttt{valeur ajoutée}} aux données ; de son côté, \cite{leech:2004:adding-linguistic-annotation} précise que l'annotation est une action d'\textguillemets{\texttt{interprétation}} qui aide à la compréhension et à la reproduction d'un phénomène, mais aussi au contrôle du comportement des modèles d'apprentissage automatique).
 	
 	
 	%%%

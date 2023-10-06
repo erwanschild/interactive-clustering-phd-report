@@ -10,9 +10,9 @@
 	
 	
 	%%%
-	%%% Subsection 4.7.1: Etude du nombre de clusters optimal.
+	%%% Subsection 4.7.1: Étude du nombre de clusters optimal.
 	%%%
-	\subsection{Etude du nombre de clusters optimal.}
+	\subsection{Étude du nombre de clusters optimal.}
 	\label{section:4.7.1-HYPOTHESES-NON-VERIFIEES-NOMBRE-CLUSTERS}
 	
 		% Problème ouvert de la recherche: Estimer le nombre optimal de clusters.
@@ -43,9 +43,9 @@
 	
 	
 	%%%
-	%%% Subsection 4.7.2: Etude d'autres méthodes de vectorisation.
+	%%% Subsection 4.7.2: Étude d'autres méthodes de vectorisation.
 	%%%
-	\subsection{Etude d'autres méthodes de vectorisation}
+	\subsection{Étude d'autres méthodes de vectorisation}
 	\label{section:4.7.2-HYPOTHESES-NON-VERIFIEES-VECTORISATION}
 	
 		% Introduction.
@@ -57,9 +57,9 @@
 	
 	
 	%%%
-	%%% Subsection 4.7.3: Etude d'autres méthodes d'échantillonnage.
+	%%% Subsection 4.7.3: Étude d'autres méthodes d'échantillonnage.
 	%%%
-	\subsection{Etude d'autres méthodes d'échantillonnage}
+	\subsection{Étude d'autres méthodes d'échantillonnage}
 	\label{section:4.7.3-HYPOTHESES-NON-VERIFIEES-ECHANTILLONNAGE}
 	
 		% Introduction.
@@ -72,15 +72,32 @@
 	
 	
 	%%%
-	%%% Subsection 4.7.4: Etude ergonomique de l'interface d'annotation.
+	%%% Subsection 4.7.4: Étude de techniques de transfert d'apprentissage.
 	%%%
-	\subsection{Etude ergonomique de l'interface d'annotation}
-	\label{section:4.7.4-HYPOTHESES-NON-VERIFIEES-ERGONOMIQUE}
+	\subsection{Étude de techniques de transfert d'apprentissage}
+	\label{section:4.7.4-HYPOTHESES-NON-VERIFIEES-TRANSFERT-APPRENTISSAGE}
 	
-	% Introduction.
-	L'application web développée au cours de ce doctorat (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}) permet d'essayer rapidement notre méthodologie d'annotation.
-	Cependant, cette dernière n'a pu faire l'objet d'études poussées pour estimer la meilleure disposition des composants ou l'intérêt de certaines fonctionnalités d'annotation.
+		% Introduction.
+		Dans la \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}, nous avions déjà évoqué le fait que la modélisation d'un phénomène peut être assister par des techniques telles que la pré-annotation (\cite{dandapat-etal:2009:complex-linguistic-annotation}) ou le transfert d'apprentissage (\cite{zhuang-etal:2021:comprehensive-survey-transfer}).
+		Nous pourrions nous inspirer davantage de ces approches pour démarrer plus efficacement les premières itérations d'un \textit{clustering} interactif.
 	
-	% Piste potentielles à explorer.
-	Parmi les pistes potentielles à explorer, nous avons évoqué la possibilité d'\textbf{annoter plusieurs contraintes} dans une même interface (\textit{par exemple : annoter visuellement un mini-graphes de $4$ données plutôt que d'annoter simplement un couple de données}) et le besoin de \textbf{réaliser des analyses rapides} sur les \textit{clusters} ou sur le graphe de contraintes (voir \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}} et \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
-	Toutes ces idées pourraient être l'objet d'études dédiées avec des groupes d'annotateurs différentes pour voir l'impact sur les performances et les biais de conception de modèles.
+		% Piste potentielles à explorer.
+		Voici quelques idées inspirées de ces méthodes :
+		\begin{itemize}
+			\item \textbf{pré-annoter} certaines contraintes simples à l'aide de règles (\textit{basées par exemple sur la présence de mots de vocabulaire en commun} ou grâce à l'utilisation d'un modèle déjà disponible ; 
+			\item \textbf{introduire des données synthétiques ou empruntées} à d'autres bases d'apprentissage pour initialiser le \textit{clustering}, et permettre ainsi ajouter d'emblée des connaissances générales dans la modélisation.
+		\end{itemize}
+	
+	%%%
+	%%% Subsection 4.7.5: Étude ergonomique de l'interface d'annotation.
+	%%%
+	\subsection{Étude ergonomique de l'interface d'annotation}
+	\label{section:4.7.5-HYPOTHESES-NON-VERIFIEES-ERGONOMIQUE}
+	
+		% Introduction.
+		L'application web développée au cours de ce doctorat (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}) permet d'essayer rapidement notre méthodologie d'annotation.
+		Cependant, cette dernière n'a pu faire l'objet d'études poussées pour estimer la meilleure disposition des composants ou l'intérêt de certaines fonctionnalités d'annotation.
+		
+		% Piste potentielles à explorer.
+		Parmi les pistes potentielles à explorer, nous avons évoqué la possibilité d'\textbf{annoter plusieurs contraintes} dans une même interface (\textit{par exemple : annoter visuellement un mini-graphes de $4$ données plutôt que d'annoter simplement un couple de données}) et le besoin de \textbf{réaliser des analyses rapides} sur les \textit{clusters} ou sur le graphe de contraintes (voir \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}} et \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+		Toutes ces idées pourraient être l'objet d'études dédiées avec des groupes d'annotateurs différentes pour voir l'impact sur les performances et les biais de conception de modèles.

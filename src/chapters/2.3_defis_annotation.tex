@@ -94,7 +94,15 @@
 				
 				% Problème d'équilibrage: Stéréotypes de Stable Diffusion.
 				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion} réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
-				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière.
+				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière (voir la \textsc{Figure~\ref{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}}).
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.75\textwidth]{figures/etatdelart-nicoletti-bass-2023}
+					\caption{
+						Répartitions des teintes de peaux \textbf{(1)} et des genres \textbf{(2)} par métier lors de génération de portrait avec \texttt{Stable Diffusion} (étude menée par \cite{nicoletti-bass:2023:generative-ai-takes}).
+					}
+					\label{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}
+				\end{figure}
 				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
 				% Exemple pour faire réagir (non utilisé) : Si on veut générer une nouvelle BD Lucky Luke à partir des anciennes BDs, veut-on vraiment encore avoir un chinois à la blanchisserie ?
 			\end{leftBarExamples}
@@ -171,6 +179,7 @@
 				% Problème d'image flou: classification de l'état d'une BD.
 				Par exemple, dans la tâche de classification de l'état d'une bande dessinée à partir d'une photo (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}), comment juger correctement de l'état d'une \texttt{BD} si la photo capturée est flou ?
 			\end{leftBarExamples}
+			\todo{prendre des photos en mauvaises qualités de mes BD : flous, main sur l'image, mauvais cadrage, peluche ?}
 			
 			% Correction des données par le prétraitement et le nettoyage.
 			Pour limiter l'impact du bruit dans les données, \cite{alasadi-bhaya:2017:review-data-preprocessing} structurent les étapes de prétraitement de données entre quatre catégories :
@@ -300,7 +309,7 @@
 			
 			% Complexité due à la rigueur requise pour la conception.
 			Dans un second temps, il est nécessaire de structurer cette modélisation dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
-			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clareté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin, rigueur et précision.
+			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clarté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin pour donner à l'annotateur une vision de son objectif (\cite{fort-etal:2009:vers-methodologie-annotation}).
 			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble des règles sans introduire de biais ni de confusion.
 			%
 			\begin{leftBarInformation}
@@ -410,47 +419,66 @@
 		\label{section:2.3.2.C-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-COUTS}
 		
 			% Introduction : Une conséquence de la complexité est le coût de l'annotation.
-			Cette complexité a un impact non négligeable sur les coûts à engager dans un projet de conception de jeu de données.
+			Toute cette complexité a un impact non négligeable sur les coûts à engager dans un projet de conception de jeu de données.
+			Nous allons ici détailler certains de ces coûts et donner quelques exemples notoires.
 			
-			% Liste de coûts.
-			Nous pouvons notamment lister les exemples de coûts suivants :
-			\todo[inline]{A REDIGER}
+			% Coût embauches.
+			Tout d'abord, il y a des \textbf{charges de main d'oeuvre}.
+			En effet, de nombreuses personnes aux compétences diverses vont s'investir dans un tel projet (voir \textsc{Section\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}), à la fois pour modéliser le phénomène mais aussi pour labelliser les données le représentant.
+			L'intervention de ces acteurs va engager des coûts dans l'embauche des experts et opérateurs nécessaires, mais aussi dans leur formation si cela est nécessaire (veille technologique, montée en compétence sur la compréhension du phénomène, ...).
+			
+			% Coût temporel.
+			Ensuite, il faut considérer les \textbf{facteurs temporels} qui impactent le délais de mise en production du modèle de \textit{Machine Learning}.
+			En plus des délais de monté en compétences des experts, nous pouvons ajouter :
 			\begin{itemize}
-				% Coûts temporels.
-				\item \textbf{coûts temporels} :
-				% Coûts en personnel.
-				\item \textbf{coûts en personnel} :
-				% Coûts financiers.
-				\item \textbf{coûts financiers} :
+				\item le temps nécessaire à la collecte de données, pouvant prendre plusieurs semaines celle-ci correspond à un sondage ou à une mesure d'un phénomène s'étalant sur la durée ;
+				\item le temps imposé par les ateliers de conception de la modélisation, pouvant prendre entre quelques heures et quelques semaines en fonction de sa complexité et des différences d'opinions entre experts ;
+				\item le temps dédié à l'annotation, dépendant entre autre de la complexité de la modélisation et de la quantité de données à labelliser ;
+				\item et le temps requis pour entraîner le modèle de \textit{Machine Learning}.
 			\end{itemize}
-			%
+			A cela s'ajouter aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
+			Il est possible de réduire certains de ces coûts temporels en ajoutant davantage de personnes dans le projet, mais cela augmentera évidemment les charges de main d'oeuvre, et quelques aspects demeureront toutefois incompressibles (les débats lors de la phase de modélisation par exemple).
+			
+			% Coût financiers.
+			Enfin, il y a divers \textbf{coût financiers à engager} en plus des recrutements et des conséquences des délais de réalisation.
+			On peut notamment considérer l'infrastructure technique tel que l'outil d'annotation et de stockage des données, les potentiels instruments de mesure du phénomène (micro, caméra, sondes, ...) ou encore les acquisition de droits d'utilisations de données ou de modèles sous licence.
+			
+			% Exemple de coûts.
 			\begin{leftBarExamples}
-				\todo[inline]{A REDIGER}
-				Exemple bateau de 10~000 données à 10 secondes => 27,7h de travail (presque une semaine!) \\
-				\cite{bohmova-etal:2003:prague-dependency-treebank}: entre 1996 et 2004, $22$ personnes pour $600~k\$$, $1.8~m$ tokens \\
-				\cite{candito-seddah:2012:corpus-sequoia-annotation} $59~k€$ pour $3.2~k$ phrases (Morph.: morpho-syntactic annotation, Const: Phrase-based annotation, Dep: dependency conversion, Deep Synt: Deep syntax).
+				Détaillons ici deux projets d'annotation dont le chiffrage est disponible :
+				\begin{itemize}
+					% Prague Dependency Treebank.
+					\item \texttt{Prague Dependency Treebank} (\cite{bohmova-etal:2003:prague-dependency-treebank}): L'annotation de $180~000$ phrases tchèques (environ $1.8$ million de \textit{tokens}) pour l'analyse morpho-syntaxique a duré $5$ ans (entre 1996 et 2003), impliquant $22$ personnes. La somme totale engagée est estimée à $600~000$ dollars ;
+					% MS COCO.
+					\item \texttt{MS COCO} \cite{lin-etal:2014:microsoft-coco-common}: L’annotation d'objets présent dans $328~000$ images (environ $2.5$ millions d'objet de $91$ types différents) a nécessité environ $70~000$ d'annotation.
+				\end{itemize}
 			\end{leftBarExamples}
 			
 			% Solutions pour limiter les coûts
 			\begin{leftBarIdea}
-				\todo[inline]{A REDIGER}
-				Pour limiter les coûts, diverses solutions ont été proposées :
+				Pour limiter les coûts, diverses solutions ont déjà été proposées :
 				\begin{itemize}
 					% Solution: Pré-annotation pour préparer le travail de l'annotateur.
 					\item la \textbf{pré-annotation} :
+						cette approche consiste à employer un petit modèle pour suggérer une annotation à l'annotateur, celui-ci pouvant alors l'approuver ou corriger.
+						\cite{fort-sagot:2010:influence-preannotation-postagged} démontre le gain de temps et de qualité d'une telle approche.
+						toutefois, certains biais peuvent influence négativement l'annotateur : \cite{dandapat-etal:2009:complex-linguistic-annotation} souligne par exemple le risque de biais de confirmation (influence de la machine et tendance de l'annotateur d'être en accord avec celle-ci, notamment sur des données ambiguës) ;
 					% Solution: Apprentissage actif pour cibler le travail de l'annotateur.
-					\item l'\textbf{apprentissage actif} :
+					\item l'\textbf{apprentissage actif} (\textit{active learning}) :
+						cette approche consiste à interagir avec la machine pour sélectionner les données les plus intéressantes à annoter (\cite{settles:2010:active-learning-literature}).
+						On peut par exemple entraîner un modèle avec les données déjà disponibles, le tester sur les données non annotés et sélectionner les données sur lesquelles ses prédictions sont le moins confiantes ;
 					% Solution: Transfert d'apprentissage pour demander moins de données annotées.
-					\item le \textbf{transfert d'apprentissage} :
+					\item le \textbf{transfert d'apprentissage} (\textit{transfert learning}) :
+						cette approche consiste à réutiliser la connaissance contenue dans un modèle déjà existant dans le but d'exploiter certaines de ces fonctionnalités (\cite{zhuang-etal:2021:comprehensive-survey-transfer}, \cite{iman-etal:2023:review-deep-transfer}).
+						Il a été montré qu'adapter un modèle pour un nouveau cas d'usage similaire peut se faire avec peu de données, réduisant ainsi drastiquement la charge d'annotation (\cite{parnami-lee:2022:learning-few-examples}) ;
+					% Solution: Myriadisation.
+					\item la \textbf{myriadisation} (\textit{crowdsourcing}) :
+						cette approche consiste à déléguer l'annotation à des plateformes collaboratives en ligne comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
+						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grand volume de données rapidement et à moindre coûts.
+						Ces techniques comporte toutefois un inconvénient majeur : les opérateurs ne sont généralement pas des experts et sont rémunérés au volume labellisé.
+						La qualité des annotations risque donc d'être délaissée au profit de la quantité.
 				\end{itemize}
 			\end{leftBarIdea}
-			
-			% Dérives dues aux coûts.
-			\begin{leftBarExamples}
-				\todo[inline]{A REDIGER}
-				\cite{perrigo-zorthian:2023:exclusive-openai-used}: Polémique OpenAI sur l'annotation par des Kényan à bas coûts \\
-				\cite{dzieza:2023:ai-lot-work} Payé pour 3 fois rien, une sous classe de travail mal payé émerge
-			\end{leftBarExamples}
 		
 		
 	%%%
@@ -465,20 +493,39 @@
 		\label{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}
 		
 			\todo[inline]{intervention de la subjectivité}
+				% - Ambiguïté/Interprétation/Visualisation/Règles floues/
+				% > [neuendorf:2009:reliability-content-analysis] au moins deux annotateurs pour confronter les points de vue
+				% > [bayerl-paul:2011:what-determines-intercoder] plus il y en a, moins ils sont d'accord
+				% > [bayerl-paul:2011:what-determines-intercoder] plus il y a d'étiquettes 
+			
+			
 			\todo[inline]{importance de l'expertise et de la formation}
+				% - maîtrise du logiciel, impact ergonomique
+				% > [bayerl-paul:2011:what-determines-intercoder]: influence sur le score inter-annotateur: domaine d'annotation, du nombre de catégories du schéma, du nombre d'annotateurs, de la formation et de l'expertise des annotateurs, la méthode de calcul du score
+				% > [bayerl-paul:2011:what-determines-intercoder] plus ils sont formés à la tâche, moins ils font de différence
+				% > [dandapat-etal:2009:complex-linguistic-annotation] importance de la formation et l'assistance
 			
 			\todo[inline]{quelques solutions palliatives: évaluation, redondances}
-			\todo[inline]{quelques solutions de fonds: revues, subdiviser la tâche, guide, crowd-sourcing}
+				% revue des conflits, adjudication, guide dfiable
 		
 		%%% 2.3.3.B. Différences intra-annotateurs.
 		\subsubsection{Différences intra-annotateurs}
 		\label{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEURS}
 		
 			\todo[inline]{régulation charge de travail}
-			\todo[inline]{troubles}
-			\todo[inline]{travail mal reconnu voire ingrat}
+				% Constat: Erreurs d'inattention, aléas du quotidien
+				% Explication: Régulation de la charge de travail: \cite{sperandio:1987:ergonomie-travail-mental}, \cite{sperandio:1972:charge-travail-regulation}, \cite{sperandio:1978:regulation-working-methods}: La tache est perçu comme compliquée, et mes capacités sont perçues comme "minimes" ; Donc l'opérateur va toujours s'adapter pour avoir une complexité "acceptable". Conclusion : j'adapte mes règles d'annotation pour avoir une charge "perçu" plus faible.
 			\todo[inline]{quelques solutions: guide, revues, limiter le changement de contexte, gamification}
-	
+				% faire une petite partie est parfois plus efficace, mais ne permet pas toujours de résoudre le problème dans sa globalité (on n'a pas l'objectif final)
+				% > [fort-etal:2012:modeling-complexity-manual] trop de contexte induit de la complexité
+			
+			% Dérives.
+			\todo[inline]{travail mal reconnu voire ingrat}
+				% \cite{valette:2016:analyse-statistique-donneesa} critique le TALN où l'expert linguiste est devenu un vulgaire soustraitant...
+				% \cite{perrigo-zorthian:2023:exclusive-openai-used}: Polémique OpenAI sur l'annotation par des Kényan à bas coûts \\
+				% \cite{dzieza:2023:ai-lot-work} Payé pour 3 fois rien, une sous classe de travail mal payé émerge
+			\todo[inline]{troubles}
+				% \cite{rowe:2023:it-destroyed-me}: modérateurs de contenus offensant
 	
 	%%%
 	%%% Conclusion.
