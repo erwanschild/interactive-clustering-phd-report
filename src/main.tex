@@ -75,6 +75,7 @@
 	% Information, Questions ou Plus d'info: \faInfoCircle \faQuestionCircle % \faPlusCircle
 	% Eprouvette: \faVial
 	% Github: \faGit \faGithub
+	% Exemples: \faEye \faSearchPlus \faSearch
 	
 %%% Pour les guillemets:
 \newcommand{\textguillemets}[1]{\og #1 \fg}
@@ -158,7 +159,10 @@
 \newenvironment{leftBarWarning}{
 	\begin{leftbar}{colorLeftBarWarning}
 	\noindent
-	\textbf{\textcolor{colorLeftBarWarning}{\faExclamationTriangle}~Attention :}
+	\textbf{
+		\textcolor{colorLeftBarWarning}{\faExclamationTriangle}
+		~Attention :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarWarning} \lipsum[1] \end{leftBarWarning}
@@ -168,7 +172,10 @@
 \newenvironment{leftBarSummary}{
 	\begin{leftbar}{colorLeftBarSummary}
 	\noindent
-	\textbf{\textcolor{colorLeftBarSummary}{\faBookmark}~Points à retenir :}
+	\textbf{
+		\textcolor{colorLeftBarSummary}{\faBookmark}
+		~Points à retenir :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarSummary} \lipsum[1] \end{leftBarSummary}
@@ -178,7 +185,10 @@
 \newenvironment{leftBarIdea}{
 	\begin{leftbar}{colorLeftBarIdea}
 	\noindent
-	\textbf{\textcolor{colorLeftBarIdea}{\faLightbulb}~Idée :}
+	\textbf{
+		\textcolor{colorLeftBarIdea}{\faLightbulb}
+		~Idées :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarIdea} \lipsum[1] \end{leftBarIdea}
@@ -188,7 +198,10 @@
 \newenvironment{leftBarAuthorOpinion}{
 	\begin{leftbar}{colorLeftBarAuthorOpinion}
 	\noindent
-	\textbf{\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}~Note de l'auteur :}
+	\textbf{
+		\textcolor{colorLeftBarAuthorOpinion}{\faCommentDots}
+		~Notes de l'auteur :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarAuthorOpinion} \lipsum[1] \end{leftBarAuthorOpinion}
@@ -198,17 +211,23 @@
 \newenvironment{leftBarInformation}{
 	\begin{leftbar}{colorLeftBarInformation}
 	\noindent
-	\textbf{\textcolor{colorLeftBarInformation}{\faInfoCircle}~Pour information :}
+	\textbf{
+		\textcolor{colorLeftBarInformation}{\faInfoCircle}
+		~Pour information :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}
 
 % Définition de l'encadré d'exemples
-\definecolor{colorLeftBarExamples}{HTML}{836953}  % Pastel Brown (#836953)
+\definecolor{colorLeftBarExamples}{HTML}{976ED7}  % Dark Pastel Purple (#976ED7)
 \newenvironment{leftBarExamples}{
 	\begin{leftbar}{colorLeftBarExamples}
 	\noindent
-	\textbf{Exemples :}
+	\textbf{
+		\textcolor{colorLeftBarExamples}{\faSearch}
+		Exemples :
+	}
 }{
     \end{leftbar}
 }  % \begin{leftBarExamples} \lipsum[1] \end{leftBarExamples}
