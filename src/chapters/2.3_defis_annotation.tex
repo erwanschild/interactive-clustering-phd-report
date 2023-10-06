@@ -431,9 +431,9 @@
 			Ensuite, il faut considérer les \textbf{facteurs temporels} qui impactent le délais de mise en production du modèle de \textit{Machine Learning}.
 			En plus des délais de monté en compétences des experts, nous pouvons ajouter :
 			\begin{itemize}
-				\item le temps nécessaire à la collecte de données, pouvant prendre plusieurs semaines celle-ci correspond à un sondage ou à une mesure d'un phénomène s'étalant sur la durée ;
-				\item le temps imposé par les ateliers de conception de la modélisation, pouvant prendre entre quelques heures et quelques semaines en fonction de sa complexité et des différences d'opinions entre experts ;
-				\item le temps dédié à l'annotation, dépendant entre autre de la complexité de la modélisation et de la quantité de données à labelliser ;
+				\item le temps nécessaire à la \textit{collecte de données}, pouvant prendre plusieurs semaines celle-ci correspond à un sondage ou à une mesure d'un phénomène s'étalant sur la durée ;
+				\item le temps imposé par les \textit{ateliers de conception} de la modélisation, pouvant prendre entre quelques heures et quelques semaines en fonction de sa complexité et des différences d'opinions entre experts ;
+				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autre de la complexité de la modélisation et de la quantité à labelliser ;
 				\item et le temps requis pour entraîner le modèle de \textit{Machine Learning}.
 			\end{itemize}
 			A cela s'ajouter aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
@@ -486,27 +486,57 @@
 	%%%
 	\subsection{Défis concernant les différences de comportements d'annotation}
 	\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
-		\todo[inline]{SECTION: À RÉDIGER}
+		
+		% Introduction: Considérer les différences de comportements.
+		On peut constater deux divergences de comportements :
+		\begin{itemize}
+			\item ceux entre deux annotateurs (voir \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}) ;
+			\item ceux d'un annotateur avec lui-même (voir \textsc{Section~\ref{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEURS}}).
+		\end{itemize}
+		
 		
 		%%% 2.3.3.A. Différences inter-annotateurs.
 		\subsubsection{Différences inter-annotateurs}
 		\label{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}
 		
-			\todo[inline]{intervention de la subjectivité}
-				% - Ambiguïté/Interprétation/Visualisation/Règles floues/
-				% > [neuendorf:2009:reliability-content-analysis] au moins deux annotateurs pour confronter les points de vue
-				% > [bayerl-paul:2011:what-determines-intercoder] plus il y en a, moins ils sont d'accord
-				% > [bayerl-paul:2011:what-determines-intercoder] plus il y a d'étiquettes 
+			% Introduction : l'annotation est subjective.
+			Comme nous avons pu le voir dans la \textsc{Section~\ref{section:2.3.2.A-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-MODELISATION}}, la modélisation d'un phénomène relève d'un choix subjectif.
+			Il est donc normal de constater que cette subjectivité entraîne des différences de comportement d'annotation.
+			Celles-ci se manifestent particulièrement sur des données ambiguës ou bruitées car les limites de la modélisation sont exposées.
+			D'autres éléments comme le caractère abstrait d'une modélisation ou la présence de règles de labellisation trop floues peuvent aussi mener à des divergences d'interprétation entre opérateurs.
 			
-			
-			\todo[inline]{importance de l'expertise et de la formation}
-				% - maîtrise du logiciel, impact ergonomique
-				% > [bayerl-paul:2011:what-determines-intercoder]: influence sur le score inter-annotateur: domaine d'annotation, du nombre de catégories du schéma, du nombre d'annotateurs, de la formation et de l'expertise des annotateurs, la méthode de calcul du score
-				% > [bayerl-paul:2011:what-determines-intercoder] plus ils sont formés à la tâche, moins ils font de différence
-				% > [dandapat-etal:2009:complex-linguistic-annotation] importance de la formation et l'assistance
-			
-			\todo[inline]{quelques solutions palliatives: évaluation, redondances}
-				% revue des conflits, adjudication, guide dfiable
+			% Facteur de désaccords.
+			\cite{bayerl-paul:2011:what-determines-intercoder} ont pu étudier un ensemble de \textbf{facteurs source de désaccords}. Nous en dressons une liste résumée ci-dessous :
+			\begin{itemize}
+				% Complexité.
+				\item la \textit{complexité} du problème :
+				que celle-ci vienne intrinsèquement du phénomène à annoter ou du cas d'usage reflétée dans la modélisation, on constate si l'annotation est difficile, alors les chances d'interpréter différemment les données est plus élevée ;
+				% Nombre.
+				\item le \textit{nombre} d'annotateurs :
+				il est normal de constater que plus y a de personnes donnant leurs avis, les avis peuvent diverger ;
+				% Expertise.
+				\item le \textit{niveau d'expertise} des annotateurs :
+				on constate des divergences d'opinion entre les opérateurs agnostique du phénomène et ceux détenant des connaissances sur celui-ci (un linguiste pour des données textuelles, un libraire pour des \texttt{BD}, ...), on constate alors des différences entre
+				% Formation.
+				\item le \textit{niveau de formation} des annotateurs :
+				on constate des divergences de labellisation entre les opérateurs formés à l'outil et au guide d'annotation et ceux découvrant la tâche d'annotation et sa mise en oeuvre pour la première fois.
+			\end{itemize}
+			%
+			\begin{leftBarInformation}
+				\cite{bayerl-paul:2011:what-determines-intercoder} montrent aussi qu'il peuvent y avoir des différences entre deux annotateurs experts non-formés, alors qu'il y a moins de divergences entre des annotateurs expert et non-expert s'ils sont formés tous les deux.
+				Cela souligne bien l'\textbf{importance de la formation à la tâche d'annotation} et la nécessité de rédiger un guide d'annotation qui détaille l'objectif et les règles de labellisation dans le but d'en limiter la subjectivité.
+			\end{leftBarInformation}
+			%
+			\begin{leftBarIdea}
+				% Besoin de formation.
+				Comme nous l'avons vu, \cite{bayerl-paul:2011:what-determines-intercoder} recommande de \textbf{simplifier la modélisation} à appliquer et de \textbf{former les opérateurs} à la tâche d'annotation.
+				
+				% Adjudication.
+				Pour aller plus loin, il est recommandé d'organiser des sessions d'\textbf{adjudication} durant laquelle les opérateurs confronter leurs visions en annoter les mêmes données.
+				Cela permettra de mesurer un score d'accord entre annotateurs et de discuter des points de désaccords dans l'application du guide de labellisation.
+				Une règle de bon sens consiste à confronter $2$ annotateurs pour être capable d'identifier ces points de désaccords, mais il faut être au moins $3$ pour les résoudre.
+				\cite{bayerl-paul:2011:what-determines-intercoder} conseille d'ailleurs d'être au moins $5$ annotateurs si le cas d'usage est critique.
+			\end{leftBarIdea}
 		
 		%%% 2.3.3.B. Différences intra-annotateurs.
 		\subsubsection{Différences intra-annotateurs}
