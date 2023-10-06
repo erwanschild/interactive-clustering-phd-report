@@ -436,21 +436,24 @@
 				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autre de la complexité de la modélisation et de la quantité à labelliser ;
 				\item et le temps requis pour entraîner le modèle de \textit{Machine Learning}.
 			\end{itemize}
-			A cela s'ajouter aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
+			A cela s'ajoute aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
 			Il est possible de réduire certains de ces coûts temporels en ajoutant davantage de personnes dans le projet, mais cela augmentera évidemment les charges de main d'oeuvre, et quelques aspects demeureront toutefois incompressibles (les débats lors de la phase de modélisation par exemple).
 			
 			% Coût financiers.
 			Enfin, il y a divers \textbf{coût financiers à engager} en plus des recrutements et des conséquences des délais de réalisation.
-			On peut notamment considérer l'infrastructure technique tel que l'outil d'annotation et de stockage des données, les potentiels instruments de mesure du phénomène (micro, caméra, sondes, ...) ou encore les acquisition de droits d'utilisations de données ou de modèles sous licence.
+			On peut notamment considérer l'achat ou le dévelopement de l'infrastructure technique tel que de l'outil d'annotation et de stockage des données, les potentiels instruments de mesure du phénomène (micro, caméra, sondes, ...) ou encore les acquisitions de droits d'utilisation de données ou de modèles sous licence.
 			
 			% Exemple de coûts.
 			\begin{leftBarExamples}
 				Détaillons ici deux projets d'annotation dont le chiffrage est disponible :
 				\begin{itemize}
 					% Prague Dependency Treebank.
-					\item \texttt{Prague Dependency Treebank} (\cite{bohmova-etal:2003:prague-dependency-treebank}): L'annotation de $180~000$ phrases tchèques (environ $1.8$ million de \textit{tokens}) pour l'analyse morpho-syntaxique a duré $5$ ans (entre 1996 et 2003), impliquant $22$ personnes. La somme totale engagée est estimée à $600~000$ dollars ;
+					\item \texttt{Prague Dependency Treebank} (\cite{bohmova-etal:2003:prague-dependency-treebank}) :
+					L'annotation de $180~000$ phrases tchèques (environ $1.8$ million de \textit{tokens}) pour l'analyse morpho-syntaxique a duré $5$ ans (entre 1996 et 2003), impliquant $22$ personnes.
+					La somme totale engagée est estimée à $600~000$ dollars ;
 					% MS COCO.
-					\item \texttt{MS COCO} \cite{lin-etal:2014:microsoft-coco-common}: L’annotation d'objets présent dans $328~000$ images (environ $2.5$ millions d'objet de $91$ types différents) a nécessité environ $70~000$ d'annotation.
+					\item \texttt{MS COCO} \cite{lin-etal:2014:microsoft-coco-common} :
+					L’annotation d'objets présent dans $328~000$ images (environ $2.5$ millions d'objets répartis en $91$ types différents) a nécessité environ $70~000$ heures d'annotation.
 				\end{itemize}
 			\end{leftBarExamples}
 			
@@ -542,12 +545,25 @@
 		\subsubsection{Différences intra-annotateurs}
 		\label{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEURS}
 		
-			\todo[inline]{régulation charge de travail}
-				% Constat: Erreurs d'inattention, aléas du quotidien
-				% Explication: Régulation de la charge de travail: \cite{sperandio:1987:ergonomie-travail-mental}, \cite{sperandio:1972:charge-travail-regulation}, \cite{sperandio:1978:regulation-working-methods}: La tache est perçu comme compliquée, et mes capacités sont perçues comme "minimes" ; Donc l'opérateur va toujours s'adapter pour avoir une complexité "acceptable". Conclusion : j'adapte mes règles d'annotation pour avoir une charge "perçu" plus faible.
-			\todo[inline]{quelques solutions: guide, revues, limiter le changement de contexte, gamification}
+			% Introduction à la régulation charge de travail.
+			Malgré la conception d'un guide et la rédaction de règles, malgré les sessions de revues dédiées à affiner ce guide et malgré les diverses pistes mises en oeuvre pour assister l'annotation, nous pouvons constater qu'un annotateur peut tout de même manifester des variations de comportement.
+			Ces différences peuvent s'apparenter à des erreurs d'innattention, des oublis de consignes, ou encore des fluctuations passagères.
+			
+			Pour expliquer cela, nous pouvons nous baser sur la théorie de la \textbf{régulation de la charge de travail} (\cite{sperandio:1978:regulation-working-methods}, \cite{sperandio:1987:ergonomie-travail-mental}) : peu importe la tâche, l'opérateur aura tendance à percevoir ses capacités comme minime par rapport à la charge de travail à réaliser ; celui-ci cherchera donc un moyen d'adapter son travail afin de diminuer la charge de travail perçue et donc de la rendre acceptable ; cette adaptation explique ainsi les différences de comportement.
+			%
+			\begin{leftBarExamples}
+				Une bonne illustration est celle de la \textit{veille du week-end} :
+				la tâche à souvent tendance à être plus complexe à ce moment-là, alors que celle-ci n'a pourtant pas changer.
+				Les opérateurs adaptent toutefois leur travail pour diminuer la carge de travail perçue.
+				Conclusion : la pause café est un peu plus longue, et une partie du travail est finalement reportée à la semaine suivante.
+			\end{leftBarExamples}
+			
+			%
+			\todo[inline]{quelques solutions: simplification, gamification}
+			\begin{leftBarIdea}
 				% faire une petite partie est parfois plus efficace, mais ne permet pas toujours de résoudre le problème dans sa globalité (on n'a pas l'objectif final)
 				% > [fort-etal:2012:modeling-complexity-manual] trop de contexte induit de la complexité
+			\end{leftBarIdea}
 			
 			% Dérives.
 			\todo[inline]{travail mal reconnu voire ingrat}
