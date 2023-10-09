@@ -1,0 +1,145 @@
+\Annex{Concevoir un assistant conversationnel (\textit{chatbot})}
+\label{annex:B-ANNEXE-CHATBOT}
+
+% INTRODUCTION DE L'ANNEXE.
+
+% Engoument pour les chatbots en 2019.
+Au début de ce doctorat (\texttt{octobre 2019}), on pouvait noter que :
+\begin{itemize}
+	\item selon \cite{costello-lodolce:2019:gartner-top-technologies}, \textguillemets{seuls $4$\% des clients de \texttt{Gartner} [déclaraient à l'époque] utiliser des \textit{chatbot} sur leur lieu de travail, mais $40$\% [avaient] l'intention de les mettre en oeuvre à court terme} ;
+	\item et selon \cite{goasduff:2019:chatbots-will-appeal}, \textguillemets{d'ici 2022, 70\% des employés [interagiraient] quotidiennement avec les plateformes conversationnelles}.
+\end{itemize}
+
+% Engoument pour les chatbots en 2023.
+Aujourd'hui (\texttt{octobre 2023}), le mot \textit{chatbot} est sur toutes les lèvres, surtout la révolution des \texttt{IA} génératives lancées par \texttt{ChatGPT} (\cite{openai:2023:chatgpt}) :
+\begin{itemize}
+	\item selon \cite{costello-lodolce:2022:gartner-predicts-chatbots}, une entreprise sur deux aurait actuellement recours à une forme de \textit{chatbot}  pour gérer sa relation client, et \textguillemets{d'ici 2027, les \textit{chatbot} deviendront le principal canal de service client pour environ un quart des organisations}.
+\end{itemize}
+
+% Annonce du plan.
+Dans cette annexe, nous allons détailler brièvement les fonctionnalités et architectures de ces assistants conversationnels.
+
+% TABLE DES MATIÈRES DE L'ANNEXE.
+\minitoc
+
+%%%%%--------------------------------------------------------------------
+%%%%% Annexe B.1: Classification des \textit{chatbots} suivant leurs objectifs.
+%%%%%--------------------------------------------------------------------
+\section{Classification des \textit{chatbots} suivant leurs objectifs}
+\label{annex:B.1-CHATBOT-CLASSIFICATION}
+	
+	% Introduction: classification des \textit{chatbots}.
+	En s'inspirant de \cite{chen-etal:2017:survey-dialogue-systems} et de \cite{adamopoulou-moussiades:2020:overview-chatbot-technology}, nous pouvons distinguer grossièrement les \textit{chatbots} selon deux catégories :
+	\begin{itemize}
+		\item les \textit{chatbots} axés sur une tâche précise (\textguillemets{\textit{task-oriented}}) ;
+		\item les \textit{chatbots} axés sur la conversation (\textguillemets{\textit{chat-oriented}})
+	\end{itemize}
+		\cite{adamopoulou-moussiades:2020:overview-chatbot-technology}  \\ % plusieurs types de chatbots
+	
+	% Information : d'autres types existents.
+	\begin{leftBarInformation}
+		\cite{adamopoulou-moussiades:2020:overview-chatbot-technology} propose plusieurs types de catégorisation (\textit{périmètre de connaissances restreint ou non, personnalité propre ou non, typologies d'entrées/sorties, interaction avec un humain requise ou non, technologie propriétaire ou non}), mais nous ne nous attardons pas sur ces différentes visions car elles ne sont pas utiles à notre discussion.
+	\end{leftBarInformation}
+	
+	
+	%%%
+	%%% Subsection B.1.1. Les \textit{chatbots} \textguillemets{\textit{task-oriented}}.
+	%%%
+	\subsection{Les \textit{chatbots} \textguillemets{\textit{task-oriented}}}
+	\label{annex:B.1.1-CHATBOT-CLASSIFICATION-TASK-ORIENTED}
+	
+		% Définition
+		\paragraph{Définition :}
+		
+			Un \textit{chatbot} \textguillemets{\textit{task-oriented}} est conçu pour \textbf{accomplir une tâche spécifique}.
+			Le parcours de dialogue proposé est généralement prédéfini et comporte peu de digressions : l'assistant détermine l'action à réaliser grâce à l'énoncé de l'utilisateur, demande éventuellement des compléments d'informations si la requête n'est pas assez précise, puis effectue sa mission.
+			Le périmètre de fonctionnalités est généralement restreint pour contrôler les actions de l'assistant et s'assurer de son comportement.
+	
+		% Exemples de fonctionnalités.
+		\paragraph{Exemples de fonctionnalités :}
+		
+			\begin{itemize}
+				\item Gérer la relation client (\textit{suivi de commande, formulaire de satisfaction, ...}) ;
+				\item Accéder à des informations documentaires ou personnelles (\textit{accès à une documentation technique, accès au solde d'un compte bancaire, ...}) ;
+				\item Pré-remplir d'un formulaire (\textit{réserver un billet de voyage, payer ses contraventions, faire opposition à sa carte de crédit, ...}) ;
+				\item Gérer la domotique (\textit{allume la lumière, joue de la musique, active l'alarme, ...}).
+			\end{itemize}
+		
+		% Exemples d'assistants conversationnels connus.
+		\paragraph{Exemples d'assistants conversationnels connus :}
+		
+			\begin{itemize}
+				\item \texttt{Assistant Virtuel SNCF} (\cite{sncf:2018:agent-virtuel-sncf}), pour la réservation de billets de train ;
+				\item \texttt{Google Assistant} (\cite{google:2016:google-assistant-your}) ou \texttt{Alexa} (\cite{alexa-internet:2018:keyword-research-competitor}), pour la gestion de la domotique.
+			\end{itemize}
+	
+	
+	%%%
+	%%% Subsection B.1.2. Les \textit{chatbots} \textguillemets{\textit{chat-oriented}}.
+	%%%
+	\subsection{Les \textit{chatbots} \textguillemets{\textit{chat-oriented}}}
+	\label{annex:B.1.2-CHATBOT-CLASSIFICATION-CHAT-ORIENTED}
+	
+		% Définition
+		\paragraph{Définition :}
+		
+			Un \textit{chatbot} \textguillemets{\textit{chat-oriented}} se concentre davantage sur les interactions avec l'utilisateur dans le but d'engager la conversation.
+			Son objectif principale est de rendre le dialogue agréable.
+			Son périmètre de connaissance n'est en général pas restreint pour pouvoir facilement engager la conversation sur n'importe quel sujet.
+	
+		% Exemples de fonctionnalités.
+		\paragraph{Exemples de fonctionnalités :}
+		
+			\begin{itemize}
+				\item Offrir du divertissement (\textit{raconter une histoire ou une blague, organiser un jeu narratif, ...}) ;
+				\item Proposer une assistance générale (\textit{donner une définition, demander une explication, ...}) ;
+				\item Simplement discuter (\textit{mimer les interactions sociales}).
+			\end{itemize}
+		
+		% Exemples d'assistants conversationnels connus.
+		\paragraph{Exemples d'assistants conversationnels connus :}
+		
+			\begin{itemize}
+				\item \texttt{ELIZA} (\cite{weizenbaum:1966:eliza-computer-program}), simulateur d'un entretien clinique en psychothérapie ;
+				\item \texttt{ChatGPT} (\cite{openai:2023:chatgpt}) ou \texttt{BARD} (\cite{google:2023:bard-chat-based}), discussion avec des larges modèles de langues (\texttt{LLM}) ;
+				\item \texttt{AI Dungeon} (\cite{latitude-inc.-oasis-tech-inc.:2019:ai-dungeon}), un narrateur d'histoires interactives.
+			\end{itemize}
+
+
+%%%%%--------------------------------------------------------------------
+%%%%% Annexe B.2: Architectures usuelles des chatbots.
+%%%%%--------------------------------------------------------------------
+\section{Architectures usuelles des chatbots}
+\label{annex:B.2-CHATBOT-ARCHITECTURES}
+
+	On distingue principalement deux approches.
+	\cite{chen-etal:2017:survey-dialogue-systems} % génératif vs symbolic
+
+	\paragraph{Approches symboliques}
+	\todo[inline]{A REDIGER}
+		\cite{schuurmans-frasincar:2020:intent-classification-dialogue}  \\ % definition intention
+		\cite{bocklisch-etal:2017:rasa-open-source}  \\ % exemple
+		\cite{hoyt-etal:2016:ibm-watson-analytics} % exemple
+
+	\paragraph{Approche génératives}
+	\todo[inline]{A REDIGER}
+		\cite{uszkoreit:2017:transformer-novel-neural}  \\ % architecture transformers
+		\cite{ni-etal:2022:recent-advances-deep}  \\ % avancer en deep learning
+		\cite{openai:2023:chatgpt}  \\ % exemple
+		\cite{touvron-etal:2023:llama-open-foundation}  \\ % exemple
+		\cite{kaddour-etal:2023:challenges-applications-large} % plusieurs challenges
+
+%%%%%--------------------------------------------------------------------
+%%%%% Annexe B.3: Discussions sur le niveau d'automatisation.
+%%%%%--------------------------------------------------------------------
+\section{Discussions sur le niveau d'automatisation}
+\label{annex:B.2-CHATBOT-DISCUSSION-AUTOMATISATION}
+	
+	\todo[inline]{A REDIGER}
+		
+	\begin{leftBarAuthorOpinion}
+		On amalgame approche générative et chatbot \textit{chat-oriented}.
+	\end{leftBarAuthorOpinion}
+	\cite{sheridan-verplank:1978:human-computer-control} repris par \cite{parasuraman-etal:2000:model-types-levels} \\ % 10 niveaux de contrôles
+
+\todo[inline]{A REDIGER}

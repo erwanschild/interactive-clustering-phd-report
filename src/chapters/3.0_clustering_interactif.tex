@@ -3,6 +3,7 @@
 	
 	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTS: L'ANNOTATION C'EST COMPLIQUÉ !
 	Dans le chapitre précédent, nous avons vu les points essentiels suivants :
+	%
 	\begin{leftBarImportantGreen}
 		\begin{todolist}
 			% 1. Importance du jeu de données.
@@ -20,7 +21,9 @@
 	\todo[inline]{À REFORMULER APRÈS L'ÉCRITURE DE L'ÉTAT DE L'ART}
 	
 	% ANNONCE DU BUT DU CHAPITRE: MA CONTRIBUTION !
-	Dans cette partie, nous proposons une alternative à l'organisation manuelle destinée à la conception d'un jeu de données. Notre proposition vise à remplir un double objectif :
+	Dans cette partie, nous proposons une alternative à l'organisation manuelle destinée à la conception d'un jeu de données.
+	Notre proposition vise à remplir un double objectif :
+	%
 	\begin{leftBarImportantRed}
 		\begin{todolist}
 			% 1. Efficacité de création du trainset.
@@ -42,23 +45,16 @@
 
 		% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
 		La pierre angulaire de notre méthode repose sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie :
-		cela l'éloigne de ses compétences initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
-		\todo{citation}
-		\todo[inline]{
-			Remarque Gautier 20/02/2023:
-			erreur de routine, erreur par manque de connaissance, ...
-			Il faudra discuter les causes de ces erreurs
-		}
+		cela l'éloigne de ses compétences métiers initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
 		De fait, il semble plus adéquat de demander à l'expert métier de discriminer deux questions sur la base de leurs réponses :
-		une telle approche demande une charge de travail plus faible et est plus intuitive car elle est plus proche des compétences réelles de l'annotateur.
-		\todo{citation}
+		une telle approche demande a priori une charge de travail plus faible et semble plus intuitive car elle se rapproche des compétences réelles de l'annotateur (\textguillemets{\textit{est-ce les deux données traite du même cas d'usage ?}}).
 		Ainsi, nous basons notre méthode sur l'annotation de contraintes sur les données.
 		
 		% 2. Un expert métier seul ne peut trouver une modélisation adéquate, il faut se reposer sur l'interaction homme-machine.
 		Toutefois, l'annotation de contraintes semble elle aussi fastidieuse.
 		En effet, pour faire émerger une base d'apprentissage, il faut annoter un grand nombre de contraintes et être attentifs aux éventuelles incohérences pour ne pas introduire de contraintes contradictoires.
-		\todo{citation}
-		Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine. Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.\todo{à reformuler plus tard.}
+		Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine.
+		Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.
 
 		% TR:
 		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d’entraînement de notre assistant conversationnel.
@@ -69,9 +65,13 @@
 	%%%%%--------------------------------------------------------------------
 	\section{Description théorique}
 	\label{section:3.2-DESCRIPTION-THEORIQUE}
-
-		%%% A. Description détaillée.
-		\paragraph{Description détaillée.}
+		
+		
+		%%%
+		%%% Subsection 3.2.1. Description générale.
+		%%%
+		\subsection{Description générale}
+		\label{section:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 		
 		% Présentation succinte.
 		Nous proposons la méthode suivante pour transformer une collecte de données brutes en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel.
@@ -97,8 +97,12 @@
 			\label{figure:3.2-CLUSTERING-INTERACTIF}
 		\end{figure}
 		
-		%%% B. Description détaillée.
-		\paragraph{Description détaillée.}
+		
+		%%%
+		%%% Subsection 3.2.2. Description détaillée.
+		%%%
+		\subsection{Description détaillée}
+		\label{section:3.2.2-DESCRIPTION-THEORIQUE-DETAILLEE}
 		
 		% Pseudo code.
 		L'\textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}} décrit formellement notre proposition de \textit{Clustering Interactif} que nous détaillons ci-dessous.
@@ -208,7 +212,9 @@ dict_of_texts = {
 		\end{lstlisting}
 		
 		
+		%%%
 		%%% Subsection 3.3.1: Gestion des données.
+		%%%
 		\subsection{Gestion des données}
 		\label{section:3.3.1-GESTION-DES-DONNEES}
 				
@@ -292,7 +298,9 @@ dict_of_vectors = vectorize(
 )
 		\end{lstlisting}
 		
-		%%%	Subsection 3.3.2: Gestion des contraintes
+		%%%
+		%%% Subsection 3.3.2: Gestion des contraintes
+		%%%
 		\subsection{Gestion des contraintes}
 		\label{section:3.3.2-GESTION-DES-CONTRAINTES}
 		
@@ -403,7 +411,9 @@ connected_components = constraints_manager.get_connected_components()
 		\end{lstlisting}
 		
 		
-		%%%	Subsection 3.3.3: Algorithme de \textit{clustering} sous contraintes.
+		%%%
+		%%% Subsection 3.3.3: Algorithme de \textit{clustering} sous contraintes.
+		%%%
 		\subsection{Algorithme de \textit{clustering} sous contraintes}
 		\label{section:3.3.3-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
 		
@@ -465,7 +475,9 @@ clustering_result = clustering_model.cluster(
 		\end{leftBarInformation}
 		
 		
-		%%%	Subsection 3.3.4: Algorithme d'échantillonnage de contraintes.
+		%%%
+		%%% Subsection 3.3.4: Algorithme d'échantillonnage de contraintes.
+		%%%
 		\subsection{Algorithme d'échantillonnage de contraintes}
 		\label{section:3.3.4-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
 		
@@ -535,7 +547,9 @@ selection = sampler.sample(
 		\end{lstlisting}
 		
 
-		%%%	Subsection 3.3.X:
+		%%%
+		%%% Subsection 3.3.X:
+		%%%
 		\subsection{todo}
 		\todo[inline]{SECTION À RÉDIGER: FMC}
 		\todo[inline]{SECTION À RÉDIGER: IC-GUI page d'annotation}
