@@ -175,11 +175,22 @@
 				\end{itemize}
 				
 				% Autres problèmes.
-				Des problèmes similaires peuvent impacter le traitement du texte (\textit{fautes de grammaticales ou syntaxiques, ambiguïtés ou sémantiques, omissions, ...}), des images (\textit{flous, mauvais cadrages, colorimétries gênantes, ...}) et de l'audio (\textit{bruits en arrière plan, saturations, coupures inopportunes, ...}).
-				% Problème d'image flou: classification de l'état d'une BD.
-				Par exemple, dans la tâche de classification de l'état d'une bande dessinée à partir d'une photo (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}), comment juger correctement de l'état d'une \texttt{BD} si la photo capturée est flou ?
+				Des problèmes similaires peuvent impacter le traitement du texte (\textit{fautes de grammaticales ou syntaxiques, ambiguïtés ou sémantiques, omissions, ...}), des images (\textit{flous, mauvais cadrages, colorimétries gênantes, ...}) et de l'audio (\textit{bruits en arrière plan, saturations, coupures inopportunes, mots mâchés, ...}).
+				Quelques exemples sont présentés ci-dessous dans la \textsc{Figure~\ref{figure:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}}.
+				%
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.80\textwidth]{figures/etatdelart-morris-1958-lucky-luke-12-bruits}
+					\caption{
+						Exemple de bruits courant perturbant l'analyse d'une image :
+						\textbf{(1)} le flou,
+						\textbf{(2)} un doigt sur le capteur,
+						\textbf{(3)} un problème de cadrage
+						et \textbf{(4)} un problème d'angle de vue.
+					}
+					\label{figure:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}
+				\end{figure}
 			\end{leftBarExamples}
-			\todo{prendre des photos en mauvaises qualités de mes BD : flous, main sur l'image, mauvais cadrage, peluche ?}
 			
 			% Correction des données par le prétraitement et le nettoyage.
 			Pour limiter l'impact du bruit dans les données, \cite{alasadi-bhaya:2017:review-data-preprocessing} structurent les étapes de prétraitement de données entre quatre catégories :
@@ -297,7 +308,7 @@
 			\begin{itemize}
 				\item quel standard existe-t-il qui soit réutilisable dans ce cas d'usage ?
 				\item sera-t-elle stable et explicite à l'annotation ?
-				\item sera-t-elle traduite en un seul ou en plusieurs modèle(s) de \textit{Machine Laening} ?
+				\item sera-t-elle traduite en un seul ou en plusieurs modèle(s) de \textit{Machine Learning} ?
 				\item sera-t-elle maintenable avec de grands volumes de données ?
 			\end{itemize}
 			Pour y répondre, ateliers de conception sont généralement organiser avec les experts, permettant ainsi d'identifier les notions pertinentes à intégrer dans la modélisation finale du problème.
@@ -306,21 +317,6 @@
 			\begin{leftBarExamples}
 				Pour se rendre compte de cette difficulté, essayons par exemple de détailler l'ensemble des actions que peut entreprendre un robot conversationnel en domotique (comme \texttt{Alexa}, \cite{alexa-internet:2018:keyword-research-competitor}), et modélisons ensuite les diverses instructions verbales pouvant déclencher ces actions.
 			\end{leftBarExamples}
-			
-			% Complexité due à la rigueur requise pour la conception.
-			Dans un second temps, il est nécessaire de structurer cette modélisation dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
-			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clarté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin pour donner à l'annotateur une vision de son objectif (\cite{fort-etal:2009:vers-methodologie-annotation}).
-			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble des règles sans introduire de biais ni de confusion.
-			%
-			\begin{leftBarInformation}
-				Nous rappelons que \cite{dipper-etal:2004:useradaptive-annotation-guidelines} a dressé une liste de recommandations pour rédiger un guide d'annotation fiable.
-			\end{leftBarInformation}
-			
-			% Complexité due à la subjectivité de la tâche.
-			Malgré tout, \cite{baledent:2022:complexite-annotation-manuelle} rappelle que l'établissement d'une modélisation d'un phénomène \textbf{relève d'un choix}, et que celui-ci est par conséquent subjectif.
-			En effet, plusieurs représentations peuvent convenir à un même cas d'usage, et celui retenu devra être celui qui correspondra le plus à la finalité de votre modèle.
-			Ce choix, aussi avisé soit-il, entrera inévitablement en friction avec certaines données collectées qui s'inséreront difficilement au sein de la modélisation choisie.
-			Lors de la rédaction du guide d'annotation, il faut donc trouver l'équilibre entre entre la rigueur (\textit{pour fiabiliser la qualité de la labellisation}) et la flexibilité (\textit{pour pouvoir s'adapter aux données contrariantes}).
 			
 			% Solution pour limiter la complexité de modélisation.
 			\begin{leftBarIdea}
@@ -339,13 +335,13 @@
 					elles consistent à concevoir d’abord un petit modèle dont le périmètre est limité, puis d'étendre pas à pas son périmètre suite aux retours de son utilisation.
 					Une organisation fait bien entendu écho à la philosophie du cycle \texttt{MATTER}.
 				\end{itemize}
-				Toutefois, plusieurs handicaps pénalisent ces approches, notamment lorsque les données bruitées, déséquilibrées ou dont l'interprétation nécessite une forte connaissance métier.
+				Toutefois, plusieurs handicaps pénalisent ces approches, notamment lors de déséquilibrage ou de bruits dans les données, ou lorsque l'interprétation nécessite une forte connaissance métier.
 			\end{leftBarIdea}
 			
 			% Avis de l'auteur : pas d'assistance à la modélisation !
 			\begin{leftBarAuthorOpinion}
 				% Constat: conception généralement manuelle et peu assister.
-				De part notre expérience, nous constatons que peu d'approches non-supervisés ou semi-supervisées sont utilisées, notamment parce que leur résultats sont jugés peu pertinents sur des phénomènes complexes.
+				De part notre expérience, nous constatons que peu d'approches non-supervisées ou semi-supervisées sont utilisées, notamment parce que leurs résultats sont jugés peu pertinents sur des phénomènes complexes.
 				Les experts métiers réalisent alors cette étape de modélisation manuellement, absorbant la complexité de cette tâche en organisant de nombreux ateliers de conception en mode essai-erreur.
 				
 				% Exemple des chatbots.
@@ -353,6 +349,25 @@
 				Cependant, la vaste diversité du langage permet rarement d'identifier les thématiques présents dans une collecte de données.
 				L'étape de modélisation est alors réalisée manuellement par les experts du domaine couvert par l'assistant conversationnel.
 			\end{leftBarAuthorOpinion}
+			
+			% Complexité due à la rigueur requise pour la conception.
+			Lorsqu'une modélisation acceptable du phénomène à été définie, il est nécessaire de la structurer dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
+			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clarté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin pour donner à l'annotateur une vision de son objectif (\cite{fort-etal:2009:vers-methodologie-annotation}).
+			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble des règles sans introduire de biais ni de confusion.
+			%
+			\begin{leftBarInformation}
+				Nous rappelons que \cite{dipper-etal:2004:useradaptive-annotation-guidelines} a dressé une liste de recommandations pour rédiger un guide d'annotation fiable.
+			\end{leftBarInformation}
+			
+			% Complexité due à la subjectivité de la tâche.
+			Malgré tout, \cite{baledent:2022:complexite-annotation-manuelle} rappelle que l'établissement d'une modélisation d'un phénomène \textbf{relève d'un choix}, et que celui-ci est par conséquent subjectif.
+			En effet, plusieurs représentations peuvent convenir à un même cas d'usage, et celui retenu devra être celui qui correspondra le plus à la finalité de votre modèle.
+			Ce choix, aussi avisé soit-il, entrera inévitablement en friction avec certaines données collectées qui s'inséreront difficilement au sein de la modélisation choisie.
+			Lors de la rédaction du guide d'annotation, il faut donc trouver l'équilibre entre entre la rigueur (\textit{pour fiabiliser la qualité de la labellisation}) et la flexibilité (\textit{pour pouvoir s'adapter aux données contrariantes}).
+			%
+			\begin{leftBarExamples}
+				Dans la tâche de transcription d'un audio pour réalisé un modèle de synthèse vocale (\textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}), on constate que \texttt{Lucky Luke} mâche certains de ses mots (\textguillemets{[...] \texttt{j'vous s'rai reconnaissant} [...]}) : préférez-vous annoter strictement ce qu'il dit (\textit{au risque de complexifier le modèle}) ou corriger la transcription (\textit{au risque de ne pas reproduire la prononciation exacte du personnage}) ?
+			\end{leftBarExamples}
 		
 		%%% 2.3.2.B. Estimation de la complexité.
 		\subsubsection{Estimation de la complexité}
@@ -477,7 +492,7 @@
 					% Solution: Myriadisation.
 					\item la \textbf{myriadisation} (\textit{crowdsourcing}) :
 						cette approche consiste à déléguer l'annotation à des plateformes collaboratives en ligne comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
-						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grand volume de données rapidement et à moindre coûts.
+						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
 						Ces techniques comporte toutefois un inconvénient majeur : les opérateurs ne sont généralement pas des experts et sont rémunérés au volume labellisé.
 						La qualité des annotations risque donc d'être délaissée au profit de la quantité.
 				\end{itemize}
@@ -513,32 +528,29 @@
 			\begin{itemize}
 				% Complexité.
 				\item la \textit{complexité} du problème :
-				que celle-ci vienne intrinsèquement du phénomène à annoter ou du cas d'usage reflétée dans la modélisation, on constate si l'annotation est difficile, alors les chances d'interpréter différemment les données est plus élevée ;
+				que celle-ci vienne intrinsèquement du phénomène à annoter ou du cas d'usage reflétée dans la modélisation, on observce que si l'annotation est difficile, alors les chances d'interpréter différemment les données sont plus élevées ;
 				% Nombre.
 				\item le \textit{nombre} d'annotateurs :
 				il est normal de constater que plus y a de personnes donnant leurs avis, les avis peuvent diverger ;
 				% Expertise.
-				\item le \textit{niveau d'expertise} des annotateurs :
-				on constate des divergences d'opinion entre les opérateurs agnostique du phénomène et ceux détenant des connaissances sur celui-ci (un linguiste pour des données textuelles, un libraire pour des \texttt{BD}, ...), on constate alors des différences entre
+				\item le \textit{niveau d'expertise} du phénomène :
+				on remarque des divergences d'opinion entre les opérateurs n'étant pas spécialistes du phénomène et ceux détenant des connaissances sur celui-ci (un linguiste pour des données textuelles, un libraire pour des \texttt{BD}, ...) ;
 				% Formation.
-				\item le \textit{niveau de formation} des annotateurs :
-				on constate des divergences de labellisation entre les opérateurs formés à l'outil et au guide d'annotation et ceux découvrant la tâche d'annotation et sa mise en oeuvre pour la première fois.
+				\item le \textit{niveau de formation} à la tâche de labellisation :
+				on constate des divergences entre les opérateurs habitués à l'outil et au guide d'annotation, et ceux découvrant la tâche de labellisation et sa mise en oeuvre pour la première fois.
 			\end{itemize}
 			%
 			\begin{leftBarInformation}
-				\cite{bayerl-paul:2011:what-determines-intercoder} montrent aussi qu'il peuvent y avoir des différences entre deux annotateurs experts non-formés, alors qu'il y a moins de divergences entre des annotateurs expert et non-expert s'ils sont formés tous les deux.
+				\cite{bayerl-paul:2011:what-determines-intercoder} montrent aussi qu'il peut y avoir des différences entre deux annotateurs experts non-formés à la tâche de labellisation, alors qu'il y a moins de divergences entre des annotateurs expert et des annotateurs non-expert s'ils ont été formés tous les deux.
 				Cela souligne bien l'\textbf{importance de la formation à la tâche d'annotation} et la nécessité de rédiger un guide d'annotation qui détaille l'objectif et les règles de labellisation dans le but d'en limiter la subjectivité.
 			\end{leftBarInformation}
 			%
 			\begin{leftBarIdea}
-				% Besoin de formation.
-				Comme nous l'avons vu, \cite{bayerl-paul:2011:what-determines-intercoder} recommande de \textbf{simplifier la modélisation} à appliquer et de \textbf{former les opérateurs} à la tâche d'annotation.
-				
 				% Adjudication.
-				Pour aller plus loin, il est recommandé d'organiser des sessions d'\textbf{adjudication} durant laquelle les opérateurs confronter leurs visions en annoter les mêmes données.
-				Cela permettra de mesurer un score d'accord entre annotateurs et de discuter des points de désaccords dans l'application du guide de labellisation.
-				Une règle de bon sens consiste à confronter $2$ annotateurs pour être capable d'identifier ces points de désaccords, mais il faut être au moins $3$ pour les résoudre.
-				\cite{bayerl-paul:2011:what-determines-intercoder} conseille d'ailleurs d'être au moins $5$ annotateurs si le cas d'usage est critique.
+				Pour aller plus loin, il est recommandé d'organiser des sessions d'\textbf{adjudication} durant laquelle les opérateurs peuvent confronter leurs visions en annotant les mêmes données.
+				Cela permet de mesurer un score d'accord entre annotateurs mais aussi de discuter des points de désaccords dans l'application du guide de labellisation.
+				Une règle de bon sens consiste à confronter $2$ annotateurs pour être capable d'identifier ces points de désaccords, mais il faut être au moins $3$ opérateur pour en discuter et les résoudre.
+				\cite{bayerl-paul:2011:what-determines-intercoder} conseille même d'être au moins $5$ annotateurs si le cas d'usage est critique.
 			\end{leftBarIdea}
 		
 		%%% 2.3.3.B. Différences intra-annotateurs.
@@ -546,40 +558,92 @@
 		\label{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEURS}
 		
 			% Introduction à la régulation charge de travail.
-			Malgré la conception d'un guide et la rédaction de règles, malgré les sessions de revues dédiées à affiner ce guide et malgré les diverses pistes mises en oeuvre pour assister l'annotation, nous pouvons constater qu'un annotateur peut tout de même manifester des variations de comportement.
-			Ces différences peuvent s'apparenter à des erreurs d'innattention, des oublis de consignes, ou encore des fluctuations passagères.
+			Malgré la conception d'un guide et la rédaction de règles, malgré les sessions de revues dédiées à affiner ce guide et malgré les diverses pistes mises en oeuvre pour rendre l'annotation moins complexe, nous pouvons tout de même constater qu'un annotateur peut manifester des variations de comportement.
+			Ces différences peuvent s'apparenter à des erreurs d’inattention, à des oublis de consignes, ou à d'autres fluctuations similaires.
 			
-			Pour expliquer cela, nous pouvons nous baser sur la théorie de la \textbf{régulation de la charge de travail} (\cite{sperandio:1978:regulation-working-methods}, \cite{sperandio:1987:ergonomie-travail-mental}) : peu importe la tâche, l'opérateur aura tendance à percevoir ses capacités comme minime par rapport à la charge de travail à réaliser ; celui-ci cherchera donc un moyen d'adapter son travail afin de diminuer la charge de travail perçue et donc de la rendre acceptable ; cette adaptation explique ainsi les différences de comportement.
+			% Modèle de Sperandio sur la régulation de la charge de travail.
+			Pour expliquer cela, nous pouvons nous baser sur la théorie de la \textbf{régulation de la charge de travail} (\cite{sperandio:1978:regulation-working-methods}, \cite{sperandio:1987:ergonomie-travail-mental}).
+			Celle-ci s'exprime de la manière suivante :
+			\begin{itemize}
+				% Estime la charge de travail.
+				\item D'une part, l'opérateur \textbf{estime la charge de travail} à accomplir (\textit{la quantité, la difficulté, les délais, ...}).
+				Concernant la tâche d'annotation, elle sera perçue comme \textbf{très élevée} (\textit{complexité intrinsèque, volumes conséquent à traiter, règles strictes de labellisation , ...}) ;
+				% Estime les ressources.
+				\item D'autre part, l'opérateur \textbf{estime les ressources} à sa disposition (\textit{ses capacités, ses connaissances, ses outils, ...}).
+				Celles-ci seront plutôt perçues comme \textbf{minimes} face à cette montagne (\textit{peu de compétences techniques, manque de formation, méconnaissance de la modélisation utilisée, ...}) ;
+				;
+				% Régulatiuon.
+				\item Enfin, l'opérateur compare les deux estimations (\textit{est-ce que la charge de travail et mes ressources sont à l'équilibre ?}) et \textbf{ajuste sa charge de travail} pour la proportionner aux ressources qu'il va engager.
+				Dans notre cas, l'opérateur va probablement \textbf{essayer de réduire} (intentionnellement ou non) sa charge de travail pour qu'elle soit perçue comme acceptable vis-à-vis de ses ressources.
+			\end{itemize}
+			Ce principe explique alors certaines variations, notamment lorsque la modélisation est particulièrement complexes ou que l'annotateur est sous pression ou fatigué.
 			%
+			% Exemple.
 			\begin{leftBarExamples}
-				Une bonne illustration est celle de la \textit{veille du week-end} :
-				la tâche à souvent tendance à être plus complexe à ce moment-là, alors que celle-ci n'a pourtant pas changer.
-				Les opérateurs adaptent toutefois leur travail pour diminuer la carge de travail perçue.
-				Conclusion : la pause café est un peu plus longue, et une partie du travail est finalement reportée à la semaine suivante.
+				On peut appliquer cette théorie lorsque l'opérateur n'a pas eu de congés depuis plusieurs semaines ou que la fin de semaine approche : les capacités de celui-ci sont perçues comme plus faibles à cause de la fatigue, on peut alors constater des erreurs d'annotation même si la complexité de la tâche n'a pas changée.
 			\end{leftBarExamples}
-			
 			%
-			\todo[inline]{quelques solutions: simplification, gamification}
+			% Solutions.
 			\begin{leftBarIdea}
-				% faire une petite partie est parfois plus efficace, mais ne permet pas toujours de résoudre le problème dans sa globalité (on n'a pas l'objectif final)
-				% > [fort-etal:2012:modeling-complexity-manual] trop de contexte induit de la complexité
+				% Solution méthodologique.
+				Une première approche consiste à \textbf{essayer de simplifier la tâche} de labellisation (recommandation de \cite{bayerl-paul:2011:what-determines-intercoder}), permettant ainsi d'avoir une meilleure qualité sur une modélisation moins sophistiquée.
+				\cite{fort-etal:2012:modeling-complexity-manual} rappelle que le contexte autour de la donnée peut aussi introduire un surplus d'information à gérer, diminuer ce contexte peut parfois alléger l'annotation mais peu en échange introduire plus d'ambiguïté.
+				\cite{baledent:2022:complexite-annotation-manuelle} expose le dilemme entre annoter un phénomène complexe en une seule passe et le découper en plusieurs tâches unitaires distinctes : si la première permet d'avoir une meilleure vue d'ensemble, la seconde peut alléger la charge de travail.
+				
+				% Solution gamification.
+				Il est aussi possible d'essayer de \textbf{rendre la tâche ludique} (\textit{gamification}, \cite{von-ahn:2006:games-purpose}) : plusieurs outils tentent en effet de faire oublier à l'opérateur qu'il est en train de travailler en déguisant sa mission sous la forme d'un jeu (par exemple : \cite{guillaume-etal:2016:crowdsourcing-complex-language} propose \texttt{ZombiLingo} pour l'annotation morpho-syntaxique de textes).
+				Cette approche requiert toutefois une grande créativité pour réussir à faire cette illusion (\cite{fort:2017:experts-ou-foule}).
 			\end{leftBarIdea}
+		
+		
+		%%% 2.3.3.C. Faible valorisation du rôle d'annotateur.
+		\subsubsection{Faible valorisation du rôle d'annotateur}
+		\label{section:2.3.3.C-DEFIS-ANNOTATION-ASPECT-HUMAIN-ESCLAVAGE}
 			
-			% Dérives.
-			\todo[inline]{travail mal reconnu voire ingrat}
-				% \cite{valette:2016:analyse-statistique-donneesa} critique le TALN où l'expert linguiste est devenu un vulgaire soustraitant...
-				% \cite{perrigo-zorthian:2023:exclusive-openai-used}: Polémique OpenAI sur l'annotation par des Kényan à bas coûts \\
-				% \cite{dzieza:2023:ai-lot-work} Payé pour 3 fois rien, une sous classe de travail mal payé émerge
-			\todo[inline]{troubles}
-				% \cite{rowe:2023:it-destroyed-me}: modérateurs de contenus offensant
+			% Introduction: on a besoin d'experts.
+			Comme vu en \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}, l'annotation se repose principalement sur des opérateurs ayant une connaissance \textbf{métier} du phénomène à modéliser, ou des opérateurs formés spécifiquement à la tâche de labellisation.
+			Ces personnes sont donc essentielles à la conception d'une base d'apprentissage.
+			
+			% Dérive: Myriadisation.
+			Cependant, on constate que de plus en plus d'entreprises décident de sous-traiter ces tâches d'annotation à des plateformes de myriadisation (\textit{crowdsourcing}, \cite{howe:2008:crowdsourcing-how-power}) comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
+			Ces plateformes collaboratives permettent à n'importe quel internaute de contribuer à une tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
+			Plusieurs études montrent en effet l'intérêt de faire participer une foule d'opérateurs non-experts (\textit{snow-etal:2008:cheap-fast-it}), mais de \textbf{sérieuses questions éthiques} sont néanmoins soulevées par l'utilisation de ces plateformes.
+			
+			% Problème 1: Salaires faibles.
+			Tout d'abord, on peut remarquer que ces opérateurs sont souvent payés un salaire dérisoire proportionnel à la quantité de données qu'ils labellisent.
+			Cela ouvre la porte à des dérives, comme la polémique autour de \texttt{ChatGPT} (\cite{openai:2023:chatgpt}) où \cite{perrigo-zorthian:2023:exclusive-openai-used} avait dénoncé l'emploi de Kényans pour moins de $2$\$ de l'heure dans le but de corriger ce modèle.
+			On peut aussi citer \cite{dzieza:2023:ai-lot-work} qui alerte sur l'apparition d'une classe cette nouvelle classe de de travail sous-payé et dévalorisée, n'ayant pas de place clair dans le droit du travail.
+			
+			% Problème 2: Troubles psychologiques.
+			D'autres part, \cite{rowe:2023:it-destroyed-me} reporte aussi les impacts émotionnels et psychologiques causés par certaines tâches d'annotation.
+			En effet, une mission récurrente consiste à modérer des contenus à caractères offensants (\textit{insultes, violence, drogue, sexe, armes, ...}) : de nombreux annotateurs sombrent ainsi dans la dépression après avoir labellisé de telles données pendant des jours voire des semaines...
+			
+			% Pour information: Critique franche du TALN.
+			\begin{leftBarInformation}
+				Pour conclure sur ces dérives éthiques, \cite{valette:2016:analyse-statistique-donnees} rédige une critique franche des stratégies d'annotation dans le domaine du traitement automatique du langage naturel.
+				Celle-ci dénonce l'organisation actuelle où les experts linguistes sont devenus de simples sous-traitants n'ayant plus leur mot à dire dans la conception d'une modélisation, et dont l'échec du projet leur est généralement attribué par mépris.
+			\end{leftBarInformation}
+	
+	
+	%%%
+	%%% Subsection 2.3.4: Bilan concernant les nombreux défis de l'annotation.
+	%%%
+	\subsection{Bilan concernant les nombreux défis de l'annotation}
+	\label{section:2.3.4-DEFIS-ANNOTATION-BILAN}
 	
 	%%%
 	%%% Conclusion.
 	%%%
 	\begin{leftBarSummary}
+		En dressant la liste des défis autour de la tâche d'annotation, nous avons pu voir que :
 		\begin{todolist}
-			\item[\itemok] L'enjeu d'un projet d'annotation consiste à avoir des \textbf{données de qualité} qui soient représentatives du problème à traiter ;
-			\item[\itemok] Or la tâche d'annotation et son exigence de qualité engendre de la \textbf{complexité}, et donc une \textbf{charge de travail élevée} ;
-			\item[\itemok] Pour réguler cette charge de travail élevée, chaque opérateur va \textbf{adapter sa tâche} pour la rendre supportable, créant alors des \textbf{différences de comportement}.
+			% Pression sur la qualité.
+			\item[\itemok] L'enjeu d'un projet d'annotation consiste à \textbf{avoir des données de qualité} :
+			celles-ci doivent être représentatives du problème à traiter, en quantité suffisante, avec un minimum de bruit, et dont les droits d'usage sont disponibles ;
+			% Complexité élevée.
+			\item[\itemok] Or la tâche de labellisation et son exigence de qualité \textbf{engendre de la complexité} :
+			celle-ci peut venir de la difficulté à modéliser le phénomène, de l'annotation elle-même, ou encore des coûts qui y sont associés ;
+			% Différence de comportement.
+			\item[\itemok] Cette complexité \textbf{implique des différences de comportements} : ces divergences s'expliquent pas la subjectivité de l'annotation et par la régulation de la charge de travail opérée par l'opérateur lorsque celle-ci est trop élevée.
 		\end{todolist}
 	\end{leftBarSummary}

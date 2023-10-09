@@ -58,6 +58,7 @@
 				\item les \textbf{spécifications}, compilant dans un \textit{guide d'annotation} l'ensemble des règles concrètes à respecter pour mettre en application la modélisation.
 			\end{itemize}
 			Pour résumer cette distinction, la modélisation représente \textit{quoi} annoter (\textit{objectif, définition, valeurs possibles, ...}) alors que les spécifications décrivent \textit{comment} annoter (\textit{règles d'attribution, exemples et contre-exemple, règles de format, ...}).
+			%
 			\begin{leftBarExamples}
 				% Exemple littérature.
 				\cite{perrotin-etal:2018:annotation-actes-dialogue}, s'intéressant à la classification des conversations d'assistance en ligne en actes de dialogues, décrit son guide d'annotation dans \cite{asher-etal:2017:manuel-annotation-actes}.
@@ -326,13 +327,24 @@
 			Peut-être que ces derniers s'adaptent mal aux particularités des divers projets industriels, expliquant ainsi l'utilisation d'outils simplistes mais flexibles. Ou alors est-ce par méconnaissance des difficultés et des bais potentiels de l'annotation que ces outils aux fonctionnalités avancées ne sont pas employés ?
 		\end{leftBarAuthorOpinion}
 	
+	
+	%%%
+	%%% Subsection 2.2.4: Bilan concernant les nombreux défis de l'annotation.
+	%%%
+	\subsection{Bilan concernant l'organisation d'un projet d'annotation}
+	\label{section:2.2.4-ORGANISATION-ANNOTATION-BILAN}
+	
 	%%%
 	%%% Conclusion.
 	%%%
 	\begin{leftBarSummary}
 		\begin{todolist}
-			\item[\itemok] Un projet d'annotation s'organise généralement en cycle (\texttt{MATTER}) au cours duquel nous réalisons une modélisation abstraite des données que nous formalisons dans un guide (\textit{\textbf{M}odelize}), nous appliquons ce guide pour labelliser notre base d'apprentissage (\textit{\textbf{A}nnotate}), puis nous entraînons et testons un modèle de \textit{Machine Learning} (\textit{\textbf{T}rain}, \textit{\textbf{T}est} et \textit{\textbf{E}valuate}). Ensuite, l'évaluation du modèle peut mener à une révision de la modélisation des données en fonction des performances obtenues (\textit{\textbf{R}evise}) ;
-			\item[\itemok] Un tel projet d'annotation nécessite une diversité de connaissances et de compétences qui peuvent être réparties en quatre catégories : \texttt{métier}, \texttt{analytique}, \texttt{technique} et \texttt{gestion/communication} ;
-			\item[\itemok] Un tel projet nécessite aussi un outil d'annotation dédié possédant certaines fonctionnalités essentielles comme la possibilité d'\texttt{intégrer le guide} d'annotation, le besoin de \texttt{contrôler la qualité} des annotations, la capacité à réaliser des \texttt{annotation multiples ou multimodales}, ou encore l'assimilation d'éléments de \texttt{gestion de projet}.
+			% MATTER.
+			\item[\itemok] En général, un projet d'annotation est \textbf{organisé en cycle (\texttt{MATTER})} au cours duquel nous réalisons une modélisation abstraite des données que nous formalisons dans un guide (\textit{\textbf{M}odelize}), nous appliquons ce guide pour labelliser notre base d'apprentissage (\textit{\textbf{A}nnotate}), puis nous entraînons et testons un modèle de \textit{Machine Learning} (\textit{\textbf{T}rain}, \textit{\textbf{T}est} et \textit{\textbf{E}valuate}).
+			Ensuite, l'évaluation du modèle peut mener à une révision de la modélisation des données en fonction des performances obtenues (\textit{\textbf{R}evise}) ;
+			% Acteurs.
+			\item[\itemok] Un tel projet d'annotation nécessite une \textbf{diversité de connaissances et de compétences} qui peuvent être réparties en quatre catégories : \texttt{métier}, \texttt{analytique}, \texttt{technique} et \texttt{gestion/communication} ;
+			% Outils.
+			\item[\itemok] Un tel projet nécessite aussi un \textbf{outil d'annotation dédié} possédant certaines fonctionnalités essentielles comme la possibilité d'\texttt{intégrer le guide} d'annotation, le besoin de \texttt{contrôler la qualité} des annotations, la capacité à réaliser des \texttt{annotation multiples ou multimodales}, ou encore l'assimilation d'éléments de \texttt{gestion de projet}.
 		\end{todolist}
 	\end{leftBarSummary}
