@@ -158,8 +158,8 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-closest}
 				\caption{
-					Évolutions de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre de contraintes annotées au cours des itérations du \textit{clustering} interactif.
-					Les courbes en dégradé de couleur représentent les déclinaisons de cette évolution en intégrant un pourcentage d'annotations erronées (allant de $0$\% et $50$\%).
+					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain au cours des itérations.
+					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $50$\%).
 					\textbf{(1)} et \textbf{(2)} représente respectivement l'approche ignorant les conflits dans les contraintes et l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
 					Toutes les courbes sont tronquées à $3~000$ contraintes.
 				}
@@ -219,12 +219,20 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 			\todo[inline]{A REDIGER}
-		
-			% Description statistiques.
-			\todo[inline]{A REDIGER:}
-			La \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}}
 			
-
+			% Figure.
+			\begin{figure}[!htb]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-size-2000}
+				\caption{
+					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain (d'une taille de $2~000$ données) au cours des itérations.
+					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $25$\%).
+					La barre verticale indique le nombre de contraintes nécessaires aux tentatives n'introduisant pas d'incohérences pour obtenir une moyenne de $90$\% de \texttt{v-measure} (ici: $7~250$).
+				}
+				\label{figure:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-2000}
+			\end{figure}
+			
+			% Table écart de performances.
 			\begin{table}[!htb]
 				%\small
 				%\footnotesize
@@ -447,7 +455,7 @@
 							\tabularnewline
 						\multirow{-12}{*}{
 							\cellcolor{colorTableHeader!15}
-							\rotatebox[origin=c]{90}{Taux d'erreurs simulé}
+							\rotatebox[origin=c]{90}{Taux de différences simulées}
 						}
 							& \multirow{-2}{*}{
 								\cellcolor{colorTableHeader!15}
@@ -460,7 +468,7 @@
 							& \footnotesize $(\pm1.14)$
 							& \footnotesize $(\pm2.11)$
 							& \footnotesize $(\pm1.52)$
-							& \footnotesize $(\pm1.26.)$
+							& \footnotesize $(\pm1.26)$
 							& \footnotesize $(\pm2.46)$
 							\tabularnewline
 							\hline
@@ -469,9 +477,263 @@
 				}
 				\end{center}
 				\caption{
-					Simulation ...
+					Estimation de la \textbf{similitude moyenne} (calculée en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation \textbf{par rapport à la vérité terrain}.
+					Cette similitude est rapportée en fonction de la taille du jeu de données utilisé et du taux de contraintes divergentes introduites lors des tentatives.
+					Pour chaque taille de jeu de données, les calculs sont réalisés avec un nombre de contraintes fixe, choisi comme étant le nombre de contraintes nécessaires pour que les tentatives sans incohérences atteignent une \texttt{v-measure} moyenne de $90$\% avec la vérité terrain (ce nombre est rapporté en deuxième ligne).
 				}
-				\label{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}
+				\label{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-PERFORMANCES}
+			\end{table}
+			
+			% Table similitude avec clustering sans erreurs.
+			\begin{table}[!htb]
+				%\small
+				%\footnotesize
+				\begin{center}
+				\scalebox{0.8}{
+					\begin{tabular}{|c|c|r|r|r|r|r|r|r|r|r|}
+					
+						\hhline{~~|---------}
+						% ENTETE DU TABLEAU
+						\multicolumn{2}{c|}{}
+							& \multicolumn{9}{c|}{
+								\cellcolor{colorTableHeader!15}
+								\shortstack{Taille des jeux de données}
+							}
+							\tabularnewline
+							\hhline{~~|-|-|-|-|-|-|-|-|-|}
+						% Taille du jeu de données
+						\multicolumn{2}{c|}{}
+							& \cellcolor{colorTableHeader!15} $1~000$
+							& \cellcolor{colorTableHeader!15} $1~500$
+							& \cellcolor{colorTableHeader!15} $2~000$
+							& \cellcolor{colorTableHeader!15} $2~500$
+							& \cellcolor{colorTableHeader!15} $3~000$
+							& \cellcolor{colorTableHeader!15} $3~500$
+							& \cellcolor{colorTableHeader!15} $4~000$
+							& \cellcolor{colorTableHeader!15} $4~500$
+							& \cellcolor{colorTableHeader!15} $5~000$
+							\tabularnewline
+							\hhline{~|----------}
+							
+						% Contraintes annotées.
+						\multicolumn{1}{c|}{}
+							& \cellcolor{colorTableHeader!15} \textit{Contraintes}
+							& \multirow{2}{*}{$4~250$}
+							& \multirow{2}{*}{$6~000$}
+							& \multirow{2}{*}{$7~250$}
+							& \multirow{2}{*}{$8~750$}
+							& \multirow{2}{*}{$10~250$}
+							& \multirow{2}{*}{$11~250$}
+							& \multirow{2}{*}{$12~250$}
+							& \multirow{2}{*}{$13~500$}
+							& \multirow{2}{*}{$16~250$}
+							\tabularnewline
+						\multicolumn{1}{c|}{}
+							& \cellcolor{colorTableHeader!15} \textit{annotées}
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							\tabularnewline
+							\hline
+							
+						% Erreur 0%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $97.46$\%
+							& $96.17$\%
+							& $95.03$\%
+							& $95.58$\%
+							& $95.42$\%
+							& $94.75$\%
+							& $94.74$\%
+							& $96.00$\%
+							& $93.15$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$0$\%
+							}
+							& \footnotesize $(\pm0.65)$
+							& \footnotesize $(\pm0.99)$
+							& \footnotesize $(\pm1.08)$
+							& \footnotesize $(\pm0.79)$
+							& \footnotesize $(\pm0.84)$
+							& \footnotesize $(\pm1.43)$
+							& \footnotesize $(\pm1.12)$
+							& \footnotesize $(\pm0.78)$
+							& \footnotesize $(\pm1.23)$
+							\tabularnewline
+							\hhline{~----------}
+							
+						% Erreur 0.05%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $85.10$\%
+							& $76.76$\%
+							& $77.85$\%
+							& $73.50$\%
+							& $73.34$\%
+							& $73.50$\%
+							& $70.74$\%
+							& $68.97$\%
+							& $68.72$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$5$\%
+							}
+							& \footnotesize $(\pm1.85)$
+							& \footnotesize $(\pm0.95)$
+							& \footnotesize $(\pm0.78)$
+							& \footnotesize $(\pm0.81)$
+							& \footnotesize $(\pm0.57)$
+							& \footnotesize $(\pm1.01)$
+							& \footnotesize $(\pm0.47)$
+							& \footnotesize $(\pm0.58)$
+							& \footnotesize $(\pm1.31)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.10%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $79.29$\%
+							& $65.03$\%
+							& $65.46$\%
+							& $60.45$\%
+							& $60.59$\%
+							& $60.32$\%
+							& $57.15$\%
+							& $53.34$\%
+							& $55.55$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$10$\%
+							}
+							& \footnotesize $(\pm3.06)$
+							& \footnotesize $(\pm1.06)$
+							& \footnotesize $(\pm0.78)$
+							& \footnotesize $(\pm0.76)$
+							& \footnotesize $(\pm0.51)$
+							& \footnotesize $(\pm0.99)$
+							& \footnotesize $(\pm0.68)$
+							& \footnotesize $(\pm0.84)$
+							& \footnotesize $(\pm1.50)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.15%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $73.67$\%
+							& $57.84$\%
+							& $56.21$\%
+							& $50.50$\%
+							& $47.56$\%
+							& $51.65$\%
+							& $48.16$\%
+							& $41.68$\%
+							& $46.29$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$15$\%
+							}
+							& \footnotesize $(\pm4.08)$
+							& \footnotesize $(\pm1.14)$
+							& \footnotesize $(\pm0.97)$
+							& \footnotesize $(\pm0.72)$
+							& \footnotesize $(\pm0.98)$
+							& \footnotesize $(\pm1.04)$
+							& \footnotesize $(\pm0.74)$
+							& \footnotesize $(\pm0.65)$
+							& \footnotesize $(\pm1.37)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.20%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $68.86$\%
+							& $51.28$\%
+							& $48.21$\%
+							& $41.58$\%
+							& $40.99$\%
+							& $43.00$\%
+							& $40.18$\%
+							& $34.41$\%
+							& $38.37$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$20$\%
+							}
+							& \footnotesize $(\pm4.59)$
+							& \footnotesize $(\pm1.15)$
+							& \footnotesize $(\pm1.10)$
+							& \footnotesize $(\pm0.47)$
+							& \footnotesize $(\pm0.94)$
+							& \footnotesize $(\pm0.84)$
+							& \footnotesize $(\pm0.90)$
+							& \footnotesize $(\pm0.54)$
+							& \footnotesize $(\pm1.05)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.25%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $64.89$\%
+							& $43.63$\%
+							& $39.60$\%
+							& $35.70$\%
+							& $34.94$\%
+							& $37.00$\%
+							& $32.12$\%
+							& $26.49$\%
+							& $31.24$\%
+							\tabularnewline
+						\multirow{-12}{*}{
+							\cellcolor{colorTableHeader!15}
+							\rotatebox[origin=c]{90}{Taux de différences simulées}
+						}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$25$\%
+							}
+							& \footnotesize $(\pm5.15)$
+							& \footnotesize $(\pm1.12)$
+							& \footnotesize $(\pm0.97)$
+							& \footnotesize $(\pm0.47)$
+							& \footnotesize $(\pm0.57)$
+							& \footnotesize $(\pm0.99)$
+							& \footnotesize $(\pm0.70)$
+							& \footnotesize $(\pm0.72)$
+							& \footnotesize $(\pm1.11)$
+							\tabularnewline
+							\hline
+						
+					\end{tabular}
+				}
+				\end{center}
+				\caption{
+					Estimation de la \textbf{similitude moyenne} (calculée en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation \textbf{par rapport aux résultats de \textit{clustering} des tentatives n'en introduisant pas}.
+					Cette similitude est rapportée en fonction de la taille du jeu de données utilisé et du taux de contraintes divergentes introduites lors des tentatives.
+					Pour chaque taille de jeu de données, les calculs sont réalisés avec un nombre de contraintes fixe, choisi comme étant le nombre de contraintes nécessaires pour que les tentatives sans incohérences atteignent une \texttt{v-measure} moyenne de $90$\% avec la vérité terrain (ce nombre est rapporté en deuxième ligne).
+				}
+				\label{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-CLUSTERING}
 			\end{table}
 
 		%%% Discussion
@@ -582,6 +844,7 @@
 				
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					
 						& \multicolumn{1}{c|}{\shortstack[c]{
 							1 (Relecteur)
