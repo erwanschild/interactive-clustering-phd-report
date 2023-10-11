@@ -21,11 +21,11 @@
 	]
 		% Hypothèse.
 		\textguillemets{\textbf{
-			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer le taux d'incohérences dans les contraintes ainsi que leur impact sur les performances de la méthode.
+			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer le taux d'incohérences dans les contraintes ainsi que leur impact sur les résultats de la méthode.
 		}} \\
 		
 		% Figure.
-		La \textsc{Figure~\ref{figure:4.6-HYPOTHESE-ROBUSTESSE}} illustre cette hypothèse et l'espoir de estimer l'impact différences ou d'erreurs d'annotations sur le nombre d'itérations de la méthode.
+		La \textsc{Figure~\ref{figure:4.6-HYPOTHESE-ROBUSTESSE}} illustre cette hypothèse et l'espoir de estimer l'impact de différences d'annotations sur le nombre d'itérations de la méthode.
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
@@ -40,8 +40,8 @@
 	% Résumé de l'étude.
 	Afin de vérifier cette hypothèse, nous organisons trois expériences :
 	\begin{itemize}
-		\item une étude de cas sur la \textbf{correction des incohérences d'annotation} (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}}) ;
-		\item une simulation de l'\textbf{impact des incohérences d'annotation} sur les performances de la méthode (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}}) ;
+		\item une étude de cas sur la \textbf{correction des incohérences d'annotation} (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}}) ;
+		\item une simulation de l'\textbf{impact des différences d'annotation} sur les résultats de la méthode (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}}) ;
 		\item une étude de cas sur le \textbf{score inter-annotateurs} obtenu lors d'une annotation de contraintes en situation réelle avec plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}).
 	\end{itemize}
 	
@@ -50,29 +50,29 @@
 	%%% Subsection 4.6.1: Étude de l'intérêt de la correction des incohérences d'annotation.
 	%%%
 	\subsection{Étude de l'intérêt de la correction des incohérences d'annotation}
-	\label{section:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}
+	\label{section:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}
 		
 		% Objectif de l'expérience.
 		Nous cherchons à estimer la robustesse du \textit{clustering} interactif face aux incohérences d'annotation.
 		Dans cette étude, nous nous intéressons plus particulièrement à l'intérêt de la détection et de la correction des conflits présents dans les contraintes.
 		En effet, deux approches de travail s'opposent :
 		\begin{itemize}
-			\item une approche naïve ignorant simplement les conflits : celle-ci n'engendre pas de coûts supplémentaires, mais elle s'expose aux risques de dérives de fonctionnement ;
-			\item une seconde approche avec correction des conflits : celle-ci nécessite de revoir ou de ré-annoter des contraintes, impliquant un coût supplémentaire, mais permet de limiter l'impact de dérives potentielles.
+			\item une approche \textit{naïve} ignorant simplement les conflits : celle-ci n'engendre pas de coûts supplémentaires, mais elle s'expose aux risques de dérives de fonctionnement ;
+			\item une seconde approche \textit{avec correction} des conflits : celle-ci nécessite de revoir ou de ré-annoter des contraintes, impliquant un coût supplémentaire, mais permet de limiter l'impact de dérives potentielles.
 		\end{itemize}
-		Pour trancher entre ces deux options, nous simulons ces deux approches afin d'estimer si l'absence de correction induit une régression significative des performances de notre méthode d'annotation.
+		Pour trancher entre ces deux options, nous simulons ces deux approches afin d'estimer si l'absence de correction induit une différence significative de notre méthode d'annotation.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annoté (vérité terrain)}
-				\KwIn{taux d'erreurs à tester}
+				\KwIn{taux de différences à insérer}
 				%
-				\ForEach{arrangement de taux d'erreur à tester}{
+				\ForEach{arrangement de taux de différences à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
@@ -81,26 +81,26 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{échantillonnage d'erreurs}: définir les contraintes qui seront erronées \;
+						\textbf{échantillonnage de différences}: définir les contraintes qui seront inversées \;
 						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
 						\If{absence de correction des conflits d'annotation}{
 							\textbf{intégration naïve}: ignorer les conflits avec le gestionnaire de contraintes \;
 						}
 						\ElseIf{détection et correction des conflits d'annotation}{
-							\textbf{intégration corrective}: changer les annotations erronées en conflit \;
+							\textbf{intégration corrective}: ré-annoter les annotations en conflit \;
 						}
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
 					}
 				}
-				\textbf{analyse}: déterminer l'impact par itération et par taux d'erreurs de la correction \;
+				\textbf{analyse}: déterminer l'impact par itération et par taux de différences de la correction \;
 				%
 				\KwResult{discussion sur l'impact de la correction des incohérences}
 				%
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude d'intérêt de la correction des incohérences d'annotation.
 				}}
-				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS-PROTOCOLE}
+				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES-PROTOCOLE}
 			\end{algorithm}
 			
 			% Description de la vérité terrain.
@@ -111,28 +111,28 @@
 			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète
 			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
-			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes erronées à chaque itération :
+			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
+			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes divergentes à chaque itération :
 			\begin{itemize}
-				\item Le taux d'erreurs insérées, variant de $0$\% à $50$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux d'erreur fixe sur les performances au courant des itérations ;
-				\item Les contraintes erronées à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans erreur : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
+				\item Le taux de différences insérées, variant de $0$\% à $50$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux de différences fixe sur les résultats au courant des itérations ;
+				\item Les contraintes divergentes à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans introduction de différences : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
-			Puisque nous introduisons des erreurs d'annotations, des conflits vont apparaître dans le gestionnaire de contraintes.
+			Puisque nous introduisons des différences d'annotations, des conflits vont apparaître dans le gestionnaire de contraintes.
 			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
 			Pour les traiter, nous testons deux approches :
 			\begin{itemize}
-				\item l'approche naïve ignorant simplement les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
-				\item l'approche avec correction des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arrivent qu'à l'ajout d'une contrainte erronée, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
+				\item l'approche \textit{naïve} ignorant simplement les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
+				\item l'approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arrivent qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec les répétitions.
-			Ainsi, il y a donc $11$ taux d'erreurs différents à simuler, chacun suivant $2$ approches de gestion de conflits différentes, et chacune de ces simulations d'erreurs seront répétées $10$ fois sur chaque tentative complète de la méthode pour limiter contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $220$ simulation par tentatives.
+			Ainsi, il y a donc $11$ taux de différences, chacun suivant $2$ approches de gestion de conflits, et chacune de ces simulations d'incohérences seront répétées $10$ fois sur chaque tentative complète de la méthode pour limiter contrer les aléas statistiques des tirages de contraintes divergentes, ce qui représente $220$ simulation par tentatives.
 			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $1100$ tentatives complètes à simuler.
 
 			% Description de l'analyse.
-			Enfin, nous afficherons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux d'erreurs simulés, et discuterons de l'impact au cours des itérations de la présence ou de l'absence de corrections des conflits d'annotations détectés.
+			Enfin, nous afficherons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux de différences simulés, et discuterons de l'impact au cours des itérations de la présence ou de l'absence de corrections des conflits d'annotations détectés.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -143,15 +143,17 @@
 		\subsubsection{Résultats obtenus}
 		
 			% Description statistiques.
-			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode, déclinée avec les $11$ taux d'erreurs simulés et les $2$ approches de gestion des conflits.
-			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives sans erreurs : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
+			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode, déclinée avec les $11$ taux de différences simulés et les $2$ approches de gestion des conflits.
+			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives n'introduisant pas de différences d'annotation par rapport à la vérité terrain : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
 			
+			% Warning : Troncage à 3000.
 			\begin{leftBarWarning}
 				Toutefois, il est important de noter que les tentatives sans contraintes ont besoin de maximum $3~000$ contraintes pour annoter toutes les contraintes possibles et leurs transitivités (moyenne: $2~488$, écart-type: $327$).
-				Ainsi, toutes les courbes simulant les différents taux d'erreurs sont tronquées à $3~000$ contraintes, que les tentatives aient convergé ou non.
-				Nous serons sensible à cette information pour ne pas faire de mauvaises interprétations, car le dernier point des différentes courbes ne représente pas forcément le point de convergence des tentatives associées.
+				Au delà de cette limite, il faudrait échantillonner de nouvelles contraintes pour les tentatives divergentes, mais les bases de contraintes utilisées ne seraient alors plus comparables.
+				Nous décidons donc de tronquer les différentes courbes à $3~000$ contraintes, qu'il y eut convergence ou non, et nous analyserons ces résultats partiels.
 			\end{leftBarWarning}
 			
+			% Figure.
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-closest}
@@ -161,11 +163,21 @@
 					\textbf{(1)} et \textbf{(2)} représente respectivement l'approche ignorant les conflits dans les contraintes et l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
 					Toutes les courbes sont tronquées à $3~000$ contraintes.
 				}
-				\label{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-ERREURS}
+				\label{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}
 			\end{figure}
 			
-			% Description de la figure.
-			\todo[inline]{A REDIGER: description de la figure}
+			% Description de la figure: cas naïf.
+			Tout d'abord, observons l'approche \extit{naïve}, ignorant simplement les conflits (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(1)}).
+			Nous pouvons constater que les performances (basées sur la vérité terrain) plafonnent très rapidement si des incohérences sont introduites : dès $5$\% de différences, le score de \texttt{v-measure} stagne autour de $65$\% à partir de $1~000$ contraintes, alors qu'une performance théorique d'environ $90$\% serait attendue pour une tentative n'ayant pas de différences d'annotation.
+			D'autre part, si le taux de contraintes divergentes introduites est supérieur à $15$\%, nous pouvons remarquer que ces performances diminuent avant de stagner à des valeurs inférieures à $40$\% de \texttt{v-measure}.
+			Pour finir sur cette première approche, tout porte à croire que ces faibles seuils performances perdurent au delà des $3~000$ contraintes (figure tronquée) : les tentatives s'éloignent donc significativement de la vérité terrain si des incohérences d'annotation sont insérées.
+			
+			
+			% Description de la figure: cas correctif.
+			Observons désormais l'approche \extit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(2)}).
+			Nous pouvons constater que les tentatives introduisant des contraintes divergentes subissent aussi un retard de performances, mais aucun plateau de performance n'apparaît.
+			Pour les tentatives possédant au moins $25$\% d'incohérences, des régressions de performances apparaissent sur les premières itérations, mais toutes les courbes sont à nouveau croissantes au delà d'un nombre de $1~000$ contraintes.
+			Pour conclure sur cette seconde figure, on observe une convergence générale vers la vérité terrain bien que celle-ci soit ralentie, et on peut espérer que cette convergence se poursuit au delà des $3~000$ contraintes (figure tronquée).
 
 		%%% Discussion
 		\subsubsection{Discussion}
@@ -177,15 +189,16 @@
 			\todo[inline]{A REDIGER: Super important de corriger !}
 			\todo[inline]{A REDIGER: Besoin de mécanisme pour prédire et mettre de la redondance}
 			
-			% Conclusions et suggestion.
-			\todo[inline]{A REDIGER: ouverture sur l'impact des incohérences}
+			% Discussions et ouverture
+			\todo[inline]{A REDIGER: Discussion: convergence vers une AUTRE vérité terrain ?}
+			\todo[inline]{A REDIGER: Discussion: estimer l'impact sur de ces divergences}
 	
 	
 	%%%
-	%%% Subsection 4.6.2: Étude de l'impact des incohérences d'annotation sur les performances.
+	%%% Subsection 4.6.2: Étude de l'impact des incohérences d'annotation sur les résultats.
 	%%%
-	\subsection{Étude de l'impact des incohérences d'annotation sur les performances}
-	\label{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}
+	\subsection{Étude de l'impact des incohérences d'annotation sur les résultats}
+	\label{section:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}
 		
 		% Objectif de l'expérience.
 		\todo[inline]{A REDIGER: objectif de l'expérience}
@@ -209,29 +222,256 @@
 		
 			% Description statistiques.
 			\todo[inline]{A REDIGER:}
-			La \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}}
+			La \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}}
 			
+
 			\begin{table}[!htb]
+				%\small
+				%\footnotesize
 				\begin{center}
-				\begin{tabular}{|c|r|r|r|r|r|r|r|r|r|}
-					% ENTETE DU TABLEAU
-					% Erreur 0.00%
-					% Erreur 0.05%
-					% Erreur 0.10%
-					% Erreur 0.15%
-					% Erreur 0.20%
-					% Erreur 0.25%
-					% Erreur 0.30%
-					% Erreur 0.35%
-					% Erreur 0.40%
-					% Erreur 0.45%
-					% Erreur 0.50%
-				\end{tabular}
+				\scalebox{0.8}{
+					\begin{tabular}{|c|c|r|r|r|r|r|r|r|r|r|}
+					
+						\hhline{~~|---------}
+						% ENTETE DU TABLEAU
+						\multicolumn{2}{c|}{}
+							& \multicolumn{9}{c|}{
+								\cellcolor{colorTableHeader!15}
+								\shortstack{Taille des jeux de données}
+							}
+							\tabularnewline
+							\hhline{~~|-|-|-|-|-|-|-|-|-|}
+						% Taille du jeu de données
+						\multicolumn{2}{c|}{}
+							& \cellcolor{colorTableHeader!15} $1~000$
+							& \cellcolor{colorTableHeader!15} $1~500$
+							& \cellcolor{colorTableHeader!15} $2~000$
+							& \cellcolor{colorTableHeader!15} $2~500$
+							& \cellcolor{colorTableHeader!15} $3~000$
+							& \cellcolor{colorTableHeader!15} $3~500$
+							& \cellcolor{colorTableHeader!15} $4~000$
+							& \cellcolor{colorTableHeader!15} $4~500$
+							& \cellcolor{colorTableHeader!15} $5~000$
+							\tabularnewline
+							\hhline{~|----------}
+							
+						% Contraintes annotées.
+						\multicolumn{1}{c|}{}
+							& \cellcolor{colorTableHeader!15} \textit{Contraintes}
+							& \multirow{2}{*}{$4~250$}
+							& \multirow{2}{*}{$6~000$}
+							& \multirow{2}{*}{$7~250$}
+							& \multirow{2}{*}{$8~750$}
+							& \multirow{2}{*}{$10~250$}
+							& \multirow{2}{*}{$11~250$}
+							& \multirow{2}{*}{$12~250$}
+							& \multirow{2}{*}{$13~500$}
+							& \multirow{2}{*}{$16~250$}
+							\tabularnewline
+						\multicolumn{1}{c|}{}
+							& \cellcolor{colorTableHeader!15} \textit{annotées}
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							&
+							\tabularnewline
+							\hline
+							
+						% Erreur 0%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $91.15$\%
+							& $91.95$\%
+							& $91.08$\%
+							& $92.60$\%
+							& $93.04$\%
+							& $90.25$\%
+							& $90.00$\%
+							& $90.18$\%
+							& $91.17$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$0$\%
+							}
+							& \footnotesize $(\pm3.04)$
+							& \footnotesize $(\pm2.68)$
+							& \footnotesize $(\pm2.19)$
+							& \footnotesize $(\pm1.23)$
+							& \footnotesize $(\pm1.51)$
+							& \footnotesize $(\pm3.22)$
+							& \footnotesize $(\pm2.47)$
+							& \footnotesize $(\pm2.60)$
+							& \footnotesize $(\pm2.03)$
+							\tabularnewline
+							\hhline{~----------}
+							
+						% Erreur 0.05%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $83.55$\%
+							& $75.65$\%
+							& $76.65$\%
+							& $73.09$\%
+							& $73.04$\%
+							& $72.91$\%
+							& $70.33$\%
+							& $67.44$\%
+							& $69.57$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$5$\%
+							}
+							& \footnotesize $(\pm4.64)$
+							& \footnotesize $(\pm2.25)$
+							& \footnotesize $(\pm1.79)$
+							& \footnotesize $(\pm1.26)$
+							& \footnotesize $(\pm1.17)$
+							& \footnotesize $(\pm2.23)$
+							& \footnotesize $(\pm1.39)$
+							& \footnotesize $(\pm1.25)$
+							& \footnotesize $(\pm2.99)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.10%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $78.39$\%
+							& $64.96$\%
+							& $64.96$\%
+							& $60.62$\%
+							& $60.26$\%
+							& $60.53$\%
+							& $56.91$\%
+							& $52.54$\%
+							& $56.35$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$10$\%
+							}
+							& \footnotesize $(\pm7.04)$
+							& \footnotesize $(\pm2.21)$
+							& \footnotesize $(\pm1.78)$
+							& \footnotesize $(\pm1.36)$
+							& \footnotesize $(\pm1.14)$
+							& \footnotesize $(\pm2.10)$
+							& \footnotesize $(\pm1.42)$
+							& \footnotesize $(\pm1.34)$
+							& \footnotesize $(\pm3.33)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.15%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $73.16$\%
+							& $57.55$\%
+							& $55.76$\%
+							& $50.85$\%
+							& $47.42$\%
+							& $51.50$\%
+							& $48.08$\%
+							& $41.03$\%
+							& $46.94$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$15$\%
+							}
+							& \footnotesize $(\pm9.06)$
+							& \footnotesize $(\pm2.40)$
+							& \footnotesize $(\pm2.32)$
+							& \footnotesize $(\pm1.28)$
+							& \footnotesize $(\pm1.99)$
+							& \footnotesize $(\pm2.21)$
+							& \footnotesize $(\pm1.77)$
+							& \footnotesize $(\pm1.02)$
+							& \footnotesize $(\pm3.04)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.20%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $68.87$\%
+							& $51.17$\%
+							& $48.19$\%
+							& $41.46$\%
+							& $40.52$\%
+							& $43.03$\%
+							& $40.11$\%
+							& $34.07$\%
+							& $38.72$\%
+							\tabularnewline
+						\cellcolor{colorTableHeader!15}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$20$\%
+							}
+							& \footnotesize $(\pm9.93)$
+							& \footnotesize $(\pm2.37)$
+							& \footnotesize $(\pm2.45)$
+							& \footnotesize $(\pm0.98)$
+							& \footnotesize $(\pm1.92)$
+							& \footnotesize $(\pm1.76)$
+							& \footnotesize $(\pm2.04)$
+							& \footnotesize $(\pm0.90)$
+							& \footnotesize $(\pm2.31)$
+							\tabularnewline
+							\hhline{~----------}
+						
+						% Erreur 0.25%
+						\cellcolor{colorTableHeader!15}
+							& \cellcolor{colorTableHeader!15}
+							& $64.63$\%
+							& $43.52$\%
+							& $39.72$\%
+							& $35.85$\%
+							& $34.67$\%
+							& $36.97$\%
+							& $32.22$\%
+							& $25.82$\%
+							& $31.38$\%
+							\tabularnewline
+						\multirow{-12}{*}{
+							\cellcolor{colorTableHeader!15}
+							\rotatebox[origin=c]{90}{Taux d'erreurs simulé}
+						}
+							& \multirow{-2}{*}{
+								\cellcolor{colorTableHeader!15}
+								$25$\%
+							}
+							& \footnotesize $(\pm11.22)$
+							& \footnotesize $(\pm2.24)$
+							& \footnotesize $(\pm2.10)$
+							& \footnotesize $(\pm0.96)$
+							& \footnotesize $(\pm1.14)$
+							& \footnotesize $(\pm2.11)$
+							& \footnotesize $(\pm1.52)$
+							& \footnotesize $(\pm1.26.)$
+							& \footnotesize $(\pm2.46)$
+							\tabularnewline
+							\hline
+						
+					\end{tabular}
+				}
 				\end{center}
 				\caption{
 					Simulation ...
 				}
-				\label{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-ERREURS}
+				\label{table:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}
 			\end{table}
 
 		%%% Discussion
@@ -288,7 +528,7 @@
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude du score inter-annotateurs d'annotation d'un lot de contraintes par plusieurs experts métiers en situation réelle.
 				}}
-				\label{algorithm:4.3.3-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}
+				\label{algorithm:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS-PROTOCOLE}
 			\end{algorithm}
 			
 			% Détails de l'expérience : préparation du jeu de données.
