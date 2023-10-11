@@ -167,14 +167,14 @@
 			\end{figure}
 			
 			% Description de la figure: cas naïf.
-			Tout d'abord, observons l'approche \extit{naïve}, ignorant simplement les conflits (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(1)}).
+			Tout d'abord, observons l'approche \textit{naïve}, ignorant simplement les conflits (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(1)}).
 			Nous pouvons constater que les performances (basées sur la vérité terrain) plafonnent très rapidement si des incohérences sont introduites : dès $5$\% de différences, le score de \texttt{v-measure} stagne autour de $65$\% à partir de $1~000$ contraintes, alors qu'une performance théorique d'environ $90$\% serait attendue pour une tentative n'ayant pas de différences d'annotation.
 			D'autre part, si le taux de contraintes divergentes introduites est supérieur à $15$\%, nous pouvons remarquer que ces performances diminuent avant de stagner à des valeurs inférieures à $40$\% de \texttt{v-measure}.
 			Pour finir sur cette première approche, tout porte à croire que ces faibles seuils performances perdurent au delà des $3~000$ contraintes (figure tronquée) : les tentatives s'éloignent donc significativement de la vérité terrain si des incohérences d'annotation sont insérées.
 			
 			
 			% Description de la figure: cas correctif.
-			Observons désormais l'approche \extit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(2)}).
+			Observons désormais l'approche \textit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}} \textbf{(2)}).
 			Nous pouvons constater que les tentatives introduisant des contraintes divergentes subissent aussi un retard de performances, mais aucun plateau de performance n'apparaît.
 			Pour les tentatives possédant au moins $25$\% d'incohérences, des régressions de performances apparaissent sur les premières itérations, mais toutes les courbes sont à nouveau croissantes au delà d'un nombre de $1~000$ contraintes.
 			Pour conclure sur cette seconde figure, on observe une convergence générale vers la vérité terrain bien que celle-ci soit ralentie, et on peut espérer que cette convergence se poursuit au delà des $3~000$ contraintes (figure tronquée).
