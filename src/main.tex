@@ -49,6 +49,7 @@
 %%% Pour les styles:
 \usepackage{
 	amssymb,
+	colortbl,
 	pifont,
 	xcolor,  % http://latexcolor.com/
 }
@@ -93,11 +94,13 @@
 %%% Pour les tableaux:
 \usepackage{array}
 \usepackage{arydshln}
+\usepackage{hhline}
 \usepackage{multirow}
-\definecolor{colorCaption}{HTML}{737373}  % Dim Gray (#737373)
+\definecolor{colorTableCaption}{HTML}{737373}  % Dim Gray (#737373)
+\definecolor{colorTableHeader}{HTML}{737373}  % Dim Gray (#737373)
 \usepackage[
 	labelsep=endash,
-	font={color=colorCaption},
+	font={color=colorTableCaption},
 	labelfont={sc, bf},
 	textfont={it},
 ]{caption}
@@ -245,7 +248,8 @@
 ]{algorithm2e} % algorithm
 \SetAlgoCaptionSeparator{--}
 \SetAlCapFnt{ \bfseries\scshape }
-\renewcommand\AlCapSty{ \color{colorCaption} }
+\definecolor{colorAlgoCaption}{HTML}{737373}  % Dim Gray (#737373)
+\renewcommand\AlCapSty{ \color{colorAlgoCaption} }
 
 %%% Pour le code Python:
 \usepackage{listings}

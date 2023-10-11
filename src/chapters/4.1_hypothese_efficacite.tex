@@ -167,10 +167,12 @@
 				\begin{tabular}{|c|r|r|r|r|r|}
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{2}{|c|}{ \shortstack{ Annotations } }
 						& \multicolumn{4}{c|}{ \shortstack{ Performances (\texttt{v-measure}) } }
 						\tabularnewline
 						\hline
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{1}{|c|}{ \shortstack{ Itérations } }
 						& \multicolumn{1}{c|}{ \shortstack{ Contraintes } }
 						& \multicolumn{1}{c|}{ \shortstack{ Moyenne } }
@@ -266,8 +268,8 @@
 			Afin d'être plus efficient, il faudrait envisager une \textbf{annotation partielle} permettant d'obtenir rapidement ces $90$\% de \texttt{v-measure} (cf. coude sur la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}), quitte à affiner le résultat manuellement pour combler la "perte" moyenne de $10$\% de \texttt{v-measure}.
 			Cet aspect sera ajouté à l'objectif de l'étude décrite dans la \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}} (hypothèse d'efficience).
 			
-			% Limite 3 : Expert métier parfait ==> simuler les erreurs.
+			% Limite 3 : Expert métier parfait ==> simuler les différences.
 			Pour finir, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
-			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des erreurs d'annotations peuvent intervenir (ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
 			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
 			Cet aspect sera traité à la fin de ce chapitre dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).

@@ -98,7 +98,7 @@
 			% Description des tentatives de la méthode.
 			Sur ce jeu de données, nous exécutons une tentative complète
 			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
+			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			
 			% Description de l'évaluation manuelle.
 			Au cours des itérations, un expert qualifie chaque \textit{cluster} en donnant son avis sur sa valeur métier.
@@ -270,7 +270,7 @@
 			\end{algorithm}
 			
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori, et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
 			
 			% Ajout de l'analyse linguistique.
 			Cependant, avant de demander l'avis de l'expert, nous réalisons une analyse du vocabulaire employé.
@@ -314,7 +314,7 @@
 			Nous suivons ici l'évolution d'un \textit{cluster} bien formé dès l'itération $0$.
 			En effet, il aisé de juger ce \textit{cluster} exploitable et d'en déduire sa thématique : le \textit{cluster} est de taille suffisante (plus de $45$ questions), son vocabulaire caractéristique est fourni ($36$ à $38$ patterns) et la liste des patterns mis en avant sont cohérents (\textit{sans contact}, \textit{paiement sans contact}, \texttt{activer le}, \textit{nfc}, ...).
 			En parcourant son contenu, on arrive rapidement à associer sa thématique à la classe \texttt{gestion\_sans\_contact} de la vérité terrain.
-			
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\def\arraystretch{0.8}  % interligne
@@ -322,6 +322,7 @@
 				
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{1}{|c|}{\shortstack[c]{
 						Identification \\ du cluster
 					}}
@@ -457,7 +458,7 @@
 			Nous pouvons d'ailleurs déduire deux thématiques principales : la première, mise en avant par des patterns linguistiques de type "\textit{numero}", "\textit{online}", et "\textit{de carte virtuelle}", permet d'imaginer un sujet sur la gestion des numéro de cartes virtuelles ; la seconde, identifiée par les termes "\textit{débloquer}" et "\textit{réactiver}", oriente plutôt vers la création d'un thème pour débloquer une carte bancaire.
 			Quelques bruits sont présent, mais ce \textit{cluster} à l'itération $10$ peut donc être associé aux classes \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}.
 			Dès l'itération $15$, ces thématiques se séparent en deux clusters ($1$ et $4$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
-			
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\def\arraystretch{0.8}  % interligne
@@ -465,6 +466,7 @@
 				
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{1}{|c|}{\shortstack[c]{
 						Identification \\ du cluster
 					}}
@@ -820,7 +822,7 @@
 			\end{algorithm}
 			
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori, et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
 			
 			% Ajout d'un résumé automatique.
 			Cependant, avant de demander l'avis de l'expert, nous utilisons un large modèle de langage pour résumer automatiquement le contenu du \textit{cluster} à analyser.
@@ -906,7 +908,7 @@
 			% Exemple d'un cluster qui est bien formé dès le début.
 			D'abord, reprenons l'exemple de l'évolution d'un \textit{cluster} bien formé dès l'itération $0$, précédemment détaillé dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et dont les résumés automatiques sont présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}.
 			Nous constatons effectivement que les synthèses générées par le modèle identifie sans ambiguïté le thème du paiement sans contact, même si le résumé de l'itération $0$ énumère longuement les actions réalisables sur ce sujet.
-			
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\def\arraystretch{0.8}  % interligne
@@ -914,13 +916,15 @@
 				
 				\hline
 				% ENTETE DU TABLEAU
+				\rowcolor{colorTableHeader!15}
 				Identification
-					& \multirow{2}{*}{
+					&
+					\tabularnewline
+				\rowcolor{colorTableHeader!15}
+				du cluster
+					& \multirow{-2}{*}{
 						Résumé automatique du cluster (\texttt{LLM})
 					}
-					\tabularnewline
-				du cluster
-					&
 					\tabularnewline
 					\hline
 				
@@ -979,7 +983,7 @@
 			À l'itération $0$, le résumé proposé est une longue énumération de $9$ thématiques différentes sur la gestion de carte bancaires : puisque le jeu de données entier traite des cartes bancaires, nous identifions clairement ce \textit{cluster} comme non exploitable.
 			À l'itération $10$, nous ne distinguons plus que deux sujets principaux : le déblocage de carte, et l'utilisation de numéros de cartes virtuelles, ce qui est en accord avec notre précédente analyse.
 			À partir de l'itération $15$, ces deux thématiques se retrouvent bien séparées dans deux \textit{clusters} différents, et chacune est identifiable via le résumé proposé : on note toutefois que si la thématique principale est identifiée, alors l'énumération de détails est plutôt portée sur les actions réalisables avec cette thématique ("\textit{création}", "\textit{activation}", "\textit{suppression}" pour la classe \texttt{gestion\_carte\_virtuelle}).
-			
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\def\arraystretch{0.8}  % interligne
@@ -987,13 +991,15 @@
 				
 				\hline
 				% ENTETE DU TABLEAU
+				\rowcolor{colorTableHeader!15}
 				Identification
-					& \multirow{2}{*}{
+					& 
+					\tabularnewline
+				\rowcolor{colorTableHeader!15}
+				du cluster
+					& \multirow{-2}{*}{
 						Résumé automatique du cluster (avec un \texttt{LLM})
 					}
-					\tabularnewline
-				du cluster
-					&
 					\tabularnewline
 					\hline
 

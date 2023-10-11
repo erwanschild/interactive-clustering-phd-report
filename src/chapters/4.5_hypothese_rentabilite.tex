@@ -104,7 +104,7 @@
 			Sur ce jeu de données, nous exécutons une tentative complète
 			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
 			\todo{Utiliser 'footmisc' et 'footref' pour faire des notes de bas de pages communes ? ou lien vers des conclusions ?}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori, et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
+			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			À chaque itération, un lot de $50$ contraintes est sélectionné puis annotés en simulant l'action d'un expert métier, et nous évaluons l'accord entre ces nouvelles annotations et la proposition de partitionnement des données réalisé par le \textit{clustering} à l'itération précédente :
 			\begin{itemize}
 				\item il y a \textbf{accord} lorsqu'une contrainte de deux données issues d'un même \textit{cluster} est annotée \texttt{MUST-LINK}, ou lorsqu'une contrainte de deux données issues de deux \textit{clusters} différents est annotée \texttt{CANNOT-LINK} (cf. \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE} (1)}) ;
@@ -158,12 +158,14 @@
 			% Tableau : corrélation modérée.
 			La \textsc{Table~\ref{table:4.5.1-ETUDE-RENTABILITE-CORRELATION-ACCORD-PERFORMANCE}} contient le score de corrélation entre cet accord et la performance théoriques obtenue grâce à la vérité terrain.
 			Cette corrélation est modérée : $0.49$ sur l'ensemble des tentatives, $0.69$ sur les tentatives utilisant notre paramétrage favori.
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\begin{tabular}{|c|r|}
 				
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{1}{|c|}{\shortstack[c]{
 						Paramétrage
 					}}
@@ -307,7 +309,7 @@
 			\end{algorithm}
 
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) : nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori, et nous simulons l'annotation par un expert d'un lot de $50$ contraintes à chaque itération.
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) : nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous simulons l'annotation par un expert d'un lot de $50$ contraintes à chaque itération.
 			
 			% Ajout de la comparaison entre clustering.
 			Cependant, au lieu de calculer un score d'accord entre annotation et \textit{clustering}, nous estimons la différence entre le \textit{clustering} précédent et le \textit{clustering} obtenu grâce aux dernières annotations.
@@ -354,12 +356,14 @@
 				\item une croissance de performance est généralement accompagnée d'un score non nul de différence (voir \textbf{(2)} et \textbf{(4)} entre les itérations $0$ et $20$), et plusieurs pics de performance sont accompagnés de scores forts de différence (particulièrement visible sur \textbf{(1)} vers l'itération $5$ et entre les itérations $10$ et $15$) ;
 				\item il est toutefois à noter que l'inverse n'est pas vrai : un score non nul de différence n'accompagne pas forcément une croissance de performance, mais peut simplement caractériser un changement de partitionnement, comme c'est le cas dans \textbf{(3)} entre les itérations $0$ et $10$ où des modifications ont lieu (score de différence non nul) mais où la performance par rapport à la vérité terrain stagne.
 			\end{itemize}
+			%
 			\begin{table}[!htb]
 				\begin{center}
 				\begin{tabular}{|c|r|}
 				
 					\hline
 					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
 					\multicolumn{1}{|c|}{\shortstack[c]{
 						Paramétrage
 					}}
@@ -454,6 +458,6 @@
 		\end{leftBarSummary}
 		
 		% Transition: Vers Simulation d'erreurs.
-		Pour terminer nos différentes analyses, il convient maintenant d'anticiper la présence d'erreurs d’annotation.
-		En effet, nous avons fait jusqu'à présent l'hypothèse que l'annotateur ne se trompe jamais, mais cette hypothèse forte n'est pas toujours vérifiée en pratique.
-		Pour estimer l'impact de ces erreurs ou incohérences d'annotation, nous devons donc réaliser une analyse de robustesse de notre méthode d'annotation : celle-ci sera réalisé en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.
+		Pour terminer nos différentes analyses, il convient maintenant d'anticiper la présence de différences d’annotation.
+		En effet, nous avons fait jusqu'à présent l'hypothèse que l'annotateur ne se trompe jamais et que deux annotateurs n'ont jamais de désaccords, mais cette hypothèse forte n'est pas toujours vérifiée en pratique.
+		Pour estimer l'impact de ces incohérences d'annotation, nous devons donc réaliser une analyse de robustesse de notre méthode d'annotation : celle-ci sera réalisée en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.
