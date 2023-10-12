@@ -24,7 +24,9 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/etatdelart-pustejovsky-2012-cycle-matter-mama-tt}
 			\caption{
-				Cycle \texttt{MATTER} structurant un projet d'annotation en six étapes principales: \textit{\textbf{M}odelize}, \textit{\textbf{A}nnotate}, \textit{\textbf{T}rain}, \textit{\textbf{T}est}, \textit{\textbf{E}valuate} et \textit{\textbf{R}evise}.
+				Cycle \texttt{MATTER} structurant un projet d'annotation en six étapes principales: \textit{\textbf{M}odelize}, \textit{\textbf{A}nnotate}, \textit{\textbf{T}rain}, \textit{\textbf{T}est}, \textit{\textbf{E}valuate} et \textit{\textbf{R}evise}. \\
+				Le carré bleu identifie le mini-cycle \texttt{MAMA} durant lequel la modélisation est adaptée en cours d'annotation,
+				et le carré orange identifie le mini-cycle \textit{\textbf{T}rain}-\textit{\textbf{T}est} lors de la conception du modèle.
 			}
 			\label{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}
 		\end{figure}
@@ -49,7 +51,7 @@
 			% Importance de la modélisation.
 			Afin de garantir la qualité de cette labellisation, \textbf{il est important de ne pas précipiter la tâche d'annotation}.
 			En effet, l'objectif de cette tâche peut considérablement changer en fonction du phénomène à décrire, des données à disposition et de la finalité du modèle de \textit{Machine Learning} à entraîner.
-			Il est donc fortement conseillé de bien \textbf{modéliser le problème} pour clarifier en amont les modalités et les attendus de l'annotation (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 1. \textit{\textbf{M}odelize}).
+			Il est donc fortement conseillé de bien \textbf{modéliser le problème}, c'est-à-dire de définir l'objectif de l'annotation, de clarifier en amont les modalités et les attendus de de cette tâche, et de préciser les règles que devront suivre les opérateurs.
 			
 			% Modélisation vs Spécification, Guide d'annotation et exemple.
 			\cite{pustejovsky-stubbs:2012:natural-language-annotation} précisent notamment deux concepts importants de cette phase :
@@ -101,8 +103,8 @@
 			%%% c. Annotation
 			
 			% Annotation en tant que telle.
-			Lorsque le guide d'annotation est rédigé, la \textbf{phase de labellisation} peut commencer (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étape 2. \textit{\textbf{A}nnotate}).
-			Cette tâche est traditionnellement réalisée par un groupe d'experts choisi en fonction de leur connaissance sur problème à caractériser (dans nos exemples sur les bandes dessinées, ce serait plutôt des libraires ou des collectionneurs).
+			Lorsque le guide d'annotation est rédigé, la \textbf{phase de labellisation} peut commencer.
+			Cette tâche est traditionnellement réalisée par un groupe d'experts choisi en fonction de leur connaissance sur le problème à caractériser (\textit{dans nos exemples sur les bandes dessinées, ce serait plutôt des libraires ou des collectionneurs}).
 			Après leur avoir expliqué l'objectif de leur travail et partagé les règles de labellisation contenues dans le guide, les annotateurs se partagent les données et réalisent chacun une partie du corpus d'apprentissage.
 			
 			%%% d. Mini-cycle MAMA.
@@ -129,26 +131,34 @@
 			%%% Apprentissage statistiques et importance du test.
 			La phase d'entraînement du modèle est l'étape centrale de l'apprentissage automatique.
 			Toutefois, comme l'apprentissage se base sur des méthodes statistiques, il est important d'introduire une phase de test et d'évaluation pour s'assurer des performances du modèle obtenu.
-			Il est donc courant de considérer une boucle de raffinement du modèle tant que les performances n'ont pas atteint un seuil acceptable (voir \textsc{Figure~\ref{figure:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES-MATTER}}, étapes 3. \textit{\textbf{T}rain}, 4. \textit{\textbf{T}est} et 5. \textit{\textbf{E}valuate}).
+			Il est donc courant de considérer une boucle de raffinement du modèle tant que les performances n'ont pas atteint un seuil acceptable.
 			
 			%%% Train/Dev/Test.
 			En pratique, il est d'usage de \textbf{créer trois jeux de données} à partir de la base d'apprentissage qui vient d'être annotée :
 			\begin{itemize}
-				\item le jeu d'\texttt{entraînement}: c'est sur cette partie des données que le modèle de \textit{Machine Learning} est conçu ;
-				\item le jeu de \texttt{développement} (ou de validation): le modèle entraîné est évalué sur ce jeu de donnée pour étudier son comportement, identifier ses forces et ses faiblesses, et ainsi permettre de le comparer à d'autres modèles entraînés pour cette même tâche ;
-				\item le jeu de \texttt{test} : le modèle retenu est évalué sur ce jeu de test pour déterminer ses performances réelles. Il est important que ce jeu de données 
+				% Train.
+				\item le jeu d'\texttt{entraînement} :
+				c'est sur cette partie des données que le modèle de \textit{Machine Learning} est conçu ;
+				% Test.
+				\item le jeu de \texttt{développement} (ou de validation) :
+				le modèle entraîné est évalué sur ce jeu de donnée pour étudier son comportement, identifier ses forces et ses faiblesses, et ainsi permettre de le comparer à d'autres modèles entraînés pour cette même tâche ;
+				% Dev.
+				\item le jeu de \texttt{test} :
+				le modèle retenu est évalué sur ce jeu de test pour déterminer ses performances réelles.
 			\end{itemize}
-			% [van-der-goot:2021:we-need-talk]: définir un train/tune/dev/test
+			% \cite{van-der-goot:2021:we-need-talk}: définir un train/tune/dev/test
 			
 			%%% Evaluate.
 			Ainsi, le modèle représente la connaissance présente dans le jeu \texttt{entraînement}, il est étudié puis affiné grâce au jeu de \texttt{développement}, et est finalement jugé en fonction de ses performances sur le jeu de \texttt{test}.
 			Il est encore une fois difficile d'être exhaustif sur les analyses et les métriques à considérer car elles dépendent fortement du type de problème que le modèle tente de résoudre.
 			Une métrique basique est l'\texttt{Accuracy} (ou taux de bonne prédiction), décrivant simplement le nombre de fois que le modèle a fait une bonne proposition sur l'ensemble du test.
 			Suivant le problème et le type de données, d'autres métriques usuelles peuvent être utilisées comme le \texttt{MSE} (\textit{Mean Squared Error}) pour la prédiction de variables numérique (voir \cite{wallach-goffinet:1987:mean-squared-error}), le \texttt{f1-score} pour les variables catégorielles (voir \cite{sasaki:2007:truth-fmeasure}) ou le \texttt{WER} (\textit{Word Error Rate}) pour la transcription de textes (voir \cite{mccowan-etal:2005:use-information-retrieval}).
-			Dans tous les cas, une règle d'or est de bien tenir à l'écart le jeu de test des deux autres jeux de données et qu'il ne soit pas utilisé dans la phase de développement pour éviter tout biais de sur-apprentissage\footnote{Pour plus de détails sur le sur-apprentissage: voir \cite{collins:2017:chapter-overfitting}}.
+			Dans tous les cas, une règle d'or est de bien tenir à l'écart le jeu de test des deux autres jeux de données et qu'il ne soit pas utilisé dans la phase de développement pour éviter tout biais de sur-apprentissage\footnote{
+				Pour plus de détails sur le sur-apprentissage: voir \cite{collins:2017:chapter-overfitting}
+			}.
 
 			%%% Finalité : le modèle et se sperformances.
-			À la fin de ce cycle, le modèle de \textit{Machine Learning} est disposition à l'emploi, et ses performances théoriques sont celles obtenues sur le jeu de test.
+			À la fin de ce cycle, le modèle de \textit{Machine Learning} est à disposition, et ses performances théoriques sont celles obtenues sur le jeu de test.
 		
 		%%% 2.2.1.C. Revoir la base d'apprentissage (\textit{\textbf{R}evise}).
 		\subsubsection{Revoir la base d'apprentissage (\textit{\textbf{R}evise}).}
@@ -300,7 +310,7 @@
 			% Permettre des \texbf{annotations et d'analyses avancées}.
 			\item permettre des \textbf{annotations et d'analyses avancées} :
 				la littérature scientifique regorge de techniques pouvant assister un annotateur dans son travail (\textit{pré-annotation, apprentissage actif, visualisation, interaction, ...}).
-				Nous détaillerons plusieurs de ces techniques dans la \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}.
+				Nous détaillons plusieurs de ces techniques dans la \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}.
 		\end{itemize}
 		
 		% Quelques exemples.

@@ -20,7 +20,7 @@
 		% Hypothèse.
 		\textguillemets{\textbf{
 			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable.
-			Nous étudierons en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
+			Nous étudions en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
 		}} \\
 		
 		% Figure.
@@ -71,7 +71,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-PROTOCOLE}}.
 
 			\begin{algorithm}
-				\KwData{jeu de données annoté (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				\KwIn{plusieurs réviseurs, plusieurs annotateurs}
 				%
 				\textbf{initialisation}: définir et revoir le jeu de données entre réviseurs \;
@@ -106,7 +106,7 @@
 			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
 			
 			% Détails de l'expérience : sélection des contraintes à annoter.
-			A partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter.
+			À partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter.
 			Comme nous nous intéressons exclusivement au temps d'annotation pour cette expérience (et que nous ne regardons pas le nombre d'itérations de la méthode), nous utilisons l'échantillonnage purement aléatoire (\texttt{samp.rand.full}).
 			L'analyse de l'accord inter-annotateurs sera réalisé en \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}.
 			
@@ -115,8 +115,9 @@
 			En effet, il faut d'abord considérer la taille moyenne des titres d'article à lire et en déduire le temps dédié à la lecture des deux textes de la contraintes.
 			En utilisant l'approximation d'une lecture silencieuse par un adulte à $238$ mots par minute (\cite{brysbaert:2019:how-many-words}) et en mesurant la taille moyenne des titre d'article à $10.1$ mots, on en déduit que le temps de lecture d'un texte est environ de $2.55$ secondes.
 			Ensuite, il convient d'intégrer la durée de traitement cognitif requis pour estimer si les deux phrases sont similaires ou discordantes.
-			À cet effet, nous retenons $1$ seconde
-			\footnote{Nous pourrions faire le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase (cf.). Nous arrondissons à $1$ seconde pour garder une marge d'erreur.
+			À cet effet, nous retenons $1$ seconde\footnote{
+				Nous pourrions faire le parallèle avec la composante \texttt{P600} communément admise en neuroscience pour caractériser la réaction provoquée par la dissonance grammaticale ou syntaxique d'une phrase.
+				Nous arrondissons à $1$ seconde pour garder une marge d'erreur.
 			} (\cite{purves-brannon:2013:principles-cognitive-neuroscience})
 			en admettant que cette tâche est rapide.
 			Enfin, nous ajoutons $1$ seconde supplémentaire pour représenter la réaction motrice (clic de bouton) et le délais applicatif (rechargement de la page).
@@ -393,7 +394,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer aux pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeux de données annotés (vérité terrain) de tailles différentes}
+				\KwData{jeux de données annotées (vérités terrains) de tailles différentes}
 				\KwIn{arrangements d'algorithmes et de paramètres à tester}
 				%
 				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
@@ -414,7 +415,7 @@
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{clustering (à étudier)}: regrouper les données par similarité \;
@@ -424,7 +425,7 @@
 						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering initial}: regrouper les données avec \texttt{clust.kmeans.cop} \;
 						\textbf{chronomètre}: \textbf{START} \;
@@ -760,10 +761,13 @@
 			
 			% Conclusion.
 			\begin{leftBarSummary}
-				Dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure}
-				\footnote{$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})}
+				Dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure}\footnote{
+					$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})
+				}
 				avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
-				On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{Temps du paramétrage favori : environ $2.8$ minutes pour $1~000$ données ; environ $14.2$ minutes pour $5~000$ données.} :
+				On estime le temps d'exécution de ce paramétrage avec l'équation suivante\footnote{
+					Temps du paramétrage favori : environ $2.8$ minutes pour $1~000$ données ; environ $14.2$ minutes pour $5~000$ données.
+				} :
 				%
 				\begin{equation}
 					\label{equation:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PARAMETRAGE-FAVORI}
@@ -784,8 +788,9 @@
 		
 		% Objectif de l'expérience.
 		Pour cela, nous allons simuler la création de cette base d'apprentissage en adaptant le protocole utilisé lors de notre étude d'efficacité (cf. \textsc{Section~\ref{section:4.1.1-ETUDE-CONVERGENCE}}) :
-		nous employons notre méthode de \textit{clustering} interactif avec notre \textbf{paramétrage favori}
-		\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation TF-IDF (\texttt{vect.tfidf}), \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})}
+		nous employons notre méthode de \textit{clustering} interactif avec notre \textbf{paramétrage favori}\footnote{
+			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation TF-IDF (\texttt{vect.tfidf}), \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})
+		}
 		sur des jeux de données de différentes tailles et mesurons le nombre de contraintes nécessaires pour converger vers la vérité terrain.
 	
 		%%% Protocole expérimental.
@@ -800,7 +805,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeux de données annotés (vérité terrain) de tailles différentes}
+				\KwData{jeux de données annotées (vérités terrains) de tailles différentes}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer ou générer les données et la vérité terrain \;
@@ -808,13 +813,13 @@
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} obtenu et la vérité terrain \;
+						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					}
 				}
 				\textbf{analyse}: entraîner un modèle linéaire généralisé du nombre de contraintes nécessaires \;
@@ -830,13 +835,21 @@
 			% Description des jeux de données.
 			Nous utilisons deux vérités terrains comme références pour cette expérience :
 			\begin{itemize}
-				\item le jeu de données \texttt{Bank Cards (v2.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire. Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS} ;
-				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} : ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes. Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD} ;
+				% Bank Cards.
+				\item le jeu de données \texttt{Bank Cards (v2.0.0)} :
+				ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
+				Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
+				Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS} ;
+				% MLSUM.
+				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} :
+				ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes.
+				Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
+				Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD} ;
 			\end{itemize}
 
 			Cependant, deux jeux de données ne nous permettent pas d'analyser l'impact du nombre de données sur le nombre de contraintes nécessaires pour converger vers une vérité terrain.
 			Pour utiliser facilement plusieurs jeux de données de tailles différentes tout en maîtrisant leur contenu, nous avons donc dupliqué aléatoirement des données issues de ces jeux de référence en y insérant des fautes de frappes.
-			La taille des jeux de données générés, noté $\texttt{dataset\_size}$, varie entre $1~000$ à $5~000$ par pas de $250$, et chaque taille de jeu est générée $3$ fois pour contrer les aléas statistiques de création.
+			La taille des jeux de données générés, notée $\texttt{dataset\_size}$, varie entre $1~000$ à $5~000$ par pas de $250$, et chaque taille de jeu est générée $3$ fois pour contrer les aléas statistiques de création.
 			Il y a donc $51$ variations de chaque jeu de références, soit $102$ jeux utilisés de tailles différentes.
 			
 			% Remarque.
@@ -845,8 +858,9 @@
 			\end{leftBarWarning}
 			
 			% Description des tentatives de la méthode.
-			Sur chacun de ces jeux générés, une tentative complète
-			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
+			Sur chacun de ces jeux générés, une tentative complète\footnote{
+				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
+			}
 			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori est exécuté, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			Il y a donc $510$ tentatives de \textit{clustering} interactif réalisées.
 			
@@ -946,8 +960,9 @@
 	\label{section:4.3.4-ETUDE-COUTS-TOTAL}
 	
 		% Equation finale.
-		Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \textit{clustering} interactif et utilisant notre \textbf{paramétrage favori}
-		\footnote{Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal).}.
+		Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \textit{clustering} interactif et utilisant notre \textbf{paramétrage favori}\footnote{
+			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal).
+		}.
 		Dans les notations, $\texttt{dataset\_size}$ représente la taille du jeu de données à modéliser, et $\texttt{batch\_size}$ représente le nombre de contraintes que l'expert annote à chaque itération.
 
 		%%% Résultats.
@@ -1120,7 +1135,9 @@
 			
 			% Résultats et discussion : linéaire, 25 x dataset size : c'est acceptable !
 			Nous pouvons déjà remarquer que le coût d'annotation du projet devient linéaire en nombre de données (pente de $24.6$ secondes) et nécessite un nombre fixe de $145$ itérations.
-			En reprenant une base de $5~000$ données et une marge de $2$ jours pour corriger et nommer les \textit{clusters}\footnote{voir. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}.}, cela représente $4.8$ {\footnotesize $(+2)$} jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $5 $ {\footnotesize $(+2)$} jours de travail d'après nos approximations.
+			En reprenant une base de $5~000$ données et une marge de $2$ jours pour corriger et nommer les \textit{clusters}\footnote{
+				voir. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}.
+			}, cela représente $4.8$ {\footnotesize $(+2)$} jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $5 $ {\footnotesize $(+2)$} jours de travail d'après nos approximations.
 			De plus, si nous ajoutons des plusieurs opérateurs, cette version parallèle reste compétitive (\textit{avec $2$ annotateurs : $2.5$ {\footnotesize $(+2)$} jours vs $3$ {\footnotesize $(+2)$} jours ; avec $4$ annotateurs : $1.3$ jours vs $2$ {\footnotesize $(+2)$} jours}).
 			Cette découverte est très encourageante, car cela confirme qu'une méthodologie basée sur notre implémentation du \textit{clustering} interactif \textbf{permet d'obtenir une base d'apprentissage avec un coût temporel équivalent à un projet traditionnel} utilisant une annotation par label.
 			Cette méthode est d'autant plus intéressante qu'elle fait intervenir un mécanisme d'annotation rapide et intuitif pour un expert métier.

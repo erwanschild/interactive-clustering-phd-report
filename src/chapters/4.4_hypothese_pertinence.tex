@@ -61,7 +61,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeu de données annotés (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -73,7 +73,7 @@
 					\textbf{labellisation manuelle}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation manuelle}: juger de l'exploitabilité de chaque \textit{cluster} \;
@@ -96,8 +96,9 @@
 			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
 			
 			% Description des tentatives de la méthode.
-			Sur ce jeu de données, nous exécutons une tentative complète
-			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
+			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
+				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
+			}
 			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			
 			% Description de l'évaluation manuelle.
@@ -174,7 +175,7 @@
 			\\
 			
 			% Remarques sur l'évolution de l'exploitabilité.
-			Comme l'analyse n'a pu être faite que par un seul opérateur, nous ne nous attarderons pas sur la précision des taux d'exploitabilité des clusters.
+			Comme l'analyse n'a pu être faite que par un seul opérateur, nous ne nous attardons pas sur la précision des taux d'exploitabilité des clusters.
 			Nous pouvons déjà reconnaître que trois phases sont présentes :
 			\begin{itemize}
 				\item une première \textbf{phase exploratoire} (cf. itérations $0$ à $10$), où de premiers \textit{clusters} partiellement exploitables apparaissant.
@@ -238,7 +239,7 @@
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeu de données annotés (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -251,7 +252,7 @@
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{analyse linguistique}: caractériser les \textit{clusters} grâce à la \texttt{FMC} \;
@@ -781,7 +782,10 @@
 		% Objectif de l'expérience.
 		Comme nous l'avons vu dans la section précédente, une analyse linguistique peut paraître trop abstraite pour un expert métier.
 		Nous nous intéressons donc à un moyen de simplifier l'identification de thématiques dans un \textit{cluster}, et envisageons l'automatisation de cette tâche en utilisant les capacités d'un large modèle de langage (\texttt{LLM}).
-		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents (\cite{zhang-etal:2019:pegasus-pretraining-extracted}, \cite{lewis-etal:2019:bart-denoising-sequencetosequence}, \cite{radford-etal:2019:language-models-are}, \cite{brown-etal:2020:language-models-are}), une fonctionnalité que nous allons adapter\footnote{Nous nous inspirons notamment de~\cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.} et étudier ici.
+		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents (\cite{zhang-etal:2019:pegasus-pretraining-extracted}, \cite{lewis-etal:2019:bart-denoising-sequencetosequence}, \cite{radford-etal:2019:language-models-are}, \cite{brown-etal:2020:language-models-are}), une fonctionnalité que nous allons adapter\footnote{
+			Nous nous inspirons notamment de~\cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.
+		}
+		et étudier ici.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
@@ -790,7 +794,7 @@
 			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeu de données annotés (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -803,7 +807,7 @@
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{synthèse automatique}: résumer les thématiques des \textit{clusters} par un \texttt{LLM} \;
@@ -826,8 +830,10 @@
 			
 			% Ajout d'un résumé automatique.
 			Cependant, avant de demander l'avis de l'expert, nous utilisons un large modèle de langage pour résumer automatiquement le contenu du \textit{cluster} à analyser.
-			Pour cela, nous utilisons le modèle \texttt{gpt-3.5-turbo} mis à disposition par \texttt{OpenAI}
-			\footnote{\texttt{OpenAI} est une entreprise fournissant des services d'intelligence artificielle sur le Cloud. Elle est entre autres connue pour les modèles d'IA \texttt{DALL-E} (\cite{ramesh-etal:2021:zeroshot-texttoimage-generation}) et \texttt{GPT} (\cite{brown-etal:2020:language-models-are}, \cite{openai:2023:chatgpt})}.
+			Pour cela, nous utilisons le modèle \texttt{gpt-3.5-turbo} mis à disposition par \texttt{OpenAI} \footnote{
+				\texttt{OpenAI} est une entreprise fournissant des services d'intelligence artificielle sur le Cloud.
+				Elle est entre autres connue pour les modèles d'IA \texttt{DALL-E} (\cite{ramesh-etal:2021:zeroshot-texttoimage-generation}) et \texttt{GPT} (\cite{brown-etal:2020:language-models-are}, \cite{openai:2023:chatgpt})
+			}.
 			Le \textit{prompt} du modèle, adapté à l'usage de notre jeu de données, est composé de trois parties :
 			\begin{itemize}
 				\item un \textbf{contexte d'utilisation}, destiné à centrer les réponses sur le domaine général traité : \textguillemets{\textit{Tu es un expert des secteurs banque, assurance et finance.}} ;
@@ -1144,7 +1150,7 @@
 			En effet, à l'heure de rédaction de ce manuscrit (juillet 2023), l’entraînement requiert des serveurs aux configurations pharaoniques, composés de plusieurs milliers de \texttt{GPU}, du stockage et de la bande passante pour manipuler des Téra octets de données, et de toute l'infrastructure auxiliaire nécessaire pour contrôler et refroidir les machines, soit un investissement de plusieurs millions voire milliards de dollars.
 			L'inférence n'est pas simple non plus, car les machines doivent entre autres disposer de suffisamment de \texttt{RAM} pour charger les modèles et de \texttt{GPU} pour les exécuter.
 			Ainsi, seules quelques entreprises peuvent investir et mettre à disposition ce genre d'infrastructures, souvent sous forme de services hébergés sur le \textit{Cloud}, comme la plateforme \textit{Meta Reasearch Super Cluster} (\cite{lee-sengupta:2022:introducing-ai-research}) ou le service \textit{Microsoft Azure AI} (\cite{roach:2023:how-microsoft-bet}))\footnote{
-			A titre d'exemple, prenons \texttt{Llama 2} de \textit{Meta} (\cite{touvron-etal:2023:llama-open-foundation}) : pour l’entraînement, il a fallu $2~000$ \texttt{GPU} sur près de $3$ millions d'heures (temps \texttt{GPU} cumulé) pour un modèle de $70$ millions de paramètres.
+				À titre d'exemple, prenons \texttt{Llama 2} de \textit{Meta} (\cite{touvron-etal:2023:llama-open-foundation}) : pour l’entraînement, il a fallu $2~000$ \texttt{GPU} sur près de $3$ millions d'heures (temps \texttt{GPU} cumulé) pour un modèle de $70$ millions de paramètres.
 			}.
 			
 			% Limite 3: La confidentialité.
@@ -1178,5 +1184,5 @@
 		
 		% Transition: Vers Rentabilité.
 		Pour compléter l'étude que nous venons de réaliser, il peut être intéressant de définir un cas d'arrêt des itérations du \textit{clustering} interactif afin de pouvoir prédire quand stopper l'annotation et demander aux experts d'évaluer la pertinence de la base d'apprentissage obtenue.
-		Nous étudierons cet aspect dans la prochaine section (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+		Nous étudions cet aspect dans la prochaine section (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
 		

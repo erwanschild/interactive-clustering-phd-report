@@ -68,7 +68,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeu de données annotés (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -78,7 +78,7 @@
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{rentabilité}: calculer l'accord entre l'annotation et le \textit{clustering} précédent \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
@@ -101,8 +101,9 @@
 			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
 			
 			% Description des tentatives de la méthode et du calcul de rentabilité.
-			Sur ce jeu de données, nous exécutons une tentative complète
-			\footnote{Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.}
+			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
+				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
+			}
 			\todo{Utiliser 'footmisc' et 'footref' pour faire des notes de bas de pages communes ? ou lien vers des conclusions ?}
 			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			À chaque itération, un lot de $50$ contraintes est sélectionné puis annotés en simulant l'action d'un expert métier, et nous évaluons l'accord entre ces nouvelles annotations et la proposition de partitionnement des données réalisé par le \textit{clustering} à l'itération précédente :
@@ -256,7 +257,7 @@
 			
 			% Conclusions et suggestion.
 			En conclusion, \textbf{le score d'accord entre l'annotation courante et le \textit{clustering} précédent n'est pas adéquat pour estimer un cas d'arrêt de notre méthode d'annotation}, principalement car il est trop instable et qu'il ne représente pas bien les bénéfices obtenus à chaque itération.
-			Ainsi, si une analyse de l'annotation réalisée n'est pas fructueuse, nous nous tournerons vers l'analyse plus abstraite des différences entre deux résultats de \textit{clustering}
+			Ainsi, comme l'analyse de l'annotation n'est pas fructueuse, nous nous tournons vers l'analyse basée sur les différences entre deux résultats de \textit{clustering}
 	
 	%%%
 	%%% Subsection 4.5.2: Étude de l'évolution de la différence entre deux \textit{clusterings} consécutifs.
@@ -281,7 +282,7 @@
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeu de données annotés (vérité terrain)}
+				\KwData{jeu de données annotées (vérité terrain)}
 				%
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -291,7 +292,7 @@
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{simulation d'annotation}: caractériser les contraintes grâce à la vérité terrain \;
+						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{rentabilité}: calculer la différence entre les deux précédents \textit{clusterings} \;

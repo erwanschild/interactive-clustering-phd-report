@@ -107,7 +107,8 @@
 		% Pseudo code.
 		L'\textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}} décrit formellement notre proposition de \textit{Clustering Interactif} que nous détaillons ci-dessous.
 		\begin{algorithm}
-			\KwIn{données non segmentées ; budget à disposition}
+			\KwData{données non segmentées}
+			\KwIn{budget à disposition}
 			%
 			\textbf{initialisation}: créer une liste vide de contraintes \;
 			\textit{optionnel}: évaluer les hyper-paramètres de la segmentation automatique \;
@@ -132,7 +133,7 @@
 		\end{algorithm}
 		
 		% Description de l'initialisation.
-		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, nous y ajouterons les contraintes annotées par l'expert grâce à ses connaissances métiers (nous entrerons en détails en décrivant la phase d'annotation).
+		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, nous y ajoutons les contraintes annotées par l'expert grâce à ses connaissances métiers (nous entrerons en détails en décrivant la phase d'annotation).
 		Il faut aussi une première segmentation des données par la machine : celle-ci se réalise par l'exécution d'un algorithme de \textit{clustering}.
 		Nous estimons qu'il n'est pas du ressort de l'expert métier de choisir de le réglage de l'algorithme de \textit{clustering} et ses hyper-paramètres.
 		Ces derniers pourront être déterminés par un \textit{data scientist} en fonction du problème à traiter ou laissés par défaut.
@@ -150,9 +151,15 @@
 		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 7}).
 		Pour alléger la charge d'annotation, nous avons décidé de discriminer les données de l'échantillon par des contraintes binaires simples : \texttt{MUST-LINK} et \texttt{CANNOT-LINK}. Ces contraintes représentent respectivement la similitude ou la différence entre deux données, et seront utilisées pour regrouper ou séparer certaines données dans la prochain segmentation.
 		En fonction de l'orientation du projet et afin de rester au plus proche des compétences réelles de l'expert, la formulation de l'énoncer d'annotation doit être judicieusement définie : par exemple, les contraintes peuvent représenter une similitude
-		sur la thématique concernée\footnote{Exemples de thématiques : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...},
-		sur l'action désirée\footnote{Exemples d'actions : \textit{souscrire} vs. \textit{résilier} ; \textit{activer} vs. \textit{désactiver} ; \textit{s'informer} vs. \textit{réaliser}, ...},
-		ou encore sur le besoin de l'utilisateur\footnote{Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...}.
+		sur la thématique concernée\footnote{
+			Exemples de thématiques : \textit{crédit} vs. \textit{assurance} ; \textit{sport} vs. \textit{culture}, ...
+		},
+		sur l'action désirée\footnote{
+			Exemples d'actions : \textit{souscrire} vs. \textit{résilier} ; \textit{activer} vs. \textit{désactiver} ; \textit{s'informer} vs. \textit{réaliser}, ...
+		},
+		ou encore sur le besoin de l'utilisateur\footnote{
+			Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...
+		}.
 		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données (voir la gestion des conflits en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
 		
 		% Description du clustering.
@@ -223,7 +230,9 @@ dict_of_texts = {
 		Les données sont stockées dans un dictionnaire Python afin de tracer les manipulations à l'aide d'une clé servant d'identifiant de la donnée.
 		
 		% cognitivefactory.interactive-clustering.utils.preprocessing : Implémentation.
-		Nous avons d'une part la partie \texttt{utils.preprocessing}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/preprocessing/}} qui permet de normaliser les données.
+		Nous avons d'une part la partie \texttt{utils.preprocessing}\footnote{
+			\texttt{utils.preprocessing}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/preprocessing/}
+		} qui permet de normaliser les données.
 		Par défaut :
 		\begin{itemize}
 			\item[\(\bullet\)] le texte est passé en \textit{minuscule} (de "\texttt{Bonjour}" à "\texttt{bonjour}"),
@@ -253,7 +262,9 @@ dict_of_texts = {
 		
 		
 		% cognitivefactory.interactive-clustering.utils.vectorization
-		D'autre part, la partie \texttt{utils.vectorization}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/vectorization/}} permet de transformer les données en une représentation exploitable pour la machine.
+		D'autre part, la partie \texttt{utils.vectorization}\footnote{
+			\texttt{utils.vectorization}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/vectorization/}
+		} permet de transformer les données en une représentation exploitable pour la machine.
 		Deux modes de vectorisation sont mis à disposition :
 		\begin{enumerate}
 			\item \textbf{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), utilisant la fréquence d'occurrence des mots pour représenter une phrase, et noté \texttt{vect.tfidf} pour nos études ;
@@ -305,7 +316,9 @@ dict_of_vectors = vectorize(
 		\label{section:3.3.2-GESTION-DES-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.constraints
-		En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/constraints/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+		En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{
+			\texttt{constraints}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/constraints/}
+		} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 		
 		% cognitivefactory.interactive-clustering.constraints: Types
 		Deux types de contraintes sont prises en charge (cf.~\cite{wagstaff-cardie:2000:clustering-instancelevel-constraints}) :
@@ -418,7 +431,9 @@ connected_components = constraints_manager.get_connected_components()
 		\label{section:3.3.3-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.clustering
-		En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+		En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{
+			\texttt{clustering}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}
+		} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 		
 		% cognitivefactory.interactive-clustering.utils.clustering : Implémentation.
 		Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes :
@@ -482,7 +497,9 @@ clustering_result = clustering_model.cluster(
 		\label{section:3.3.4-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
 		
 		% cognitivefactory.interactive-clustering.sampling
-		En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{\url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/sampling/}} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+		En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{
+			\texttt{sampling}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/sampling/}
+		} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 		
 		% cognitivefactory.interactive-clustering.utils.sampling : Implémentation.
 		Cet échantillonnage correspond à la sélection de couple de données.
