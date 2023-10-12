@@ -70,9 +70,9 @@
 			
 			\begin{algorithm}
 				\KwData{jeu de données annoté (vérité terrain)}
-				\KwIn{taux de différences à insérer}
+				\KwIn{liste de taux de différences à insérer}
 				%
-				\ForEach{arrangement de taux de différences à insérer}{
+				\ForEach{taux de différences à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
@@ -160,8 +160,9 @@
 				\caption{
 					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain au cours des itérations.
 					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $50$\%).
-					\textbf{(1)} et \textbf{(2)} représente respectivement l'approche ignorant les conflits dans les contraintes et l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
-					Toutes les courbes sont tronquées à $3~000$ contraintes.
+					\textbf{(1)} représente l'approche naïve ignorant les conflits d'annotation
+					et \textbf{(2)} représente l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
+					Toutes les courbes sont tronquées à $3~000$ contraintes (nombre maximum de contraintes nécessaire à une tentatives sans incohérence pour converger vers la vérité terrain).
 				}
 				\label{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}
 			\end{figure}
@@ -182,16 +183,47 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% Rappel de l'objectif : ...
-			\todo[inline]{A REDIGER: rappel de l'objectif}
+			% Rappel de l'objectif : Intérêt de la correction en cas d'incohérences.
+			L'objectif de cette étude consiste à montrer l'intérêt de la correction en cas de conflits dans les contraintes annotées.
+			Pour cela, nous avons comparé deux approches : une approche naïve ignorant simplement les conflits, et une deuxième approche les corrigeant si ces derniers sont détectés par le mécanisme de gestion des contraintes.
 		
-			% Remaques expérience utilisateur.
-			\todo[inline]{A REDIGER: Super important de corriger !}
-			\todo[inline]{A REDIGER: Besoin de mécanisme pour prédire et mettre de la redondance}
+			% Analyse : Super important de corriger !
+			D'après l'analyse de la \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERETS-CORRECTION-INCOHERENCES}}, nous pouvons clairement déduire que l'absence de correction des incohérences pénalise la méthode et entraîne une dérive significative des résultats.
+			En effet, sur le jeu de données utilisé comme vérité terrain, nous constatons une perte irréversible d'au moins $35$\% de \texttt{v-measure} dès l'introduction de $5$\% d'incohérences d'annotation, pénalisant ainsi sérieusement les performances de la méthode.
+			Toutefois, la mise en oeuvre d'un mécanisme simple de correction semble estomper en partie ces régressions de performances et permettre à certaines tentatives introduisant des erreurs de rester néanmoins compétitives
+			(\textit{par exemple : les expériences introduisant $25$\% d'erreurs peuvent espérer atteindre $80$\% de \texttt{v-measure} en corrigeant leurs incohérences, alors que l'approche naïve les condamnait à un \texttt{v-measure} moyenne inférieure à $30$\%}).
+			Nous pouvons donc assurément conclure sur la nécessité de vérifier sa base de contraintes et de corriger toute incohérences s'y trouvant.
+			
+			% Remarque : Idées pour améliorer la détection et la correction.
+			Une telle conclusion confirme la sensibilité aux erreurs de cette approche incrémentale : si une erreur apparaît, elle peut rapidement se propager et impacter les résultats de la méthode.
+			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent en un minimum d'annotation de contraintes.
+			Or obtenir un nombre minimal implique de limiter la redondance parmi les contraintes annotées.
+			De ce fait, certaines incohérences mal placées peuvent fortement influencer la base de contraintes et ainsi faire diverger les résultats.
+			Pour contrer ce problème, nous avons deux pistes pouvant être explorées :
+			\begin{itemize}
+				% Introduction de redondance d'annotation.
+				\item concevoir une nouvelle méthode d'échantillonnage introduisant intentionnellement des redondances dans la base de contraintes annotées : ce moyen compte alors sur les propriétés de transitivité du graphe de contraintes pour identifier d'éventuelles incohérences d'annotation isolée ou masquée.
+				Cette piste a cependant le désavantage d'ajouter de nouvelles contraintes peu informative dans le simple but de mieux détecter certaines incohérences, introduisant donc un coût supplémentaire : il y a donc un choix à faire entre la qualité du résultat et la rapidité de son obtention ;
+				% Confronter la vision des annotateurs.
+				\item confronter la vision des annotateurs sur les mêmes contraintes : en faisant annoter les contraintes par deux opérateurs différents, les incohérences ou divergences d'annotation peuvent être révélées ; en ajoutant un troisième, nous pouvons organiser sereinement les débats pour corriger ces incohérences et décider des adaptations éventuelles à prévoir dans le guide d'annotation.
+				Une telle approche ajoute bien entendu un coût supplémentaire (plusieurs annotateurs), mais elle a néanmoins l'avantage de recentrer les discussions des revues d'annotation sur les différences entre cas d'usage métier (\textit{compétences métiers}) plutôt que sur les différences entre représentations abstraites du problème à modéliser (\textit{compétences analytiques}).
+			\end{itemize}
 			
 			% Discussions et ouverture
-			\todo[inline]{A REDIGER: Discussion: convergence vers une AUTRE vérité terrain ?}
-			\todo[inline]{A REDIGER: Discussion: estimer l'impact sur de ces divergences}
+			\begin{leftBarAuthorOpinion}
+				% Une différence n'est pas forcément une erreur.
+				Ce dernier point permet d'ouvrir une discussion intéressante sur les raisons de ces incohérences d'annotations.
+				Les cas les plus évidents sont ceux des erreurs d’inattentions, mais de telles différences sont facilement identifiables et corrigeables par un mécanisme de redondance (\textit{en vérifiant la transitivité des contraintes ou en ajoutant d'autres annotateurs sur un même lot d'annotation}).
+				
+				% Cas plus complexe de la subjectivité.
+				En revanche, un cas plus complexe concerne la subjectivité des opérateurs :
+				en effet, les annotations divergentes ne sont pas forcément des "\textit{erreurs}", elles peuvent aussi représenter une différence de vision de l'expert métier, conduisant pas-à-pas vers une \textbf{autre} vérité terrain (celle-ci est pertinente de \textbf{son} point de vue).
+				On peut prendre l'exemple de la simulation introduisant $50$\% d'incohérences : cela exprime que deux opérateurs sont constamment en désaccord, il est donc normal que les résultats divergent autant...
+				
+				% S'intéresser à l'estimation de cette divergence.
+				Ainsi, bien que la labellisation par contraintes semble plus simple et moins coûteuse à réaliser pour un expert métier, des différences d'opinions pourront toujours être constatées parmi plusieurs experts, et il est important d'organiser des sessions de confrontation pour harmoniser les points de vue (voir \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
+				Dans la suite de cette étude, nous nous intéresserons à l'estimation de l'impact des divergences entre deux annotateurs sans mécanisme de redondance d'annotation.
+			\end{leftBarAuthorOpinion}
 	
 	
 	%%%
@@ -206,8 +238,21 @@
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			
-			% Axiome.
 			% Pseudo-code.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-PROTOCOLE}}.
+			
+			\begin{algorithm}
+				\KwData{jeu de données annoté (vérité terrain)}
+				\KwIn{liste de taux de différences à insérer}
+				% TODO
+				\KwResult{discussion sur l'impact de la correction des incohérences}
+				%
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude d'intérêt de la correction des incohérences d'annotation.
+				}}
+				\label{algorithm:4.6.2-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-PROTOCOLE}
+			\end{algorithm}
+			
 			% Détails de l'expérience.
 			\todo[inline]{A REDIGER}
 			
@@ -225,7 +270,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-size-2000}
 				\caption{
-					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain (d'une taille de $2~000$ données) au cours des itérations.
+					Exemple d'une évolution de similitudes moyennes (calculées en terme de \texttt{v-measure}) de résultats de \textit{clustering} de tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain au cours des itérations, exemple pour une vérité terrain ayant une taille de $2~000$ données.
 					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $25$\%).
 					La barre verticale indique le nombre de contraintes nécessaires aux tentatives n'introduisant pas d'incohérences pour obtenir une moyenne de $90$\% de \texttt{v-measure} (ici: $7~250$).
 				}
