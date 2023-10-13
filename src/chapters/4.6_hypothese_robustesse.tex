@@ -5,7 +5,7 @@
 	%%% Introduction / Transition.
 	%%%
 	Dans les précédentes études, nous avons presque toujours analysé le \textit{clustering} interactif en supposant que l'annotateur connaît parfaitement le domaine traité par le jeu de données et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
-	Bien entendu, cette hypothèse forte n'est pas toujours vérifiée en situation réelle : l'interprétation du langage peut contenir certaines ambiguïtés, l'opérateur peut faire des erreurs d’inattention, et deux annotateurs peuvent avoir des avis contraire sur un même sujet.
+	Bien entendu, cette hypothèse forte n'est pas toujours vérifiée en situation réelle : l'interprétation du langage peut contenir certaines ambiguïtés, l'opérateur peut faire des erreurs d'inattention, et deux annotateurs peuvent avoir des avis contraire sur un même sujet.
 	Or, comme notre méthode d'annotation est itérative, elle est a priori sensible aux dérives fonctionnement liées à ce type de contradictions.
 	Dans cette section, nous nous intéressons donc à la robustesse du \textit{clustering} interactif en présence d'incohérences dans les contraintes et aux moyens de les contrer.
 	Pour cela, nous aimerions donc vérifier l'hypothèse suivante :
@@ -36,43 +36,43 @@
 			\label{figure:4.6-HYPOTHESE-ROBUSTESSE}
 		\end{figure}
 	\end{tcolorbox}
-		
+	
+	
 	% Résumé de l'étude.
 	Afin de vérifier cette hypothèse, nous organisons trois expériences :
 	\begin{itemize}
-		\item une étude de cas sur la \textbf{correction des incohérences d'annotation} (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}}) ;
-		\item une étude de cas sur le \textbf{score inter-annotateurs} obtenu lors d'une annotation de contraintes en situation réelle avec plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}) ;
-		\item une simulation de l'\textbf{impact des différences d'annotation} sur les résultats de \textit{clustering} (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}}).
+		\item une étude de l'\textbf{impact d'une erreur d'annotation} et de l'\textbf{intérêt de la corriger}, en simulant l'insertion d'erreurs d'annotation et en mesurant la similarité du \textit{clustering} obtenu avec la vérité terrain (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}) ;
+		\item une étude de l'\textbf{impact de la subjectivité de l'annotation sur la divergence des résultats de \textit{clustering}}, en simulant l'insertion de différences d'annotation et en mesurant la similarité entre les clustering obtenus (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE}}) ;
+		\item une étude de cas d'un \textbf{score inter-annotateurs} obtenu lors d'une annotation de contraintes en situation réelle avec plusieurs opérateurs, permettant d'estimer une borne maximale du taux de désaccords dans notre méthode (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}}).
 	\end{itemize}
 	
 	
 	%%%
-	%%% Subsection 4.6.1: Étude de l'intérêt de la correction des incohérences d'annotation.
+	%%% Subsection 4.6.1: Étude de l'impact d'une erreur d'annotation et l'intérêt de la corriger.
 	%%%
-	\subsection{Étude de l'intérêt de la correction des incohérences d'annotation}
-	\label{section:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}
+	\subsection{Étude de l'impact d'une erreur d'annotation et l'intérêt de la corriger}
+	\label{section:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}
 		
 		% Objectif de l'expérience.
-		Nous cherchons à estimer la robustesse du \textit{clustering} interactif face aux incohérences d'annotation.
-		Dans cette étude, nous nous intéressons plus particulièrement à l'intérêt de la détection et de la correction des conflits présents dans les contraintes.
-		En effet, deux approches de travail s'opposent :
+		Dans cette première étude, nous cherchons à estimer la robustesse du \textit{clustering} interactif en nous intéressant plus particulièrement aux erreurs d'annotation d'un seul opérateur.
+		En effet, comme nous l'avons vu en \textsc{Section~\ref{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEUR}}, des \textbf{différences de comportements intra-annotateur} peuvent être observées au cours de la labellisation, ces dernières s'apparentant à des erreurs d'inattention ou des contradictions.
+		Nous allons ici simuler de telles erreurs dans l'annotation de contraintes dans le but :
 		\begin{itemize}
-			\item une approche \textit{naïve} ignorant simplement les conflits : celle-ci n'engendre pas de coûts supplémentaires, mais elle s'expose aux risques de dérives de fonctionnement ;
-			\item une seconde approche \textit{avec correction} des conflits : celle-ci nécessite de revoir ou de ré-annoter des contraintes, impliquant un coût supplémentaire, mais permet de limiter l'impact de dérives potentielles.
+			\item d'observer leur détection par le gestionnaire de contraintes ;
+			\item d'évaluer la perte de performances par rapport à la vérité terrain si les contradictions détectées ne sont pas corrigés.
 		\end{itemize}
-		Pour trancher entre ces deux options, nous simulons ces deux approches afin d'estimer si l'absence de correction induit une différence significative de notre méthode d'annotation.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
-				\KwIn{liste de taux de différences à insérer, stratégies de correction de conflits}
+				\KwIn{liste de stratégies de correction de conflits et de taux d'erreurs à insérer}
 				%
-				\ForEach{stratégie de correction et taux de différences à insérer}{
+				\ForEach{stratégie de correction et taux d'erreurs à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
@@ -81,7 +81,7 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{choix des incohérences}: définir les contraintes erronées \;
+						\textbf{choix des erreurs}: définir les contraintes erronées \;
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\If{stratégie de correction naïve}{
 							\textbf{intégration naïve}: ajouter les nouvelles contraintes au gestionnaire de contraintes, et ignorer les conflits avec le gestionnaire de contraintes \;
@@ -92,16 +92,16 @@
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					}
-					\textbf{analyse locale}: afficher l'évolution de la performance par rapport à la vérité terrain en fonction du nombre de contraintes \;
+					\textbf{analyse locale}: afficher l'évolution de la similarité entre les \textit{clustering} de la tentative courante et la vérité terrain \;
 				}
-				\textbf{analyse}: déterminer l'impact des stratégies de correction en fonction des taux de différences insérées \;
+				\textbf{analyse générale}: déterminer l'impact des stratégies de correction en fonction des taux d'erreurs insérées \;
 				%
-				\KwResult{discussion sur l'intérêt de la correction des incohérences}
+				\KwResult{discussion sur l'impact des erreurs et l'intérêt de les corriger}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude d'intérêt de la correction des incohérences d'annotation.
+					Description en pseudo-code du protocole expérimental de l'étude d'impact d'une erreur d'annotation et l'intérêt de la corriger.
 				}}
-				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES-PROTOCOLE}
+				\label{algorithm:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION-PROTOCOLE}
 			\end{algorithm}
 			
 			% Description de la vérité terrain.
@@ -112,29 +112,28 @@
 			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
-			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
-			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes divergentes à chaque itération :
+			} de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
+			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes erronées à chaque itération pour simuler les variations de comportement de l'annotateur :
 			\begin{itemize}
-				\item Le taux de différences insérées, variant de $0$\% à $50$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux de différences fixe sur les résultats au courant des itérations ;
-				\item Les contraintes divergentes à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans introduction de différences : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
+				\item Le taux d'erreurs insérées, variant de $0$\% à $25$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux d'erreur fixe sur les résultats au courant des itérations ;
+				\item Les contraintes erronées à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonnées au cours d'une tentative sans erreurs : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
-			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
+			Puisque nous introduisons des erreurs d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
 			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
-			Pour les traiter, nous testons deux approches :
+			Pour les traiter, nous allons tester deux approches :
 			\begin{itemize}
-				\item l'approche \textit{naïve} ignorant simplement les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
-				\item l'approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
+				\item une approche \textit{naïve} ignorant les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
+				\item une approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte erronées, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec les répétitions.
-			Ainsi, il y a donc $11$ taux de différences, chacun suivant $2$ approches de gestion de conflits, et chacune de ces simulations d'incohérences seront répétées $10$ fois sur chaque tentative complète de la méthode pour contrer les aléas statistiques des tirages de contraintes divergentes, ce qui représente $220$ simulations par tentatives.
-			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $1100$ tentatives complètes à simuler.
+			Ainsi, il y a donc $6$ taux d'erreurs d'annotation à simuler, chacun suivant $2$ approches de gestion de conflits, et chacune de ces simulations d'erreurs seront répétées $10$ fois sur chaque tentative complète de la méthode pour contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $120$ simulations par tentatives.
+			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $600$ tentatives complètes à simuler.
 
 			% Description de l'analyse.
-			Enfin, nous affichons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux de différences simulées, et discutons de l'impact au cours des itérations de la présence ou de l'absence de corrections des conflits d'annotations détectés.
+			Enfin, nous affichons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux d'erreurs simulées, et nous discutons de la significativité de la perte de performances due à l'absence de corrections des conflits.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -145,326 +144,114 @@
 		\subsubsection{Résultats obtenus}
 		
 			% Description statistiques.
-			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre de contraintes annotées au cours des itérations de la méthode, et cette évolution est déclinée pour les $11$ taux de différences simulés et les $2$ approches de gestion des conflits.
-			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives n'introduisant pas de différences d'annotation par rapport à la vérité terrain : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
+			La \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre de contraintes annotées au cours des itérations de la méthode, et cette évolution est déclinée pour les $6$ taux d'erreurs simulées et les $2$ approches de gestion des conflits.
+			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives n'introduisant pas d'erreurs d'annotation par rapport à la vérité terrain : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
 			
 			% Warning : Troncage à 3000.
 			\begin{leftBarWarning}
 				Toutefois, il est important de noter que les tentatives sans contraintes ont besoin de maximum $3~000$ contraintes pour annoter toutes les contraintes possibles et leurs transitivités (moyenne: $2~488$, écart-type: $327$).
-				Au delà de cette limite, il faudrait échantillonner de nouvelles contraintes pour les tentatives divergentes, mais les bases de contraintes utilisées ne seraient alors plus comparables.
-				Nous décidons donc de tronquer les différentes courbes à $3~000$ contraintes, qu'il y eut convergence ou non, et nous analysons ces résultats partiels.
+				Au delà de cette limite, il faudrait échantillonner de nouvelles contraintes pour les tentatives introduisant des erreurs, mais les bases de contraintes utilisées ne seraient alors plus comparables.
+				Nous décidons donc de tronquer les différentes courbes à $3~000$ contraintes, que la convergence eut lieu ou non, et nous analysons ces résultats partiels obtenus pour ce nombre de contraintes.
 			\end{leftBarWarning}
 			
 			% Figure.
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-interet-correction-closest}
+				\includegraphics[width=0.95\textwidth]{figures/etude-robustesse-erreurs-et-corrections-closest}
 				\caption{
-					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain au cours des itérations.
-					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $50$\%).
+					Évolution des similitudes moyennes (calculées en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des erreurs d'annotation par rapport à la vérité terrain au cours des itérations.
+					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $25$\%).
 					\textbf{(1)} représente l'approche naïve ignorant les conflits d'annotation
 					et \textbf{(2)} représente l'approche corrigeant les conflits détectés par le gestionnaire de contraintes.
-					Toutes les courbes sont tronquées à $3~000$ contraintes (nombre maximum de contraintes nécessaire à une tentatives sans incohérence pour converger vers la vérité terrain).
+					Toutes les courbes sont tronquées à $3~000$ contraintes (nombre maximum de contraintes nécessaire à une tentatives n'introduisant pas erreurs pour converger vers la vérité terrain).
 				}
-				\label{figure:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}
+				\label{figure:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}
 			\end{figure}
 			
 			% Description de la figure: cas naïf.
-			Tout d'abord, observons l'approche \textit{naïve}, ignorant simplement les conflits (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}} \textbf{(1)}).
-			Nous pouvons constater que les performances (basées sur la vérité terrain) plafonnent très rapidement si des incohérences sont introduites : dès $5$\% de différences, le score de \texttt{v-measure} stagne autour de $65$\% à partir de $1~000$ contraintes, alors qu'une performance théorique d'environ $90$\% serait attendue pour une tentative n'ayant pas de différences d'annotation.
-			D'autre part, si le taux de contraintes divergentes introduites est supérieur à $15$\%, nous pouvons remarquer que ces performances diminuent avant de stagner à des valeurs inférieures à $40$\% de \texttt{v-measure}.
+			Tout d'abord, observons l'approche \textit{naïve}, ignorant simplement les conflits (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}} \textbf{(1)}).
+			Nous pouvons constater que les performances (basées sur la vérité terrain) plafonnent très rapidement si des incohérences sont introduites : dès $5$\% d'erreurs, le score de \texttt{v-measure} stagne autour de $65$\% à partir de $1~000$ contraintes, alors qu'une performance théorique d'environ $90$\% serait attendue pour une tentative idéale n'introduisant pas d'erreurs.
+			D'autre part, si le taux de contraintes erronées est supérieur à $15$\%, nous pouvons remarquer que ces performances diminuent avant de stagner à des valeurs inférieures à $40$\% de \texttt{v-measure}.
 			Pour finir sur cette première approche, tout porte à croire que ces faibles seuils performances perdurent au delà des $3~000$ contraintes (figure tronquée) : les tentatives s'éloignent donc significativement de la vérité terrain si des incohérences d'annotation sont insérées.
 			
-			
 			% Description de la figure: cas correctif.
-			Observons désormais l'approche \textit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}} \textbf{(2)}).
-			Nous pouvons constater que les tentatives introduisant des contraintes divergentes subissent aussi un retard de performances, mais aucun plateau de performance n'apparaît.
-			Pour les tentatives possédant au moins $25$\% d'incohérences, des régressions de performances apparaissent sur les premières itérations, mais toutes les courbes sont à nouveau croissantes au delà d'un nombre de $1~000$ contraintes.
-			Pour conclure sur cette seconde figure, on observe une convergence générale vers la vérité terrain bien que celle-ci soit ralentie, et on peut espérer que cette convergence se poursuit au delà des $3~000$ contraintes (figure tronquée).
-
+			Observons désormais l'approche \textit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}} \textbf{(2)}).
+			Nous pouvons constater que les tentatives introduisant des contraintes erronées subissent aussi un retard de performances, mais celui-ci est bien plus faible que celui encaissé par les approches naïves.
+			Nous observons que toutes les courbes restent globalement croissantes, bien que le score moyen de $90$\% de \texttt{v-measure} par rapport à la vérité terrain n'est pas atteint en moins de $3~000$ contraintes par les tentatives ayant un taux d'erreurs supérieur à $15$\%.
+			Nous pouvons toutefois espérer que cette convergence se poursuit au delà des $3~000$ contraintes (figure tronquée).
+		
 		%%% Discussion
 		\subsubsection{Discussion}
 		
 			% Rappel de l'objectif : Intérêt de la correction en cas d'incohérences.
-			L'objectif de cette étude consiste à montrer l'intérêt de la correction en cas de conflits dans les contraintes annotées.
-			Pour cela, nous avons comparé deux approches : une approche naïve ignorant simplement les conflits, et une deuxième approche les corrigeant si ces derniers sont détectés par le mécanisme de gestion des contraintes.
+			L'objectif de cette étude consiste à étudier l'impact des différences de comportements intra-annotateur sur les résultats de notre méthode, plus particulièrement l'intérêt de corriger les incohérences d'annotations lorsqu'elles sont détectées par le gestionnaire de contraintes.
+			Pour cela, nous avons comparé deux approches : une approche naïve ignorant simplement les conflits, et une deuxième approche les corrigeant lorsque ces derniers sont détectées.
 		
 			% Analyse : Super important de corriger !
-			D'après l'analyse de la \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}}, nous pouvons clairement déduire que l'absence de correction des incohérences pénalise la méthode et entraîne une dérive significative des résultats.
-			En effet, sur le jeu de données utilisé comme vérité terrain, nous constatons une perte irréversible d'au moins $35$\% de \texttt{v-measure} dès l'introduction de $5$\% d'incohérences d'annotation, pénalisant ainsi sérieusement les performances de la méthode.
-			Toutefois, la mise en oeuvre d'un mécanisme simple de correction semble estomper en partie ces régressions de performances et permettre à certaines tentatives introduisant des erreurs de rester néanmoins compétitives
-			(\textit{par exemple : les expériences introduisant $25$\% d'erreurs peuvent espérer atteindre $80$\% de \texttt{v-measure} en corrigeant leurs incohérences, alors que l'approche naïve les condamnait à un \texttt{v-measure} moyenne inférieure à $30$\%}).
-			Nous pouvons donc assurément conclure sur la nécessité de vérifier sa base de contraintes et de corriger toute incohérences s'y trouvant.
+			D'après l'analyse de la \textsc{Figure~\ref{figure:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}, nous pouvons clairement déduire que l'absence de correction des incohérences pénalise significativement la méthode.
+			En effet, sur le jeu de données utilisé comme vérité terrain, nous constatons une perte irréversible d'au moins $35$\% de \texttt{v-measure} dès l'introduction de $5$\% d'erreurs d'annotation, caractérisant ainsi une dérive importante des résultats si les conflits d'annotations ne sont pas corrigés.
+			Toutefois, la mise en oeuvre d'un mécanisme simple de correction semble estomper en partie ces régressions de performances et permet à certaines tentatives introduisant des erreurs de rester compétitives
+			(\textit{toutes les tentatives peuvent espérer atteindre $80$\% de \texttt{v-measure} en corrigeant leurs incohérences, alors que l'approche naïve les condamnait à une \texttt{v-measure} plafonnée}).
+			Nous pouvons donc assurément conclure en faveur de la \textbf{nécessité de vérifier la base de contraintes et de corriger toute incohérence s'y trouvant}.
 			
-			% Remarque : Idées pour améliorer la détection et la correction.
+			% Remarque : En accord avec les approches incrémentale.
 			Une telle conclusion confirme la sensibilité aux erreurs de cette approche incrémentale : si une erreur apparaît, elle peut rapidement se propager et impacter les résultats de la méthode.
 			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent en un minimum d'annotation de contraintes.
 			Or obtenir un nombre minimal implique de limiter la redondance parmi les contraintes annotées.
 			De ce fait, certaines incohérences mal placées peuvent fortement influencer la base de contraintes et ainsi faire diverger les résultats.
+			
+			% Solution: Ajouter de la redondance.
 			Pour contrer ce problème, nous avons deux pistes pouvant être explorées :
+			
 			\begin{itemize}
 				% Introduction de redondance d'annotation.
-				\item concevoir une nouvelle méthode d'échantillonnage introduisant intentionnellement des redondances dans la base de contraintes annotées : ce moyen compte alors sur les propriétés de transitivité du graphe de contraintes pour identifier d'éventuelles incohérences d'annotation isolée ou masquée.
-				Cette piste a cependant le désavantage d'ajouter de nouvelles contraintes peu informative dans le simple but de mieux détecter certaines incohérences, introduisant donc un coût supplémentaire : il y a donc un choix à faire entre la qualité du résultat et la rapidité de son obtention ;
+				\item \textbf{introduire intentionnellement de la redondances} dans la base de contraintes annotées à l'aide d'une nouvelle méthode d'échantillonnage : ce moyen tire parti des propriétés de transitivité du graphe de contraintes pour identifier d'éventuelles incohérences d'annotation isolée ou masquée.
+				Cette piste a cependant le désavantage d'ajouter de nouvelles contraintes peu informatives dans le simple but de mieux détecter certaines incohérences, introduisant donc un léger coût supplémentaire pour l'annotateur ;
 				% Confronter la vision des annotateurs.
-				\item confronter la vision des annotateurs sur les mêmes contraintes : en faisant annoter les contraintes par deux opérateurs différents, les incohérences ou divergences d'annotation peuvent être révélées ; en ajoutant un troisième, nous pouvons organiser sereinement les débats pour corriger ces incohérences et décider des adaptations éventuelles à prévoir dans le guide d'annotation.
-				Une telle approche ajoute bien entendu un coût supplémentaire (plusieurs annotateurs), mais elle a néanmoins l'avantage de recentrer les discussions des revues d'annotation sur les différences entre cas d'usage métier (\textit{compétences métiers}) plutôt que sur les différences entre représentations abstraites du problème à modéliser (\textit{compétences analytiques}).
+				\item \textbf{confronter plusieurs des annotateurs} sur les mêmes contraintes : en faisant annoter les mêmes contraintes par deux opérateurs différents, les erreurs d'annotation peuvent être révélées.
+				Cette piste engendre aussi un surcoût car elle nécessite d'embaucher plusieurs annotateurs.
 			\end{itemize}
 			
-			% Discussions et ouverture
+			% Conclusion : choix entre rapidité ou qualité.
 			\begin{leftBarAuthorOpinion}
-				% Une différence n'est pas forcément une erreur.
-				Ce dernier point permet d'ouvrir une discussion intéressante sur les raisons de ces incohérences d'annotations.
-				Les cas les plus évidents sont ceux des erreurs d’inattentions, mais de telles différences sont facilement identifiables et corrigeables par un mécanisme de redondance (\textit{en vérifiant la transitivité des contraintes ou en ajoutant d'autres annotateurs sur un même lot d'annotation}).
-				
-				% Cas plus complexe de la subjectivité.
-				En revanche, un cas plus complexe concerne la subjectivité des opérateurs :
-				en effet, les annotations divergentes ne sont pas forcément des "\textit{erreurs}", elles peuvent aussi représenter une différence de vision de l'expert métier, conduisant pas-à-pas vers une \textbf{autre} vérité terrain (celle-ci est pertinente de \textbf{son} point de vue).
-				On peut prendre l'exemple de la simulation introduisant $50$\% d'incohérences : cela exprime que deux opérateurs sont constamment en désaccord, il est donc normal que les résultats divergent autant...
-				
-				% S'intéresser à l'estimation de cette divergence.
-				Ainsi, bien que la labellisation par contraintes semble plus simple et moins coûteuse à réaliser pour un expert métier, des différences d'opinions pourront toujours être constatées parmi plusieurs experts, et il est important d'organiser des sessions de confrontation pour harmoniser les points de vue (voir \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
-				Dans la suite de cette étude, nous nous intéressons à l'estimation du score d'accord inter-annotateurs et à l'impact des divergences de résultats de \textit{clustering} en l'absence de doubles annotations.
+				Dans les deux cas, il y a un choix à faire : \textbf{veut-on privilégier la qualité} (\textit{ajouter de la redondance et une double vérification au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
 			\end{leftBarAuthorOpinion}
 		
-		
 	%%%
-	%%% Subsection 4.6.2: Étude du score inter-annotateurs obtenu avec des opérateurs en situation réelle.
+	%%% Subsection 4.6.2: Étude de l'impact de la subjectivité de l'annotation sur la divergence des résultats obtenus
 	%%%
-	\subsection{Étude du score inter-annotateurs obtenu avec des opérateurs en situation réelle}
-	\label{section:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
+	\subsection{Étude de l'impact de la subjectivité de l'annotation sur la divergence des résultats obtenus}
+	\label{section:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE}
 		
-		% Objectif de l'expérience.
-		Dans la section précédente, nous avons montré l'intérêt de corriger les incohérences dans les annotations, mais aussi la nécessité d'employer plusieurs opérateurs pour confronter les points de vue et ainsi mettre plus facilement en évidence les contraintes divergentes.
-		Dans cette étude, nous voulons étudier le score d'accord inter-annotateurs calculé lors d'une annotation de contraintes par plusieurs experts métiers en situation réelle.
-		Pour cela, nous reprenons l'expérience de la \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}} visant à estimer le temps moyen d'annotation d'un lot de contraintes, et nous réutilisons ces résultats pour en estimer l'accord inter-annotateurs.
-		Comme l'objectif de cette précédente étude n'était pas d'étudier la qualité des annotation, aucun guide ni aucune règles d'annotation précises n'avaient été fournies : nous espérons donc pourvoir estimer une borne maximale grossière de l'accord inter-annotateurs de notre méthode sans concertation, permettant ainsi d'affiner notre champ de simulation.
-		
-		%%% Protocole expérimental.
-		\subsubsection{Protocole expérimental}
-			
-			% Axiome.
-			\begin{leftBarWarning}
-				Pour l'étude d'annotation en \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}, nous avions supposons que les annotateurs de l'expérience connaissaient parfaitement le domaine traité dans le jeu de données, et qu'ils sont capables de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
-				Afin de pourvoir faire cette hypothèse forte, et ainsi limiter les bruits dans l'analyse des résultats, le jeu de données choisi devait traiter d'un sujet de culture générale (ne nécessitant donc pas de connaissance particulière) et des réviseurs avaient supprimer en amont et d'un commun accord les données trop spécifiques ou trop ambiguës.
-			\end{leftBarWarning}
-			
-			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS-PROTOCOLE}}.
-
-			\begin{algorithm}
-				\KwData{jeu de données annotées (vérité terrain)}
-				\KwIn{plusieurs réviseurs, plusieurs annotateurs}
-				%
-				\textbf{initialisation}: définir et revoir le jeu de données entre réviseurs \;
-				\textbf{échantillonnage}: sélectionner une base de contraintes équilibrée \;
-				\ForEach{annotateur}{
-					 \While{la base de contraintes n'a pas été entièrement annotée}{
-						\textbf{annotation}: annoter une partie des contraintes \;
-						\textbf{revue}: revue des contraintes en conflits d'annotation \;
-					}
-				}
-				%
-				\KwResult{modélisation du score inter-annotateurs sur le lot de contraintes}
-				%
-				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude du score inter-annotateurs d'annotation d'un lot de contraintes par plusieurs experts métiers en situation réelle.
-				}}
-				\label{algorithm:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS-PROTOCOLE}
-			\end{algorithm}
-			
-			% Détails de l'expérience : préparation du jeu de données.
-			Concernant la précédente expérience d'annotation en situation réelle, nous avions procédé en plusieurs étapes.
-			D'abord, il fallait choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétences de nos annotateurs, nous cherchions un jeu de données traitant d'un sujet de culture général.
-			Pour cette expérience, nous avions donc choisi \texttt{MLSUM} : une collecte d'articles de journaux, classés par catégorie de publication et décrits par leur titre et leur résumé.
-			Nous nous intéressions ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
-			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
-			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
-		
-			% Détails de l'expérience : sélection des contraintes à annoter.
-			À partir de ces données, nous avions sélectionné un lot de $400$ contraintes à annoter.
-			Pour faciliter l'analyse, l'échantillonnage fut un aléatoire équilibré d'après la vérité terrain en $200$ \texttt{MUST-LINK} et en $200$ \texttt{CANNOT-LINK}.
-			
-			% Détails de l'expérience : annotations et consignes.
-			Ensuite, un groupe de $3$ annotateurs ont annoté la sélection de $400$ contraintes en plusieurs sessions.
-			Les directives données aux opérateurs étaient les suivantes:
-			\begin{itemize}
-				\item \textbf{Contexte de l'opérateur} :
-				\textguillemets{\textit{Vous êtes des \textbf{experts de la presse et de l’actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles}} ;
-				\item \textbf{Contexte sur le jeu de données} :
-				\textguillemets{\textit{Le thème sont les catégories d’articles de presse ; La vérité terrain contient entre $10$ et $20$ catégories parmi les plus communes de la presse ; La vérité terrain contient entre $30$ et $100$ articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez (disponible dans l'onglet \texttt{TEXTS} de l'application)}} ;
-				\item \textbf{Consignes d'annotations} :
-				\textguillemets{\textit{Faites des séries de \textbf{15 minutes minimum} pour avoir de la régularité ; Si possible, \textbf{isolez-vous} pour ne pas être dérangé et ne pas fausser les résultats ; Pour chaque série, \textbf{notez le temps et le nombre de contraintes annotés} ; Si vous ne savez pas quoi annoter (trop ambigu, vocabulaire inconnu, ...), \textbf{passez au suivant sans annoter} (vous êtes sensés être des experts de la presse !)}}.
-			\end{itemize}
-			%
-			Pour réaliser l'annotation, les opérateurs eurent accès à l'application web développée au cours de ce doctorat.
-			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
-			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}.
-			
-			% Détails de l'expérience.
-			Pour cette étude, nous allons réutiliser ces annotations et calculé le score d'accord inter-annotateur global et deux à deux.
-			Pour ce faire, nous allons utiliser l'$\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} (\cite{perry:2021:lighttag-text-annotation}).
-			
-			% Référence scripts.
-			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-			\end{leftBarInformation}
-			
-		%%% Résultats
-		\subsubsection{Résultats obtenus}
-		
-			\todo[inline]{résultats à revoir !}
-		
-			% Description statistiques.
-			La \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}} expose les scores inter-annotateurs sur les $3$ opérateurs et le réviseur de cette expérience, ainsi que l'accord avec la vérité terrain.
-			Le score d'accord moyen avec la vérité terrain est de $86$\% (écart-type: $1$\%) ; ce score est de $81$\% (écart-type: $5$\%) pour les contraintes de types \texttt{MUST-LINK} et est de $92$\% (écart-type: $3$\%) pour les contraintes de types \texttt{CANNOT-LINK}.
-			Le score inter-annotateurs moyen (sans le réviseur) est de $84$\% (écart-type: $3$\%).
-			
-			\begin{table}[!htb]
-				\begin{center}
-				\begin{tabular}{|c|r|r|r|r|}
-				
-					\hline
-					% ENTETE DU TABLEAU
-					\rowcolor{colorTableHeader!15}
-					
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							1 (Relecteur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							7 (Annotateur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							9 (Annotateur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							12 (Annotateur)
-						}}
-						\tabularnewline
-						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						Vérité terrain
-					}}
-						& $0.95$
-						& $0.86$
-						& $0.84$
-						& $0.87$
-						\tabularnewline
-						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						1 (Relecteur)
-					}}
-						&
-						& $0.91$
-						& $0.86$
-						& $0.89$
-						\tabularnewline
-						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						7 (Annotateur)
-					}}
-						&
-						&
-						& $0.86$
-						& $0.85$
-						\tabularnewline
-						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						9 (Annotateur)
-					}}
-						&
-						&
-						&
-						& $0.80$
-						\tabularnewline
-						\hline
-					
-				\end{tabular}
-				\end{center}
-				\caption{
-					Score d'accord inter-annotateurs obtenu avec $1$ réviseur et $3$ annotateurs sur un lot commun de $400$ contraintes ($200$ \texttt{MUST-LINK}, $200$ \texttt{CANNOT-LINK}).
-				}
-				\label{table:4.6.2-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
-			\end{table}
-			
-			% Note.
-			\begin{leftBarInformation}
-				Dans une autre expérience, où $14$ opérateurs devaient annoter une base de $1~000$ contraintes aléatoires, nous obtenons un accord moyen avec la vérité terrain de $93$\% (écart-type: $2$\%) et un score inter-annotateurs moyen de $91$\% (écart-type: $3$\%).
-				Toutefois, nous ne mettons pas en avant ces résultats car le lot de contraintes annotées était fortement déséquilibré à cause de l'utilisation de l'échantillonnage aléatoire ($932$ \texttt{CANNOT-LINK}, $68$ \texttt{MUST-LINK}).
-			\end{leftBarInformation}
-	
-		%%% Discussion
-		\subsubsection{Discussion}
-		
-			% Rappel de l'objectif : ...
-			\todo[inline]{A REDIGER: rappel de l'objectif}
-		
-			% Avantage 1 : peu d'erreurs
-			\todo[inline]{A REDIGER: Peu d'erreurs (environ 16\% d'erreurs sans concertations)}
-			
-			% Remarque 1 : MUST-LINK < CANNOT-LINK
-			\todo[inline]{A REDIGER: CANNOT-LINK légèrement plus facile que les MUST-LINK}
-			
-			% Conclusions et suggestion.
-			\todo[inline]{A REDIGER: ouverture sur l'impact des non-corrections}
-	
-	
-	%%%
-	%%% Subsection 4.6.3: Étude de l'impact des incohérences d'annotation sur les résultats.
-	%%%
-	\subsection{Étude de l'impact des incohérences d'annotation sur les résultats}
-	\label{section:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}
-		
-		% Objectif de l'expérience.
-		Dans la section précédente, nous avons observé un accord inter-annotateur de $86$\% (\todo{alpha krippendorff ?}), nous permettant d'admettre que le taux de d'accord ne devrait pas dépasser $15$\%en situation réelle.
-		Dans cette étude, nous nous intéressons plus particulièrement à l'impact de ces différences d'annotation sur le résultat obtenu en le comparant au \textit{clustering} obtenu sans incohérences.
-		Nous réalisons cette analyse sur des jeux de données de différentes tailles et pour plusieurs taux d'incohérences insérées.
-		
-		% Note de l'auteur : chercher la différence plutôt que le retard.
+		% Introduction : différences entre intra- et inter-annotateurs.
+		Dans la section précédente, nous nous sommes intéressés aux différences de comportement intra-annotateur et aux pistes permettant de limiter les erreurs d'annotation d'un seul opérateur.
+		Cependant, nous devons aussi nous intéresser aux \textbf{différences inter-annotateurs} :
+		en effet, nous avons pu voir en \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}} que la labellisation est une tâche subjective, et que la complexité du phénomène à modéliser ainsi que la diversité de profils d'annotateurs peuvent introduire des différences d'annotation.
+		Mais ces différences ne sont pas synonymes d'erreurs, elles peuvent aussi être les témoins de \textbf{différences d'opinion entre les experts}.
+		%
 		\begin{leftBarAuthorOpinion}
-			
-			% Ancien objectif.
-			Initialement, nous voulions estimer le retard (en terme de nombre de contraintes) engendré par l'introduction d'un certain taux d'incohérences dans les annotations pour atteindre un objectif de $90$\% de \texttt{v-measure} par rapport à la vérité terrain (objectif d'annotation partielle).
-			Cependant, un tel objectif n'était pas atteignable : en effet, nous avons vu dans la \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}} que l'introduction de d'incohérences fait diverger le \textit{clustering} vers une autre vérité terrain.
-			Ainsi, sans mécanisme de redondance ni doubles annotations, il est possible que le score de \texttt{v-measure} obtenu reste inférieur au seuil d'analyse que nous nous aurions fixé.
-			Par exemple, en regardant la \textsc{Figure~\ref{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}}, nous pouvons supposer que les tentatives ayant $50$\% d'incohérences ne dépasseront jamais le score de $90$\% de \texttt{v-measure}...
-			
-			% Nouvel objectif.
-			Nous avons donc adapté l'objectif de cette étude : au lieu d'estimer le retard en nombre de contraintes pour atteindre $90$\% de \texttt{v-measure}, nous allons estimer l'écart de \texttt{v-measure} des tentatives introduisant des incohérences pour un nombre de contraintes donné.
-			Pour cette analyse, nous fixons le nombre de contraintes à celui nécessaire pour obtenir une moyenne de $90$\% de \texttt{v-measure} avec des tentatives n'introduisant pas d'incohérences.
-			La figure \textsc{Figure~\ref{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}} illustre le problème et le choix de faire une étude pour un nombre de contrainte fixé.
-			
-			% Schéma.
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.80\textwidth]{figures/etude-erreur-simulation-impact-schema}
-				\caption{
-					Schéma illustrant l'impossibilité d'estimer le retard engendré par l'introduction d'un taux de $35$\% d'incohérences (la courbe orange ne semble pas atteindre le seuil de $90$\% de \texttt{v-measure}, donc la droite rouge ne sait pas où s'arrêter) mais la possibilité d'estimer l'écart de similitude pour un nombre de contraintes données (la barre continue verte est clairement mesurable).
-				}
-				\label{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}
-			\end{figure}
+			Pour aller plus loin, il est même mal avisé de parler d'\textit{erreurs} d'annotation car cela suppose qu'une comparaison avec une vérité terrain soit possible.
+			Or, en situation réelle, cette vérité terrain est précisément en cours de construction à l'aide de notre méthodologie de \textit{clustering} interactif : l'expert est responsable de la vision qu'il veut appliquer aux données durant son annotation, il est donc difficile de parler d'erreurs sans porter de jugement sur sa vision.
+			Il convient donc mieux de parler de \textit{différences} d'annotation si deux experts ont une divergence de point de vue sur une donnée à annoter.
 		\end{leftBarAuthorOpinion}
+		
+		% Objectif de l'expérience.
+		Dans cette seconde étude, nous allons donc estimer la robustesse du \textit{clustering} interactif en nous intéressant plus particulièrement aux différences d'annotation entre deux opérateurs.
+		Pour cela, nous allons simuler de telles différences entre deux annotateurs fictifs : le premier sera représenté par la vérité terrain, et le second sera simulé en introduisant un certain taux de désaccords d'annotation à chaque itération.
+		Nous discutons ensuite de l'écart de similarité entre les résultats de \textit{clustering} obtenus lorsque l'annotateur de référence atteint le seuil d'annotation partielle de son jeu de données (\textit{accord théorique de $90$\% de \texttt{v-measure} sur la vérité terrain qu'il recherche})
+		Nous réalisons cette analyse sur des jeux de données de différentes tailles et pour plusieurs taux de désaccords insérées.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeux de données annotées (vérités terrains) de tailles différentes}
-				\KwIn{liste de taux de différences à insérer}
+				\KwIn{liste de taux de désaccords à insérer}
 				%
-				\ForEach{jeux de données à tester et taux de différences à insérer}{
+				\ForEach{jeux de données à tester et taux de désaccords à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
@@ -473,29 +260,32 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{choix des incohérences}: définir les contraintes erronées \;
+						\textbf{choix des désaccords}: définir les contraintes erronées \;
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration corrective}: ajouter les nouvelles contraintes au gestionnaire de contraintes, et ré-annoter les annotations en conflit \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 						\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					}
-					\textbf{analyse locale}: identifier le nombre moyen de contraintes nécessaires à une tentative n'introduisant pas d'incohérence pour atteindre $90$\% de \texttt{v-measure}, et noter le score de \texttt{v-measure} obtenu par de la tentative courante pour le nombre de contraintes identifié \;
+					\textbf{analyse locale}: afficher l'évolution de la similarité entre les \textit{clustering} de la tentative courante et les \textit{clustering} de la tentative de référence (n'ayant pas de différence d'annotation par rapport à la vérité terrain) \;
 				}
-				\textbf{analyse générale}: déterminer l'impact des incohérences par taux de différences et par taille de jeux de données \;
+				\textbf{analyse générale}: analyse des différences de résultats de \textit{clustering} obtenus par taille de jeux de données et par taux de désaccords insérés \;
 				%
-				\KwResult{discussion sur l'impact des incohérences sur le \textit{clustering} obtenu}
+				\KwResult{discussion sur l'impact de la subjectivité de l'annotation sur la divergence des résultats de \textit{clustering} obtenu}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'impact des incohérences d'annotation sur les résultats.
+					Description en pseudo-code du protocole expérimental de l'impact de la subjectivité de l'annotation sur la divergence des résultats.
 				}}
-				\label{algorithm:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-PROTOCOLE}
+				\label{algorithm:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-PROTOCOLE}
 			\end{algorithm}
 			
 			% Détails de l'expérience.
-			Nous reprenons dans les grandes lignes le protocole expérimental de la précédente étude sur l'intérêt de la correction des incohérences d'annotation (voir \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}}.
+			\begin{leftBarInformation}
+				Nous reprenons dans les grandes lignes le protocole expérimental de la précédente étude sur l'impact des erreurs d'annotations et l'intérêt de les corriger (voir \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}.
+				Cependant, nous utilisons ici la vérité terrain pour représenter un opérateur de référence, et nous représentons le second opérateur par les différences d'annotation introduites. 
+			\end{leftBarInformation}
 			
 			% Description des jeux de données.
-			Nous utilisons cette fois deux vérités terrains comme références :
+			Nous utilisons cette fois deux vérités terrains comme références, représentant un \textbf{annotateur de référence} (\textit{et sa propre vision métier}) :
 			\begin{itemize}
 				\item le jeu de données \texttt{Bank Cards (v2.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire. Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS} ;
 				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} : ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes. Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD} ;
@@ -515,45 +305,46 @@
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
 			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
-			A nouveau, nous allons ajouter un pourcentage de contraintes divergentes à chaque itération :
+			À nouveau, nous allons ajouter un pourcentage de contraintes erronées à chaque itération, représentant un \textbf{autre annotateur} (\textit{et sa propre vision métier du problème à modéliser}) :
 			\begin{itemize}
-				\item Le taux de différences insérées, variant de $0$\% à $25$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux de différences fixe sur les résultats au courant des itérations ;
+				\item Le taux de désaccords insérés, variant de $0$\% à $25$\% par pas de $5$\%, reste fixe tout au long d'une même tentative de notre méthode : nous pouvons ainsi analyser l'impact d'un taux de désaccords fixe sur les résultats au courant des itérations ;
 				\item Les contraintes divergentes à insérer sont tirées aléatoirement parmi le lot de contraintes qui aurait été échantillonné au cours d'une tentative sans introduction de différences : ainsi, nous pouvons comparer itération par itération toutes ces simulations car elles partagent la même base de contraintes (aux valeurs de \texttt{MUST-LINK} et \texttt{CANNOT-LINK} près) ;
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
 			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} en \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
-			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces incohérences dès leur détection.
-			Pour simuler cette correction de l'expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
+			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces désaccords dès leur détection, et supposant que le second annotateur se range à la vision de l'annotateur de référence.
+			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction des experts.
 			
 			% Description des tentatives de la méthode avec les répétitions.
-			Ainsi, il y a donc $6$ taux de différences, et chacune de ces simulations d'incohérences seront répétées $2$ fois sur chaque tentative complète de la méthode pour limiter au mieux les aléas statistiques des tirages de contraintes divergentes, ce qui représente $12$ simulations par tentatives.
-			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $2$ fois pour limiter au mieux les aléas statistiques des exécutions, soit un nombre de $24$ tentatives complètes par jeu de données, ce qui représente un total de $432$ tentatives à simuler au cours de cette expérience.
+			Ainsi, il y a donc $6$ taux de désaccords, et chacune de ces simulations de désaccords seront répétées $2$ fois sur chaque tentative complète de la méthode pour limiter au mieux les aléas statistiques des tirages de contraintes divergentes, ce qui représente $12$ simulations par tentatives.
+			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $2$ fois pour limiter au mieux les aléas statistiques des exécutions, soit un nombre de $24$ tentatives complètes pour chacun des $18$ jeux de données, ce qui représente un total de $432$ tentatives à simuler au cours de cette expérience.
 			
 			% Description de l'analyse.
-			Enfin, dans l'optique de réaliser l'analyse de l'écart de performances engendré par l'introduction de différences d'annotation, nous procédons en trois temps :
+			Nous réalisons ensuite l'analyse des différences de résultats obtenu en estimant la similarité des \textit{clustering} entre une tentative introduisant des différences et sa tentative de référence n'en introduisant pas.
+			Pour cela, nous procédons en trois temps :
 			\begin{itemize}
 				% Estimer le nombre de contraintes.
-				\item nous estimons d'abord, pour chaque taille de jeu de données, le nombre moyen de contraintes nécessaires à une tentative n'introduisant pas d'incohérence pour atteindre un score de $90$\% de \texttt{v-measure} par rapport à sa vérité terrain ;
+				\item nous estimons d'abord, pour chaque taille de jeu de données, le nombre moyen de contraintes nécessaires aux tentatives de référence pour atteindre un score de $90$\% de \texttt{v-measure} par rapport à leur vérité terrain ;
 				% Retenir la vmeasure pour ce nombre de contraintes.
-				\item nous estimons ensuite, pour chaque tentatives introduisant des incohérences, son score de \texttt{v-measure} par rapport sa version n'introduisant pas de contraintes et pour le nombre de contraintes déterminé précédemment (celui nécessaire à la tentative n'introduisant pas d'incohérence pour atteindre un score de $90$\%) ;
+				\item nous estimons ensuite, pour chaque tentative introduisant des différences d'annotation, le score de \texttt{v-measure} entre leur résultat de \textit{clustering} et le résultat de \textit{clustering} de leur tentative de référence pour le nombre de contraintes déterminé précédemment (celui nécessaire à la tentative de référence pour atteindre un score de $90$\% par rapport à sa vérité terrain) ;
 				% Comparer l'écart.
-				\item enfin, nous discutons de ces scores moyens pour les différentes tailles de jeu de données et les différents taux d'incohérences introduites.
+				\item enfin, nous discutons de ces scores moyens pour les différentes tailles de jeu de données et les différents taux de désaccords introduits.
 			\end{itemize}
-			La \textsc{Figure~\ref{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES}} illustre cette analyse pour un nombre de contraintes fixé.
+			Un exemple est illustré avec la \textsc{Figure~\ref{figure:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-5000}}.
 			
 			% Note de l'auteur sur le choix du nombre de contraintes.
 			\begin{leftBarAuthorOpinion}
 				Il est à noter que nous aurions pu estimer ce nombre de contraintes grâce à l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}\footnote{
 					$\texttt{constraints\_needed}~\propto~3.15 \cdot \texttt{dataset\_size}$
-				}, mais comme cette estimation théorique est une moyenne.
-				Nous avons préféré mesurer directement le nombre exact de contraintes nécessaires pour chaque tentative afin de ne pas avoir à calculer le score de \texttt{v-measure} moyen moyenne sur la base d'une estimation théorique moyenne du nombre de contraintes.
+				}, mais comme cette estimation théorique est une moyenne qui aurait pu décaler légèrement nos résultats.
+				Nous avons donc préféré mesurer directement le nombre exact de contraintes nécessaires pour chaque tentative afin de ne pas avoir à analyser une double moyenne.
 			\end{leftBarAuthorOpinion}
 			
 			% Remarque sur le faible nombre de redondances des tentatives.
 			\begin{leftBarWarning}
-				Ces simulations étant plus lourdes que les précédentes, en considérant le manque de temps pour réaliser cette étude, nous avons du diminuer le nombre de répétitions de nos tentatives ($1$ pour le génération des jeux de données, $2$ pour l'insertion des incohérences, $2$ pour l’exécution des tentatives complètes de la méthode).
+				Ces simulations étant plus lourdes que les précédentes, et en considérant le manque de temps pour réaliser cette étude, nous avons du diminuer le nombre de répétitions de nos tentatives ($1$ pour le génération des jeux de données, $2$ pour l'insertion des différences, $2$ pour l'exécution des tentatives complètes de la méthode).
 				Les résultats obtenus nous permettent tout de même de discuter des tendances générales, mais il serait intéressant de compléter a posteriori les résultats de cette étude pour en améliorer la fiabilité.
 			\end{leftBarWarning}
 			
@@ -566,42 +357,43 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 			
-			% Exemple de résultat avec une figure à 2000 données.
-			Commençons par un exemple.prendre un exemple de résultats pour un jeu de données ayant $2~000$ contraintes.
-			La \textsc{Figure~\ref{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-2000}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre de contraintes annotées au cours des itérations de la méthode, et cette évolution est déclinée pour les $6$ taux de différences simulés.
-			Les contraintes utilisées sont basées sur les échantillonnages réalisées au cours des tentatives n'introduisant pas de différences d'annotation par rapport à la vérité terrain : comme les mêmes contraintes sont donc utilisées (aux valeurs d'annotations près), toutes les courbes sont comparables point par point.
-			Dans un soucis de lisibilité, nous avons toutefois tronqué la figure à $20~000$ contraintes.
+			% Exemple de résultat avec une figure à 5000 données.
+			Commençons par un exemple de résultats pour un jeu de $5~000$ données.
+			La \textsc{Figure~\ref{figure:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-5000}} représente l'évolution moyenne de la \texttt{v-measure} du \textit{clustering} en fonction du nombre de contraintes annotées au cours des itérations de la méthode.
+			Sur cette figure, la courbe ayant $0$\% de différence d'annotation représente l'évolution moyenne des tentatives de l'opérateur de référence : celles-ci convergent pas-à-pas vers la vérité terrain ($100$ de \texttt{v-measure}).
+			Les autres courbes représentent les tentatives du second opérateur et la divergence de ses \textit{clustering} due à l'introduction de différence d'annotation.
+			Dans un soucis de lisibilité, nous avons toutefois tronqué la figure à $50~000$ contraintes.
 
-			% Figure d'exemple à 2000 données.
+			% Figure d'exemple à 5000 données.
 			\begin{figure}[!htb]
 				\centering
-				\includegraphics[width=0.95\textwidth]{figures/etude-erreur-simulation-impact-size-2000}
+				\includegraphics[width=0.95\textwidth]{figures/etude-robustesse-subjectivite-et-difference-5000}
 				\caption{
-					Exemple d'une évolution de similitudes moyennes (calculées en terme de \texttt{v-measure}) de résultats de \textit{clustering} de tentatives introduisant des incohérences d'annotation par rapport à la vérité terrain au cours des itérations, exemple pour une vérité terrain ayant une taille de $2~000$ données.
-					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations erronées (allant de $0$\% et $25$\%).
-					La barre verticale indique le nombre de contraintes nécessaires aux tentatives n'introduisant pas d'incohérences pour obtenir une moyenne de $90$\% de \texttt{v-measure} (ici: $7~250$ contraintes).
+					Exemple d'une évolution de similitudes moyennes (calculées en terme de \texttt{v-measure}) de résultats de \textit{clustering} de tentatives introduisant des différences d'annotation par rapport à la vérité terrain au cours des itérations, exemple pour une vérité terrain ayant une taille de $5~000$ données.
+					Les dégradés de couleurs des courbes représentent les déclinaisons de ces évolutions en fonction des différents taux d'annotations divergentes (allant de $0$\% et $25$\%).
+					La barre verticale indique le nombre moyen de contraintes nécessaires aux tentatives n'introduisant pas de désaccords pour obtenir un score de $90$\% de \texttt{v-measure} (\textit{ici: $16~250$ contraintes}).
 				}
-				\label{figure:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-2000}
+				\label{figure:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-5000}
 			\end{figure}
 			
 			% Analyse de la figure et lien vers la table.
-			Grâce à cette figure, on peut estimer à $7~250$ le nombre moyen de contraintes nécessaires à une tentative n'introduisant pas d'incohérence pour atteindre $90$\% de \texttt{v-measure} par rapport à la vérité terrain (celle ayant $2~000$ données).
-			Sur cette base, nous pouvons identifier la similitude moyenne des résultats \textit{clustering} entre les tentatives introduisant des d'incohérences par rapport à leur tentatives associées n'en introduisant pas, calculée pour un nombre fixe de $7~250$ contraintes\footnote{
-				Observation de $7~250$ contraintes nécessaires : lors d'une analyse théorique utilisant l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}, nous aurions estimé une moyenne de $3.15 \cdot 2~000~\propto~6~300$ contraintes, ce qui aurait introduit une légère variation dans nos résultats.
-			} et pour les $5$ simulations de différences d'annotation (\textit{ayant des taux entre $5$\% et $25$\%}).
-			Ces similitudes sont rapportées dans la \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-CLUSTERING}}, chaque analyse sur une taille de jeu de données étant retranscrite dans une colonne dédiée.
+			Grâce à cette figure, nous pouvons estimer à $16~250$ le nombre moyen de contraintes nécessaires aux tentatives de référence pour atteindre $90$\% de \texttt{v-measure} par rapport à la vérité terrain (\textit{ici: celle ayant $5~000$ données}).
+			Sur cette base, nous pouvons identifier la similitude moyenne des résultats \textit{clustering} entre chaque tentative introduisant des désaccords et leur tentative de référence, calculée pour un nombre fixe de $16~250$ contraintes\footnote{
+				Observation de $16~250$ contraintes nécessaires : lors d'une analyse théorique utilisant l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}, nous aurions estimé une moyenne de $3.15 \cdot 5~000~\propto~15~750$ contraintes, soit un écart de $500$ contraintes qui aurait introduit une légère variation dans nos résultats.
+			}.
+			Ces score de similitudes moyen sont rapportés dans la \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}}, chaque analyse pour une taille de jeu de données étant retranscrite dans une colonne dédiée.
 			
 			% Analyse du tableau de performance: chute drastique de performance.
 			Nous pouvons constater les points suivants :
 			\begin{itemize}
 				% 
-				\item la similarité est bien entendu de $100$\% pour un taux d'incohérence de $0$\% car chaque tentatives est comparée à elle-même ;
+				\item la similarité est bien entendu de $100$\% pour un taux d'incohérence de $0$\% (\textit{une tentative de référence est comparée à elle-même}) ;
 				% Taille fixe.
-				\item à taille de jeu de données fixe, le taux de similitude diminue lorsque le taux d'incohérences introduites augmentent ;
+				\item à taille de jeu de données fixe, le taux de similarité diminue lorsque le taux de désaccords introduits augmentent ;
 				l'amplitude de diminution varie environ entre $35$ points (\textit{pour une taille de $1~000$ données}) et $73$ points (\textit{pour une taille de $4~500$ données}).
 				% Taux fixe.
-				\item à un taux fixe d'incohérences introduites, le taux de similitude diminue lorsque la taille du jeu de données augmentent ;
-				l'amplitude de diminution varie environ entre $0$ points (\textit{pour l'introduction de $0$\% d'incohérences}) et $33$ points (\textit{pour l'introduction de $25$\% d'incohérences}).
+				\item à un taux fixe de désaccords introduits, le taux de similitude diminue lorsque la taille du jeu de données augmentent ;
+				l'amplitude de diminution varie environ entre $0$ points (\textit{pour l'introduction de $0$\% de désaccords}) et $33$ points (\textit{pour l'introduction de $25$\% de désaccords}).
 			\end{itemize}
 			
 			% Table similitude avec clustering sans erreurs.
@@ -770,7 +562,7 @@
 								\cellcolor{colorTableHeader!15}
 								$15$\%
 							}
-							& \footnotesize $(\pm8.48.)$
+							& \footnotesize $(\pm8.48)$
 							& \footnotesize $(\pm2.21)$
 							& \footnotesize $(\pm1.97)$
 							& \footnotesize $(\pm1.43)$
@@ -827,7 +619,7 @@
 							\tabularnewline
 						\multirow{-12}{*}{
 							\cellcolor{colorTableHeader!15}
-							\rotatebox[origin=c]{90}{Taux de différences simulées}
+							\rotatebox[origin=c]{90}{Taux de désaccords simulés}
 						}
 							& \multirow{-2}{*}{
 								\cellcolor{colorTableHeader!15}
@@ -849,33 +641,249 @@
 				}
 				\end{center}
 				\caption{
-					Estimation de la \textbf{similitude moyenne} (calculée en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des incohérences d'annotation \textbf{par rapport aux résultats de \textit{clustering} des tentatives n'en introduisant pas}. \\
-					Cette similitude est rapportée en fonction de la taille du jeu de données utilisé et du taux de contraintes divergentes introduites lors des tentatives.
-					Pour chaque taille de jeu de données, les calculs sont réalisés avec un nombre de contraintes fixe, choisi comme étant le nombre de contraintes nécessaires pour que les tentatives sans incohérences atteignent une \texttt{v-measure} moyenne de $90$\% avec la vérité terrain (ce nombre est rapporté en deuxième ligne).
+					Estimation de la \textbf{similitude moyenne} (calculée en terme de \texttt{v-measure}) des résultats de \textit{clustering} des tentatives introduisant des désaccords d'annotation \textbf{par rapport aux résultats de \textit{clustering} de leurs tentatives de référence}. \\
+					Cette similitude est rapportée en fonction de la taille du jeu de données utilisé et du taux de désaccords introduits lors des tentatives.
+					Pour chaque taille de jeu de données, les calculs sont réalisés avec un nombre de contraintes fixe, choisi comme étant le nombre de contraintes nécessaires à une tentative de référence pour atteidre une \texttt{v-measure} moyenne de $90$\% avec sa vérité terrain (ce nombre est rapporté en deuxième ligne).
 				}
-				\label{table:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-CLUSTERING}
+				\label{table:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}
 			\end{table}
 
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% Rappel de l'objectif : impact d'une différence.
-			L'objectif de cette étude consiste à estimer l'impact d'une différences d'annotation sur le résultat du \textit{clustering}, et nous avons pour cela analysé l'évolution de la similarité entre les exécutions introduisant des incohérences et celles n'en introduisant pas, pour différentes tailles de jeux de données et différents taux d'incohérences introduites.
-			Ces comparaison ont été faites pour un nombre de contraintes fixe pour lequel les tentatives sans incohérences atteignent une moyenne de $90$\% de \texttt{v-measure} avec la vérité terrain.
-		
-			% Remaques expérience utilisateur.
-			Pour rappel, lors de l'étude de l'intérêt de la correction des incohérences présentée dans la \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-INTERET-CORRECTION-INCOHERENCES}}, nous avions déjà évoqué qu'une tentatives ayant des différences d'annotation ne pouvait pas converger la vérité terrain, mais divergé forcément vers une autre vérité terrain. 
-			Dans cette étude, et sur la base des résultats montrés dans la \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SIMULATION-IMPACT-DIFFERENCES-CLUSTERING}}, nous pouvons constater que les résultats de ces tentatives peuvent diverger significativement du résultat que nous aurions eu avec une tentative n'introduisant pas d'incohérence.
-			Cela veut dire qu'une différence d'annotation se propage rapidement et influe donc fortement le clustering.
+			% % Rappel de l'objectif : Impact de la subjectivité des annotateur sur la différnce de clustering.
+			L'objectif de cette étude consiste à étudier l'impact des différences de comportements inter-annotateurs sur les résultats de notre méthode, plus particulièrement l'impact de la subjectivité des opérateurs manifestée par des désaccords d'annotation sur le résultat du \textit{clustering} obtenu.
+			Pour cela, nous avons analysé l'évolution de la similarité en simulant des désaccords d'annotation pour plusieurs tailles de jeux de données.
 			
-			\todo[inline]{A REDIGER: rappel: les clustering erronés divergent de la vérité terrain}
-			\todo[inline]{A REDIGER: les clustering sein et erronés divergent aussi !}
-			\todo[inline]{A REDIGER: cette divergence est plus forte si les visions/complexité est plus grande, mais aussi si le jeu de données est plus grand (normal, il y a moins de redondance et plus de change de diverger}
+		
+			% Analyse : divergences importantes !
+			Sur la base des résultats rapportés dans la \textsc{Table~\ref{table:4.6.2-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}}, nous pouvons constater que les résultats de \textit{clustering} divergent rapidement si des désaccords d'annotation sont présents.
+			En effet, l'introduction de $5$\% de différences fait diverger les résultats d'au moins $14$ points de \texttt{v-measure}, et cette divergence est plus forte lorsque la taille du jeu de données augmente.
+			Si nous prenons le cas extrême ($25$\% de désaccord, taille de $4~500$ données), la similitude des clustering obtenu n'est en moyenne plus que de $26.73$\% au bout de $13~500$ contraintes.
+			Nous pouvons donc conclure qu'en l'état, le \textit{clustering} interactif est sensible à la subjectivité des annotateurs.
+			
+			% Remarque : En accord avec les approches incrémentale.
+			Une telle conclusion est en accord avec le caractère incrémental de la méthode : une différence d'annotation peut rapidement se propager et faire diverger les résultats de la méthode.
+			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent un minimum d'annotation de contraintes.
+			Or cette notion de pertinence est subjective à la vision de l'expert annotant les données.
+			De ce fait, si deux annotateurs ne sont pas d'accord sur la vision à appliquer aux données lors de l'annotation, il est normal de voir leur résultat de \textit{clustering} diverger.
+			Nous pourrions résumer cette situation par le fait que \textbf{ces deux experts ne recherchent pas la même vérité terrain, d'où la divergence significative de leurs résultats}.
+			
+			% Solution: Ajouter de la redondance !
+			Le problème n'est donc pas dû à la sensibilité de notre méthode : il s'apparente plutôt à un besoin de confronter les opinions des experts afin qu'ils puissent s'accorder.
+			En nous basant sur notre revue de littérature (notamment la \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}), nous conseillons à un projet d'annotation voulant utiliser notre implémentation du \textit{clustering} interactif pour concevoir une base d'apprentissage d'\textbf{employer au moins $3$ opérateurs et de les confronter aux mêmes contraintes à chaque itération} de la méthode.
+			Ainsi, si ces derniers ont des différences d'opinion sur la modélisation du problème, celles-ci se manifesteront en évaluant le score d'accord inter-annotateurs.
+			Il conviendra alors d'organiser une session de débat pour ré-annoter les désaccords et décider des adaptations à prévoir dans le guide d'annotation du projet.
+			
+			% Problème : surcoût.
+			Bien entendu, une telle approche engendre un coût supplémentaire aux estimations réalisées dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} :
+			\begin{itemize}
+				\item d'une part, nous triplons la charge salariale à investir dans le but de redonder les contraintes annotées ;
+				\item d'autre part, nous introduisons un délais supplémentaire en organisant des revues de désaccords de contraintes, du moins tant que des désaccords de visions subsistent.
+			\end{itemize}
+			Néanmoins, ces surcoûts peuvent être anticipés et participent à l'amélioration de la stabilité de la base d'apprentissage en cours de construction.
+			Par ailleurs, nous pouvons noter que :
+			\begin{itemize}
+				\item un projet d'annotation classique emploie aussi plusieurs opérateurs : ce surcoût correspond plutôt à l'abandon d'un avantage de notre méthode au profit d'une fiabilisation de la qualité de ses résultats ;
+				\item un projet d'annotation classique est déjà confronté au besoin d'organiser des sessions de revue de sa modélisation (voir l'étape \textit{Revise} du cycle \texttt{MATTER}) : l'avantage de notre méthode réside néanmoins sur la possibilité de discuter directement des divergences d'opinions en analysant des cas d'usage métier (\textit{évaluation d'une contrainte à l'aide de compétences métiers}) plutôt que de discuter de divergences d'opinions sur l'interprétation d'une abstraction du problème (\textit{remise en cause d'une modélisation à l'aide de compétences analytiques}).
+			\end{itemize}
+			
+			% Conclusion : choix entre rapidité et qualité.
+			\begin{leftBarAuthorOpinion}
+				Nous concluons cette discussion par la même remarque faite à la fin de la précédente étude de robustesse : il y a un choix à faire, \textbf{veut-on privilégier la qualité} (\textit{ajouter de la redondance pour clarifier les désaccords d'opinion au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
+			\end{leftBarAuthorOpinion}
+		
+		
+	%%%
+	%%% Subsection 4.6.3: Étude du score inter-annotateurs obtenu avec des opérateurs en situation réelle.
+	%%%
+	\subsection{Étude du score inter-annotateurs obtenu avec des opérateurs en situation réelle}
+	\label{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
+		
+		% Objectif de l'expérience.
+		\todo[inline]{a revoir}
+		Dans cette étude, nous voulons étudier le score d'accord inter-annotateurs calculé lors d'une annotation de contraintes par plusieurs experts métiers en situation réelle.
+		Pour cela, nous reprenons l'expérience de la \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}} visant à estimer le temps moyen d'annotation d'un lot de contraintes, et nous réutilisons ces résultats pour en estimer l'accord inter-annotateurs.
+		Comme l'objectif de cette précédente étude n'était pas d'étudier la qualité des annotation, aucun guide ni aucune règles d'annotation précises n'avaient été fournies : nous espérons donc pourvoir estimer une borne maximale grossière de l'accord inter-annotateurs de notre méthode sans concertation, permettant ainsi d'affiner notre champ de simulation.
+		
+		%%% Protocole expérimental.
+		\subsubsection{Protocole expérimental}
+			
+			% Axiome.
+			\begin{leftBarWarning}
+				Pour l'étude d'annotation en \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}, nous avions supposons que les annotateurs de l'expérience connaissaient parfaitement le domaine traité dans le jeu de données, et qu'ils sont capables de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
+				Afin de pourvoir faire cette hypothèse forte, et ainsi limiter les bruits dans l'analyse des résultats, le jeu de données choisi devait traiter d'un sujet de culture générale (ne nécessitant donc pas de connaissance particulière) et des réviseurs avaient supprimer en amont et d'un commun accord les données trop spécifiques ou trop ambiguës.
+			\end{leftBarWarning}
+			
+			% Pseudo-code.
+			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS-PROTOCOLE}}.
+
+			\begin{algorithm}
+				\KwData{jeu de données annotées (vérité terrain)}
+				\KwIn{plusieurs réviseurs, plusieurs annotateurs}
+				%
+				\textbf{initialisation}: définir et revoir le jeu de données entre réviseurs \;
+				\textbf{échantillonnage}: sélectionner une base de contraintes équilibrée \;
+				\ForEach{annotateur}{
+					 \While{la base de contraintes n'a pas été entièrement annotée}{
+						\textbf{annotation}: annoter une partie des contraintes \;
+						\textbf{revue}: revue des contraintes en conflits d'annotation \;
+					}
+				}
+				%
+				\KwResult{modélisation du score inter-annotateurs sur le lot de contraintes}
+				%
+				\caption{\textit{
+					Description en pseudo-code du protocole expérimental de l'étude du score inter-annotateurs d'annotation d'un lot de contraintes par plusieurs experts métiers en situation réelle.
+				}}
+				\label{algorithm:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS-PROTOCOLE}
+			\end{algorithm}
+			
+			% Détails de l'expérience : préparation du jeu de données.
+			Concernant la précédente expérience d'annotation en situation réelle, nous avions procédé en plusieurs étapes.
+			D'abord, il fallait choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétences de nos annotateurs, nous cherchions un jeu de données traitant d'un sujet de culture général.
+			Pour cette expérience, nous avions donc choisi \texttt{MLSUM} : une collecte d'articles de journaux, classés par catégorie de publication et décrits par leur titre et leur résumé.
+			Nous nous intéressions ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
+			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
+			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
+			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
+		
+			% Détails de l'expérience : sélection des contraintes à annoter.
+			À partir de ces données, nous avions sélectionné un lot de $400$ contraintes à annoter.
+			Pour faciliter l'analyse, l'échantillonnage fut un aléatoire équilibré d'après la vérité terrain en $200$ \texttt{MUST-LINK} et en $200$ \texttt{CANNOT-LINK}.
+			
+			% Détails de l'expérience : annotations et consignes.
+			Ensuite, un groupe de $3$ annotateurs ont annoté la sélection de $400$ contraintes en plusieurs sessions.
+			Les directives données aux opérateurs étaient les suivantes:
+			\begin{itemize}
+				\item \textbf{Contexte de l'opérateur} :
+				\textguillemets{\textit{Vous êtes des \textbf{experts de la presse et de l'actualité} ; Vous voulez classer des articles dans des catégories en fonction de leur titre ; Vous ne savez pas précisément quelles catégories vous allez utiliser pour classer vos articles ; Mais vous savez \textbf{caractériser la similitude} de deux articles}} ;
+				\item \textbf{Contexte sur le jeu de données} :
+				\textguillemets{\textit{Le thème sont les catégories d'articles de presse ; La vérité terrain contient entre $10$ et $20$ catégories parmi les plus communes de la presse ; La vérité terrain contient entre $30$ et $100$ articles par catégorie ; Vous \textbf{pouvez regarder le jeu de données non annoté} autant que vous le voulez (disponible dans l'onglet \texttt{TEXTS} de l'application)}} ;
+				\item \textbf{Consignes d'annotations} :
+				\textguillemets{\textit{Faites des séries de \textbf{15 minutes minimum} pour avoir de la régularité ; Si possible, \textbf{isolez-vous} pour ne pas être dérangé et ne pas fausser les résultats ; Pour chaque série, \textbf{notez le temps et le nombre de contraintes annotés} ; Si vous ne savez pas quoi annoter (trop ambigu, vocabulaire inconnu, ...), \textbf{passez au suivant sans annoter} (vous êtes sensés être des experts de la presse !)}}.
+			\end{itemize}
+			%
+			Pour réaliser l'annotation, les opérateurs eurent accès à l'application web développée au cours de ce doctorat.
+			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}.
+			
+			% Détails de l'expérience.
+			Pour cette étude, nous allons réutiliser ces annotations et calculé le score d'accord inter-annotateurs global et deux à deux.
+			Pour ce faire, nous allons utiliser l'$\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} (\cite{perry:2021:lighttag-text-annotation}).
+			
+			% Référence scripts.
+			\begin{leftBarInformation}
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+			\end{leftBarInformation}
+			
+		%%% Résultats
+		\subsubsection{Résultats obtenus}
+		
+			\todo[inline]{résultats à revoir !}
+		
+			% Description statistiques.
+			La \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}} expose les scores inter-annotateurs sur les $3$ opérateurs et le réviseur de cette expérience, ainsi que l'accord avec la vérité terrain.
+			Le score d'accord moyen avec la vérité terrain est de $86$\% (écart-type: $1$\%) ; ce score est de $81$\% (écart-type: $5$\%) pour les contraintes de types \texttt{MUST-LINK} et est de $92$\% (écart-type: $3$\%) pour les contraintes de types \texttt{CANNOT-LINK}.
+			Le score inter-annotateurs moyen (sans le réviseur) est de $84$\% (écart-type: $3$\%).
+			
+			\begin{table}[!htb]
+				\begin{center}
+				\begin{tabular}{|c|r|r|r|r|}
+				
+					\hline
+					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
+					
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							1 (Relecteur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							7 (Annotateur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							9 (Annotateur)
+						}}
+						& \multicolumn{1}{c|}{\shortstack[c]{
+							12 (Annotateur)
+						}}
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						Vérité terrain
+					}}
+						& $0.95$
+						& $0.86$
+						& $0.84$
+						& $0.87$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						1 (Relecteur)
+					}}
+						&
+						& $0.91$
+						& $0.86$
+						& $0.89$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						7 (Annotateur)
+					}}
+						&
+						&
+						& $0.86$
+						& $0.85$
+						\tabularnewline
+						\hline
+
+					% Vérité terrain
+					\multicolumn{1}{|c|}{\shortstack[c]{
+						9 (Annotateur)
+					}}
+						&
+						&
+						&
+						& $0.80$
+						\tabularnewline
+						\hline
+					
+				\end{tabular}
+				\end{center}
+				\caption{
+					Score d'accord inter-annotateurs obtenu avec $1$ réviseur et $3$ annotateurs sur un lot commun de $400$ contraintes ($200$ \texttt{MUST-LINK}, $200$ \texttt{CANNOT-LINK}).
+				}
+				\label{table:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
+			\end{table}
+			
+			% Note.
+			\begin{leftBarInformation}
+				Dans une autre expérience, où $14$ opérateurs devaient annoter une base de $1~000$ contraintes aléatoires, nous obtenons un accord moyen avec la vérité terrain de $93$\% (écart-type: $2$\%) et un score inter-annotateurs moyen de $91$\% (écart-type: $3$\%).
+				Toutefois, nous ne mettons pas en avant ces résultats car le lot de contraintes annotées était fortement déséquilibré à cause de l'utilisation de l'échantillonnage aléatoire ($932$ \texttt{CANNOT-LINK}, $68$ \texttt{MUST-LINK}).
+			\end{leftBarInformation}
+	
+		%%% Discussion
+		\subsubsection{Discussion}
+		
+			% Rappel de l'objectif : ...
+			\todo[inline]{A REDIGER: rappel de l'objectif}
+		
+			% Avantage 1 : peu d'erreurs
+			\todo[inline]{A REDIGER: Peu d'erreurs (environ 16\% d'erreurs sans concertations)}
+			
+			% Remarque 1 : MUST-LINK < CANNOT-LINK
+			\todo[inline]{A REDIGER: CANNOT-LINK légèrement plus facile que les MUST-LINK}
 			
 			% Conclusions et suggestion.
-			\todo[inline]{A REDIGER: vraiment important de mettre plus de monde dessus}
-		
-		
+			\todo[inline]{A REDIGER: ouverture sur l'impact des non-corrections}
+	
+	
 	%%%
 	%%% Subsection 4.6.4: Bilan concernant la robustesse du \textit{clustering} interactif
 	%%%
