@@ -20,7 +20,7 @@
 		width=\linewidth
 	]
 		\textguillemets{\textbf{
-			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d’apprentissage satisfaisante.
+			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d'apprentissage satisfaisante.
 		}} \\
 		
 		% Figure.
@@ -53,7 +53,7 @@
 		% Objectif de l'expérience.
 		Nous cherchons à trouver un cas d'arrêt du \textit{clustering} interactif ne nécessitant pas de comparaison avec une vérité terrain, et notre première intuition concerne l'étude des annotations réalisées.
 		En effet, à chaque itération, l'expert annote un échantillon de contraintes dans le but de confirmer ou de corriger le \textit{clustering} de l'itération précédente.
-		Or, après un nombre suffisant d'itérations, le \textit{clustering} commence à se stabiliser : il devrait donc y avoir davantage d’annotations qui confirment le \textit{clustering} que d'annotations qui le corrigent, puis n'avoir que des accords entre les annotations et le \textit{clustering}.
+		Or, après un nombre suffisant d'itérations, le \textit{clustering} commence à se stabiliser : il devrait donc y avoir davantage d'annotations qui confirment le \textit{clustering} que d'annotations qui le corrigent, puis n'avoir que des accords entre les annotations et le \textit{clustering}.
 		Ainsi, nous allons étudier l'évolution du nombre de contraintes annotées qui approuvent le partitionnement des données obtenu et essayer d'adapter cette analyse en cas d'arrêt pour notre méthode d'annotation.
 	
 		%%% Protocole expérimental.
@@ -459,6 +459,6 @@
 		\end{leftBarSummary}
 		
 		% Transition: Vers Simulation d'erreurs.
-		Pour terminer nos différentes analyses, il convient maintenant d'anticiper la présence de différences d’annotation.
+		Pour terminer nos différentes analyses, il convient maintenant d'anticiper la présence de différences d'annotation.
 		En effet, nous avons fait jusqu'à présent l'hypothèse que l'annotateur ne se trompe jamais et que deux annotateurs n'ont jamais de désaccords, mais cette hypothèse forte n'est pas toujours vérifiée en pratique.
 		Pour estimer l'impact de ces incohérences d'annotation, nous devons donc réaliser une analyse de robustesse de notre méthode d'annotation : celle-ci sera réalisée en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.

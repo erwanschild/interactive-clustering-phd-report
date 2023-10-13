@@ -454,8 +454,8 @@
 			
 			% Exemple d'un cluster qui se forme.
 			Ensuite, prenons l'exemple décrit dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}.
-			A l'itération $0$, il est impossible d'exploiter ce \textit{cluster} : il n'y a que deux patterns mis en avant ne traitant pas d'une ma thématique, et les questions semblent toutes traiter de sujets différents.
-			A l'itération $10$, le résultat semble un peu plus exploitable.
+			À l'itération $0$, il est impossible d'exploiter ce \textit{cluster} : il n'y a que deux patterns mis en avant ne traitant pas d'une ma thématique, et les questions semblent toutes traiter de sujets différents.
+			À l'itération $10$, le résultat semble un peu plus exploitable.
 			Nous pouvons d'ailleurs déduire deux thématiques principales : la première, mise en avant par des patterns linguistiques de type "\textit{numero}", "\textit{online}", et "\textit{de carte virtuelle}", permet d'imaginer un sujet sur la gestion des numéro de cartes virtuelles ; la seconde, identifiée par les termes "\textit{débloquer}" et "\textit{réactiver}", oriente plutôt vers la création d'un thème pour débloquer une carte bancaire.
 			Quelques bruits sont présent, mais ce \textit{cluster} à l'itération $10$ peut donc être associé aux classes \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}.
 			Dès l'itération $15$, ces thématiques se séparent en deux clusters ($1$ et $4$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
@@ -749,7 +749,7 @@
 			\end{leftBarExamples}
 			
 			% Limite 3: tâche hors compétences d'un expert.
-			Mais malgré ces améliorations de l'approche linguistique, il est probable qu'elle soit trop éloignée des compétences réelles des experts : en effet, ces derniers disposent de connaissances sur leur domaine métier (dans notre cas, des sujets concernant la banque, l’assurance et la finance), mais ils ne disposent pas forcément d'aptitudes permettant d'examiner les nuances linguistiques présentes dans un \textit{cluster}, ni l'impact de la prépondérance des pluriels, des bigrams, des mots vides de sens, ...
+			Mais malgré ces améliorations de l'approche linguistique, il est probable qu'elle soit trop éloignée des compétences réelles des experts : en effet, ces derniers disposent de connaissances sur leur domaine métier (dans notre cas, des sujets concernant la banque, l'assurance et la finance), mais ils ne disposent pas forcément d'aptitudes permettant d'examiner les nuances linguistiques présentes dans un \textit{cluster}, ni l'impact de la prépondérance des pluriels, des bigrams, des mots vides de sens, ...
 		
 			% Note de l'auteur.
 			\begin{leftBarAuthorOpinion}
@@ -1147,10 +1147,10 @@
 			
 			% Limite 2: L'infrastruture.
 			Toutefois, le principal obstacle à l'utilisation des larges modèles de langage concerne des problématiques techniques pour disposer, installer et utiliser ces modèles.
-			En effet, à l'heure de rédaction de ce manuscrit (juillet 2023), l’entraînement requiert des serveurs aux configurations pharaoniques, composés de plusieurs milliers de \texttt{GPU}, du stockage et de la bande passante pour manipuler des Téra octets de données, et de toute l'infrastructure auxiliaire nécessaire pour contrôler et refroidir les machines, soit un investissement de plusieurs millions voire milliards de dollars.
+			En effet, à l'heure de rédaction de ce manuscrit (juillet 2023), l'entraînement requiert des serveurs aux configurations pharaoniques, composés de plusieurs milliers de \texttt{GPU}, du stockage et de la bande passante pour manipuler des Téra octets de données, et de toute l'infrastructure auxiliaire nécessaire pour contrôler et refroidir les machines, soit un investissement de plusieurs millions voire milliards de dollars.
 			L'inférence n'est pas simple non plus, car les machines doivent entre autres disposer de suffisamment de \texttt{RAM} pour charger les modèles et de \texttt{GPU} pour les exécuter.
 			Ainsi, seules quelques entreprises peuvent investir et mettre à disposition ce genre d'infrastructures, souvent sous forme de services hébergés sur le \textit{Cloud}, comme la plateforme \textit{Meta Reasearch Super Cluster} (\cite{lee-sengupta:2022:introducing-ai-research}) ou le service \textit{Microsoft Azure AI} (\cite{roach:2023:how-microsoft-bet}))\footnote{
-				À titre d'exemple, prenons \texttt{Llama 2} de \textit{Meta} (\cite{touvron-etal:2023:llama-open-foundation}) : pour l’entraînement, il a fallu $2~000$ \texttt{GPU} sur près de $3$ millions d'heures (temps \texttt{GPU} cumulé) pour un modèle de $70$ millions de paramètres.
+				À titre d'exemple, prenons \texttt{Llama 2} de \textit{Meta} (\cite{touvron-etal:2023:llama-open-foundation}) : pour l'entraînement, il a fallu $2~000$ \texttt{GPU} sur près de $3$ millions d'heures (temps \texttt{GPU} cumulé) pour un modèle de $70$ millions de paramètres.
 			}.
 			
 			% Limite 3: La confidentialité.

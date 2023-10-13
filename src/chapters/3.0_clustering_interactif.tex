@@ -7,7 +7,7 @@
 	\begin{leftBarImportantGreen}
 		\begin{todolist}
 			% 1. Importance du jeu de données.
-			\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l’entraînement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
+			\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l'entraînement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
 			% 2. Experts métiers avec connaissance métiers, pas de connaissance en datascience.
 			\item[\itemok] Pour concevoir ce jeu de données, il est nécessaire de faire appel à des experts maîtrisant le domaine à couvrir par l'assistant car les données sont en général spécifiques ou privées ;
 			% 3. Experts métiers ayant peu de donnaissance en data science.
@@ -57,7 +57,7 @@
 		Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.
 
 		% TR:
-		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d’entraînement de notre assistant conversationnel.
+		C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d'entraînement de notre assistant conversationnel.
 
 
 	%%%%%--------------------------------------------------------------------
@@ -74,7 +74,7 @@
 		\label{section:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 		
 		% Présentation succinte.
-		Nous proposons la méthode suivante pour transformer une collecte de données brutes en une base d'apprentissage nécessaire à l’entraînement d'un assistant conversationnel.
+		Nous proposons la méthode suivante pour transformer une collecte de données brutes en une base d'apprentissage nécessaire à l'entraînement d'un assistant conversationnel.
 		Cette méthode, que nous appelons \textit{Clustering Interactif} repose principalement sur l'alternance successive entre deux phases clefs (voir \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}) :
 		\begin{itemize}
 			\item[\(\bullet\)] une phase d'\textbf{annotation de contraintes}
@@ -351,7 +351,7 @@ dict_of_vectors = vectorize(
 		% cognitivefactory.interactive-clustering.constraints: Conflits.
 		Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:3.3-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:3.3-CONTRAINTES-CONFLITS}}).
 		Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
-		Ce conflit peut venir simplement venir d'une erreur d’inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
+		Ce conflit peut venir simplement venir d'une erreur d'inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
 		Sémantiquement, un conflit indique une contradiction dans la gestion des données, car les données concernées doivent à la fois être réunies et séparées...
 		
 		\begin{equation}
@@ -525,7 +525,7 @@ clustering_result = clustering_model.cluster(
 			\centering
 			\includegraphics[width=0.35\textwidth]{figures/example-sampling}
 			\caption{
-				Exemples d’échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
+				Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
 			}
 			\label{figure:3.3-CONTRAINTES-SAMPLING}
 		\end{figure}
@@ -579,8 +579,8 @@ selection = sampler.sample(
 	\section{Espoirs de la méthode proposée}
 		\todo[inline]{SECTION À RÉDIGER}
 
-		•	Moins de formations, d’ateliers, …
+		•	Moins de formations, d'ateliers, …
 		•	Se concentrer sur son domaine de compétence (i.e. pas de datascience pour les experts métiers)
-		•	Permettre de trouver la base d’apprentissage
+		•	Permettre de trouver la base d'apprentissage
 		•	Méthode réaliste / pas trop coûteuse
 		•	…

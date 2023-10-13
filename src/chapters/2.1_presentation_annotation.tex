@@ -29,13 +29,13 @@
 				Si vous voulez revoir les bases de l'apprentissage automatique, des livres comme \cite{zhou:2021:machine-learning} ou \cite{raschka-mirjalili:2019:python-machine-learning} traitent des notions principales et de leur mise en application.
 			\end{leftBarInformation}
 			
-		%%% 2.1.1.B. Qu'est qu'un \textguillemets{\texttt{corpus d’entraînement}}?
-		\subsubsection{Qu'est qu'un \textguillemets{\texttt{corpus d’entraînement}} ?}
+		%%% 2.1.1.B. Qu'est qu'un \textguillemets{\texttt{corpus d'entraînement}}?
+		\subsubsection{Qu'est qu'un \textguillemets{\texttt{corpus d'entraînement}} ?}
 		\label{section:2.1.1.B-PRESENTATION-ANNOTATION-DEFINITION-BASE-APPRENTISSAGE}
 
 			% Définitions.
 			Pour concevoir un modèle statistique en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
-			Nous utilisons alors les termes \textguillemets{\texttt{corpus d’entraînement}}, \textguillemets{\texttt{jeu de d’entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
+			Nous utilisons alors les termes \textguillemets{\texttt{corpus d'entraînement}}, \textguillemets{\texttt{jeu de d'entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
 			
 			% Carcatéristique importante : la représentativité !
 			Il est important de noter qu'un corpus n'est qu'un échantillon de taille finie d'un phénomène pouvant être infini ou indénombrable.
@@ -86,7 +86,7 @@
 			Sans un regard d'expert, il est possible de trouver certaines oeuvres rares vendues pour presque rien sur le marché d'occasion, ou à l'inverse voir certaines \texttt{BD} être achetées à prix d'or alors que le document est en piteux état.
 			
 			% Entrainer un modèle: régression linéaire.
-			Afin d'aiguiller les acquéreurs, il est possible d’utiliser un modèle de \texttt{régression linéaire}\footnote{
+			Afin d'aiguiller les acquéreurs, il est possible d'utiliser un modèle de \texttt{régression linéaire}\footnote{
 				Pour plus de détails sur la régression linéaire: voir la revue de \cite{maalouf:2011:logistic-regression-data} ; voir un exemple basé sur la méthode des moindres carrés dans \cite{zdaniuk:2014:ordinary-leastsquares-ols}.
 			} permettant de prédire le prix d'une \texttt{BD} à partir des différentes métadonnées à disposition.
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de transactions avec leur prix de vente.
@@ -301,7 +301,7 @@
 			Il est de plus en plus commun de trouver des livres disponibles avec une lecture audio.
 			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducative ou simplement disponibles pour le loisir.
 			Dans le cadre de notre exemple sur le thème des bandes dessinées, peu d'entre elles disposent d'une lecture audio.
-			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l’oeuvre n'a pas été portée à l'écran).
+			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l'oeuvre n'a pas été portée à l'écran).
 			
 			% Entrainer un modèle: synthétiseur vocal.
 			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{
@@ -337,7 +337,7 @@
 				(1) en extrayant automatiquement le texte d'une planche de \texttt{BD} par \texttt{OCR},
 				(2) en détectant automatiquement le personnage prononçant la bulle de \texttt{BD} par classification,
 				puis (3) en générant du texte à prononcer par le personnage par synthèse vocale.
-				Bien entendu, la conception et l’enchaînement de ces différents modèles sont plutôt complexes, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour construire une base d'apprentissage.
+				Bien entendu, la conception et l'enchaînement de ces différents modèles sont plutôt complexes, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour construire une base d'apprentissage.
 			\end{leftBarInformation}
 			
 			

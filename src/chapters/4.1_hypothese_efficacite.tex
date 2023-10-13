@@ -106,7 +106,7 @@
 			
 			% Détails de l'expérience.
 			Lors de cette expérience, chaque tentative de la méthode commencera sur la version non labellisée de la vérité terrain à disposition, sans aucune contrainte connue à l'avance.
-			A chaque itération de la méthode, nous simulons l'annotation de l'expert métier en comparant les labels de la vérité terrain : ainsi, deux données ont une contrainte \texttt{MUST-LINK} si elles ont le même label, et une contrainte \texttt{CANNOT-LINK} sinon.
+			À chaque itération de la méthode, nous simulons l'annotation de l'expert métier en comparant les labels de la vérité terrain : ainsi, deux données ont une contrainte \texttt{MUST-LINK} si elles ont le même label, et une contrainte \texttt{CANNOT-LINK} sinon.
 			Cela traduit le prérequis d'avoir un annotateur qui soit capable, dans son domaine d'expertise, de différencier deux données selon leur ressemblance.
 			Une tentative de l'application de notre méthode s'arrête lorsque toutes les contraintes possibles entre les données ont été annotés par l'expert.
 
@@ -162,7 +162,7 @@
 			Malgré une forte dispersion des résultats (écart-type de \texttt{v-measure} pouvant être supérieur à $20$\%, forte différence entre la tentative la plus rapide et la plus lente) et quelques sauts de performances (cf. à-coups de la tentative la plus lente sur la figure), une convergence générale vers la vérité terrain peut être constatée.
 			
 			% Tendance à courts termes: Croissance linéaire
-			A l'itération $0$, une tentative commence avec une moyenne de $19.05$\% de \texttt{v-measure}  entre son \textit{clustering} initial (sans contrainte) et la vérité terrain.
+			À l'itération $0$, une tentative commence avec une moyenne de $19.05$\% de \texttt{v-measure}  entre son \textit{clustering} initial (sans contrainte) et la vérité terrain.
 			Cette \texttt{v-measure} moyenne croît presque linéairement (pente de $0.97$) jusqu'à l'itération $75$ où elle atteint la performance de $92.08$\% (cf. \textsc{Table~\ref{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 
 			% Tendance à longs termes: Asymptote.
