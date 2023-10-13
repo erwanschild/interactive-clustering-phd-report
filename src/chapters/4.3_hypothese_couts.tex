@@ -395,9 +395,9 @@
 			
 			\begin{algorithm}
 				\KwData{jeux de données annotées (vérités terrains) de tailles différentes}
-				\KwIn{arrangements d'algorithmes et de paramètres à tester}
+				\KwIn{combinaisons d'algorithmes et de paramètres à tester}
 				%
-				\ForEach{arrangement d'algorithmes et de paramètres à tester}{
+				\ForEach{combinaison d'algorithmes et de paramètres à tester}{
 					\textbf{initialisation (données)}: récupérer ou générer le jeu de données \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\If{estimation de la tâche de \textbf{prétraitement}}{
@@ -907,7 +907,7 @@
 					\item le nombre de contraintes possibles (avec doublons) est de $\texttt{dataset\_size}^{\textbf{2}}$ (\textit{caractériser chaque couple de données présent dans la matrice d'adjacence}) ;
 					\item le nombre de contraintes possibles (sans doublons) est de $\frac{1}{2} \cdot (\texttt{dataset\_size}^{\textbf{2}} - \texttt{dataset\_size})$ (\textit{considérer la symétrie des contraintes, donc seul le triangle supérieur de la matrice d'adjacence a besoin d'être renseigné}) ;
 					\item le nombre minimal de contraintes à annoter pour être exhaustif sur une partition en $k$ \textit{clusters} $\{K_{1}, K_{2}, ..., K_{k}\} $ est estimé à ${\displaystyle \sum\limits_{1 \leq i \leq k}{(\|K_{i}\|-1)} + \sum\limits_{1 \leq i \leq k}{(k-i)}} $
-					(\textit{il faut d'abord considérer les chemins minimux pour parcourir les composants connexes avec des contraintes \texttt{MUST-LINK}, correspondant à $\|K_{i}\|-1$ contraintes \texttt{MUST-LINK} pour chaque partition $\|K_{i}\|$, puis ajouter le nombre minimal des contraintes \texttt{CANNOT-LINK} pour distinguer chacun de ses composants connexes en \textit{cluster}}, correspondant au nombre de arrangements sans répétition de deux partitions).
+					(\textit{il faut d'abord considérer les chemins minimaux pour parcourir les composants connexes avec des contraintes \texttt{MUST-LINK}, correspondant à $\|K_{i}\|-1$ contraintes \texttt{MUST-LINK} pour chaque partition $\|K_{i}\|$, puis ajouter le nombre minimal des contraintes \texttt{CANNOT-LINK} pour distinguer chacun de ses composants connexes en \textit{cluster}}, correspondant au nombre de arrangements sans répétition de deux partitions).
 				\end{itemize}
 				%
 				% Annonce de la figure.

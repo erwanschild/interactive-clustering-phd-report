@@ -19,10 +19,10 @@
 			
 			% Définition.
 			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de \textbf{reproduire une tâche par l'exemple} : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle statistique.
-			Cette apprentissage peut être \textit{supervisé} (l'interprétation des exemples est fournie par un humain), \textit{non-supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux précédentes approches).
+			Cet apprentissage peut être \textit{supervisé} (l'interprétation des exemples est fournie par un humain), \textit{non-supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux précédentes approches).
 			
 			% Applications.
-			L'apprentissage automatique, très populaire en ce moment, permet ainsi d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
+			Le \textit{Machine Learning} permet ainsi d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
 			
 			% References.
 			\begin{leftBarInformation}
@@ -71,7 +71,8 @@
 		En effet, une tâche d'annotation répond toujours à un besoin précis, mais il y a une telle multiplicité de types de données (\textit{données tabulaires, textuelles, visuelles, auditives, ...}) et de cas d'usages (\textit{prédiction d'une valeur numérique (tâche de régression), prédiction d'une catégorie (tâche de classification), détection d'objets (tâche d'extraction), création de nouvelles données (tâche de génération), ... }) qu'une unique définition ne peut être que purement théorique.
 		
 		% Annonce: prendre des exemples sur l'univers de la bande dessinée.
-		Ainsi, nous pensons qu'il est préférable de compléter ces définitions par quelques exemples concrets : nous pourrons ainsi mieux dresser le portait d'une tâche d'annotation, avec ses intérêts et ses complications.
+		Ainsi, nous estimons qu'il est préférable de compléter ces définitions par quelques exemples concrets.
+		Nous pourrons ainsi mieux dresser le portait d'une tâche d'annotation, avec ses intérêts et ses complications.
 		Pour cela, nous allons prendre le thème de la bande dessinée et de ses dérivés, et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
 		
 		
@@ -192,13 +193,13 @@
 			% Cas d'usage: classifier l'état.
 			Il est d'usage d'adapter le prix de vente d'un produit en fonction de son état, et nous avons intégré ce facteur dans l'estimation du prix d'une bande dessinée (voir exemple précédent).
 			Cependant, l'état de conservation n'est pas une notion objective et chacun peut avoir des références différentes.
-			Au final, c'est souvent un libraire qui détermine si l'oeuvre est en bon ou en mauvais état, et, sans un regard d'expert, nous pouvons nous omettre un détail ou nous tromper lors de notre appréciation.
+			Au final, c'est souvent un libraire qui détermine si l'oeuvre est en bon ou en mauvais état, et, sans un regard d'expert, nous pouvons omettre un détail ou nous tromper lors de notre appréciation.
 			
 			% Entrainer un modèle: classification d'image.
 			Afin de nous aider à estimer l'état d'une bande dessinée, il est possible d'utiliser un modèle de \texttt{classification}\footnote{
 				Pour plus de détails sur la classification: voir les revues de \cite{aized-amin-soofi-arshad-awan:2017:classification-techniques-machine} ou de \cite{kotsiantis-etal:2006:machine-learning-review} ; voir un exemple basé sur les machine à vecteurs de support (\texttt{SVM}) dans \cite{cortes-vapnik:1995:supportvector-networks}.
-			} permettant, à partir d'une image, de d'affecter chaque \texttt{BD} à une catégorie prédéfinie (par exemple: "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}").
-			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'image de \texttt{BD} associée avec leur catégorie d'état.
+			} permettant, à partir d'une image, d'affecter à chaque \texttt{BD} une catégorie prédéfinie (par exemple: "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}").
+			Pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'images de \texttt{BD} associées avec leur catégorie d'état.
 			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de bande dessinée la catégorie d'état qui lui correspond le plus.
 			
 			% Citation de l'exemple.
@@ -251,10 +252,10 @@
 			Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \texttt{reconnaissance optique des caractères} (\texttt{OCR})\footnote{
 				Pour plus de détails sur l'\texttt{OCR}: voir la revue de \cite{berchmans-kumar:2014:optical-character-recognition} ou de \cite{awel-abidi:2019:review-optical-character}.
 			} pour extraire automatiquement les informations importantes présentes sur les couvertures d'une \texttt{BD} à identifier.
-			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de pages de couverture avec la position et la valeur des informations pertinentes à extraire.
+			Pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de pages de couverture avec la position et la valeur des informations pertinentes à extraire.
 			La tâche d'annotation peut alors consister à renseigner pour chaque couverture de bande dessinée :
 			\begin{itemize}
-				\item la position des informations en l'entourant sur l'image (avec un rectangle par exemple) ;
+				\item la position des informations en l'encadrant sur l'image (avec un rectangle par exemple) ;
 				\item la valeur écrite dans l'encadré sur l'image.
 			\end{itemize}
 			
@@ -280,8 +281,9 @@
 			\begin{leftBarInformation}
 				De manière équivalente, il est possible de réaliser une \texttt{reconnaissance d'entités nommées (\texttt{NER})}\footnote{
 					Pour plus de détails sur la reconnaissance d'entités nommées (\texttt{NER}): voir les revues de \cite{goyal-etal:2018:recent-named-entity} ou de \cite{li-etal:2022:survey-deep-learning}.
-				} pour extraire les informations importantes citées dans un texte.
-				Dans l'exemple ci-dessous, les types d'entités présentes sont "\texttt{personnage}", "\texttt{métier}", "\texttt{argent}", "\texttt{lieu}" et "\texttt{date}", et la tâche d'annotation consiste ici à identifier la position et le type de chaque entité présente.
+				} pour extraire les informations citées dans un texte.
+				Dans l'exemple ci-dessous, les types d'entités présentes sont "\texttt{personnage}", "\texttt{métier}", "\texttt{argent}", "\texttt{lieu}" et "\texttt{date}".
+				La tâche d'annotation consiste ici à identifier la position et le type de chaque entité présente.
 				
 				\begin{quote}
 					\textguillemets{\textit{
@@ -297,15 +299,15 @@
 		
 			% Cas d'usage: générer une lecture audio.
 			Il est de plus en plus commun de trouver des livres disponibles avec une lecture audio.
-			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducatives ou simplement disponibles pour le loisir.
-			Mais dans le cadre de notre exemple sur le thème des bandes dessinées, peu d'entre elles disposent d'une lecture audio.
+			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducative ou simplement disponibles pour le loisir.
+			Dans le cadre de notre exemple sur le thème des bandes dessinées, peu d'entre elles disposent d'une lecture audio.
 			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l’oeuvre n'a pas été portée à l'écran).
 			
 			% Entrainer un modèle: synthétiseur vocal.
 			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{
 				Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.
 			} pour générer automatiquement la lecture des bulles d'une bande dessinée.
-			Mais pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs de l'adaptation télévisée) avec la transcription de leur paroles pour chaque audio.
+			Pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs de l'adaptation télévisée) avec la transcription de leur paroles pour chaque audio.
 			La tâche d'annotation peut alors consister à renseigner le personnage et les paroles qu'il a prononcées.
 			
 			% Citation de l'exemple.
@@ -335,7 +337,7 @@
 				(1) en extrayant automatiquement le texte d'une planche de \texttt{BD} par \texttt{OCR},
 				(2) en détectant automatiquement le personnage prononçant la bulle de \texttt{BD} par classification,
 				puis (3) en générant du texte à prononcer par le personnage par synthèse vocale.
-				Bien entendu, la conception et l’enchaînement de ces différents modèles est une tâche plutôt complexe, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour construire une base d'apprentissage.
+				Bien entendu, la conception et l’enchaînement de ces différents modèles sont plutôt complexes, et chaque tâche de \textit{Machine Learning} demande ses propres données annotées pour construire une base d'apprentissage.
 			\end{leftBarInformation}
 			
 			
