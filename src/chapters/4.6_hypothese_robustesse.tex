@@ -783,8 +783,10 @@
 			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Section~\ref{section:3.3-DESCRIPTION-IMPLEMENTATION}}\todo{description à faire}.
 			
 			% Détails de l'expérience.
-			Pour cette étude, nous allons réutiliser ces annotations et calculé le score d'accord inter-annotateurs global et deux à deux.
-			Pour ce faire, nous allons utiliser l'$\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} (\cite{perry:2021:lighttag-text-annotation}).
+			Pour cette étude, nous allons réutiliser ces annotations et calculer le score d'accord inter-annotateurs global et deux à deux.
+			Pour ce faire, nous allons utiliser l'$\alpha$ de \textit{Krippendorff} \footnote{
+				Choix de l'$\alpha$ de \textit{Krippendorff} : L'utilisation de $\kappa$ de \textit{Cohen} (\cite{landis-koch:1977:measurement-observer-agreement}) est fréquemment utilisée, mais elle n'est pas adaptée pour plus de deux opérateurs ni pour manipuler des absences d'annotations.
+			} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} (\cite{perry:2021:lighttag-text-annotation}).
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
@@ -794,12 +796,10 @@
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 		
-			\todo[inline]{résultats à revoir !}
-		
 			% Description statistiques.
-			La \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}} expose les scores inter-annotateurs sur les $3$ opérateurs et le réviseur de cette expérience, ainsi que l'accord avec la vérité terrain.
-			Le score d'accord moyen avec la vérité terrain est de $86$\% (écart-type: $1$\%) ; ce score est de $81$\% (écart-type: $5$\%) pour les contraintes de types \texttt{MUST-LINK} et est de $92$\% (écart-type: $3$\%) pour les contraintes de types \texttt{CANNOT-LINK}.
-			Le score inter-annotateurs moyen (sans le réviseur) est de $84$\% (écart-type: $3$\%).
+			La \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}} expose les accords des $3$ opérateurs et du réviseur par rapport à la vérité terrain, ainsi que les scores inter-annotateurs (sans le réviseur).
+			%Le score d'accord moyen avec la vérité terrain est de $86$\% (écart-type: $1$\%) ; ce score est de $81$\% (écart-type: $5$\%) pour les contraintes de types \texttt{MUST-LINK} et est de $92$\% (écart-type: $3$\%) pour les contraintes de types \texttt{CANNOT-LINK}.
+			%Le score inter-annotateurs moyen (sans le réviseur) est de $84$\% (écart-type: $3$\%).
 			
 			\begin{table}[!htb]
 				\begin{center}
@@ -808,66 +808,61 @@
 					\hline
 					% ENTETE DU TABLEAU
 					\rowcolor{colorTableHeader!15}
-					
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							1 (Relecteur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							7 (Annotateur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							9 (Annotateur)
-						}}
-						& \multicolumn{1}{c|}{\shortstack[c]{
-							12 (Annotateur)
-						}}
+						& \multicolumn{2}{c|}{
+							\shortstack{Accord avec la vérité terrain}
+						}
+						& \multicolumn{2}{c|}{
+							\shortstack{Accord entre annotateurs}
+						}
+						\tabularnewline
+						\hhline{|~|--|--|}
+					\rowcolor{colorTableHeader!15}
+					\multirow{-2}{*}{Opérateurs}
+						& Accord brut
+						& $\alpha$ Krippendorff
+						& Accord brut
+						& $\alpha$ Krippendorff
 						\tabularnewline
 						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						Vérité terrain
-					}}
-						& $0.95$
-						& $0.86$
-						& $0.84$
-						& $0.87$
+					% Opérateur 1 (relection)
+					$1$ (réviseur)
+						& $94.75$\% \footnotesize $(\pm1.12)$
+						& $0.892$
+						& \multicolumn{2}{c|}{}
 						\tabularnewline
 						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						1 (Relecteur)
-					}}
+					% Opérateur 7 (Annotateur)
+					$7$ (annotateur)
+						& $87.50$\% \footnotesize $(\pm1.66)$
+						& $0.750$
+						& \multirow{3}{*}{$75.50$\% \footnotesize $(\pm2.15)$}
+						& \multirow{3}{*}{$0.669$}
+						\tabularnewline
+						\hhline{|---|~~|}
+					% Opérateur 9 (Annotateur)
+					$9$ (annotateur)
+						& $84.25$\% \footnotesize $(\pm1.82)$
+						& $0.685$
 						&
-						& $0.91$
-						& $0.86$
-						& $0.89$
+						&
+						\tabularnewline
+						\hhline{|---|~~|}
+					% Opérateur 12 (Annotateur)
+					$12$ (annotateur)
+						& $87.00$\% \footnotesize $(\pm1.68)$
+						& $0.737$
+						&
+						&
 						\tabularnewline
 						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						7 (Annotateur)
-					}}
+					% Tous les opérateurs
+					Tous ($1$, $7$, $9$, $12$)
+						& $71.75$\% \footnotesize $(\pm2.25)$
+						& $0.735$
 						&
 						&
-						& $0.86$
-						& $0.85$
 						\tabularnewline
 						\hline
-
-					% Vérité terrain
-					\multicolumn{1}{|c|}{\shortstack[c]{
-						9 (Annotateur)
-					}}
-						&
-						&
-						&
-						& $0.80$
-						\tabularnewline
-						\hline
-					
 				\end{tabular}
 				\end{center}
 				\caption{
@@ -875,27 +870,12 @@
 				}
 				\label{table:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
 			\end{table}
-			
-			% Note.
-			\begin{leftBarInformation}
-				Dans une autre expérience, où $14$ opérateurs devaient annoter une base de $1~000$ contraintes aléatoires, nous obtenons un accord moyen avec la vérité terrain de $93$\% (écart-type: $2$\%) et un score inter-annotateurs moyen de $91$\% (écart-type: $3$\%).
-				Toutefois, nous ne mettons pas en avant ces résultats car le lot de contraintes annotées était fortement déséquilibré à cause de l'utilisation de l'échantillonnage aléatoire ($932$ \texttt{CANNOT-LINK}, $68$ \texttt{MUST-LINK}).
-			\end{leftBarInformation}
 	
 		%%% Discussion
 		\subsubsection{Discussion}
 		
 			% Rappel de l'objectif : ...
 			\todo[inline]{A REDIGER: rappel de l'objectif}
-		
-			% Avantage 1 : peu d'erreurs
-			\todo[inline]{A REDIGER: Peu d'erreurs (environ 16\% d'erreurs sans concertations)}
-			
-			% Remarque 1 : MUST-LINK < CANNOT-LINK
-			\todo[inline]{A REDIGER: CANNOT-LINK légèrement plus facile que les MUST-LINK}
-			
-			% Conclusions et suggestion.
-			\todo[inline]{A REDIGER: ouverture sur l'impact des non-corrections}
 	
 	
 	%%%
