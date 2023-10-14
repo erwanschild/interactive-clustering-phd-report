@@ -38,7 +38,9 @@
 			Les résultats montraient que le temps de calcul était similaire à celui du KMeans (dans sa version \texttt{COP}).
 			La difficulté d'utilisation résidait plutôt sur la définition du rayon de voisinage \texttt{eps} à parcourir pour établir des liens entre données.
 			Celui-ci peut être estimé en analysant la densité vectorielle du jeu de données.
-			Le code informatique est disponible dans \cite{schild:2022:cognitivefactory-interactiveclustering} (\textit{\textit{Pull Request} en attente pour une version \texttt{0.6.0}}).
+			Le code informatique est disponible dans \cite{schild:2022:cognitivefactory-interactiveclustering} \footnote{
+				Implémentation de \texttt{C-DBScan} : \textit{Pull Request} en attente pour une version \texttt{0.6.0} après ajout de documentation et de tests unitaires.
+			}.
 		\end{leftBarInformation}
 	
 	
@@ -84,7 +86,7 @@
 		% Piste potentielles à explorer.
 		Voici quelques idées inspirées de ces méthodes :
 		\begin{itemize}
-			\item \textbf{pré-annoter} certaines contraintes simples à l'aide de règles (\textit{basées par exemple sur la présence de mots de vocabulaire en commun} ou grâce à l'utilisation d'un modèle déjà disponible ; 
+			\item \textbf{pré-annoter} certaines contraintes simples à l'aide de règles (\textit{basées par exemple sur la présence de mots de vocabulaire en commun}) ou grâce à l'utilisation d'un modèle déjà disponible ; 
 			\item \textbf{introduire des données synthétiques ou empruntées} à d'autres bases d'apprentissage pour initialiser le \textit{clustering}, et permettre ainsi ajouter d'emblée des connaissances générales dans la modélisation.
 		\end{itemize}
 	

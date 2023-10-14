@@ -1039,7 +1039,11 @@
 			$1$ jour de travail pour définir une représentation des données en modèle de classification ;
 			$4$ jours de travail pour annoter $5~000$ données (à raison de $20$ secondes par données, estimation haute inspirée de \cite{pradhan-etal:2007:semeval2007-task-17} où la "\textit{désambiguïsation du sens des mots}", présentée comme une tâche de classification, demande $17.5$ secondes par données) ;
 			$2$ jours de marge d'erreur pour changer de modèle de représentation s'il ne semble pas adapté aux données en cours d'annotation.
-			Au total, nous estimons donc qu'il faut $5$ {\footnotesize $(+2)$} jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
+			Au total, nous estimons donc qu'il faut $5$ {\footnotesize $(+2)$} jours de travail \footnote{
+				$5$ {\footnotesize $(+2)$} jours de travail : il est à noter que cette estimation n'est bien entendu pas généralisable.
+				En effet, le temps nécessaire à la modélisation et aux phases de revues peuvent fortement augmenter si le cas d'usage est plus complexe.
+				Par exemple, la classification de question en une centaine d'intentions peut prendre plusieurs jours voir quelques semaines d'étude alors que la classification de sentiments sur trois niveaux (positif, négatif, neutre) est presque triviale.
+			} à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
 			\textbf{En l'état, nous pouvons donc conclure que le \textit{clustering} interactif que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($8.4$ {\footnotesize $(+2)$} à $15.7$ {\footnotesize $(+2)$} jours vs $5$ {\footnotesize $(+2)$} jours), ce qui peut être un frein à son utilisation en situation réelle}.
 			
 			% Pistes d'amélioration : Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering, ...
@@ -1090,19 +1094,21 @@
 			\end{equation}
 			
 			% Equation : Adaptation du Nombre d'itérations (parallèle).
-			Ensuite, afin de limiter les pertes de temps (humain et machine), nous pouvons choisir une taille de lot d'annotation rendre les deux durées équivalentes.
+			Ensuite, afin de limiter les pertes de temps (humain et machine), nous pouvons choisir une taille de lot d'annotation rendant ces deux durées équivalentes.
 			Nous déduisons donc les changements suivants dans l'\textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL}} :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-PARALLELE}
 				\begin{cases}
+				\begin{aligned}
 					% Batch size.
 					\texttt{optimal\_batch\_size}~[\#]&
-						~\propto~\frac{\texttt{computation\_time}}{7.8}
+						~\propto~\frac{\texttt{computation\_time}}{7.8}&
 						~\propto~0.0218 \cdot \texttt{dataset\_size} \\
 					% Iterations number.
 					\texttt{iterations\_needed}~[\#] &
-						~\propto~\frac{\texttt{nb\_constraints}}{\texttt{optimal\_batch\_size}}
+						~\propto~\frac{\texttt{nb\_constraints}}{\texttt{optimal\_batch\_size}}&
 						~\propto~144.5 \\
+				\end{aligned}
 				\end{cases}
 			\end{equation}
 			

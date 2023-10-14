@@ -38,7 +38,7 @@
 	\end{tcolorbox}
 	
 	
-	% Résumé de l'étude.
+	% Résumé des études.
 	Afin de vérifier cette hypothèse, nous organisons trois expériences :
 	\begin{itemize}
 		\item une étude de l'\textbf{impact d'une erreur d'annotation} et de l'\textbf{intérêt de la corriger}, en simulant l'insertion d'erreurs d'annotation et en mesurant la similarité du \textit{clustering} obtenu avec la vérité terrain (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}) ;
@@ -214,7 +214,7 @@
 			
 			% Conclusion : choix entre rapidité ou qualité.
 			\begin{leftBarAuthorOpinion}
-				Dans les deux cas, il y a un choix à faire : \textbf{veut-on privilégier la qualité} (\textit{ajouter de la redondance et une double vérification au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
+				Dans les deux cas, il y a un choix à faire : \textbf{veut-on privilégier la qualité} (\textit{ajouter de la redondance et une double vérification, au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes, au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
 			\end{leftBarAuthorOpinion}
 		
 	%%%
@@ -666,14 +666,28 @@
 			Une telle conclusion est en accord avec le caractère incrémental de la méthode : une différence d'annotation peut rapidement se propager et faire diverger les résultats de la méthode.
 			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent un minimum d'annotation de contraintes.
 			Or cette notion de pertinence est subjective à la vision de l'expert annotant les données.
-			De ce fait, si deux annotateurs ne sont pas d'accord sur la vision à appliquer aux données lors de l'annotation, il est normal de voir leur résultat de \textit{clustering} diverger.
+			De ce fait, si deux annotateurs ne sont pas d'accord sur la vision à appliquer aux données lors de l'annotation, il est normal de voir leurs résultats de \textit{clustering} diverger.
 			Nous pourrions résumer cette situation par le fait que \textbf{ces deux experts ne recherchent pas la même vérité terrain, d'où la divergence significative de leurs résultats}.
+			Ainsi, la sensibilité de notre méthode n'est pas la racine du problème, elle met plutôt en lumière le besoin de confronter les opinions des experts afin qu'ils puissent s'accorder.
 			
 			% Solution: Ajouter de la redondance !
-			Le problème n'est donc pas dû à la sensibilité de notre méthode : il s'apparente plutôt à un besoin de confronter les opinions des experts afin qu'ils puissent s'accorder.
 			En nous basant sur notre revue de littérature (notamment la \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}), nous conseillons à un projet d'annotation voulant utiliser notre implémentation du \textit{clustering} interactif pour concevoir une base d'apprentissage d'\textbf{employer au moins $3$ opérateurs et de les confronter aux mêmes contraintes à chaque itération} de la méthode.
-			Ainsi, si ces derniers ont des différences d'opinion sur la modélisation du problème, celles-ci se manifesteront en évaluant le score d'accord inter-annotateurs.
+			Ainsi, si ces derniers ont des différences d'opinion sur la modélisation du problème, celles-ci se manifesteront en observant le score d'accord inter-annotateurs.
 			Il conviendra alors d'organiser une session de débat pour ré-annoter les désaccords et décider des adaptations à prévoir dans le guide d'annotation du projet.
+			%
+			\begin{leftBarIdea}
+				% Pour aider la résolution du conflit : observer le graphe de contraintes.
+				Pour aider à trouver un accord lors de la revue, une prise de recul peut être nécessaire.
+				Pour ce faire, les experts pourraient par exemple \textbf{observer le graphe de contraintes} déjà annotées.
+				En effet, le gestionnaire de contraintes gère les propriétés de transitivité entre celle-ci, créant ainsi des composants connexes de données liées par les contraintes \texttt{MUST-LINK} et distinguées par les contraintes \texttt{CANNOT-LINK} (voir \textsc{Section~\ref{section:3.3.2-GESTION-DES-CONTRAINTES}}).
+				Or le règlement d'un désaccord va nécessairement impacter ces composants connexes : en les rapprochant si le désaccord est tranché en faveur d'un \texttt{MUST-LINK}, en les éloignant sinon.
+				Par conséquent, il serait intéressant d'aiguiller le débat pour anticiper les conséquences du consensus à trouver : ces composants sont-ils à rapprocher ? à distinguer ? ou sont-ils 
+				éventuellement à remettre en question ?
+
+				% Si toujours désaccord : laisser le clustering trancher.
+				Si malgré cette prise de recul, aucun accord n'a été trouvé, il est possible de ne pas caractériser cette contrainte et de \textbf{laisser l'algorithme de \textit{clustering} trancher le débat}.
+				En effet, la philosophie de la méthode d'annotation basée sur le \textit{clustering} interactif repose sur la coopération entre l'Homme et la machine : dans cette situation, il peut être intéressant de simplement observer quelle solution est proposée par la machine pour segmenter les données tout en respectant les autres contraintes déjà annotées.
+			\end{leftBarIdea}
 			
 			% Problème : surcoût.
 			Bien entendu, une telle approche engendre un coût supplémentaire aux estimations réalisées dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} :
@@ -681,16 +695,17 @@
 				\item d'une part, nous triplons la charge salariale à investir dans le but de redonder les contraintes annotées ;
 				\item d'autre part, nous introduisons un délais supplémentaire en organisant des revues de désaccords de contraintes, du moins tant que des désaccords de visions subsistent.
 			\end{itemize}
-			Néanmoins, ces surcoûts peuvent être anticipés et participent à l'amélioration de la stabilité de la base d'apprentissage en cours de construction.
+			% Mais ces surcoûts sont prévisibles ou bénéfiques.
+			Néanmoins, ces surcoûts participent à l'amélioration de la stabilité de la base d'apprentissage en cours de construction.
 			Par ailleurs, nous pouvons noter que :
 			\begin{itemize}
-				\item un projet d'annotation classique emploie aussi plusieurs opérateurs : ce surcoût correspond plutôt à l'abandon d'un avantage de notre méthode au profit d'une fiabilisation de la qualité de ses résultats ;
+				\item un projet d'annotation classique emploie aussi plusieurs opérateurs : ce surcoût correspond donc plutôt à un investissement supplémentaire au profit d'une fiabilisation de la qualité de ses résultats ;
 				\item un projet d'annotation classique est déjà confronté au besoin d'organiser des sessions de revue de sa modélisation (voir l'étape \textit{Revise} du cycle \texttt{MATTER}) : l'avantage de notre méthode réside néanmoins sur la possibilité de discuter directement des divergences d'opinions en analysant des cas d'usage métier (\textit{évaluation d'une contrainte à l'aide de compétences métiers}) plutôt que de discuter de divergences d'opinions sur l'interprétation d'une abstraction du problème (\textit{remise en cause d'une modélisation à l'aide de compétences analytiques}).
 			\end{itemize}
 			
 			% Conclusion : choix entre rapidité et qualité.
 			\begin{leftBarAuthorOpinion}
-				Nous concluons cette discussion par la même remarque faite à la fin de la précédente étude de robustesse : il y a un choix à faire, \textbf{veut-on privilégier la qualité} (\textit{ajouter de la redondance pour clarifier les désaccords d'opinion au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
+				Nous concluons cette discussion par la même remarque faite à la fin de la précédente étude de robustesse : \textbf{il y a un choix à faire entre privilégier la qualité} (\textit{ajouter de la redondance pour clarifier les désaccords d'opinion, au prix d'un surcoût d'annotation}) \textbf{ou la rapidité de conception} (\textit{optimiser l'annotation pour une convergence en un minimum de contraintes, au risque d'introduire des incohérences dans la modélisation}) \textbf{?}
 			\end{leftBarAuthorOpinion}
 		
 		
@@ -701,10 +716,9 @@
 	\label{section:4.6.3-ETUDE-ROBUSTESSE-SCORE-INTER-ANNOTATEURS}
 		
 		% Objectif de l'expérience.
-		\todo[inline]{a revoir}
-		Dans cette étude, nous voulons étudier le score d'accord inter-annotateurs calculé lors d'une annotation de contraintes par plusieurs experts métiers en situation réelle.
+		Dans cette dernière étude, nous voulons étudier le score d'accord inter-annotateurs calculé lors d'une annotation de contraintes par plusieurs experts métiers en situation réelle.
 		Pour cela, nous reprenons l'expérience de la \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}} visant à estimer le temps moyen d'annotation d'un lot de contraintes, et nous réutilisons ces résultats pour en estimer l'accord inter-annotateurs.
-		Comme l'objectif de cette précédente étude n'était pas d'étudier la qualité des annotation, aucun guide ni aucune règles d'annotation précises n'avaient été fournies : nous espérons donc pourvoir estimer une borne maximale grossière de l'accord inter-annotateurs de notre méthode sans concertation, permettant ainsi d'affiner notre champ de simulation.
+		Comme l'objectif de cette précédente étude n'était pas d'étudier la qualité des annotation, aucun guide ni aucune règles d'annotation précises n'avaient été fournies : nous espérons donc pourvoir estimer une borne maximale grossière de l'accord inter-annotateurs de notre méthode, permettant ainsi d'affiner notre discussion.
 		
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
@@ -750,10 +764,10 @@
 		
 			% Détails de l'expérience : sélection des contraintes à annoter.
 			À partir de ces données, nous avions sélectionné un lot de $400$ contraintes à annoter.
-			Pour faciliter l'analyse, l'échantillonnage fut un aléatoire équilibré d'après la vérité terrain en $200$ \texttt{MUST-LINK} et en $200$ \texttt{CANNOT-LINK}.
+			Pour faciliter l'analyse, l'échantillonnage fut un tirage aléatoire équilibré d'après la vérité terrain en $200$ \texttt{MUST-LINK} et en $200$ \texttt{CANNOT-LINK}.
 			
 			% Détails de l'expérience : annotations et consignes.
-			Ensuite, un groupe de $3$ annotateurs ont annoté la sélection de $400$ contraintes en plusieurs sessions.
+			Ensuite, un groupe de $3$ annotateurs ont annoté la sélection des $400$ contraintes en plusieurs sessions.
 			Les directives données aux opérateurs étaient les suivantes:
 			\begin{itemize}
 				\item \textbf{Contexte de l'opérateur} :
