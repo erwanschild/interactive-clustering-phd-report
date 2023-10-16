@@ -129,7 +129,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 			
 
@@ -275,7 +275,7 @@
 			
 			% Ajout de l'analyse linguistique.
 			Cependant, avant de demander l'avis de l'expert, nous réalisons une analyse du vocabulaire employé.
-			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf.~\cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver les composantes vectorielles caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{composante})$.
+			Pour cela, nous utilisons une sélection des patterns linguistiques pertinents basée sur la maximisation des traits (notée \texttt{FMC}, cf. \cite{lamirel-etal:2017:novel-approach-feature}) : cette méthode permet de trouver les composantes vectorielles caractéristiques et discriminantes de chaque \textit{cluster} en attribuant un score à chaque couple $(\texttt{cluster}, \texttt{composante})$.
 			Dans notre cas, en utilisant une vectorisation basée sur la fréquence du vocabulaire dans un document comme \textbf{TF-IDF} (\cite{sparck-jones:1972:statistical-interpretation-term}), nous pouvons déterminer les mots les plus représentatifs de chaque \textit{cluster}.
 			Ainsi, nous pouvons à la fois décrire chaque groupe de questions par une liste de mots clés caractéristiques, mais aussi surligner ces mots dans les questions à parcourir pour attirer l'attention de l'expert sur ce qui semble être statistiquement discriminant.
 			
@@ -293,8 +293,8 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-				L'implémentation de la maximisation des traits est accessible ici dans~\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				L'implémentation de la maximisation des traits est accessible ici dans \cite{schild:2023:cognitivefactory-featuresmaximizationmetric}.
 			\end{leftBarInformation}
 
 		%%% Résultats
@@ -727,7 +727,7 @@
 			
 			% Avantage 3: Utilité de la FMC pour les clusters non exploitables.
 			Enfin, en ce qui concerne les \textit{clusters} jugés non exploitables, la \texttt{FMC} permet de confirmer leur manque de cohérence (pour le \textit{cluster} $1$ de la tentative $2$ à l'itération $0$ : "\textit{carte gold}", "\textit{numeros virtuels}", "\textit{découvert bancaire}", "\textit{carte paiement differe}", ...) ou leur absence de valeur métier (seulement $2$ termes caractéristiques pour le \textit{cluster} $1$ de la tentative $1$ à l'itération $0$).
-			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{clusters} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir~\cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
+			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{clusters} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir \cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
 			\\
 			
 			% Limite 1: toujours une tâche complexe.
@@ -783,7 +783,7 @@
 		Comme nous l'avons vu dans la section précédente, une analyse linguistique peut paraître trop abstraite pour un expert métier.
 		Nous nous intéressons donc à un moyen de simplifier l'identification de thématiques dans un \textit{cluster}, et envisageons l'automatisation de cette tâche en utilisant les capacités d'un large modèle de langage (\texttt{LLM}).
 		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents (\cite{zhang-etal:2019:pegasus-pretraining-extracted}, \cite{lewis-etal:2019:bart-denoising-sequencetosequence}, \cite{radford-etal:2019:language-models-are}, \cite{brown-etal:2020:language-models-are}), une fonctionnalité que nous allons adapter\footnote{
-			Nous nous inspirons notamment de~\cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.
+			Nous nous inspirons notamment de \cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.
 		}
 		et étudier ici.
 	
@@ -882,7 +882,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de~\cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 				L'appel à un large modèle de langage, sous la forme d'un appel \texttt{API}, se fait grâce à la librairie \texttt{openai}.
 			\end{leftBarInformation}
 
