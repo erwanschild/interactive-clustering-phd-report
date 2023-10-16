@@ -1,40 +1,77 @@
 \section{Contexte du doctorat: comment assister la conception d'une base d'apprentissage pour un agent conversationnel bancaire en français ?}
 \label{section:2.4-CONTEXTE-DOCTORAT}
 
-
 	% Introduction: Domaine d'application au NLP / chatbot.
-	Durant ce doctorat, nous nous sommes intéressés à la conception d'assistants conversationnels (\textit{chatbot}) dans le domaine bancaires.
-	Ces assistants sont notamment utiles pour accéder à des bases documentaires et pour entretenir la relation client à distance.
+	Durant ce doctorat, nous nous sommes intéressés à la \textbf{conception d'assistants conversationnels} (\textit{chatbot}).
+	En effet, leur utilisation en entreprise est de plus en plus courante (\cite{goasduff:2019:chatbots-will-appeal}, \cite{costello-lodolce:2022:gartner-predicts-chatbots}), notamment pour l'automatisation de certaines tâches simples et l'accès aux informations de bases documentaires.
+	La popularité de ces assistants vient entre autres de la possibilité de dialoguer directement avec la machine grâce à des requêtes exprimées en langage naturel, offrant ainsi un gain de confort, de disponibilité et de performance.
+	
+	% Comment créer un chatbot ?
+	De part notre expérience, nous avons constaté que plusieurs critères sont nécessaires pour déployer un assistant conversationnel dans un contexte industriel :
+	\begin{itemize}
+		\item Il faut être capable de gérer le dialogue entre l'utilisateur et l'assistant (\textit{comprendre la requête initiale, demander des informations complémentaires, demander une confirmation, ...}) ;
+		\item Il faut être capable de contrôler le contenu des réponses de l'assistant et de s'assurer de ses performances (\textit{répondre ou agir de manière adaptée, ne pas de fournir de réponses contenant des informations confidentielles, ne pas de répondre de manière indécente, ...}) ;
+		\item Il faut être capable de donner à l'assistant l'accès à certaines ressources (\textit{lire et écrire en base de données, exécuter des programmes tiers, ...}) tout en garantissant la sécurité (\textit{se prémunir contre les requêtes malveillantes et les erreurs de manipulations}).
+	\end{itemize}
+	
+	Pour toute ces raisons, \textbf{l'architecture traditionnelle des \textit{chatbot} est plutôt orientée par tâches} (\textit{task-oriented}), c'est-à-dire qu'elle manipule une abstraction du dialogue en intentions \footnote{
+		Intention de dialogue : en traitement automatique du langage naturel, une intention représente la compréhension de la demande formulée par un utilisateur au cours de la conversation.
+		Elle est généralement définie par le verbe d'action de la demande, et est représentée par une étiquette.
+		Par exemple, les requêtes \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{lance une playlist de musiques de Noël sur l'enceinte du salon !}} peut être modélisée par l'intention \texttt{jouer\_musique}.
+		Pour plus d'information, consultez l'\textsc{Annexe~\ref{annex:B-ANNEXE-CHATBOT}}.
+	} et gère un paramétrage des réponses dépendant des intentions détectées (voir \cite{chen-etal:2017:survey-dialogue-systems} et \cite{brabra-etal:2022:dialogue-management-conversational}).
+	
 	\begin{leftBarInformation}
-		L'\textsc{Annexe~\ref{annex:B-ANNEXE-CHATBOT}}
+		L'\textsc{Annexe~\ref{annex:B-ANNEXE-CHATBOT}} détaille plus amplement les différences entre les assistants \textit{task-oriented} (approches symboliques) et les assistants \textit{chat-oriented} (approches numériques ou génératives).
+		Cette annexe se base notamment sur une revue des architectures de conceptions publiée par \cite{chen-etal:2017:survey-dialogue-systems}.
 	\end{leftBarInformation}
 	
-	Dans ce domaine, le contrôle Toutefois, ces robots conversationnels 
-	% besoin de
 	
-	\todo[inline]{SECTION: À CONFIRMER: \\
-		- Chatbot: Task-oriented, entraîné avec intention et entitées et règles de dialogues \\
-		- Données: pas de données linguistiques open source en français pour le domaine bancaire ==> besoin de créer le jeu de données \\
-		- Modélisation: Phase longue en approche essai-erreur \\
-		- Experts: Experts avec compétences métiers mais peu de connaissance en IA \\
-		- Objectif du doctorat: trouver une alternative à ce processus manuel.
-	}
+	% Conception difficile, besoin d'experts !
+	Néanmoins, l'élaboration de tels assistants reste un \textbf{défi difficile à relever dans le monde industriel} :
+	\begin{itemize}
+		\item Le traitement du langage en tant que tel est un problème complexe : il faut traiter une grande variété de bruits et d’ambiguïtés de dialogue en plus d'un vocabulaire souvent spécifique au domaine de l'assistant (voir les problèmes de bruits et de représentativité en \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
+		\item La base d'apprentissage ainsi que les réponses de l'assistant peuvent contenir des données privées ou confidentielles : il y a donc peu de données réutilisables des sources publiques, et de fortes pressions sont exercées sur le contrôle du comportement du \textit{chatbot} (voir les problèmes de droits d'utilisation et de confidentialité en \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
+		\item L'assistant doit parfois pouvoir manipuler un grand nombre de cas d'usages : sa modélisation peut alors représenter des dizaines d'intentions pour lesquelles des centaines de branches de dialogues peuvent être paramétrées, introduisant ainsi une grande complexité aux tâches de modélisation et d'annotation de sa base d'apprentissage (voir \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
+	\end{itemize}
 	
-	\subsection{Contexte industriel}
-		Besoin : 
+	Pour surmonter ces difficultés, les entreprises font alors intervenir des experts aux compétences diverses (voir \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}), notamment des experts analytiques pour concevoir une modélisation stable des textes en intentions, puis des experts métiers pour valider la pertinence de la modélisation proposée et annoter les données suivant cette modélisation.
 	
-	\subsection{Idées}
-		manuel = "trop long" et non-supervisé = "pas assez pertinant", donc intéressons nous au semi-supervisé.
-		
-		semi-supervisé = 
-
-
-%	- On aide `ANNOTATE`, mais c'est `MODELIZE` qui est complexe
-%		- **supervisé**: ça marche pas
-%		- **non-supervisé**: (clustering) c'est pas terrible !
-%		- **semi-supervisé**: c'est pertinent mais c'est long / beaucoup sur l'annotation
-%	- **Regroupement automatique**:
-%		> - [xu-tian:2015:comprehensive-survey-clustering] limite du clustering
-%	- **Apprentissage actif**: utiliser un modèle pour sélectionner les données intéressante
-%		> - [settles:2010:active-learning-literature] base active learning
-%		> - [lampert-etal:2019:constrained-distance-based] A RELIRE !
+	
+	% Ces experts doivent résoudre les différences de comportement dus à la complexité de tâche.
+	Or au vu de la complexité d'un tel projet, des différences de comportements entre opérateurs, telles que des erreurs d'annotations ou des divergences d'opinion, sont inévitables (voir \textsc{Section\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
+	Il est alors nécessaire de former les experts métiers aux tâches d'annotations et à certaines tâches d'analyses afin d'encadrer les discussions autour de certaines différences de comportements pouvant mener à des remises en cause de la modélisation abstraite de textes en intentions (voir étape \textit{Revise} du cyle \texttt{MATTER}, \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
+	Au final, \textbf{cette organisation devient très coûteuse} car elle demande des formations analytiques à des experts métiers, nécessite l'organisation d'ateliers de modélisation en mode essai-erreur pour trouver une base d'apprentissage stable et pertinente, et fait intervenir des experts métiers sur une abstraction de leurs connaissances du quotidien.
+	
+	% Exemples.
+	\begin{leftBarExamples}
+		Au cours de ce doctorat, nous avons entre autres travaillé sur des assistants conversationnels à destinations de conseillers bancaires et de leur clients.
+		Ces assistants doivent traiter une large variété de sujets (banque, assurance, finance, ...) et peuvent donc rapidement contenir une centaine d'intentions pour plus d'un millier de branches de dialogue.
+		La conception de la base d'apprentissage de tels assistants représente ainsi un réel défi d'organisation, sur plusieurs semaines, notamment pour faire intervenir des experts de la banque-assurance dans un projet d'intelligence artificielle, domaine dans lequel ils n'ont pas ou peu de connaissances...
+	\end{leftBarExamples}
+	
+	
+	% Objectif de ce doctorat : assister la phase de modélisation d'une base d'apprentissage.
+	Cependant, il pourrait être intéressant de remettre en questions cette organisation des projets d'annotation où les experts métiers sont interrogés sur des compétences qui ne sont pas les leurs.
+	Dans le cadre de ce doctorat, et afin de trouver une solution à cette problématique, \textbf{nous nommes alors posé la question suivante} :
+	\begin{leftBarImportantGreen}
+		\begin{center}
+		\textbf{
+			Comment assister la phase de modélisation de textes en intentions \\
+			pour concevoir la base d'apprentissage d'un assistant conversationnel \\
+			en impliquant des experts métiers sur leur vrai domaine de connaissances \\
+			et en leur demandant un minimum de bagages analytiques ou techniques ?
+		}
+		\end{center}
+	\end{leftBarImportantGreen}
+	
+	
+	% Transition : idée d'un clustering interactif !
+	\begin{leftBarIdea}
+		Pour répondre à cette problématique, nous nous sommes intéressés à trois concepts intéressants de la littérature :
+		\begin{itemize}
+			\item aux techniques d'apprentissage actif, favorisant les interactions entre l'Homme et la machine pour atteindre un objectif (\cite{settles:2010:active-learning-literature}) ;
+			\item aux techniques de \textit{clustering}, permettant de déléguer à la machine la tâche de modélisation grâce à une segmentation des données sur la base de leurs similarités (\cite{xu-tian:2015:comprehensive-survey-clustering}) ;
+			\item à l'annotation de contraintes binaires sur les données, permettant de corriger le fonctionnement d'un algorithme de \textit{clustering} en y introduisant de la connaissance métier (\cite{lampert-etal:2018:constrained-distance-based}).
+		\end{itemize}
+	\end{leftBarIdea}

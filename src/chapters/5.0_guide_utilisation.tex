@@ -1,27 +1,77 @@
-\chapter{Guide d'utilisation du \textit{Clustering Interactif}}
+\chapter{Bilan et Guide d'utilisation du \textit{Clustering Interactif}}
 \label{chapter:5-GUIDE}
-
+	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section 5.1:
 	%%%%%--------------------------------------------------------------------
-	\section{Organisation \texttt{ITTER}}
-		\label{section:5.1-GUIDE-ITTER}
-		\todo[inline]{SECTION À RÉDIGER}
+	\section{Présentation rapide du clustering interactif et de ses avantages}
+		\label{section:5.1-GUIDE-PRESENTATION-RAPIDE}
+		\todo[inline]{
+			SECTION À RÉDIGER: \\
+			- trouver une base d'apprentissage acceptable, puis corriger manuellement \\
+			- intervention d'experts métiers sur la base de leur connaissance métiers \\
+			- revues d'annotations basée sur leur connaissance métiers \\
+			- aide à la modélisation par le clustering
+		}
 	
 	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section 5.2:
 	%%%%%--------------------------------------------------------------------
-	\section{Conseils pratiques}
-		\label{section:5.2-GUIDE-CONSEILS}
-		\todo[inline]{SECTION À RÉDIGER}
-		
-		
-	% \cite{leech:1993:corpus-annotation-schemes}
-		% 1. It should always be possible to come back to initial data (example BC). Note: can be hard after normalization (“l'arbre” ! “le arbre”, etc.)
-		% 2. Annotations should be extractable from the text
-		% 3. The annotation procedure should be documented (ex: Brown Corpus annotation guide, Penn Tree Bank annotation guide)
-		% 4. Mention should be made of the annotator(s) and the way annotation was made (manual/automatic annotation, number of annotators, manually corrected/uncorrected...)
-		% 5. Annotation is an act of interpretation (cannot be infallible)
-		% 6. Annotation schemas should be as independent as possible on formalisms
-		% 7. No annotation schema should consider itself a standard (it possibly becomes one)
+	\section{Conseils pour organiser l'annotation}
+		\label{section:5.2-GUIDE-ANALYSE}
+		\todo[inline]{
+			SECTION À RÉDIGER: \\
+			- bien définir l'objectif à modéliser (par action ? par objet ?) \\
+			- laisser à la mach \\
+			- faire référence aux maximes de \cite{leech:1993:corpus-annotation-schemes} ?
+			1. VOIR LA DONNEE NON PRETRAITEE: It should always be possible to come back to initial data (example BC). Note: can be hard after normalization ("l'arbre !" vs "le arbre", etc.) \\
+			2. ANNOTER DES DIFFERENCES VISIBLES: Annotations should be extractable from the text \\
+			3. DOCUMENTER L'AJOUT DE CONTRAINTES: The annotation procedure should be documented (ex: Brown Corpus annotation guide, Penn Tree Bank annotation guide) \\
+			4. DOCUMENTER LES COMPETENCES DES ANNOTATEURS: Mention should be made of the annotator(s) and the way annotation was made (manual/automatic annotation, number of annotators, manually corrected/uncorrected...) \\
+			5. SUBJECTIVITE => 3 ANNOTATEURS: Annotation is an act of interpretation (cannot be infallible) \\
+			6. MIEUX VAUT NE PAS LIER QUE LIER DE MANIERE AMBIGUE: Annotation schemas should be as independent as possible on formalisms \\
+			7. PLUSIEURS VISIONS POSSIBLES, IL FAUT EN CHOISIR UNE ET S'Y TENIR: No annotation schema should consider itself a standard (it possibly becomes one)
+		}
+	
+	
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 5.3:
+	%%%%%--------------------------------------------------------------------
+	\section{Conseils pour analyser les résultats}
+		\label{section:5.3-GUIDE-ANALYSE}
+		\todo[inline]{
+			SECTION À RÉDIGER: \\
+			- Cas d'arrêt quand le clustering stagne à 5\% : si change pas, alors l'annotation n'a plus d'effet... \\
+			- utiliser le graphe de contraintes pour voir les données liées entres elles et les données isolées \\
+			- Analyse avec résumer par LLM pour identifier facilement les thématiques qui se dégagent \\
+			- Analyse avec FMC pour identifier le vocabulaire qui caractérise chaque thématique \\
+			- utiliser ces analyses pour régler le nombres d clusters ?
+		}
+	
+	
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 5.4:
+	%%%%%--------------------------------------------------------------------
+	\section{Conseils pour paramétrer la méthode}
+		\label{section:5.4-GUIDE-PARAMETRAGE}
+		\todo[inline]{
+			SECTION À RÉDIGER: \\
+			- Architecture parallele : pour gagner du temps\\
+			- paramétrage optimal: simple + tfidf + kmeans + closest \\
+			- taille de batch d'annotation dépendant de la taille du jeu de données (dépend du temps de clustering)
+		}
+	
+	
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section 5.5:
+	%%%%%--------------------------------------------------------------------
+	\section{Estimation des coûts du projet d'annotation}
+		\label{section:5.5-GUIDE-COUTS}
+		\todo[inline]{
+			SECTION À RÉDIGER: \\
+			- rappeler les équations de temps: environ 24 x taille de dataset, sans les revues d'annotations \\
+			- besoin de 3 annotateurs pour confronter les vision et modéliser dans de bonnes conditions. organiser les revues sur la base des différences entre cas d'usage métier \\
+			- ajouter de la redondance si le cas d'usage est complexe, mais ça ralenti \\
+			- avantage par rapport aux méthode usuelles : moins abstrait/complexe, moins d'essai-erreur
+		}
