@@ -1,361 +1,361 @@
 \Annex{Jeux de données utilisés dans nos études}
 \label{annex:A-ANNEXE-DATASET}
 
-% INTRODUCTION DE L'ANNEXE.
-Pour les différentes études réalisées au cours de ce doctorant (cf. \textsc{Chapitre~\ref{chapter:4-ETUDES}}), nous avons utilisé les deux jeux de données suivants.
+	% INTRODUCTION DE L'ANNEXE.
+	Pour les différentes études réalisées au cours de ce doctorant (cf. \textsc{Chapitre~\ref{chapter:4-ETUDES}}), nous avons utilisé les deux jeux de données suivants.
 
-% TABLE DES MATIÈRES DE L'ANNEXE.
-\minitoc
+	% TABLE DES MATIÈRES DE L'ANNEXE.
+	\minitoc
 
 
-%%%%%--------------------------------------------------------------------
-%%%%% Annexe A.1: \texttt{Bank Cards}: Jeu d'entraînement en français d'assistants conversationnels traitant des demandes courantes sur les cartes bancaires
-%%%%%--------------------------------------------------------------------
-\section{\texttt{Bank Cards}: Jeu d'entraînement en français d'assistants conversationnels traitant des demandes courantes sur les cartes bancaires}
-\label{annex:A.1-DATASET-BANK-CARDS}
-	
-	
-	% Description.
-	\paragraph{Description :}
-	Cet ensemble de données représente des exemples de demandes usuelles des clients concernant la gestion des cartes bancaires.
-	Il peut être utilisé comme jeu d'entraînement pour un petit assistant conversationnel destiné à traiter ces demandes courantes.
-	
-	% Contenu.
-	\paragraph{Contenu :}
-	Les questions sont formulées en français.
-	L'ensemble de données est divisé en $10$ intentions (classes) dont un aperçu est disponible dans la \textsc{Table~\ref{table:A.1-DATASET-BANK-CARDS}}.
-	Ces intentions sont construites de telle manière que toutes les questions issues d'une même intention ont la même réponse ou action.
-	La version \texttt{1.0.0} du jeu de données contient de $50$ questions par intention, soit un total de $500$ questions ;
-	La version \texttt{2.0.0} du jeu de données contient de $100$ questions par intention, soit un total de $1~000$ questions.
-	
-	\begin{table}[!htb]
-		\begin{center}
-		\begin{scriptsize}
-		\begin{tabular}{|c|c|c|c|}
+	%%%%%--------------------------------------------------------------------
+	%%%%% Annexe A.1: \texttt{Bank Cards}: Jeu d'entraînement en français d'assistants conversationnels traitant des demandes courantes sur les cartes bancaires
+	%%%%%--------------------------------------------------------------------
+	\section{\texttt{Bank Cards}: Jeu d'entraînement en français d'assistants conversationnels traitant des demandes courantes sur les cartes bancaires}
+	\label{annex:A.1-DATASET-BANK-CARDS}
 		
-			\hline
-			% ENTETE DU TABLEAU
-			\rowcolor{colorTableHeader!15}
-			\textbf{Intention}
-				& \textbf{Définition}
-				& \textbf{Exemple}
-				\tabularnewline
-				\hline
-			% alerte\_perte\_vol\_carte
-			\multirow{2}{*}{\texttt{alerte\_perte\_vol\_carte}}
-				& Affichage de la procédure de blocage
-				& \textit{Comment signaler une perte}
-				\tabularnewline
-				& d'une carte perdue ou volée
-				& \textit{de carte de paiement ?}
-				\tabularnewline
-				\hline
-			% carte\_avalee
-			\multirow{2}{*}{\texttt{carte\_avalee}}
-				& Affichage de la procédure de
-				& \textit{Comment récupérer}
-				\tabularnewline
-				& récupération d'une carte avalée
-				& \textit{une carte avalée ?}
-				\tabularnewline
-				\hline
-			% commande\_carte
-			\multirow{2}{*}{\texttt{commande\_carte}}
-				& Affichage des cartes disponibles,
-				& \textit{Je souhaite changer}
-				\tabularnewline
-				& de la procédure de commande,
-				& \textit{de carte bancaire.}
-				\tabularnewline
-				\hline
-			% consultation\_solde
-			\multirow{2}{*}{\texttt{consultation\_solde}}
-				& Affichage d'une synthèse des
-				& \textit{Où retrouver le solde}
-				\tabularnewline
-				& soldes bancaires du client.
-				& \textit{ de mon compte ?}
-				\tabularnewline
-				\hline
-			% couverture\_assurrance
-			\multirow{2}{*}{\texttt{couverture\_assurrance}}
-				& Affichage d'une synthèse des garanties
-				& \textit{Que couvre ma carte bancaire}
-				\tabularnewline
-				& d'assurances de la carte bancaire du client
-				& \textit{en cas d'hospitalisation ?}
-				\tabularnewline
-				\hline
-			% deblocage\_carte
-			\multirow{2}{*}{\texttt{deblocage\_carte}}
-				& Affichage de gestion du statut
-				& \textit{ma carte de paiement est}
-				\tabularnewline
-				& des cartes du client.
-				& \textit{bloquée, que faire ?}
-				\tabularnewline
-				\hline
-			% gestion\_carte\_virtuelle
-			\multirow{2}{*}{\texttt{gestion\_carte\_virtuelle}}
-				& Affichage de gestion des cartes
-				& \textit{Comment faire pour créer une}
-				\tabularnewline
-				& virtuelles du client.
-				& \textit{carte de paiements virtuelle ?}
-				\tabularnewline
-				\hline
-			% gestion\_decouvert
-			\multirow{2}{*}{\texttt{gestion\_decouvert}}
-				& Affichage d'une synthèse des autorisations
-				& \textit{Est-ce que j'ai un}
-				\tabularnewline
-				& de découverts de leur procédure de gestion
-				& \textit{découvert autorisé ?}
-				\tabularnewline
-				\hline
-			% gestion\_plafond
-			\multirow{2}{*}{\texttt{gestion\_plafond}}
-				& Affichage de gestion des plafonds
-				& \textit{Le plafond de ma carte est}
-				\tabularnewline
-				& des cartes du client.
-				& \textit{trop bas, que faire ?}
-				\tabularnewline
-				\hline
-			% gestion\_sans\_contact
-			\multirow{2}{*}{\texttt{gestion\_sans\_contact}}
-				& Affichage de gestion des
-				& \textit{Je veux désactiver le}
-				\tabularnewline
-				& fonctionnalités des cartes du client.
-				& \textit{sans contact sur ma carte.}
-				\tabularnewline
-				\hline
-		\end{tabular}
-		\end{scriptsize}
-		\end{center}
-		\caption{
-			Présentation du jeu de données \texttt{Bank Cards} avec quelques exemples.
-			La version \texttt{2.0.0} contient $100$ questions par intention.
-		}
-		\label{table:A.1-DATASET-BANK-CARDS}
-	\end{table}
-	
-	% Origine.
-	\paragraph{Origine :}
-	Le périmètre des intentions est inspiré d'un chatbot actuellement en production.
-	Les données ont été sélectionnées aléatoirement et reformulées manuellement pour garantir la confidentialité des utilisateurs : aucune données personnelles ne subsistent dans ce jeu de données.
-	Enfin, deux réviseurs extérieurs à l'équipe de recherche, ayant un profil d'analystes métiers du domaine bancaire, ont validé le périmètre et le contenu de ces intentions.
-	
-	% Disponibilité.
-	\paragraph{Disponibilité :}
-	Le jeu de données est archivé sur la plateforme \texttt{Zenodo} et est accessible ici: \cite{schild:2022:french-trainset-chatbots}
-
-
-%%%%%--------------------------------------------------------------------
-%%%%% Annexe A.2: \texttt{MLSUM} (The Multilingual Summarization Corpus): Échantillon de titre d'article de journaux en français associés à leur classification thématique
-%%%%%--------------------------------------------------------------------
-\section{\texttt{MLSUM} (The Multilingual Summarization Corpus): Échantillon de titre d'article de journaux en français associés à leur classification thématique}
-\label{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}
-	
-	
-	% Description.
-	\paragraph{Description :}
-	Cet ensemble de données est constitué d'articles de journaux avec leur titre, leur résumé et leur classification thématique.
-	Nous l'utilisons (1) pour estimer le temps nécessaire pour annoter la similarité des titres avec des contraintes (\texttt{MUST-LINK}, \texttt{CANNOT-LINK}) et (2) pour tester la méthodologie de \textit{clustering} interactif (annotation de contraintes et \textit{clustering} sous contraintes).
-	
-	% Contenu.
-	\paragraph{Contenu :}
-	Les titres de journaux sont formulés en français.
-	L'ensemble de données est divisé en $14$ thèmes (classes) dont un aperçu est disponible dans la \textsc{Table~\ref{table:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
-	La version \texttt{1.0.0 [subset: fr+train+filtered]} contient $744$ articles.
-	
-	\begin{table}[!htb]
-		\begin{center}
-		\begin{scriptsize}
-		\begin{tabular}{|c|c|c|c|}
 		
-			\hline
-			% ENTETE DU TABLEAU
-			\rowcolor{colorTableHeader!15}
-			\textbf{Thème}
-				& \textbf{Définition}
-				& \textbf{Exemple}
-				& \textbf{Taille}
-				\tabularnewline
-				\hline
+		% Description.
+		\paragraph{Description :}
+		Cet ensemble de données représente des exemples de demandes usuelles des clients concernant la gestion des cartes bancaires.
+		Il peut être utilisé comme jeu d'entraînement pour un petit assistant conversationnel destiné à traiter ces demandes courantes.
+		
+		% Contenu.
+		\paragraph{Contenu :}
+		Les questions sont formulées en français.
+		L'ensemble de données est divisé en $10$ intentions (classes) dont un aperçu est disponible dans la \textsc{Table~\ref{table:A.1-DATASET-BANK-CARDS}}.
+		Ces intentions sont construites de telle manière que toutes les questions issues d'une même intention ont la même réponse ou action.
+		La version \texttt{1.0.0} du jeu de données contient de $50$ questions par intention, soit un total de $500$ questions ;
+		La version \texttt{2.0.0} du jeu de données contient de $100$ questions par intention, soit un total de $1~000$ questions.
+		
+		\begin{table}[!htb]
+			\begin{center}
+			\begin{scriptsize}
+			\begin{tabular}{|c|c|c|c|}
 			
-			% arts
-			\multirow{2}{*}{\texttt{arts}}
-				& Actualités artistiques (spectacles,
-				& \textit{La rencontre de l'art et de la }
-				& \multirow{2}{*}{$50$}
-				\tabularnewline
-				& oeuvres, événements, expositions)
-				& \textit{gastronomie au château du Feÿ}
-				&
-				\tabularnewline
 				\hline
-			% disparitions
-			\multirow{2}{*}{\texttt{disparitions}}
-				& Actualités nécrologiques 
-				& \textit{Le traducteur Jean-Pierre}
-				& \multirow{2}{*}{$48$}
-				\tabularnewline
-				& (décès ou disparition)
-				& \textit{Carasso est mort à 73 ans}
-				&
-				\tabularnewline
+				% ENTETE DU TABLEAU
+				\rowcolor{colorTableHeader!15}
+				\textbf{Intention}
+					& \textbf{Définition}
+					& \textbf{Exemple}
+					\tabularnewline
+					\hline
+				% alerte\_perte\_vol\_carte
+				\multirow{2}{*}{\texttt{alerte\_perte\_vol\_carte}}
+					& Affichage de la procédure de blocage
+					& \textit{Comment signaler une perte}
+					\tabularnewline
+					& d'une carte perdue ou volée
+					& \textit{de carte de paiement ?}
+					\tabularnewline
+					\hline
+				% carte\_avalee
+				\multirow{2}{*}{\texttt{carte\_avalee}}
+					& Affichage de la procédure de
+					& \textit{Comment récupérer}
+					\tabularnewline
+					& récupération d'une carte avalée
+					& \textit{une carte avalée ?}
+					\tabularnewline
+					\hline
+				% commande\_carte
+				\multirow{2}{*}{\texttt{commande\_carte}}
+					& Affichage des cartes disponibles,
+					& \textit{Je souhaite changer}
+					\tabularnewline
+					& de la procédure de commande,
+					& \textit{de carte bancaire.}
+					\tabularnewline
+					\hline
+				% consultation\_solde
+				\multirow{2}{*}{\texttt{consultation\_solde}}
+					& Affichage d'une synthèse des
+					& \textit{Où retrouver le solde}
+					\tabularnewline
+					& soldes bancaires du client.
+					& \textit{ de mon compte ?}
+					\tabularnewline
+					\hline
+				% couverture\_assurrance
+				\multirow{2}{*}{\texttt{couverture\_assurrance}}
+					& Affichage d'une synthèse des garanties
+					& \textit{Que couvre ma carte bancaire}
+					\tabularnewline
+					& d'assurances de la carte bancaire du client
+					& \textit{en cas d'hospitalisation ?}
+					\tabularnewline
+					\hline
+				% deblocage\_carte
+				\multirow{2}{*}{\texttt{deblocage\_carte}}
+					& Affichage de gestion du statut
+					& \textit{ma carte de paiement est}
+					\tabularnewline
+					& des cartes du client.
+					& \textit{bloquée, que faire ?}
+					\tabularnewline
+					\hline
+				% gestion\_carte\_virtuelle
+				\multirow{2}{*}{\texttt{gestion\_carte\_virtuelle}}
+					& Affichage de gestion des cartes
+					& \textit{Comment faire pour créer une}
+					\tabularnewline
+					& virtuelles du client.
+					& \textit{carte de paiements virtuelle ?}
+					\tabularnewline
+					\hline
+				% gestion\_decouvert
+				\multirow{2}{*}{\texttt{gestion\_decouvert}}
+					& Affichage d'une synthèse des autorisations
+					& \textit{Est-ce que j'ai un}
+					\tabularnewline
+					& de découverts de leur procédure de gestion
+					& \textit{découvert autorisé ?}
+					\tabularnewline
+					\hline
+				% gestion\_plafond
+				\multirow{2}{*}{\texttt{gestion\_plafond}}
+					& Affichage de gestion des plafonds
+					& \textit{Le plafond de ma carte est}
+					\tabularnewline
+					& des cartes du client.
+					& \textit{trop bas, que faire ?}
+					\tabularnewline
+					\hline
+				% gestion\_sans\_contact
+				\multirow{2}{*}{\texttt{gestion\_sans\_contact}}
+					& Affichage de gestion des
+					& \textit{Je veux désactiver le}
+					\tabularnewline
+					& fonctionnalités des cartes du client.
+					& \textit{sans contact sur ma carte.}
+					\tabularnewline
+					\hline
+			\end{tabular}
+			\end{scriptsize}
+			\end{center}
+			\caption{
+				Présentation du jeu de données \texttt{Bank Cards} avec quelques exemples.
+				La version \texttt{2.0.0} contient $100$ questions par intention.
+			}
+			\label{table:A.1-DATASET-BANK-CARDS}
+		\end{table}
+		
+		% Origine.
+		\paragraph{Origine :}
+		Le périmètre des intentions est inspiré d'un chatbot actuellement en production.
+		Les données ont été sélectionnées aléatoirement et reformulées manuellement pour garantir la confidentialité des utilisateurs : aucune données personnelles ne subsistent dans ce jeu de données.
+		Enfin, deux réviseurs extérieurs à l'équipe de recherche, ayant un profil d'analystes métiers du domaine bancaire, ont validé le périmètre et le contenu de ces intentions.
+		
+		% Disponibilité.
+		\paragraph{Disponibilité :}
+		Le jeu de données est archivé sur la plateforme \texttt{Zenodo} et est accessible ici: \cite{schild:2022:french-trainset-chatbots}
+
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Annexe A.2: \texttt{MLSUM} (The Multilingual Summarization Corpus): Échantillon de titre d'article de journaux en français associés à leur classification thématique
+	%%%%%--------------------------------------------------------------------
+	\section{\texttt{MLSUM} (The Multilingual Summarization Corpus): Échantillon de titre d'article de journaux en français associés à leur classification thématique}
+	\label{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}
+		
+		
+		% Description.
+		\paragraph{Description :}
+		Cet ensemble de données est constitué d'articles de journaux avec leur titre, leur résumé et leur classification thématique.
+		Nous l'utilisons (1) pour estimer le temps nécessaire pour annoter la similarité des titres avec des contraintes (\texttt{MUST-LINK}, \texttt{CANNOT-LINK}) et (2) pour tester la méthodologie de \textit{clustering} interactif (annotation de contraintes et \textit{clustering} sous contraintes).
+		
+		% Contenu.
+		\paragraph{Contenu :}
+		Les titres de journaux sont formulés en français.
+		L'ensemble de données est divisé en $14$ thèmes (classes) dont un aperçu est disponible dans la \textsc{Table~\ref{table:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
+		La version \texttt{1.0.0 [subset: fr+train+filtered]} contient $744$ articles.
+		
+		\begin{table}[!htb]
+			\begin{center}
+			\begin{scriptsize}
+			\begin{tabular}{|c|c|c|c|}
+			
 				\hline
-			% ecologie
-			\multirow{2}{*}{\texttt{ecologie}}
-				& Actualités sur la pollution
-				& \textit{Comment Lyon a banni les}
-				& \multirow{2}{*}{$34$}
-				\tabularnewline
-				& et la transition écologique
-				& \textit{pesticides de ses parcs et jardins}
-				&
-				\tabularnewline
-				\hline
-			% economie
-			\multirow{2}{*}{\texttt{economie}}
-				& Actualités économiques,
-				& \textit{La guerre des prix s'intensifie}
-				& \multirow{2}{*}{$41$}
-				\tabularnewline
-				& financières et boursières
-				& \textit{sur le marché du mobile en Israël}
-				&
-				\tabularnewline
-				\hline
-			% education
-			\multirow{2}{*}{\texttt{education}}
-				& Actualités liées à l'éducation
-				& \textit{Plainte de parents d'élève sur des notes}
-				& \multirow{2}{*}{$62$}
-				\tabularnewline
-				& et à la filière enseignante
-				& \textit{jugées trop basses au bac}
-				&
-				\tabularnewline
-				\hline
-			% emploi
-			\multirow{2}{*}{\texttt{emploi}}
-				& Actualités liées au marché du
-				& \textit{Plus d'un tiers des CDI prennent}
-				& \multirow{2}{*}{$54$}
-				\tabularnewline
-				& travail et aux actions syndicales
-				& \textit{ fin avant la première année}
-				&
-				\tabularnewline
-				\hline
-			% immobilier
-			\multirow{2}{*}{\texttt{immobilier}}
-				& Actualités liées au marché de
-				& \textit{Depuis la fin des années 2000, l'accession}
-				& \multirow{2}{*}{$65$}
-				\tabularnewline
-				& l'immobilier et logements locatifs
-				& \textit{à la propriété se complique en France}
-				&
-				\tabularnewline
-				\hline
-			% meteo
-			\multirow{2}{*}{\texttt{meteo}}
-				& Actualités météorologiques
-				& \textit{L'Eure et l'est de la France}
-				& \multirow{2}{*}{$35$}
-				\tabularnewline
-				& (bulletins, catastrophes, canicule)
-				& \textit{balayés par les intempéries}
-				&
-				\tabularnewline
-				\hline
-			% musiques
-			\multirow{2}{*}{\texttt{musiques}}
-				& Actualités liées aux chanteurs,
-				& \textit{Opéra : Elsa Dreisig,}
-				& \multirow{2}{*}{$55$}
-				\tabularnewline
-				& concerts et sorties d'albums
-				& \textit{une soprano à voix nue}
-				&
-				\tabularnewline
-				\hline
-			% police-justice
-			\multirow{2}{*}{\texttt{police-justice}}
-				&Actualités liées aux affaires
-				& \textit{Bygmalion : Nicolas Sarkozy}
-				& \multirow{2}{*}{$67$}
-				\tabularnewline
-				& policières et aux tribunaux
-				& \textit{directement visé}
-				&
-				\tabularnewline
-				\hline
-			% politique
-			\multirow{2}{*}{\texttt{politique}}
-				& Actualités de la scène
-				& \textit{Le Sénat donne son aval à la}
-				& \multirow{2}{*}{$52$}
-				\tabularnewline
-				& politique et législative
-				& \textit{prolongation de l'état d'urgence}
-				&
-				\tabularnewline
-				\hline
-			% sante
-			\multirow{2}{*}{\texttt{sante}}
-				& \multirow{2}{*}{Actualités sanitaires}
-				& \textit{Chine : un nouveau}
-				& \multirow{2}{*}{$70$}
-				\tabularnewline
-				&
-				& \textit{cas de grippe aviaire H7N9}
-				&
-				\tabularnewline
-				\hline
-			% sciences
-			\multirow{2}{*}{\texttt{sciences}}
-				& Actualités scientifiques
-				& \textit{L'ordinateur quantique}
-				& \multirow{2}{*}{$47$}
-				\tabularnewline
-				& et vulgarisation
-				& \textit{au banc d'essai}
-				&
-				\tabularnewline
-				\hline
-			% sport
-			\multirow{2}{*}{\texttt{sport}}
-				& \multirow{2}{*}{Actualités sportives}
-				& \textit{F1 : Webber partira}
-				& \multirow{2}{*}{$64$}
-				\tabularnewline
-				&
-				& \textit{en tête à Monaco}
-				&
-				\tabularnewline
-				\hline
-		\end{tabular}
-		\end{scriptsize}
-		\end{center}
-		\caption{
-			Présentation du jeu de données échantillonné à partir de \texttt{MLSUM} avec quelques exemples.
-		}
-		\label{table:A.2-DATASET-MLSUM-SUBSET-SCHILD}
-	\end{table}
-	
-	% Origine.
-	\paragraph{Origine :}
-	L'ensemble de données \texttt{MLSUM} a été proposé par \cite{scialom-etal:2020:mlsum-multilingual-summarization}.
-	Notre ensemble de données en est un échantillon (\textit{sélectionner au hasard de $75$ articles dans les $14$ sujets les plus utilisés}) filtré (\textit{conserver les articles qui ont un sujet évident par rapport à leur titre, sans leur corps}).
-	Deux relecteurs ont travaillé sur cette tâche afin de limiter la subjectivité du filtrage.
-	L'échantillon final contient $744$ articles après relecture.
-	
-	% Disponibilité.
-	\paragraph{Disponibilité :}
-	Le jeu de donnée original est archivé sur \texttt{arXiv} et est accessible ici : \cite{scialom-etal:2020:mlsum-multilingual-summarization}.
-	L'échantillon réalisé par nos soin est archivé sur la plateforme \texttt{Zenodo} et est accessible ici: \cite{schild-adler:2023:subset-mlsum-multilingual}.
+				% ENTETE DU TABLEAU
+				\rowcolor{colorTableHeader!15}
+				\textbf{Thème}
+					& \textbf{Définition}
+					& \textbf{Exemple}
+					& \textbf{Taille}
+					\tabularnewline
+					\hline
+				
+				% arts
+				\multirow{2}{*}{\texttt{arts}}
+					& Actualités artistiques (spectacles,
+					& \textit{La rencontre de l'art et de la }
+					& \multirow{2}{*}{$50$}
+					\tabularnewline
+					& oeuvres, événements, expositions)
+					& \textit{gastronomie au château du Feÿ}
+					&
+					\tabularnewline
+					\hline
+				% disparitions
+				\multirow{2}{*}{\texttt{disparitions}}
+					& Actualités nécrologiques 
+					& \textit{Le traducteur Jean-Pierre}
+					& \multirow{2}{*}{$48$}
+					\tabularnewline
+					& (décès ou disparition)
+					& \textit{Carasso est mort à 73 ans}
+					&
+					\tabularnewline
+					\hline
+				% ecologie
+				\multirow{2}{*}{\texttt{ecologie}}
+					& Actualités sur la pollution
+					& \textit{Comment Lyon a banni les}
+					& \multirow{2}{*}{$34$}
+					\tabularnewline
+					& et la transition écologique
+					& \textit{pesticides de ses parcs et jardins}
+					&
+					\tabularnewline
+					\hline
+				% economie
+				\multirow{2}{*}{\texttt{economie}}
+					& Actualités économiques,
+					& \textit{La guerre des prix s'intensifie}
+					& \multirow{2}{*}{$41$}
+					\tabularnewline
+					& financières et boursières
+					& \textit{sur le marché du mobile en Israël}
+					&
+					\tabularnewline
+					\hline
+				% education
+				\multirow{2}{*}{\texttt{education}}
+					& Actualités liées à l'éducation
+					& \textit{Plainte de parents d'élève sur des notes}
+					& \multirow{2}{*}{$62$}
+					\tabularnewline
+					& et à la filière enseignante
+					& \textit{jugées trop basses au bac}
+					&
+					\tabularnewline
+					\hline
+				% emploi
+				\multirow{2}{*}{\texttt{emploi}}
+					& Actualités liées au marché du
+					& \textit{Plus d'un tiers des CDI prennent}
+					& \multirow{2}{*}{$54$}
+					\tabularnewline
+					& travail et aux actions syndicales
+					& \textit{ fin avant la première année}
+					&
+					\tabularnewline
+					\hline
+				% immobilier
+				\multirow{2}{*}{\texttt{immobilier}}
+					& Actualités liées au marché de
+					& \textit{Depuis la fin des années 2000, l'accession}
+					& \multirow{2}{*}{$65$}
+					\tabularnewline
+					& l'immobilier et logements locatifs
+					& \textit{à la propriété se complique en France}
+					&
+					\tabularnewline
+					\hline
+				% meteo
+				\multirow{2}{*}{\texttt{meteo}}
+					& Actualités météorologiques
+					& \textit{L'Eure et l'est de la France}
+					& \multirow{2}{*}{$35$}
+					\tabularnewline
+					& (bulletins, catastrophes, canicule)
+					& \textit{balayés par les intempéries}
+					&
+					\tabularnewline
+					\hline
+				% musiques
+				\multirow{2}{*}{\texttt{musiques}}
+					& Actualités liées aux chanteurs,
+					& \textit{Opéra : Elsa Dreisig,}
+					& \multirow{2}{*}{$55$}
+					\tabularnewline
+					& concerts et sorties d'albums
+					& \textit{une soprano à voix nue}
+					&
+					\tabularnewline
+					\hline
+				% police-justice
+				\multirow{2}{*}{\texttt{police-justice}}
+					&Actualités liées aux affaires
+					& \textit{Bygmalion : Nicolas Sarkozy}
+					& \multirow{2}{*}{$67$}
+					\tabularnewline
+					& policières et aux tribunaux
+					& \textit{directement visé}
+					&
+					\tabularnewline
+					\hline
+				% politique
+				\multirow{2}{*}{\texttt{politique}}
+					& Actualités de la scène
+					& \textit{Le Sénat donne son aval à la}
+					& \multirow{2}{*}{$52$}
+					\tabularnewline
+					& politique et législative
+					& \textit{prolongation de l'état d'urgence}
+					&
+					\tabularnewline
+					\hline
+				% sante
+				\multirow{2}{*}{\texttt{sante}}
+					& \multirow{2}{*}{Actualités sanitaires}
+					& \textit{Chine : un nouveau}
+					& \multirow{2}{*}{$70$}
+					\tabularnewline
+					&
+					& \textit{cas de grippe aviaire H7N9}
+					&
+					\tabularnewline
+					\hline
+				% sciences
+				\multirow{2}{*}{\texttt{sciences}}
+					& Actualités scientifiques
+					& \textit{L'ordinateur quantique}
+					& \multirow{2}{*}{$47$}
+					\tabularnewline
+					& et vulgarisation
+					& \textit{au banc d'essai}
+					&
+					\tabularnewline
+					\hline
+				% sport
+				\multirow{2}{*}{\texttt{sport}}
+					& \multirow{2}{*}{Actualités sportives}
+					& \textit{F1 : Webber partira}
+					& \multirow{2}{*}{$64$}
+					\tabularnewline
+					&
+					& \textit{en tête à Monaco}
+					&
+					\tabularnewline
+					\hline
+			\end{tabular}
+			\end{scriptsize}
+			\end{center}
+			\caption{
+				Présentation du jeu de données échantillonné à partir de \texttt{MLSUM} avec quelques exemples.
+			}
+			\label{table:A.2-DATASET-MLSUM-SUBSET-SCHILD}
+		\end{table}
+		
+		% Origine.
+		\paragraph{Origine :}
+		L'ensemble de données \texttt{MLSUM} a été proposé par \cite{scialom-etal:2020:mlsum-multilingual-summarization}.
+		Notre ensemble de données en est un échantillon (\textit{sélectionner au hasard de $75$ articles dans les $14$ sujets les plus utilisés}) filtré (\textit{conserver les articles qui ont un sujet évident par rapport à leur titre, sans leur corps}).
+		Deux relecteurs ont travaillé sur cette tâche afin de limiter la subjectivité du filtrage.
+		L'échantillon final contient $744$ articles après relecture.
+		
+		% Disponibilité.
+		\paragraph{Disponibilité :}
+		Le jeu de donnée original est archivé sur \texttt{arXiv} et est accessible ici : \cite{scialom-etal:2020:mlsum-multilingual-summarization}.
+		L'échantillon réalisé par nos soin est archivé sur la plateforme \texttt{Zenodo} et est accessible ici: \cite{schild-adler:2023:subset-mlsum-multilingual}.

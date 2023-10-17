@@ -1,0 +1,378 @@
+\section{Implémentation de la librairie \texttt{cognitivefactory-interactive-clustering}}
+\label{section:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
+	
+	% Généralités.
+	La librairie \texttt{cognitivefactory-interactive-clustering} ...
+	\todo[inline]{introduction à rédiger}
+	
+	% Information : comme y accéder.
+	\begin{leftBarInformation}
+		La librairie est accessible dans \cite{schild:2022:cognitivefactory-interactiveclustering}.
+		La documentation technique est accessible au lien suivant : \url{https://cognitivefactory.github.io/interactive-clustering/}.
+	\end{leftBarInformation}
+	
+	% Exemple.
+	Pour les sections suivantes, nous suivrons l'exemple suivant (cf. \textsc{Code~\ref{code:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA}}) pour présenter nos implémentations.
+	
+	\begin{lstlisting}[
+		language=Python,
+		caption={Jeu exemple pour présenter notre implémentation du \textit{clustering} interactif.},
+		label={code:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA},
+	]
+# Définir les données.
+dict_of_texts = {
+"0": "Comment signaler un vol de carte bancaire ?",
+"1": "J'ai égaré ma carte bancaire, que faire ?",
+"2": "J'ai perdu ma carte de paiement",
+"3": "Le distributeur a avalé ma carte !",
+"4": "En retirant de l'argent, le GAB a gardé ma carte...",
+"5": "Le distributeur ne m'a pas rendu ma carte bleue.",
+# ...
+"N": "Pourquoi le sans contact ne fonctionne pas ?",
+}
+	\end{lstlisting}
+	
+	
+	%%%
+	%%% Subsection C.1.1: Gestion des données.
+	%%%
+	\subsection{Gestion des données}
+	\label{section:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-DONNEES}
+	
+	% cognitivefactory.interactive-clustering.utils
+	Tout d'abord, en ce qui concerne la \textbf{manipulation de données}, nous utilisons le module \texttt{utils} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+	Les données sont stockées dans un dictionnaire Python afin de tracer les manipulations à l'aide d'une clé servant d'identifiant de la donnée.
+	
+	% cognitivefactory.interactive-clustering.utils.preprocessing : Implémentation.
+	Nous avons d'une part la partie \texttt{utils.preprocessing}\footnote{
+		\texttt{utils.preprocessing}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/preprocessing/}
+	} qui permet de normaliser les données.
+	Par défaut :
+	\begin{itemize}
+		\item[\(\bullet\)] le texte est passé en \textit{minuscule} (de "\texttt{Bonjour}" à "\texttt{bonjour}"),
+		\item[\(\bullet\)] la \textit{ponctuation} est supprimée, %(\texttt{.}, \texttt{,}, \texttt{;}, \texttt{:}, \texttt{!}, \texttt{¡}, \texttt{?}, \texttt{¿}, \texttt{…}, \texttt{•}, \texttt{(}, \texttt{)}, \texttt{\{}, \texttt{\}}, \texttt{[}, \texttt{]}, \texttt{\textguillemets{}, \texttt{}}, \texttt{^}, \texttt{\`}, \texttt{'}, \texttt{"}, \texttt{\\}, \texttt{/}, \texttt{|}, \texttt{-}, \texttt{\_}, \texttt{#}, \texttt{\&}, \texttt{\~}, \texttt{\@}),
+		\item[\(\bullet\)] les \textit{accents} sont enlevés (de "\texttt{crédit}" à "\texttt{credit}"),
+		\item[\(\bullet\)] et les multiples \textit{espaces blancs} sont convertis en un unique espace simple (de "\texttt{au~~~~revoir}" à "\texttt{au revoir}").
+	\end{itemize}
+	
+	Si besoin, trois options "avancées" sont disponibles pour réaliser un prétraitement plus destructif :
+	\begin{itemize}
+		\item[\(\bullet\)] la suppression des mots vides (\cite{nothman-etal:2018:stop-word-lists}),
+		\item[\(\bullet\)] la conversion des mots vers leur forme racine (\cite{manning-schutze:2000:foundations-statistical-natural}),
+		\item[\(\bullet\)] et la suppression des mots en fonction de leur profondeur dans l'arbre de dépendances syntaxiques (\cite{nivre:2006:inductive-dependency-parsing}).
+	\end{itemize}
+	
+	% cognitivefactory.interactive-clustering.utils.preprocessing : Dépendances.
+	Ces traitements sont réalisés en bénéficiant des fonctionnalités mises à disposition d'un modèle de langue de type SpaCy (\cite{honnibal-montani:2017:spacy-natural-language}), avec par défaut l'utilisation du modèle \texttt{fr-core-news-md}.
+	
+	% cognitivefactory.interactive-clustering.utils.preprocessing : Par défaut.
+	Pour nos études, nous définissons quatre niveaux de prétraitements facilement identifiables :
+	\begin{enumerate}
+		\item L'\textbf{absence de prétraitement}, soit la conservation de la donnée brute, noté \texttt{prep.no} ;
+		\item Le \textbf{prétraitement simple}, correspondant au traitement traitement de base (minuscules, ponctuations, accents, espaces blancs), noté \texttt{prep.simple} ; 
+		\item Le \textbf{prétraitement lemmatisé}, correspondant au traitement de base auquel s'ajoute la lemmatisation des mots, noté \texttt{prep.lemma} ;
+		\item le \textbf{prétraitement avec filtres}, correspondant au traitement de base avec l'élagage de l'arbre de dépendance syntaxique de la phrase, noté \texttt{prep.filter}.
+	\end{enumerate}
+	
+	
+	% cognitivefactory.interactive-clustering.utils.vectorization
+	D'autre part, la partie \texttt{utils.vectorization}\footnote{
+		\texttt{utils.vectorization}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/vectorization/}
+	} permet de transformer les données en une représentation exploitable pour la machine.
+	Deux modes de vectorisation sont mis à disposition :
+	\begin{enumerate}
+		\item \textbf{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), utilisant la fréquence d'occurrence des mots pour représenter une phrase, et noté \texttt{vect.tfidf} pour nos études ;
+		\item \textbf{SpaCy} (\cite{honnibal-montani:2017:spacy-natural-language}), utilisant le modèle de langue \texttt{fr-core-news-md}, et noté \texttt{vect.frcorenewsmd}.
+	\end{enumerate}
+	
+	% cognitivefactory.interactive-clustering.utils : Exemple.
+	Vous avez un exemple d'utilisation des modules de prétraitements et de vectorisation dans \textsc{Code~\ref{code:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES}}.
+	
+	\begin{lstlisting}[
+		language=Python,
+		caption={Démonstration de notre implémentation du prétraitement et de la vectorisation sur le jeu d'exemple.},
+		label={code:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES},
+	]
+# Import des dépendances.
+from cognitivefactory.interactive_clustering.utils.preprocessing import preprocess
+from cognitivefactory.interactive_clustering.utils.vectorization import vectorize
+
+# Prétraitement des données.
+dict_of_preprocess_texts = preprocess(
+dict_of_texts=dict_of_texts,
+apply_stopwords_deletion=False,
+apply_parsing_filter=False,
+apply_lemmatization=False,
+spacy_language_model="fr_core_news_md",
+)
+"""
+{"0": "comment signaler un vol de carte bancaire",
+ "1": "j ai egare ma carte bancaire, que faire",
+ "2": "j ai perdu ma carte de paiement",
+ "3": "le distributeur a avale ma carte",
+ "4": "en retirant de l argent le gab a garde ma carte",
+ "5": "le distributeur ne m a pas rendu ma carte bleue",
+ # ...
+ "N": "pourquoi le sans contact ne fonctionne pas"}
+"""
+
+# Vectorisation des données.
+dict_of_vectors = vectorize(
+dict_of_texts=dict_of_preprocess_texts,
+vectorizer_type="tfidf",
+)
+	\end{lstlisting}
+	
+	%%%
+	%%% Subsection C.1.2: Gestion des contraintes
+	%%%
+	\subsection{Gestion des contraintes}
+	\label{section:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}
+	
+	% cognitivefactory.interactive-clustering.constraints
+	En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{
+		\texttt{constraints}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/constraints/}
+	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+	
+	% cognitivefactory.interactive-clustering.constraints: Types
+	Deux types de contraintes sont prises en charge (cf. \cite{wagstaff-cardie:2000:clustering-instancelevel-constraints}) :
+	\begin{itemize}
+		\item[\(\bullet\)] les contraintes \texttt{MUST-LINK} permettant de réunir deux données,
+		\item[\(\bullet\)] et les contraintes \texttt{CANNOT-LINK} permettant à l'inverse de les séparer.
+	\end{itemize}
+
+	% cognitivefactory.interactive-clustering.constraints: Transitivité.
+	Ces types de contraintes respectent les propriétés de transitivités décrites dans l'\textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
+	On note ainsi qu'il est possible de déduire la troisième contrainte d'un triangle de trois points si nous connaissons déjà les deux premières.
+	
+	\begin{equation}
+		\label{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
+		(\forall A,B,C)~
+		\begin{cases}
+			% ML + ML => ML
+			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+			~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(B,C)
+			~\Rightarrow~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,C)  \\
+			% ML + CL => CL
+			~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+			~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(B,C)
+			~\Rightarrow~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(A,C)
+		\end{cases}
+	\end{equation}
+	
+	Pour respecter ces propriétés, le gestionnaire de contraintes doit ainsi calculer les transitivités à chaque ajout ou suppression de contraintes.
+	On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
+	
+	% cognitivefactory.interactive-clustering.constraints: Conflits.
+	Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}}).
+	Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
+	Ce conflit peut venir simplement venir d'une erreur d'inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
+	Sémantiquement, un conflit indique une contradiction dans la gestion des données, car les données concernées doivent à la fois être réunies et séparées...
+	
+	\begin{equation}
+		\label{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}
+		(\exists A,B,C)~
+		~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
+		~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(B,C)
+		~\wedge~\textcolor{colorDarkPastelRed}{\texttt{CANNOT\_LINK}}(A,C)
+	\end{equation}
+	
+	% cognitivefactory.interactive-clustering.constraints: Composants connexe.
+	À partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}).
+	Ce composant peut être vu comme un noyau de \textit{cluster}.
+	Il pourra être associé à d'autres noyaux par similarité pour former un \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
+
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[width=0.70\textwidth]{figures/example-constraints-transitivity}
+		\caption{
+			Exemples des propriétés de transitivité des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges). \textbf{(1)} et \textbf{(2)} représente les possibilités de déduction d'une contrainte (\texttt{(c)}) en fonction des deux autres (\texttt{(a)} et \texttt{(b)}). \textbf{(3)} représente deux composants connexes définis par la transitivité des contraintes \texttt{MUST-LINK}. Enfin, \textbf{(4)} représente un cas de conflit où une contrainte (\texttt{(c)}) ne correspond pas à sa déduction faite à partir des autres contraintes (\texttt{(a)} et \texttt{(b)}).
+		}
+		\label{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
+	\end{figure}
+	
+	% cognitivefactory.interactive-clustering.constraints : Exemple.
+	Un exemple d'utilisation du module de gestion de contraintes est consultable dans \textsc{Code~\ref{code:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES}}.
+	
+	\begin{lstlisting}[
+		language=Python,
+		caption={Démonstration de notre implémentation de gestion des contraintes sur le jeu d'exemple.},
+		label={code:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES},
+	]
+# Import des dépendances.
+from cognitivefactory.interactive_clustering.constraints.factory import managing_factory
+
+# Création du gestionnaire de contraintes.
+constraints_manager = managing_factory(
+manager="binary",
+list_of_data_IDs = list(dict_of_texts.keys()),  # ["0", "1", "2", "3", "4", "5", ..., "N"]
+)
+
+# Ajout de contraintes.
+constraints_manager.add_constraint(
+data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
+data_ID2="1",  # "J'ai égaré ma carte bancaire, que faire ?"
+constraint_type="MUST_LINK",
+)
+constraints_manager.add_constraint(
+data_ID1="3",  # "Le distributeur a avalé ma carte !"
+data_ID2="4",  # "En retirant de l'argent, le GAB a gardé ma carte..."
+constraint_type="MUST_LINK",
+)
+constraints_manager.add_constraint(
+data_ID1="0",  # "Comment signaler un vol de carte bancaire ?"
+data_ID2="N",  # "Pourquoi le sans contact ne fonctionne pas ?"
+constraint_type="CANNOT_LINK",
+)
+# NB: ajouter une contrainte "MUST_LINK" entre "1" et "N" lèverait une erreur.
+
+# Récupération des composants connexes.
+connected_components = constraints_manager.get_connected_components()
+"""
+[['0', '1'],
+ ['2'],
+ ['3', '4'],
+ ['5'],
+ ['N']]
+"""
+	\end{lstlisting}
+	
+	
+	%%%
+	%%% Subsection C.1.3: Algorithme de \textit{clustering} sous contraintes.
+	%%%
+	\subsection{Algorithme de \textit{clustering} sous contraintes}
+	\label{section:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
+	
+	% cognitivefactory.interactive-clustering.clustering
+	En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{
+		\texttt{clustering}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}
+	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+	
+	% cognitivefactory.interactive-clustering.utils.clustering : Implémentation.
+	Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes :
+	\begin{enumerate}
+		\item \textbf{KMeans}, dans sa version \texttt{COP} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \texttt{MPC} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
+		\item \textbf{DBscan}, dans sa version \texttt{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
+		\item \textbf{Hiérarchique} (\cite{davidson-ravi:2005:agglomerative-hierarchical-clustering}), avec quatre métriques de distances : \textit{single} (noté \texttt{clust.hier.sing}), \textit{complete} (noté \texttt{clust.hier.comp}), \textit{average} (noté \texttt{clust.hier.avg}) et \textit{ward} (noté \texttt{clust.hier.ward}) ;
+		\item \textbf{Spectral}, dans sa version \texttt{SPEC} (\cite{kamvar-etal:2003:spectral-learning}), noté \texttt{clust.spec} ;
+		\item \textbf{Propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}), noté \texttt{clust.affprop}.
+	\end{enumerate}
+	
+	Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{cluster}) et une \textit{factory} est disponible pour instancier rapidement un objet de \textit{clustering}.
+	% cognitivefactory.interactive-clustering.clustering : Exemple.
+	Enfin, un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING}}.
+	
+	
+	\begin{lstlisting}[
+		language=Python,
+		caption={Démonstration de notre implémentation du \textit{clustering} sous contraintes sur le jeu d'exemple.},
+		label={code:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING},
+	]
+# Import des dépendances.
+from cognitivefactory.interactive_clustering.clustering.factory import clustering_factory
+
+# Initialiser un objet de clustering.
+clustering_model = clustering_factory(
+algorithm="kmeans",
+model="COP",
+random_seed=42,
+)
+
+# Lancer le clustering.
+clustering_result = clustering_model.cluster(
+constraints_manager=constraints_manager,  # contient les contraintes
+nb_clusters=2,
+vectors=dict_of_vectors,
+)
+"""
+{"0": 0,  # "Comment signaler un vol de carte bancaire ?"
+ "1": 0,  # "J'ai égaré ma carte bancaire, que faire ?"
+ "2": 0,  # "J'ai perdu ma carte de paiement"
+ "3": 1,  # "Le distributeur a avalé ma carte !"
+ "4": 1,  # "En retirant de l'argent, le GAB a gardé ma carte..."
+ "5": 1,  # "Le distributeur ne m'a pas rendu ma carte bleue."
+ # ...
+ "N": 1}  # "Pourquoi le sans contact ne fonctionne pas ?"
+"""
+	\end{lstlisting}
+	
+	% cognitivefactory.interactive-clustering.utils.clustering : Historique.
+	\begin{leftBarInformation}
+		Dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg, les implémentations des algorithmes  KMeans (\texttt{MPC}), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
+		Les autres algorithmes (KMeans (\texttt{COP}), hiérarchique et spectral (\texttt{SPEC})) ont été implémentés au début de ce doctorat.
+	\end{leftBarInformation}
+	
+	
+	%%%
+	%%% Subsection C.1.4: Algorithme d'échantillonnage de contraintes.
+	%%%
+	\subsection{Algorithme d'échantillonnage de contraintes}
+	\label{section:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
+	
+	% cognitivefactory.interactive-clustering.sampling
+	En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{
+		\texttt{sampling}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/sampling/}
+	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
+	
+	% cognitivefactory.interactive-clustering.utils.sampling : Implémentation.
+	Cet échantillonnage correspond à la sélection de couple de données.
+	Par défaut, l'échantillonnage est purement aléatoire.
+	Cependant, plusieurs options sont disponibles :
+	
+	\begin{itemize}
+		\item[\(\bullet\)] une restriction sur la \textit{distance} pouvant imposer aux données d'être les plus proches ou les plus éloignées du corpus ;
+		\item[\(\bullet\)] une restriction sur le \textit{résultat du clustering} pouvant imposer aux données d'être issues d'un même cluster ou de clusters différents,
+		\item[\(\bullet\)] une restriction pour exclure les contraintes \textit{déjà annotées},
+		\item[\(\bullet\)] et enfin une restriction pour exclure les contraintes \textit{déjà déduites} par transitivité.
+	\end{itemize}
+	
+	% cognitivefactory.interactive-clustering.utils.sampling : Par défaut.
+	Sur cette base, nous définissons quatre niveaux d'échantillonnage facilement identifiables pour nos études :
+	\begin{enumerate}
+		\item Un échantillonnage \textbf{purement aléatoire} en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
+		\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même cluster}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;
+		\item Un échantillonnage des données issues d'un \textbf{même cluster} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
+		\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
+	\end{enumerate}
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[width=0.35\textwidth]{figures/example-sampling}
+		\caption{
+			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
+		}
+		\label{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}
+	\end{figure}
+
+	Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{sample}) et une \textit{factory} est disponible pour instancier rapidement un objet d'échantillonnage.
+	% cognitivefactory.interactive-clustering.sampling : Exemple.
+	Un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING}}.
+	
+	\begin{lstlisting}[
+		language=Python,
+		caption={Démonstration de notre implémentation de l'échantillonnage sur le jeu d'exemple.},
+		label={code:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING},
+	]
+# Import des dépendances.
+from cognitivefactory.interactive_clustering.sampling.factory import sampling_factory
+
+# Initialiser un objet d'échantillonnage.
+sampler = sampling_factory(
+algorithm="random",
+random_seed=42,
+)
+
+# Run sampling.
+selection = sampler.sample(
+constraints_manager=constraints_manager,
+nb_to_select=2,
+clustering_result=clustering_result,  # optionnel pour "random"
+vectors=dict_of_vectors,  # optionnel pour "random"
+)
+"""
+[("0", '5"),  # "Comment signaler un vol de carte bancaire ?" vs "Le distributeur ne m'a pas rendu ma carte bleue."
+ ("0", '2"),  # "Comment signaler un vol de carte bancaire ?" vs "J'ai perdu ma carte de paiement"
+ ("2", 'N")]  # "J'ai perdu ma carte de paiement" vs "Pourquoi le sans contact ne fonctionne pas ?"
+"""
+	\end{lstlisting}

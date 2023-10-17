@@ -1,0 +1,65 @@
+\section{Intuitions à l'origine d'un \textit{clustering} interactif}
+\label{section:3.1-INTUITIONS-ORIGINES}
+
+
+	
+	% Avantages/Limites: xu-tian:2015:comprehensive-survey-clustering
+	% Limite clustering: agarwal-etal:2011:issues-challenges-tools (hyperparamètres) ; steinbach-etal:2004:challenges-clustering-high (high data)
+	% Plusieurs types d'interactions possibles : bae-etal:2021:interactive-clustering-comprehensive
+
+
+	%%%
+	%%% Subsection 3.1.1. Utiliser une approche non-supervisées pour créer une modélisation des données.
+	%%%
+	\subsection{Utiliser une approche non-supervisées pour créer une modélisation des données}
+	\label{section:3.1.1-INTUITIONS-ORIGINES-NON-SUPERVISEES}
+	
+		\todo[inline]{A REDIGER}
+	
+	%%%
+	%%% Subsection 3.1.2. Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes.
+	%%%
+	\subsection{Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes}
+	\label{section:3.1.2-INTUITIONS-ORIGINES-SEMI-SUPERVISEES}
+	
+		\todo[inline]{A REDIGER}
+	
+	%%%
+	%%% Subsection 3.1.3. Tirer parti des avantages de l'apprentissage actif pour optimiser les interactions Homme/machine.
+	%%%
+	\subsection{Tirer parti des avantages de l'apprentissage actif pour optimiser les interactions Homme/machine}
+	\label{section:3.1.3-INTUITIONS-ORIGINES-APPRENTISSAGE-ACTIF}
+	
+		\todo[inline]{A REDIGER}
+
+
+	\todo[inline]{ANCIENNE PARTIE (début)}
+	% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
+	La pierre angulaire de notre méthode repose sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie :
+	cela l'éloigne de ses compétences métiers initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
+	De fait, il semble plus adéquat de demander à l'expert métier de discriminer deux questions sur la base de leurs réponses :
+	une telle approche demande a priori une charge de travail plus faible et semble plus intuitive car elle se rapproche des compétences réelles de l'annotateur (\textguillemets{\textit{est-ce les deux données traite du même cas d'usage ?}}).
+	Ainsi, nous basons notre méthode sur l'annotation de contraintes sur les données.
+	
+	% 2. Un expert métier seul ne peut trouver une modélisation adéquate, il faut se reposer sur l'interaction homme-machine.
+	Toutefois, l'annotation de contraintes semble elle aussi fastidieuse.
+	En effet, pour faire émerger une base d'apprentissage, il faut annoter un grand nombre de contraintes et être attentifs aux éventuelles incohérences pour ne pas introduire de contraintes contradictoires.
+	Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine.
+	Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.
+
+	% TR:
+	C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d'entraînement de notre assistant conversationnel.
+	\todo[inline]{ANCIENNE PARTIE (fin)}
+	
+	%%%
+	%%% Conclusion.
+	%%%
+	\begin{leftBarSummary}
+		... :
+		\begin{todolist}
+			% Pression sur la qualité.
+			\item[\itemok] ...
+			\item[\itemok] ...
+			\item[\itemok] ...
+		\end{todolist}
+	\end{leftBarSummary}
