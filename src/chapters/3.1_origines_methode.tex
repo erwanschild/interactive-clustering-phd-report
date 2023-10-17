@@ -1,20 +1,54 @@
 \section{Intuitions à l'origine d'un \textit{clustering} interactif}
 \label{section:3.1-INTUITIONS-ORIGINES}
 
-
+	Tout d'abord, détaillons trois intuitions qui nous ont permis de concevoir notre méthodologie d'annotation.
 	
-	% Avantages/Limites: xu-tian:2015:comprehensive-survey-clustering
-	% Limite clustering: agarwal-etal:2011:issues-challenges-tools (hyperparamètres) ; steinbach-etal:2004:challenges-clustering-high (high data)
-	% Plusieurs types d'interactions possibles : bae-etal:2021:interactive-clustering-comprehensive
-
-
+	
 	%%%
 	%%% Subsection 3.1.1. Utiliser une approche non-supervisées pour créer une modélisation des données.
 	%%%
 	\subsection{Utiliser une approche non-supervisées pour créer une modélisation des données}
 	\label{section:3.1.1-INTUITIONS-ORIGINES-NON-SUPERVISEES}
 	
-		\todo[inline]{A REDIGER}
+		%%% Possibilité d'utilisé des regroupements non supervisés.
+		Dans le but d'assister la phase de modélisation des données, une piste intéressante revient à déléguer cette tâche à la machine.
+		En effet, grâce à une \textbf{classification non-supervisés (\textit{clustering})}, un algorithme peut regrouper les données en fonction de leur similarité intrinsèque et ainsi suggérer une modélisation intentions.
+		%%% Quelques exemples communs: KMeans, Hiérarchique, Spectral, DBScan, Affinity propagation, ...
+		Plusieurs algorithmes et méthodes connus peuvent être utilisés :
+		
+		\begin{itemize}
+			% KMeans.
+			\item Le \textbf{\textit{clustering} KMeans} (\cite{macqueen:1967:methods-classification-analysis}) :
+			Cette méthode se repose sur la minimisation de l'inertie intra-classes en attribuant chaque donnée au barycentre de \textit{cluster} le plus proche.
+			Cette approche est l'une des plus répandues en raison de sa simplicité et de sa rapidité de calcul ;
+			% Hiérarchique.
+			\item Le \textbf{\textit{clustering} hiérarchique} (\cite{murtagh-contreras:2012:algorithms-hierarchical-clustering}) :
+			Cette méthode revient à fusionner itérativement les données les plus similaires dans un nouveau \textit{cluster}.
+			Plusieurs liens de similarité peuvent être implémentés (\textit{le lien \texttt{single} fusionnant les deux \textit{clusters} ayant les frontières les plus proches, le lien \texttt{complete} fusionnant les deux \textit{clusters} ayant les frontières opposées les plus proches, le lien \texttt{average} fusionnant les deux \textit{clusters} ayant les barycentres les plus proches et le lien \texttt{ward} fusionnant les deux \textit{clusters} qui donneront le prochain \textit{cluster} le plus compact}) ;
+			% Spectral.
+			\item Le \textbf{\textit{clustering} spectral} (\cite{ng-etal:2002:spectral-clustering-analysis}) :
+			Cette méthode consiste à modéliser la matrice de similarité entre les données par ses vecteurs propres puis de regrouper ces derniers à l'aide d'un KMeans.
+			Cette approche permet d'obtenir des \textit{clusters} aux formes complexes ;
+			% DBScan.
+			\item Le \textbf{\textit{clustering} DBScan} (\cite{ester-etal:1996:densitybased-algorithm-discovering}) :
+			Cette méthode utilise la densité de données dans l'espace pour identifier des regroupements.
+			Cette approche permet de découvrir des \textit{clusters} aux formes complexes si leur densité est suffisante.
+			\item ...
+		\end{itemize}
+		
+		%%% Cependant, il y a des limites.
+		Cependant, ces algorithmes non-supervisés font régulièrement face à un ensemble de difficultés qui pénalisent leur utilisations.
+		En effet, ces méthodes ont souvent du mal à traiter des données de grandes dimensionnalités ou en grand nombre (\cite{steinbach-etal:2004:challenges-clustering-high}), la présence de bruits peut rapidement perturber le fonctionnement d'un algorithme (\cite{yang-wang:2004:competitive-algorithms-clustering}), et certains \textit{clusters} aux géométries complexes peuvent être difficiles à identifier (\cite{kriegel-etal:2011:density-based-clustering}).
+		De plus, le choix de certains hyperparamètres de ces méthodes n'est pas toujours simple, surtout en ce qui concerne le nombre de clusters, la méthode d'initialisation ou la mesure de distance à utiliser (\cite{agarwal-etal:2011:issues-challenges-tools}).
+		Enfin, toutes ses difficultés se retrouvent dans le traitement du langage naturel, notamment à cause de la taille de vocabulaire important, de la présence de nombreux bruits et de la vaste diversité et complexité de thématiques pouvant y être abordés.
+		\begin{leftBarInformation}
+			La revue de \cite{xu-tian:2015:comprehensive-survey-clustering} détaille plusieurs algorithmes de \textit{clustering}, en fonction de leurs forces et faiblesses sur les points mentionnés ci-dessus.
+		\end{leftBarInformation}
+		
+		% Conclusion : souvent jugés peu pertinents par les experts métiers.
+		Ainsi, toutes ces limites étayent le fait qu'\textbf{un résultat brut d'une classification non supervisées est généralement perçu comme peu pertinent par les experts métiers}.
+		Il est donc nécessaire d'introduire une intervention humaine dans le processus pour guider le fonctionnement d'un algorithme de \textit{clustering}.
+		
 	
 	%%%
 	%%% Subsection 3.1.2. Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes.
@@ -22,7 +56,62 @@
 	\subsection{Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes}
 	\label{section:3.1.2-INTUITIONS-ORIGINES-SEMI-SUPERVISEES}
 	
-		\todo[inline]{A REDIGER}
+		%%% Proposition d'ajouts de contraintes pour corriger un clustering.
+		Une variante aux approches non-supervisées consiste à demander à un humain certaines informations nécessaires à leur amélioration nous considérons donc les \textbf{approches semi-supervisées}.
+		Une manière efficace d'introduire les connaissances d'un expert dans le processus est l'ajout de contraintes.
+		
+		%%% Plusieurs types de contraintes.
+		\cite{lampert-etal:2018:constrained-distance-based} rappelle qu'il peut y avoir deux types de contraintes :
+		\begin{itemize}
+			\item les \textbf{contraintes sur les données} : on parle alors principalement des contraintes binaires \texttt{MUST-LINK} et \texttt{CANNOT-LINK} décrivant si deux données doivent ou ne doivent être dans un même clusters (\cite{wagstaff-cardie:2000:clustering-instancelevel-constraints})
+			\item les \textbf{contraintes sur les \textit{clusters}} : ces contraintes peuvent concerner le nombre de \textit{clusters} à trouver, leur taille minimale ou maximale, la distance minimale de séparation de leurs frontières, ...
+		\end{itemize}
+		
+		% Nous choississons plutôt les contraintes sur les données.
+		Bien que d'autres méthodes permettent d'insérer des contraintes (heuristiques non-supervisées, transferts de connaissances préalables), nous nous concentrons ici sur l'ajout manuel par un expert.
+		Comme cet expert n'a a priori pas de connaissances techniques ou analytiques, ce dernier aurait du mal à manipuler des contraintes sur les \textit{clusters}.
+		Toutefois, ses connaissances métiers lui permettent de caractériser facilement la similarité entre deux données, et donc de décrire des contraintes de type \texttt{MUST-LINK} et \texttt{CANNOT-LINK} en répondant à la question : \textguillemets{\textit{est-ce les deux données traite du même cas d'usage ?}}.
+		
+		\begin{leftBarAuthorOpinion}
+			La pierre angulaire de la méthode que nous proposons en \textsc{Section~\ref{section:3.2-DESCRIPTION-THEORIQUE}} repose notamment sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie : cela l'éloigne de ses compétences métiers initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
+			De fait, il semble plus adéquat de demander à l'expert métier de discriminer deux questions sur la base de leurs similarité de cas d'usage métier.
+		\end{leftBarAuthorOpinion}
+		
+		
+		%%% Quelques exemples communs : COP KMeans, Hiérarchique, SPEC Spectral, C-DBScan, ...
+		Parmi les algorithmes de \textit{clustering} sous contraintes connus, nous disposons des adaptations suivantes :
+		
+		\begin{itemize}
+			% KMeans.
+			\item Le \textbf{\textit{clustering} KMeans sous contraintes} comme COP-KMeans (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) :
+			Dans cette version, l'attribution d'une donnée se fait au \textit{cluster} dont le barycentre est le plus proche et où aucune contraintes n'est violée.
+			Cette adaptation est relativement simple à mettre en oeuvre, mais elle peut mener à des cas de blocage où plus aucun \textit{cluster} n'est accessible à cause de violation de contraintes (il est possible d’adapter l'algorithme en créant un nouveau \textit{cluster}) ;
+			% Hiérarchique.
+			\item Le \textbf{\textit{clustering} hiérarchique sous contraintes} (\cite{davidson-ravi:2005:agglomerative-hierarchical-clustering}) :
+			Dans cette version, les données liées par des contraintes \texttt{MUST-LINK} sont d'abord fusionnées, puis le processus agglomératif commence en prenant garde de ne pas fusionner des \textit{clusters} ayant des contraintes \texttt{CANNOT-LINK} entre eux.
+			Cette adaptation est très simple à mettre en oeuvre car il suffit d'adapter le calcul de distance entre \textit{clusters} ;
+			% Spectral.
+			\item Le \textbf{\textit{clustering} spectral sous contraintes} (\cite{kamvar-etal:2003:spectral-learning}) :
+			Dans cette version, les coefficients de la matrice de similarité sont forcés à $0$ (respectivement $1$) si deux données sont liées par une contrainte \texttt{CANNOT-LINK} (respectivement \texttt{MUST-LINK}).
+			Cette adaptation demande peu d'effort pour être mise en oeuvre, mais des modifications aussi drastiques de la matrice de similarité peut entraîner des changements imprévisibles de comportements ;
+			% DBScan.
+			\item Le \textbf{\textit{clustering} DBScan sous contraintes} comme C-DBScan (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) :
+			Dans cette version, la densité des données ainsi que les contraintes \texttt{CANNOT-LINK} sont utilisées pour identifier des clusters locaux qui seront ensuite fusionnés à l'aide des contraintes \texttt{MUST-LINK}
+			Cette adaptation est plus compliquée à réaliser car elle change légèrement le fonctionnement interne d'exploration de la densité de l'espace de données.
+			\item ...
+		\end{itemize}
+		
+		Ces algorithmes de clustering sous contraintes sont ainsi plein de potentiels : ils sont en effet capable de tirer parti de la similarité intrinsèque des données et des contraintes judicieusement placées de l'expert pour segmenter les données de manière adéquate et ainsi proposer une modélisation pertinente.
+		\begin{leftBarExamples}
+			On peut citer \cite{lampert-etal:2019:constrained-distance-based} où l'annotation de contraintes par un expert d'identifier efficacement dans objets dans une image satellite.
+		\end{leftBarExamples}
+		
+		%%% Cependant, ils peuvent demander énorméments de contraintes : N^2 !
+		Cependant, pour un jeu de données de taille $N$, il y a $N^2$ possibilités de contraintes à ajouter.
+		L'estimation du placement des contraintes les plus appropriées et les plus efficaces pour corriger le \textit{clustering} semble donc être un problème \texttt{NP}-complexe.
+		De plus, si ce choix peut être visuel pour des images (comme dans l'exemple cité ci-dessus), il ne l'est pas pour des données textuelles dont la diversité et la complexité sont difficiles à appréhender.
+		Il est donc important de se demander comment aider l'expert métier à disposer ses contraintes afin de maximiser son impact dans la correction du \textit{clustering}.
+		
 	
 	%%%
 	%%% Subsection 3.1.3. Tirer parti des avantages de l'apprentissage actif pour optimiser les interactions Homme/machine.
@@ -30,36 +119,24 @@
 	\subsection{Tirer parti des avantages de l'apprentissage actif pour optimiser les interactions Homme/machine}
 	\label{section:3.1.3-INTUITIONS-ORIGINES-APPRENTISSAGE-ACTIF}
 	
-		\todo[inline]{A REDIGER}
-
-
-	\todo[inline]{ANCIENNE PARTIE (début)}
-	% 1. L'annotation de contraintes est plus intuitif pour un expert métier.
-	La pierre angulaire de notre méthode repose sur le fait qu'il est difficile pour un expert métier de classer une question suivant une modélisation abstraite prédéfinie :
-	cela l'éloigne de ses compétences métiers initiales, nécessite en contre-partie de nombreuses formations, et introduit de nombreuses erreurs d'annotations.
-	De fait, il semble plus adéquat de demander à l'expert métier de discriminer deux questions sur la base de leurs réponses :
-	une telle approche demande a priori une charge de travail plus faible et semble plus intuitive car elle se rapproche des compétences réelles de l'annotateur (\textguillemets{\textit{est-ce les deux données traite du même cas d'usage ?}}).
-	Ainsi, nous basons notre méthode sur l'annotation de contraintes sur les données.
-	
-	% 2. Un expert métier seul ne peut trouver une modélisation adéquate, il faut se reposer sur l'interaction homme-machine.
-	Toutefois, l'annotation de contraintes semble elle aussi fastidieuse.
-	En effet, pour faire émerger une base d'apprentissage, il faut annoter un grand nombre de contraintes et être attentifs aux éventuelles incohérences pour ne pas introduire de contraintes contradictoires.
-	Pour assister l'expert dans cette tâche, nous avons donc décidé de l'intégrer dans une stratégie d'apprentissage actif en essayant de tirer parti des interactions possibles avec la machine.
-	Ce choix est motivé entre autres par l'intuition qu'il est possible de coopérer avec la machine pour obtenir plus efficacement un résultat pertinent.
-
-	% TR:
-	C'est sur la combinaison de ces deux éléments que repose notre méthode d'annotation pour concevoir le jeu d'entraînement de notre assistant conversationnel.
-	\todo[inline]{ANCIENNE PARTIE (fin)}
+		% Utiliser l'apprentissage actif.
+		Une dernière piste intéressante est celle de l'apprentissage actif (\textit{active learning}, \cite{settles:2010:active-learning-literature}) : celle-ci prône les interactions Homme/machine comme moyen d'atteindre un objectif qu'aucun en peut atteindre séparément.
+		% Liste d'interactions possibles avec le résultat, avec les hyperparamètres, avec des initaitives de la machine, ...
+		\cite{bae-etal:2021:interactive-clustering-comprehensive} liste par exemple un ensemble d'interactions possible avec un algorithme de \textit{clustering} : celles-ci peuvent concerner la manipulation et l'adaptation des résultats, l'adaptation des hyperparamètres des algorithmes, mais aussi des initiatives de la machine pour préparer la réalisation d'une tâche.
+		
+		% Nous sommes intéresser par la sélection optimale de contraintes à annoter
+		Dans notre cas, nous nous intéressons aux initiatives de la machines pour identifier la liste des contraintes à annoter pour corriger ou confirmer efficacement un résultat de \textit{clustering}.
+		Cela peut se faire par exemple à l'aide d'une heuristique sélectionnant les parties les moins sûrs de la segmentation.
 	
 	%%%
 	%%% Conclusion.
 	%%%
 	\begin{leftBarSummary}
-		... :
+		Dans cette partie, nous avons exposés les intuitions suivantes :
 		\begin{todolist}
 			% Pression sur la qualité.
-			\item[\itemok] ...
-			\item[\itemok] ...
-			\item[\itemok] ...
+			\item[\itemok] La phase de modélisation des données peut être déléguée à la machine en employant des algorithmes de classification non-supervisée (\textit{clustering}) ;
+			\item[\itemok] Pour corriger le fonctionnement d'un algorithme de \textit{clustering} et ainsi améliorer la pertinence de ses résultats, l'expert peut ajouter des contraintes binaires sur les données (\texttt{MUST-LINK} et \texttt{CANNOT-LINK}, \textit{clustering} sous contraintes) ;
+			\item[\itemok] Dans le but d'ajouter des contraintes de manière efficace, il est possible d'interagir avec la machine afin de maximiser l'impact de l'intervention de l'expert (\textit{active learning}).
 		\end{todolist}
 	\end{leftBarSummary}

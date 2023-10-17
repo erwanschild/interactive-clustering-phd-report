@@ -30,7 +30,7 @@
 	% Conception difficile, besoin d'experts !
 	Néanmoins, l'élaboration de tels assistants reste un \textbf{défi difficile à relever dans le monde industriel} :
 	\begin{itemize}
-		\item Le traitement du langage en tant que tel est un problème complexe : il faut traiter une grande variété de bruits et d’ambiguïtés de dialogue en plus d'un vocabulaire souvent spécifique au domaine de l'assistant (voir les problèmes de bruits et de représentativité en \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
+		\item Le traitement du langage en tant que tel est un problème complexe : il faut traiter une grande variété de bruits et d'ambiguïtés de dialogue en plus d'un vocabulaire souvent spécifique au domaine de l'assistant (voir les problèmes de bruits et de représentativité en \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
 		\item La base d'apprentissage ainsi que les réponses de l'assistant peuvent contenir des données privées ou confidentielles : il y a donc peu de données réutilisables des sources publiques, et de fortes pressions sont exercées sur le contrôle du comportement du \textit{chatbot} (voir les problèmes de droits d'utilisation et de confidentialité en \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
 		\item L'assistant doit parfois pouvoir manipuler un grand nombre de cas d'usages : sa modélisation peut alors représenter des dizaines d'intentions pour lesquelles des centaines de branches de dialogues peuvent être paramétrées, introduisant ainsi une grande complexité aux tâches de modélisation et d'annotation de sa base d'apprentissage (voir \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
 	\end{itemize}
@@ -70,8 +70,8 @@
 	\begin{leftBarIdea}
 		Pour répondre à cette problématique, nous nous sommes intéressés à trois concepts intéressants de la littérature :
 		\begin{itemize}
-			\item aux techniques d'apprentissage actif, favorisant les interactions entre l'Homme et la machine pour atteindre un objectif (\cite{settles:2010:active-learning-literature}) ;
 			\item aux techniques de \textit{clustering}, permettant de déléguer à la machine la tâche de modélisation grâce à une segmentation des données sur la base de leurs similarités (\cite{xu-tian:2015:comprehensive-survey-clustering}) ;
-			\item à l'annotation de contraintes binaires sur les données, permettant de corriger le fonctionnement d'un algorithme de \textit{clustering} en y introduisant de la connaissance métier (\cite{lampert-etal:2018:constrained-distance-based}).
+			\item à l'annotation de contraintes binaires sur les données, permettant de corriger le fonctionnement d'un algorithme de \textit{clustering} en y introduisant de la connaissance métier (\cite{lampert-etal:2018:constrained-distance-based}) ;
+			\item aux techniques d'apprentissage actif, favorisant les interactions entre l'Homme et la machine pour atteindre un objectif (\cite{settles:2010:active-learning-literature}).
 		\end{itemize}
 	\end{leftBarIdea}

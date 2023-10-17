@@ -1,4 +1,4 @@
-\chapter{Proposition d'un \textit{Clustering Interactif} pour assister la modélisation d'un jeu de données}
+\chapter{Proposition d'un \textit{Clustering Interactif} pour assister la modélisation d'un jeu de données textuelles}
 \label{chapter:3-CLUSTERING-INTERACTIF}
 	
 	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTS: LA MODELISATION C'EST COMPLIQUÉ !
@@ -6,33 +6,31 @@
 	%
 	\begin{leftBarImportantGreen}
 		\begin{todolist}
-			% 1. Importance du jeu de données.
-			\item[\itemok] Dans un cadre industriel, le choix de l'algorithme utilisé pour l'entraînement d'un modèle est déterminé à l'avance, donc la qualité de l'assistant repose principalement sur la fiabilité et la pertinence de son jeu de données ;
-			% 2. Experts métiers avec connaissance métiers, pas de connaissance en datascience.
-			\item[\itemok] Pour concevoir ce jeu de données, il est nécessaire de faire appel à des experts maîtrisant le domaine à couvrir par l'assistant car les données sont en général spécifiques ou privées ;
-			% 3. Experts métiers ayant peu de donnaissance en data science.
-			\item[\itemok] L'intervention de ces experts métiers au sein du projet est en général laborieuse :
-			d'une part à cause de leur manque de connaissances en data science (ce n'est pas leur domaine d'expertise),
-			d'autre part à cause de la complexité inhérente des tâches de modélisation et d'annotation des données.
-			% 4. Tache manuelle avec peu d'assistance.
-			\item[\itemok] Par manque de compétences, de connaissances ou d'ergonomie, la tâche de conception d'un jeu de données reste manuelle et est encore mal assistée par ordinateur.
+			% Importance de la modélisation. Mais modélisation complexe. Donc organisation généralement en cycle.
+			\item[\itemok] L'étape de modélisation est nécessaire pour définir les objectifs et les règles d'un projet d'annotation ;
+			Or cette étape rencontre de nombreux défis qui la rendant particulièrement laborieuse (\textit{complexité intrinsèque du phénomène, subjectivité des opérateurs, différences de comportements, ...}).
+			Ainsi, la modélisation est régulièrement révisée (cycle \texttt{MATTER}).
+			% Conception de chatbot task-oriented correspond à ce problème : phénomène complexe, modélisation complexe, experts mal intégrés.
+			\item[\itemok] La modélisation de textes en intentions pour entraîner un assistant conversationnel orienté par tâches n'échappe pas à ce constat, notamment à cause de la complexité du langage naturel, de la diversité d'intentions de dialogue à représenter, et de la pression sur le contrôle du comportement de l'assistant.
+			% Besoins d'experts ; Interventions complexes ; Tâche pénible et couteuse.
+			\item[\itemok] Dans un cadre industriel, des experts métiers sont responsables de la modélisation et de l'annotation les données spécifiques ou confidentielles de l'entreprise ;
+			Or ces interventions requièrent des compétences analytiques et techniques dont les experts métiers ne disposent pas forcément ;
+			De ce fait, la manipulation d'une modélisation abstraite de leurs connaissances est alors vécue comme une tâche pénible, nécessitant un grand nombre de formations et organisée sous la forme d'ateliers en mode essai-erreur.
 		\end{todolist}
 	\end{leftBarImportantGreen}
-	\todo[inline]{À REFORMULER APRÈS L'ÉCRITURE DE L'ÉTAT DE L'ART}
 	
 	% ANNONCE DU BUT DU CHAPITRE: MA CONTRIBUTION !
-	Dans cette partie, nous proposons une alternative à l'organisation manuelle destinée à la conception d'un jeu de données.
-	Notre proposition vise à remplir un double objectif :
+	Dans cette partie, nous cherchons une alternative à cette organisation traditionnelle, et nous proposerons une méthodologie d'annotation basée sur un \textit{clustering} interactif visant à remplir un double objectif :
 	%
 	\begin{leftBarImportantRed}
 		\begin{todolist}
 			% 1. Efficacité de création du trainset.
-			\item Proposer une méthode permettant d'assister la modélisation et l'annotation des données pour créer plus efficacement une base d'apprentissage pour la classification d'intention d'un assistant conversationnel ;
+			\item Permettre d'assister la modélisation et l'annotation des données pour créer plus efficacement une base d'apprentissage destinée la classification d'intentions d'un assistant conversationnel ;
 			% 2. Efficacité d'intervention d'un expert.
-			\item Redéfinir les tâches et les objectifs des différents acteurs afin de rester au plus proche de leurs compétences réelles, particulièrement en ce qui concerne les experts métiers intervenants dans le projet.
+			\item Redéfinir les tâches et les objectifs des différents acteurs afin de rester au plus proche de leurs compétences réelles, particulièrement en ce qui concerne l'intervention des experts métiers du projet.
 		\end{todolist}
 	\end{leftBarImportantRed}
-			
+	
 	% Référence articles.
 	\begin{leftBarInformation}
 		Cette proposition de méthode a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~(\cite{schild-etal:2021:conception-iterative-semisupervisee}), et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~(\cite{schild-etal:2022:iterative-semisupervised-design}).

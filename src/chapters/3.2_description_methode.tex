@@ -1,5 +1,7 @@
 \section{Description de notre \textit{clustering} interactif.}
 \label{section:3.2-DESCRIPTION-THEORIQUE}
+
+	Sur la base des intuitions que nous venons de détailler, nous proposons la méthode suivante dans le but d'assister la modélisation et l'annotation d'une collecte de données brutes en une base d'apprentissage nécessaire à l'entraînement d'un assistant conversationnel.
 	
 	%%%
 	%%% Subsection 3.2.1. Description générale.
@@ -8,8 +10,7 @@
 	\label{section:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 	
 		% Présentation succinte.
-		Nous proposons la méthode suivante pour transformer une collecte de données brutes en une base d'apprentissage nécessaire à l'entraînement d'un assistant conversationnel.
-		Cette méthode, que nous appelons \texttt{Clustering Interactif} repose principalement sur l'alternance successive entre deux phases clefs (voir \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}) :
+		\textbf{Notre méthode d'annotation}, que nous appelons \textguillemets{\texttt{Clustering Interactif}}, \textbf{repose sur l'alternance successive entre deux phases clefs} (voir \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}) :
 		\begin{itemize}
 			\item[\(\bullet\)] une phase d'\textbf{annotation de contraintes}
 			par un expert permettant de caractériser la similarité entre deux données suivant leur cas d'usage métier ;
@@ -18,8 +19,8 @@
 		\end{itemize}
 		
 		% Objectif recherché
-		L'objectif recherché en associant ces deux phases est la création d'un cercle vertueux pour améliorer itérativement la qualité de la base d'apprentissage en cours de construction.
-		En effet, à chaque itération, l'expert métier obtiendra une proposition de segmentation des données qu'il pourra raffiner pour corriger le fonctionnement de la machine et ainsi obtenir une segmentation plus pertinente à l'itération suivante.
+		L'objectif recherché en associant ces deux phases est de \textbf{créer un cercle vertueux pour améliorer itérativement la qualité de la base d'apprentissage} en cours de construction.
+		En effet, à chaque itération, l'expert métier obtiendra une proposition de segmentation des données qu'il pourra raffiner dans le but de corriger le fonctionnement de la machine et ainsi d'obtenir une segmentation plus pertinente à l'itération suivante.
 		
 		% Figure.
 		\begin{figure}[!htb]
