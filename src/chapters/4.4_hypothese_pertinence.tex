@@ -334,7 +334,7 @@
 							Aperçu du cluster \\ (avec emphase)
 						}}
 						\tabularnewline
-						\hline
+						\hline \hline
 					
 					% Exemple 1.1:
 					\multirow{10}{*}{\shortstack[c]{
@@ -478,7 +478,7 @@
 							Aperçu du cluster \\ (avec emphase)
 						}}
 						\tabularnewline
-						\hline
+						\hline \hline
 					
 					% Exemple 2.1:
 					\multirow{10}{*}{\shortstack[c]{
@@ -639,8 +639,13 @@
 							\scriptsize (Total: 49)
 						}
 						\tabularnewline
-						\hdashline
-
+					
+					% Ligne en pointillées.
+					{ \footnotesize \dotfill }
+						& { \footnotesize \dotfill }
+						& { \footnotesize \dotfill }
+						\tabularnewline
+					
 					% Exemple 3b:
 					\multirow{10}{*}{\shortstack[c]{
 						{ \footnotesize Tentative: $1$ } \\
@@ -920,59 +925,59 @@
 				\def\arraystretch{0.8}  % interligne
 				\begin{tabular}{|c|c|}
 				
-				\hline
-				% ENTETE DU TABLEAU
-				\rowcolor{colorTableHeader!15}
-				Identification
-					&
-					\tabularnewline
-				\rowcolor{colorTableHeader!15}
-				du cluster
-					& \multirow{-2}{*}{
-						Résumé automatique du cluster (\texttt{LLM})
-					}
-					\tabularnewline
 					\hline
-				
-				% Exemple 1.1:
-				{ \footnotesize Tentative: $1$ }
-					& \multirow{5}{*}{\parbox{12cm}{
-						\footnotesize La thématique traitée dans ces textes est la gestion de l'activation, la désactivation, la modification ou la nécessité d'utiliser le paiement sans contact ou le NFC (Near Field Communication) sur les cartes de paiement bancaires.
-					}}
-					\tabularnewline
-				{ \footnotesize Itération: $\textbf{0}$ }
-					&
-					\tabularnewline
-				{ \footnotesize Cluster: $0$ }
-					&
-					\tabularnewline
-				{ \footnotesize Avis initial: }
-					&
-					\tabularnewline
-				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
-					&
-					\tabularnewline
-					\hline
+					% ENTETE DU TABLEAU
+					\rowcolor{colorTableHeader!15}
+					Identification
+						&
+						\tabularnewline
+					\rowcolor{colorTableHeader!15}
+					du cluster
+						& \multirow{-2}{*}{
+							Résumé automatique du cluster (\texttt{LLM})
+						}
+						\tabularnewline
+						\hline \hline
 					
-				% Exemple 1.2:
-				{ \footnotesize Tentative: $1$ }
-					& \multirow{5}{*}{\parbox{12cm}{
-						\footnotesize Les textes traitent de la gestion et de l'utilisation du paiement sans contact (NFC) sur les cartes bancaires.
-					}}
-					\tabularnewline
-				{ \footnotesize Itération: $\textbf{15}$ }
-					&
-					\tabularnewline
-				{ \footnotesize Cluster: $0$ }
-					& 
-					\tabularnewline
-				{ \footnotesize Avis initial: }
-					&
-					\tabularnewline
-				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
-					&
-					\tabularnewline
-					\hline
+					% Exemple 1.1:
+					{ \footnotesize Tentative: $1$ }
+						& \multirow{5}{*}{\parbox{12cm}{
+							\footnotesize La thématique traitée dans ces textes est la gestion de l'activation, la désactivation, la modification ou la nécessité d'utiliser le paiement sans contact ou le NFC (Near Field Communication) sur les cartes de paiement bancaires.
+						}}
+						\tabularnewline
+					{ \footnotesize Itération: $\textbf{0}$ }
+						&
+						\tabularnewline
+					{ \footnotesize Cluster: $0$ }
+						&
+						\tabularnewline
+					{ \footnotesize Avis initial: }
+						&
+						\tabularnewline
+					{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+						&
+						\tabularnewline
+						\hline
+						
+					% Exemple 1.2:
+					{ \footnotesize Tentative: $1$ }
+						& \multirow{5}{*}{\parbox{12cm}{
+							\footnotesize Les textes traitent de la gestion et de l'utilisation du paiement sans contact (NFC) sur les cartes bancaires.
+						}}
+						\tabularnewline
+					{ \footnotesize Itération: $\textbf{15}$ }
+						&
+						\tabularnewline
+					{ \footnotesize Cluster: $0$ }
+						& 
+						\tabularnewline
+					{ \footnotesize Avis initial: }
+						&
+						\tabularnewline
+					{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
+						&
+						\tabularnewline
+						\hline
 					
 				\end{tabular}
 				\end{center}
@@ -1007,7 +1012,7 @@
 						Résumé automatique du cluster (avec un \texttt{LLM})
 					}
 					\tabularnewline
-					\hline
+					\hline \hline
 
 				% Exemple 2.1:
 				{ \footnotesize Tentative: $1$ }
@@ -1070,7 +1075,11 @@
 				{ \footnotesize \color{colorDarkPastelGreen} \texttt{Exploitable} }
 					&
 					\tabularnewline
-					\hdashline
+				
+				% Ligne en pointillées.
+				{ \footnotesize \dotfill }
+					& { \footnotesize \dotfill }
+					\tabularnewline
 					
 				% Exemple 2.3b:
 				{ \footnotesize Tentative: $1$ }

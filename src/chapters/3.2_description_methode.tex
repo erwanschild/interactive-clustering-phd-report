@@ -95,7 +95,7 @@
 		}, ou encore sur le besoin de l'utilisateur \footnote{
 			Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...
 		}.
-		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données : ces incohérences peuvent être détecter grâce à aux propriétés de transitivités des contraintes (voir la gestion des conflits en \textsc{Annexe~\ref{section:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données : ces incohérences peuvent être détecter grâce à aux propriétés de transitivités des contraintes (voir la gestion des conflits en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 		
 		% Description du clustering.
 		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 8 et 9}).
@@ -120,7 +120,7 @@
 		
 		% Exemple abstrait.
 		\begin{leftBarExamples}
-			La \textsc{Figure~\ref{3.2-CLUSTERING-INTERACTIF-EXEMPLE}} déroule l'initialisation et la première itération de la méthode sur un exemple fictif.
+			La \textsc{Figure~\ref{figure:3.2.2-DESCRIPTION-THEORIQUE-DETAILLEE-EXEMPLE}} déroule l'initialisation et la première itération de la méthode sur un exemple fictif.
 			Nous pouvons constater qu'entre les images \textbf{(2)} et \textbf{(5)}, la segmentation des données à évoluée grâce à l'introduction de contraintes.
 		
 			\begin{figure}[H]
@@ -137,11 +137,10 @@
 					et \textbf{(5)} correspond à la nouvelle segmentation des données en $3$ \textit{clusters} respectant les $6$ contraintes annotées.
 					La prochaine itération se poursuivra par un nouvel échantillonnage de contraintes.
 				}
-				\label{3.2-CLUSTERING-INTERACTIF-EXEMPLE}
+				\label{figure:3.2.2-DESCRIPTION-THEORIQUE-DETAILLEE-EXEMPLE}
 			\end{figure}
 		\end{leftBarExamples}
 	
-
 	
 	%%%
 	%%% Subsection 3.2.3. Description techniques et implémentation.
@@ -150,21 +149,43 @@
 	\label{section:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION}
 	
 		% Généralités.
-		Au cours de ce doctorat, nous avons réalisé une implémentation en Python de notre \textit{clustering interactif}.
+		Au cours de ce doctorat, nous avons réalisé un ensemble d'implémentations en Python afin de mettre en oeuvre notre méthodologie de \textit{clustering interactif}.
 		Celle-ci est répartie en trois librairies :
 		\begin{enumerate}
 			% cognitivefactory-interactive-clustering
 			\item \texttt{cognitivefactory-interactive-clustering} \footnote{
-				\texttt{cognitivefactory-interactive-clustering}: la page de documentation technique de cette librairie est disponible ici : \url{https://cognitivefactory.github.io/interactive-clustering/}
-			} (\cite{schild:2022:cognitivefactory-interactiveclustering}), regroupant les gestions de données, la gestion des contraintes, les algorithmes de \textit{clustering} sous contraintes et les algorithmes d'échantillonnage implémentés ;
+				\url{https://cognitivefactory.github.io/interactive-clustering/}
+			} (\cite{schild:2022:cognitivefactory-interactiveclustering}), regroupant les gestions de données et des contraintes, les algorithmes de \textit{clustering} et d'échantillonnage ;
 			% cognitivefactory-features-maximization-metric
 			\item \texttt{cognitivefactory-features-maximization-metric} \footnote{
-				\texttt{cognitivefactory-features-maximization-metric}: la page de documentation technique de cette librairie  est disponible ici : \url{https://cognitivefactory.github.io/features-maximization-metric/}
-			} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques pertinents (composantes principales) d'un jeu de données, utilisée pour l'analyse de pertinence d'un résultat de \textit{clustering} ;
+				\url{https://cognitivefactory.github.io/features-maximization-metric/}
+			} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques pertinents d'un jeu de données labellisées, permettant ainsi d'analyser la pertinence d'un résultat de \textit{clustering} ;
 			% cognitivefactory-interactive-clustering-gui
 			\item \texttt{cognitivefactory-interactive-clustering-gui} \footnote{
-				\texttt{cognitivefactory-interactive-clustering-gui}: la page de documentation technique de cette librairie  est disponible ici : \url{https://cognitivefactory.github.io/interactive-clustering-gui/}
-			} (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}), encapsulant les algorithmes précédents et intégrant la logique de la méthode dans une application web.
+				\url{https://cognitivefactory.github.io/interactive-clustering-gui/}
+			} (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}), intégrant la logique de la méthodologie dans une application web.
 		\end{enumerate}
 		
 		
+		% Exemple de visuels de l'application.
+		\begin{leftBarExamples}
+			La \textsc{Figure~\ref{figure:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION-EXEMPLE}} représente une capture d'écran de la page d'annotation de contraintes de l'application web intégrant notre méthodologie de \textit{clustering interactif}.
+			
+			% Capture d'écran: annotation.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-application-annotation-0small}
+				\caption{
+					Capture d'écran de l'application web implémentant notre méthodologie de \textit{clustering} interactif : \textbf{page d'annotation d'une contrainte}.
+					Parmi les éléments importants, nous retrouvons les deux textes à annoter (disposés à gauche et droite de l'écran) et les boutons d'annotation (bouton vert pour un \texttt{MUST-LINK}, bouton rouge pour un \texttt{CANNOT-LINK}.
+					Les autres fonctionnalités sont détaillées en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
+				}
+				\label{figure:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION-EXEMPLE}
+			\end{figure}
+		\end{leftBarExamples}
+		
+		% Information : voir en annexe.
+		\begin{leftBarInformation}
+			Ces implémentations sont présentées dans l'\textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
+			L'ensemble des détails techniques et des explications sur les choix d'implémentation y sont décrits.
+		\end{leftBarInformation}

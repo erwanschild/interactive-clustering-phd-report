@@ -1,43 +1,86 @@
-\Annex{Implémentation du \textit{clustering} interactif}
+\Annex{Annexe des implémentations de notre \textit{clustering} interactif}
 \label{annex:C-ANNEXE-IMPLEMENTATIONS}
 
-	% INTRODUCTION.
-	Au cours de ce doctorat, nous avons réalisé une implémentation en Python de notre \textit{clustering interactif}.
+	% INTRODUCTION : annoncer 3 librairies.
+	Au cours de ce doctorat, nous avons réalisé un ensemble d'implémentations en Python afin de mettre en oeuvre notre méthodologie de \textit{clustering interactif}.
 	Celle-ci est répartie en trois librairies :
 	\begin{enumerate}
 		% cognitivefactory-interactive-clustering
-		\item \texttt{cognitivefactory-interactive-clustering} (\cite{schild:2022:cognitivefactory-interactiveclustering}), regroupant les gestions de données, la gestion des contraintes, les algorithmes de \textit{clustering} sous contraintes et les algorithmes d'échantillonnage implémentés ;
+		\item \texttt{cognitivefactory-interactive-clustering} \footnote{
+			\url{https://cognitivefactory.github.io/interactive-clustering/}
+		} (\cite{schild:2022:cognitivefactory-interactiveclustering}), regroupant les gestions de données et des contraintes, les algorithmes de \textit{clustering} et d'échantillonnage ;
 		% cognitivefactory-features-maximization-metric
-		\item \texttt{cognitivefactory-features-maximization-metric} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques pertinents (composantes principales) d'un jeu de données, utilisée pour l'analyse de pertinence d'un résultat de \textit{clustering} ;
+		\item \texttt{cognitivefactory-features-maximization-metric} \footnote{
+			\url{https://cognitivefactory.github.io/features-maximization-metric/}
+		} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques pertinents d'un jeu de données labellisées, permettant ainsi d'analyser la pertinence d'un résultat de \textit{clustering} ;
 		% cognitivefactory-interactive-clustering-gui
-		\item \texttt{cognitivefactory-interactive-clustering-gui} (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}), encapsulant les algorithmes précédents et intégrant la logique de la méthode dans une application web.
+		\item \texttt{cognitivefactory-interactive-clustering-gui} \footnote{
+			\url{https://cognitivefactory.github.io/interactive-clustering-gui/}
+		} (\cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}), intégrant la logique de la méthodologie dans une application web.
 	\end{enumerate}
 	
 	Dans cette annexe, nous allons détailler ces implémentations, leurs fonctionnalités et certains des choix de mises en oeuvres.
-
-
+	
+	%Information : Développements Python.
+	\begin{leftBarInformation}
+		Ces implémentations sont disponibles sur le GitHub \url{https://github.com/cognitivefactory}.
+		Les \textit{pipeline} d'intégration continue contiennent les étapes
+		% Vérification formatage.
+		de formatage du code (\textit{grâce aux librairies \texttt{isort} \footnote{
+			\texttt{isort}: \url{https://pypi.org/project/isort/}
+		} et \texttt{black} \footnote{
+			\texttt{black}: \url{https://pypi.org/project/black/}
+		}}),
+		% Vérification qualité et typage.
+		d vérification de la qualité et du typage du code (\textit{grâce aux librairies \texttt{flake8} \footnote{
+			\texttt{flake8}: \url{https://pypi.org/project/flake8/}
+		} et \texttt{mypy} \footnote{
+			\texttt{mypy} : \url{https://pypi.org/project/mypy/}
+		}}),
+		% Vérification vulnérabilités.
+		de la vérification des vulnérabilités et des failles de sécurité (\textit{grâce à la librairie \texttt{safety} \footnote{
+			\texttt{safety}: \url{https://pypi.org/project/safety/}
+		}}),
+		% Vérification tests unitaires.
+		l'exécution de tests unitaires et la vérification de la couverture du code testé (\textit{grâce aux librairies \texttt{pytest} \footnote{
+			\texttt{pytest}: \url{https://pypi.org/project/pytest/}
+		} et \texttt{coverage} \footnote{
+			\texttt{coverage}: \url{https://pypi.org/project/coverage/}
+		}}),
+		% Vérification documentation.
+		et la génération de la documentation technique (\textit{grâce à la librairie \texttt{mkdocs} \footnote{
+			\texttt{mkdocs}: \url{https://pypi.org/project/mkdocs/}
+		}}).
+	\end{leftBarInformation}
+	
+	
 	% TABLE DES MATIÈRES DE L'ANNEXE.
 	\minitoc
 	
-	\todo[inline]{table de nomenclatures dans l'introduction de cette partie}
-	
 	
 	%%%%%--------------------------------------------------------------------
-	%%%%% Section C.1: Implémentation de la librairie \texttt{cognitivefactory-interactive-clustering}
+	%%%%% Section C.1: Table des nomenclatures utilisées
 	%%%%%--------------------------------------------------------------------
 	%\newpage
-	\input{chapters/annexes_C.1_implementations_interactive_clustering.tex}
+	\input{chapters/annexes_C.1_implementations_nomenclatures}
 	
 	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section C.2: Implémentation de la librairie \texttt{cognitivefactory-interactive-clustering}
 	%%%%%--------------------------------------------------------------------
-	%\newpage
-	\input{chapters/annexes_C.2_implementations_features_maximization_metric.tex}
+	\newpage
+	\input{chapters/annexes_C.2_implementations_interactive_clustering.tex}
 	
 	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section C.3: Implémentation de la librairie \texttt{cognitivefactory-interactive-clustering}
 	%%%%%--------------------------------------------------------------------
-	%\newpage
-	\input{chapters/annexes_C.3_implementations_interactive_clustering_gui.tex}
+	\newpage
+	\input{chapters/annexes_C.3_implementations_features_maximization_metric.tex}
+	
+	
+	%%%%%--------------------------------------------------------------------
+	%%%%% Section C.4: Implémentation de la librairie \texttt{cognitivefactory-interactive-clustering}
+	%%%%%--------------------------------------------------------------------
+	\newpage
+	\input{chapters/annexes_C.4_implementations_interactive_clustering_gui.tex}

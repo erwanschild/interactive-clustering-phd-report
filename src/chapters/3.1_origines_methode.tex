@@ -5,9 +5,9 @@
 	
 	
 	%%%
-	%%% Subsection 3.1.1. Utiliser une approche non-supervisées pour créer une modélisation des données.
+	%%% Subsection 3.1.1. Utiliser une approche non-supervisées pour créer une modélisation.
 	%%%
-	\subsection{Utiliser une approche non-supervisées pour créer une modélisation des données}
+	\subsection{Utiliser une approche non-supervisées pour créer une modélisation}
 	\label{section:3.1.1-INTUITIONS-ORIGINES-NON-SUPERVISEES}
 	
 		%%% Possibilité d'utilisé des regroupements non supervisés.
@@ -51,9 +51,9 @@
 		
 	
 	%%%
-	%%% Subsection 3.1.2. Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes.
+	%%% Subsection 3.1.2. Corriger l'approche non-supervisée avec une annotation de contraintes.
 	%%%
-	\subsection{Corriger l'approche non-supervisée à l'aide d'une annotation de contraintes}
+	\subsection{Corriger l'approche non-supervisée avec une annotation de contraintes}
 	\label{section:3.1.2-INTUITIONS-ORIGINES-SEMI-SUPERVISEES}
 	
 		%%% Proposition d'ajouts de contraintes pour corriger un clustering.
@@ -110,7 +110,7 @@
 		Cependant, pour un jeu de données de taille $N$, il y a $N^2$ possibilités de contraintes à ajouter.
 		L'estimation du placement des contraintes les plus appropriées et les plus efficaces pour corriger le \textit{clustering} semble donc être un problème \texttt{NP}-complexe.
 		De plus, si ce choix peut être visuel pour des images (comme dans l'exemple cité ci-dessus), il ne l'est pas pour des données textuelles dont la diversité et la complexité sont difficiles à appréhender.
-		Il est donc important de se demander comment aider l'expert métier à disposer ses contraintes afin de maximiser son impact dans la correction du \textit{clustering}.
+		Il est donc important d'assister l'expert métier à disposer ses contraintes afin de maximiser son impact dans la correction du \textit{clustering}.
 		
 	
 	%%%
@@ -120,13 +120,13 @@
 	\label{section:3.1.3-INTUITIONS-ORIGINES-APPRENTISSAGE-ACTIF}
 	
 		% Utiliser l'apprentissage actif.
-		Une dernière piste intéressante est celle de l'apprentissage actif (\textit{active learning}, \cite{settles:2010:active-learning-literature}) : celle-ci prône les interactions Homme/machine comme moyen d'atteindre un objectif qu'aucun en peut atteindre séparément.
+		Une dernière piste intéressante est celle de l'apprentissage actif (\textit{active learning}, voir \cite{settles:2010:active-learning-literature}) : celle-ci prône les interactions Homme/machine comme moyen d'atteindre un objectif qu'aucun en peut atteindre séparément.
 		% Liste d'interactions possibles avec le résultat, avec les hyperparamètres, avec des initaitives de la machine, ...
-		\cite{bae-etal:2021:interactive-clustering-comprehensive} liste par exemple un ensemble d'interactions possible avec un algorithme de \textit{clustering} : celles-ci peuvent concerner la manipulation et l'adaptation des résultats, l'adaptation des hyperparamètres des algorithmes, mais aussi des initiatives de la machine pour préparer la réalisation d'une tâche.
+		\cite{bae-etal:2021:interactive-clustering-comprehensive} liste par exemple un ensemble d'interactions possibles avec un algorithme de \textit{clustering} : celles-ci peuvent concerner la manipulation et l'adaptation des résultats, l'adaptation des hyperparamètres des algorithmes, mais aussi des initiatives de la machine pour préparer la réalisation d'une tâche.
 		
 		% Nous sommes intéresser par la sélection optimale de contraintes à annoter
-		Dans notre cas, nous nous intéressons aux initiatives de la machines pour identifier la liste des contraintes à annoter pour corriger ou confirmer efficacement un résultat de \textit{clustering}.
-		Cela peut se faire par exemple à l'aide d'une heuristique sélectionnant les parties les moins sûrs de la segmentation.
+		Dans notre cas, nous nous intéressons en particulier aux initiatives de la machines pour identifier la liste des contraintes à annoter pour corriger ou confirmer efficacement un résultat de \textit{clustering}.
+		Cela peut se faire par exemple à l'aide d'une heuristique sélectionnant les parties les moins sûres de la segmentation.
 	
 	%%%
 	%%% Conclusion.

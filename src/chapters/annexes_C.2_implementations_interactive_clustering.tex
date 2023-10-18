@@ -1,5 +1,5 @@
 \section{Implémentation de la librairie \\ \texttt{cognitivefactory-interactive-clustering}}
-\label{section:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
+\label{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
 	
 	% Généralités.
 	La librairie \texttt{cognitivefactory-interactive-clustering} ...
@@ -12,12 +12,12 @@
 	\end{leftBarInformation}
 	
 	% Exemple.
-	Pour les sections suivantes, nous suivrons l'exemple suivant (cf. \textsc{Code~\ref{code:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA}}) pour présenter nos implémentations.
+	Pour les sections suivantes, nous suivrons l'exemple suivant (cf. \textsc{Code~\ref{code:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA}}) pour présenter nos implémentations.
 	
 	\begin{lstlisting}[
 		language=Python,
 		caption={Jeu exemple pour présenter notre implémentation du \textit{clustering} interactif.},
-		label={code:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA},
+		label={code:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-DATA},
 	]
 # Définir les données.
 dict_of_texts = {
@@ -34,10 +34,10 @@ dict_of_texts = {
 	
 	
 	%%%
-	%%% Subsection C.1.1: Gestion des données.
+	%%% Subsection C.2.1: Gestion des données.
 	%%%
 	\subsection{Gestion des données}
-	\label{section:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-DONNEES}
+	\label{annex:C.2.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-DONNEES}
 	
 	% cognitivefactory.interactive-clustering.utils
 	Tout d'abord, en ce qui concerne la \textbf{manipulation de données}, nous utilisons le module \texttt{utils} de la librairie \texttt{cognitivefactory-interactive-clustering}.
@@ -86,12 +86,12 @@ dict_of_texts = {
 	\end{enumerate}
 	
 	% cognitivefactory.interactive-clustering.utils : Exemple.
-	Vous avez un exemple d'utilisation des modules de prétraitements et de vectorisation dans \textsc{Code~\ref{code:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES}}.
+	Vous avez un exemple d'utilisation des modules de prétraitements et de vectorisation dans \textsc{Code~\ref{code:C.2.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES}}.
 	
 	\begin{lstlisting}[
 		language=Python,
 		caption={Démonstration de notre implémentation du prétraitement et de la vectorisation sur le jeu d'exemple.},
-		label={code:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES},
+		label={code:C.2.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DONNEES},
 	]
 # Import des dépendances.
 from cognitivefactory.interactive_clustering.utils.preprocessing import preprocess
@@ -124,10 +124,10 @@ vectorizer_type="tfidf",
 	\end{lstlisting}
 	
 	%%%
-	%%% Subsection C.1.2: Gestion des contraintes
+	%%% Subsection C.2.2: Gestion des contraintes
 	%%%
 	\subsection{Gestion des contraintes}
-	\label{section:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}
+	\label{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.constraints
 	En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{
@@ -142,11 +142,11 @@ vectorizer_type="tfidf",
 	\end{itemize}
 
 	% cognitivefactory.interactive-clustering.constraints: Transitivité.
-	Ces types de contraintes respectent les propriétés de transitivités décrites dans l'\textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
+	Ces types de contraintes respectent les propriétés de transitivités décrites dans l'\textsc{Equation~\ref{equation:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
 	On note ainsi qu'il est possible de déduire la troisième contrainte d'un triangle de trois points si nous connaissons déjà les deux premières.
 	
 	\begin{equation}
-		\label{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
+		\label{equation:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
 		(\forall A,B,C)~
 		\begin{cases}
 			% ML + ML => ML
@@ -164,13 +164,13 @@ vectorizer_type="tfidf",
 	On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
 	
 	% cognitivefactory.interactive-clustering.constraints: Conflits.
-	Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}}).
+	Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}}).
 	Dans ce cas, l'ajout de la dernière contrainte n'est pas prise en compte et le gestionnaire renvoie une erreur permettant d'identifier ce conflit.
 	Ce conflit peut venir simplement venir d'une erreur d'inattention, mais peut aussi venir d'une déduction basée sur des ajouts antérieurs erronés.
 	Sémantiquement, un conflit indique une contradiction dans la gestion des données, car les données concernées doivent à la fois être réunies et séparées...
 	
 	\begin{equation}
-		\label{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}
+		\label{equation:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}
 		(\exists A,B,C)~
 		~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(A,B)
 		~\wedge~\textcolor{colorDarkPastelGreen}{\texttt{MUST\_LINK}}(B,C)
@@ -178,7 +178,7 @@ vectorizer_type="tfidf",
 	\end{equation}
 	
 	% cognitivefactory.interactive-clustering.constraints: Composants connexe.
-	À partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}).
+	À partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}).
 	Ce composant peut être vu comme un noyau de \textit{cluster}.
 	Il pourra être associé à d'autres noyaux par similarité pour former un \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
 
@@ -188,16 +188,16 @@ vectorizer_type="tfidf",
 		\caption{
 			Exemples des propriétés de transitivité des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges). \textbf{(1)} et \textbf{(2)} représente les possibilités de déduction d'une contrainte (\texttt{(c)}) en fonction des deux autres (\texttt{(a)} et \texttt{(b)}). \textbf{(3)} représente deux composants connexes définis par la transitivité des contraintes \texttt{MUST-LINK}. Enfin, \textbf{(4)} représente un cas de conflit où une contrainte (\texttt{(c)}) ne correspond pas à sa déduction faite à partir des autres contraintes (\texttt{(a)} et \texttt{(b)}).
 		}
-		\label{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
+		\label{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
 	\end{figure}
 	
 	% cognitivefactory.interactive-clustering.constraints : Exemple.
-	Un exemple d'utilisation du module de gestion de contraintes est consultable dans \textsc{Code~\ref{code:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES}}.
+	Un exemple d'utilisation du module de gestion de contraintes est consultable dans \textsc{Code~\ref{code:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES}}.
 	
 	\begin{lstlisting}[
 		language=Python,
 		caption={Démonstration de notre implémentation de gestion des contraintes sur le jeu d'exemple.},
-		label={code:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES},
+		label={code:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-CONTRAINTES},
 	]
 # Import des dépendances.
 from cognitivefactory.interactive_clustering.constraints.factory import managing_factory
@@ -239,10 +239,10 @@ connected_components = constraints_manager.get_connected_components()
 	
 	
 	%%%
-	%%% Subsection C.1.3: Algorithme de \textit{clustering} sous contraintes.
+	%%% Subsection C.2.3: Algorithme de \textit{clustering} sous contraintes.
 	%%%
 	\subsection{Algorithme de \textit{clustering} sous contraintes}
-	\label{section:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
+	\label{annex:C.2.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.clustering
 	En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{
@@ -261,13 +261,13 @@ connected_components = constraints_manager.get_connected_components()
 	
 	Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{cluster}) et une \textit{factory} est disponible pour instancier rapidement un objet de \textit{clustering}.
 	% cognitivefactory.interactive-clustering.clustering : Exemple.
-	Enfin, un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING}}.
+	Enfin, un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.2.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING}}.
 	
 	
 	\begin{lstlisting}[
 		language=Python,
 		caption={Démonstration de notre implémentation du \textit{clustering} sous contraintes sur le jeu d'exemple.},
-		label={code:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING},
+		label={code:C.2.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CLUSTERING},
 	]
 # Import des dépendances.
 from cognitivefactory.interactive_clustering.clustering.factory import clustering_factory
@@ -305,10 +305,10 @@ vectors=dict_of_vectors,
 	
 	
 	%%%
-	%%% Subsection C.1.4: Algorithme d'échantillonnage de contraintes.
+	%%% Subsection C.2.4: Algorithme d'échantillonnage de contraintes.
 	%%%
 	\subsection{Algorithme d'échantillonnage de contraintes}
-	\label{section:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
+	\label{annex:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.sampling
 	En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{
@@ -332,8 +332,8 @@ vectors=dict_of_vectors,
 	\begin{enumerate}
 		\item Un échantillonnage \textbf{purement aléatoire} en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
 		\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même cluster}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;
-		\item Un échantillonnage des données issues d'un \textbf{même cluster} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
-		\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
+		\item Un échantillonnage des données issues d'un \textbf{même cluster} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
+		\item Un échantillonnage des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
 	\end{enumerate}
 	
 	\begin{figure}[!htb]
@@ -342,17 +342,17 @@ vectors=dict_of_vectors,
 		\caption{
 			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes clusters et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
 		}
-		\label{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}
+		\label{figure:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}
 	\end{figure}
 
 	Une classe abstraite définit les prérequis des algorithmes implémentés (avoir une méthode \texttt{sample}) et une \textit{factory} est disponible pour instancier rapidement un objet d'échantillonnage.
 	% cognitivefactory.interactive-clustering.sampling : Exemple.
-	Un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING}}.
+	Un exemple d'utilisation ce module est consultable dans \textsc{Code~\ref{code:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING}}.
 	
 	\begin{lstlisting}[
 		language=Python,
 		caption={Démonstration de notre implémentation de l'échantillonnage sur le jeu d'exemple.},
-		label={code:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING},
+		label={code:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-SAMPLING},
 	]
 # Import des dépendances.
 from cognitivefactory.interactive_clustering.sampling.factory import sampling_factory

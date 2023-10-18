@@ -18,7 +18,7 @@
 		\label{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}
 			
 			% Définition.
-			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de \textbf{reproduire une tâche par l'exemple} : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle statistique.
+			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de \textbf{reproduire une tâche par l'exemple} : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle mathématique.
 			Cet apprentissage peut être \textit{supervisé} (l'interprétation des exemples est fournie par un humain), \textit{non-supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux précédentes approches).
 			
 			% Applications.
@@ -34,7 +34,7 @@
 		\label{section:2.1.1.B-PRESENTATION-ANNOTATION-DEFINITION-BASE-APPRENTISSAGE}
 
 			% Définitions.
-			Pour concevoir un modèle statistique en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
+			Pour concevoir un modèle en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
 			Nous utilisons alors les termes \textguillemets{\texttt{corpus d'entraînement}}, \textguillemets{\texttt{jeu de d'entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
 			
 			% Carcatéristique importante : la représentativité !
@@ -85,9 +85,9 @@
 			Répondre à cette question avec précision nécessite diverses informations, à la fois sur l'oeuvre (comme son identification ou l'avis de ses lecteurs), sur le document en tant que tel (comme son état de conservation), mais aussi sur le prestige de son édition (éditions originales ou de collection).
 			Sans un regard d'expert, il est possible de trouver certaines oeuvres rares vendues pour presque rien sur le marché d'occasion, ou à l'inverse voir certaines \texttt{BD} être achetées à prix d'or alors que le document est en piteux état.
 			
-			% Entrainer un modèle: régression linéaire.
-			Afin d'aiguiller les acquéreurs, il est possible d'utiliser un modèle de \texttt{régression linéaire}\footnote{
-				Pour plus de détails sur la régression linéaire: voir la revue de \cite{maalouf:2011:logistic-regression-data} ; voir un exemple basé sur la méthode des moindres carrés dans \cite{zdaniuk:2014:ordinary-leastsquares-ols}.
+			% Entrainer un modèle: régression.
+			Afin d'aiguiller les acquéreurs, il est possible d'utiliser un modèle de \texttt{régression}\footnote{
+				Pour plus de détails sur la régression: voir la revue de \cite{maalouf:2011:logistic-regression-data} ; voir un exemple basé sur la méthode des moindres carrés dans \cite{zdaniuk:2014:ordinary-leastsquares-ols}.
 			} permettant de prédire le prix d'une \texttt{BD} à partir des différentes métadonnées à disposition.
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de transactions avec leur prix de vente.
 			Nous pouvons structurer l'ensemble des informations nécessaire dans un tableau, et la tâche d'annotation consiste alors à renseigner pour chaque transaction :
@@ -116,7 +116,7 @@
 						& État
 						& Prix (€)
 						\tabularnewline
-						\hline
+						\hline \hline
 					% BD1.
 					Lucky Luke
 						& $01$: La mine d'or de Dick Digger
@@ -179,9 +179,9 @@
 			% Conclusion.
 			Ainsi, si quelqu'un s'intéresse au prix d'une nouvelle bande dessinée pour lequel il n'y a pas de référence tarifaire, il peut interroger le modèle de régression qui proposera un prix en accord avec les exemples dont il dispose dans sa base d'apprentissage.
 			
-			% Autre cas d'usage similaire: Régression linéaire dans d'autres domaines.
+			% Autre cas d'usage similaire: Régression dans d'autres domaines.
 			\begin{leftBarInformation}
-				De manière équivalente, il est possible de faire de la régression linéaire dans d'autres domaines, notamment pour prédire un volume, une surface, une quantité, ...
+				De manière équivalente, il est possible de faire de la régression dans d'autres domaines, notamment pour prédire un volume, une surface, une quantité, ...
 				La tâche d'annotation consistera à chaque fois à renseigner la valeur numérique à prédire en fonction des différentes données à disposition.
 			\end{leftBarInformation}
 		
@@ -422,7 +422,7 @@
 			% Définition de l'annotation.
 			\item[\itemok] \textguillemets{\texttt{Annoter}} une donnée consiste à \textbf{ajouter un complément d'information} pour pouvoir mieux interpréter puis reproduire un phénomène.
 			% Type d'annotation.
-			\item[\itemok] Le type d'annotation à réaliser \textbf{dépend du problème à traiter} : régression linéaire, classification, extraction d'information, génération ou synthèse de données, ...
+			\item[\itemok] Le type d'annotation à réaliser \textbf{dépend du problème à traiter} : régression, classification, extraction d'information, génération ou synthèse de données, ...
 			% Corpus d'entraînement.
 			\item[\itemok] L'ensemble des données annotées peut être utilisé pour concevoir un modèle d'\textguillemets{\texttt{apprentissage automatique}}: il est alors appelé \textguillemets{\texttt{corpus d'entraînement}}.
 		\end{todolist}

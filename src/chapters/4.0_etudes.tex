@@ -2,26 +2,23 @@
 \label{chapter:4-ETUDES}
 	
 	% RÉSUMÉ DES ÉPISODES PRÉCÉDENTES:
-	Dans le chapitre précédent, nous avons présenté une méthode de création d'un jeu de données d'entraînement pour un assistant conversationnel, que nous appelons "\textit{clustering interactif}" :
+	Dans le chapitre précédent, nous avons présenté une méthode de création d'un jeu de données d'entraînement pour un assistant conversationnel, que nous appelons \textguillemets{\texttt{Clustering Interactif}} :
 	%
 	\begin{leftBarImportantGreen}
 		\begin{todolist}
 			% 1. Structure de la méthode.
 			\item[\itemok] La méthode proposée repose sur la combinaison entre un regroupement automatique des données par la machine et l'annotation de contraintes binaires par un expert métier pour corriger le regroupement proposé ;
 			% 2. Enjeu 1 de la méthode : moins de technique.
-			\item[\itemok] Une telle approche devrait limiter les pré-requis techniques actuellement exigés à un expert métier en les déléguant à la machine.
+			\item[\itemok] Une telle approche devrait limiter les pré-requis de compétences analytiques et techniques actuellement exigés d'un expert métier en les déléguant à la machine.
 			% 2. Enjeu 2 de la méthode : plus de connaissance métier.
 			\item[\itemok] En échange, l'expert se concentre d'avantage sur la transmission de ses connaissances avec une annotation caractérisant la similitude métier entre deux données.
-			% 3. Divers.
-			\item[\itemok] ...
 		\end{todolist}
 	\end{leftBarImportantGreen}
-	\todo[inline]{divers à compléter (technique ? méthode ? ...).}
 	
 	% ANNONCE DU BUT DU CHAPITRE: TEST DE LA MÉTHODE.
-	Comme nous l'avons détaillé dans le \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}\todo{a revoir}, des procédés d'annotation similaires existent pour des données facilement visualisables, comme dans le cadre du traitement d'images.
-	Cependant, l'application d'une telle approche dans le cadre de la classification de données textuelles est peu détaillée dans la littérature.
-	Ainsi, dans cette partie, nous étudions la faisabilité d'un tel \textit{clustering interactif} pour des données textuelles en explorant les questions suivantes :
+	Il existe des travaux similaires sur l'annotation de données visuelles (\cite{lampert-etal:2019:constrained-distance-based}) et des revues sur les interactions possibles avec un algorithme de \textit{clustering} (\cite{bae-etal:2021:interactive-clustering-comprehensive}),
+	Cependant, peu d'études de la littérature scientifique ont exploré les possibilités d'interactions entre un expert métier et un algorithme de \textit{clustering} sous contraintes dans le but de modéliser des données textuelles en intentions.
+	Ainsi, dans cette partie, \textbf{nous étudions la faisabilité d'un tel \texttt{Clustering Interactif} pour des données textuelles} en explorant les six questions suivantes :
 	%
 	\begin{leftBarImportantRed}
 		\begin{todolist}
@@ -41,7 +38,10 @@
 	\end{leftBarImportantRed}
 	
 	% ILLUSTRATION: SCHEMA DES HYPOTHESES
-	Afin d'illustrer ces interrogations, nous vous proposons de considérer de la \textsc{Figure~\ref{figure:4.0-HYPOTHESE-00-DEFAULT}}. Dans les sections suivantes, cette figure évoluera pour résumer les études réalisées.
+	Afin de vérifier ces différentes hypothèses, nous organisons un ensemble d'études basées soit sur des approches théoriques (\textit{simulations des comportements et comparaisons à une vérité terrain grâce à un score de \texttt{v-measure} \footnote{
+		\texttt{v-measure} : pour plus de détails sur cette mesure de qualité d'un \textit{clustering}, consultez l'\textsc{Annexe~\ref{annex:D.1-TECHNIQUE-VMEASURE}}.
+	} }), soit sur des approches empiriques (\textit{expériences en situations réelles et analyses basés sur les compétences d'opérateurs métier}).
+	L'imbrication de ces études est représentée dans la \textsc{Figure~\ref{figure:4.0-HYPOTHESE-00-DEFAULT}} qui évoluera au cours des sections suivantes pour résumer les hypothèses vérifiées et annoncer l'hypothèse en cours d'étude.
 	%
 	\begin{figure}[!htb]
 		\centering
@@ -51,20 +51,18 @@
 		}
 		\label{figure:4.0-HYPOTHESE-00-DEFAULT}
 	\end{figure}
-	
-	\todo[inline]{
-		Pour ces études, nous allons (1) faire des analyses théoriques (2) des analyses empiriques (car dans la vrai vie on n'a pas de vérité terrain).
-		Nous utilisons aussi la vmeasure.
-	}
-	\todo[inline]{
-		Table des nomenclatures.
-	}
-	
-	% PRÉAMBULE TECHNIQUE : CPU + scrips + datasets.
+		
+	% Références annexes datasets et nomenclatures.
 	\begin{leftBarInformation}
-		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisé avec la librairie Python \textit{multiprocessing} (un worker par CPU).
+		Les jeux de données utilisés pour ces études sont détaillés en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}}.
+		Une annexe est aussi disponible pour recenser les différentes conventions de nommage destinées à simplifier le partage des résultats voir (\textsc{Annexe~\ref{annex:C.1-DESCRIPTION-IMPLEMENTATION-NOMENCLATURES}}).
+	\end{leftBarInformation}
+	
+	% Notes techniques : CPU + scrips + datasets.
+	\begin{leftBarInformation}
+		% Détails techniques.
+		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisée avec la librairie Python \textit{multiprocessing} (utilisant un worker par CPU).
 		Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}) ou de script R (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-		Enfin, les jeux de données utilisés pour ces études sont détaillés en Annexe~\ref{annex:A-ANNEXE-DATASET}.
 	\end{leftBarInformation}
 	
 	

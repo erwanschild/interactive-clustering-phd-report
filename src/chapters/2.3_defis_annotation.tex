@@ -23,7 +23,7 @@
 	\label{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}
 	
 		% Introduction: Machine Learning = reproduire par l'exemple.
-		Comme nous l'avons défini en \textsc{Section\ref{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}}, l'\textguillemets{\texttt{apprentissage automatique}} regroupe un ensemble de techniques dont l'objectif est de reproduire une tâche \textbf{par l'exemple} : il est donc normal de porter une attention particulière aux données utilisées, car la qualité du modèle de \textit{Machine Learning} va fortement dépendre de la qualité de sa base d'apprentissage.
+		Comme nous l'avons défini en \textsc{Section~\ref{section:2.1.1.A-PRESENTATION-ANNOTATION-DEFINITION-MACHINE-LEARNING}}, l'\textguillemets{\texttt{apprentissage automatique}} regroupe un ensemble de techniques dont l'objectif est de reproduire une tâche \textbf{par l'exemple} : il est donc normal de porter une attention particulière aux données utilisées, car la qualité du modèle de \textit{Machine Learning} va fortement dépendre de la qualité de sa base d'apprentissage.
 		Nous allons ici détailler trois défis actuels concernant cette création d'un jeu de données.
 		
 		
@@ -103,6 +103,24 @@
 					}
 					\label{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}
 				\end{figure}
+				
+				%%\begin{figure}[H]
+				%%	\centering
+				%%	\includegraphics[width=0.75\textwidth]{figures/etatdelart-nicoletti-bass-2023-skins}
+				%%	\caption{
+				%%		Répartitions des teintes de peaux par métier lors de génération de portrait avec \texttt{Stable Diffusion} (étude menée par \cite{nicoletti-bass:2023:generative-ai-takes}).
+				%%	}
+				%%	\label{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES-SKINS}
+				%%\end{figure}
+				%%\begin{figure}[H]
+				%%	\centering
+				%%	\includegraphics[width=0.75\textwidth]{figures/etatdelart-nicoletti-bass-2023-genders}
+				%%	\caption{
+				%%		Répartitions des genres par métier lors de génération de portrait avec \texttt{Stable Diffusion} (étude menée par \cite{nicoletti-bass:2023:generative-ai-takes}).
+				%%	}
+				%%	\label{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES-GENDERS}
+				%%\end{figure}
+				
 				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
 				% Exemple pour faire réagir (non utilisé) : Si on veut générer une nouvelle BD Lucky Luke à partir des anciennes BDs, veut-on vraiment encore avoir un chinois à la blanchisserie ?
 			\end{leftBarExamples}
@@ -439,7 +457,7 @@
 			
 			% Coût embauches.
 			Tout d'abord, il y a des \textbf{charges de main d'oeuvre}.
-			En effet, de nombreuses personnes aux compétences diverses vont s'investir dans un tel projet (voir \textsc{Section\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}), à la fois pour modéliser le phénomène mais aussi pour labelliser les données le représentant.
+			En effet, de nombreuses personnes aux compétences diverses vont s'investir dans un tel projet (voir \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}), à la fois pour modéliser le phénomène mais aussi pour labelliser les données le représentant.
 			L'intervention de ces acteurs va engager des coûts dans l'embauche des experts et opérateurs nécessaires, mais aussi dans leur formation si cela est nécessaire (veille technologique, montée en compétence sur la compréhension du phénomène, ...).
 			
 			% Coût temporel.
@@ -608,7 +626,7 @@
 			% Dérive: Myriadisation.
 			Cependant, on constate que de plus en plus d'entreprises décident de sous-traiter ces tâches d'annotation à des plateformes de myriadisation (\textit{crowdsourcing}, \cite{howe:2008:crowdsourcing-how-power}) comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
 			Ces plateformes collaboratives permettent à n'importe quel internaute de contribuer à une tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
-			Plusieurs études montrent en effet l'intérêt de faire participer une foule d'opérateurs non-experts (\cite{snow-etal:2008:cheap-fast-it}), mais de \textbf{sérieuses questions éthiques} sont néanmoins soulevées par l'utilisation de ces plateformes.
+			Plusieurs études montrent en effet l'intérêt de faire participer une foule d'opérateurs non-experts (\cite{snow-etal:2008:cheap-fast-it}, \cite{fort:2017:experts-ou-foule}), mais de \textbf{sérieuses questions éthiques} sont néanmoins soulevées par l'utilisation de ces plateformes.
 			
 			% Problème 1: Salaires faibles.
 			Tout d'abord, on peut remarquer que ces opérateurs sont souvent payés un salaire dérisoire proportionnel à la quantité de données qu'ils labellisent.
@@ -622,7 +640,7 @@
 			% Pour information: Critique franche du TALN.
 			\begin{leftBarInformation}
 				Pour conclure sur ces dérives éthiques, \cite{valette:2016:analyse-statistique-donnees} rédige une critique franche des stratégies d'annotation dans le domaine du traitement automatique du langage naturel.
-				Celle-ci dénonce l'organisation actuelle où les experts linguistes sont devenus de simples sous-traitants n'ayant plus leur mot à dire dans la conception d'une modélisation, et dont l'échec du projet leur est généralement attribué par mépris.
+				Celle-ci dénonce l'organisation actuelle où les experts linguistes sont devenus de simples sous-traitants n'ayant plus leur mot à dire dans la conception d'une modélisation : ils ont généralement traité avec mépris, ne récoltent pas les lauriers des projets à succès mais sont tenus pour responsables des projets en échecs.
 			\end{leftBarInformation}
 	
 	

@@ -32,7 +32,7 @@
 		\end{figure}
 		%
 		\begin{leftBarAuthorOpinion}
-			Nous conseillons la lecture de \cite{finlayson-erjavec:2016:overview-annotation-creation} pour son excellente revue de littérature qui détaille pas à pas le cycle \texttt{MATTER} tout en dressant la liste des points importants importants de chacune des étapes.
+			Nous conseillons la lecture de \cite{finlayson-erjavec:2016:overview-annotation-creation} pour son excellente revue de littérature qui détaille pas à pas le cycle \texttt{MATTER} tout en dressant la liste des points importants de chacune des étapes.
 		\end{leftBarAuthorOpinion}
 		
 		%%% 2.2.1.A. Concevoir la base d'apprentissage (\textbf{M}odelize}, \textit{\textbf{A}nnotate}).
@@ -77,14 +77,14 @@
 				\item le besoin d'\textit{inter-opérabilité} et de \textit{ré-utilisabilité} : un projet d'annotation est toujours un investissement coûteux, il serait donc regrettable de perdre ou de ne pas pourvoir ré-utiliser ces données après ce projet.
 				Par conséquent, il faut réfléchir au format des données ainsi qu'aux types de détails à fournir pour être sûr de pouvoir toujours exploiter les données si la modélisation évolue légèrement ou si un futur projet désire en bénéficier ;
 				\item la balance entre \textit{généralité} et \textit{spécificité} : le niveau de détail requis dépend sans conteste du problème à modéliser : annoter trop peu de détails ne permet pas d'exploiter les données, mais en annoter trop peut rapidement complexifier la tâche et introduire des erreurs.
-				Il faut donc trouver le juste milieu pour réaliser un travail de qualité qui ne soit pas trop pénible.
+				Il faut donc trouver le juste milieu pour réaliser un travail de qualité.
 			\end{itemize}
 			%
 			\begin{leftBarExamples}
 				Dans la classification de langues exposée en \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}, nous avons annoté chaque texte grâce à trois classes : "\texttt{Français}", "\texttt{Anglais}" et "\texttt{Allemand}".
 				\begin{itemize}
 					% Exemple inter-opérabilité et de ré-utilisabilité.
-					\item par soucis d'\textit{inter-opérabilité}, nous pourrions plutôt utiliser la norme ISO 639-3 (\cite{international-organization-for-standardization:2007:codes-representation-names}), soit les codes "\texttt{fra}", "\texttt{eng}" et "\texttt{deu}", afin de standardiser l'annotation et ainsi pouvoir partager plus facilement les données labellisées avec d'autres projets ;
+					\item par souci d'\textit{inter-opérabilité}, nous pourrions plutôt utiliser la norme ISO 639-3 (\cite{international-organization-for-standardization:2007:codes-representation-names}), soit les codes "\texttt{fra}", "\texttt{eng}" et "\texttt{deu}", afin de standardiser l'annotation et ainsi pouvoir partager plus facilement les données labellisées avec d'autres projets ;
 					% Exemple généralité et spécificité.
 					\item afin de présenter un cas simple, nous avions proposé un modèle avec trois langues communes pour une bande dessinée d'origine belge.
 					Toutefois, nous aurions pu \textit{spécialiser} davantage notre modèle en fonction des variations régionales en prenant en compte le Corse ("\texttt{cos}") ou le Wallon ("\texttt{wln}").

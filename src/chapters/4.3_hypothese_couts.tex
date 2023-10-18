@@ -140,14 +140,15 @@
 			%
 			Pour réaliser l'annotation, les opérateurs auront accès à l'application web développée au cours de ce doctorat.
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
-			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{section:C.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-0application-annotation}
 				\caption{
 					Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif : \textbf{page d'annotation de contraintes}.
-					Les deux textes à annoter sont disposés à gauche et droite de l'écran. Chacun dispose d'un cache à cocher si le texte n'est pas pertinent à analyser (\textit{ambigu, hors périmètre, incompréhensible, ...}).\\
+					Les deux textes à annoter sont disposés à gauche et droite de l'écran.
+					Chacun dispose d'un cache à cocher si le texte n'est pas pertinent à analyser (\textit{ambigu, hors périmètre, incompréhensible, ...}).\\
 					Les boutons à disposition permettent respectivement d'annoter un \texttt{MUST-LINK} si les données sont similaires (\textit{bouton en vert}), un \texttt{CANNOT-LINK} si les données ne sont pas similaire (\textit{bouton en rouge}), d'ignorer la contrainte pour laisser la main à l'algorithme de \textit{clustering} (\textit{bouton en bleu}), et d'ajouter un commentaire pour revoir la contrainte plus tard (\textit{case à choser et champ de texte libre}).
 					Deux éléments déroulant permettent d'avoir des informations supplémentaires (\textit{metadata de sélection et de \textit{clustering}, représentation graphique des liens entre contraintes annotées}).
 					Les boutons de navigation (\textit{boutons flèches et liste}) sont disponibles en bas de page.
@@ -464,7 +465,7 @@
 			\end{leftBarWarning}
 			
 			% Description des tâches, des algorithmes et des contextes.
-			À l'aide de ces données, nous lançons plusieurs exécutions de chaque algorithme de notre implémentation du \textit{clustering} interactif (cf. \textsc{Annexe~\ref{section:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}) avec différentes variations de contexte d'utilisation.
+			À l'aide de ces données, nous lançons plusieurs exécutions de chaque algorithme de notre implémentation du \textit{clustering} interactif (cf. \textsc{Annexe~\ref{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}) avec différentes variations de contexte d'utilisation.
 			Cela comprend les tâches, algorithmes et contextes d'utilisation suivants :
 			\begin{enumerate}
 				% Prétraitement.
@@ -734,7 +735,7 @@
 			% Note: remarque sur le nombre de contraintes.
 			\begin{leftBarAuthorOpinion}
 				Certains paramétrages de la méthode du \textit{clustering} interactif semblent cependant avoir un temps de calcul décroissant au cours des itérations, mais nous n'avons cependant pas pu montrer de tendances globales significatives.
-				Il est probable que l'ajout de contraintes judicieusement placées permettent à certains algorithmes de \textit{clustering} de s'exécuter plus rapidement, notamment lorsque ceux-ci exploitent les composants connexes du graphe de contraintes (cf. \textsc{Annexe~\ref{section:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+				Il est probable que l'ajout de contraintes judicieusement placées permettent à certains algorithmes de \textit{clustering} de s'exécuter plus rapidement, notamment lorsque ceux-ci exploitent les composants connexes du graphe de contraintes (cf. \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 				En effet, :
 				\begin{itemize}
 					\item les \textit{clustering} hiérarchiques s'initialisent autant de \textit{clusters} que de groupes de données liées entre elles par des contraintes \texttt{MUST-LINK} : or s'il y a plus de contraintes, alors les composants connexes sont davantage développés, donc il y a moins de \textit{clusters} à initialiser et donc moins d'époques de l'algorithme ;
@@ -757,7 +758,8 @@
 			
 			% Note: Cas du projet étudiant avec TPS.
 			\begin{leftBarInformation}
-				Dans le cadre du projet étudiant avec l'école Télécom Physique Strasbourg visant à implémenter d'autres algorithmes de \textit{clustering} sous contraintes, un résonnement similaire a été utilisé pour filtrer les algorithmes. Ainsi, l'implémentation de KMeans (modèle MPC) a été exclu (complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}^{\textbf{3}}) $) et l'implémentation de la propagation par affinité écarte la gestion des contraintes \texttt{CANNOT-LINK} pour avoir un temps d'exécution comparable au \textit{clustering} KMeans (modèle COP). L'algorithme DBScan (modèle C-DBScan) est quand à lui un rival possible avec une complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}) $.
+				Dans le cadre du projet étudiant avec l'école Télécom Physique Strasbourg visant à implémenter d'autres algorithmes de \textit{clustering} sous contraintes, un résonnement similaire a été utilisé pour filtrer les algorithmes. Ainsi, l'implémentation de KMeans (modèle MPC) a été exclu (complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}^{\textbf{3}}) $) et l'implémentation de la propagation par affinité écarte la gestion des contraintes \texttt{CANNOT-LINK} pour avoir un temps d'exécution comparable au \textit{clustering} KMeans (modèle COP).
+				L'algorithme DBScan (modèle C-DBScan) est quand à lui un rival possible avec une complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}) $.
 			\end{leftBarInformation}
 			
 			% Cas du prétraitement + vectorisation + échantillonnage.
