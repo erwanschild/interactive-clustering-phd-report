@@ -93,7 +93,7 @@
 
 %%% Pour les tableaux:
 \usepackage{array}
-\usepackage{arydshln}
+%\usepackage{arydshln}
 \usepackage{hhline}
 \usepackage{multirow}
 \definecolor{colorTableCaption}{HTML}{737373}  % Dim Gray (#737373)
@@ -388,6 +388,11 @@
 % \NumberThisInToc
 % \DontNumberThisInToc
 
+%%% Pour numéroter les subsubsection avec une lettre en minuscule.
+\setcounter{secnumdepth}{3}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+
+
 %%%%%--------------------------------------------------------------------
 %%%%% Mini-table des matières à chaque chapitre
 %%%%%--------------------------------------------------------------------
@@ -466,7 +471,6 @@
         \KeyWords{cat, dog, flees.}
     \end{EnglishAbstract}
 \end{ThesisAbstract}
-\todo[inline]{ABSTRACT A REDIGER}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Page de remerciements
@@ -479,7 +483,6 @@
     \begin{todolist}
         \item ...
     \end{todolist}
-	\todo[inline]{REMERCIEMENTS A REDIGER}
 
 \end{ThesisAcknowledgments}
 
@@ -502,10 +505,6 @@
 %%% Génération de la table des matières:
 \renewcommand{\contentsname}{Table des matières}
 \tableofcontents
-
-
-%%% TODO généraux.
-\todo[inline]{TITRE A REVOIR: Faciliter => Accélérer ? Améliorer l'accessibilité ? Limiter les biais et erreurs ? ...}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% CORPS DU DOCUMENT
