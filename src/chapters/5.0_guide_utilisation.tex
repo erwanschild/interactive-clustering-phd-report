@@ -1,18 +1,53 @@
 \chapter{Bilan et Guide d'utilisation du \textit{Clustering Interactif}}
 \label{chapter:5-GUIDE}
 	
+	% Introduction.
+	Dans nos études, nous nous sommes intéressés aux assistants conversationnels orientés par tâches et aux méthodes de conception des bases d'apprentissage nécessaires à leur entraînement.
+	Dans ce chapitre, nous dressons une synthèse des découvertes et des conseils d'utilisation de notre méthodologie d'annotation basée sur un \texttt{Clustering Interactif} ayant pour but d'assister les experts métiers dans la phase de modélisation des textes en intentions de dialogue.
+	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section 5.1:
 	%%%%%--------------------------------------------------------------------
-	\section{Présentation rapide du clustering interactif et de ses avantages}
+	\section{Présentation rapide du \textit{Clustering Interactif} et de ses avantages}
 		\label{section:5.1-GUIDE-PRESENTATION-RAPIDE}
+		
+		% Détails de fonctionnement.
 		\todo[inline]{
 			SECTION À RÉDIGER: \\
 			- trouver une base d'apprentissage acceptable, puis corriger manuellement \\
 			- intervention d'experts métiers sur la base de leur connaissance métiers \\
 			- revues d'annotations basée sur leur connaissance métiers \\
-			- aide à la modélisation par le clustering
+			- aide à la modélisation par le \textit{clustering}
 		}
+		
+		% Constat : expert métier pas à leur place !
+		Nous partons du constat selon lequel les tâches de modélisation et d'annotation de textes en intentions sont connues pour être complexes, subjectives et sensibles aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
+		Ainsi, les experts métiers intervenant au sein d'un projet de conception d'une base d'apprentissage pour un assistant conversationnel 
+		%Nous partons du constat selon lequel les experts métiers qui modélisent et annotent les textes en intentions sont généralement mal intégrés au sein d'un projet de conception d'une base d'apprentissage.
+		En effet, ces derniers sont confrontés à des problèmes analytiques ou techniques pour lesquels pas des compétences analytiques et techniques tâches sont connues pour être complexes, subjectives et sensibles aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}), demandant des compétences analytiques et techniques 
+		
+		reposant sur le cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}), 
+		De ce fait, les experts métiers intervenant dans le projet 
+		% selon lequel les experts métiers, ayant les compétences pour valider la pertinence  sont mal intégrés dans les projets de conception de bases d'apprentissage nécessaires à l'entraînement de modèles supervisés de \textit{Machine Learning}.
+		
+		% Proposition d'un \texttt{Clustering Interactif}.
+		Pour assister cette phase de modélisation, et dans le but de recentrer l'intervention des experts métiers sur leurs compétences (métiers, et non analytique , nous proposons une nouvelle méthode d'annotation basée sur un \texttt{Clustering Interactif}.
+		Cette
+		
+		\begin{leftBarImportantGreen}
+			La \textsc{Figure~\ref{figure:5.1-GUIDE-PRESENTATION-RAPIDE-CLUSTERING-INTERACTIF}} ...
+			
+			% Figure.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
+				\caption{
+					Schéma illustrant l'architecture du \texttt{Clustering Interactif}.
+					La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.
+				}
+				\label{figure:5.1-GUIDE-PRESENTATION-RAPIDE-CLUSTERING-INTERACTIF}
+			\end{figure}
+		\end{leftBarImportantGreen}
 	
 	
 	%%%%%--------------------------------------------------------------------
@@ -42,7 +77,7 @@
 		\label{section:5.3-GUIDE-ANALYSE}
 		\todo[inline]{
 			SECTION À RÉDIGER: \\
-			- Cas d'arrêt quand le clustering stagne à 5\% : si change pas, alors l'annotation n'a plus d'effet... \\
+			- Cas d'arrêt quand le \textit{clustering} stagne à 5\% : si change pas, alors l'annotation n'a plus d'effet... \\
 			- utiliser le graphe de contraintes pour voir les données liées entres elles et les données isolées \\
 			- Analyse avec résumer par LLM pour identifier facilement les thématiques qui se dégagent \\
 			- Analyse avec FMC pour identifier le vocabulaire qui caractérise chaque thématique \\

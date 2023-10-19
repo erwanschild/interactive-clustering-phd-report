@@ -4,7 +4,7 @@
 	%%%
 	%%% Introduction / Transition.
 	%%%
-	Dans les deux sections précédentes, nous avons estimé le paramétrage du \textit{clustering} interactif le plus efficient pour atteindre $90$\% de \texttt{v-measure} avec la vérité terrain, correspondant à ce que nous appelons une annotation partielle.
+	Dans les deux sections précédentes, nous avons estimé le paramétrage du \texttt{Clustering Interactif} le plus efficient pour atteindre $90$\% de \texttt{v-measure} avec la vérité terrain, correspondant à ce que nous appelons une annotation partielle.
 	Toutefois, pour compléter l'étude de faisabilité technique de notre méthode, nous devons nous intéresser aux coûts (matériel et humain) à investir pour atteindre notre objectif.
 	Nous aimerions donc vérifier l'hypothèse suivante :
 	
@@ -19,7 +19,7 @@
 	]
 		% Hypothèse.
 		\textguillemets{\textbf{
-			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \textit{clustering} interactif pour obtenir une base d'apprentissage exploitable.
+			Il est possible d'estimer les coûts nécessaires d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif} pour obtenir une base d'apprentissage exploitable.
 			Nous étudions en particulier les coûts relatifs au temps d'annotation, au temps de calculs des algorithmes, ainsi que la durée totale de la méthode en fonction de la taille du jeu de données.
 		}} \\
 		
@@ -30,7 +30,7 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-03-couts}
 			\caption{
-				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 3/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}).
 			}
 			\label{figure:4.3-HYPOTHESE-COUTS}
 		\end{figure}
@@ -40,7 +40,7 @@
 	Afin de vérifier cette hypothèse, nous organisons plusieurs expériences pour simuler et déterminer ces durées :
 	\begin{itemize}
 		\item une étude du \textbf{temps d'annotation} par un expert métier, mesuré lors d'une expérience d'annotation de contraintes faisant intervenir plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}) ;
-		\item une étude du \textbf{temps de calcul} des algorithmes, modélisé en exécutant les différentes implémentations du \textit{clustering} interactif avec diverses valeurs d'arguments (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
+		\item une étude du \textbf{temps de calcul} des algorithmes, modélisé en exécutant les différentes implémentations du \texttt{Clustering Interactif} avec diverses valeurs d'arguments (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
 		\item et une étude du \textbf{nombre de contraintes} nécessaires en fonction du nombre de données à traiter, estimé en simulant la création d'une base d'annotation avec notre méthodologie sur des jeux de données de différentes tailles (cf. \textsc{Section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}).
 	\end{itemize}
 	Nous exposons nos conclusions sur l'estimation du \textbf{temps total} à investir et réalisons une comparaison avec une organisation plus traditionnelle d'un projet d'annotation en \textsc{Section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}}.
@@ -103,7 +103,7 @@
 			Nous nous intéressons ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
 			Comme certains titres peuvent porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs (\textit{une Data Scientist et moi-même}) sont chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
 			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
 			
 			% Détails de l'expérience : sélection des contraintes à annoter.
 			À partir de ces données, nous sélectionnons un lot de $1~000$ contraintes à annoter.
@@ -140,13 +140,13 @@
 			%
 			Pour réaliser l'annotation, les opérateurs auront accès à l'application web développée au cours de ce doctorat.
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
-			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-0application-annotation}
 				\caption{
-					Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif : \textbf{page d'annotation de contraintes}.
+					Capture d'écran de l'application web permettant utilisant notre méthodologie de \texttt{Clustering Interactif} : \textbf{page d'annotation de contraintes}.
 					Les deux textes à annoter sont disposés à gauche et droite de l'écran.
 					Chacun dispose d'un cache à cocher si le texte n'est pas pertinent à analyser (\textit{ambigu, hors périmètre, incompréhensible, ...}).\\
 					Les boutons à disposition permettent respectivement d'annoter un \texttt{MUST-LINK} si les données sont similaires (\textit{bouton en vert}), un \texttt{CANNOT-LINK} si les données ne sont pas similaire (\textit{bouton en rouge}), d'ignorer la contrainte pour laisser la main à l'algorithme de \textit{clustering} (\textit{bouton en bleu}), et d'ajouter un commentaire pour revoir la contrainte plus tard (\textit{case à choser et champ de texte libre}).
@@ -159,7 +159,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-annotation-0application-liste-contraintes}
 				\caption{
-					Capture d'écran de l'application web permettant utilisant notre méthodologie de \textit{clustering} interactif : \textbf{page d'inventaire des contraintes à annoter}.\\
+					Capture d'écran de l'application web permettant utilisant notre méthodologie de \texttt{Clustering Interactif} : \textbf{page d'inventaire des contraintes à annoter}.\\
 					La partie supérieure permet d'identifier le nombre de textes et de contraintes sur le projet, ainsi que les boutons destinés à calculer les transitivités entre les contraintes et à approuver le travail réalisé si aucune transitivité n'entre en conflit avec un contrainte annotée.
 					La partie inférieure liste l'ensemble des contraintes du projet, avec les annotations réalisées, l'itération à laquelle la contraintes a été sélectionnée et annotée, si elle est à revoir ou si une incohérence la concernant est détectée.
 				}
@@ -177,16 +177,17 @@
 			\begin{leftBarInformation}
 				L'outil d'annotation utilisé est accessible dans \cite{schild-etal:2022:cognitivefactory-interactiveclusteringgui}.
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), ainsi que le projet à importer dans l'outil d'annotation, sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-				Nous utilisons entre autres les librairies \texttt{datetime} \footnotemark et \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Nous y utilisons entre autres les librairies \texttt{datetime} \footnotemark et \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 			%%% Rattraper les footnote.
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					\texttt{datetime}: \url{https://pypi.org/project/datetime/}
+					\url{https://pypi.org/project/datetime/}
 				}
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					\texttt{statsmodels}: \url{https://pypi.org/project/statsmodels/}
+					\url{https://pypi.org/project/statsmodels/}
 				}
 				
 
@@ -407,7 +408,7 @@
 		% Complexité de la tâche.
 		Comme les différents algorithmes employés manipulent des contraintes sur les données, l'estimation théorique du temps d'exécution par l'analyse de la complexité ne semble pas fiable : en effet, quelques contraintes bien placées peuvent suffire à simplifier le fonctionnement d'un algorithme de \textit{clustering} alors qu'une grande quantité de contraintes mal placées vont au contraire le pénaliser.
 		% Objectif de l'expérience.
-		Nous préférons donc une approche empirique en chronométrant plusieurs exécutions isolées des algorithmes intervenant dans notre implémentation du \textit{clustering} interactif et en évaluant l'importance de leurs différents arguments d'entrée (la taille du jeu de données, le nombre de clusters et le nombre de contraintes annotées, ...).
+		Nous préférons donc une approche empirique en chronométrant plusieurs exécutions isolées des algorithmes intervenant dans notre implémentation du \texttt{Clustering Interactif} et en évaluant l'importance de leurs différents arguments d'entrée (la taille du jeu de données, le nombre de clusters et le nombre de contraintes annotées, ...).
 		Nous profitons aussi de ces modélisations du temps de calcul pour confirmer le choix de paramétrage réalisé lors de l'étude d'efficience en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}, et ainsi faire un compromis entre l'algorithme le plus efficient et l'algorithme le plus rapide.
 	
 		%%% Protocole expérimental.
@@ -423,19 +424,19 @@
 				\ForEach{combinaison d'algorithmes et de paramètres à tester}{
 					\textbf{initialisation (données)}: récupérer ou générer le jeu de données \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\If{estimation de la tâche de \textbf{prétraitement}}{
+					\If{estimation de la tâche de \textbf{prétraitements}}{
 						\textbf{chronomètre}: \textbf{START} \;
-						\textbf{prétraitement (à étudier)}: supprimer le bruit dans les données \;
+						\textbf{prétraitements (à étudier)}: supprimer le bruit dans les données \;
 						\textbf{chronomètre}: \textbf{STOP} \;
 					}
 					\ElseIf {estimation de la tâche de \textbf{vectorisation}}{
-						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{chronomètre}: \textbf{START} \;
 						\textbf{vectorisation (à étudier)}: transformer les données en vecteurs \;
 						\textbf{chronomètre}: \textbf{STOP} \;
 					}
 					\ElseIf {estimation de la tâche de \textbf{clustering}}{
-						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
@@ -445,7 +446,7 @@
 						\textbf{chronomètre}: \textbf{STOP} \;
 					}
 					\ElseIf {estimation de la tâche d'\textbf{échantillonnage}}{
-						\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+						\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 						\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 						\textbf{échantillonnage initial}: sélectionner des contraintes avec \texttt{samp.rand.full} \;
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
@@ -465,7 +466,7 @@
 				\KwResult{modélisation du temps d'exécution des différents algorithmes}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \textit{clustering} interactif.
+					Description en pseudo-code du protocole expérimental de l'étude du temps d'exécution des algorithmes du \texttt{Clustering Interactif}.
 				}}
 				\label{algorithm:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-PROTOCOLE}
 			\end{algorithm}
@@ -473,7 +474,7 @@
 			% Description de la vérité terrain.
 			Nous utilisons le jeu de données \texttt{Bank Cards (v2.0.0)} comme référence pour cette expérience : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			Cependant, un seul jeu de données ne nous permet pas d'analyser l'impact du nombre de données sur le temps d'exécution des algorithmes.
 			Pour utiliser facilement plusieurs jeux de données de tailles différentes tout en maîtrisant leur contenu, nous avons donc dupliqué aléatoirement des données issues du jeu de référence en y insérant des fautes de frappes.
 			
@@ -483,13 +484,14 @@
 			\end{leftBarWarning}
 			
 			% Description des tâches, des algorithmes et des contextes.
-			À l'aide de ces données, nous lançons plusieurs exécutions de chaque algorithme de notre implémentation du \textit{clustering} interactif (cf. \textsc{Annexe~\ref{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}) avec différentes variations de contexte d'utilisation.
+			À l'aide de ces données, nous lançons plusieurs exécutions de chaque algorithme de notre implémentation du \texttt{Clustering Interactif} avec différentes variations de contexte d'utilisation.
+			Cette implémentation est détaillée en \textsc{Annexe~\ref{annex:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}.
 			Cela comprend les tâches, algorithmes et contextes d'utilisation suivants :
 			\begin{enumerate}
 				% Prétraitement.
-				\item le \textbf{prétraitement} des données...
+				\item le \textbf{prétraitements} des données...
 					\begin{itemize}
-						\item avec les algorithmes suivants : \textbf{simple} (noté \texttt{prep.simple}), \textbf{avec lemmatisation} (noté \texttt{prep.lemma}) et \textbf{avec filtres} (noté \texttt{prep.filter}) ;
+						\item avec les algorithmes suivants : \textbf{simples} (noté \texttt{prep.simple}), \textbf{avec lemmatisation} (noté \texttt{prep.lemma}) et \textbf{avec filtres} (noté \texttt{prep.filter}) ;
 						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$) ;
 					\end{itemize}
 				% Vectorisation.
@@ -497,26 +499,26 @@
 					\begin{itemize}
 						\item avec les algorithmes suivants : \textbf{TF-IDF} (noté \texttt{vect.tfidf}) et \textbf{SpaCy} (noté \texttt{vect.frcorenewsmd}) ;
 						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$) ;
-						\item précédé par un prétraitement \textbf{simple} ;
+						\item précédé par des prétraitements \textbf{simples} ;
 					\end{itemize}
-				% Clustering.
+				% \textit{Clustering}.
 				\item le \textbf{\textit{clustering} sous contraintes} des données...
 					\begin{itemize}
 						\item avec les algorithmes suivants : \textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}) ;
 						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$), le \textbf{nombre de contraintes annotés} (variant de $0$ à $5~000$ par pas de $500$, noté $\texttt{previous\_nb\_constraints}$) et le \textbf{nombre de \textit{clusters} à trouver} (variant de $5$ à $50$ par pas de $5$, noté $\texttt{algorithm\_nb\_clusters}$) ;
-						\item précédé par un prétraitement \textbf{simple} et une vectorisation \textbf{TF-IDF} et un échantillonnage initial \textbf{purement aléatoire} ;
+						\item précédé par des prétraitements \textbf{simples} et une vectorisation \textbf{TF-IDF} et un échantillonnage initial \textbf{purement aléatoire} ;
 					\end{itemize}
 				% Sampling.
 				\item l'\textbf{échantillonnage} des contraintes à annoter...
 					\begin{itemize}
 						\item avec les algorithmes suivants : \textbf{purement aléatoire} (noté \texttt{samp.random.full}), \textbf{pseudo-aléatoire} (noté \texttt{samp.random.same}), \textbf{même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et \textbf{clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}) ;
 						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$), le \textbf{nombre de contraintes annotés} (variant de $0$ à $5~000$ par pas de $500$, noté $\texttt{previous\_nb\_constraints}$), le \textbf{nombre de \textit{clusters} existant} (variant de $10$ à $50$ par pas de $10$, noté $\texttt{previous\_nb\_clusters}$) et le \textbf{nombre de contraintes à sélectionner} (variant de $50$ à $250$ par pas de $50$, noté $\texttt{algorithm\_nb\_constraints}$) ;
-						\item précédé par un prétraitement \textbf{simple}, une vectorisation \textbf{TF-IDF}, un \textit{clustering} initial \textbf{KMeans} (modèle \textit{COP}) et un échantillonnage initial \textbf{purement aléatoire} ;
+						\item précédé par des prétraitements \textbf{simples}, une vectorisation \textbf{TF-IDF}, un \textit{clustering} initial \textbf{KMeans} (modèle \textit{COP}) et un échantillonnage initial \textbf{purement aléatoire} ;
 					\end{itemize}
 			\end{enumerate}
 			
-			Il y a donc $8~825$ combinaisons d'algorithmes (\texttt{15} pour le prétraitement, $10$ pour la vectorisation, $3~330$ pour le \textit{clustering}, $5~550$ pour l'échantillonnage), et chaque combinaison est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
-			De plus, chaque jeu de données est généré $5$ fois pour contrer les aléas statistiques de création, donc il y a $220~625$ exécutions d'algorithmes ($375$ pour le prétraitement, $250$ pour la vectorisation, $82~500$ pour le \textit{clustering}, $137~500$ pour l'échantillonnage).
+			Il y a donc $8~825$ combinaisons d'algorithmes (\texttt{15} pour les prétraitements, $10$ pour la vectorisation, $3~330$ pour le \textit{clustering}, $5~550$ pour l'échantillonnage), et chaque combinaison est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
+			De plus, chaque jeu de données est généré $5$ fois pour contrer les aléas statistiques de création, donc il y a $220~625$ exécutions d'algorithmes ($375$ pour les prétraitements, $250$ pour la vectorisation, $82~500$ pour le \textit{clustering}, $137~500$ pour l'échantillonnage).
 			
 			% Description de la modélisation.
 			Sur la base de ces mesures, nous cherchons à modéliser le temps d'exécution de chaque algorithme en fonction de son contexte d'utilisation (dépendant de ses arguments d'entrée), et les interactions doubles entre paramètres sont envisagées.
@@ -528,16 +530,17 @@
 			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-				Nous utilisons entre autres les librairies \texttt{datetime} \footnotemark et \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Nous y utilisons entre autres les librairies \texttt{datetime} \footnotemark et \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 			% Rattraper les footnote.
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					\texttt{datetime}: \url{https://pypi.org/project/datetime/}
+					\url{https://pypi.org/project/datetime/}
 				}
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					\texttt{statsmodels}: \url{https://pypi.org/project/statsmodels/}
+					\url{https://pypi.org/project/statsmodels/}
 				}
 
 		%%% Résultats.
@@ -546,7 +549,7 @@
 			%%% Prétraitements
 			
 			% Première analyse.
-			En ce qui concerne la tâche de \textbf{prétraitement}, une première analyse montre que les modélisations des trois implémentations sont similaires (\texttt{p-valeur}: $> 0.980$). Nous faisons donc une seule modélisation.
+			En ce qui concerne la tâche de \textbf{prétraitements}, une première analyse montre que les modélisations des trois implémentations sont similaires (\texttt{p-valeur}: $> 0.980$). Nous faisons donc une seule modélisation.
 			
 			% Modélisation du temps de calcul (prep.simple + prep.lemma + prep.filter).
 			Pour les algorithmes de prétraitements (\texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter}), l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}$ (\texttt{r}: $0.997$).
@@ -565,7 +568,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-calcul-modelisation-1prep}
 				\caption{
-					Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{prétraitement} en fonction du nombre de données à traiter. Les paramétrages \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ayant des temps de calculs similaires, leurs modélisations n'ont pas été séparées.
+					Estimation du temps nécessaire (en minutes) pour effectuer une tâche de \textbf{prétraitements} en fonction du nombre de données à traiter. Les paramétrages \texttt{prep.simple}, \texttt{prep.lemma} et \texttt{prep.filter} ayant des temps de calculs similaires, leurs modélisations n'ont pas été séparées.
 				}
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}
 			\end{figure}
@@ -606,7 +609,7 @@
 				\label{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}
 			\end{figure}
 			
-			%%% Clustering
+			%%% \textit{Clustering}
 			
 			% Première analyse.
 			En ce qui concerne la tâche de \textbf{\textit{clustering} sous contraintes}, une première analyse montre que les modélisations des six implémentations sont différentiables (\texttt{p-valeur}: $<$ \texttt{$10^{-3}$}). Nous faisons donc une modélisation par algorithme.
@@ -762,8 +765,8 @@
 			
 			% Note: remarque sur le nombre de contraintes.
 			\begin{leftBarAuthorOpinion}
-				Certains paramétrages de la méthode du \textit{clustering} interactif semblent cependant avoir un temps de calcul décroissant au cours des itérations, mais nous n'avons cependant pas pu montrer de tendances globales significatives.
-				Il est probable que l'ajout de contraintes judicieusement placées permettent à certains algorithmes de \textit{clustering} de s'exécuter plus rapidement, notamment lorsque ceux-ci exploitent les composants connexes du graphe de contraintes (cf. \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+				Certains paramétrages de la méthode du \texttt{Clustering Interactif} semblent cependant avoir un temps de calcul décroissant au cours des itérations, mais nous n'avons cependant pas pu montrer de tendances globales significatives.
+				Il est probable que l'ajout de contraintes judicieusement placées permettent à certains algorithmes de \textit{clustering} de s'exécuter plus rapidement, notamment lorsque ceux-ci exploitent les composants connexes du graphe de contraintes (cf. \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 				En effet, :
 				\begin{itemize}
 					\item les \textit{clustering} hiérarchiques s'initialisent autant de \textit{clusters} que de groupes de données liées entre elles par des contraintes \texttt{MUST-LINK} : or s'il y a plus de contraintes, alors les composants connexes sont davantage développés, donc il y a moins de \textit{clusters} à initialiser et donc moins d'époques de l'algorithme ;
@@ -776,29 +779,29 @@
 				\end{itemize}
 			\end{leftBarAuthorOpinion}
 			
-			% Cas du clustering.
+			% Cas du \textit{clustering}.
 			En ce qui concerne la tâche de \textit{clustering}, on note des différences significatives dans les temps d'exécution des divers algorithmes implémentés.
 			En effet, l'algorithme \texttt{KMeans} (modèle \texttt{COP}) est nettement plus rapide (complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}) $, nécessitant quelques dizaines de minutes pour $5~000$ données) que les implémentations du \textit{clustering} hiérarchique (complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}^{\textbf{2}}) $, nécessitant plusieurs heures dès $3~000$ données).
 			Cette différence, visible en \textsc{Figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-CLUSTERING}}, a un réel impact sur l'expérience utilisateur de l'opérateur.
 			En effet, bien qu'il soit théoriquement plus efficient pour atteindre une annotation suffisante (cf. hypothèse d'efficience en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}), l'usage d'un \textit{clustering} hiérarchique imposerait de longs temps d'attente à l'opérateur, interdisant des interactions rapides avec la machines.
-			Or l'intérêt principal de notre méthodologie d'annotation à l'aide du \textit{clustering} interactif repose sur ces interactions homme-machine via l'ajout régulier de contraintes pertinentes (cf. hypothèse d'efficacité en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}).
+			Or l'intérêt principal de notre méthodologie d'annotation à l'aide du \texttt{Clustering Interactif} repose sur ces interactions homme-machine via l'ajout régulier de contraintes pertinentes (cf. hypothèse d'efficacité en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}).
 			Nous décidons donc d'exclure l'usage des algorithmes de \textit{clustering} hiérarchique au profit du \textit{clustering} \texttt{KMeans} (modèle \texttt{COP}).
 			
 			% Note: Cas du projet étudiant avec TPS.
 			\begin{leftBarInformation}
-				Dans le cadre du projet étudiant avec l'école Télécom Physique Strasbourg visant à implémenter d'autres algorithmes de \textit{clustering} sous contraintes, un résonnement similaire a été utilisé pour filtrer les algorithmes.
+				Dans le cadre d'un projet étudiant avec l'école Télécom Physique Strasbourg (au cours de l'année 2022) visant à implémenter d'autres algorithmes de \textit{clustering} sous contraintes, un résonnement similaire a été utilisé pour filtrer les algorithmes.
 				Ainsi, l'implémentation de \texttt{KMeans} (modèle \texttt{MPC}) a été exclu (complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}^{\textbf{3}}) $) et l'implémentation de la propagation par affinité écarte la gestion des contraintes \texttt{CANNOT-LINK} pour avoir un temps d'exécution comparable au \textit{clustering} KMeans (modèle COP).
 				L'algorithme \texttt{DBScan} (modèle \texttt{C-DBScan}) est quand à lui un rival possible avec une complexité estimée en $ \mathcal{O}(\texttt{dataset\_size}) $.
 			\end{leftBarInformation}
 			
-			% Cas du prétraitement + vectorisation + échantillonnage.
+			% Cas du prétraitements + vectorisation + échantillonnage.
 			En ce qui concerne les tâches de prétraitements (cf. \textsc{Figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-PREPROCESSING}}), de vectorisation (cf. \textsc{Figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-VECTORIZATION}}), et d'échantillonnage de contraintes (cf. \textsc{Figure~\ref{figure:4.3.2-ETUDE-COUTS-TEMPS-CALCUL-MODELISATION-SAMPLING}}) ont des complexités presque négligeables en représentant moins de $10$\% des temps d'exécution du \textit{clustering} (pour $5~000$ données : moins de $1$ minute pour les trois algorithmes, contre $12.1$ minutes pour \texttt{clust.kmeans.cop} et $3.5$ heures pour \texttt{clust.hier.sing}).
 			Nous maintenons donc les paramétrages obtenus pour ces tâches en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}} sans analyses complémentaires, et nous utilisons l'estimation temporelle du \textit{clustering} \texttt{clust.kmeans.cop} majorée de $10$\%.
 			
 			% Conclusion.
 			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarSummary}
-				Dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure} \footnotemark avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				Dans l'optique d'atteindre de manière efficiente $90$\% de \texttt{v-measure} \footnotemark avec un coût global minimal, nous retenons l'usage du \textbf{paramétrage favori} constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 				On estime le temps d'exécution de ce paramétrage avec l'équation suivante \footnotemark :
 				%
 				\begin{equation}
@@ -810,7 +813,7 @@
 			% Rattraper les footnote.
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+					$90$\% de \texttt{v-measure}: cas d'une annotation dite partielle, dont le paramétrage le plus efficient est constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 				}
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
@@ -829,10 +832,9 @@
 		
 		% Objectif de l'expérience.
 		Pour cela, nous allons simuler la création de cette base d'apprentissage en adaptant le protocole utilisé lors de notre étude d'efficacité (cf. \textsc{Section~\ref{section:4.1.1-ETUDE-CONVERGENCE}}) :
-		nous employons notre méthode de \textit{clustering} interactif avec notre \textbf{paramétrage favori} \footnote{
-			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff})
-		}
-		sur des jeux de données de différentes tailles et mesurons le nombre de contraintes nécessaires pour converger vers la vérité terrain.
+		nous employons notre méthode de \texttt{Clustering Interactif} avec notre \textbf{paramétrage favori} \footnote{
+			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+		} sur des jeux de données de différentes tailles et mesurons le nombre de contraintes nécessaires pour converger vers la vérité terrain.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
@@ -851,7 +853,7 @@
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer ou générer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
@@ -868,7 +870,7 @@
 				\KwResult{modélisation du nombre de contraintes nécessaires pour un jeu de données}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \textit{clustering} interactif.
+					Description en pseudo-code du protocole expérimental de l'étude du nombre de contraintes nécessaires pour converger vers une vérité terrain pré-établie avec notre paramétrage favori du \texttt{Clustering Interactif}.
 				}}
 				\label{algorithm:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-PROTOCOLE}
 			\end{algorithm}
@@ -880,12 +882,12 @@
 				\item le jeu de données \texttt{Bank Cards (v2.0.0)} :
 				ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 				Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-				Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS} ;
+				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}} ;
 				% MLSUM.
 				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} :
 				ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes.
 				Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-				Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD} ;
+				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}} ;
 			\end{itemize}
 
 			Cependant, deux jeux de données ne nous permettent pas d'analyser l'impact du nombre de données sur le nombre de contraintes nécessaires pour converger vers une vérité terrain.
@@ -902,8 +904,8 @@
 			Sur chacun de ces jeux générés, une tentative complète \footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori est exécuté, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
-			Il y a donc $510$ tentatives de \textit{clustering} interactif réalisées.
+			de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori est exécuté, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
+			Il y a donc $510$ tentatives de \texttt{Clustering Interactif} réalisées.
 			
 			% Description de l'évaluation.
 			Pour chacune de ces tentatives, nous nous intéressons au nombre de contraintes nécessaires pour atteindre le seuil d'annotation partielle (caractérisé par $90$\% de \texttt{v-measure} entre la vérité terrain et la segmentation des données obtenue), et nous entraînons un modèle linéaire généralisé (\textit{GLM}) pour modéliser le nombre de contraintes requis en fonction de la taille du jeu de données (noté $\texttt{dataset\_size}$).
@@ -914,12 +916,13 @@
 			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-				Nous utilisons entre autres la librairie \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				Nous y utilisons entre autres la librairie \texttt{statsmodels} \footnotemark (\cite{seabold-perktold:2010:statsmodels-econometric-statistical}).
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 			% Rattraper les footnote.
 				\stepcounter{localCounterOfFootnoteValue}
 				\footnotetext[\value{localCounterOfFootnoteValue}]{
-					\texttt{statsmodels}: \url{https://pypi.org/project/statsmodels/}
+					\url{https://pypi.org/project/statsmodels/}
 				}
 
 		%%% Résultats.
@@ -941,7 +944,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-nombre-contraintes-1-modelisation-nombre}
 				\caption{
-					Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.
+					Estimation du nombre moyen de contraintes nécessaire à notre \textbf{paramétrage favori} du \texttt{Clustering Interactif} afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}) en fonction de la taille du jeu de données à modéliser.
 				}
 				\label{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}
 			\end{figure}
@@ -997,7 +1000,7 @@
 		
 			% Note de l'auteur.
 			\begin{leftBarAuthorOpinion}
-				Il n'y a pas davantage de matière à discussion pour cette étude, car le principal résultat (l'\textsc{Equation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}) est un résultat temporaire nécessaire à l'estimation du coût global d'un projet utilisant une méthodologie de \textit{clustering} interactif.
+				Il n'y a pas davantage de matière à discussion pour cette étude, car le principal résultat (l'\textsc{Equation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}) est un résultat temporaire nécessaire à l'estimation du coût global d'un projet utilisant une méthodologie de \texttt{Clustering Interactif}.
 			\end{leftBarAuthorOpinion}
 	
 	%%%
@@ -1007,8 +1010,8 @@
 	\label{section:4.3.4-ETUDE-COUTS-TOTAL}
 	
 		% Equation finale.
-		Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \textit{clustering} interactif et utilisant notre \textbf{paramétrage favori} \footnote{
-			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+		Résumons l'ensemble des modélisations réalisées lors des précédentes études (cf. sections \ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}, \ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL} et \ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}) afin d'estimer le coût total d'un projet d'annotation employant une méthodologie basée sur le \texttt{Clustering Interactif} et utilisant notre \textbf{paramétrage favori} \footnote{
+			Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 		}.
 		Dans les notations, $\texttt{dataset\_size}$ représente la taille du jeu de données à modéliser, et $\texttt{batch\_size}$ représente le nombre de contraintes que l'expert annote à chaque itération.
 
@@ -1016,7 +1019,7 @@
 		\subsubsection{Synthèse des résultats}
 			
 			% Equation: Temps pour une itération (séquentielle).
-			Tout d'abord, nous pouvons estimer le \textbf{temps moyen d'une itération de la méthode}, comprenant d'une part les temps d'exécution des algorithmes (\textit{prétraitement}, \textit{vectorisation}, \textit{clustering}, \textit{échantillonnage}) et d'autre part le temps d'annotation d'un lot de contraintes, grâce aux équations suivantes :
+			Tout d'abord, nous pouvons estimer le \textbf{temps moyen d'une itération de la méthode}, comprenant d'une part les temps d'exécution des algorithmes (\textit{prétraitements}, \textit{vectorisation}, \textit{clustering}, \textit{échantillonnage}) et d'autre part le temps d'annotation d'un lot de contraintes, grâce aux équations suivantes :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}
 				\begin{cases}
@@ -1047,7 +1050,7 @@
 			\end{equation}
 			
 			% Equation: Temps total pour un projet (séquentielle).
-			Enfin, il suffit de combiner \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}} et \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL}} pour estimer le temps total nécessaire à un projet d'annotation utilisant le \textit{clustering} interactif (c'est-à-dire en enchaînant successivement des étapes d'échantillonnage, d'annotation et de \textit{clustering}, cf. \textsc{Figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}} (1)) pour converger vers $90$\% de \texttt{v-measure} :
+			Enfin, il suffit de combiner \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-SEQUENTIELLE}} et \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-SEQUENTIEL}} pour estimer le temps total nécessaire à un projet d'annotation utilisant le \texttt{Clustering Interactif} (c'est-à-dire en enchaînant successivement des étapes d'échantillonnage, d'annotation et de \textit{clustering}, cf. \textsc{Figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}} (1)) pour converger vers $90$\% de \texttt{v-measure} :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-TOTAL-SEQUENTIEL}
 				\begin{cases}
@@ -1064,11 +1067,11 @@
 		\subsubsection{Discussion du coût total}
 		
 			% Rappel des objectifs.
-			L'objectif de cette section consistait à déterminer les coûts relatifs à la tâche d'annotation de contraintes par un expert métier et au temps d'exécution des algorithmes intervenant dans notre implémentation du \textit{clustering} interactif.
+			L'objectif de cette section consistait à déterminer les coûts relatifs à la tâche d'annotation de contraintes par un expert métier et au temps d'exécution des algorithmes intervenant dans notre implémentation du \texttt{Clustering Interactif}.
 			Pour cela, nous avons chronométré des annotateurs en situation réelle (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}), estimé le temps de calcul de chaque algorithme implémenté (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) et trouvé le moyen de prédire le nombre de contraintes à annoter sur un jeu de données (cf. \textsc{Section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}).
 			Nous avons pu montré qu'une annotation de contraintes est plus rapide qu'une annotation par label et nous conseillons, d'après notre analyse empirique, des sessions d'annotation de moins de $150$ contraintes pour ne pas épuiser l'annotateur.
 			Sur le paramétrage de la méthode, nous avons rejeté l'usage d'algorithmes de \textit{clustering} de type hiérarchiques à cause de leur lenteur, au profit du \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}).
-			Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est ainsi constitué d'un prétraitement simple (\texttt{prep.simple}), d'une vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), d'un \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et d'un échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est ainsi constitué des prétraitements simples (\texttt{prep.simple}), d'une vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), d'un \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et d'un échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 			Enfin, pour atteindre cet objectif de \texttt{v-measure}, le nombre moyen de contraintes à annoter avec notre méthodologie semble rester linéairement proportionnel à la taille du jeu de données à modéliser, ce qui est encourageant au regard de la combinatoire de contraintes possibles.
 			\\
 			
@@ -1078,10 +1081,10 @@
 			Dans les deux cas, \textbf{le coût total semble élevé} : pour un jeu de $5~000$ points de données, et avec des tailles d'échantillons compris entre $50$ et $150$ contraintes, il faut entre $59$ et $110$ heures de travail (\textit{$34$ heures d'annotations et entre $25$ et $76$ heures d'attente de la fin d'exécution d'algorithmes suivant la taille des lots}).
 			En considérant une journée de travail de $7$ heures, cela représente une charge contenue entre $8.4$ et $15.7$ jours pour avoir un jeu de donnée fiable à $90$\% de \texttt{v-measure}.
 			Pour finir, nous ajoutons $1$ jour pour combler l'écart théorique de $10$\% de \texttt{v-measure} en corrigeant manuellement le résultat obtenu, et $1$ jour supplémentaire pour interpréter et nommer chaque \textit{cluster} (voir. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}).
-			Au final, pour un ensemble de $5~000$ données, il faut donc entre $8.4$ {\footnotesize $(+2)$} et $15.7$ {\footnotesize $(+2)$} jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie basée sur le \textit{clustering} interactif.
+			Au final, pour un ensemble de $5~000$ données, il faut donc entre $8.4$ {\footnotesize $(+2)$} et $15.7$ {\footnotesize $(+2)$} jours de travail à un expert métier pour obtenir une base d'apprentissage avec une méthodologie basée sur le \texttt{Clustering Interactif}.
 			
 			% Critique du résultat : comparaison avec une annotation classique, avoir plusieurs annotateurs, ...
-			Pour critiquer l'approximation que nous avons faite lors de cette section, nous essayons de la comparer le temps nécessaire qu'il aurait fallu à un projet d'annotation traditionnelle, comme décrit en \textsc{Section~\ref{section:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES}} (cycle \texttt{MATTER}), et notre proposition de cycle d'annotation avec le \textit{clustering} interactif, visible en \textsc{Figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}} (1).
+			Pour critiquer l'approximation que nous avons faite lors de cette section, nous essayons de la comparer le temps nécessaire qu'il aurait fallu à un projet d'annotation traditionnelle, comme décrit en \textsc{Section~\ref{section:2.2.1-ORGANISATION-ANNOTATION-ETAPES-CLES}} (cycle \texttt{MATTER}), et notre proposition de cycle d'annotation avec le \texttt{Clustering Interactif}, visible en \textsc{Figure~\ref{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}} (1).
 			En nous basant sur un ensemble de $5~000$ données à annoter, nous estimons qu'il faut :
 			$1$ jour de travail pour définir une représentation des données en modèle de classification ;
 			$4$ jours de travail pour annoter $5~000$ données (à raison de $20$ secondes par données, estimation haute inspirée de \cite{pradhan-etal:2007:semeval2007-task-17} où la "\textit{désambiguïsation du sens des mots}", présentée comme une tâche de classification, demande $17.5$ secondes par données) ;
@@ -1091,9 +1094,9 @@
 				En effet, le temps nécessaire aux phases de modélisation et de revues peuvent fortement augmenter si le cas d'usage est plus complexe.
 				Par exemple, la classification de questions en une centaine d'intentions peut prendre plusieurs jours voir quelques semaines d'étude alors que la classification de sentiments sur trois niveaux (positif, négatif, neutre) est presque triviale.
 			} à un expert métier pour obtenir une base d'apprentissage avec une méthodologie traditionnelle.
-			\textbf{En l'état, nous pouvons donc conclure que le \textit{clustering} interactif que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($8.4$ {\footnotesize $(+2)$} à $15.7$ {\footnotesize $(+2)$} jours vs $5$ {\footnotesize $(+2)$} jours), ce qui peut être un frein à son utilisation en situation réelle}.
+			\textbf{En l'état, nous pouvons donc conclure que le \texttt{Clustering Interactif} que nous proposons est en moyenne deux fois plus coûteux qu'une annotation manuelle classique ($8.4$ {\footnotesize $(+2)$} à $15.7$ {\footnotesize $(+2)$} jours vs $5$ {\footnotesize $(+2)$} jours), ce qui peut être un frein à son utilisation en situation réelle}.
 			
-			% Pistes d'amélioration : Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et clustering, ...
+			% Pistes d'amélioration : Augmenter la taille des lots d'annotation + Augmenter le nombre d'annotateurs + paralléliser annotation et \textit{clustering}, ...
 			Afin d'accélérer la phase d'annotation et de diminuer le nombre d'itérations, il est bien entendu possible d'augmenter la taille des échantillons de contraintes à annoter ou d'ajouter plusieurs opérateurs.
 			Cependant, une telle solution ne permet toujours pas d'être compétitif avec l'annotation traditionnelle si cette dernière dispose aussi de plusieurs opérateurs (\textit{avec $2$ annotateurs : de $6.5$ {\footnotesize $(+2)$} à $13.3$ {\footnotesize $(+2)$} jours vs $3$ {\footnotesize $(+2)$} jours ; avec $4$ annotateurs : de $4.8$ {\footnotesize $(+2)$} à $12.1$ {\footnotesize $(+2)$} jours vs $2$ {\footnotesize $(+2)$} jours}).
 			Une autre piste, plus prometteuse, consiste plutôt à adapter notre méthode pour exploiter les temps d'attente lors de l'exécution d'un \textit{clustering}.
@@ -1103,7 +1106,7 @@
 		\subsection{Ouverture vers une annotation en parallèle du \textit{clustering}}
 		
 			% Idée : Optimiser le temps d'attente.
-			Notre méthodologie d'annotation basée sur le \textit{clustering} interactif est pénalisée par la séquentialité des actions à réaliser.
+			Notre méthodologie d'annotation basée sur le \texttt{Clustering Interactif} est pénalisée par la séquentialité des actions à réaliser.
 			En effet, l'annotateur doit attendre la fin d'un de l'exécution des algorithmes de \textit{clustering} et d'échantillonnage avant de pouvoir travailler.
 			D'après nos précédentes estimations sur un jeu de $5~000$ données, l'opérateur doit attendre entre $25$ et $76$ heures en fonction de la taille de lots d'annotation choisie, et une idée à explorer consiste à optimiser ce temps d'attente.
 			
@@ -1117,7 +1120,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle-vs-parallele}
 				\caption{
-					Schéma comparatif des architectures du \textit{clustering} interactif : \textbf{(1)} représente la version séquentielle initialement présentée en \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}} où le \textit{clustering} s'adapte avec les annotation de l'itération en cours ; \textbf{(2)} représente l'évolution en mode \textit{parallèle} où le \textit{clustering} s'adapte avec les annotations de l'itération précédente (décalage d'une itération).
+					Schéma comparatif des architectures du \texttt{Clustering Interactif} : \textbf{(1)} représente la version séquentielle initialement présentée en \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}} où le \textit{clustering} s'adapte avec les annotation de l'itération en cours ; \textbf{(2)} représente l'évolution en mode \textit{parallèle} où le \textit{clustering} s'adapte avec les annotations de l'itération précédente (décalage d'une itération).
 				}
 				\label{figure:4.3.4-ETUDE-COUT-TOTAL-ARCHITECTURE}
 			\end{figure}
@@ -1160,7 +1163,7 @@
 			\end{equation}
 			
 			% Equation: Adaptation du Temps total pour un projet (parallèle).
-			Enfin, il suffit de combiner \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-PARALLELE}} et \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-PARALLELE}} pour estimer le temps total nécessaire à un projet d'annotation pour converger vers $90$\% de \texttt{v-measure} utilisant la version parallèle du \textit{clustering} interactif :
+			Enfin, il suffit de combiner \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-UNE-ITERATION-PARALLELE}} et \textsc{Equation~\ref{equation:4.3.4-ETUDE-COUT-NOMBRE-ITERATIONS-PARALLELE}} pour estimer le temps total nécessaire à un projet d'annotation pour converger vers $90$\% de \texttt{v-measure} utilisant la version parallèle du \texttt{Clustering Interactif} :
 			\begin{equation}
 				\label{equation:4.3.4-ETUDE-COUT-TOTAL-PARALLELE}
 				\begin{cases}
@@ -1181,7 +1184,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-temps-total-2-modelisation-parallele}
 				\caption{
-					Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \textit{clustering} interactif afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le clustering}) et l'approche parallèle (\textit{annotation pendant le clustering}).
+					Estimation du temps total nécessaire (en heures) pour modéliser un jeu de données avec notre \textbf{paramétrage favori} du \texttt{Clustering Interactif} afin d'obtenir une annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), en fonction de plusieurs taille de jeu de données, plusieurs tailles de lots d'annotation, et mettant en opposition l'approche séquentielle (\textit{annotation puis le \textit{clustering}}) et l'approche parallèle (\textit{annotation pendant le \textit{clustering}}).
 				}
 				\label{figure:4.3.4-ETUDE-COUT-TOTAL}
 			\end{figure}
@@ -1192,7 +1195,7 @@
 				Nommer les \textit{clusters} : voir. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}.
 			}, cela représente $4.8$ {\footnotesize $(+2)$} jours de travail, un estimation équivalente à une annotation traditionnelle qui nécessite $5 $ {\footnotesize $(+2)$} jours de travail d'après nos approximations.
 			De plus, si nous ajoutons des plusieurs opérateurs, cette version parallèle reste compétitive (\textit{avec $2$ annotateurs : $2.5$ {\footnotesize $(+2)$} jours vs $3$ {\footnotesize $(+2)$} jours ; avec $4$ annotateurs : $1.3$ jours vs $2$ {\footnotesize $(+2)$} jours}).
-			Cette découverte est très encourageante, car cela confirme qu'une méthodologie basée sur notre implémentation du \textit{clustering} interactif \textbf{permet d'obtenir une base d'apprentissage avec un coût temporel équivalent à un projet traditionnel} utilisant une annotation par label.
+			Cette découverte est très encourageante, car cela confirme qu'une méthodologie basée sur notre implémentation du \texttt{Clustering Interactif} \textbf{permet d'obtenir une base d'apprentissage avec un coût temporel équivalent à un projet traditionnel} utilisant une annotation par label.
 			Cette méthode est d'autant plus intéressante qu'elle fait intervenir un mécanisme d'annotation rapide et intuitif pour un expert métier.
 			
 			% Conclusion.
@@ -1200,7 +1203,7 @@
 				Au cours de cette étude de coûts, nous avons pu déduire que :
 				\begin{itemize}
 					\item[\itemok] L'annotation d'une contrainte nécessite en moyenne $8$ secondes : cette tâche est rapide et intuitive (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}) ;
-					\item[\itemok] Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Ce paramétrage a un coût moyen de $0.17 \cdot \texttt{dataset\_size}$ secondes (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
+					\item[\itemok] Notre paramétrage favori, permettant d'atteindre $90$\% de \texttt{v-measure} avec un coût minimal, est constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}). Ce paramétrage a un coût moyen de $0.17 \cdot \texttt{dataset\_size}$ secondes (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
 					\item[\itemok] Une adaptation optimale de notre méthodologie consiste à paralléliser l'exécution du \textit{clustering} et l'annotation de contraintes afin de limiter les temps d'attente inutiles. Une telle méthode a un coût moyen de $24.6 \cdot \texttt{dataset\_size}$ pour atteindre $90$\% de \texttt{v-measure}, auquel on ajoute $2$ jours de travail pour raffiner les clusters et les nommer. Ce temps est compétitif à une annotation traditionnelle (cf. \textsc{Section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}}) ;
 					\item[\itemok] Cette étude met en avant l'intérêt des interactions homme-machine : (1) l'expert métier se recentre sur son domaine de compétence avec une caractérisation proche de ses connaissances ("\textit{les données sont-elles similaires ?}") et (2) la machine optimise l'intervention de l'expert pour que ce dernier soit toujours pertinent dans ses contributions.
 				\end{itemize}

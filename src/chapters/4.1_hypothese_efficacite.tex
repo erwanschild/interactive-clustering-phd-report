@@ -4,7 +4,7 @@
 	%%%
 	%%% Introduction / Transition.
 	%%%
-	En premier lieu et afin de poser les bases de nos études, nous devons nous demander si notre implémentation du \textit{clustering} interactif est fonctionnel et si elle permet d'atteindre son objectif.
+	En premier lieu et afin de poser les bases de nos études, nous devons nous demander si notre implémentation du \texttt{Clustering Interactif} est fonctionnel et si elle permet d'atteindre son objectif.
 	Nous aimerions donc vérifier l'hypothèse suivante :
 	
 	%%%
@@ -18,7 +18,7 @@
 	]
 		% Hypothèse.
 		\textguillemets{\textbf{
-			Une méthodologie d'annotation basée sur le \textit{clustering} interactif permet d'obtenir une base d'apprentissage pour un assistant conversationnel qui respecte la vision donnée par l'expert métier au cours de l'annotation.
+			Une méthodologie d'annotation basée sur le \texttt{Clustering Interactif} permet d'obtenir une base d'apprentissage pour un assistant conversationnel qui respecte la vision donnée par l'expert métier au cours de l'annotation.
 		}} \\
 		
 		% Figure.
@@ -28,7 +28,7 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-01-efficacite}
 			\caption{
-				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 1/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
 			}
 			\label{figure:4.1-HYPOTHESE-EFFICACITE}
 		\end{figure}
@@ -45,7 +45,7 @@
 	\label{section:4.1.1-ETUDE-CONVERGENCE}
 		
 		% Objectif de l'expérience.
-		Nous voulons vérifier qu'une méthodologie d'annotation basée sur notre implémentation du \textit{clustering} interactif permet de créer une base d'apprentissage pour un assistant conversationnel.
+		Nous voulons vérifier qu'une méthodologie d'annotation basée sur notre implémentation du \texttt{Clustering Interactif} permet de créer une base d'apprentissage pour un assistant conversationnel.
 		Pour cela, nous prenons une base d'apprentissage employée pour entraîner un modèle de classification de textes, et nous utilisons ce jeu de données comme vérité terrain.
 		L'objectif de cette expérience est de simuler la création de cette base d'apprentissage et de nous assurer que le résultat obtenu correspond à la vérité terrain.
 			
@@ -75,7 +75,7 @@
 				\ForEach{algorithmes et de paramètres à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données \;
+					\textbf{prétraitements}: supprimer le bruit dans les données \;
 					\textbf{vectorisation}: transformer les données en vecteurs \;
 					\textbf{clustering initial}: regrouper les données par similarité des vecteurs \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
@@ -92,7 +92,7 @@
 				\KwResult{algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude de convergence du \textit{clustering} interactif vers une vérité terrain pré-établie.
+					Description en pseudo-code du protocole expérimental de l'étude de convergence du \texttt{Clustering Interactif} vers une vérité terrain pré-établie.
 				}}
 				\label{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}
 			\end{algorithm}
@@ -100,7 +100,7 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			
 			% Détails de l'expérience.
 			Lors de cette expérience, chaque tentative de la méthode commencera sur la version non labellisée de la vérité terrain à disposition, sans aucune contrainte connue à l'avance.
@@ -108,21 +108,23 @@
 			Cela traduit le prérequis d'avoir un annotateur qui soit capable, dans son domaine d'expertise, de différencier deux données selon leur ressemblance.
 			Une tentative de l'application de notre méthode s'arrête lorsque toutes les contraintes possibles entre les données ont été annotés par l'expert.
 
-			% Description implémentation de l'interactive clustering.
-			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètres de notre implémentation du \textit{clustering} interactif (cf. \textsc{Annexe~\ref{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}).
+			% Description implémentation du \texttt{Clustering Interactif}.
+			Pour cette étude, nous essayons une tentative pour chaque combinaison de paramètres de notre implémentation du \texttt{Clustering Interactif}.
+			Cette implémentation est détaillée en \textsc{Annexe~\ref{annex:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}.
 			Cela comprend les tâches et leurs paramètres respectifs suivants :
+		
 			\begin{enumerate}
-				% prétraitement.
-				\item le \textbf{prétraitement} des données, avec les niveaux suivants :
+				% prétraitements.
+				\item les \textbf{prétraitements} des données, avec les niveaux suivants :
 				\textbf{aucun} (noté \texttt{prep.no}), \textbf{simple} (supprimant les minuscules, la ponctuation, les accents et les espaces blancs ; noté \texttt{prep.simple}), avec \textbf{lemmatisation} (noté \texttt{prep.lemma}) et avec \textbf{filtres} (supprimer les mots trop éloignés de la racine de l'arbre de dépendances syntaxiques ; noté \texttt{prep.filter}) ;
 				% vectorisation.
 				\item la \textbf{vectorisation} des données, avec les niveaux suivants :
 				\textbf{TF-IDF} (noté \texttt{vect.tfidf}) et \textbf{SpaCy} (noté \texttt{vect.frcorenewsmd}) ;
-				% clustering.
+				% \textit{clustering}.
 				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants :
 				\textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}).
 				Le choix du nombre de \textit{clusters} n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
-				% sampling.
+				% \textit{sampling}.
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants :
 				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
 				Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$ \footnote{
@@ -139,15 +141,15 @@
 			\end{leftBarAuthorOpinion}
 			
 			Il y a donc $192$ combinaisons testées, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des algorithmes de \textit{clustering} (\textit{initialisation du \texttt{clust.kmeans.cop}, ...}) et d'échantillonnage (\textit{choix des contraintes au hasard avec \texttt{samp.random.full}, ...}).
-			Pour plus de détails sur ces algorithmes, référez-vous à l'\textsc{Annexe~\ref{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}} pour avoir accès à leur description, à leurs paramètres et aux choix d'implémentation.
 			
 			% Description de l'évaluation.
 			Pour évaluer l'équivalence entre la vérité terrain et notre segmentation des données obtenue au cours de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) entre ces deux jeu de données.
-			Si le score du calcul de la \texttt{v-measure} est de $100$\%, cela signifierait que le \textit{clustering} final et la vérité terrain propose une segmentation identique des données, donc que la vérité terrain a pu être retrouvée, et donc qu'il est possible d'obtenir une base d'apprentissage pour un assistant conversationnel à l'aide d'une méthodologie d'annotation basée sur le \textit{clustering} interactif.
+			Si le score du calcul de la \texttt{v-measure} est de $100$\%, cela signifierait que le \textit{clustering} final et la vérité terrain propose une segmentation identique des données, donc que la vérité terrain a pu être retrouvée, et donc qu'il est possible d'obtenir une base d'apprentissage pour un assistant conversationnel à l'aide d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif}.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience (\textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual})) sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 
 		%%% Résultats.
@@ -176,8 +178,8 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-efficacite-evolution-moyenne-0par-iteration}
 				\caption{
-					Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
-					Représentation des tentatives ayant été les plus rapides (\textit{un prétraitement \texttt{prep.simple}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage \texttt{samp.closest.diff}}) et les plus lentes (\textit{un prétraitement \texttt{prep.no}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}}) pour atteindre $100$\% de \texttt{v-measure}.
+					Évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \texttt{Clustering Interactif}, moyenne réalisée itération par itération sur l'ensemble des tentatives.
+					Représentation des tentatives ayant été les plus rapides (\textit{des prétraitements \texttt{prep.simple}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage \texttt{samp.closest.diff}}) et les plus lentes (\textit{un prétraitement \texttt{prep.no}, une vectorisation \texttt{vect.tfidf}, un \textit{clustering} \texttt{clust.spec}, et un échantillonnage de contraintes \texttt{samp.farthest.same}}) pour atteindre $100$\% de \texttt{v-measure}.
 				}
 				\label{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
 			\end{figure}
@@ -241,7 +243,7 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Détails de l'évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \textit{clustering} interactif, moyenne réalisée itération par itération sur l'ensemble des tentatives.
+					Détails de l'évolution de la moyenne de la \texttt{v-measure} entre un résultat obtenu et la vérité terrain en fonction du nombre d'itération de la méthode de \texttt{Clustering Interactif}, moyenne réalisée itération par itération sur l'ensemble des tentatives.
 				}
 				\label{table:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}
 			\end{table}
@@ -255,7 +257,7 @@
 			
 			% Avantage 1 : Émergence d'une modélisation sur la base des contraintes
 			Tout d'abord, la vérité terrain a été retrouvée sans formaliser concrètement la structure de données.
-			Là où une annotation par label aurait requis au préalable une définition des catégories possibles pour les données à étiqueter (création d'un "\textit{type system}"), la méthodologie employant le \textit{clustering} interactif a permis de faire émerger naturellement cette structure de données.
+			Là où une annotation par label aurait requis au préalable une définition des catégories possibles pour les données à étiqueter (création d'un "\textit{type system}"), la méthodologie employant le \texttt{Clustering Interactif} a permis de faire émerger naturellement cette structure de données.
 			Cette émergence provient directement des contraintes annotées par l'expert métier, traduisant ainsi ses connaissances à l'aide d'instructions simples : \textit{les données sont-elles ou non similaires ?}
 			Cela représente un net avantage pour l'opérateur qui n'a ainsi pas à maintenir en mémoire une modélisation complexe de la structure de données, rendant la tâche d'annotation plus accessible.
 			
@@ -272,7 +274,7 @@
 
 			
 			%%% Limites.
-			Néanmoins, différentes pistes sont encore à explorer pour rendre le \textit{clustering} interactif utilisable en situation réelle.
+			Néanmoins, différentes pistes sont encore à explorer pour rendre le \texttt{Clustering Interactif} utilisable en situation réelle.
 			
 			% Limite 1 : Nombre d'annotations ==> besoin d'optimisation.
 			D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes : pour $500$ points de données, et en considérant que l'asymptote à $100$\% est atteinte en moyenne autour de l'itération $200$, il faudrait $10~000$ annotations de contraintes pour être exhaustif, ce qui correspond à près de $20$ fois plus de contraintes que de données.

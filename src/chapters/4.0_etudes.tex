@@ -23,7 +23,7 @@
 	\begin{leftBarImportantRed}
 		\begin{todolist}
 			% 1. Efficacité.
-			\item Peut-on obtenir une base d'apprentissage à l'aide de notre proposition d'implémentation de la méthodologie du \textit{clustering} interactif ? (cf. hypothèse d'\textbf{efficacité} en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}) ;
+			\item Peut-on obtenir une base d'apprentissage à l'aide de notre proposition d'implémentation de la méthodologie du \texttt{Clustering Interactif} ? (cf. hypothèse d'\textbf{efficacité} en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}) ;
 			% 2. Efficience.
 			\item Peut-on déterminer un paramétrage optimal de cette implémentation pour obtenir plus rapidement une base d'apprentissage ? (cf. hypothèse d'\textbf{efficience} en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}) ;
 			% 3. Coûts.
@@ -47,28 +47,25 @@
 		\centering
 		\includegraphics[width=0.95\textwidth]{figures/hypotheses-00-default}
 		\caption{
-			Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 0/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
+			Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 0/6}) en schématisant l'évolution de la performance (\textit{accord avec la vérité terrain calculé en v-measure}) d'une base d'apprentissage en cours de construction en fonction du nombre d'itérations de la méthode (\textit{nombre d'annotations par un expert métier}).
 		}
 		\label{figure:4.0-HYPOTHESE-00-DEFAULT}
 	\end{figure}
 		
-	% Références annexes datasets et nomenclatures.
-	\begin{leftBarInformation}
-		Les jeux de données utilisés pour ces études sont détaillés en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}}.
-		Une annexe est aussi disponible pour recenser les différentes conventions de nommage destinées à simplifier le partage des résultats voir (\textsc{Annexe~\ref{annex:C.1-DESCRIPTION-IMPLEMENTATION-NOMENCLATURES}}).
-	\end{leftBarInformation}
-	
-	% Notes techniques : CPU + scrips + datasets.
+	% Informations: Annexes datasets, Annexes implémentations, Référence scripts, CPU.
 	\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 	\begin{leftBarInformation}
-		% Détails techniques.
-		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisée avec la librairie \textit{multiprocessing} \footnotemark (utilisant un worker par CPU).
-		Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}) ou de scripts \texttt{R} (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+		\begin{itemize}
+			\item Les jeux de données utilisés pour ces études sont détaillés en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}}.
+			\item Les implémentations du \texttt{Clustering Interactif} sont détaillées en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
+			\item Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}) ou de scripts \texttt{R} (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+			\item Les exécutions des différentes expériences ont été réalisées sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisées grâce à la librairie \texttt{multiprocessing} \footnotemark (utilisant un worker par CPU)
+		\end{itemize}
 	\end{leftBarInformation}
 	% Rattraper les footnote.
 		\stepcounter{localCounterOfFootnoteValue}
 		\footnotetext[\value{localCounterOfFootnoteValue}]{
-			\texttt{multiprocessing}: \url{https://pypi.org/project/multiprocessing/}
+			\url{https://pypi.org/project/multiprocessing/}
 		}
 	
 	
@@ -122,10 +119,3 @@
 	%%%%%--------------------------------------------------------------------
 	\newpage
 	\input{chapters/4.7_hypotheses_non_verifiees.tex}
-	
-	
-	%%%%%--------------------------------------------------------------------
-	%%%%% Section 4.8: Bilan des études réalisées
-	%%%%%--------------------------------------------------------------------
-	%\newpage
-	%\input{chapters/4.8_bilan_hypotheses.tex}

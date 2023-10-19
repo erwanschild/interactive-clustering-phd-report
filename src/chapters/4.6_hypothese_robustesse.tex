@@ -4,10 +4,10 @@
 	%%%
 	%%% Introduction / Transition.
 	%%%
-	Dans les précédentes études, nous avons presque toujours analysé le \textit{clustering} interactif en supposant que l'annotateur connaît parfaitement le domaine traité par le jeu de données et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
+	Dans les précédentes études, nous avons presque toujours analysé le \texttt{Clustering Interactif} en supposant que l'annotateur connaît parfaitement le domaine traité par le jeu de données et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
 	Bien entendu, cette hypothèse forte n'est pas toujours vérifiée en situation réelle : l'interprétation du langage peut contenir certaines ambiguïtés, l'opérateur peut faire des erreurs d'inattention, et deux annotateurs peuvent avoir des avis contraire sur un même sujet.
 	Or, comme notre méthode d'annotation est itérative, elle est a priori sensible aux dérives fonctionnement liées à ce type de contradictions.
-	Dans cette section, nous nous intéressons donc à la robustesse du \textit{clustering} interactif en présence d'incohérences dans les contraintes et aux moyens de les contrer.
+	Dans cette section, nous nous intéressons donc à la robustesse du \texttt{Clustering Interactif} en présence d'incohérences dans les contraintes et aux moyens de les contrer.
 	Pour cela, nous aimerions donc vérifier l'hypothèse suivante :
 	
 	%%%
@@ -21,7 +21,7 @@
 	]
 		% Hypothèse.
 		\textguillemets{\textbf{
-			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer le taux d'incohérences dans les contraintes ainsi que leur impact sur les résultats de la méthode.
+			Au cours d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif}, il est possible d'estimer le taux d'incohérences dans les contraintes ainsi que leur impact sur les résultats de la méthode.
 		}} \\
 		
 		% Figure.
@@ -31,7 +31,7 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-06-robustesse}
 			\caption{
-				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 6/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que les marges d'erreurs représentant l'impact de différences d'annotation sur le nombre d'itérations nécessaire à la méthode.
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 6/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que les marges d'erreurs représentant l'impact de différences d'annotation sur le nombre d'itérations nécessaire à la méthode.
 			}
 			\label{figure:4.6-HYPOTHESE-ROBUSTESSE}
 		\end{figure}
@@ -43,7 +43,7 @@
 	\begin{itemize}
 		\item une étude de cas d'un \textbf{score inter-annotateurs} obtenu lors d'une annotation de contraintes en situation réelle avec plusieurs opérateurs, permettant d'estimer une borne maximale du taux de désaccords d'annotation pour les autres études (cf. \textsc{Section~\ref{section:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD}}) ;
 		\item une étude de l'\textbf{impact d'une erreur d'annotation} et de l'\textbf{intérêt de la corriger}, en simulant l'insertion d'erreurs d'annotation et en mesurant la similarité du \textit{clustering} obtenu avec la vérité terrain (cf. \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}) ;
-		\item une étude de l'\textbf{impact de la subjectivité de l'annotation sur la divergence des résultats de \textit{clustering}}, en simulant l'insertion de différences d'annotation et en mesurant la similarité entre les clustering obtenus (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE}}).
+		\item une étude de l'\textbf{impact de la subjectivité de l'annotation sur la divergence des résultats de \textit{clustering}}, en simulant l'insertion de différences d'annotation et en mesurant la similarité entre les \textit{clusterings} obtenus (cf. \textsc{Section~\ref{section:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE}}).
 	\end{itemize}
 		
 		
@@ -98,7 +98,7 @@
 			Nous nous intéressions ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
 			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs (\textit{une Data Scientist et moi-même}) furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
 			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
 		
 			% Détails de l'expérience : sélection des contraintes à annoter.
 			À partir de ces données, nous avions sélectionné un lot de $400$ contraintes à annoter.
@@ -118,7 +118,7 @@
 			%
 			Pour réaliser l'annotation, les opérateurs eurent accès à l'application web développée au cours de ce doctorat.
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
-			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
+			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
 			Il est à noter que l'autre réviseur a aussi participé à l'annotation de ces contraintes : nous avons retenu ses résultats, mais nous les analyserons séparément du groupe d'annotateurs.
 			
 			% Détails de l'expérience.
@@ -126,7 +126,7 @@
 			Pour ce faire, nous utilisons l'$\alpha$ de \textit{Krippendorff} \footnote{
 				Choix de l'$\alpha$ de \textit{Krippendorff} : L'utilisation de $\kappa$ de \textit{Cohen} (\cite{landis-koch:1977:measurement-observer-agreement}) est aussi fréquemment utilisée, mais elle n'est pas adaptée pour plus de deux opérateurs ni pour manipuler des absences d'annotations.
 			} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} \footnote{
-				\texttt{simpledorff}: \url{https://pypi.org/project/simpledorff/}
+				\url{https://pypi.org/project/simpledorff/}
 			} (\cite{perry:2021:lighttag-text-annotation}).
 			Nous rappelons qu'un accord est considéré comme \textit{faible} si $\alpha<0.667$, \textit{acceptable} si $0.667 \leq \alpha<0.8$, \textit{fort} si $0.8 \leq \alpha<1.0$ et \textit{parfait} si $\alpha = 1.0$.
 			De plus, un score $\alpha$ négatif représente une opposition d'accord.
@@ -134,6 +134,7 @@
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 			
 		%%% Résultats
@@ -368,7 +369,7 @@
 	\label{section:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}
 		
 		% Objectif de l'expérience.
-		Dans cette seconde étude, nous cherchons à estimer la robustesse du \textit{clustering} interactif en nous intéressant plus particulièrement aux erreurs d'annotation d'un seul opérateur.
+		Dans cette seconde étude, nous cherchons à estimer la robustesse du \texttt{Clustering Interactif} en nous intéressant plus particulièrement aux erreurs d'annotation d'un seul opérateur.
 		En effet, comme nous l'avons vu en \textsc{Section~\ref{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEUR}}, des \textbf{différences de comportements intra-annotateur} peuvent être observées au cours de la labellisation, ces dernières s'apparentant à des erreurs d'inattention ou des contradictions.
 		Nous allons ici simuler de telles erreurs dans l'annotation de contraintes dans le but :
 		\begin{itemize}
@@ -389,7 +390,7 @@
 				\ForEach{stratégie de correction et taux d'erreurs à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
@@ -421,13 +422,13 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			
 			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
-			} de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
-				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			} de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
 			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes erronées à chaque itération pour simuler les variations de comportement de l'annotateur :
 			\begin{itemize}
@@ -439,7 +440,7 @@
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des erreurs d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
-			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			Pour les traiter, nous allons tester deux approches :
 			\begin{itemize}
 				\item une approche \textit{naïve} ignorant les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
@@ -448,7 +449,7 @@
 			
 			% Description des tentatives de la méthode avec les répétitions.
 			Ainsi, il y a donc $6$ taux d'erreurs d'annotation à simuler, chacun suivant $2$ approches de gestion de conflits, et chacune de ces simulations d'erreurs seront répétées $10$ fois sur chaque tentative complète de la méthode pour contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $120$ simulations par tentatives.
-			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $600$ tentatives complètes à simuler.
+			Enfin, chaque tentative complète de \texttt{Clustering Interactif} est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $600$ tentatives complètes à simuler.
 
 			% Description de l'analyse.
 			Enfin, nous affichons l'évolution de la performance moyenne du \textit{clustering} obtenu en fonction des divers taux d'erreurs simulées, et nous discutons de la significativité de la perte de performances due à l'absence de corrections des conflits.
@@ -456,6 +457,7 @@
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 
 		%%% Résultats
@@ -514,7 +516,7 @@
 			
 			% Remarque : En accord avec les approches incrémentale.
 			Une telle conclusion confirme la sensibilité aux erreurs de cette approche incrémentale : si une erreur apparaît, elle peut rapidement se propager et impacter les résultats de la méthode.
-			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent en un minimum d'annotation de contraintes.
+			Dans notre cas, nous avons optimisé l'implémentation de notre \texttt{Clustering Interactif} pour obtenir un corpus d'apprentissage pertinent en un minimum d'annotation de contraintes.
 			Or obtenir un nombre minimal implique de limiter la redondance parmi les contraintes annotées.
 			De ce fait, certaines incohérences mal placées peuvent fortement influencer la base de contraintes et ainsi faire diverger les résultats.
 			
@@ -549,12 +551,12 @@
 		%
 		\begin{leftBarAuthorOpinion}
 			Pour aller plus loin, il est même mal avisé de parler d'\textit{erreurs} d'annotation car cela suppose qu'une comparaison avec une vérité terrain soit possible.
-			Or, en situation réelle, cette vérité terrain est précisément en cours de construction à l'aide de notre méthodologie de \textit{clustering} interactif : l'expert est responsable de la vision qu'il veut appliquer aux données durant son annotation, il est donc difficile de parler d'erreurs sans porter de jugement sur sa vision.
+			Or, en situation réelle, cette vérité terrain est précisément en cours de construction à l'aide de notre méthodologie de \texttt{Clustering Interactif} : l'expert est responsable de la vision qu'il veut appliquer aux données durant son annotation, il est donc difficile de parler d'erreurs sans porter de jugement sur sa vision.
 			Il convient donc mieux de parler de \textit{différences} d'annotation si deux experts ont une divergence de point de vue sur une donnée à annoter.
 		\end{leftBarAuthorOpinion}
 		
 		% Objectif de l'expérience.
-		Dans cette dernière étude, nous allons donc estimer la robustesse du \textit{clustering} interactif en nous intéressant plus particulièrement aux différences d'annotation entre deux opérateurs.
+		Dans cette dernière étude, nous allons donc estimer la robustesse du \texttt{Clustering Interactif} en nous intéressant plus particulièrement aux différences d'annotation entre deux opérateurs.
 		Pour cela, nous allons simuler de telles différences entre deux annotateurs fictifs : le premier sera représenté par la vérité terrain, et le second sera simulé en introduisant un certain taux de désaccords d'annotation à chaque itération.
 		Nous discutons ensuite de l'écart de similarité entre les résultats de \textit{clustering} obtenus lorsque l'annotateur de référence atteint le seuil d'annotation partielle de son jeu de données (\textit{accord théorique de $90$\% de \texttt{v-measure} sur la vérité terrain qu'il recherche})
 		Nous réalisons cette analyse sur des jeux de données de différentes tailles et pour plusieurs taux de désaccords insérées.
@@ -572,7 +574,7 @@
 				\ForEach{jeux de données à tester et taux de désaccords à insérer}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
@@ -605,8 +607,12 @@
 			% Description des jeux de données.
 			Nous utilisons cette fois deux vérités terrains comme références, représentant un \textbf{annotateur de référence} (\textit{et sa propre vision métier}) :
 			\begin{itemize}
-				\item le jeu de données \texttt{Bank Cards (v2.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire. Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS} ;
-				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} : ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes. Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...). Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD} ;
+				\item le jeu de données \texttt{Bank Cards (v2.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
+				Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
+				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}} ;
+				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} : ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes.
+				Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
+				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}} ;
 			\end{itemize}
 			
 			Pour utiliser facilement plusieurs jeux de données de tailles différentes tout en maîtrisant leur contenu, nous avons donc dupliqué aléatoirement des données issues de ces jeux de référence en y insérant des fautes de frappes.
@@ -622,8 +628,8 @@
 			Sur ces jeux de données, nous exécutons une tentative complète\footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
-				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
 			À nouveau, nous allons ajouter un pourcentage de contraintes erronées à chaque itération, représentant un \textbf{autre annotateur} (\textit{et sa propre vision métier du problème à modéliser}) :
 			\begin{itemize}
@@ -635,13 +641,13 @@
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
-			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces désaccords dès leur détection, et supposant que le second annotateur se range à la vision de l'annotateur de référence.
 			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction des experts.
 			
 			% Description des tentatives de la méthode avec les répétitions.
 			Ainsi, il y a donc $6$ taux de désaccords, et chacune de ces simulations de désaccords seront répétées $2$ fois sur chaque tentative complète de la méthode pour limiter au mieux les aléas statistiques des tirages de contraintes divergentes, ce qui représente $12$ simulations par tentatives.
-			Enfin, chaque tentative complète de \textit{clustering} interactif est répétée $2$ fois pour limiter au mieux les aléas statistiques des exécutions, soit un nombre de $24$ tentatives complètes pour chacun des $18$ jeux de données, ce qui représente un total de $432$ tentatives à simuler au cours de cette expérience.
+			Enfin, chaque tentative complète de \texttt{Clustering Interactif} est répétée $2$ fois pour limiter au mieux les aléas statistiques des exécutions, soit un nombre de $24$ tentatives complètes pour chacun des $18$ jeux de données, ce qui représente un total de $432$ tentatives à simuler au cours de cette expérience.
 			
 			% Description de l'analyse.
 			Nous réalisons ensuite l'analyse des différences de résultats obtenu en estimant la similarité des \textit{clustering} entre une tentative introduisant des différences et sa tentative de référence n'en introduisant pas.
@@ -675,9 +681,10 @@
 			\end{leftBarWarning}
 			
 			% Référence scripts.
-			\begin{leftBarInformation}
+			\begin{leftBarReminder}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-			\end{leftBarInformation}
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
+			\end{leftBarReminder}
 		
 		
 		%%% Résultats
@@ -722,7 +729,7 @@
 				l'amplitude de diminution varie environ entre $0$ points (\textit{pour l'introduction de $0$\% de désaccords}) et $33$ points (\textit{pour l'introduction de $25$\% de désaccords}).
 			\end{itemize}
 			
-			% Table similitude avec clustering sans erreurs.
+			% Table similitude avec \textit{clustering} sans erreurs.
 			\begin{table}[!htb]
 				% \small
 				% \footnotesize
@@ -977,26 +984,26 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% % Rappel de l'objectif : Impact de la subjectivité des annotateur sur la différnce de clustering.
+			% % Rappel de l'objectif : Impact de la subjectivité des annotateur sur la différence de \textit{clustering}.
 			L'objectif de cette étude est l'analyse de l'impact des différences de comportements inter-annotateurs sur les résultats de notre méthode, plus particulièrement l'impact de la subjectivité des opérateurs manifestée par des désaccords d'annotation sur le résultat du \textit{clustering} obtenu.
 			Pour cela, nous avons analysé l'évolution de la similarité en simulant des désaccords d'annotation pour plusieurs tailles de jeux de données.
 			
 			% Analyse : divergences importantes !
 			Sur la base des résultats rapportés dans la \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}}, nous pouvons constater que les résultats de \textit{clustering} divergent rapidement si des désaccords d'annotation sont présents.
 			En effet, l'introduction de $5$\% de différences fait diverger les résultats d'au moins $14$ points de \texttt{v-measure}, et cette divergence est plus forte lorsque la taille du jeu de données augmente.
-			Si nous prenons le cas extrême ($25$\% de désaccord, taille de $4~500$ données), la similitude des clustering obtenu n'est en moyenne plus que de $26.73$\% au bout de $13~500$ contraintes.
-			Nous pouvons donc conclure qu'en l'état, le \textit{clustering} interactif est sensible à la subjectivité des annotateurs.
+			Si nous prenons le cas extrême ($25$\% de désaccord, taille de $4~500$ données), la similitude des \textit{clusterings} obtenus n'est en moyenne plus que de $26.73$\% au bout de $13~500$ contraintes.
+			Nous pouvons donc conclure qu'en l'état, le \texttt{Clustering Interactif} est sensible à la subjectivité des annotateurs.
 			
 			% Remarque : En accord avec les approches incrémentale.
 			Une telle conclusion est en accord avec le caractère incrémental de la méthode : une différence d'annotation peut rapidement se propager et faire diverger les résultats de la méthode.
-			Dans notre cas, nous avons optimisé l'implémentation de notre \textit{clustering} interactif pour obtenir un corpus d'apprentissage pertinent un minimum d'annotation de contraintes.
+			Dans notre cas, nous avons optimisé l'implémentation de notre \texttt{Clustering Interactif} pour obtenir un corpus d'apprentissage pertinent un minimum d'annotation de contraintes.
 			Or cette notion de pertinence est subjective à la vision de l'expert annotant les données.
 			De ce fait, si deux annotateurs ne sont pas d'accord sur la vision à appliquer aux données lors de l'annotation, il est normal de voir leurs résultats de \textit{clustering} diverger.
 			Nous pourrions résumer cette situation par le fait que \textbf{ces deux experts ne recherchent pas la même vérité terrain, d'où la divergence significative de leurs résultats}.
 			Ainsi, la sensibilité de notre méthode n'est pas la racine du problème, elle met plutôt en lumière le besoin de confronter les opinions des experts afin qu'ils puissent s'accorder.
 			
 			% Solution: Ajouter de la redondance !
-			En nous basant sur notre revue de littérature (notamment la \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}), nous conseillons à un projet d'annotation voulant utiliser notre implémentation du \textit{clustering} interactif pour concevoir une base d'apprentissage d'\textbf{employer au moins $3$ opérateurs et de les confronter aux mêmes contraintes à chaque itération} de la méthode.
+			En nous basant sur notre revue de littérature (notamment la \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}), nous conseillons à un projet d'annotation voulant utiliser notre implémentation du \texttt{Clustering Interactif} pour concevoir une base d'apprentissage d'\textbf{employer au moins $3$ opérateurs et de les confronter aux mêmes contraintes à chaque itération} de la méthode.
 			Ainsi, si ces derniers ont des différences d'opinion sur la modélisation du problème, celles-ci se manifesteront en observant le score d'accord inter-annotateurs.
 			Il conviendra alors d'organiser une session de débat pour ré-annoter les désaccords et décider des adaptations à prévoir dans le guide d'annotation du projet.
 			%
@@ -1004,14 +1011,14 @@
 				% Pour aider la résolution du conflit : observer le graphe de contraintes.
 				Pour aider à trouver un accord lors de la revue, une prise de recul peut être nécessaire.
 				Pour ce faire, les experts pourraient par exemple \textbf{observer le graphe de contraintes} déjà annotées.
-				En effet, le gestionnaire de contraintes gère les propriétés de transitivité entre celle-ci, créant ainsi des composants connexes de données liées par les contraintes \texttt{MUST-LINK} et distinguées par les contraintes \texttt{CANNOT-LINK} (voir \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+				En effet, le gestionnaire de contraintes gère les propriétés de transitivité entre celle-ci, créant ainsi des composants connexes de données liées par les contraintes \texttt{MUST-LINK} et distinguées par les contraintes \texttt{CANNOT-LINK} (voir \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 				Or le règlement d'un désaccord va nécessairement impacter ces composants connexes : en les rapprochant si le désaccord est tranché en faveur d'un \texttt{MUST-LINK}, en les éloignant sinon.
 				Par conséquent, il serait intéressant d'aiguiller le débat pour anticiper les conséquences du consensus à trouver : ces composants sont-ils à rapprocher ? à distinguer ? ou sont-ils 
 				éventuellement à remettre en question ?
 
-				% Si toujours désaccord : laisser le clustering trancher.
+				% Si toujours désaccord : laisser le \textit{clustering} trancher.
 				Si malgré cette prise de recul, aucun accord n'a été trouvé, il est possible de ne pas caractériser cette contrainte et de \textbf{laisser l'algorithme de \textit{clustering} trancher le débat}.
-				En effet, la philosophie de la méthode d'annotation basée sur le \textit{clustering} interactif repose sur la coopération entre l'Homme et la machine : dans cette situation, il peut être intéressant de simplement observer quelle solution est proposée par la machine pour segmenter les données tout en respectant les autres contraintes déjà annotées.
+				En effet, la philosophie de la méthode d'annotation basée sur le \texttt{Clustering Interactif} repose sur la coopération entre l'Homme et la machine : dans cette situation, il peut être intéressant de simplement observer quelle solution est proposée par la machine pour segmenter les données tout en respectant les autres contraintes déjà annotées.
 			\end{leftBarIdea}
 			
 			% Problème : surcoût.
@@ -1035,9 +1042,9 @@
 	
 	
 	%%%
-	%%% Subsection 4.6.4: Bilan concernant la robustesse du \textit{clustering} interactif
+	%%% Subsection 4.6.4: Bilan concernant la robustesse du \texttt{Clustering Interactif}
 	%%%
-	\subsection{Bilan concernant la robustesse du \textit{clustering} interactif}
+	\subsection{Bilan concernant la robustesse du \textit{Clustering Interactif}}
 	\label{section:4.6.4-ETUDE-ROBUSTESSE-MISE-EN-COMMUN}
 	
 		% Conclusion.
@@ -1045,7 +1052,7 @@
 			Au cours de cette étude de robustesse, nous avons pu voir que :
 			\begin{itemize}
 				% Sensible aux erreurs car optimisé.
-				\item[\itemok] Le \textit{clustering} interactif, comme tout autre approche incrémentale, est \textbf{sensible aux erreurs et aux désaccords d'annotation} : en effet, la méthode est optimisée pour converger vers une base d'apprentissage en un minimum de contraintes, donc toute différence d'annotation peut rapidement se propager ;
+				\item[\itemok] Le \texttt{Clustering Interactif}, comme tout autre approche incrémentale, est \textbf{sensible aux erreurs et aux désaccords d'annotation} : en effet, la méthode est optimisée pour converger vers une base d'apprentissage en un minimum de contraintes, donc toute différence d'annotation peut rapidement se propager ;
 				% Solution intra-annotateur.
 				\item[\itemok] Pour \textbf{combattre les erreurs d'annotations} (\textit{divergences intra-annotateur}), il peut être intéressant d'\textbf{ajouter de la redondance dans les annotations} : cela permet au gestionnaire de contraintes de vérifier les propriétés de transitivité des contraintes \texttt{MUST-LINK} et \texttt{CANNOT-LINK}, contribuant ainsi à la détection d'éventuelles incohérences ;
 				% Solution inter-annotateurs.

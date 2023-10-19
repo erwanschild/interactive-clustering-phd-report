@@ -74,6 +74,7 @@
 	% MUST-LINK: \faCheck \faCheckCircle \faEquals
 	% CANNOT-LINK: \faTimes \faTimesCircle \faNotEqual
 	% Information, Questions ou Plus d'info: \faInfoCircle \faQuestionCircle % \faPlusCircle
+	% Reminder: \faBell
 	% Eprouvette: \faVial
 	% Github: \faGit \faGithub
 	% Exemples: \faEye \faSearchPlus \faSearch
@@ -221,6 +222,19 @@
 }{
     \end{leftbar}
 }  % \begin{leftBarInformation} \lipsum[1] \end{leftBarInformation}
+
+% Définition de l'encadré de rappel
+\definecolor{colorLeftBarReminder}{HTML}{737373}  % Dim Gray (#737373)
+\newenvironment{leftBarReminder}{
+	\begin{leftbar}{colorLeftBarReminder}
+	\noindent
+	\textbf{
+		\textcolor{colorLeftBarReminder}{\faBell}
+		~Rappel :
+	}
+}{
+    \end{leftbar}
+}  % \begin{leftBarReminder} \lipsum[1] \end{leftBarReminder}
 
 % Définition de l'encadré d'exemples
 \definecolor{colorLeftBarExamples}{HTML}{976ED7}  % Dark Pastel Purple (#976ED7)

@@ -4,10 +4,10 @@
 	%%%
 	%%% Introduction / Transition.
 	%%%
-	Dans les études précédentes, le cas d'arrêt de notre méthodologie d'annotation basée sur le \textit{clustering} interactif était conditionné à la vérité terrain.
+	Dans les études précédentes, le cas d'arrêt de notre méthodologie d'annotation basée sur le \texttt{Clustering Interactif} était conditionné à la vérité terrain.
 	En effet, nous utilisions un seuil de $90$\% de \texttt{v-measure}, caractérisant une annotation dite "partielle" de la base d'apprentissage.
 	Cependant, une telle référence n'est pas accessible en situation réelle car l'objectif de notre méthode est précisément de la construire cette vérité terrain.
-	Nous devons donc nous intéresser à d'autres moyens pour estimer la rentabilité d'une itération supplémentaire et pouvoir ainsi définir de nouveaux cas d'arrêt pour le \textit{clustering} interactif.
+	Nous devons donc nous intéresser à d'autres moyens pour estimer la rentabilité d'une itération supplémentaire et pouvoir ainsi définir de nouveaux cas d'arrêt pour le \texttt{Clustering Interactif}.
 	Pour cela, nous aimerions vérifier l'hypothèse suivante :
 	
 	%%%
@@ -20,7 +20,7 @@
 		width=\linewidth
 	]
 		\textguillemets{\textbf{
-			Au cours d'une méthodologie d'annotation basée sur le \textit{clustering} interactif, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d'apprentissage satisfaisante.
+			Au cours d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif}, il est possible d'estimer la rentabilité d'une itération supplémentaire de la méthode, et ainsi d'établir des cas d'arrêt indépendant d'une vérité terrain pour obtenir une base d'apprentissage satisfaisante.
 		}} \\
 		
 		% Figure.
@@ -30,7 +30,7 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-05-rentabilite}
 			\caption{
-				Illustration des études réalisées sur le \textit{clustering} interactif (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).
 			}
 			\label{figure:4.5-HYPOTHESE-RENTABILITE}
 		\end{figure}
@@ -51,7 +51,7 @@
 	\label{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}
 		
 		% Objectif de l'expérience.
-		Nous cherchons à trouver un cas d'arrêt du \textit{clustering} interactif ne nécessitant pas de comparaison avec une vérité terrain, et notre première intuition concerne l'étude des annotations réalisées.
+		Nous cherchons à trouver un cas d'arrêt du \texttt{Clustering Interactif} ne nécessitant pas de comparaison avec une vérité terrain, et notre première intuition concerne l'étude des annotations réalisées.
 		En effet, à chaque itération, l'expert annote un échantillon de contraintes dans le but de confirmer ou de corriger le \textit{clustering} de l'itération précédente.
 		Or, après un nombre suffisant d'itérations, le \textit{clustering} commence à se stabiliser : il devrait donc y avoir davantage d'annotations qui confirment le \textit{clustering} que d'annotations qui le corrigent, puis n'avoir que des accords entre les annotations et le \textit{clustering}.
 		Ainsi, nous allons étudier l'évolution du nombre de contraintes annotées qui approuvent le partitionnement des données obtenu et essayer d'adapter cette analyse en cas d'arrêt pour notre méthode d'annotation.
@@ -73,7 +73,7 @@
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
@@ -98,14 +98,14 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
+			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			
 			% Description des tentatives de la méthode et du calcul de rentabilité.
 			Sur ce jeu de données, nous exécutons une tentative complète \footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
-				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			À chaque itération, un lot de $50$ contraintes est sélectionné puis annotés en simulant l'action d'un expert métier, et nous évaluons l'accord entre ces nouvelles annotations et la proposition de partitionnement des données réalisé par le \textit{clustering} à l'itération précédente :
 			\begin{itemize}
@@ -133,6 +133,7 @@
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 
 		%%% Résultats
@@ -225,7 +226,7 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'accord entre l'annotation et le clustering.
+			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'accord entre l'annotation et le \textit{clustering}.
 			Dans cette étude, nous avons analysé l'évolution de l'accord entre les annotations et le partitionnement de données proposé par un \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain pré-établie.
 			Cependant, en considérant les résultats obtenus, ce score d'accord ne semble pas répondre à cette objectif.
 			
@@ -238,7 +239,7 @@
 			\end{leftBarExamples}
 			
 			\begin{leftBarAuthorOpinion}
-				% Rappel: l'objectif de notre méthode d'annotation est de corriger le plus rapidement un clustering.
+				% Rappel: l'objectif de notre méthode d'annotation est de corriger le plus rapidement un \textit{clustering}.
 				Après réflexion, ce score d'accord est probablement infructueux à cause du fonctionnement même de notre méthode, dont l'objectif est de corriger le partitionnement des données en utilisant un minimum de contraintes.
 				En effet, dans le cadre de l'optimisation des paramètres réalisée en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}, nous avons retenu dans notre paramétrage favori la sélection des contraintes les plus proches entre deux \textit{clusters} différents (\texttt{samp.closest.diff}) : cette sélection permet ainsi de décrire efficacement l'emplacement des frontières de \textit{clusters}.
 				
@@ -288,7 +289,7 @@
 				\ForEach{jeux de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
-					\textbf{prétraitement}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
+					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
 					\Repeat{annotation de toutes les contraintes possibles}{
@@ -311,9 +312,9 @@
 			\end{algorithm}
 
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) : nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous simulons l'annotation par un expert d'un lot de $50$ contraintes à chaque itération.
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) : nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous simulons l'annotation par un expert d'un lot de $50$ contraintes à chaque itération.
 			
-			% Ajout de la comparaison entre clustering.
+			% Ajout de la comparaison entre \textit{clustering}.
 			Cependant, au lieu de calculer un score d'accord entre annotation et \textit{clustering}, nous estimons la différence entre le \textit{clustering} précédent et le \textit{clustering} obtenu grâce aux dernières annotations.
 			Cette différence entre deux \textit{clustering} $X$ et $Y$ est obtenue par la formule $1-\texttt{v-measure}(X,Y)$ où la \texttt{v-measure} caractérise la ressemblance entre deux partitionnements des données (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}).
 			Pour nous permettre de discuter de l'utilité de ce score pour prédire la stabilisation du \textit{clustering} et ainsi définir un cas d'arrêt de notre méthodologie d'annotation, nous calculons aussi le score de corrélation entre cette différence et la performance obtenue à l'aide d'une vérité terrain (la corrélation \texttt{r} de \textit{Pearson} (\cite{kirch:2008:pearson-correlation-coefficient}) est utilisée).
@@ -326,6 +327,7 @@
 			% Référence scripts.
 			\begin{leftBarInformation}
 				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				De plus, les jeux de données ainsi que les implémentations de notre \texttt{Clustering Interactif} sont détaillés respectivement en \textsc{Annexe~\ref{annex:A-ANNEXE-DATASET}} et en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 			\end{leftBarInformation}
 
 		%%% Résultats
@@ -419,7 +421,7 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'évolution de la différence entre deux clusterings.
+			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'évolution de la différence entre deux \textit{clusterings}.
 			Dans cette étude, nous avons analysé l'évolution du score de différence entre deux itérations de \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain pré-établie.
 			
 			% Avantage 1 : Caractérise la rentabilité.
@@ -455,7 +457,7 @@
 			\begin{itemize}
 				\item[\itemko] l'analyse du score d'accord entre l'annotation courante et le \textit{clustering} précédent ne permet pas d'estimer la rentabilité d'une itération, ni de définir un cas d'arrêt de notre méthodologie d'annotation (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) ;
 				\item[\itemok] l'analyse des différences entre deux itérations de \textit{clusterings} est une approche prometteuse pour estimer la rentabilité d'une itération, bien qu'une modification significative entre deux résultats de \textit{clustering} n'implique pas forcément un gain de performance (les deux \textit{clustering} peuvent avoir une \texttt{v-measure} équivalente avec la vérité terrain) ;
-				\item[\itemok] l'usage de différences entre deux itérations de \textit{clusterings} permet de définir un cas d'arrêt de de notre méthodologie d'annotation : si les différences sont faibles (par exemple : inférieures à $5$\%), alors les performances stagnent ou plafonnent, donc il peut être intéressant d'interrompre le \textit{clustering} interactif après avoir vérifier la manuellement pertinence des résultats obtenus (cf. (cf. \textsc{Section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}}) et \textsc{Section~\ref{section:4.4.4-ETUDE-PERTINENCE-MISE-EN-COMMUN}}).
+				\item[\itemok] l'usage de différences entre deux itérations de \textit{clusterings} permet de définir un cas d'arrêt de de notre méthodologie d'annotation : si les différences sont faibles (par exemple : inférieures à $5$\%), alors les performances stagnent ou plafonnent, donc il peut être intéressant d'interrompre le \texttt{Clustering Interactif} après avoir vérifier la manuellement pertinence des résultats obtenus (cf. (cf. \textsc{Section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}}) et \textsc{Section~\ref{section:4.4.4-ETUDE-PERTINENCE-MISE-EN-COMMUN}}).
 			\end{itemize}
 		\end{leftBarSummary}
 		

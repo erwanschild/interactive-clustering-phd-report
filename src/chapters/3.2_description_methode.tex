@@ -1,4 +1,4 @@
-\section{Description de notre \textit{clustering} interactif.}
+\section{Description de notre \textit{Clustering Interactif}}
 \label{section:3.2-DESCRIPTION-THEORIQUE}
 
 	Sur la base des intuitions que nous venons de détailler, nous proposons la méthode suivante dans le but d'assister la modélisation et l'annotation d'une collecte de données brutes en une base d'apprentissage nécessaire à l'entraînement d'un assistant conversationnel.
@@ -10,7 +10,7 @@
 	\label{section:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 	
 		% Présentation succinte.
-		\textbf{Notre méthode d'annotation}, que nous appelons \textguillemets{\texttt{Clustering Interactif}}, \textbf{repose sur l'alternance successive entre deux phases clefs} (voir \textsc{Figure~\ref{figure:3.2-CLUSTERING-INTERACTIF}}) :
+		\textbf{Notre méthode d'annotation}, que nous appelons \textguillemets{\texttt{Clustering Interactif}}, \textbf{repose sur l'alternance successive entre deux phases clefs} (voir \textsc{Figure~\ref{figure:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}}) :
 		\begin{itemize}
 			\item[\(\bullet\)] une phase d'\textbf{annotation de contraintes}
 			par un expert permettant de caractériser la similarité entre deux données suivant leur cas d'usage métier ;
@@ -27,10 +27,10 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
 			\caption{
-				Schéma illustrant l'architecture du \textit{clustering} interactif.
+				Schéma illustrant l'architecture du \texttt{Clustering Interactif}.
 				La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.
 			}
-			\label{figure:3.2-CLUSTERING-INTERACTIF}
+			\label{figure:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 		\end{figure}
 	
 	
@@ -63,7 +63,7 @@
 			\KwResult{données segmentées (i.e. base d'apprentissage)}
 			%
 			\caption{\textit{
-				Description en pseudo-code de la méthode d'annotation proposée employant le \textit{clustering} interactif.
+				Description en pseudo-code de la méthode d'annotation proposée employant le \texttt{Clustering Interactif}.
 			}}
 			\label{algorithm:3.2-CLUSTERING-INTERACTIF}
 		\end{algorithm}
@@ -95,9 +95,9 @@
 		}, ou encore sur le besoin de l'utilisateur \footnote{
 			Exemple de besoins : \textit{souscrire un crédit} vs. \textit{souscrire une assurance} ; \textit{s'informer en sport} vs. \textit{s'informer en culture}, ...
 		}.
-		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données : ces incohérences peuvent être détecter grâce à aux propriétés de transitivités des contraintes (voir la gestion des conflits en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+		On notera que des incohérences peuvent s'introduire, ayant pour conclusions de devoir à la fois considérer comme similaires et différentes deux données : ces incohérences peuvent être détecter grâce à aux propriétés de transitivités des contraintes (voir la gestion des conflits en \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 		
-		% Description du clustering.
+		% Description du \textit{clustering}.
 		Pour finir, la dernière phase de cette boucle est composée d'une nouvelle \textbf{segmentation} des données (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 8 et 9}).
 		Cette segmentation devra respecter les contraintes préalablement définies par l'expert, nous nous tournons donc vers l'utilisation d'un \textit{clustering} sous contraintes.
 		Au fur et à mesure des itérations, de plus en plus de contraintes seront ajoutées pour corriger le \textit{clustering}. ainsi, au bout d'un certain nombre d'itérations, la segmentation des données reflétera la vision que l'expert aura voulu transmettre.
@@ -127,7 +127,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/example-iteration-clustering-interatif}
 				\caption{
-					Exemple d'une itération de \textit{clustering} interactif. \\
+					Exemple d'une itération de \texttt{Clustering Interactif}. \\
 					Lors de l'initialisation,
 					\textbf{(1)} correspond au jeu de données brut,
 					et \textbf{(2)} correspond à une première segmentation des données en $3$ \textit{clusters}.
@@ -149,7 +149,7 @@
 	\label{section:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION}
 	
 		% Généralités.
-		Au cours de ce doctorat, nous avons réalisé un ensemble d'implémentations en \texttt{Python} afin de mettre en oeuvre notre méthodologie de \textit{clustering interactif}.
+		Au cours de ce doctorat, nous avons réalisé un ensemble d'implémentations en \texttt{Python} afin de mettre en oeuvre notre méthodologie de \textit{Clustering Interactif}.
 		Celle-ci est répartie en trois librairies :
 		\begin{enumerate}
 			% cognitivefactory-interactive-clustering
@@ -169,16 +169,16 @@
 		
 		% Exemple de visuels de l'application.
 		\begin{leftBarExamples}
-			La \textsc{Figure~\ref{figure:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION-EXEMPLE}} représente une capture d'écran de la page d'annotation de contraintes de l'application web intégrant notre méthodologie de \textit{clustering interactif}.
+			La \textsc{Figure~\ref{figure:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION-EXEMPLE}} représente une capture d'écran de la page d'annotation de contraintes de l'application web intégrant notre méthodologie de \texttt{Clustering Interactif}.
 			
 			% Capture d'écran: annotation.
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-application-annotation-0small}
 				\caption{
-					Capture d'écran de l'application web implémentant notre méthodologie de \textit{clustering} interactif : \textbf{page d'annotation d'une contrainte}.
+					Capture d'écran de l'application web implémentant notre méthodologie de \texttt{Clustering Interactif} : \textbf{page d'annotation d'une contrainte}.
 					Parmi les éléments importants, nous retrouvons les deux textes à annoter (disposés à gauche et droite de l'écran) et les boutons d'annotation (bouton vert pour un \texttt{MUST-LINK}, bouton rouge pour un \texttt{CANNOT-LINK}.
-					Les autres fonctionnalités sont détaillées en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
+					Les autres fonctionnalités sont détaillées en \textsc{Annexe~\ref{annex:C.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
 				}
 				\label{figure:3.2.3-DESCRIPTION-TECHNIQUE-IMPLEMENTATION-EXEMPLE}
 			\end{figure}
