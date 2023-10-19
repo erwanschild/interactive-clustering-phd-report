@@ -96,7 +96,7 @@
 			D'abord, il fallait choisir un jeu de données approprié : pour valider notre hypothèse forte sur les compétences de nos annotateurs, nous cherchions un jeu de données traitant d'un sujet de culture général.
 			Pour cette expérience, nous avions donc choisi \texttt{MLSUM} : une collecte d'articles de journaux, classés par catégorie de publication et décrits par leur titre et leur résumé.
 			Nous nous intéressions ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
-			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
+			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs (\textit{une Data Scientist et moi-même}) furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
 			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
 			Pour plus de détails, consultez l'annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}.
 		
@@ -119,23 +119,36 @@
 			Pour réaliser l'annotation, les opérateurs eurent accès à l'application web développée au cours de ce doctorat.
 			Des captures d'écran sont disponibles en \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-ANNOTATION}} et \textsc{Figure~\ref{figure:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION-APPLICATION-LISTE-CONTRAINTES}}.
 			Une description plus détaillée de l'application et de ses fonctionnalités est disponible en \textsc{Annexe~\ref{annex:C.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GUI}}.
-			Il est à noter qu'un des deux réviseurs a aussi participé à l'annotation de ces contraintes : nous avons retenu ses résultats, mais nous les analyserons séparément du groupe d'annotateurs.
+			Il est à noter que l'autre réviseur a aussi participé à l'annotation de ces contraintes : nous avons retenu ses résultats, mais nous les analyserons séparément du groupe d'annotateurs.
 			
 			% Détails de l'expérience.
 			Pour cette étude, nous allons calculer le score d'accord inter-annotateurs global et deux à deux.
 			Pour ce faire, nous utilisons l'$\alpha$ de \textit{Krippendorff} \footnote{
 				Choix de l'$\alpha$ de \textit{Krippendorff} : L'utilisation de $\kappa$ de \textit{Cohen} (\cite{landis-koch:1977:measurement-observer-agreement}) est aussi fréquemment utilisée, mais elle n'est pas adaptée pour plus de deux opérateurs ni pour manipuler des absences d'annotations.
-			} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} (\cite{perry:2021:lighttag-text-annotation}).
+			} (\cite{krippendorff:2004:content-analysis-introduction}) implémenté dans la librairie \texttt{simpledorff} \footnote{
+				\texttt{simpledorff}: \url{https://pypi.org/project/simpledorff/}
+			} (\cite{perry:2021:lighttag-text-annotation}).
 			Nous rappelons qu'un accord est considéré comme \textit{faible} si $\alpha<0.667$, \textit{acceptable} si $0.667 \leq \alpha<0.8$, \textit{fort} si $0.8 \leq \alpha<1.0$ et \textit{parfait} si $\alpha = 1.0$.
 			De plus, un score $\alpha$ négatif représente une opposition d'accord.
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 			
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
+		
+			% Taux de participation.
+			Durant cette expérience, $4$ opérateurs ont participé à l'annotation de $400$ contraintes issues d'un tirage aléatoire équilibré d'après la vérité terrain en $200$ \texttt{MUST-LINK} et en $200$ \texttt{CANNOT-LINK}.
+			Ces opérateurs travaillent tous dans un service informatique dédié à l'entraînement et l'amélioration de solutions de \textit{Machine Learning} et sont répartis de la manière suivante :
+			\begin{itemize}
+				\item $2$ femmes, $2$ hommes ;
+				\item $4$ personnes entre $20$ et $30$ ans ;
+				\item $4$ \textit{Data Scientist} ;
+				\item $1$ personne ayant révisé le jeu de données, $3$ le découvrant pour la première fois.
+			\end{itemize}
+			Par manque de disponibilités, $4$ annotateurs n'ont que partiellement réalisé leur tâche : nous avons toutefois intégré leurs participations car elles contenaient au minimum $150$ annotations.
 		
 			% Description des scores d'accords avec la vérité terrain.
 			La \textsc{Table~\ref{table:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-VERITE-TERRAIN}} expose les accords des opérateurs ($1$ réviseur, $3$ annotateurs) par rapport à la vérité terrain.
@@ -413,7 +426,9 @@
 			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
-			} de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
+			} de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
 			Toutefois, contrairement aux précédents expériences, nous allons ajouter un pourcentage de contraintes erronées à chaque itération pour simuler les variations de comportement de l'annotateur :
 			\begin{itemize}
 				\item Le taux d'erreurs insérées, variant de $0$\% à $25$\% \footnote{
@@ -424,7 +439,7 @@
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des erreurs d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
-			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			Pour les traiter, nous allons tester deux approches :
 			\begin{itemize}
 				\item une approche \textit{naïve} ignorant les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
@@ -440,7 +455,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 
 		%%% Résultats
@@ -607,7 +622,9 @@
 			Sur ces jeux de données, nous exécutons une tentative complète\footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
+			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}).
 			À nouveau, nous allons ajouter un pourcentage de contraintes erronées à chaque itération, représentant un \textbf{autre annotateur} (\textit{et sa propre vision métier du problème à modéliser}) :
 			\begin{itemize}
 				\item Le taux de désaccords insérés, variant de $0$\% à $25$\% \footnote{
@@ -618,7 +635,7 @@
 			
 			% Description des tentatives de la méthode avec gestion des conflits.
 			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
-			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK}et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
+			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces désaccords dès leur détection, et supposant que le second annotateur se range à la vision de l'annotateur de référence.
 			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction des experts.
 			
@@ -640,12 +657,16 @@
 			Un exemple est illustré avec la \textsc{Figure~\ref{figure:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-5000}}.
 			
 			% Note de l'auteur sur le choix du nombre de contraintes.
+			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarAuthorOpinion}
-				Il est à noter que nous aurions pu estimer ce nombre de contraintes grâce à l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}\footnote{
-					$\texttt{constraints\_needed}~\propto~3.15 \cdot \texttt{dataset\_size}$
-				}, mais comme cette estimation théorique est une moyenne qui aurait pu décaler légèrement nos résultats.
+				Il est à noter que nous aurions pu estimer ce nombre de contraintes grâce à l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}} \footnotemark, mais comme cette estimation théorique est une moyenne qui aurait pu décaler légèrement nos résultats.
 				Nous avons donc préféré mesurer directement le nombre exact de contraintes nécessaires pour chaque tentative afin de ne pas avoir à analyser une double moyenne.
 			\end{leftBarAuthorOpinion}
+			% Rattraper les footnote.
+				\stepcounter{localCounterOfFootnoteValue}
+				\footnotetext[\value{localCounterOfFootnoteValue}]{
+					\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}: $\texttt{constraints\_needed}~\propto~3.15 \cdot \texttt{dataset\_size}$
+				}
 			
 			% Remarque sur le faible nombre de redondances des tentatives.
 			\begin{leftBarWarning}
@@ -655,7 +676,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 		
 		
@@ -683,7 +704,7 @@
 			
 			% Analyse de la figure et lien vers la table.
 			Grâce à cette figure, nous pouvons estimer à $16~250$ le nombre moyen de contraintes nécessaires aux tentatives de référence pour atteindre $90$\% de \texttt{v-measure} par rapport à la vérité terrain (\textit{ici: celle ayant $5~000$ données}).
-			Sur cette base, nous pouvons identifier la similitude moyenne des résultats \textit{clustering} entre chaque tentative introduisant des désaccords et leur tentative de référence, calculée pour un nombre fixe de $16~250$ contraintes\footnote{
+			Sur cette base, nous pouvons identifier la similitude moyenne des résultats \textit{clustering} entre chaque tentative introduisant des désaccords et leur tentative de référence, calculée pour un nombre fixe de $16~250$ contraintes \footnote{
 				Observation de $16~250$ contraintes nécessaires : lors d'une analyse théorique utilisant l'\textsc{Équation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}, nous aurions estimé une moyenne de $3.15 \cdot 5~000~\propto~15~750$ contraintes, soit un écart de $500$ contraintes qui aurait introduit une légère variation dans nos résultats.
 			}.
 			Ces score de similitudes moyen sont rapportés dans la \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}}, chaque analyse pour une taille de jeu de données étant retranscrite dans une colonne dédiée.

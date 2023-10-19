@@ -53,9 +53,7 @@
 		% Référence articles.
 		\begin{leftBarInformation}
 			Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~(\cite{schild-etal:2021:conception-iterative-semisupervisee}), et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~(\cite{schild-etal:2022:iterative-semisupervised-design}).
-			\footnote{
-				Les résultats et la discussion de ces articles ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.
-			}
+			Les résultats et la discussion de ces articles ont été mis à jour pour mieux s'intégrer au discours ce manuscrit.
 		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
@@ -110,11 +108,11 @@
 			% Description de l'évaluation et Seuils d'évaluation.
 			Comme lors de l'étude sur la convergence de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) entre la vérité terrain et notre segmentation des données obtenue, et nous affinons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 			\begin{enumerate}
-				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale\footnote{
+				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale \footnote{
 					Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}, coude de la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 				} ;
 				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
-				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier\footnote{
+				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier \footnote{
 					Une annotation est a priori inutilisable en pratique (demande trop de contraintes, cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}), nous l'étudions toutefois pour avoir un point de comparaison.
 				}.
 			\end{enumerate}
@@ -124,7 +122,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}) et des scripts R (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}) et des scripts \texttt{R} (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 
 		%%% Résultats.
@@ -782,10 +780,10 @@
 			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitement}, \textbf{vectorisation}, \textbf{\textit{clustering} sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
 			\begin{enumerate}
 				% Annotation partielle.
-				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement simple (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 				Avec ce paramétrage, il faut en moyenne $950$ annotations de contraintes pour obtenir une \texttt{v-measure} de $90$\% ;
 				% Annotation suffisante.
-				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation TF-IDF (\texttt{vect.tfidf}), du \textit{clustering} KMeans avec modèle COP (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
 				Avec ce paramétrage, il faut en moyenne $1~750$ annotations de contraintes pour obtenir une \texttt{v-measure} de $100$\% ;
 				% Annotation exhaustive.
 				\item le cas d'une \textbf{annotation exhaustive} (annoter toutes les contraintes possibles sur les données) n'est pas explicité ici mais peut se déduire des résultats décrits plus haut.

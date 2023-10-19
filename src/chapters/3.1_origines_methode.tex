@@ -18,7 +18,7 @@
 		
 		\begin{itemize}
 			% KMeans.
-			\item Le \textbf{\textit{clustering} KMeans} (\cite{macqueen:1967:methods-classification-analysis}) :
+			\item Le \textbf{\textit{clustering} \texttt{KMeans}} (\cite{macqueen:1967:methods-classification-analysis}) :
 			Cette méthode se repose sur la minimisation de l'inertie intra-classes en attribuant chaque donnée au barycentre de \textit{cluster} le plus proche.
 			Cette approche est l'une des plus répandues en raison de sa simplicité et de sa rapidité de calcul ;
 			% Hiérarchique.
@@ -27,10 +27,10 @@
 			Plusieurs liens de similarité peuvent être implémentés (\textit{le lien \texttt{single} fusionnant les deux \textit{clusters} ayant les frontières les plus proches, le lien \texttt{complete} fusionnant les deux \textit{clusters} ayant les frontières opposées les plus proches, le lien \texttt{average} fusionnant les deux \textit{clusters} ayant les barycentres les plus proches et le lien \texttt{ward} fusionnant les deux \textit{clusters} qui donneront le prochain \textit{cluster} le plus compact}) ;
 			% Spectral.
 			\item Le \textbf{\textit{clustering} spectral} (\cite{ng-etal:2002:spectral-clustering-analysis}) :
-			Cette méthode consiste à modéliser la matrice de similarité entre les données par ses vecteurs propres puis de regrouper ces derniers à l'aide d'un KMeans.
+			Cette méthode consiste à modéliser la matrice de similarité entre les données par ses vecteurs propres puis de regrouper ces derniers à l'aide d'un \texttt{KMeans}.
 			Cette approche permet d'obtenir des \textit{clusters} aux formes complexes ;
 			% DBScan.
-			\item Le \textbf{\textit{clustering} DBScan} (\cite{ester-etal:1996:densitybased-algorithm-discovering}) :
+			\item Le \textbf{\textit{clustering} \texttt{DBScan}} (\cite{ester-etal:1996:densitybased-algorithm-discovering}) :
 			Cette méthode utilise la densité de données dans l'espace pour identifier des regroupements.
 			Cette approche permet de découvrir des \textit{clusters} aux formes complexes si leur densité est suffisante.
 			\item ...
@@ -83,7 +83,7 @@
 		
 		\begin{itemize}
 			% KMeans.
-			\item Le \textbf{\textit{clustering} KMeans sous contraintes} comme COP-KMeans (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) :
+			\item Le \textbf{\textit{clustering} \texttt{KMeans} sous contraintes} comme \texttt{COP-KMeans} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) :
 			Dans cette version, l'attribution d'une donnée se fait au \textit{cluster} dont le barycentre est le plus proche et où aucune contraintes n'est violée.
 			Cette adaptation est relativement simple à mettre en oeuvre, mais elle peut mener à des cas de blocage où plus aucun \textit{cluster} n'est accessible à cause de violation de contraintes (il est possible d’adapter l'algorithme en créant un nouveau \textit{cluster}) ;
 			% Hiérarchique.
@@ -95,7 +95,7 @@
 			Dans cette version, les coefficients de la matrice de similarité sont forcés à $0$ (respectivement $1$) si deux données sont liées par une contrainte \texttt{CANNOT-LINK} (respectivement \texttt{MUST-LINK}).
 			Cette adaptation demande peu d'effort pour être mise en oeuvre, mais des modifications aussi drastiques de la matrice de similarité peut entraîner des changements imprévisibles de comportements ;
 			% DBScan.
-			\item Le \textbf{\textit{clustering} DBScan sous contraintes} comme C-DBScan (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) :
+			\item Le \textbf{\textit{clustering} \texttt{DBScan} sous contraintes} comme \texttt{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) :
 			Dans cette version, la densité des données ainsi que les contraintes \texttt{CANNOT-LINK} sont utilisées pour identifier des clusters locaux qui seront ensuite fusionnés à l'aide des contraintes \texttt{MUST-LINK}
 			Cette adaptation est plus compliquée à réaliser car elle change légèrement le fonctionnement interne d'exploration de la densité de l'espace de données.
 			\item ...

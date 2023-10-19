@@ -52,9 +52,7 @@
 		% Référence articles.
 		\begin{leftBarInformation}
 			Cette étude a été l'objet d'une présentation à la conférence \texttt{EGC (Extraction et Gestion des Connaissances)}~(\cite{schild-etal:2021:conception-iterative-semisupervisee}), et d'une extension dans le journal \texttt{IJDWM (International Journal of Data Warehousing and Mining)}~(\cite{schild-etal:2022:iterative-semisupervised-design}).
-			\footnote{
-				Les résultats et la discussion de ces articles ont été mis à jour et réécrits pour mieux s'intégrer au discours ce manuscrit.
-			}
+			Les résultats et la discussion de ces articles ont été mis à jour pour mieux s'intégrer au discours ce manuscrit.
 		\end{leftBarInformation}
 
 		%%% Protocole expérimental.
@@ -127,8 +125,7 @@
 				% sampling.
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants :
 				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
-				Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$
-				\footnote{
+				Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$ \footnote{
 					Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données.
 					Ce choix sera discuté en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).
 				}.
@@ -150,7 +147,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience (\textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual})) sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience (\textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual})) sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 
 		%%% Résultats.

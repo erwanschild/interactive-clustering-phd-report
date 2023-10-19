@@ -2,12 +2,11 @@
 \label{annex:C.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
 	
 	% Généralités.
-	La librairie \texttt{cognitivefactory-interactive-clustering} ...
+	La librairie \texttt{cognitivefactory-interactive-clustering} (\cite{schild:2022:cognitivefactory-interactiveclustering}) ...
 	\todo[inline]{introduction à rédiger}
 	
 	% Information : comme y accéder.
 	\begin{leftBarInformation}
-		La librairie est accessible dans \cite{schild:2022:cognitivefactory-interactiveclustering}.
 		La documentation technique est accessible au lien suivant : \url{https://cognitivefactory.github.io/interactive-clustering/}.
 	\end{leftBarInformation}
 	
@@ -41,10 +40,10 @@ dict_of_texts = {
 	
 	% cognitivefactory.interactive-clustering.utils
 	Tout d'abord, en ce qui concerne la \textbf{manipulation de données}, nous utilisons le module \texttt{utils} de la librairie \texttt{cognitivefactory-interactive-clustering}.
-	Les données sont stockées dans un dictionnaire Python afin de tracer les manipulations à l'aide d'une clé servant d'identifiant de la donnée.
+	Les données sont stockées dans un dictionnaire \texttt{Python} afin de tracer les manipulations à l'aide d'une clé servant d'identifiant de la donnée.
 	
 	% cognitivefactory.interactive-clustering.utils.preprocessing : Implémentation.
-	Nous avons d'une part la partie \texttt{utils.preprocessing}\footnote{
+	Nous avons d'une part la partie \texttt{utils.preprocessing} \footnote{
 		\texttt{utils.preprocessing}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/preprocessing/}
 	} qui permet de normaliser les données.
 	Par défaut :
@@ -76,7 +75,7 @@ dict_of_texts = {
 	
 	
 	% cognitivefactory.interactive-clustering.utils.vectorization
-	D'autre part, la partie \texttt{utils.vectorization}\footnote{
+	D'autre part, la partie \texttt{utils.vectorization} \footnote{
 		\texttt{utils.vectorization}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/utils/vectorization/}
 	} permet de transformer les données en une représentation exploitable pour la machine.
 	Deux modes de vectorisation sont mis à disposition :
@@ -130,7 +129,7 @@ vectorizer_type="tfidf",
 	\label{annex:C.2.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.constraints
-	En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints}\footnote{
+	En ce qui concerne la \textbf{manipulation de contraintes}, nous utilisons le module \texttt{contraints} \footnote{
 		\texttt{constraints}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/constraints/}
 	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 	
@@ -245,15 +244,15 @@ connected_components = constraints_manager.get_connected_components()
 	\label{annex:C.2.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.clustering
-	En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering}\footnote{
+	En ce qui concerne le \textbf{regroupement automatique} des données par similarité, nous utilisons le module \texttt{clustering} \footnote{
 		\texttt{clustering}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/clustering/}
 	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 	
 	% cognitivefactory.interactive-clustering.utils.clustering : Implémentation.
 	Ce module met à disposition six algorithmes de \textit{clustering} sous contraintes :
 	\begin{enumerate}
-		\item \textbf{KMeans}, dans sa version \texttt{COP} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \texttt{MPC} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
-		\item \textbf{DBscan}, dans sa version \texttt{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
+		\item \textbf{\texttt{KMeans}}, dans sa version \texttt{COP-KMeans} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}), noté \texttt{clust.kmeans.cop}, et sa version \texttt{MPC-KMeans} (\cite{khan-etal:2012:multiple-parameter-based}), noté \texttt{clust.kmeans.mpc}) ;
+		\item \textbf{\texttt{DBscan}}, dans sa version \texttt{C-DBScan} (\cite{ruiz-etal:2010:densitybased-semisupervised-clustering}), noté \texttt{clust.cdbscan} ;
 		\item \textbf{Hiérarchique} (\cite{davidson-ravi:2005:agglomerative-hierarchical-clustering}), avec quatre métriques de distances : \texttt{single} (noté \texttt{clust.hier.sing}), \texttt{complete} (noté \texttt{clust.hier.comp}), \texttt{average} (noté \texttt{clust.hier.avg}) et \texttt{ward} (noté \texttt{clust.hier.ward}) ;
 		\item \textbf{Spectral}, dans sa version \texttt{SPEC} (\cite{kamvar-etal:2003:spectral-learning}), noté \texttt{clust.spec} ;
 		\item \textbf{Propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}), noté \texttt{clust.affprop}.
@@ -299,8 +298,8 @@ vectors=dict_of_vectors,
 	
 	% cognitivefactory.interactive-clustering.utils.clustering : Historique.
 	\begin{leftBarInformation}
-		Dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg, les implémentations des algorithmes  KMeans (\texttt{MPC}), C-DBScan et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
-		Les autres algorithmes (KMeans (\texttt{COP}), hiérarchique et spectral (\texttt{SPEC})) ont été implémentés au début de ce doctorat.
+		Dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg, les implémentations des algorithmes \texttt{MPC-KMeans}, \texttt{C-DBScan} et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
+		Les autres algorithmes (\texttt{COP-KMeans}, hiérarchique et spectral) ont été implémentés au début de ce doctorat.
 	\end{leftBarInformation}
 	
 	
@@ -311,7 +310,7 @@ vectors=dict_of_vectors,
 	\label{annex:C.2.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}
 	
 	% cognitivefactory.interactive-clustering.sampling
-	En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling}\footnote{
+	En ce qui concerne l'\textbf{échantillonnage} de contraintes à annoter, nous utilisons le module \texttt{sampling} \footnote{
 		\texttt{sampling}: \url{https://cognitivefactory.github.io/interactive-clustering/reference/cognitivefactory/interactive_clustering/sampling/}
 	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 	

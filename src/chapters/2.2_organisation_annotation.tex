@@ -153,7 +153,7 @@
 			Il est encore une fois difficile d'être exhaustif sur les analyses et les métriques à considérer car elles dépendent fortement du type de problème que le modèle tente de résoudre.
 			Une métrique basique est l'\texttt{Accuracy} (ou taux de bonnes prédictions), décrivant simplement le nombre de fois que le modèle a fait une bonne proposition sur l'ensemble du test.
 			Suivant le problème et le type de données, d'autres métriques usuelles peuvent être utilisées comme le \texttt{MSE} (\textit{Mean Squared Error}) pour la prédiction de variables numériques (voir \cite{wallach-goffinet:1987:mean-squared-error}), le \texttt{f1-score} pour les variables catégorielles (voir \cite{sasaki:2007:truth-fmeasure}) ou le \texttt{WER} (\textit{Word Error Rate}) pour la transcription de textes (voir \cite{mccowan-etal:2005:use-information-retrieval}).
-			Dans tous les cas, une règle d'or est de ne pas utiliser le jeu de test lors de la phase de développement pour éviter tout biais de sur-apprentissage\footnote{
+			Dans tous les cas, une règle d'or est de ne pas utiliser le jeu de test lors de la phase de développement pour éviter tout biais de sur-apprentissage \footnote{
 				Pour plus de détails sur le sur-apprentissage: voir \cite{collins:2017:chapter-overfitting}
 			}.
 

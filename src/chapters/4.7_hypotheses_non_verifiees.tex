@@ -12,7 +12,7 @@
 	%%%
 	%%% Subsection 4.7.1: Étude du nombre de clusters optimal.
 	%%%
-	\subsection{Étude du nombre de clusters optimal.}
+	\subsection{Étude du nombre de clusters optimal}
 	\label{section:4.7.1-HYPOTHESES-NON-VERIFIEES-NOMBRE-CLUSTERS}
 	
 		% Problème ouvert de la recherche: Estimer le nombre optimal de clusters.
@@ -22,7 +22,7 @@
 		% Pistes déjà explorées.
 		Nous avons déjà exploré partiellement deux pistes :
 		\begin{itemize}
-			\item l'\textbf{exploration du graphe de contraintes} : en effet, il est possible d'estimer le nombre maximal de \textit{clusters} grâce aux composants connexes de contraintes \texttt{MUST-LINK}, et d'estimer le nombre minimal de \textit{clusters} grâce à la coloration du graphe de contraintes \textit{CANNOT-LINK} ;
+			\item l'\textbf{exploration du graphe de contraintes} : en effet, il est possible d'estimer le nombre maximal de \textit{clusters} grâce aux composants connexes de contraintes \texttt{MUST-LINK}, et d'estimer le nombre minimal de \textit{clusters} grâce à la coloration du graphe de contraintes \texttt{CANNOT-LINK} ;
 			\item les \textbf{études de pertinence} avec l'analyse des patterns linguistiques et le résumé thématique des \textit{clusters} (cf. \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) : ces deux approches permettent de rapidement constater si les thématiques obtenues sont trop générales (\textit{i.e. s'il n'y a pas assez de clusters}) ou si elles semblent trop spécifiques (\textit{i.e. s'il y en a trop}).
 		\end{itemize}
 		
@@ -30,18 +30,22 @@
 		Toutefois, pour aller plus loin, deux pistes potentielles pourraient être explorées :
 		\begin{itemize}
 			\item l'exploration brute du nombre de \textit{clusters} par la \textbf{méthode du coude} : bien que ces approches sont plus coûteuses en temps de calcul, elles permettent d'estimer le nombre de \textit{clusters} pour lequel la stabilité du \textit{clustering} est la plus élevée ;
-			\item l'utilisation d'algorithme n'ayant pas de nombre de clusters en paramètres comme des versions contraintes de \textbf{DBscan} (par exemple dans sa version \textit{C-DBScan}, \cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) ou de la \textbf{propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}) : ces alternatives semblent prometteuses car elles retirent la complexité due à ce paramétrage abstrait.
+			\item l'utilisation d'algorithme n'ayant pas de nombre de clusters en paramètres comme des versions contraintes de \texttt{DBScan} (par exemple dans sa version \texttt{C-DBScan}, \cite{ruiz-etal:2010:densitybased-semisupervised-clustering}) ou de la \textbf{propagation par affinité} (\cite{givoni-frey:2009:semisupervised-affinity-propagation}) : ces alternatives semblent prometteuses car elles retirent la complexité due à ce paramétrage abstrait.
 		\end{itemize}
 		
+		\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 		\begin{leftBarInformation}
 			L'étude de \texttt{C-DBScan} a été en partie réalisée dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg.
-			Les résultats montraient que le temps de calcul était similaire à celui du KMeans (dans sa version \texttt{COP}).
+			Les résultats montraient que le temps de calcul était similaire à celui du \texttt{KMeans} (dans sa version \texttt{COP}).
 			La difficulté d'utilisation résidait plutôt sur la définition du rayon de voisinage \texttt{eps} à parcourir pour établir des liens entre données.
 			Celui-ci peut être estimé en analysant la densité vectorielle du jeu de données.
-			Le code informatique est disponible dans \cite{schild:2022:cognitivefactory-interactiveclustering} \footnote{
-				Implémentation de \texttt{C-DBScan} : \textit{Pull Request} en attente pour une version \texttt{0.6.0} après ajout de documentation et de tests unitaires.
-			}.
+			Le code informatique est disponible dans \cite{schild:2022:cognitivefactory-interactiveclustering} \footnotemark.
 		\end{leftBarInformation}
+		% Rattraper les footnote.
+			\stepcounter{localCounterOfFootnoteValue}
+			\footnotetext[\value{localCounterOfFootnoteValue}]{
+				Implémentation de \texttt{C-DBScan} : \textit{Pull Request} en attente pour une version \texttt{0.6.0} après ajout de documentation et de tests unitaires.
+			}
 	
 	
 	%%%

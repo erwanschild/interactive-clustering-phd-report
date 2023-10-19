@@ -96,10 +96,12 @@
 			Pour plus de détails, consultez l'annexe~\ref{annex:A.1-DATASET-BANK-CARDS}.
 			
 			% Description des tentatives de la méthode.
-			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
+			Sur ce jeu de données, nous exécutons une tentative complète \footnote{
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
-			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
+			de la méthode du \textit{clustering} interactif en utilisant notre paramétrage favori \footnote{
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitement simple (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			
 			% Description de l'évaluation manuelle.
 			Au cours des itérations, un expert qualifie chaque \textit{cluster} en donnant son avis sur sa valeur métier.
@@ -121,7 +123,7 @@
 			
 			% Axiome/Contraintes.
 			\begin{leftBarWarning}
-				Par manque de personnes aptes à qualifier le jeu de données utilisé, les annotations de cette étude ont été réalisées par un seul opérateur.
+				Par manque de personnes aptes à qualifier le jeu de données utilisé, les annotations de cette étude ont été réalisées par un seul opérateur (\textit{moi-même, ayant participé à la création de ce jeu de données}).
 				Nous supposons que cette contrainte n'est pas pénalisante pour l'analyse : en effet, dans une situation réelle, cet opérateur serait responsable des choix à entreprendre pour concevoir le jeu de données, il est donc le mieux placer pour juger la pertinence d'un \textit{clustering} par rapport à sa propre modélisation du problème.
 				Les problèmes d'accords inter-annotateurs seront plutôt discuté en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.
 				Nous réalisons toutefois $5$ tentatives différentes de la méthode pour limiter les biais intra-individuels.
@@ -129,7 +131,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 			\end{leftBarInformation}
 			
 
@@ -293,7 +295,7 @@
 			
 			% Référence scripts.
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 				L'implémentation de la maximisation des traits est accessible ici dans \cite{schild:2023:cognitivefactory-featuresmaximizationmetric}.
 			\end{leftBarInformation}
 
@@ -302,7 +304,7 @@
 			
 			% Axiome/Contraintes.
 			\begin{leftBarWarning}
-				Par manque de moyen, la relecture manuelle des \textit{clusters} n'a pas été réalisée.
+				Par manque de moyen, la vérification manuelle des \textit{clusters} n'a pas été réalisée.
 				Nous présentons donc simplement quelques exemples d'analyses linguistiques réalisées grâce à la \texttt{FMC}.
 			\end{leftBarWarning}
 			
@@ -788,7 +790,7 @@
 		Comme nous l'avons vu dans la section précédente, une analyse linguistique peut paraître trop abstraite pour un expert métier.
 		Nous nous intéressons donc à un moyen de simplifier l'identification de thématiques dans un \textit{cluster}, et envisageons l'automatisation de cette tâche en utilisant les capacités d'un large modèle de langage (\texttt{LLM}).
 		En effet, plusieurs de ces modèles ont montré leur efficacité sur les tâches de résumé de documents (\cite{zhang-etal:2019:pegasus-pretraining-extracted}, \cite{lewis-etal:2019:bart-denoising-sequencetosequence}, \cite{radford-etal:2019:language-models-are}, \cite{brown-etal:2020:language-models-are}), une fonctionnalité que nous allons adapter\footnote{
-			Nous nous inspirons notamment de \cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en Python permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.
+			Nous nous inspirons notamment de \cite{alammar-grefenstette:2022:cohere-sandbox} qui propose un boîte à outils en \texttt{Python} permettant de nommer des \textit{topics} en utilisant \texttt{BERT}.
 		}
 		et étudier ici.
 	
@@ -879,24 +881,29 @@
 			
 			% Axiome/Contraintes.
 			\begin{leftBarWarning}
-				Par manque de personnes aptes à qualifier le jeu de données utilisé, les annotations de cette étude ont été réalisées par un seul opérateur.
+				Par manque de personnes aptes à qualifier le jeu de données utilisé, les annotations de cette étude ont été réalisées par un seul opérateur (\textit{moi-même, ayant participé à la création de ce jeu de données}).
 				Nous supposons que cette contrainte n'est pas pénalisante pour l'analyse : en effet, dans une situation réelle, cet opérateur serait responsable des choix à entreprendre pour concevoir le jeu de données, il est donc le mieux placer pour juger la pertinence d'un \textit{clustering} par rapport à sa propre modélisation du problème.
 				Les problèmes d'accords inter-annotateurs seront plutôt discuté en \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}.
 				Nous réalisons toutefois $5$ tentatives différentes de la méthode pour limiter les biais intra-individuels.
 			\end{leftBarWarning}
 			
 			% Référence scripts.
+			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarInformation}
-				Les scripts de l'expérience, réalisés avec des \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
-				L'appel à un large modèle de langage, sous la forme d'un appel \texttt{API}, se fait grâce à la librairie \texttt{openai}.
+				Les scripts de l'expérience, réalisés avec des \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}), sont disponibles dans un dossier dédié de \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+				L'appel à un large modèle de langage, sous la forme d'un appel \texttt{API}, se fait grâce à la librairie \texttt{openai} \footnotemark.
 			\end{leftBarInformation}
+			% Rattraper les footnote.
+				\stepcounter{localCounterOfFootnoteValue}
+				\footnotetext[\value{localCounterOfFootnoteValue}]{
+					\texttt{openai}: \url{https://pypi.org/project/openai/}
+				}
 
 		%%% Résultats
 		\subsubsection{Résultats obtenus}
 		
 			% Description statistiques.
 			La \textsc{Figure~\ref{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}} met en avant l'évolution de le pertinence moyenne estimée par l'opérateur
-			\todo{commentaire Gautier: décrire l'opérateur, son expertise, ...}
 			sur la base des résumés automatiques des \textit{clusters}.
 			Comme lors de l'analyse manuelle (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}), il est normal de retrouver une tendance générale à la diminution du nombre de \textit{clusters} inexploitables au profit de \textit{clusters} exploitables.
 			La différence principale réside dans l'absence du pic de croissance du nombre de \textit{clusters} partiellement exploitables, dont l'apogée était précédemment situé à l'itération $10$.

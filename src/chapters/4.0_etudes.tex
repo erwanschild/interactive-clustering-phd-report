@@ -59,11 +59,17 @@
 	\end{leftBarInformation}
 	
 	% Notes techniques : CPU + scrips + datasets.
+	\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 	\begin{leftBarInformation}
 		% Détails techniques.
-		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisée avec la librairie Python \textit{multiprocessing} (utilisant un worker par CPU).
-		Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de \textit{notebooks} Python (\cite{van-rossum-drake:2009:python-reference-manual}) ou de script R (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
+		Pour ces études, l'exécution des différentes expériences a été réalisée sur des CPU \texttt{Intel(R) Xeon(R) CPU E5-2660 v4 \@ 2.00GHz} et parallélisée avec la librairie \textit{multiprocessing} \footnotemark (utilisant un worker par CPU).
+		Les scripts d'exécution et d'analyse de ces expériences, rédigés au sein de \textit{notebooks} \texttt{Python} (\cite{van-rossum-drake:2009:python-reference-manual}) ou de scripts \texttt{R} (\cite{r-core-team:2017:language-environment-statistical}), sont disponibles dans \cite{schild:2021:cognitivefactory-interactiveclusteringcomparativestudy}.
 	\end{leftBarInformation}
+	% Rattraper les footnote.
+		\stepcounter{localCounterOfFootnoteValue}
+		\footnotetext[\value{localCounterOfFootnoteValue}]{
+			\texttt{multiprocessing}: \url{https://pypi.org/project/multiprocessing/}
+		}
 	
 	
 	% TABLE DES MATIÈRES DU CHAPITRE

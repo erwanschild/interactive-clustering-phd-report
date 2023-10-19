@@ -73,7 +73,7 @@
 		% Annonce: prendre des exemples sur l'univers de la bande dessinée.
 		Ainsi, nous estimons qu'il est préférable de compléter ces définitions par quelques exemples concrets.
 		Nous pourrons ainsi mieux dresser le portait d'une tâche d'annotation, avec ses intérêts et ses complications.
-		Pour cela, nous allons prendre le thème de la bande dessinée et de ses dérivés, et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
+		Pour cela, nous allons prendre le thème de la bande dessinée et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
 		
 		
 		%%% 2.1.2.A. Estimation du prix d'une bande dessinée.
@@ -86,7 +86,7 @@
 			Sans un regard d'expert, il est possible de trouver certaines oeuvres rares vendues pour presque rien sur le marché d'occasion, ou à l'inverse voir certaines \texttt{BD} être achetées à prix d'or alors que le document est en piteux état.
 			
 			% Entrainer un modèle: régression.
-			Afin d'aiguiller les acquéreurs, il est possible d'utiliser un modèle de \texttt{régression}\footnote{
+			Afin d'aiguiller les acquéreurs, il est possible d'utiliser un modèle de \texttt{régression} \footnote{
 				Pour plus de détails sur la régression: voir la revue de \cite{maalouf:2011:logistic-regression-data} ; voir un exemple basé sur la méthode des moindres carrés dans \cite{zdaniuk:2014:ordinary-leastsquares-ols}.
 			} permettant de prédire le prix d'une \texttt{BD} à partir des différentes métadonnées à disposition.
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de transactions avec leur prix de vente.
@@ -196,7 +196,7 @@
 			Au final, c'est souvent un libraire qui détermine si l'oeuvre est en bon ou en mauvais état, et, sans un regard d'expert, nous pouvons omettre un détail ou nous tromper lors de notre appréciation.
 			
 			% Entrainer un modèle: classification d'image.
-			Afin de nous aider à estimer l'état d'une bande dessinée, il est possible d'utiliser un modèle de \texttt{classification}\footnote{
+			Afin de nous aider à estimer l'état d'une bande dessinée, il est possible d'utiliser un modèle de \texttt{classification} \footnote{
 				Pour plus de détails sur la classification: voir les revues de \cite{aized-amin-soofi-arshad-awan:2017:classification-techniques-machine} ou de \cite{kotsiantis-etal:2006:machine-learning-review} ; voir un exemple basé sur les machine à vecteurs de support (\texttt{SVM}) dans \cite{cortes-vapnik:1995:supportvector-networks}.
 			} permettant, à partir d'une image, d'affecter à chaque \texttt{BD} une catégorie prédéfinie (par exemple: "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}").
 			Pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'images de \texttt{BD} associées avec leur catégorie d'état.
@@ -218,7 +218,7 @@
 			\end{leftBarExamples}
 			
 			% Conclusion.
-			Ainsi, si quelqu'un s'interroge sur l'état d'une bande dessinée en sa possession, ce modèle peut identifier la catégorie d'état la plus probable d'après les exemples disponibles dans sa base d'apprentissage.
+			Ainsi, si quelqu'un s'interroge sur l'état d'une bande dessinée en sa possession, ce modèle peut identifier l'état le plus probable d'après les exemples disponibles dans sa base d'apprentissage.
 			
 			% Autre cas d'usage similaire: Identifier la langue de la BD.
 			\begin{leftBarInformation}
@@ -249,7 +249,7 @@
 			Les libraires ou les collectionneurs désirant faire l'inventaire des ouvrages en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des bande dessinée dans leur registre.
 			
 			% Entrainer un modèle: extraction de caractères.
-			Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \texttt{reconnaissance optique des caractères} (\texttt{OCR})\footnote{
+			Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \texttt{reconnaissance optique des caractères} (\texttt{OCR}) \footnote{
 				Pour plus de détails sur l'\texttt{OCR}: voir la revue de \cite{berchmans-kumar:2014:optical-character-recognition} ou de \cite{awel-abidi:2019:review-optical-character}.
 			} pour extraire automatiquement les informations importantes présentes sur les couvertures d'une \texttt{BD} à identifier.
 			Pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de pages de couverture avec la position et la valeur des informations pertinentes à extraire.
@@ -278,10 +278,9 @@
 			Ainsi, si quelqu'un veut identifier une nouvelle bande dessinée, il peut interroger le modèle d'extraction de caractères pour récupérer les informations textuelles présentes dans la couverture, à l'image des exemples disponibles dans sa base d'apprentissage.
 			
 			% Autres cas d'usage: Extraire les information d'un texte.
+			\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
 			\begin{leftBarInformation}
-				De manière équivalente, il est possible de réaliser une \texttt{reconnaissance d'entités nommées (\texttt{NER})}\footnote{
-					Pour plus de détails sur la reconnaissance d'entités nommées (\texttt{NER}): voir les revues de \cite{goyal-etal:2018:recent-named-entity} ou de \cite{li-etal:2022:survey-deep-learning}.
-				} pour extraire les informations citées dans un texte.
+				De manière équivalente, il est possible de réaliser une \texttt{reconnaissance d'entités nommées (\texttt{NER})} \footnotemark pour extraire les informations citées dans un texte.
 				Dans l'exemple ci-dessous, les types d'entités présentes sont "\texttt{personnage}", "\texttt{métier}", "\texttt{argent}", "\texttt{lieu}" et "\texttt{date}".
 				La tâche d'annotation consiste ici à identifier la position et le type de chaque entité présente.
 				
@@ -291,6 +290,11 @@
 					}}
 				\end{quote}
 			\end{leftBarInformation}
+			% Rattraper les footnote.
+				\stepcounter{localCounterOfFootnoteValue}
+				\footnotetext[\value{localCounterOfFootnoteValue}]{
+					Pour plus de détails sur la reconnaissance d'entités nommées (\texttt{NER}): voir les revues de \cite{goyal-etal:2018:recent-named-entity} ou de \cite{li-etal:2022:survey-deep-learning}.
+				}
 		
 		
 		%%% 2.1.2.D. Interprétation audio d'une bande dessinée.
@@ -304,7 +308,7 @@
 			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l'oeuvre n'a pas été portée à l'écran).
 			
 			% Entrainer un modèle: synthétiseur vocal.
-			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS})\footnote{
+			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS}) \footnote{
 				Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.
 			} pour générer automatiquement la lecture des bulles d'une bande dessinée.
 			Pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs de l'adaptation télévisée) avec la transcription de leur paroles pour chaque audio.
