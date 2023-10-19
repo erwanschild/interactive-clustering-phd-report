@@ -235,6 +235,15 @@
     \end{leftbar}
 }  % \begin{leftBarExamples} \lipsum[1] \end{leftBarExamples}
 
+% Définition d'un compteur pour les notes de bas de page dans les encadrés (footnote)
+\newcounter{localCounterOfFootnoteValue}
+	% \setcounter{localCounterOfFootnoteValue}{\value{footnote}}  % initailiser le compteur local au compteur de 'footnote' actuel
+	% \footnotemark  % note A, compteur 'footnote' augmenté de un
+	% \footnotemark  % note B, compteur 'footnote' augmenté de un
+	% \stepcounter{localCounterOfFootnoteValue}  % augmenter le compteur local de 1.
+	% \footnotetext[\value{localCounterOfFootnoteValue}]{ texte de la 'footnotemark' A}
+	% \stepcounter{localCounterOfFootnoteValue}  % augmenter le compteur local de 1.
+	% \footnotetext[\value{localCounterOfFootnoteValue}]{ texte de la 'footnotemark' B}
 
 %%% Pour les algorithmes:
 \usepackage{algpseudocode}
