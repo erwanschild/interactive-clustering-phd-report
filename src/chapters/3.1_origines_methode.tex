@@ -85,7 +85,7 @@
 			% KMeans.
 			\item Le \textbf{\textit{clustering} \texttt{KMeans} sous contraintes} comme \texttt{COP-KMeans} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) :
 			Dans cette version, l'attribution d'une donnée se fait au \textit{cluster} dont le barycentre est le plus proche et où aucune contraintes n'est violée.
-			Cette adaptation est relativement simple à mettre en oeuvre, mais elle peut mener à des cas de blocage où plus aucun \textit{cluster} n'est accessible à cause de violation de contraintes (il est possible d’adapter l'algorithme en créant un nouveau \textit{cluster}) ;
+			Cette adaptation est relativement simple à mettre en oeuvre, mais elle peut mener à des cas de blocage où plus aucun \textit{cluster} n'est accessible à cause de violation de contraintes (il est possible d'adapter l'algorithme en créant un nouveau \textit{cluster}) ;
 			% Hiérarchique.
 			\item Le \textbf{\textit{clustering} hiérarchique sous contraintes} (\cite{davidson-ravi:2005:agglomerative-hierarchical-clustering}) :
 			Dans cette version, les données liées par des contraintes \texttt{MUST-LINK} sont d'abord fusionnées, puis le processus agglomératif commence en prenant garde de ne pas fusionner des \textit{clusters} ayant des contraintes \texttt{CANNOT-LINK} entre eux.

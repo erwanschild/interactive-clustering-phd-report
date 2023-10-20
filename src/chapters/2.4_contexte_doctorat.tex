@@ -9,9 +9,9 @@
 	% Comment créer un chatbot ?
 	De part notre expérience, nous avons constaté que plusieurs critères sont nécessaires pour déployer un assistant conversationnel dans un contexte industriel :
 	\begin{itemize}
-		\item Il faut être capable de gérer le dialogue entre l'utilisateur et l'assistant (\textit{comprendre la requête initiale, demander ou confirmation ou des informations complémentaires, ...}) ;
+		\item Il faut être capable de gérer le dialogue entre l'utilisateur et l'assistant (\textit{comprendre la requête initiale, demander ou confirmer des informations complémentaires, ...}) ;
 		\item Il faut être capable de contrôler le contenu des réponses de l'assistant et de s'assurer de ses performances (\textit{répondre ou agir de manière adaptée, ne pas de fournir de réponses contenant des informations confidentielles, ne pas de répondre de manière indécente, ...}) ;
-		\item Il faut être capable de donner à l'assistant l'accès à certaines ressources (\textit{lire et écrire en base de données, exécuter des programmes tiers, ...}) tout en garantissant la sécurité (\textit{se prémunir contre les requêtes malveillantes et les erreurs de manipulations}).
+		\item On peut vouloir donner à l'assistant l'accès à certaines ressources (\textit{lire et écrire en base de données, exécuter des programmes tiers, ...}) tout en garantissant un niveau de sécurité (\textit{se prémunir contre les requêtes malveillantes et les erreurs de manipulations}).
 	\end{itemize}
 	
 	Pour toute ces raisons, \textbf{l'architecture traditionnelle des \textit{chatbot} est plutôt orientée par tâches} (\textit{task-oriented}), c'est-à-dire qu'elle manipule une abstraction du dialogue en intentions \footnote{
@@ -52,8 +52,8 @@
 	
 	
 	% Objectif de ce doctorat : assister la phase de modélisation d'une base d'apprentissage.
-	Cependant, il pourrait être intéressant de remettre en questions cette organisation des projets d'annotation où les experts métiers sont interrogés sur des compétences qui ne sont pas les leurs.
-	Dans le cadre de ce doctorat, et afin de trouver une solution à cette problématique, \textbf{nous nommes alors posé la question suivante} :
+	Cependant, il pourrait être intéressant de remettre en question cette organisation des projets d'annotation où les experts métiers sont interrogés sur des compétences qui ne sont pas les leurs.
+	Ainsi, dans le but de trouver une solution à cette problématique, \textbf{nous nommes alors posé la question suivante} :
 	\begin{leftBarImportantGreen}
 		\begin{center}
 		\textbf{
@@ -74,5 +74,5 @@
 			\item à l'annotation de contraintes binaires sur les données, permettant de corriger le fonctionnement d'un algorithme de \textit{clustering} en y introduisant de la connaissance métier (\cite{lampert-etal:2018:constrained-distance-based}) ;
 			\item aux techniques d'apprentissage actif, favorisant les interactions entre l'Homme et la machine pour atteindre un objectif (\cite{settles:2010:active-learning-literature}).
 		\end{itemize}
-		Nous avons associés ces trois concepts dans le but de concevoir une nouvelle méthode d'annotation basée sur un \texttt{Clustering Interactif}.
+		Ces trois concepts seront détaillés au début du chapitre suivant, et seront assemblés dans le but de concevoir une nouvelle méthode d'annotation basée sur un \texttt{Clustering Interactif}.
 	\end{leftBarIdea}

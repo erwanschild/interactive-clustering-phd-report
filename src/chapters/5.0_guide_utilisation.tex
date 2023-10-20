@@ -21,18 +21,22 @@
 		}
 		
 		% Constat : expert métier pas à leur place !
-		Nous partons du constat selon lequel les tâches de modélisation et d'annotation de textes en intentions sont connues pour être complexes, subjectives et sensibles aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
-		Ainsi, les experts métiers intervenant au sein d'un projet de conception d'une base d'apprentissage pour un assistant conversationnel 
-		%Nous partons du constat selon lequel les experts métiers qui modélisent et annotent les textes en intentions sont généralement mal intégrés au sein d'un projet de conception d'une base d'apprentissage.
-		En effet, ces derniers sont confrontés à des problèmes analytiques ou techniques pour lesquels pas des compétences analytiques et techniques tâches sont connues pour être complexes, subjectives et sensibles aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}), demandant des compétences analytiques et techniques 
+		\begin{leftBarReminder}
+			% Rappel: Complexité et cycle MATTER
+			Nous partons du constat selon lequel la conception d'une base d'apprentissage de textes annotés en intentions est connue pour être complexe, subjective et sensible aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
+			Pour limiter ces problèmes, le projet de labellisation s'organise autour du cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}) durant lequel une modélisation abstraite des intentions est définie pour d'annoter les données, et cette modélisation peut être affinée ou remise en cause plusieurs fois pour mieux s'adapter le mieux possible aux données du projets (voir \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}}).
+			
+			% Besoin d'experts métiers.
+			Les experts métiers modélisant et annotant les données ont donc besoin de leur connaissance métier du sujet à traiter, mais aussi de compétences analytiques et techniques pour s'assurer de la qualité de la base d'apprentissage en cours de conception.
+			Ainsi, un projet d'annotation devient donc rapidement coûteux, notamment car il demande des formations analytiques à des experts métiers, nécessite l'organisation d'ateliers de modélisation en mode essai-erreur pour trouver une base d'apprentissage stable et pertinente, et fait intervenir des experts métiers sur une abstraction de leurs connaissances du quotidien.
+			
+			% Remise en cause.
+			Au cours de ce doctorat, nous avons questionné cette approche de modélisation, et avons proposé une nouvelle méthodologie d'annotation basée sur un \texttt{Clustering Interactif} dans le but d'impliquer les experts métiers sur leur vrai domaine de connaissances et en leur demandant un minimum de bagages analytiques ou techniques.
+		\end{leftBarReminder}
 		
-		reposant sur le cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}), 
-		De ce fait, les experts métiers intervenant dans le projet 
-		% selon lequel les experts métiers, ayant les compétences pour valider la pertinence  sont mal intégrés dans les projets de conception de bases d'apprentissage nécessaires à l'entraînement de modèles supervisés de \textit{Machine Learning}.
+		% Proposition de \texttt{Clustering Interactif}.
+		Nous proposition de méthodologie d'annotation basée sur un \texttt{Clustering Interactif} repose sur l'alternance de deux étapes clefs : ...
 		
-		% Proposition d'un \texttt{Clustering Interactif}.
-		Pour assister cette phase de modélisation, et dans le but de recentrer l'intervention des experts métiers sur leurs compétences (métiers, et non analytique , nous proposons une nouvelle méthode d'annotation basée sur un \texttt{Clustering Interactif}.
-		Cette
 		
 		\begin{leftBarImportantGreen}
 			La \textsc{Figure~\ref{figure:5.1-GUIDE-PRESENTATION-RAPIDE-CLUSTERING-INTERACTIF}} ...
@@ -89,22 +93,87 @@
 	%%%%% Section 5.4:
 	%%%%%--------------------------------------------------------------------
 	\section{Conseils pour paramétrer la méthode}
-		\label{section:5.4-GUIDE-PARAMETRAGE}
+		\label{section:5.4-GUIDE-PARAMETRAGES-ET-COUTS}
+		
+		
+		%%% Paramétrage optimal.
+		\paragraph{Paramétrage optimal :}
+		
+		Grâce au \textsc{Chapitre~\ref{chapter:4-ETUDES}}, nous avons pu mettre en avant un \textbf{paramétrage favori} de notre méthode.
+		Il est composé des algorithmes suivants :
+		
+		\setcounter{localCounterOfFootnoteValue}{\value{footnote}}
+		\begin{leftBarImportantGreen}
+			\paragraph{Paramétrage favori du \texttt{Clustering Interactif} :}
+			\begin{itemize}
+				\item \texttt{prep.simple}, c'est-à-dire des \textbf{prétraitements} \textbf{simples} supprimant les minuscules, les ponctuations, les accents et les espaces blancs ;
+				\item \texttt{vect.tfidf}, c'est-à-dire une \textbf{vectorisation} basée sur une représentation statistique du vocabulaire à l'aide d'un \textbf{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}) ;
+				\item \texttt{clust.kmeans.cop}, c'est-à-dire un \textbf{\textit{clustering} sous contraintes} basé sur l'algorithme \texttt{KMeans} adapté en mode \textbf{\texttt{COP-KMeans}} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) ;
+				\item \texttt{samp.closest.diff}, c'est-à-dire l'\textbf{échantillonnage de contraintes} concernant des données issues de \textbf{clusters différents} et étant \textbf{les plus proches} les unes des autres.
+			\end{itemize}
+			Ces implémentations, disponibles dans la librairie \texttt{cognitivefactory-interactive-clustering} \footnotemark, sont détaillées en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
+		\end{leftBarImportantGreen}
+		% Rattraper les footnote.
+			\stepcounter{localCounterOfFootnoteValue}
+			\footnotetext[\value{localCounterOfFootnoteValue}]{
+				\url{https://pypi.org/project/cognitivefactory-interactive-clustering/}
+			}
+			
+		Ce paramétrage favori a été choisi sur la base d'un compromis entre un maximum d'efficience (\textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}) et un minimum de coûts (\textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}})
+			
+		Un tel paramétrage nécessite un temps de calcul de :
+		\begin{equation}
+			\label{equation:5.4-GUIDE-PARAMETRAGES-ET-COUTS-TEMPS-CALCUL}
+			\texttt{computation\_time}~[s]~\propto~0.17 \cdot \texttt{dataset\_size}
+		\end{equation}
+			
+		
+		
+		%%% Coûts 
+		\begin{equation}
+			\label{equation:5.4-GUIDE-PARAMETRAGES-ET-COUTS-TEMPS-UNE-ITERATION-PARALLELE}
+			\begin{cases}
+				% Computation time.
+				\texttt{computation\_time}~[s]&
+					~\propto~0.17 \cdot \texttt{dataset\_size}\\
+				% Annotation time.
+				\texttt{annotation\_time}~[s]&
+					~\propto~7.8 \cdot \texttt{batch\_size} \\
+				% Batch size.
+				\texttt{optimal\_batch\_size}~[\#]&
+					~\propto~0.0218 \cdot \texttt{dataset\_size} \\
+				% Iterations number.
+				\texttt{iterations\_needed}~[\#] &
+					~\propto~144.5 \\
+				% Total time (parallel).
+				\texttt{total\_time(parallel)}~[s] &
+						~\propto~24.6 \cdot \texttt{dataset\_size}
+			\end{cases}
+		\end{equation}
+		
+		%%% Batch size minimal.
+		
+		
+		%%% Architecture parallèle.
+		\begin{leftBarImportantGreen}
+			La \textsc{Figure~\ref{figure:5.4-GUIDE-PARAMETRAGES-ET-COUTS-ARCHITECTURE-PARALLELE}} ...
+			
+			% Figure.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-parallele}
+				\caption{
+					Schéma illustrant l'architecture du \texttt{Clustering Interactif} en mode parallèle dans le but d'optimiser les temps d'attente entre chaque phase.
+					Ainsi, les opérateurs peuvent annoter le temps que la machine propose une nouvelle segmentation des données.
+				}
+				\label{figure:5.4-GUIDE-PARAMETRAGES-ET-COUTS-ARCHITECTURE-PARALLELE}
+			\end{figure}
+		\end{leftBarImportantGreen}
+		
 		\todo[inline]{
 			SECTION À RÉDIGER: \\
 			- Architecture parallele : pour gagner du temps\\
-			- paramétrage optimal: simple + tfidf + kmeans + closest \\
 			- taille de batch d'annotation dépendant de la taille du jeu de données (dépend du temps de clustering)
-		}
-	
-	
-	%%%%%--------------------------------------------------------------------
-	%%%%% Section 5.5:
-	%%%%%--------------------------------------------------------------------
-	\section{Estimation des coûts du projet d'annotation}
-		\label{section:5.5-GUIDE-COUTS}
-		\todo[inline]{
-			SECTION À RÉDIGER: \\
 			- rappeler les équations de temps: environ 24 x taille de dataset, sans les revues d'annotations \\
 			- besoin de 3 annotateurs pour confronter les vision et modéliser dans de bonnes conditions. organiser les revues sur la base des différences entre cas d'usage métier \\
 			- ajouter de la redondance si le cas d'usage est complexe, mais ça ralenti \\

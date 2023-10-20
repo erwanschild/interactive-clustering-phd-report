@@ -62,10 +62,10 @@
 		\subsubsection{Protocole expérimental}
 			
 			% Axiome.
-			\begin{leftBarWarning}
-				Pour l'étude d'annotation en \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}, nous avions supposé que les annotateurs de l'expérience connaissaient parfaitement le domaine traité dans le jeu de données, et qu'ils sont capables de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
-				Afin de pourvoir faire cette hypothèse forte, et ainsi limiter les bruits dans l'analyse des résultats, le jeu de données choisi devait traiter d'un sujet de culture générale (ne nécessitant donc pas de connaissance particulière) et des réviseurs avaient supprimer en amont et d'un commun accord les données trop spécifiques ou trop ambiguës.
-			\end{leftBarWarning}
+			%\begin{leftBarWarning}
+			%	Pour l'étude d'annotation en \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}, nous avions supposé que les annotateurs de l'expérience connaissaient parfaitement le domaine traité dans le jeu de données, et qu'ils sont capables de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
+			%	Afin de pourvoir faire cette hypothèse forte, et ainsi limiter les bruits dans l'analyse des résultats, le jeu de données choisi devait traiter d'un sujet de culture générale (ne nécessitant donc pas de connaissance particulière) et des réviseurs avaient supprimer en amont et d'un commun accord les données trop spécifiques ou trop ambiguës.
+			%\end{leftBarWarning}
 			
 			% Pseudo-code.
 			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-PROTOCOLE}}.
@@ -444,7 +444,7 @@
 			Pour les traiter, nous allons tester deux approches :
 			\begin{itemize}
 				\item une approche \textit{naïve} ignorant les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
-				\item une approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte erronées, et il suffit d'ajouter sa version exacte pour simuler la correction de l'expert.
+				\item une approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte erronées, et il suffit de ré-évaluer la contrainte par rapport à la vérité terrain pour simuler la correction de l'expert.
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec les répétitions.
@@ -495,7 +495,7 @@
 			Pour finir sur cette première approche, tout porte à croire que ces faibles seuils performances perdurent au delà des $3~000$ contraintes (figure tronquée) : les tentatives s'éloignent donc significativement de la vérité terrain si des incohérences d'annotation sont insérées.
 			
 			% Description de la figure: cas correctif.
-			Observons désormais l'approche \textit{avec correction}, ré-évaluant les contraintes lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}} \textbf{(2)}).
+			Observons désormais l'approche \textit{avec correction}, ré-évaluant les contraintes erronées par rapport à la vérité terrain lorsqu'un conflit est détecté par le gestionnaire de contraintes (voir \textsc{Figure~\ref{figure:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}} \textbf{(2)}).
 			Nous pouvons constater que les tentatives introduisant des contraintes erronées subissent aussi un retard de performances, mais celui-ci est bien plus faible que celui encaissé par les approches naïves.
 			Nous observons que toutes les courbes restent globalement croissantes, bien que le score moyen de $90$\% de \texttt{v-measure} par rapport à la vérité terrain n'est pas atteint en moins de $3~000$ contraintes par les tentatives ayant un taux d'erreurs supérieur à $15$\%.
 			Nous pouvons toutefois espérer que cette convergence se poursuit au delà des $3~000$ contraintes (figure tronquée).
@@ -643,7 +643,7 @@
 			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
 			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces désaccords dès leur détection, et supposant que le second annotateur se range à la vision de l'annotateur de référence.
-			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit d'ajouter sa version exacte pour simuler la correction des experts.
+			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit de ré-évaluer la contrainte par rapport à la vérité terrain pour simuler la correction des l'experts.
 			
 			% Description des tentatives de la méthode avec les répétitions.
 			Ainsi, il y a donc $6$ taux de désaccords, et chacune de ces simulations de désaccords seront répétées $2$ fois sur chaque tentative complète de la méthode pour limiter au mieux les aléas statistiques des tirages de contraintes divergentes, ce qui représente $12$ simulations par tentatives.
