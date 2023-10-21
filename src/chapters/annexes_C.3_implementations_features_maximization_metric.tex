@@ -8,13 +8,13 @@
 	% Généralités.
 	La librairie \texttt{cognitivefactory-features-maximization-metric} \footnote{
 		\url{https://pypi.org/project/cognitivefactory-features-maximization-metric/}
-	} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}) a été implémenté au cours de ce doctorat pour pouvoir utiliser la \texttt{Maximisation des traits} (\textit{Features Maximization} notée \texttt{FMC}).
-	Cette technique, proposée par \cite{lamirel-etal:2017:novel-approach-feature}, permet de sélectionner les patterns linguistiques pertinents d'une base d'apprentissage.
+	} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}) a été implémentée au cours de ce doctorat pour pouvoir utiliser la \texttt{Maximisation des traits} (\textit{Features Maximization} notée \texttt{FMC}).
+	Cette technique, proposée par \cite{lamirel-etal:2017:novel-approach-feature}, permet de sélectionner les composantes vectorielles pertinentes (\textit{features}) d'une base d'apprentissage.
 	Nous allons détailler cette librairie comme suit :
 	\begin{itemize}
 		\item le calcul du score de \textit{Features F-Measure} associé à cette méthode (cf. \textsc{Section~\ref{annex:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-CALCUL-FMEASURE}}) ;
-		\item la sélection des patterns linguistiques (\textit{features}) à l'aide du score de \textit{Features F-Measure} (cf. \textsc{Section~\ref{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}}) ;
-		\item l'activation des patterns linguistiques (\textit{features}) pour chaque classe de la base d'apprentissage (cf. \textsc{Section~\ref{annex:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-ACTIVATION-FEATURES}}) ;
+		\item la sélection des composantes vectorielles pertinentes à l'aide du score de \textit{Features F-Measure} (cf. \textsc{Section~\ref{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}}) ;
+		\item l'activation des composantes vectorielles pertinentes pour chaque classe de la base d'apprentissage (cf. \textsc{Section~\ref{annex:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-ACTIVATION-FEATURES}}) ;
 		\item l'application de cette méthode à l'analyse des patterns linguistiques pertinent d'une base d'apprentissage utilisée pour de la classification de textes intention (cf. \textsc{Section~\ref{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}}).
 	\end{itemize}
 	
@@ -31,7 +31,7 @@
 		et $\texttt{vecteur}[d]$ représente la description vectorielle d'une donnée $d \in \mathcal{D}$ ;
 		% Features.
 		\item $\mathcal{F}$ représente l'ensemble des composantes vectorielles $f$ (\textit{features}),
-		et $\texttt{vecteur}[d][f]$ sera le poids de la composante $f \in \mathcal{F}$ du vecteur décrivant la donnée $d \in \mathcal{D}$.
+		et $\texttt{vecteur}[d][f]$ représente le poids de la composante $f \in \mathcal{F}$ du vecteur décrivant la donnée $d \in \mathcal{D}$ ;
 		% Classes.
 		\item $\mathcal{C}$ représente l'ensemble des classes $c$ possibles de la base d'apprentissage,
 		et $\texttt{classe}[d]$ représente la classe d'une donnée $d \in \mathcal{D}$ ;
@@ -52,7 +52,7 @@
 		%%% FEATURES RECALL.
 		
 		% Description du calcul.
-		La \textbf{\textit{Features Recall}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FR}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
+		La \textbf{\textit{Features Recall}} d'une composante vectorielle $f \in \mathcal{F}$ et d'une classe $c \in \mathcal{C}$, notée $\texttt{FR}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
 		\begin{itemize}
 			\item la somme des poids des vecteurs pour la composante $f$ et pour les données de la classe $c$, et
 			\item la somme des poids des vecteurs pour la composante $f$ et pour toutes les données.
@@ -91,7 +91,7 @@
 		%%% FEATURES PREDOMINANCE.
 		
 		% Description du calcul.
-		La \textbf{\textit{Features Predominance}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FP}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
+		La \textbf{\textit{Features Predominance}} d'une composante vectorielle $f \in \mathcal{F}$ et d'une classe $c \in \mathcal{C}$, notée $\texttt{FP}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
 		\begin{itemize}
 			\item la somme des poids des vecteurs pour la composante $f$ et pour les données de la classe $c$, et
 			\item la somme des poids des vecteurs pour toutes les composantes et pour les données de la classe $c$.
@@ -129,7 +129,7 @@
 		%%% FEATURES F-MEASURE.
 		
 		% Description du calcul.
-		La \textbf{\textit{Features F-Measure}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FM}[f][c]$, est un score entre $0$ et $1$ qui est obtenu par la moyenne harmonique entre la \textit{Features Recall} et la \textit{Features Predominance}.
+		La \textbf{\textit{Features F-Measure}} d'une composante vectorielle $f \in \mathcal{F}$ et d'une classe $c \in \mathcal{C}$, notée $\texttt{FM}[f][c]$, est un score entre $0$ et $1$ qui est obtenu par la moyenne harmonique entre la \textit{Features Recall} et la \textit{Features Predominance}.
 		
 		% Equation.
 		\begin{equation}
@@ -155,14 +155,14 @@
 	\label{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}
 	
 		% Introduction.
-		L'objectif de cette seconde étape est de supprimer les composantes vectorielle qui n'apportent pas d'information de manière générale.
+		L'objectif de cette seconde étape est de supprimer les composantes vectorielles qui n'apportent pas d'information de manière générale.
 		Pour cela, un seuil de sélection est défini grâce à la moyenne globale des scores de \textit{Features F-Measure}.
 		\newline
 		
 		%%% FEATURES FMEASURE OVERALL AVERAGE.
 		
 		% Description du calcul.
-		La \textbf{\textit{Features Overall Average}}, notée $\overline{\overline{\texttt{FM}}}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne de la \texttt{Features F-Measure} sur toutes les composantes et pour toutes les classes.
+		La \textbf{\textit{Features Overall Average}}, notée $\overline{\overline{\texttt{FM}}}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne de la \texttt{Features F-Measure} pour toutes les composantes et pour toutes les classes.
 		
 		% Equation.
 		\begin{equation}
@@ -224,14 +224,14 @@
 	
 		% Introduction.
 		L'objectif de cette dernière étape est de vérifier l'activation des composantes vectorielles pour chaque classe $c \in \mathcal{C}$.
-		Pour cela, un seuil d'activation est défini pour chaque classe $c \in \mathcal{C}$ grâce à la moyenne locale des scores de \textit{Features F-Measure}.
+		Pour cela, un seuil d'activation est défini pour chaque \textit{feature} $f \in \mathcal{F}$ grâce à la moyenne locale des scores de \textit{Features F-Measure}.
 		\newline
 		
 		
 		%%% FEATURES FMEASURE MARGINAL AVERAGE.
 		
 		% Description du calcul.
-		La \textbf{\textit{Features Marginal Average}} d'une composant sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$, notée $\overline{\texttt{FM}[f]}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne locale de la \texttt{Features F-Measure} pour la composante $f$ et pour toutes les classes.
+		La \textbf{\textit{Features Marginal Average}} d'une composante sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$, notée $\overline{\texttt{FM}[f]}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne locale de la \texttt{Features F-Measure} pour la composante $f$ et pour toutes les classes.
 		
 		% Equation.
 		\begin{equation}
@@ -254,7 +254,7 @@
 		%%% FEATURES ACTIVATION.
 		
 		% Description du calcul.
-		L'\textbf{activation de \textit{features}} se fait en comparant les valeurs de \texttt{Features F-Measures} à cette moyenne locale : si une composante sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$ a un score supérieur \texttt{FM}[f][c] à la moyenne locale $\overline{\texttt{FM}[f]}$ pour une classe $c \in \mathcal{C}$, alors cette composante $f$ est activée pour cette classe $c$.
+		L'\textbf{activation de \textit{features}} se fait en comparant les valeurs de \texttt{Features F-Measures} à cette moyenne locale : si une composante sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$ a un score \texttt{FM}[f][c] supérieur à la moyenne locale $\overline{\texttt{FM}[f]}$ pour une classe $c \in \mathcal{C}$, alors cette composante $f$ est activée pour cette classe $c$.
 		
 		% Equation.
 		\begin{equation}
@@ -275,9 +275,9 @@
 	
 	
 	%%%
-	%%% Subsection C.3.4: Application à l'analyse à la classification de textes.
+	%%% Subsection C.3.4: Application à l'analyse de la classification de textes.
 	%%%
-	\subsection{Application à l'analyse à la classification de textes}
+	\subsection{Application à l'analyse de la classification de textes}
 	\label{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}
 	
 		% Description.
@@ -292,5 +292,10 @@
 		\end{itemize}
 		
 		% Application au TF-IDF
-		Si nous utilisons une représentation vectorielle basés sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
-		Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}
+		Si nous utilisons une représentation vectorielle basées sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
+		Il est possible de compléter l'analyse en considérant que :
+		\begin{itemize}
+			\item un pattern linguistique $f$ est caractéristique d'une classe $c$ s'il ne s'active que pour cette classe ;
+			\item un pattern linguistique $f$ est ambigu s'il s'active pour plusieurs classes.
+		\end{itemize}
+		Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}} pour déterminer la sémantique d'un \textit{cluster} sur la base de son vocabulaire caractéristique.
