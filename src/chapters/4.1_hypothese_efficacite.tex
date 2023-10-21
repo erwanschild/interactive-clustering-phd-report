@@ -66,13 +66,13 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous décrivons ci-dessous, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.1.1-ETUDE-CONVERGENCE-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
 				\KwIn{combinaisons d'algorithmes et de paramètres à tester}
 				%
-				\ForEach{algorithmes et de paramètres à tester}{
+				\ForEach{combinaison d'algorithmes et de paramètres à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
 					\textbf{initialisation (contraintes)}: créer une liste vide de contraintes \;
 					\textbf{prétraitements}: supprimer le bruit dans les données \;
@@ -89,7 +89,7 @@
 					\textbf{évaluation finale}: espérer avoir un score d'équivalence de $100$\% avec la vérité terrain \;
 				}
 				%
-				\KwResult{algorithmes et de paramètres ayant un score d'équivalence de $100$\%}
+				\KwResult{algorithmes et paramètres ayant un score d'équivalence de $100$\%}
 				%
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude de convergence du \texttt{Clustering Interactif} vers une vérité terrain pré-établie.
@@ -143,7 +143,7 @@
 			Il y a donc $192$ combinaisons testées, et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques des algorithmes de \textit{clustering} (\textit{initialisation du \texttt{clust.kmeans.cop}, ...}) et d'échantillonnage (\textit{choix des contraintes au hasard avec \texttt{samp.random.full}, ...}).
 			
 			% Description de l'évaluation.
-			Pour évaluer l'équivalence entre la vérité terrain et notre segmentation des données obtenue au cours de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) entre ces deux jeu de données.
+			Pour évaluer l'équivalence entre la vérité terrain et notre segmentation des données obtenue au cours de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} entre ces deux jeu de données.
 			Si le score du calcul de la \texttt{v-measure} est de $100$\%, cela signifierait que le \textit{clustering} final et la vérité terrain propose une segmentation identique des données, donc que la vérité terrain a pu être retrouvée, et donc qu'il est possible d'obtenir une base d'apprentissage pour un assistant conversationnel à l'aide d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif}.
 			
 			% Référence scripts.

@@ -6,10 +6,291 @@
 \label{annex:C.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC}
 	
 	% Généralités.
-	La librairie \texttt{cognitivefactory-features-maximization-metric} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}) ...
-	\todo[inline]{introduction à rédiger}
+	La librairie \texttt{cognitivefactory-features-maximization-metric} \footnote{
+		\url{https://pypi.org/project/cognitivefactory-features-maximization-metric/}
+	} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}) a été implémenté au cours de ce doctorat pour pouvoir utiliser la \texttt{Maximisation des traits} (\textit{Features Maximization} notée \texttt{FMC}).
+	Cette technique, proposée par \cite{lamirel-etal:2017:novel-approach-feature}, permet de sélectionner les patterns linguistiques pertinents d'une base d'apprentissage.
+	Nous allons détailler cette librairie comme suit :
+	\begin{itemize}
+		\item le calcul du score de \textit{Features F-Measure} associé à cette méthode (cf. \textsc{Section~\ref{annex:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-CALCUL-FMEASURE}}) ;
+		\item la sélection des patterns linguistiques (\textit{features}) à l'aide du score de \textit{Features F-Measure} (cf. \textsc{Section~\ref{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}}) ;
+		\item l'activation des patterns linguistiques (\textit{features}) pour chaque classe de la base d'apprentissage (cf. \textsc{Section~\ref{annex:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-ACTIVATION-FEATURES}}) ;
+		\item l'application de cette méthode à l'analyse des patterns linguistiques pertinent d'une base d'apprentissage utilisée pour de la classification de textes intention (cf. \textsc{Section~\ref{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}}).
+	\end{itemize}
 	
 	% Information : comme y accéder.
 	\begin{leftBarInformation}
-		La documentation technique est accessible au lien suivant : \url{https://cognitivefactory.github.io/features-maximization-metric/}.
+		La documentation technique de cette librairie est accessible au lien suivant : \url{https://cognitivefactory.github.io/features-maximization-metric/}.
 	\end{leftBarInformation}
+	
+	% Notations.
+	Pour la suite de l'exposé, nous allons utiliser les notations suivantes :
+	\begin{itemize}
+		% Data.
+		\item $\mathcal{D}$ représente l'ensemble des données $d$ de la base d'apprentissage,
+		et $\texttt{vecteur}[d]$ représente la description vectorielle d'une donnée $d \in \mathcal{D}$ ;
+		% Features.
+		\item $\mathcal{F}$ représente l'ensemble des composantes vectorielles $f$ (\textit{features}),
+		et $\texttt{vecteur}[d][f]$ sera le poids de la composante $f \in \mathcal{F}$ du vecteur décrivant la donnée $d \in \mathcal{D}$.
+		% Classes.
+		\item $\mathcal{C}$ représente l'ensemble des classes $c$ possibles de la base d'apprentissage,
+		et $\texttt{classe}[d]$ représente la classe d'une donnée $d \in \mathcal{D}$ ;
+	\end{itemize}
+	
+	
+	%%%
+	%%% Subsection C.3.1: Calcul du score de \texttt{F-Measure}.
+	%%%
+	\subsection{Calcul du score de \textit{Features F-Measure}}
+	\label{annex:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-CALCUL-FMEASURE}
+	
+		% Introduction.
+		D'abord, il faut calculer le score de \textit{Features F-Measure} (\texttt{FM}) à partir de deux termes : la \textit{Features Recall} (\texttt{FR}) et la \textit{Features Predominance} (\texttt{FP}).
+		\newline
+		
+		
+		%%% FEATURES RECALL.
+		
+		% Description du calcul.
+		La \textbf{\textit{Features Recall}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FR}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
+		\begin{itemize}
+			\item la somme des poids des vecteurs pour la composante $f$ et pour les données de la classe $c$, et
+			\item la somme des poids des vecteurs pour la composante $f$ et pour toutes les données.
+		\end{itemize}
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-RECALL}
+			\texttt{FR}[f][c]~=~\frac{
+				\sum\limits_{
+					\substack{
+						d \in \mathcal{D} \\
+						\texttt{classe}[d]=c
+					}
+				} \texttt{vector}[d][f]
+			}{
+				\sum\limits_{
+					c' \in \mathcal{C}
+				}
+				\sum\limits_{
+					\substack{
+						d' \in \mathcal{D} \\
+						\texttt{classe}[d']=c'
+					}
+				} \texttt{vector}[d'][f]
+			}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Ce score répond à la question :
+			\textguillemets{\textit{est-ce que la \textit{feature} $f$ permet de distinguer la classe $c$ des autres classes $c'$ ?}}
+		\end{leftBarAuthorOpinion}
+		
+		
+		%%% FEATURES PREDOMINANCE.
+		
+		% Description du calcul.
+		La \textbf{\textit{Features Predominance}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FP}[f][c]$, est un score compris entre $0$ et $1$ qui est obtenu par le ratio entre :
+		\begin{itemize}
+			\item la somme des poids des vecteurs pour la composante $f$ et pour les données de la classe $c$, et
+			\item la somme des poids des vecteurs pour toutes les composantes et pour les données de la classe $c$.
+		\end{itemize}
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-PREDOMINANCE}
+			\texttt{FP}[f][c]~=~\frac{
+				\sum\limits_{
+					\substack{
+						d \in \mathcal{D} \\
+						\texttt{classe}[d]=c
+					}
+				} \texttt{vector}[d][f]
+			}{
+				\sum\limits_{
+					f' \in \mathcal{F}
+				}
+				\sum\limits_{
+					\substack{
+						d \in \mathcal{D} \\
+						\texttt{classe}[d]=c
+					}
+				} \texttt{vector}[d][f']
+			}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Ce score répond à la question :
+			\textguillemets{\textit{est-ce que la composante $f$ identifie mieux la classe $c$ que les autres composantes $f'$ ?}}
+		\end{leftBarAuthorOpinion}
+		
+		%%% FEATURES F-MEASURE.
+		
+		% Description du calcul.
+		La \textbf{\textit{Features F-Measure}} d'une classe $c \in \mathcal{C}$ et d'une composante vectorielle $f \in \mathcal{F}$, notée $\texttt{FM}[f][c]$, est un score entre $0$ et $1$ qui est obtenu par la moyenne harmonique entre la \textit{Features Recall} et la \textit{Features Predominance}.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-FMEASURE}
+			\texttt{FM}[f][c]~=~2 \cdot \frac{
+				\texttt{FR}[f][c] \cdot \texttt{FP}[f][c]
+			}{
+				\texttt{FR}[f][c] + \texttt{FP}[f][c]
+			}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Ce score répond à la question :
+			\textguillemets{\textit{combien d'information contient la \textit{feature} $f$ au sujet de la classe $c$ ?}}
+		\end{leftBarAuthorOpinion}
+	
+	
+	%%%
+	%%% Subsection C.3.2: Sélection de \textit{features} à l'aide de la \texttt{F-Measure}.
+	%%%
+	\subsection{Sélection de \textit{features} à l'aide de la \texttt{F-Measure}}
+	\label{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}
+	
+		% Introduction.
+		L'objectif de cette seconde étape est de supprimer les composantes vectorielle qui n'apportent pas d'information de manière générale.
+		Pour cela, un seuil de sélection est défini grâce à la moyenne globale des scores de \textit{Features F-Measure}.
+		\newline
+		
+		%%% FEATURES FMEASURE OVERALL AVERAGE.
+		
+		% Description du calcul.
+		La \textbf{\textit{Features Overall Average}}, notée $\overline{\overline{\texttt{FM}}}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne de la \texttt{Features F-Measure} sur toutes les composantes et pour toutes les classes.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-OVERALL-AVERAGE}
+			\overline{\overline{\texttt{FM}}}~=~\frac{
+				\sum\limits_{
+					f \in \mathcal{F}
+				}
+				\sum\limits_{
+					c \in \mathcal{C}
+				} \texttt{FM}[f][c]
+			}{
+				|\mathcal{F}| \cdot |\mathcal{C}|
+			}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Ce seuil répond à la question :
+			\textguillemets{\textit{quelle est la moyenne d'information contenue dans cette représentation vectorielle ?}}
+		\end{leftBarAuthorOpinion}
+		
+		%%% FEATURES SELECTION.
+		
+		% Description du calcul.
+		La \textbf{sélection de \textit{features}} se fait en comparant les valeurs de \texttt{Features F-Measures} à cette moyenne globale : si une composante $f \in \mathcal{F}$ a un score \texttt{FM}[f][c'] supérieur à la moyenne $\overline{\overline{\texttt{FM}}}$ pour au moins une classe $c' \in \mathcal{C}$, alors la composante $f$ est sélectionnée ; sinon, elle est supprimée.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-SELECTION}
+			\begin{cases}
+				\mathcal{F}_{\texttt{SELECTED}}
+					& :=~\bigl\{~
+						f \in \mathcal{F}
+						~\big|~
+						(\exists c' \in \mathcal{C})~\texttt{FM}[f][c'] \geq \overline{\overline{\texttt{FM}}}
+					~\bigr\} \\
+				\mathcal{F}_{\texttt{DELETED}}
+					& :=~\bigl\{~
+						f \in \mathcal{F}
+						~\big|~
+						(\forall c' \in \mathcal{C})~\texttt{FM}[f][c'] < \overline{\overline{\texttt{FM}}}
+					~\bigr\}
+			\end{cases}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Cette sélection répond à la question :
+			\textguillemets{\textit{quelles sont les \textit{features} qui apportent plus d'information que la moyenne d'information contenue dans cette représentation vectorielle ?}}
+		\end{leftBarAuthorOpinion}
+	
+	
+	%%%
+	%%% Subsection C.3.3: Activation des \textit{features} à l'aide de la \texttt{F-Measure}.
+	%%%
+	\subsection{Activation des \textit{features} à l'aide de la \texttt{F-Measure}}
+	\label{annex:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-ACTIVATION-FEATURES}
+	
+		% Introduction.
+		L'objectif de cette dernière étape est de vérifier l'activation des composantes vectorielles pour chaque classe $c \in \mathcal{C}$.
+		Pour cela, un seuil d'activation est défini pour chaque classe $c \in \mathcal{C}$ grâce à la moyenne locale des scores de \textit{Features F-Measure}.
+		\newline
+		
+		
+		%%% FEATURES FMEASURE MARGINAL AVERAGE.
+		
+		% Description du calcul.
+		La \textbf{\textit{Features Marginal Average}} d'une composant sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$, notée $\overline{\texttt{FM}[f]}$, est un score entre $0$ et $1$ qui est obtenu par la moyenne locale de la \texttt{Features F-Measure} pour la composante $f$ et pour toutes les classes.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-MARGINAL-AVERAGE}
+			\overline{\texttt{FM}[f]}~=~\frac{
+				\sum\limits_{
+					c' \in \mathcal{C}
+				} \texttt{FM}[f][c']
+			}{
+				|\mathcal{F_{\texttt{SELECTED}}}|
+			}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Ce seuil répond à la question :
+			\textguillemets{\textit{quelle est la moyenne d'information contenue par la feature $f$ dans cette représentation vectorielle ?}}
+		\end{leftBarAuthorOpinion}
+		
+		%%% FEATURES ACTIVATION.
+		
+		% Description du calcul.
+		L'\textbf{activation de \textit{features}} se fait en comparant les valeurs de \texttt{Features F-Measures} à cette moyenne locale : si une composante sélectionnée $f \in \mathcal{F}_{\texttt{SELECTED}}$ a un score supérieur \texttt{FM}[f][c] à la moyenne locale $\overline{\texttt{FM}[f]}$ pour une classe $c \in \mathcal{C}$, alors cette composante $f$ est activée pour cette classe $c$.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-ACTIVATION}
+			\begin{cases}
+				f \texttt{active} c
+					& si \texttt{FM}[f][c] \geq \overline{\texttt{FM}[f]} \\
+				f \texttt{n'active pas} c
+					& sinon
+			\end{cases}
+		\end{equation}
+		
+		% Interprétation.
+		\begin{leftBarAuthorOpinion}
+			Cette sélection répond à la question :
+			\textguillemets{\textit{pour quelle(s) classe(s) la \textit{feature} $f$ est pertinente ?}}
+		\end{leftBarAuthorOpinion}
+	
+	
+	%%%
+	%%% Subsection C.3.4: Application à l'analyse à la classification de textes.
+	%%%
+	\subsection{Application à l'analyse à la classification de textes}
+	\label{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}
+	
+		% Description.
+		Plaçons nous dans le cas d'une classification de textes en intentions :
+		\begin{itemize}
+			% Data.
+			\item $\mathcal{D}$ représente l'ensemble des textes de la base d'apprentissage ;
+			% Features.
+			\item $\mathcal{F}$ représente l'ensemble des composantes vectorielles permettant de décrire les textes ;
+			% Classes.
+			\item $\mathcal{C}$ représente l'ensemble des intentions possibles de la base d'apprentissage.
+		\end{itemize}
+		
+		% Application au TF-IDF
+		Si nous utilisons une représentation vectorielle basés sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
+		Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}

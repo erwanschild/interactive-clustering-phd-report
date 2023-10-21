@@ -6,12 +6,22 @@
 \label{annex:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
 	
 	% Généralités.
-	La librairie \texttt{cognitivefactory-interactive-clustering} (\cite{schild:2022:cognitivefactory-interactiveclustering}) ...
-	\todo[inline]{introduction à rédiger}
+	La librairie \texttt{cognitivefactory-interactive-clustering} \footnote{
+		\url{https://pypi.org/project/cognitivefactory-interactive-clustering/}
+	} (\cite{schild:2022:cognitivefactory-interactiveclustering}) a été implémenté au cours de ce doctorat dans le but de mettre à disposition un ensemble d'algorithmes nécessaires à l'utilisation de notre méthodologie de \texttt{Clustering Interactif}.
+	Cette librairie comporte plusieurs fonctionnalités :
+	\begin{itemize}
+		\item la gestion des données avec leurs prétraitements et leur vectorisation (cf. \textsc{Section~\ref{annex:C.1.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-DONNEES}}) ;
+		\item la gestion des contraintes avec le calcul des propriétés de transitivité et la détection des conflits (cf. \textsc{Section~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}) ;
+		\item l'exécution d'algorithmes de \textit{clustering} sous contraintes pour proposer une segmentation des données (cf. \textsc{Section~\ref{annex:C.1.3-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-CLUSTERING-SOUS-CONTRAINTES}}) ;
+		\item l'exécution d'algorithmes d'échantillonnage pour sélectionner les prochaines contraintes à annoter (cf. \textsc{Section~\ref{annex:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-ALGORITHMES-ECHANTILLONNAGE-DE-CONTRAINTES}}).
+	\end{itemize}
+	
+	Nous présentons succinctement cette librairie avec certains choix d'implémentation.
 	
 	% Information : comme y accéder.
 	\begin{leftBarInformation}
-		La documentation technique est accessible au lien suivant : \url{https://cognitivefactory.github.io/interactive-clustering/}.
+		La documentation technique de cette librairie est accessible au lien suivant : \url{https://cognitivefactory.github.io/interactive-clustering/}.
 	\end{leftBarInformation}
 	
 	% Exemple.

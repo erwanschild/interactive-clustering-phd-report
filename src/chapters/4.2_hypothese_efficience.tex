@@ -105,7 +105,7 @@
 			Nous utilisons à nouveau le jeu de données \texttt{Bank Cards (v1.0.0)} (cf. \textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}) comme vérité terrain, sur lequel nous testons $192$ combinaisons de paramétrages de notre implémentation du \texttt{Clustering Interactif} (voir \textsc{Annexe~\ref{annex:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}}), et chaque tentative est répétée $5$ fois pour contrer les aléas statistiques de certains algorithmes.
 			
 			% Description de l'évaluation et Seuils d'évaluation.
-			Comme lors de l'étude sur la convergence de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) entre la vérité terrain et notre segmentation des données obtenue, et nous affinons notre évaluation en portant attention aux trois seuils d'annotations suivants :
+			Comme lors de l'étude sur la convergence de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 			\begin{enumerate}
 				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale \footnote{
 					Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}, coude de la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
