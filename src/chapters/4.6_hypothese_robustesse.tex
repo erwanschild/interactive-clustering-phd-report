@@ -358,7 +358,7 @@
 				En effet, nous avons pu voir dans la \textsc{Table~\ref{table:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-INTER-ANNOTATEURS}} qu'un taux de désaccords de $19.75$\% étaient déjà considéré comme représentatif d'un accord \textit{faible}.
 				De ce fait, un taux d'accord encore plus faible pourrait plutôt être imputé à une mauvaise organisation du projet d'annotation (\textit{par exemple avec des opérateurs non formés à la labellisation ou des règles d'annotation minimalistes}).
 				
-				% On va tout de même le faire !
+				% Nous allons tout de même le faire !
 				Dans les deux prochaines études, nous allons tout de même simuler des erreurs et des désaccords jusqu'à $25$\%, mais nous garderons à l'esprit que des désaccords de cette ordre de grandeur sont plutôt caractéristiques d'un problème de gestion de projet.
 			\end{leftBarAuthorOpinion}
 	
@@ -444,7 +444,7 @@
 			Pour les traiter, nous allons tester deux approches :
 			\begin{itemize}
 				\item une approche \textit{naïve} ignorant les conflits : si la prochaine contrainte à ajouter est incompatible avec la base de contraintes déjà intégrées au gestionnaire, alors nous ignorons simplement son existence sans remettre en question les précédentes annotations ;
-				\item une approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte erronées, et il suffit de ré-évaluer la contrainte par rapport à la vérité terrain pour simuler la correction de l'expert.
+				\item une approche \textit{avec correction} des conflits : pour simuler la correction d'un expert, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes erronées ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte erronées, et il suffit de réévaluer la contrainte par rapport à la vérité terrain pour simuler la correction de l'expert.
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec les répétitions.
@@ -643,7 +643,7 @@
 			Puisque nous introduisons des différences d'annotations, des conflits peuvent apparaître dans le gestionnaire de contraintes.
 			Pour rappel, un conflit est détecté dans le cas où l'ajout d'une nouvelle contrainte annotée contredit ce qui a été précédemment déduit grâce aux propriétés de transitivité des contraintes de types \texttt{MUST-LINK} et \texttt{CANNOT-LINK} (voir \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} en \textsc{Annexe~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}).
 			En tirant parti des conclusion de la précédente étude, nous choisissons de corriger ces désaccords dès leur détection, et supposant que le second annotateur se range à la vision de l'annotateur de référence.
-			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit de ré-évaluer la contrainte par rapport à la vérité terrain pour simuler la correction des l'experts.
+			Pour simuler cette correction réalisée par les experts, nous recréons à chaque itération le gestionnaire de contraintes en intégrant d'abord les contraintes correctes puis les contraintes divergentes ; ainsi, les conflits ne peuvent arriver qu'à l'ajout d'une contrainte divergente, et il suffit de réévaluer la contrainte par rapport à la vérité terrain pour simuler la correction des l'experts.
 			
 			% Description des tentatives de la méthode avec les répétitions.
 			Ainsi, il y a donc $6$ taux de désaccords, et chacune de ces simulations de désaccords seront répétées $2$ fois sur chaque tentative complète de la méthode pour limiter au mieux les aléas statistiques des tirages de contraintes divergentes, ce qui représente $12$ simulations par tentatives.
@@ -1018,7 +1018,7 @@
 
 				% Si toujours désaccord : laisser le \textit{clustering} trancher.
 				Si malgré cette prise de recul, aucun accord n'a été trouvé, il est possible de ne pas caractériser cette contrainte et de \textbf{laisser l'algorithme de \textit{clustering} trancher le débat}.
-				En effet, la philosophie de la méthode d'annotation basée sur le \texttt{Clustering Interactif} repose sur la coopération entre l'Homme et la machine : dans cette situation, il peut être intéressant de simplement observer quelle solution est proposée par la machine pour segmenter les données tout en respectant les autres contraintes déjà annotées.
+				En effet, la philosophie de la méthode d'annotation basée sur le \texttt{Clustering Interactif} repose sur la coopération entre l'Homme et la Machine : dans cette situation, il peut être intéressant de simplement observer quelle solution est proposée par la machine pour segmenter les données tout en respectant les autres contraintes déjà annotées.
 			\end{leftBarIdea}
 			
 			% Problème : surcoût.

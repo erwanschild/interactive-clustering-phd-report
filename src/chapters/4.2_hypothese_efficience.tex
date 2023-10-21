@@ -131,7 +131,7 @@
 			%%% Analyse d'une annotation partielle.
 			Pour obtenir une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de $90$\%}), la moyenne des itérations est de $59.04$ (min: $11$, max: $315$, écart-type: $42.14$), soit une moyenne de $2~951.81$ annotations (min: $550$, max: $15~750$, écart-type: $2~106.72$).
 			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE}} représente la répartition de ces itérations au cours des différentes tentatives.
-			On peut noter les deux cas intéressants suivants :
+			Nous pouvons noter les deux cas intéressants suivants :
 			\begin{itemize}
 				\item[$\bullet$] Les tentatives les plus rapides furent celles avec des prétraitements des données \texttt{prep.no} ou \texttt{prep.simple} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un \textit{clustering} sous contraintes \texttt{clust.hier.sing}, et un échantillonnage de contraintes \texttt{samp.closest.diff}.
 				Ces tentatives ont requis $11$ itérations, soit $550$ annotations, dont $299$ (respectivement $304$ et $281$) contraintes \texttt{MUST-LINK}.
@@ -339,7 +339,7 @@
 			%%% Analyse d'une annotation suffisante.
 			Pour obtenir une \textbf{annotation suffisante} (\textit{atteindre une \texttt{v-measure} de $100$\%}), la moyenne des itérations est de $76.29$ (min: $19$, max: $328$, écart-type: $46.44$), soit une moyenne de $3~801.19$ annotations (min: $950$, max: $16~400$, écart-type: $2~314.91$).
 			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE}} représente la répartition de ces itérations au cours des différentes tentatives.
-			On peut noter les deux cas intéressants suivants :
+			Nous pouvons noter les deux cas intéressants suivants :
 			\begin{itemize}
 				\item[$\bullet$] Les tentatives les plus rapides furent celles avec des prétraitements des données \texttt{prep.simple}, une vectorisation des données \texttt{vect.tfidf}, un \textit{clustering} sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage de contraintes \texttt{samp.closest.diff}.
 				Ces tentatives ont requis $19$ itérations, soit $950$ annotations, dont $638$ (respectivement $641$) contraintes \texttt{MUST-LINK}.
@@ -546,7 +546,7 @@
 			%%% Analyse d'une annotation exhaustive.
 			Enfin, pour avoir une \textbf{annotation exhaustive} (\textit{annoter toutes les contraintes possibles}), la moyenne des itérations est de $88.98$ (min: $20$, max: $394$, écart-type: $68.21$), soit une moyenne de $4~431.34$ annotations (min: $1~000$, max: $19~656$, écart-type: $3~405.16$).
 			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE}} représente la répartition de ces itérations au cours des différentes tentatives.
-			On peut noter les deux cas intéressants suivants :
+			Nous pouvons noter les deux cas intéressants suivants :
 			\begin{itemize}
 				\item[$\bullet$] Les tentatives les plus rapides furent celles avec des prétraitements des données \texttt{prep.no} ou \texttt{prep.lemma}, une vectorisation des données \texttt{vect.tfidf}, un algorithme de \textit{clustering} sous contraintes \texttt{clust.hier.comp} ou \texttt{clust.hier.ward}, et un échantillonnage de contraintes \texttt{samp.closest.diff}.
 				Ces tentatives ont requis $20$ itérations, soit $1~000$ annotations, dont $653$ (respectivement $668$) contraintes \texttt{MUST-LINK}.
@@ -799,12 +799,12 @@
 			%
 			\begin{leftBarAuthorOpinion}
 				% Prétraitements et Vectorisation.
-				On note que les facteurs de prétraitements et de vectorisation sont significatifs possèdent toutefois de faibles valeurs de variance expliquée ($\eta^{2} < 0.40$).
+				Nous notons que les facteurs de prétraitements et de vectorisation sont significatifs possèdent toutefois de faibles valeurs de variance expliquée ($\eta^{2} < 0.40$).
 				
 				% Echantillonnage et \textit{Clustering}.
 				Les facteurs de \textit{clustering} et d'échantillonnage ont quand à eux des valeurs plus fortes ($\eta^{2} > 0.70$), dénotant ainsi un plus grand pouvoir explicatif de la variance des résultats.
 				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{clusters} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tord.
-				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, on sait que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, ont sait qu'il faut séparer les deux données sans exprimer dans quels \textit{clusters} ils doivent aller}).
+				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, nous savons que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, ont sait qu'il faut séparer les deux données sans exprimer dans quels \textit{clusters} ils doivent aller}).
 				Ainsi, nous sommes d'avis que l'échantillonnage \texttt{sampl.closest.diff} est efficiente car elle permet d'introduire efficacement des contraintes dont l'utilité est immédiate pour corriger le \textit{clustering}.
 			\end{leftBarAuthorOpinion}
 

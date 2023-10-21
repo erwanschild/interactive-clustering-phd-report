@@ -5,6 +5,19 @@
 	Dans nos études, nous nous sommes intéressés aux assistants conversationnels orientés par tâches et aux méthodes de conception des bases d'apprentissage nécessaires à leur entraînement.
 	Dans ce chapitre, nous dressons une synthèse des découvertes et des conseils d'utilisation de notre méthodologie d'annotation basée sur un \texttt{Clustering Interactif} ayant pour but d'assister les experts métiers dans la phase de modélisation des textes en intentions de dialogue.
 	
+	\begin{leftBarReminder}
+		% Rappel: Complexité et cycle MATTER
+		Nous partons du constat selon lequel la conception d'une base d'apprentissage de textes annotés en intentions est connue pour être complexe, subjective et sensible aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
+		Pour limiter ces problèmes, le projet de labellisation s'organise autour du cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}) durant lequel une modélisation abstraite des intentions est définie pour d'annoter les données, et cette modélisation peut être affinée ou remise en cause plusieurs fois pour mieux s'adapter le mieux possible aux données du projets (voir \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}}).
+		
+		% Besoin d'experts métiers.
+		Les experts métiers modélisant et annotant les données ont donc besoin de leur connaissance métier du sujet à traiter, mais aussi de compétences analytiques et techniques pour s'assurer de la qualité de la base d'apprentissage en cours de conception.
+		Ainsi, un projet d'annotation devient donc rapidement coûteux, notamment car il demande des formations analytiques à des experts métiers, nécessite l'organisation d'ateliers de modélisation en mode essai-erreur pour trouver une base d'apprentissage stable et pertinente, et fait intervenir des experts métiers sur une abstraction de leurs connaissances du quotidien.
+		
+		% Remise en cause.
+		Au cours de ce doctorat, nous avons questionné cette approche de modélisation, et avons proposé une nouvelle méthodologie d'annotation basée sur un \texttt{Clustering Interactif} dans le but d'impliquer les experts métiers pour leurs vraies compétences et en leur demandant un minimum de bagages analytiques ou techniques.
+	\end{leftBarReminder}
+	
 	%%%%%--------------------------------------------------------------------
 	%%%%% Section 5.1:
 	%%%%%--------------------------------------------------------------------
@@ -21,18 +34,6 @@
 		}
 		
 		% Constat : expert métier pas à leur place !
-		\begin{leftBarReminder}
-			% Rappel: Complexité et cycle MATTER
-			Nous partons du constat selon lequel la conception d'une base d'apprentissage de textes annotés en intentions est connue pour être complexe, subjective et sensible aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
-			Pour limiter ces problèmes, le projet de labellisation s'organise autour du cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}) durant lequel une modélisation abstraite des intentions est définie pour d'annoter les données, et cette modélisation peut être affinée ou remise en cause plusieurs fois pour mieux s'adapter le mieux possible aux données du projets (voir \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}}).
-			
-			% Besoin d'experts métiers.
-			Les experts métiers modélisant et annotant les données ont donc besoin de leur connaissance métier du sujet à traiter, mais aussi de compétences analytiques et techniques pour s'assurer de la qualité de la base d'apprentissage en cours de conception.
-			Ainsi, un projet d'annotation devient donc rapidement coûteux, notamment car il demande des formations analytiques à des experts métiers, nécessite l'organisation d'ateliers de modélisation en mode essai-erreur pour trouver une base d'apprentissage stable et pertinente, et fait intervenir des experts métiers sur une abstraction de leurs connaissances du quotidien.
-			
-			% Remise en cause.
-			Au cours de ce doctorat, nous avons questionné cette approche de modélisation, et avons proposé une nouvelle méthodologie d'annotation basée sur un \texttt{Clustering Interactif} dans le but d'impliquer les experts métiers sur leur vrai domaine de connaissances et en leur demandant un minimum de bagages analytiques ou techniques.
-		\end{leftBarReminder}
 		
 		% Proposition de \texttt{Clustering Interactif}.
 		Nous proposition de méthodologie d'annotation basée sur un \texttt{Clustering Interactif} repose sur l'alternance de deux étapes clefs : ...

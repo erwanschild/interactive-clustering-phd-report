@@ -6,13 +6,13 @@
 	%%%
 	
 	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de zones d'ombres pouvant introduire des complications dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
-	Pour aborder cette partie, nous alors voir :
+	Pour aborder cette partie, nous verrons :
 	\begin{itemize}
 		\item qu'il y a une forte pression sur la \textbf{qualité des données} devant constituer le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
 		\item que ce standard de qualité entretient une \textbf{complexité inhérente} aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
 		\item et que cette complexité provoque des \textbf{différences de comportements} chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
 	\end{itemize}
-	En détaillant chacun de ces trois points, nous discuterons de l'ensemble de techniques et bonnes pratiques mises en avant dans la littérature pour limiter les désagréments d'un projet d'annotation.
+	En détaillant chacun de ces trois points, nous discuterons d'un ensemble de techniques et bonnes pratiques mises en avant dans la littérature pour limiter les désagréments d'un projet d'annotation.
 	Nous identifierons aussi les freins récurrents pouvant intervenir dans les mises en application industrielles.
 	
 	
@@ -48,16 +48,16 @@
 				(\textit{par exemple, un sondage peut respecter la répartition des tranches d'âge d'une population}) ;
 				\item \textguillemets{\textit{typical/ideal case}} :
 				cette définition consiste à représenter chaque partie du phénomène par un \textbf{exemple emblématique} ou un \textbf{exemple moyen}
-				(\textit{par exemple, on peut illustrer l'univers de la bande dessinée française par un numéro de la saga \texttt{Astérix \& Obélix}}) ;
+				(\textit{par exemple, nous pouvons illustrer l'univers de la bande dessinée française par un numéro de la saga \texttt{Astérix \& Obélix}}) ;
 				\item \textguillemets{\textit{population coverage}} :
 				ici, la représentativité est associée à la présence \textbf{exhaustive} de l'ensemble des caractéristiques importantes du phénomène avec au moins un exemple par caractéristique
-				(\textit{par exemple, dans l'arche de Noé, il y devait y avoir au moins un couple de chaque animaux}).
+				(\textit{par exemple, dans l'arche de Noé, il devait y avoir au moins un couple d'animaux de chaque espèce}).
 			\end{itemize}
 			
 			% Définir la représentativité à partir de la méthode d'échantillonnage.
-			Pour compléter ces définitions, \cite{kruskal-mosteller:1979:representative-sampling-ii} incitent sur le besoin de \textbf{définir avec précision la méthode d'\textit{échantillonnage}} plutôt que l'\textit{échantillon} lui-même : en effet, il est important de caractériser le phénomène à modéliser, de définir l'objectif de la collecte de données et de détailler comment cette collecte va être réalisée.
+			Pour compléter ces définitions, \cite{kruskal-mosteller:1979:representative-sampling-ii} insistent sur le besoin de \textbf{définir avec précision la méthode d'\textit{échantillonnage}} plutôt que l'\textit{échantillon} lui-même : en effet, il est important de caractériser le phénomène à modéliser, de définir l'objectif de la collecte de données et de détailler comment cette collecte va être réalisée.
 			\cite{clemmensen-kjaersgaard:2022:data-representativity-machine} introduisent à leur tour trois mesures pour aider à caractériser une collecte : la \textit{réflexion} (est-ce l'échantillon respecte la distribution de la population ?), la \textit{couverture} (est-ce que l'échantillon illustre la diversité de la population ?) et la \textit{présence de représentants} (est-ce que l'échantillon contient les exemples emblématiques de la population ?).
-			De telles informations sont essentielles pour pouvoir juger de la valeur d'un échantillon par rapport à un cas d'usage et déterminer s'il est réutilisable dans pour une autre application.
+			De telles informations sont essentielles pour pouvoir juger la valeur d'un échantillon par rapport à un cas d'usage et déterminer s'il est réutilisable pour une autre application.
 			%
 			\begin{leftBarExamples}
 				% Cas d'usage : classification d'état.
@@ -71,35 +71,35 @@
 			
 			% Besoin de beaucoup d'exemples.
 			La description d'un phénomène reste cependant une \textbf{tâche difficile}, notamment lorsque que celui-ci possède un ensemble vaste et abstrait de caractéristiques à décrire.
-			Nous comptons généralement sur la loi des grands nombres pour espérer dresser un portrait fidèle du phénomène, mais cela impose parfois de traiter des \textbf{immenses quantités de données}.
+			Nous comptons généralement sur la loi des grands nombres pour espérer dresser un portrait fidèle du phénomène, mais cela impose parfois de traiter d'\textbf{immenses quantités de données}.
 			%
 			\begin{leftBarExamples}
 				% Exemple de la variabilité du langage.
-				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de millier de mots, il existe des variantes régionales et divers jargons techniques, certains termes peuvent avoir plusieurs sens et des expressions peuvent dépendre de leur contexte (comme l'humour ou les critiques).
+				Considérons le traitement du langage : le vocabulaire employé peut concerner des dizaines de milliers de mots ; il existe des variantes régionales et divers jargons techniques ; certains termes peuvent avoir plusieurs sens et des expressions peuvent dépendre de leur contexte (comme l'humour ou les critiques).
 				Pour représenter ces spécificités (listées de manière non exhaustive), une base d'apprentissage devra contenir de nombreux exemples afin de capturer les différents aspects du langage à traiter.
-				On peut citer par exemple \texttt{MLSUM: The Multilingual Summarization Corpus} (\cite{scialom-etal:2020:mlsum-multilingual-summarization}), une base de $1.5$ millions d'articles de journaux sur $5$ langues pour entraîner un modèle de résumé automatique, ou encore \texttt{The Multilingual Amazon Reviews Corpus} (\cite{keung-etal:2020:multilingual-amazon-reviewsa}), une base de $1.26$ millions de commentaires de produits sur $6$ langues pour entraîner un modèle de classification de la note d'un commentaire sur $5$ étoiles.
+				Nous pouvons citer par exemple \texttt{MLSUM: The Multilingual Summarization Corpus} (\cite{scialom-etal:2020:mlsum-multilingual-summarization}), une base de $1.5$ millions d'articles de journaux en $5$ langues pour entraîner un modèle de résumé automatique, ou encore \texttt{The Multilingual Amazon Reviews Corpus} (\cite{keung-etal:2020:multilingual-amazon-reviewsa}), une base de $1.26$ millions de commentaires de produits en $6$ langues pour entraîner un modèle de classification de la note d'un commentaire sur $5$ étoiles.
 			\end{leftBarExamples}
 			
 			% Discussion sur les biais de sur-représentativités ou sous-représentativités.
 			Toutefois, la masse de données ne résout pas toujours tous les problèmes de représentativité.
 			Une des difficultés récurrentes concerne les aspects peu fréquents d'un phénomène qui se retrouvent ainsi \textbf{sous-représentés} : si l'enjeu du modèle à concevoir consiste justement à détecter ou reproduire ces aspects, il peut être intéressant de volontairement biaiser les proportions du corpus d'entraînement pour mieux les illustrer.
-			À l'inverse, des cas communs ou fréquents peuvent être \textbf{sur-représentées} : il est parfois nécessaire de limiter leur occurrence dans le corpus d'apprentissage pour ne pas concevoir un modèle véhiculant des généralités ou des stéréotypes.
+			À l'inverse, des cas communs ou fréquents peuvent être \textbf{sur-représentés} : il est parfois nécessaire de limiter leur occurrence dans le corpus d'apprentissage pour ne pas concevoir un modèle véhiculant des généralités ou des stéréotypes.
 			Dans les deux cas, \textbf{toute intervention va introduire un biais} : l'opération doit donc être réfléchie et judicieusement réalisée pour contribuer à la finalité du modèle, d'où l'intérêt de bien la documenter pour faire entendre ce que vous voulez signifier par \textguillemets{échantillon représentatif}.
 			%
 			\begin{leftBarExamples}
 				% Problème de sous-représentation: Détecter la langue latine ou la langue corse.
 				D'une part, considérons le besoin de détecter la langue d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}}).
-				Il est fort probable que la base d'apprentissage contiennent peu de données sur les parutions en langues régionales (en Corse, en Wallon, en Alsacien, ...).
+				Il est fort probable que la base d'apprentissage contienne peu de données sur les parutions en langues régionales (en Corse, en Wallon, en Alsacien, ...).
 				Nous pouvons donc être amenés à ajouter des exemples supplémentaires pour espérer mieux les détecter et ainsi augmenter la \textit{couverture} de notre jeu de données.
 				
 				% Problème d'équilibrage: Stéréotypes de Stable Diffusion.
-				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion} réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
-				L'étude montre que le modèle tant générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière (voir la \textsc{Figure~\ref{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}}).
+				D'autre part, regardons l'analyse du modèle de \texttt{Stable Diffusion}, réalisée par \cite{nicoletti-bass:2023:generative-ai-takes} sur la génération de portraits de personnes fictives à partir d'une description textuelle de leur métier.
+				L'étude montre que le modèle tend générer des portraits d'hommes à la peau blanche pour le métier d'architecte ou d'ingénieur, des femmes pour le rôle de concierge ou encore des personnes à la peau noire pour illustrer la classe ouvrière (voir la \textsc{Figure~\ref{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}}).
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.75\textwidth]{figures/etatdelart-nicoletti-bass-2023}
 					\caption{
-						Répartitions des teintes de peaux \textbf{(1)} et des genres \textbf{(2)} par métier lors de génération de portrait avec \texttt{Stable Diffusion} (étude menée par \cite{nicoletti-bass:2023:generative-ai-takes}).
+						Répartition des couleurs de peau \textbf{(1)} et des genres \textbf{(2)} par métier lors de génération de portraits avec \texttt{Stable Diffusion} (étude menée par \cite{nicoletti-bass:2023:generative-ai-takes}).
 					}
 					\label{figure:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE-STEREOTYPES}
 				\end{figure}
@@ -122,19 +122,19 @@
 				%%\end{figure}
 				
 				Ici, ce modèle dépeint les inégalités de notre société en perpétuant des stéréotypes, et cela ouvre la question suivante : veut-on vraiment reproduire à l'identique cette représentation ?
-				% Exemple pour faire réagir (non utilisé) : Si on veut générer une nouvelle BD Lucky Luke à partir des anciennes BDs, veut-on vraiment encore avoir un chinois à la blanchisserie ?
+				(Et pour grossir le trait : si nous voulions générer une nouvelle \texttt{BD} Lucky Luke à partir des \texttt{BD} déjà existantes, veut-on vraiment que le seul personnage d'origine asiatique soit encore à la blanchisserie ?)
 			\end{leftBarExamples}
 			%
 			\begin{leftBarIdea}
 				% Solution: Équilibrage par la génération de données.
 				Une piste pour équilibrer efficacement les corpus d'entraînement et permettre de corriger leurs biais consiste à utiliser des \textbf{données synthétiques} (\cite{jaipuria-etal:2020:deflating-dataset-bias}).
 				Ces données peuvent être créées manuellement ou être générées automatiquement (voir \cite{shorten-etal:2021:text-data-augmentation} pour une revue de génération de textes et \cite{shorten-khoshgoftaar:2019:survey-image-data} pour la génération d'image).
-				Bien entendue, une telle approche doit restée réfléchie pour ne pas introduire davantage de biais et pour répondre à un objectif précis d'équilibrage du jeu de données.
+				Bien entendu, une telle approche doit rester réfléchie pour ne pas introduire davantage de biais et pour répondre à un objectif précis d'équilibrage du jeu de données.
 			\end{leftBarIdea}
 			
 			% Problème d'obsolescence des données.
 			Une dernière difficulté concerne l'\textbf{obsolescence} des données au cours du temps.
-			En effet, peu de phénomènes sont immuables, et il est courant de devoir questionner la représentativité d'un problème pour prendre en compte des nouveaux aspects ou corriger des caractéristiques devenues inexactes.
+			En effet, peu de phénomènes sont immuables, et il est courant de devoir questionner la représentativité d'un problème pour prendre en compte de nouveaux aspects ou corriger des caractéristiques devenues inexactes.
 			%
 			\begin{leftBarExamples}
 				% Exemple de l'estimation du prix d'une BD.
@@ -154,8 +154,8 @@
 			La qualité d'une base d'apprentissage dépend fortement du bruit qu'elle contient.
 			Ce bruit est inévitablement inséré lors de la collecte :
 			d'une part, la méthode de collecte elle-même peut en introduire (\textit{instrument de mesure faillible, erreur humaine, ...}) ;
-			d'autre part, par soucis de représentativité, le bruit intrinsèque du phénomène va être capturé (\textit{forte variabilité, présence d'irrégularité, ...}).
-			Un échantillon de données va donc forcément devoir se confronter 
+			d'autre part, par souci de représentativité, le bruit intrinsèque du phénomène va être capturé (\textit{forte variabilité, présence d'irrégularité, ...}).
+			Un échantillon de données va donc forcément devoir se confronter à des étapes de prétraitements et de curation de données.
 
 			% Classification des types de bruits.
 			Nous nous inspirons de \cite{maharana-etal:2022:review-data-preprocessing} et de \cite{alasadi-bhaya:2017:review-data-preprocessing} pour dresser une liste de problèmes récurrents sur les données suite à une collecte :
@@ -183,24 +183,24 @@
 				Pour illustrer ces problèmes, considérons la tâche d'estimation du prix d'une bande dessinée (voir \textsc{Section~\ref{section:2.1.2.A-PRESENTATION-ANNOTATION-EXEMPLES-REGRESSION}}) :
 				\begin{itemize}
 					% Exemple: 1. Données non pertinentes.
-					\item une donnée concernant le prix d'un roman ou d'une encyclopédie avoir été inséré par mégarde et pourrait être considéré comme données non pertinentes pour ce cas d'usage ;
+					\item une donnée concernant le prix d'un roman ou d'une encyclopédie peut avoir été insérée par mégarde et pourrait être considérée comme donnée non pertinente pour ce cas d'usage ;
 					% Exemple: 2. Variations parasites.
 					\item un changement de typographie (\textit{majuscules, minuscules, accents, ponctuation}) dans l'écriture d'un titre pourrait mal identifier une bande dessinée ;
 					% Exemple: 3. Absence de valeurs.
-					\item une information peut ne pas avoir été renseigné lors d'une transaction (l'année d'édition par exemple), alors que c'est une caractéristique importante de la prise de décision ;
+					\item une information peut ne pas avoir été renseignée lors d'une transaction (l'année d'édition par exemple), alors que c'est une caractéristique importante de la prise de décision ;
 					% Exemple: 4. Incohérences et ambiguïtés.
-					\item une même bande dessinée (avec les mêmes caractéristiques) peut avoir été vendue à deux prix radicalement différent, introduisant ainsi une légère ambiguïté dans les données.
+					\item une même bande dessinée (avec les mêmes caractéristiques) peut avoir été vendue à deux prix radicalement différents, introduisant ainsi une légère ambiguïté dans les données.
 				\end{itemize}
 				
 				% Autres problèmes.
-				Des problèmes similaires peuvent impacter le traitement du texte (\textit{fautes de grammaticales ou syntaxiques, ambiguïtés ou sémantiques, omissions, ...}), des images (\textit{flous, mauvais cadrages, colorimétries gênantes, ...}) et de l'audio (\textit{bruits en arrière plan, saturations, coupures inopportunes, mots mâchés, ...}).
+				Des problèmes similaires peuvent impacter le traitement du texte (\textit{fautes grammaticales, fautes syntaxiques, erreurs sémantiques, ambiguïtés, omissions, ...}), des images (\textit{flous, mauvais cadrages, colorimétries gênantes, ...}) et de l'audio (\textit{bruits en arrière plan, saturations, coupures inopportunes, mots mâchés, ...}).
 				Quelques exemples sont présentés ci-dessous dans la \textsc{Figure~\ref{figure:2.3.1.B-DEFIS-ANNOTATION-ASPECT-DONNEES-BRUITS}}.
 				%
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.80\textwidth]{figures/etatdelart-morris-1958-lucky-luke-12-bruits}
 					\caption{
-						Exemple de bruits courant perturbant l'analyse d'une image :
+						Exemples de bruits courants perturbant l'analyse d'une image :
 						\textbf{(1)} le flou,
 						\textbf{(2)} un doigt sur le capteur,
 						\textbf{(3)} un problème de cadrage
@@ -216,13 +216,13 @@
 				% Approche: Data cleaning.
 				\item le \textbf{nettoyage des données} : cette étape consiste à compléter les données manquantes (\textit{en prenant la valeur moyenne par exemple}), à filtrer les données aberrantes ou inintéressantes, et surtout à lisser le bruit dans les données en gommant les variations parasites ;
 				% Approche: Data integration.
-				\item l'\textbf{intégration des données} : dans certains cas, plusieurs sources de données sont disponibles, il peut être donc intéressant de croiser ces sources de données pour augmenter la consistance de la base d'apprentissage et identifier les incohérences ;
+				\item l'\textbf{intégration des données} : dans certains cas, plusieurs sources de données sont disponibles, il peut donc être intéressant de croiser ces sources de données pour augmenter la consistance de la base d'apprentissage et identifier les incohérences ;
 				% Approche: Data transformation.
 				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$, limiter les caractères spéciaux dans un texte});
 				% Approche: Data reduction.
-				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, on peut quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimer pour réduire la complexité de la base d'apprentissage.
+				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, nous pouvons quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimées pour réduire la complexité de la base d'apprentissage.
 			\end{itemize}
-			\cite{baledent:2022:complexite-annotation-manuelle} rappelle néanmoins que le document source (ou ici : la donnée brute) doit rester accessible pour la phase d'annotation pour ne pas manquer d'information potentiellement intéressante.
+			\cite{baledent:2022:complexite-annotation-manuelle} rappelle néanmoins que le document source (ou ici : la donnée brute) doit rester accessible pour la phase d'annotation afin de ne pas manquer une information potentiellement intéressante.
 			%
 			\begin{leftBarExamples}
 				% Correction: estimation du prix d'une BD.
@@ -245,20 +245,20 @@
 		\label{section:2.3.1.C-DEFIS-ANNOTATION-ASPECT-DONNEES-DROITS}
 		
 			% Introduction: toutes les données ne sont pas disponibles.
-			En plus des difficultés techniques sur la réalisation d'une collecte de données, il y a aussi contraintes législatives et stratégiques à prendre en compte.
+			En plus des difficultés techniques sur la réalisation d'une collecte de données, il y a aussi des contraintes législatives et stratégiques à prendre en compte.
 			
 			% Contraintes sur la propriété intellectuelle des données.
 			D'une part, il faut considérer le fait que certaines données sont protégées et ne peuvent pas être collectées ou exploitées librement.
-			C'est le cas de données soumises aux droits de \textbf{propriétés intellectuelles} qui empêchent cet usage : on peut citer par exemple \cite{loignon:2023:ia-medias-francais} qui évoque le levé de bouclier des médias français contre l'utilisation de leur article pour entraîner des modèles de langues, mais aussi \cite{les-echos:2023:ia-auteur-game} qui questionne la violation du \textbf{droit d'auteur} lorsque qu'un modèle est entraîné sur l'oeuvre d'un artiste et qu'il est capable de la reproduire.
+			C'est le cas de données soumises aux droits des \textbf{propriétés intellectuelles} qui empêchent cet usage : nous pouvons citer par exemple \cite{loignon:2023:ia-medias-francais} qui évoque une levée de boucliers des médias français contre l'utilisation de leurs articles pour entraîner des modèles de langues, mais aussi le journal \cite{les-echos:2023:ia-auteur-game} qui questionne la violation des \textbf{droits d'auteur} lorsque qu'un modèle est entraîné sur l'oeuvre d'un artiste et qu'il est capable de la reproduire.
 			
 			% Contraintes sur le consentement.
-			Ces limites concernent aussi la Réglementation Générale européenne sur la Protection des Données (\cite{european-commission:2016:regulation-eu-2016}) restreignant les \textbf{collectes et usages non consenties} de données personnelles.
+			Ces limites concernent aussi la Réglementation Générale européenne sur la Protection des Données (\cite{european-commission:2016:regulation-eu-2016}) restreignant les \textbf{collectes et usages non consentis} de données personnelles.
 			Ainsi, il n'est pas possible d'entraîner n'importe quel modèle sur n'importe quelles données, et une telle contrainte impose de manipuler les données en garantissant l'anonymat et la confidentialité des personnes consentantes.
 			
 			% Exemple 1 : propriété intellectuelle et consentement.
 			\begin{leftBarExamples}
-				Considérons la conception d'un modèle de synthèse vocale pour réaliser une audio-\texttt{BD} (voir \textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}).
-				D'une part, un tel projet nécessiterait déjà de demander les droits d'adaptation pour entrainer un modèle de synthèse vocale avec les doublage de l'adaptation télévisée de \texttt{Lucky Luke}.
+				Considérons la conception d'un modèle de synthèse vocale pour réaliser une \texttt{BD} audio (voir \textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}).
+				D'une part, un tel projet nécessiterait déjà de demander les droits d'adaptation pour entraîner un modèle de synthèse vocale avec les doublage de l'adaptation télévisée de \texttt{Lucky Luke}.
 				D'autre part, l'utilisation de la voix d'une personne se confrontera probablement à plusieurs restrictions pour éviter que ce modèle ne soit détourné pour des usages non consentis par le doubleur.
 			\end{leftBarExamples}
 			
@@ -269,18 +269,18 @@
 			Il est donc rare de voir une entreprise partager ses jeux de données car elle pourrait perdre un de ses atouts stratégiques.
 			
 			% Exemple OpenSource, mais limitation commerciale.
-			Un solution est de ce tourner les jeu de données \textbf{accessibles en \textit{Open Source}}.
-			Plusieurs plateformes mettre en effet à disposition des données ou des modèles, comme \textit{Hugging Face} (\cite{hugging-face:2016:hugging-face-ai}) ou \texttt{Zenodo} (\cite{re3data.org:2013:zenodo}).
-			Toutefois, deux limites subsistent à l'usage de ces données :
+			Une solution est de trouver des jeux de données \textbf{accessibles en \textit{Open Source}}.
+			Plusieurs plateformes mettent en effet à disposition des données ou des modèles, comme \textit{Hugging Face} (\cite{hugging-face:2016:hugging-face-ai}) ou \texttt{Zenodo} (\cite{re3data.org:2013:zenodo}).
+			Toutefois, deux limites subsistent à l'utilisation de ces données :
 			\begin{itemize}
-				\item les données mises à dispositions publiquement sont souvent assez générales et ne reflète pas la spécificité des cas d'usage de l'entreprise, limitant ainsi leur intérêt ;
-				\item les données publiques ne sont pas forcément ouvertes à un usage commercial (\textit{elles peuvent par exemple employé la licence \texttt{CC BY-NC 4.0}, \cite{creative-commons:2013:cc-bync-legal}}), restreignant ainsi les seules applications au domaine de la recherche et veille scientifique.
+				\item les données mises à disposition publiquement sont souvent assez générales et ne reflètent pas la spécificité des cas d'usage de l'entreprise, limitant ainsi leur intérêt ;
+				\item les données publiques ne sont pas forcément ouvertes à un usage commercial (\textit{elles peuvent par exemple employer la licence \texttt{CC BY-NC 4.0}, \cite{creative-commons:2013:cc-bync-legal}}), restreignant ainsi les seules applications aux domaines de la recherche et de la veille scientifique.
 			\end{itemize}
-			Pour ne pas faire de faux pas juridique, \cite{rajbahadur-etal:2022:can-use-this} propose une approche pour vérifier si une licence permet d'exploiter un jeu de données.
+			Pour ne pas faire de faux pas juridique, \cite{rajbahadur-etal:2022:can-use-this} proposent une approche pour vérifier si une licence permet d'exploiter un jeu de données.
 			
 			% Besoin de tracabilité.
 			\begin{leftBarInformation}
-				Pour terminer nous mentionnons aussi une proposition de législation européenne concernant la futures réglementation des modèles d'intelligence artificielle (\cite{european-commission:2021:proposal-regulation-european}).
+				Pour terminer nous mentionnons aussi une proposition de législation européenne concernant la future réglementation des modèles d'intelligence artificielle (\cite{european-commission:2021:proposal-regulation-european}).
 				Cette loi concerne les quatre objectifs suivants :
 				\begin{itemize}
 					\item \textguillemets{veiller à ce que les systèmes d'\texttt{IA} mis sur le marché de l'Union et utilisés soient sûrs et respectent la législation en vigueur en matière de droits fondamentaux et les valeurs de l'Union} ;
@@ -288,7 +288,7 @@
 					\item \textguillemets{renforcer la gouvernance et l'application effective de la législation existante en matière de droits fondamentaux et des exigences de sécurité applicables aux systèmes d'\texttt{IA}} ;
 					\item \textguillemets{faciliter le développement d'un marché unique pour des applications d'\texttt{IA} légales, sûres et dignes de confiance, et empêcher la fragmentation du marché}.
 				\end{itemize}
-				Un besoin de traçabilité des données et des modèles se fait donc sentir, renforçant les recommandations à documenter et détailler les traitement et choix pour garantir la représentativité et la qualité des données des bases d'apprentissage.
+				Un besoin de traçabilité des données et des modèles se fait donc sentir, renforçant les recommandations à documenter et détailler les traitements et choix pour garantir la représentativité et la qualité des données des bases d'apprentissage.
 			\end{leftBarInformation}
 		
 		
@@ -306,7 +306,7 @@
 			nous avons pu apercevoir celle-ci dans la \textsc{Section~\ref{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}}, notamment en considérant la nécessité de collecter une grande quantité de données pour représenter la diversité du phénomène et le besoin de contrôler les bruits pour en assurer la qualité, ...
 			% Complexité propre à la procédure d'annotation.
 			\item et la \textbf{complexité propre à la procédure d'annotation} mise en place :
-			cet aspect est abordée brièvement dans la \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}} en exposant le besoin d'établir une modélisation du problème avec son guide d'annotation, le recours à un processus itératif pour affiner les problèmes de conception et différences d'interprétation (cycles \texttt{MATTER} et \texttt{MAMA}), ou encore l'intervention de différents utilisateurs ayant des compétences différentes.
+			cet aspect est abordé brièvement dans la \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}} en exposant le besoin d'établir une modélisation du problème avec son guide d'annotation, de recourir à un processus itératif pour affiner les problèmes de conception et différences d'interprétation (cycles \texttt{MATTER} et \texttt{MAMA}), ou encore d'employer des opérateurs ayant différentes compétences.
 		\end{itemize}
 		Dans cette section, nous allons voir comment analyser et mesurer cette complexité, puis nous nous intéresserons aux coûts qu'elle peut engendrer lors de la conception du jeu de données.
 		
@@ -324,12 +324,12 @@
 			Cependant, de tels experts n'ont pas forcément les compétences analytiques requises pour établir une représentation abstraite de leurs connaissances.
 			En effet, diverses questions sont à discuter concernant la modélisation à choisir :
 			\begin{itemize}
-				\item quel standard existe-t-il qui soit réutilisable dans ce cas d'usage ?
+				\item peut-elle réutiliser un standard existant ?
 				\item sera-t-elle stable et explicite à l'annotation ?
 				\item sera-t-elle traduite en un seul ou en plusieurs modèle(s) de \textit{Machine Learning} ?
 				\item sera-t-elle maintenable avec de grands volumes de données ?
 			\end{itemize}
-			Pour y répondre, ateliers de conception sont généralement organiser avec les experts, permettant ainsi d'identifier les notions pertinentes à intégrer dans la modélisation finale du problème.
+			Pour y répondre, des ateliers de conception sont généralement organisés avec les experts, permettant ainsi d'identifier les notions pertinentes à intégrer dans la modélisation finale du problème.
 			Si le phénomène est intrinsèquement complexe, il est possible néanmoins que ces ateliers se réalisent en mode essai-erreur (à l'image du mini-cycle \texttt{MAMA}) jusqu'à trouver une modélisation qui puisse convenir, rendant cette tâche particulièrement pénible.
 			%
 			\begin{leftBarExamples}
@@ -338,16 +338,16 @@
 			
 			% Solution pour limiter la complexité de modélisation.
 			\begin{leftBarIdea}
-				Quelques pistes approches peuvent être mises en places pour assister la modélisation d'un problème :
+				Quelques approches peuvent être mises en place pour assister la modélisation d'un problème :
 				\begin{itemize}
-					% Solution: Modélisation non-supervisées (clustering ou topic modelling).
+					% Solution: Modélisation non supervisées (clustering ou topic modelling).
 					\item les approches \textbf{non supervisées} :
 					elles consistent à laisser la machine extraire et structurer automatiquement la connaissance contenue dans les données collectées.
 					Par exemple pour le traitement du texte, nous pouvons citer les méthodes d'exploration utilisant le regroupement automatique (\textit{clustering}) comme \texttt{KMeans} (\cite{macqueen:1967:methods-classification-analysis}), ou la modélisation thématique (\textit{topic modeling}) comme \texttt{LDA} (\cite{blei-etal:2003:latent-dirichlet-allocation}) ;
 					% Solution: Modélisation semi-supervisées (active learning)
 					\item les approches \textbf{semi-supervisées} :
 					elles consistent à travailler main dans la main avec la machine pour explorer les données collectées.
-					On peut citer par exemple les méthodes d'apprentissage actif (\textit{active learning}) dont une revue est proposée par \cite{settles:2010:active-learning-literature} ;
+					Nous pouvons citer par exemple les méthodes d'apprentissage actif (\textit{active learning}) dont une revue est proposée par \cite{settles:2010:active-learning-literature} ;
 					% Solution: Modélisation itératives.
 					\item les approches \textbf{itératives} :
 					elles consistent à concevoir d'abord un petit modèle dont le périmètre est limité, puis d'étendre pas à pas son périmètre suite aux retours de son utilisation.
@@ -359,32 +359,32 @@
 			% Avis de l'auteur : pas d'assistance à la modélisation !
 			\begin{leftBarAuthorOpinion}
 				% Constat: conception généralement manuelle et peu assister.
-				De part notre expérience, nous constatons que peu d'approches non-supervisées ou semi-supervisées sont utilisées, notamment parce que leurs résultats sont jugés peu pertinents sur des phénomènes complexes.
+				Par expérience, nous constatons que peu d'approches non supervisées ou semi-supervisées sont utilisées, notamment parce que leurs résultats sont jugés peu pertinents sur des phénomènes complexes.
 				Les experts métiers réalisent alors cette étape de modélisation manuellement, absorbant la complexité de cette tâche en organisant de nombreux ateliers de conception en mode essai-erreur.
 				
 				% Exemple des chatbots.
-				C'est particulièrement le cas lors de la concevoir de la base d'apprentissage d'un assistant conversationnelle (\textit{task-oriented}) : la tâche de modélisation consiste généralement à identifier l'intention formulée dans une demande utilisateur en fonction du verbe d'action (\textguillemets{\textit{je veux \textbf{réserver} un billet}}, \textguillemets{\textit{\textbf{joue} moi du jazz !}}, \textguillemets{\textit{comment \textbf{éditer} une attestation ?}}).
-				Cependant, la vaste diversité du langage permet rarement d'identifier les thématiques présents dans une collecte de données.
+				C'est particulièrement le cas lors de la conception de la base d'apprentissage d'un assistant conversationnel (\textit{task-oriented}) : la tâche de modélisation consiste généralement à identifier l'intention formulée dans une demande d'un utilisateur en fonction du verbe d'action (\textguillemets{\textit{je veux \textbf{réserver} un billet}}, \textguillemets{\textit{\textbf{joue} moi du jazz !}}, \textguillemets{\textit{comment \textbf{éditer} une attestation ?}}).
+				Cependant, la vaste diversité du langage permet rarement d'identifier les thématiques présentes dans une collecte de données.
 				L'étape de modélisation est alors réalisée manuellement par les experts du domaine couvert par l'assistant conversationnel.
 			\end{leftBarAuthorOpinion}
 			
 			% Complexité due à la rigueur requise pour la conception.
-			Lorsqu'une modélisation acceptable du phénomène à été définie, il est nécessaire de la structurer dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
-			\cite{nedellec-etal:2006:annotation-guidelines-machine} a pu montrer que la clarté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin pour donner à l'annotateur une vision de son objectif (\cite{fort-etal:2009:vers-methodologie-annotation}).
-			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble des règles sans introduire de biais ni de confusion.
+			Lorsqu'une modélisation acceptable du phénomène a été définie, il est nécessaire de la structurer dans le but de \textbf{rédiger le guide d'annotation} associé (voir \textsc{Section~\ref{section:2.2.1.A-ORGANISATION-ANNOTATION-ETAPES-CLES-MODELIZE-ANNOTATE}}).
+			\cite{nedellec-etal:2006:annotation-guidelines-machine} ont pu montrer que la clarté de ce guide impacte directement la qualité des annotations : il est donc important de rédiger celui-ci avec soin pour donner à l'annotateur une vision de son objectif (\cite{fort-etal:2009:vers-methodologie-annotation}).
+			Cela requiert toutefois de solides compétences analytiques et pédagogiques, notamment pour définir, organiser et transmettre ce vaste ensemble de règles sans introduire de biais ni de confusion.
 			%
 			\begin{leftBarInformation}
-				Nous rappelons que \cite{dipper-etal:2004:useradaptive-annotation-guidelines} a dressé une liste de recommandations pour rédiger un guide d'annotation fiable.
+				Nous rappelons que \cite{dipper-etal:2004:useradaptive-annotation-guidelines} ont dressé une liste de recommandations pour rédiger un guide d'annotation fiable.
 			\end{leftBarInformation}
 			
 			% Complexité due à la subjectivité de la tâche.
 			Malgré tout, \cite{baledent:2022:complexite-annotation-manuelle} rappelle que l'établissement d'une modélisation d'un phénomène \textbf{relève d'un choix}, et que celui-ci est par conséquent subjectif.
-			En effet, plusieurs représentations peuvent convenir à un même cas d'usage, et celui retenu devra être celui qui correspondra le plus à la finalité de votre modèle.
+			En effet, plusieurs représentations peuvent convenir à un même cas d'usage, et celle retenue devra être la représentation qui correspondra le mieux à la finalité du modèle.
 			Ce choix, aussi avisé soit-il, entrera inévitablement en friction avec certaines données collectées qui s'inséreront difficilement au sein de la modélisation choisie.
 			Lors de la rédaction du guide d'annotation, il faut donc trouver l'équilibre entre entre la rigueur (\textit{pour fiabiliser la qualité de la labellisation}) et la flexibilité (\textit{pour pouvoir s'adapter aux données contrariantes}).
 			%
 			\begin{leftBarExamples}
-				Dans la tâche de transcription d'un audio pour réalisé un modèle de synthèse vocale (\textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}), on constate que \texttt{Lucky Luke} mâche certains de ses mots (\textguillemets{[...] \texttt{j'vous s'rai reconnaissant} [...]}) : préférez-vous annoter strictement ce qu'il dit (\textit{au risque de complexifier le modèle}) ou corriger la transcription (\textit{au risque de ne pas reproduire la prononciation exacte du personnage}) ?
+				Dans la tâche de transcription d'un audio pour réaliser un modèle de synthèse vocale (\textsc{Section~\ref{section:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}}), nous constatons que \texttt{Lucky Luke} mâche certains de ses mots (\textguillemets{[...] \texttt{j'vous s'rai reconnaissant} [...]}) : préférez-vous annoter strictement ce qu'il dit (\textit{au risque de complexifier le modèle}) ou corriger la transcription (\textit{au risque de ne pas reproduire la prononciation exacte du personnage}) ?
 			\end{leftBarExamples}
 		
 		%%% 2.3.2.B. Estimation de la complexité.
@@ -403,7 +403,7 @@
 				% Aspect caractérisation.
 				\item la complexité de \textbf{caractérisation} de l'annotation (\textit{expressivité}, \textit{dimensionnalité}, \textit{ambiguïté}) :
 				doit-on annoter une variable catégorielle ou numérique ?
-				s'il y a plusieurs variables entre elles, y a-t-il des relations entre elles ?
+				s'il y a plusieurs variables, y a-t-il des relations entre elles ?
 				leur cardinalité est-elle finie ou infinie ?
 				quelle est la proportion de confusion ou de désaccord d'interprétation de cette modélisation ?
 				% Aspect contexte.
@@ -417,9 +417,9 @@
 			Pour mesurer cet accord, différents scores ont été développés comme peut en témoigner la revue de \cite{artstein-poesio:2008:intercoder-agreement-computational}.
 			Nous reviendrons plus en détails sur ces différences de comportement dans la \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}.
 			\begin{leftBarInformation}
-				L'un des plus scores les plus utilisé est $\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}).
+				L'un des plus scores les plus utilisés est $\alpha$ de \textit{Krippendorff} (\cite{krippendorff:2004:content-analysis-introduction}).
 				Le score est normalisé entre $0$ (\textit{aucun accord}) et $1$ (\textit{accord parfait}).
-				On considère un accord fort lorsque le score est supérieur à $0.8$,
+				Il est d'usage de considérer un accord fort lorsque le score est supérieur à $0.8$,
 				et l'accord reste acceptable si la valeur est supérieure à $0.667$.
 			\end{leftBarInformation}
 			
@@ -431,8 +431,8 @@
 				\begin{itemize}
 					% Aspect localisation.
 					\item la localisation des annotations est assez évidente car l'information est visuelle : 
-					(1) En général, il y a peu de textes sur une couverture de \texttt{BD}, l'information est donc facilement identifiable (\textit{bonne discrimination}) ;
-					(2) Cependant, il peut y avoir de légères différences sur la position exacte des boxes entourant les textes (\textit{délimitation délicate}) ;
+					(1) En général, il y a peu de texte sur une couverture de \texttt{BD}, l'information est donc facilement identifiable (\textit{bonne discrimination}) ;
+					(2) Cependant, il peut y avoir de légères différences sur la position exacte des encadrés identifiant les textes (\textit{délimitation délicate}) ;
 					% Aspect caractérisation.
 					\item la caractérisation concerne du texte mais son annotation est explicite :
 					(1) L'annotation concerne du texte et des nombres, il y a donc une grande variabilité parmi les valeurs possibles (\textit{forte expressivité}).
@@ -440,10 +440,10 @@
 					(3) Toutefois, il y a assez peu de doute sur les valeurs à indiquer car ces dernières sont explicitement liées aux inscriptions sur l'image (\textit{peu d'ambiguïté}) ;
 					% Aspect contexte.
 					\item la situation de l'annotation n'a pas d'impact :
-					en effet, peu d'informations complémentaires sont requise pour interpréter les textes de l'image (\textit{poids du contexte faible}).
+					en effet, peu d'informations complémentaires sont requises pour interpréter les textes de l'image (\textit{poids du contexte faible}).
 				\end{itemize}
 				Au final, l'analyse révèle que cette tâche est relativement peu complexe.
-				Le calcul d'un score d'accord entre annotateurs permettrait de confirmer cette hypothèse et d'en déduire la confiance que nous pouvons accordé à la qualité des données labellisées.
+				Le calcul d'un score d'accord entre annotateurs permettrait de confirmer cette hypothèse et d'en déduire la confiance que nous pouvons accorder à la qualité des données labellisées.
 			\end{leftBarExamples}
 			
 			
@@ -461,20 +461,20 @@
 			L'intervention de ces acteurs va engager des coûts dans l'embauche des experts et opérateurs nécessaires, mais aussi dans leur formation si cela est nécessaire (veille technologique, montée en compétence sur la compréhension du phénomène, ...).
 			
 			% Coût temporel.
-			Ensuite, il faut considérer les \textbf{facteurs temporels} qui impactent le délais de mise en production du modèle de \textit{Machine Learning}.
-			En plus des délais de monté en compétences des experts, nous pouvons ajouter :
+			Ensuite, il faut considérer les \textbf{facteurs temporels} qui impactent le délai de mise en production du modèle de \textit{Machine Learning}.
+			En plus des délais de montée en compétences des experts, nous pouvons ajouter :
 			\begin{itemize}
-				\item le temps nécessaire à la \textit{collecte de données}, pouvant prendre plusieurs semaines celle-ci correspond à un sondage ou à une mesure d'un phénomène s'étalant sur la durée ;
+				\item le temps nécessaire à la \textit{collecte de données}, pouvant prendre plusieurs semaines (\textit{diffusion d'un sondage, temps de mesure d'un phénomène s'étalant sur la durée, ...}) ;
 				\item le temps imposé par les \textit{ateliers de conception} de la modélisation, pouvant prendre entre quelques heures et quelques semaines en fonction de sa complexité et des différences d'opinions entre experts ;
-				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autre de la complexité de la modélisation et de la quantité à labelliser ;
+				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autres de la complexité de la modélisation et de la quantité à labelliser ;
 				\item et le temps requis pour entraîner le modèle de \textit{Machine Learning}.
 			\end{itemize}
 			À cela s'ajoute aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
-			Il est possible de réduire certains de ces coûts temporels en ajoutant davantage de personnes dans le projet, mais cela augmentera évidemment les charges de main d'oeuvre, et quelques aspects demeureront toutefois incompressibles (les débats lors de la phase de modélisation par exemple).
+			Il est possible de réduire certains de ces coûts temporels en ajoutant davantage de personnes dans le projet, mais cela augmentera évidemment les charges de main d'oeuvre, et quelques aspects demeureront toutefois incompressibles (\textit{les débats lors de la phase de modélisation par exemple}).
 			
 			% Coût financiers.
-			Enfin, il y a divers \textbf{coût financiers à engager} en plus des recrutements et des conséquences des délais de réalisation.
-			On peut notamment considérer l'achat ou le dévelopement de l'infrastructure technique tel que de l'outil d'annotation et de stockage des données, les potentiels instruments de mesure du phénomène (micro, caméra, sondes, ...) ou encore les acquisitions de droits d'utilisation de données ou de modèles sous licence.
+			Enfin, il y a divers \textbf{coûts financiers à engager} en plus des recrutements et des conséquences des délais de réalisation.
+			Nous pouvons notamment considérer l'achat ou le développement de l'infrastructure technique telle que de l'outil d'annotation et de stockage des données, les potentiels instruments de mesure du phénomène (\textit{micros, caméras, sondes, ...}) ou encore les acquisitions de droits d'utilisation de données ou de modèles sous licence.
 			
 			% Exemple de coûts.
 			\begin{leftBarExamples}
@@ -482,11 +482,11 @@
 				\begin{itemize}
 					% Prague Dependency Treebank.
 					\item \texttt{Prague Dependency Treebank} (\cite{bohmova-etal:2003:prague-dependency-treebank}) :
-					L'annotation de $180~000$ phrases tchèques (environ $1.8$ million de \textit{tokens}) pour l'analyse morpho-syntaxique a duré $5$ ans (entre 1996 et 2003), impliquant $22$ personnes.
+					l'annotation de $180~000$ phrases tchèques (environ $1.8$ million de \textit{tokens}) pour l'analyse morpho-syntaxique a duré $5$ ans (entre 1996 et 2003), impliquant $22$ personnes.
 					La somme totale engagée est estimée à $600~000$ dollars ;
 					% MS COCO.
 					\item \texttt{MS COCO} (\cite{lin-etal:2014:microsoft-coco-common}) :
-					L'annotation d'objets présent dans $328~000$ images (environ $2.5$ millions d'objets répartis en $91$ types différents) a nécessité environ $70~000$ heures d'annotation.
+					l'annotation d'objets présents dans $328~000$ images (environ $2.5$ millions d'objets répartis en $91$ types différents) a nécessité environ $70~000$ heures d'annotation.
 				\end{itemize}
 			\end{leftBarExamples}
 			
@@ -498,20 +498,20 @@
 					\item la \textbf{pré-annotation} :
 						cette approche consiste à employer un petit modèle pour suggérer une annotation à l'annotateur, celui-ci pouvant alors l'approuver ou corriger.
 						\cite{fort-sagot:2010:influence-preannotation-postagged} démontre le gain de temps et de qualité d'une telle approche.
-						toutefois, certains biais peuvent influence négativement l'annotateur : \cite{dandapat-etal:2009:complex-linguistic-annotation} souligne par exemple le risque de biais de confirmation (influence de la machine et tendance de l'annotateur d'être en accord avec celle-ci, notamment sur des données ambiguës) ;
+						toutefois, certains biais peuvent influencer négativement l'annotateur : \cite{dandapat-etal:2009:complex-linguistic-annotation} souligne par exemple le risque de biais de confirmation (\textit{influence de la machine et tendance de l'annotateur à être en accord avec celle-ci, notamment sur des données ambiguës}) ;
 					% Solution: Apprentissage actif pour cibler le travail de l'annotateur.
 					\item l'\textbf{apprentissage actif} (\textit{active learning}) :
 						cette approche consiste à interagir avec la machine pour sélectionner les données les plus intéressantes à annoter (\cite{settles:2010:active-learning-literature}).
-						On peut par exemple entraîner un modèle avec les données déjà disponibles, le tester sur les données non annotés et sélectionner les données sur lesquelles ses prédictions sont le moins confiantes ;
+						Nous pouvons par exemple entraîner un modèle avec les données déjà disponibles, le tester sur les données non annotées et sélectionner les données sur lesquelles ses prédictions sont le moins confiantes ;
 					% Solution: Transfert d'apprentissage pour demander moins de données annotées.
 					\item le \textbf{transfert d'apprentissage} (\textit{transfert learning}) :
-						cette approche consiste à réutiliser la connaissance contenue dans un modèle déjà existant dans le but d'exploiter certaines de ces fonctionnalités (\cite{zhuang-etal:2021:comprehensive-survey-transfer}, \cite{iman-etal:2023:review-deep-transfer}).
+						cette approche consiste à réutiliser la connaissance contenue dans un modèle déjà existant dans le but d'exploiter certaines de ses fonctionnalités (\cite{zhuang-etal:2021:comprehensive-survey-transfer}, \cite{iman-etal:2023:review-deep-transfer}).
 						Il a été montré qu'adapter un modèle pour un nouveau cas d'usage similaire peut se faire avec peu de données, réduisant ainsi drastiquement la charge d'annotation (\cite{parnami-lee:2022:learning-few-examples}) ;
 					% Solution: Myriadisation.
 					\item la \textbf{myriadisation} (\textit{crowdsourcing}) :
 						cette approche consiste à déléguer l'annotation à des plateformes collaboratives en ligne comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
 						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
-						Ces techniques comporte toutefois un inconvénient majeur : les opérateurs ne sont généralement pas des experts et sont rémunérés au volume labellisé.
+						Cette technique comporte toutefois un inconvénient majeur : les opérateurs ne sont généralement pas des experts et cer derniers sont rémunérés au volume labellisé.
 						La qualité des annotations risque donc d'être délaissée au profit de la quantité.
 				\end{itemize}
 			\end{leftBarIdea}
@@ -524,7 +524,7 @@
 	\label{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}
 		
 		% Introduction: Considérer les différences de comportements.
-		On peut constater deux divergences de comportements :
+		Nous pouvons constater deux divergences de comportements :
 		\begin{itemize}
 			\item ceux entre deux annotateurs (voir \textsc{Section~\ref{section:2.3.3.A-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTER-ANNOTATEURS}}) ;
 			\item ceux d'un annotateur avec lui-même (voir \textsc{Section~\ref{section:2.3.3.B-DEFIS-ANNOTATION-ASPECT-HUMAIN-INTRA-ANNOTATEUR}}).
@@ -542,25 +542,25 @@
 			D'autres éléments comme le caractère abstrait d'une modélisation ou la présence de règles de labellisation trop floues peuvent aussi mener à des divergences d'interprétation entre opérateurs.
 			
 			% Facteur de désaccords.
-			\cite{bayerl-paul:2011:what-determines-intercoder} ont pu étudier un ensemble de \textbf{facteurs source de désaccords}.
+			\cite{bayerl-paul:2011:what-determines-intercoder} ont pu étudier un ensemble de \textbf{facteurs à l'origine de désaccords}.
 			Nous en dressons une liste résumée ci-dessous :
 			\begin{itemize}
 				% Complexité.
 				\item la \textit{complexité} du problème :
-				que celle-ci vienne intrinsèquement du phénomène à annoter ou du cas d'usage reflétée dans la modélisation, on observce que si l'annotation est difficile, alors les chances d'interpréter différemment les données sont plus élevées ;
+				que celle-ci vienne intrinsèquement du phénomène à annoter ou du cas d'usage reflété dans la modélisation, nous observons que si l'annotation est difficile, alors les chances d'interpréter différemment les données sont plus élevées ;
 				% Nombre.
 				\item le \textit{nombre} d'annotateurs :
-				il est normal de constater que plus y a de personnes donnant leurs avis, les avis peuvent diverger ;
+				il est normal de constater que plus y a de personnes donnant leurs avis, plus les avis peuvent diverger ;
 				% Expertise.
 				\item le \textit{niveau d'expertise} du phénomène :
-				on remarque des divergences d'opinion entre les opérateurs n'étant pas spécialistes du phénomène et ceux détenant des connaissances sur celui-ci (un linguiste pour des données textuelles, un libraire pour des \texttt{BD}, ...) ;
+				nous remarquons des divergences d'opinion entre les opérateurs n'étant pas spécialistes du phénomène et ceux détenant des connaissances sur celui-ci (un linguiste pour des données textuelles, un libraire pour des \texttt{BD}, ...) ;
 				% Formation.
 				\item le \textit{niveau de formation} à la tâche de labellisation :
-				on constate des divergences entre les opérateurs habitués à l'outil et au guide d'annotation, et ceux découvrant la tâche de labellisation et sa mise en oeuvre pour la première fois.
+				nous constatons des divergences entre les opérateurs habitués à l'outil et au guide d'annotation, et ceux découvrant la tâche de labellisation et sa mise en oeuvre pour la première fois.
 			\end{itemize}
 			%
 			\begin{leftBarInformation}
-				\cite{bayerl-paul:2011:what-determines-intercoder} montrent aussi qu'il peut y avoir des différences entre deux annotateurs experts non-formés à la tâche de labellisation, alors qu'il y a moins de divergences entre des annotateurs expert et des annotateurs non-expert s'ils ont été formés tous les deux.
+				\cite{bayerl-paul:2011:what-determines-intercoder} montrent aussi qu'il peut y avoir des différences entre deux annotateurs experts non formés à la tâche de labellisation, alors qu'il y a moins de divergences entre des annotateurs experts et non expert s'ils ont été formés tous les deux.
 				Cela souligne bien l'\textbf{importance de la formation à la tâche d'annotation} et la nécessité de rédiger un guide d'annotation qui détaille l'objectif et les règles de labellisation dans le but d'en limiter la subjectivité.
 			\end{leftBarInformation}
 			%
@@ -568,7 +568,7 @@
 				% Adjudication.
 				Pour aller plus loin, il est recommandé d'organiser des sessions d'\textbf{adjudication} durant laquelle les opérateurs peuvent confronter leurs visions en annotant les mêmes données.
 				Cela permet de mesurer un score d'accord entre annotateurs mais aussi de discuter des points de désaccords dans l'application du guide de labellisation.
-				Une règle de bon sens consiste à confronter $2$ annotateurs pour être capable d'identifier ces points de désaccords, mais il faut être au moins $3$ opérateur pour en discuter et les résoudre.
+				Une règle de bon sens consiste à confronter $2$ annotateurs pour être capable d'identifier les points de désaccords, mais il faut être au moins $3$ annotateurs pour en discuter et les résoudre.
 				\cite{bayerl-paul:2011:what-determines-intercoder} conseille même d'être au moins $5$ annotateurs si le cas d'usage est critique.
 			\end{leftBarIdea}
 		
@@ -586,7 +586,7 @@
 			\begin{itemize}
 				% Estime la charge de travail.
 				\item D'une part, l'opérateur \textbf{estime la charge de travail} à accomplir (\textit{la quantité, la difficulté, les délais, ...}).
-				Concernant la tâche d'annotation, elle sera perçue comme \textbf{très élevée} (\textit{complexité intrinsèque, volumes conséquent à traiter, règles strictes de labellisation , ...}) ;
+				Concernant la tâche d'annotation, elle sera perçue comme \textbf{très élevée} (\textit{complexité intrinsèque, volume conséquent à traiter, règles strictes de labellisation , ...}) ;
 				% Estime les ressources.
 				\item D'autre part, l'opérateur \textbf{estime les ressources} à sa disposition (\textit{ses capacités, ses connaissances, ses outils, ...}).
 				Celles-ci seront plutôt perçues comme \textbf{minimes} face à cette montagne (\textit{peu de compétences techniques, manque de formation, méconnaissance de la modélisation utilisée, ...}) ;
@@ -595,23 +595,23 @@
 				\item Enfin, l'opérateur compare les deux estimations (\textit{est-ce que la charge de travail et mes ressources sont à l'équilibre ?}) et \textbf{ajuste sa charge de travail} pour la proportionner aux ressources qu'il va engager.
 				Dans notre cas, l'opérateur va probablement \textbf{essayer de réduire} (intentionnellement ou non) sa charge de travail pour qu'elle soit perçue comme acceptable vis-à-vis de ses ressources.
 			\end{itemize}
-			Ce principe explique alors certaines variations, notamment lorsque la modélisation est particulièrement complexes ou que l'annotateur est sous pression ou fatigué.
+			Ce principe explique alors certaines variations, notamment lorsque la modélisation est particulièrement complexe ou que l'annotateur est sous pression ou fatigué.
 			%
 			% Exemple.
 			\begin{leftBarExamples}
-				On peut appliquer cette théorie lorsque l'opérateur n'a pas eu de congés depuis plusieurs semaines ou que la fin de semaine approche : les capacités de celui-ci sont perçues comme plus faibles à cause de la fatigue, on peut alors constater des erreurs d'annotation même si la complexité de la tâche n'a pas changée.
+				Nous pouvons appliquer cette théorie lorsque l'opérateur n'a pas eu de congés depuis plusieurs semaines ou que la fin de semaine approche : ses capacités sont perçues comme plus faibles à cause de la fatigue, nous pouvons alors constater des erreurs d'annotation même si la complexité de la tâche n'a pas changé.
 			\end{leftBarExamples}
 			%
 			% Solutions.
 			\begin{leftBarIdea}
 				% Solution méthodologique.
-				Une première approche consiste à \textbf{essayer de simplifier la tâche} de labellisation (recommandation de \cite{bayerl-paul:2011:what-determines-intercoder}), permettant ainsi d'avoir une meilleure qualité sur une modélisation moins sophistiquée.
-				\cite{fort-etal:2012:modeling-complexity-manual} rappelle que le contexte autour de la donnée peut aussi introduire un surplus d'information à gérer, diminuer ce contexte peut parfois alléger l'annotation mais peu en échange introduire plus d'ambiguïté.
-				\cite{baledent:2022:complexite-annotation-manuelle} expose le dilemme entre annoter un phénomène complexe en une seule passe et le découper en plusieurs tâches unitaires distinctes : si la première permet d'avoir une meilleure vue d'ensemble, la seconde peut alléger la charge de travail.
+				Une première approche consiste à \textbf{essayer de simplifier la tâche} de labellisation (recommandation de \cite{bayerl-paul:2011:what-determines-intercoder}), permettant ainsi d'avoir une meilleure qualité avec une modélisation moins sophistiquée.
+				\cite{fort-etal:2012:modeling-complexity-manual} rappellent que le contexte autour de la donnée semble aussi introduire un surplus d'information à gérer : diminuer ce contexte peut parfois alléger l'annotation mais risque en échange introduire plus d'ambiguïté.
+				\cite{baledent:2022:complexite-annotation-manuelle} expose le dilemme entre annoter un phénomène complexe en un seul jet et le découper en plusieurs tâches unitaires distinctes : si la première permet d'avoir une meilleure vue d'ensemble, la seconde peut alléger la charge de travail.
 				
 				% Solution gamification.
 				Il est aussi possible d'essayer de \textbf{rendre la tâche ludique} (\textit{gamification}, \cite{von-ahn:2006:games-purpose}) : plusieurs outils tentent en effet de faire oublier à l'opérateur qu'il est en train de travailler en déguisant sa mission sous la forme d'un jeu (par exemple : \cite{guillaume-etal:2016:crowdsourcing-complex-language} propose \texttt{ZombiLingo} pour l'annotation morpho-syntaxique de textes).
-				Cette approche requiert toutefois une grande créativité pour réussir à faire cette illusion (\cite{fort:2017:experts-ou-foule}).
+				Cette approche requiert toutefois une grande créativité pour réussir à produire cette illusion (\cite{fort:2017:experts-ou-foule}).
 			\end{leftBarIdea}
 		
 		
@@ -619,19 +619,20 @@
 		\subsubsection{Faible valorisation du rôle d'annotateur}
 		\label{section:2.3.3.C-DEFIS-ANNOTATION-ASPECT-HUMAIN-ESCLAVAGE}
 			
-			% Introduction: on a besoin d'experts.
-			Comme vu en \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}, l'annotation se repose principalement sur des opérateurs ayant une connaissance \textbf{métier} du phénomène à modéliser, ou des opérateurs formés spécifiquement à la tâche de labellisation.
+			% Introduction: nous avons besoin d'experts.
+			Comme vu en \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}, l'annotation repose principalement sur des opérateurs ayant une connaissance \textbf{métier} du phénomène à modéliser, ou des opérateurs formés spécifiquement à la tâche de labellisation.
 			Ces personnes sont donc essentielles à la conception d'une base d'apprentissage.
 			
 			% Dérive: Myriadisation.
-			Cependant, on constate que de plus en plus d'entreprises décident de sous-traiter ces tâches d'annotation à des plateformes de myriadisation (\textit{crowdsourcing}, \cite{howe:2008:crowdsourcing-how-power}) comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
-			Ces plateformes collaboratives permettent à n'importe quel internaute de contribuer à une tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
+			Cependant, nous constatons que de plus en plus d'entreprises décident de sous-traiter ces tâches d'annotation à des plateformes de myriadisation (\textit{crowdsourcing}, \cite{howe:2008:crowdsourcing-how-power}) \footnote{
+				Myriadisation : Pour rappel, ces plateformes collaboratives permettent à n'importe quel internaute de contribuer à une tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
+			} comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
 			Plusieurs études montrent en effet l'intérêt de faire participer une foule d'opérateurs non-experts (\cite{snow-etal:2008:cheap-fast-it}, \cite{fort:2017:experts-ou-foule}), mais de \textbf{sérieuses questions éthiques} sont néanmoins soulevées par l'utilisation de ces plateformes.
 			
 			% Problème 1: Salaires faibles.
-			Tout d'abord, on peut remarquer que ces opérateurs sont souvent payés un salaire dérisoire proportionnel à la quantité de données qu'ils labellisent.
-			Cela ouvre la porte à des dérives, comme la polémique autour de \texttt{ChatGPT} (\cite{openai:2023:chatgpt}) où \cite{perrigo-zorthian:2023:exclusive-openai-used} avait dénoncé l'emploi de Kényans pour moins de $2$\$ de l'heure dans le but de corriger ce modèle.
-			On peut aussi citer \cite{dzieza:2023:ai-lot-work} qui alerte sur l'apparition cette nouvelle classe de travail sous-payée, n'ayant pas de place claire dans le droit du travail, et généralement dévalorisée dans l'organisation des projets d'annotation.
+			Tout d'abord, nous pouvons remarquer que ces opérateurs sont souvent payés un salaire dérisoire proportionnel à la quantité de données qu'ils labellisent.
+			Cela ouvre la porte à des dérives, comme la polémique autour de \texttt{ChatGPT} (\cite{openai:2023:chatgpt}) où \cite{perrigo-zorthian:2023:exclusive-openai-used} avaient dénoncé l'emploi de Kényans pour moins de $2$\$ de l'heure dans le but de corriger ce modèle.
+			Nous pouvons aussi citer \cite{dzieza:2023:ai-lot-work} qui alerte sur l'apparition cette nouvelle classe de travail sous-payée, n'ayant pas de place claire dans le droit du travail, et généralement dévalorisée dans l'organisation des projets d'annotation.
 			
 			% Problème 2: Troubles psychologiques.
 			D'autres part, \cite{rowe:2023:it-destroyed-me} reporte aussi les impacts émotionnels et psychologiques causés par certaines tâches d'annotation.
@@ -639,8 +640,8 @@
 			
 			% Pour information: Critique franche du TALN.
 			\begin{leftBarInformation}
-				Pour conclure sur ces dérives éthiques, \cite{valette:2016:analyse-statistique-donnees} rédige une critique franche des stratégies d'annotation dans le domaine du traitement automatique du langage naturel.
-				Celle-ci dénonce l'organisation actuelle où les experts linguistes sont devenus de simples sous-traitants n'ayant plus leur mot à dire dans la conception d'une modélisation : ils ont généralement traité avec mépris, ne récoltent pas les lauriers des projets à succès mais sont tenus pour responsables des projets en échecs.
+				Pour conclure concernant ces dérives éthiques, \cite{valette:2016:analyse-statistique-donnees} rédige une critique franche des stratégies d'annotation dans le domaine du traitement automatique du langage naturel.
+				Celle-ci dénonce l'organisation actuelle où les experts linguistes sont devenus de simples sous-traitants n'ayant plus leur mot à dire dans la conception d'une modélisation : ils sont généralement traités avec mépris, ne récoltent pas les lauriers des projets à succès mais sont tenus pour responsables des projets en échec.
 			\end{leftBarInformation}
 	
 	
@@ -658,11 +659,11 @@
 		\begin{todolist}
 			% Pression sur la qualité.
 			\item[\itemok] L'enjeu d'un projet d'annotation consiste à \textbf{avoir des données de qualité} :
-			celles-ci doivent être représentatives du problème à traiter, en quantité suffisante, avec un minimum de bruit, et dont les droits d'usage sont disponibles ;
+			celles-ci doivent être représentatives du problème à traiter, en quantité suffisante, avec un minimum de bruit, et leur droits d'usage doivent être disponibles ;
 			% Complexité élevée.
 			\item[\itemok] Cependant, la tâche de labellisation et son exigence de qualité \textbf{engendre de la complexité} :
 			celle-ci peut venir de la difficulté à modéliser le phénomène, de l'annotation elle-même, ou encore des coûts qui y sont associés ;
 			% Différence de comportement.
-			\item[\itemok] Ainsi, cette complexité \textbf{créé des différences de comportements} : ces divergences s'expliquent pas la subjectivité de l'annotation et par la régulation de la charge de travail opérée par l'opérateur lorsque celle-ci est trop élevée.
+			\item[\itemok] Ainsi, cette complexité \textbf{créé des différences de comportements} : ces divergences s'expliquent par la subjectivité de l'annotation et par la régulation de la charge de travail effectuée par l'opérateur lorsque cette charge est trop élevée.
 		\end{todolist}
 	\end{leftBarSummary}

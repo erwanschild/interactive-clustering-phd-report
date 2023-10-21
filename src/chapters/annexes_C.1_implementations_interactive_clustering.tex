@@ -1,4 +1,8 @@
-\section{Implémentation de la librairie \\ \texttt{cognitivefactory-interactive-clustering}}
+\section[
+		\texttt{cognitivefactory-interactive-clustering}
+	]{
+		Implémentation de la librairie \\ \texttt{cognitivefactory-interactive-clustering}
+	}
 \label{annex:C.1-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING}
 	
 	% Généralités.
@@ -141,8 +145,8 @@ vectorizer_type="tfidf",
 	\end{itemize}
 
 	% cognitivefactory.interactive-clustering.constraints: Transitivité.
-	Ces types de contraintes respectent les propriétés de transitivités décrites dans l'\textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
-	On note ainsi qu'il est possible de déduire la troisième contrainte d'un triangle de trois points si nous connaissons déjà les deux premières.
+	Ces types de contraintes respectent les propriétés de transitivité décrites dans l'\textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}) et sont illustrées dans la \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} (\textbf{(1)} et \textbf{(2)}).
+	Nous notons ainsi qu'il est possible de déduire la troisième contrainte d'un triangle de trois points si nous connaissons déjà les deux premières.
 	
 	\begin{equation}
 		\label{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}
@@ -160,7 +164,7 @@ vectorizer_type="tfidf",
 	\end{equation}
 	
 	Pour respecter ces propriétés, le gestionnaire de contraintes doit ainsi calculer les transitivités à chaque ajout ou suppression de contraintes.
-	On distinguera donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
+	Nous distinguerons donc une contrainte ajoutée (\texttt{added}) d'une contrainte déduite par transitivité (\texttt{inferred}).
 	
 	% cognitivefactory.interactive-clustering.constraints: Conflits.
 	Il se peut que la contrainte en cours d'ajout contredise les contraintes précédemment déduites : nous parlons alors d'incohérence ou de conflit (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}} et \textsc{Equation~\ref{equation:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-CONFLITS}}).

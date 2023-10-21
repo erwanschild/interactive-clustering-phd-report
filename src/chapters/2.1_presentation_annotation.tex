@@ -19,7 +19,7 @@
 			
 			% Définition.
 			Nous proposons la définition suivante inspirée de l'\texttt{ACM} (\textit{Association for Computing Machinery}) : l'\textguillemets{\texttt{apprentissage automatique}} (ou \textguillemets{\texttt{Machine Learning}}) est une branche de l'intelligence artificielle dédiée au développement de méthodes permettant à l'ordinateur de \textbf{reproduire une tâche par l'exemple} : il n'est donc pas explicitement programmé pour réaliser cette tâche, mais il l'\textguillemets{apprend} à l'aide d'un modèle mathématique.
-			Cet apprentissage peut être \textit{supervisé} (l'interprétation des exemples est fournie par un humain), \textit{non-supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux précédentes approches).
+			Cet apprentissage peut être \textit{supervisé} (l'interprétation des exemples est fournie par un humain), \textit{non supervisé} (la machine déduit l'interprétation des données sans intervention humaine) ou \textit{semi-supervisé} (mélange des deux précédentes approches).
 			
 			% Applications.
 			Le \textit{Machine Learning} permet ainsi d'automatiser l'analyse et la manipulation de certains phénomènes complexes tels que le langage, l'observation visuelle, la détection d'anomalies, le traitement acoustique, ...
@@ -35,7 +35,7 @@
 
 			% Définitions.
 			Pour concevoir un modèle en apprentissage automatique, il nous faut un ensemble d'exemples (textes, images, sons, vidéos, ou tout autre relevé d'informations) permettant de capturer le phénomène à appréhender : cela nous aide à la fois à le décrire et à mieux le comprendre.
-			Nous utilisons alors les termes \textguillemets{\texttt{corpus d'entraînement}}, \textguillemets{\texttt{jeu de d'entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
+			Nous utilisons alors les termes \textguillemets{\texttt{corpus d'entraînement}}, \textguillemets{\texttt{jeu d'entraînement}} ou \textguillemets{\texttt{base d'apprentissage}} pour désigner cet ensemble de données.
 			
 			% Carcatéristique importante : la représentativité !
 			Il est important de noter qu'un corpus n'est qu'un échantillon de taille finie d'un phénomène pouvant être infini ou indénombrable.
@@ -52,18 +52,18 @@
 		\label{section:2.1.1.C-PRESENTATION-ANNOTATION-DEFINITION-ANNOTATION}
 			
 			% Définition.
-			Les données d'un corpus manquent parfois d'information pour bien cerner un phénomène, il est alors nécessaire de faire intervenir un humain pour introduire des connaissances supplémentaires qui ne sont pas explicitement présentes dans ces données.
-			Nous appelons \textguillemets{\texttt{annotation}} (ou \textguillemets{\texttt{étiquetage}}, \textguillemets{\texttt{labellisation}}) cette tâche consistant à décrire les données d'un corpus, et nous distinguons ainsi les données dites \textguillemets{\texttt{brutes}} (utilisées par les approches non-supervisées) des données dites \textguillemets{\texttt{annotées}} (utilisées par les approches supervisées) en fonction de l'absence ou de la présence d'un complément d'informations.
+			Les données d'un corpus manquent parfois d'informations pour bien cerner un phénomène, il est alors nécessaire de faire intervenir un humain pour introduire des connaissances supplémentaires qui ne sont pas explicitement présentes dans ces données.
+			Nous appelons \textguillemets{\texttt{annotation}} (ou \textguillemets{\texttt{étiquetage}}, \textguillemets{\texttt{labellisation}}) cette tâche consistant à décrire les données d'un corpus, et nous distinguons ainsi les données dites \textguillemets{\texttt{brutes}} (utilisées par les approches non supervisées) des données dites \textguillemets{\texttt{annotées}} (utilisées par les approches supervisées) en fonction de l'absence ou de la présence d'un complément d'informations.
 			
 			% Valeurs associées: valeur ajoutée, information d'interprétation.
-			Les informations renseignées peuvent porter sur la donnée entière ou seulement sur une partie seulement, peuvent concerner des variables catégorielles (ensemble fini) ou numériques (ensemble infini), et peuvent aussi être cumulatives ou mutuellement exclusives.
-			Dans la littérature, \cite{garside-etal:1997:corpus-annotation-linguistic} présente l'annotation comme la tâche permettant de donner une \textguillemets{\texttt{valeur ajoutée}} aux données ; de son côté, \cite{leech:2004:adding-linguistic-annotation} précise que l'annotation est une action d'\textguillemets{\texttt{interprétation}} qui aide à la compréhension et à la reproduction d'un phénomène, mais aussi au contrôle du comportement des modèles d'apprentissage automatique.
+			Les informations renseignées peuvent porter sur la donnée entière ou sur une partie seulement, peuvent concerner des variables catégorielles (ensemble fini) ou numériques (ensemble infini), et peuvent aussi être cumulatives ou mutuellement exclusives.
+			Dans la littérature, \cite{garside-etal:1997:corpus-annotation-linguistic} présentent l'annotation comme la tâche permettant de donner une \textguillemets{\texttt{valeur ajoutée}} aux données ; de son côté, \cite{leech:2004:adding-linguistic-annotation} précise que l'annotation est une action d'\textguillemets{\texttt{interprétation}} qui aide à la compréhension et à la reproduction d'un phénomène, mais aussi au contrôle du comportement des modèles d'apprentissage automatique.
 	
 	
 	%%%
-	%%% Subsection 2.1.2: Exemples de tâches d'annotations.
+	%%% Subsection 2.1.2: Exemples de tâches d'annotation.
 	%%%
-	\subsection{Exemples de tâches d'annotations}
+	\subsection{Exemples de tâches d'annotation}
 	\label{section:2.1.2-PRESENTATION-ANNOTATION-EXEMPLES}
 		
 		% Transition: définitions assez généralistes car champ d'application très vaste.
@@ -73,7 +73,7 @@
 		% Annonce: prendre des exemples sur l'univers de la bande dessinée.
 		Ainsi, nous estimons qu'il est préférable de compléter ces définitions par quelques exemples concrets.
 		Nous pourrons ainsi mieux dresser le portait d'une tâche d'annotation, avec ses intérêts et ses complications.
-		Pour cela, nous allons prendre le thème de la bande dessinée et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
+		Pour cela, nous allons prendre le thème de la bande dessinée (\texttt{BD}) et explorer ensemble différents cas d'usage qui pourraient intéresser un auteur, un libraire ou un lecteur.
 		
 		
 		%%% 2.1.2.A. Estimation du prix d'une bande dessinée.
@@ -90,7 +90,7 @@
 				Pour plus de détails sur la régression: voir la revue de \cite{maalouf:2011:logistic-regression-data} ; voir un exemple basé sur la méthode des moindres carrés dans \cite{zdaniuk:2014:ordinary-leastsquares-ols}.
 			} permettant de prédire le prix d'une \texttt{BD} à partir des différentes métadonnées à disposition.
 			Mais pour entraîner un tel modèle, il est nécessaire d'avoir une base d'apprentissage contenant des exemples de transactions avec leur prix de vente.
-			Nous pouvons structurer l'ensemble des informations nécessaire dans un tableau, et la tâche d'annotation consiste alors à renseigner pour chaque transaction :
+			Nous pouvons structurer l'ensemble des informations nécessaires dans un tableau, et la tâche d'annotation consiste alors à renseigner pour chaque transaction :
 			\begin{itemize}
 				\item l'identification complète de la \texttt{BD} (titre, auteur, édition, ... ),
 				\item l'état du document grâce à un regard d'expert (l'état peut par exemple être défini par une variable catégorielle dont les valeurs seraient "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}") ;
@@ -211,7 +211,7 @@
 					\includegraphics[width=0.80\textwidth]{figures/etatdelart-morris-1950-lucky-luke-2-1952-lucky-luke-4}
 					\caption{
 						Exemple d'annotation de l'état d'une \texttt{BD} (ici: \cite{morris-goscinny:1950:rodeo} et \cite{morris-goscinny:1952:sous-ciel-ouest}).
-						La première est en très bon état (couverture comme neuve, tranches légèrement usées, pages intactes) tandis que la seconde est en mauvais état (couverture usée, dos abimée, traces sur les pages, ...).
+						La première est en très bon état (couverture comme neuve, tranches légèrement usées, pages intactes) tandis que la seconde est en mauvais état (couverture usée, dos abîmé, traces sur les pages, ...).
 					}
 					\label{figure:2.1.2.B-PRESENTATION-ANNOTATION-EXEMPLES-CLASSIFICATION}
 				\end{figure}
@@ -246,7 +246,7 @@
 			
 			% Cas d'usage: identifier une bande dessinée
 			Identifier une bande dessinée n'est pas toujours facile, et recopier l'ensemble des informations l'identifiant peut prendre du temps.
-			Les libraires ou les collectionneurs désirant faire l'inventaire des ouvrages en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des bande dessinée dans leur registre.
+			Les libraires ou les collectionneurs désirant faire l'inventaire des ouvrages en leur possession peuvent ainsi y passer de nombreuses heures, avec le risque de faire des erreurs lors de l'inscription des bandes dessinées dans leur registre.
 			
 			% Entrainer un modèle: extraction de caractères.
 			Afin d'aider les collectionneurs, il est possible d'utiliser un modèle de \texttt{reconnaissance optique des caractères} (\texttt{OCR}) \footnote{
@@ -303,15 +303,15 @@
 		
 			% Cas d'usage: générer une lecture audio.
 			Il est de plus en plus commun de trouver des livres disponibles avec une lecture audio.
-			Ces audio-livres, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducative ou simplement disponibles pour le loisir.
+			Ces livres audio, réalisés par une personne ou synthétisés par l'ordinateur, peuvent être à visée éducative ou simplement disponibles pour le loisir.
 			Dans le cadre de notre exemple sur le thème des bandes dessinées, peu d'entre elles disposent d'une lecture audio.
 			Une idée serait donc d'interpréter une lecture audio de ces bandes dessinées en synthétisant la voix des doubleurs de leurs adaptations télévisées (ou simplement d'un narrateur si l'oeuvre n'a pas été portée à l'écran).
 			
 			% Entrainer un modèle: synthétiseur vocal.
-			Dans le but de créer ces audio-\texttt{BD}, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS}) \footnote{
+			Dans le but de créer ces \texttt{BD} audio, nous pourrions envisager d'utiliser des modèles de \texttt{synthèse vocale} (\texttt{TTS}) \footnote{
 				Pour plus de détails sur la synthèse vocale: voir la revue de \cite{kothadiya-etal:2020:different-methods-review} ; voir un exemple d'architecture neuronale \texttt{end-to-end} dans \cite{mu-etal:2021:review-endtoend-speech}.
 			} pour générer automatiquement la lecture des bulles d'une bande dessinée.
-			Pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples d'audios prononcés par chacun des personnages (ici: les doubleurs de l'adaptation télévisée) avec la transcription de leur paroles pour chaque audio.
+			Pour entraîner de tels modèles, il est nécessaire d'avoir une base d'apprentissage contenant des exemples audio pour chacun des personnages (ici: les textes prononcés par les doubleurs de l'adaptation télévisée) avec la transcription de leurs paroles pour chaque audio.
 			La tâche d'annotation peut alors consister à renseigner le personnage et les paroles qu'il a prononcées.
 			
 			% Citation de l'exemple.
@@ -322,10 +322,10 @@
 					\centering
 					\includegraphics[width=0.95\textwidth]{figures/etatdelart-thebault-transcription}
 					\caption{
-						Exemple de paroles prononcées dans un audio.
+						Exemple de paroles prononcées dans un enregistrement audio.
 						Ici, la voix de \textit{Lucky Luke} est interprétée par Jacques THEBAULT.
 						Le texte annoté, c'est-à-dire celui prononcé dans l'audio, est  \textguillemets{\texttt{Ils sont à vous chef, et j'vous s'rai reconnaissant de bien les garder cette fois.}}.
-						Les phonèmes en alphabet phonétique international associés à chaque séquence de l'audio sont disponibles si besoin.
+						Les phonèmes associés à chaque séquence de l'enregistrement sont disponibles en alphabet phonétique international.
 						%[il sɔ̃ a vu ʃɛf, e ʒvu sʁe ʁə.kɔ.nɛ.sɑ̃ də bjɛ̃ vu.lwaʁ le ɡaʁ.de sɛt fwa].
 					}
 					\label{figure:2.1.2.D-PRESENTATION-ANNOTATION-EXEMPLES-TRANSCRIPTION}
