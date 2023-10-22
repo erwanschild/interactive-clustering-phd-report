@@ -166,7 +166,7 @@
 		
 		% Equation.
 		\begin{equation}
-			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-OVERALL-AVERAGE}
+			\label{equation:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-OVERALL-AVERAGE}
 			\overline{\overline{\texttt{FM}}}~=~\frac{
 				\sum\limits_{
 					f \in \mathcal{F}
@@ -192,8 +192,8 @@
 		
 		% Equation.
 		\begin{equation}
-			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-SELECTION}
-			\begin{cases}
+			\label{equation:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-SELECTION}
+			\begin{array}{ll}
 				\mathcal{F}_{\texttt{SELECTED}}
 					& :=~\bigl\{~
 						f \in \mathcal{F}
@@ -206,7 +206,7 @@
 						~\big|~
 						(\forall c' \in \mathcal{C})~\texttt{FM}[f][c'] < \overline{\overline{\texttt{FM}}}
 					~\bigr\}
-			\end{cases}
+			\end{array}
 		\end{equation}
 		
 		% Interprétation.
@@ -235,7 +235,7 @@
 		
 		% Equation.
 		\begin{equation}
-			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-MARGINAL-AVERAGE}
+			\label{equation:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-MARGINAL-AVERAGE}
 			\overline{\texttt{FM}[f]}~=~\frac{
 				\sum\limits_{
 					c' \in \mathcal{C}
@@ -258,18 +258,18 @@
 		
 		% Equation.
 		\begin{equation}
-			\label{equation:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-ACTIVATION}
+			\label{equation:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-FEATURES-ACTIVATION}
 			\begin{cases}
-				f \texttt{active} c
-					& si \texttt{FM}[f][c] \geq \overline{\texttt{FM}[f]} \\
-				f \texttt{n'active pas} c
-					& sinon
+				f~\text{active}~c
+					& \text{si}~\texttt{FM}[f][c] \geq \overline{\texttt{FM}[f]} \\
+				f~\text{n'active pas}~c
+					& \text{sinon}
 			\end{cases}
 		\end{equation}
 		
 		% Interprétation.
 		\begin{leftBarAuthorOpinion}
-			Cette sélection répond à la question :
+			Cette activation répond à la question :
 			\textguillemets{\textit{pour quelle(s) classe(s) la \textit{feature} $f$ est pertinente ?}}
 		\end{leftBarAuthorOpinion}
 	
@@ -292,10 +292,29 @@
 		\end{itemize}
 		
 		% Application au TF-IDF
-		Si nous utilisons une représentation vectorielle basées sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
+		Si nous utilisons une représentation vectorielle basées sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine})), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
 		Il est possible de compléter l'analyse en considérant que :
 		\begin{itemize}
-			\item un pattern linguistique $f$ est caractéristique d'une classe $c$ s'il ne s'active que pour cette classe ;
+			\item un pattern linguistique $f$ est caractéristique d'une classe $c$ s'il ne s'active que pour cette classe. La liste des patterns linguistiques représentatifs d'une classe $c$ se notera $\mathcal{F}_{\texttt{ACTIVATED}}[c]$ ;
 			\item un pattern linguistique $f$ est ambigu s'il s'active pour plusieurs classes.
 		\end{itemize}
-		Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}} pour déterminer la sémantique d'un \textit{cluster} sur la base de son vocabulaire caractéristique.
+		
+		% Equation.
+		\begin{equation}
+			\label{equation:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-PATTERN-ACTIVATION}
+			\mathcal{F}_{\texttt{ACTIVATED}}[c]
+				~:=~\bigl\{~
+					f \in \mathcal{F}_{\texttt{SELECTED}}
+					~\big|~
+					\texttt{FM}[f][c] \geq \overline{\texttt{FM}[f]}
+				~\bigr\} \\
+		\end{equation}
+		
+		% Référence à l'étude de pertinence.
+		\begin{leftBarAuthorOpinion}
+			Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}} pour déterminer la pertinence sémantique d'un \textit{cluster} :
+			\begin{itemize}
+				\item en vérifiant la valeur métier du vocabulaire caractéristique du \textit{cluster} ;
+				\item en vérifiant que les textes de ce \textit{cluster} contiennent peu de mots des vocabulaires caractéristiques des autres \textit{clusters}.
+			\end{itemize}
+		\end{leftBarAuthorOpinion}
