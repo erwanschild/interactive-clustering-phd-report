@@ -1,13 +1,24 @@
+\DontFrameThisInToc
 \Annex{Annexe sur l'évaluation d'un \textit{clustering} à l'aide de la \texttt{v-measure}}
 \label{annex:D-ANNEXE-EVALUATION-CLUSTERING}
 
 	% INTRODUCTION DE L'ANNEXE.
 	Au cours de nos études, nous avons besoin de comparer nos résultats de \textit{clustering} à une vérité terrain représentant la cible à atteindre au cours des itérations.
 	Nous utilisons alors la \texttt{v-measure} (\cite{rosenberg-hirschberg:2007:vmeasure-conditional-entropybased}) pour discuter de la proximité du résultat d'une itération avec sa cible.
+	
+	% Annonce du plan et conseils.
+	\begin{leftBarAuthorOpinion}
+		Dans cette annexe, nous allons décrire la \texttt{v-measure} de manière formelle puis détailler son fonctionnement sur quelques exemples.
+		Si la première section est très (\textit{voir trop}) abstraite, consultez directement la deuxième section : les exemples permettront d'illustrer les intuitions principales.
+	\end{leftBarAuthorOpinion}
+	
+	% TABLE DES MATIÈRES DE L'ANNEXE.
+	\minitoc
 
 	%%%%%--------------------------------------------------------------------
 	%%%%% Annexe D.1: Définition de la \texttt{v-measure}.
 	%%%%%--------------------------------------------------------------------
+	\newpage
 	\section{Définition de la \texttt{v-measure}}
 	\label{annex:D.1-ANNEXE-EVALUATION-CLUSTERING-DEFINITION}
 		
@@ -17,9 +28,9 @@
 			% Data.
 			\item $\mathcal{D}$ représente l'ensemble des données $d$ à segmenter ;
 			% Classes.
-			\item $\mathcal{C}$ représente l'ensemble des classes $c$ possibles de la vérité terrain (\textit{cible de référence à atteindre}) ;
+			\item $\mathcal{C}$ représente l'ensemble des classes $c$ de la vérité terrain (\textit{référence à atteindre}) ;
 			% Clusters.
-			\item $\mathcal{K}$ représente l'ensemble des \textit{clusters} $k$ possibles de la segmentation (\textit{clustering proposé par la machine à une itération donnée}).
+			\item $\mathcal{K}$ représente l'ensemble des \textit{clusters} $k$ de la segmentation (\textit{clustering proposé par la machine à une itération donnée}).
 		\end{itemize}
 		
 		
@@ -98,7 +109,7 @@
 		\end{leftBarAuthorOpinion}
 		
 		%%% HOMOGENEITE et COMPLETUDE
-		
+		\newpage
 		% Description de l'homogénéité.
 		L'\textbf{homogénéité} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{homogeneity}(C|K)$, est un score entre $0$ et $1$ qui est obtenu par $1$ moins le ratio entre :
 		\begin{itemize}
@@ -178,12 +189,13 @@
 	%%%%%--------------------------------------------------------------------
 	%%%%% Annexe D.2: Quelques exemples de calcul avec la \texttt{v-measure}.
 	%%%%%--------------------------------------------------------------------
+	\newpage
 	\section{Quelques exemples de calcul avec la \texttt{v-measure}}
 	\label{annex:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE}
 		
 		% Exemple 0 : Introduction
 		Prenons quelques exemples pour illustrer les calculs d'homogénéité, de complétude et de \texttt{v-measure}.
-		Pour cela, nous prenons un jeu d'exemple de $10$ objets, représentés en \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-0-PRESENTATION}} \textbf{(1)}, que nous voulons regroupés par forme (\texttt{carrés}, \texttt{ronds}, \texttt{triangles}), comme dans la \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-0-PRESENTATION}} \textbf{(2)}.
+		Pour cela, nous considérons le jeu d'exemples de $10$ objets, représentés en \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-0-PRESENTATION}} \textbf{(1)}, que nous voulons regrouper par forme (\texttt{carrés}, \texttt{ronds}, \texttt{triangles}), comme dans la \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-0-PRESENTATION}} \textbf{(2)}.
 		%
 		\begin{figure}[H]
 			\centering
@@ -206,6 +218,7 @@
 		\end{itemize}
 	
 		% Exemple 1: Cas extrêmes
+		\newpage
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/annexe-vmeasure-cas-extremes}
@@ -224,17 +237,18 @@
 			\begin{itemize}
 				\item ce \textit{clustering} est \textbf{complet} ($completeness=1.00$) : tous les \texttt{carrés} sont dans cet unique \textit{cluster}, tous les \texttt{ronds} sont dans cet unique \textit{cluster} et tous les \texttt{triangles} sont dans cet unique \textit{cluster} ;
 				\item ce \textit{clustering} n'est \textbf{pas homogène} ($homogeneity=0.00$) : cet unique \textit{cluster} contient à la fois des \texttt{carrés}, des \texttt{ronds} et des \texttt{triangles} ;
-				\item la \texttt{v-measure} finale est de $0.00$, confirmant que ce \textit{clustering} simpliste n'est pas performant.
+				\item la \texttt{v-measure} finale est de $0.00$, confirmant que ce \textit{clustering} simpliste n'est pas performant car il n'est pas homogène.
 			\end{itemize}
 			\item \textbf{(2)} représente une segmentation où chaque donnée a son propre \textit{cluster} :
 			\begin{itemize}
 				\item ce \textit{clustering} est \textbf{homogène} ($homogeneity=1.00$) : comme chaque \textit{cluster} ne contient qu'une seule donnée, donc chaque \textit{cluster} ne contient que des données de la même forme ;
 				\item ce \textit{clustering} n'est pas \textbf{complet} ($completeness=0.00$) : tous les \texttt{carrés} ne sont pas dans un même \textit{cluster}, tous les \texttt{ronds} ne sont pas dans un même \textit{cluster} et tous les \texttt{triangles} ne sont pas dans un même \textit{cluster} ;
-				\item la \texttt{v-measure} finale est de $0.00$, confirmant que ce \textit{clustering} simpliste n'est pas performant.
+				\item la \texttt{v-measure} finale est de $0.00$, confirmant que ce \textit{clustering} simpliste n'est pas performant car il n'est pas complet.
 			\end{itemize}
 		\end{itemize}
 	
 		% Exemple 2: Cas simples.
+		\newpage
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/annexe-vmeasure-cas-simples}
