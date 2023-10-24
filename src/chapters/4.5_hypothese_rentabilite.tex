@@ -40,7 +40,7 @@
 	Afin de vérifier cette hypothèse, nous explorons deux approches :
 	\begin{itemize}
 		\item l'évolution de l'\textbf{accord entre l'annotation de l'expert et le \textit{clustering}} sur lequel est basé l'échantillon d'annotation, permettant d'estimer si la machine doit encore être corrigée par l'annotateur  (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) ;
-		\item et l'évolution de la \textbf{différence entre deux \textit{clusterings} successifs}, permettant de mesurer s'il y a eu des changements visibles dans le partitionnement des données après l'ajout des dernières contraintes (cf. \textsc{Section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}}).
+		\item et l'évolution de la \textbf{différence entre deux \textit{clustering} successifs}, permettant de mesurer s'il y a eu des changements visibles dans le partitionnement des données après l'ajout des dernières contraintes (cf. \textsc{Section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}}).
 	\end{itemize}
 	
 	
@@ -105,12 +105,12 @@
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
 			de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori \footnote{
-				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des clusters différents (\texttt{sampl.closest.diff}).
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}).
 			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			À chaque itération, un lot de $50$ contraintes est sélectionné puis annotés en simulant l'action d'un expert métier, et nous évaluons l'accord entre ces nouvelles annotations et la proposition de partitionnement des données réalisé par le \textit{clustering} à l'itération précédente :
 			\begin{itemize}
-				\item il y a \textbf{accord} lorsqu'une contrainte de deux données issues d'un même \textit{cluster} est annotée \texttt{MUST-LINK}, ou lorsqu'une contrainte de deux données issues de deux \textit{clusters} différents est annotée \texttt{CANNOT-LINK} (cf. \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE} (1)}) ;
-				\item il y a \textbf{désaccord} lorsqu'une contrainte de deux données issues d'un même \textit{cluster} est annotée \texttt{CANNOT-LINK}, ou lorsqu'une contrainte de deux données issues de deux \textit{clusters} différents est annotée \texttt{MUST-LINK} (cf. \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE} (2)}).
+				\item il y a \textbf{accord} lorsqu'une contrainte de deux données issues d'un même \textit{cluster} est annotée \texttt{MUST-LINK}, ou lorsqu'une contrainte de deux données issues de deux \textit{cluster} différents est annotée \texttt{CANNOT-LINK} (cf. \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE} (1)}) ;
+				\item il y a \textbf{désaccord} lorsqu'une contrainte de deux données issues d'un même \textit{cluster} est annotée \texttt{CANNOT-LINK}, ou lorsqu'une contrainte de deux données issues de deux \textit{cluster} différents est annotée \texttt{MUST-LINK} (cf. \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE} (2)}).
 			\end{itemize}
 			Nous pouvons ainsi calculer un score d'accord défini par la ratio entre le nombre d'accords et le nombre de contraintes annotées.
 			Pour nous permettre de discuter de l'utilité de ce score pour prédire la stabilisation du \textit{clustering} et ainsi définir un cas d'arrêt de notre méthodologie d'annotation, nous calculons aussi le score de corrélation entre cet accord et la performance obtenu à l'aide d'une vérité terrain (la corrélation \texttt{r} de \textit{Pearson} (\cite{kirch:2008:pearson-correlation-coefficient}) est utilisée).
@@ -120,7 +120,7 @@
 				\includegraphics[width=0.70\textwidth]{figures/example-accord-annotation-clustering}
 				\caption{
 					Exemples d'accords et de désaccord entre les annotations d'une itération et le résultat du \textit{clustering} de l'itération précédente.
-					Des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges) sont représentées dans deux situations : \textbf{(1)} montre des cas d'accords (\texttt{MUST-LINK} dans un même \textit{cluster}, \texttt{CANNOT-LINK} entre deux \textit{clusters} différents), et \textbf{(2)} montre des cas de désaccords (\texttt{MUST-LINK} entre deux \textit{clusters} différents, \texttt{CANNOT-LINK} dans un même \textit{cluster}).
+					Des contraintes \texttt{MUST-LINK} (flèches vertes) et \texttt{CANNOT-LINK} (flèches rouges) sont représentées dans deux situations : \textbf{(1)} montre des cas d'accords (\texttt{MUST-LINK} dans un même \textit{cluster}, \texttt{CANNOT-LINK} entre deux \textit{cluster} différents), et \textbf{(2)} montre des cas de désaccords (\texttt{MUST-LINK} entre deux \textit{cluster} différents, \texttt{CANNOT-LINK} dans un même \textit{cluster}).
 				}
 				\label{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-EXEMPLE}
 			\end{figure}
@@ -241,10 +241,10 @@
 			\begin{leftBarAuthorOpinion}
 				% Rappel: l'objectif de notre méthode d'annotation est de corriger le plus rapidement un \textit{clustering}.
 				Après réflexion, ce score d'accord est probablement infructueux à cause du fonctionnement même de notre méthode, dont l'objectif est de corriger le partitionnement des données en utilisant un minimum de contraintes.
-				En effet, dans le cadre de l'optimisation des paramètres réalisée en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}, nous avons retenu dans notre paramétrage favori la sélection des contraintes les plus proches entre deux \textit{clusters} différents (\texttt{samp.closest.diff}) : cette sélection permet ainsi de décrire efficacement l'emplacement des frontières de \textit{clusters}.
+				En effet, dans le cadre de l'optimisation des paramètres réalisée en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}, nous avons retenu dans notre paramétrage favori la sélection des contraintes les plus proches entre deux \textit{cluster} différents (\texttt{samp.closest.diff}) : cette sélection permet ainsi de décrire efficacement l'emplacement des frontières de \textit{cluster}.
 				
 				% Cet échantillonnage est non supervisé : il y a de nombreuses saccades.
-				Or, cet échantillonnage reste une méthode non supervisée : aux premières itérations, les contraintes sélectionnées ont de bonnes chances de mettre en avant une frontière mal positionnée, mais au fur et à mesure que des contraintes s'ajoutent, les nouvelles contraintes ont moins de chances de trouver des bordures de \textit{clusters} qui ne soient pas encore caractérisées.
+				Or, cet échantillonnage reste une méthode non supervisée : aux premières itérations, les contraintes sélectionnées ont de bonnes chances de mettre en avant une frontière mal positionnée, mais au fur et à mesure que des contraintes s'ajoutent, les nouvelles contraintes ont moins de chances de trouver des bordures de \textit{cluster} qui ne soient pas encore caractérisées.
 				De ce fait, il se peut que les dernières sélections n'identifient aucune nouvelle frontière, qu'elles se concentrent sur des frontières déjà bien positionnées ou déjà décrites par d'autres contraintes, ou qu'elles nécessitent plusieurs itérations pour caractériser des frontières complexes (le comportement des autres méthodes de sélections représentées en \textsc{Figure~\ref{figure:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}} peut être illustré par des raisonnements similaires).
 				L'ensemble de ces cas de figures peut ainsi expliquer les nombreuses saccades dans l'évolution du score d'accord : tantôt la sélection semble pertinente, tantôt la sélection semble inutile.
 			\end{leftBarAuthorOpinion}
@@ -262,15 +262,15 @@
 			Ainsi, comme l'analyse de l'annotation n'est pas fructueuse, nous nous tournons vers l'analyse basée sur les différences entre deux résultats de \textit{clustering}
 	
 	%%%
-	%%% Subsection 4.5.2: Étude de l'évolution de la différence entre deux \textit{clusterings} consécutifs.
+	%%% Subsection 4.5.2: Étude de l'évolution de la différence entre deux \textit{clustering} consécutifs.
 	%%%
-	\subsection{Étude de l'évolution de la différence entre deux \textit{clusterings} consécutifs}
+	\subsection{Étude de l'évolution de la différence entre deux \textit{clustering} consécutifs}
 	\label{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}
 		
 		% Objectif de l'expérience.
 		Nous venons de conclure que l'analyse de l'accord entre l'annotation et le partitionnement des données ne permet pas d'estimer la rentabilité d'une itération de notre méthode d'annotation.
 		Parmi les explications possibles, nous avons mis en cause l'analyse du lot de contraintes annotées : en effet, ce n'est pas parce que l'annotation de contraintes est en désaccord avec le précédent partitionnement des données que les correctifs associés auront un impact significatif sur le prochain partitionnement.
-		Ainsi, nous voulons analyser l'évolution de la différence entre deux \textit{clusterings} successifs : en effet, si une itération apporte des correctifs ayant un impact, alors il devrait y avoir des différences visibles entre les deux itérations de \textit{clustering}.
+		Ainsi, nous voulons analyser l'évolution de la différence entre deux \textit{clustering} successifs : en effet, si une itération apporte des correctifs ayant un impact, alors il devrait y avoir des différences visibles entre les deux itérations de \textit{clustering}.
 	
 		%%% Protocole expérimental.
 		\subsubsection{Protocole expérimental}
@@ -297,13 +297,13 @@
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{rentabilité}: calculer la différence entre les deux précédents \textit{clusterings} \;
+						\textbf{rentabilité}: calculer la différence entre les deux précédents \textit{clustering} \;
 					}
 				}
 				\textbf{analyse 1}: afficher l'évolution de la différence entre deux \textit{clustering} consécutifs \;
 				\textbf{analyse 2}: calculer la corrélation entre le score de différence et le score de performance \;
 				%
-				\KwResult{discussion sur la rentabilité d'après la différence entre \textit{clusterings}}
+				\KwResult{discussion sur la rentabilité d'après la différence entre \textit{clustering}}
 				%
 				\caption{\textit{
 					Description en pseudo-code du protocole expérimental de l'étude de l'évolution de la différence entre deux \textit{clustering} consécutifs.
@@ -334,7 +334,7 @@
 		\subsubsection{Résultats obtenus}
 			
 			% Figure : décroissance générale.
-			La \textsc{Figure~\ref{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}} représente l'évolution moyenne du score de différence entre deux \textit{clusterings} pour les quatre paramétrages mis en avant lors de nos études.
+			La \textsc{Figure~\ref{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}} représente l'évolution moyenne du score de différence entre deux \textit{clustering} pour les quatre paramétrages mis en avant lors de nos études.
 			Nous pouvons constater une tendance générale à la décroissance vers $0$\% de ce score de différence : pour le paramétrage favori, la différence moyenne entre deux \textit{clustering} est initialement comprise entre $25$\% et $35$\% jusqu'à l'itération $10$, elle chute ensuite pour être inférieure à $5$\% après l'itération $20$, et elle termine enfin en oscillant très légèrement ($\pm1$\%) autour de $0$\% jusqu'à la fin des annotations.
 			\begin{figure}[!htb]
 				\centering
@@ -410,7 +410,7 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score de différence entre deux \textit{clusterings} consécutifs.
+					Score de corrélation \texttt{r} de \textit{Pearson} entre la performance du \textit{clustering} obtenu à l'aide d'une vérité terrain (\texttt{v-measure}) et le score de différence entre deux \textit{clustering} consécutifs.
 				}
 				\label{table:4.5.2-ETUDE-RENTABILITE-CORRELATION-SIMILARITE-PERFORMANCE}
 			\end{table}
@@ -421,19 +421,19 @@
 		%%% Discussion
 		\subsubsection{Discussion}
 		
-			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'évolution de la différence entre deux \textit{clusterings}.
+			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'évolution de la différence entre deux \textit{clustering}.
 			Dans cette étude, nous avons analysé l'évolution du score de différence entre deux itérations de \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain pré-établie.
 			
 			% Avantage 1 : Caractérise la rentabilité.
 			Tout d'abord, nous pouvons affirmer qu'il y une forte corrélation entre l'évolution de ce score de différence et l'évolution du score de performance (voir \textsc{Table~\ref{table:4.5.2-ETUDE-RENTABILITE-CORRELATION-SIMILARITE-PERFORMANCE}} : \texttt{r} moyen de $0.75$ ; \texttt{r} supérieur à $0.85$ pour les paramétrages mis en avant).
-			Cette corrélation est confirmée visuellement grâce à la \textsc{Figure~\ref{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}} : plus les différences entre \textit{clusterings} sont faibles, plus les performances des \textit{clusterings} sont fortes.
+			Cette corrélation est confirmée visuellement grâce à la \textsc{Figure~\ref{figure:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}} : plus les différences entre \textit{clustering} sont faibles, plus les performances des \textit{clustering} sont fortes.
 			
 			% Attention : Peut ne caractériser qu'un gros changement sans pour autant une amélioration.
 			Un point d'attention est toutefois à retenir : une modification du partitionnement des données n'entraîne pas forcément un gain de performance (voir \textbf{(3)} entre les itérations $0$ et $10$ et \textbf{(4)} entre les itérations $0$ et $8$).
 			Nous ne pouvons donc pas conclure que l'analyse de la différence entre eux itération de \textit{clustering} permet de caractériser totalement la rentabilité d'une itération.
 			
 			% Avantage 2 : Permet de définir un cas d'arrêts.
-			Cependant, nous pouvons tout de même nous servir de ce score pour définir un cas d'arrêt pour notre méthodologie d'annotation lorsque la différence entre deux \textit{clusterings} est faible.
+			Cependant, nous pouvons tout de même nous servir de ce score pour définir un cas d'arrêt pour notre méthodologie d'annotation lorsque la différence entre deux \textit{clustering} est faible.
 			Pour cela, il nous suffit de fixer un seuil bas du score de différence en dessous duquel il n'est plus rentable de faire de nouvelles itérations de la méthode car les performances devraient être suffisantes.
 			Une analyse manuelle ou semi-manuelle (voir hypothèse de pertinence en \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) reste nécessaire pour confirmer la valeur métier du résultat obtenu.
 			
@@ -456,8 +456,8 @@
 			Au cours de cette étude de rentabilité, nous avons pu voir que :
 			\begin{itemize}
 				\item[\itemko] l'analyse du score d'accord entre l'annotation courante et le \textit{clustering} précédent ne permet pas d'estimer la rentabilité d'une itération, ni de définir un cas d'arrêt de notre méthodologie d'annotation (cf. \textsc{Section~\ref{section:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING}}) ;
-				\item[\itemok] l'analyse des différences entre deux itérations de \textit{clusterings} est une approche prometteuse pour estimer la rentabilité d'une itération, bien qu'une modification significative entre deux résultats de \textit{clustering} n'implique pas forcément un gain de performance (les deux \textit{clustering} peuvent avoir une \texttt{v-measure} équivalente avec la vérité terrain) ;
-				\item[\itemok] l'usage de différences entre deux itérations de \textit{clusterings} permet de définir un cas d'arrêt de de notre méthodologie d'annotation : si les différences sont faibles (par exemple : inférieures à $5$\%), alors les performances stagnent ou plafonnent, donc il peut être intéressant d'interrompre le \texttt{Clustering Interactif} après avoir vérifier la manuellement pertinence des résultats obtenus (cf. (cf. \textsc{Section~\ref{section:4.5.2-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING}}) et \textsc{Section~\ref{section:4.4.4-ETUDE-PERTINENCE-MISE-EN-COMMUN}}).
+				\item[\itemok] l'analyse des différences entre deux itérations de \textit{clustering} est une approche prometteuse pour estimer la rentabilité d'une itération, bien qu'une modification significative entre deux résultats de \textit{clustering} n'implique pas forcément un gain de performance (les deux \textit{clustering} peuvent avoir une \texttt{v-measure} équivalente avec la vérité terrain) ;
+				\item[\itemok] l'usage de différences entre deux itérations de \textit{clustering} permet de définir un cas d'arrêt de de notre méthodologie d'annotation : si les différences sont faibles (\textit{par exemple : inférieures à $5$\%}), alors les performances stagnent ou plafonnent, donc il peut être intéressant d'interrompre le \texttt{Clustering Interactif} après avoir vérifier la manuellement pertinence des résultats obtenus (cf. \textsc{Section~\ref{section:4.4.4-ETUDE-PERTINENCE-MISE-EN-COMMUN}}).
 			\end{itemize}
 		\end{leftBarSummary}
 		

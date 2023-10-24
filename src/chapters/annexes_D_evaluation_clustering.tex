@@ -29,8 +29,8 @@
 			\item $\mathcal{D}$ représente l'ensemble des données $d$ à segmenter ;
 			% Classes.
 			\item $\mathcal{C}$ représente l'ensemble des classes $c$ de la vérité terrain (\textit{référence à atteindre}) ;
-			% Clusters.
-			\item $\mathcal{K}$ représente l'ensemble des \textit{clusters} $k$ de la segmentation (\textit{clustering proposé par la machine à une itération donnée}).
+			% \textit{Cluster}.
+			\item $\mathcal{K}$ représente l'ensemble des \textit{cluster} $k$ de la segmentation (\textit{clustering proposé par la machine à une itération donnée}).
 		\end{itemize}
 		
 		
@@ -203,7 +203,7 @@
 			\caption{
 				Présentation du jeu d'exemple :
 				\textbf{(1)} représente $10$ données non regroupées ;
-				\textbf{(2)} représente ces $10$ données regroupées en $3$ \textit{clusters} en fonction de formes : \texttt{carrés}, \texttt{ronds}e t \texttt{triangles}.
+				\textbf{(2)} représente ces $10$ données regroupées en $3$ \textit{cluster} en fonction de formes : \texttt{carrés}, \texttt{ronds}e t \texttt{triangles}.
 			}
 			\label{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-0-PRESENTATION}
 		\end{figure}
@@ -225,7 +225,7 @@
 			\caption{
 				Exemples de \texttt{clustering} avec des cas extrêmes :
 				\textbf{(1)} représente un regroupement en un unique \textit{cluster} contenant toutes les données ;
-				\textbf{(2)} représente un regroupement en $10$ \textit{clusters} où chaque \textit{cluster} contient une seule donnée.
+				\textbf{(2)} représente un regroupement en $10$ \textit{cluster} où chaque \textit{cluster} contient une seule donnée.
 			}
 			\label{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-1-CAS-EXTREME}
 		\end{figure}
@@ -254,8 +254,8 @@
 			\includegraphics[width=0.95\textwidth]{figures/annexe-vmeasure-cas-simples}
 			\caption{
 				Exemples de \texttt{clustering} avec des cas simples :
-				\textbf{(1)} représente un regroupement en $4$ \textit{clusters} où les \texttt{ronds} et les \texttt{triangles} sont correctement regroupés, mais où les \texttt{carrés} sont séparés.
-				\textbf{(2)} représente un regroupement en $2$ \textit{clusters} où les \texttt{carrés} sont correctement regroupés, mais où les \texttt{ronds} et les \texttt{triangles} ont été rassemblés.
+				\textbf{(1)} représente un regroupement en $4$ \textit{cluster} où les \texttt{ronds} et les \texttt{triangles} sont correctement regroupés, mais où les \texttt{carrés} sont séparés.
+				\textbf{(2)} représente un regroupement en $2$ \textit{cluster} où les \texttt{carrés} sont correctement regroupés, mais où les \texttt{ronds} et les \texttt{triangles} ont été rassemblés.
 			}
 			\label{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-2-CAS-SIMPLES}
 		\end{figure}
@@ -266,8 +266,8 @@
 			\item \textbf{(1)} représente une segmentation presque parfaite où les \texttt{carrés} sont séparés :
 			\begin{itemize}
 				\item ce \textit{clustering} est \textbf{homogène} ($homogeneity=1.00$) : il n'y a que des \texttt{carrés} dans le \textit{cluster} \textbf{\textcolor{colorSilverLakeBlue}{bleu}}, il n'y a que des \texttt{carrés} dans le \textit{cluster} \textbf{\textcolor{colorDarkPastelPurple}{violet}}, il n'y a que des \texttt{carrés} dans le \textit{cluster} \textbf{\textcolor{colorMinionYellow}{jaune}} et il n'y a que des \texttt{carrés} dans le \textit{cluster} \textbf{\textcolor{colorCarrotOrange}{orange}} ;
-				\item ce \textit{clustering} n'est \textbf{pas assez complet} ($completeness=0.78$) : tous les \texttt{ronds} sont dans le \textit{cluster} \textbf{\textcolor{colorMinionYellow}{jaune}} et tous les \texttt{triangles} sont dans le \textit{cluster} \textbf{\textcolor{colorCarrotOrange}{orange}}, mais les \texttt{carrés} sont séparés dans les \textit{clusters} \textbf{\textcolor{colorSilverLakeBlue}{bleu}} et \textbf{\textcolor{colorDarkPastelPurple}{violet}} ;
-				\item le score de \texttt{v-measure} final n'est de $0.89$, pénalisé par le manque de complétude des \textit{clusters} \textbf{\textcolor{colorSilverLakeBlue}{bleu}} et \textbf{\textcolor{colorDarkPastelPurple}{violet}}.
+				\item ce \textit{clustering} n'est \textbf{pas assez complet} ($completeness=0.78$) : tous les \texttt{ronds} sont dans le \textit{cluster} \textbf{\textcolor{colorMinionYellow}{jaune}} et tous les \texttt{triangles} sont dans le \textit{cluster} \textbf{\textcolor{colorCarrotOrange}{orange}}, mais les \texttt{carrés} sont séparés dans les \textit{cluster} \textbf{\textcolor{colorSilverLakeBlue}{bleu}} et \textbf{\textcolor{colorDarkPastelPurple}{violet}} ;
+				\item le score de \texttt{v-measure} final n'est de $0.89$, pénalisé par le manque de complétude des \textit{cluster} \textbf{\textcolor{colorSilverLakeBlue}{bleu}} et \textbf{\textcolor{colorDarkPastelPurple}{violet}}.
 			\end{itemize}
 			\item \textbf{(2)} représente une segmentation presque parfaite où les \texttt{ronds} et les \texttt{triangles} ont été rassemblés :
 			\begin{itemize}

@@ -21,7 +21,7 @@
 	Dans cette annexe, nous allons :
 	\begin{itemize}
 		\item présenter rapidement les assistants conversationnels et leurs principales utilisations (voir \textsc{Section~\ref{annex:B.1-ANNEXE-CHATBOTS-PRESENTATION}}) ;
-		\item décrire les approches principales permettent de concevoir un assistant conversationnel, avec leurs avantages et leurs inconvénients (voir \textsc{Section~\ref{annex:B.2-ANNEXE-CHATBOTS-APPROCHES}}) ;
+		\item décrire les approches principales permettant de concevoir un assistant conversationnel, avec leurs avantages et leurs inconvénients (voir \textsc{Section~\ref{annex:B.2-ANNEXE-CHATBOTS-APPROCHES}}) ;
 		\item discuter du dilemme des choix de conception (voir \textsc{Section~\ref{annex:B.3-ANNEXE-CHATBOTS-DILEMME}}).
 	\end{itemize}
 	
@@ -39,11 +39,11 @@
 		%%% Fonctionnalités.
 		Les \textit{chatbots} sont des robots conversationnels permettant à un utilisateur d'obtenir des informations ou d'automatiser des actions à l'aide d'instructions en langage naturel.
 		\begin{itemize}
-			\item[\faThumbsUp] L'utilisation de tels assistants comporte \textbf{plusieurs avantages} :
-			ces derniers permettent de réduire les coûts en automatisant certaines tâches simples et répétitives (\textit{permettant aux ainsi aux humaines de se concentrer sur d'autres tâches à risques ou à forte valeur ajoutée}),
+			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}] L'utilisation de tels assistants comporte \textbf{plusieurs avantages} :
+			ces derniers permettent de réduire les coûts en automatisant certaines tâches simples et répétitives (\textit{permettant ainsi aux humains de se concentrer sur d'autres tâches à risques ou à forte valeur ajoutée}),
 			ils sont réactifs et toujours accessibles (\textit{au milieu de la nuit, les jours fériés, et même le vendredi après 16h}),
 			et ils ont un comportement stable quelle que soit la situation (\textit{pas de sauts d'humeur, de coups de fatigue ou d'erreurs d'inattention}).
-			\item[\faThumbsDown] Néanmoins, ces assistants rencontrent aussi \textbf{plusieurs inconvénients} :
+			\item[\textcolor{colorDarkPastelRed}{\textcolor{colorDarkPastelRed}{\faThumbsDown}}] Néanmoins, ces assistants rencontrent aussi \textbf{plusieurs inconvénients} :
 			leur compréhension limitée du langage peut introduire des erreurs (\textit{notamment lorsque le sujet est complexe, quand il y a trop ou trop peu de contexte}),
 			ils manquent parfois de flexibilité ou d'empathie (\textit{nécessitant alors d'escalader la requête vers un opérateur humain}),
 			et les tâches de conception ou de mises sous contrôle nécessitent des coûts importants (\textit{collecte et annotation de données, création de parcours de dialogue, vérification du comportement et des dérives, ...}).
@@ -147,7 +147,7 @@
 			% Avantages et inconvénients.
 			Cette approche est rudimentaire mais efficace, et elle est par conséquent fréquemment utilisée pour concevoir des assistants conversationnels dans un cadre industriel.
 			\begin{itemize}
-				\item[\faThumbsUp] Au sujet des avantages :
+				\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}] Au sujet des avantages :
 					% Implémentation facile.
 					les différents composants de l'architecture sont simples à implémenter et à maintenir
 					(\textit{ces différentes briques sont indépendantes et ont des fonctionnalités bien précises}) ;
@@ -159,7 +159,7 @@
 					(\textit{il suffit de restreindre les actions possibles dans le \texttt{DST}, de figer le choix de la \texttt{PL}, ou encore de déterminer à l'avance chaque réponse de la \texttt{NLG}}) ;
 					% Infrastructure légère.
 					cette architecture simple consomme peu de ressources en production (\textit{les modèles de détections et la gestion du dialogue peuvent tourner sur \texttt{CPU}}).
-				\item[\faThumbsDown] Au sujet des inconvénients :
+				\item[\textcolor{colorDarkPastelRed}{\textcolor{colorDarkPastelRed}{\faThumbsDown}}] Au sujet des inconvénients :
 					% Couts initiaux.
 					les coûts initiaux peuvent être importants (\textit{notamment en ce qui concerne la collecte et la modélisation des données d'apprentissage, ou encore la définition des parcours de dialogue pour des tâches non documentées}) ;
 					% Modélisation sensible aux erreurs.
@@ -229,7 +229,7 @@
 			% Avantages et inconvénients.
 			Cette approche est plus difficile à mettre en place qu'une approche symbolique, mais elle dispose d'un plus grand potentiel.
 			\begin{itemize}
-				\item[\faThumbsUp] Au sujet des avantages :
+				\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}] Au sujet des avantages :
 					% Grande flexibilité.
 					par conception, le système peut s'adapter à de nombreuses situations et offrir une expérience agréable à l'utilisateur
 					(\textit{aucun blocage de l'état du dialogue, possibilité de personnaliser le dialogue, gestion plus simple de l'ambiguïté et des émotions, ...}) ;
@@ -239,10 +239,10 @@
 					% Autres propriétés
 					en utilisant des larges modèles de langage, des propriétés intéressantes peuvent apparaître
 					(\textit{capable de consulter un très large champ de connaissances, de résumer et traduire un texte, de résoudre un calcul, d'effectuer une tâche d'analyse ou de déduction, de générer un code informatique, ...}).
-				\item[\faThumbsDown] Au sujet des inconvénients :
+				\item[\textcolor{colorDarkPastelRed}{\textcolor{colorDarkPastelRed}{\faThumbsDown}}] Au sujet des inconvénients :
 					% Coûts techniques imports.
 					les coûts d'entraînement et d'inférence du modèle sont conséquents
-					(\textit{besoin d'une quantité démesurée de données pour l'apprentissage, besoin de \texttt{GPU} et d'une infrastructure technique musclée, ...}) ;
+					(\textit{besoin d'une immense quantité de données pour l'apprentissage, besoin de \texttt{GPU} et d'une infrastructure technique conséquente, ...}) ;
 					% Réponses erronées.
 					le décodeur peut générer des contenus inexactes, erronés ou offensant
 					(\textit{imprécisions, fausses informations, hallucinations, réponse biaisée ou discriminatoire, ...}) ;
@@ -306,7 +306,7 @@
 				\item l'analyse de l'information et la prise de décision correspondent aux \textcolor{colorDarkPastelGreen}{\textbf{\texttt{DST}}}/\textcolor{colorDarkPastelGreen}{\textbf{\texttt{PL}}} ou à la manipulation du \textcolor{colorDarkPastelGreen}{\textbf{\texttt{vecteur de contexte}}} ;
 				\item l'implémentation de l'action correspond à la \textcolor{colorSilverLakeBlue}{\textbf{\texttt{NLG}}} ou au \textcolor{colorSilverLakeBlue}{\textbf{\texttt{décodeur}}}.
 			\end{itemize}
-			De fait, les choix de conception de l'assistant reviennent à définir quels composants doivent être rigides (\textit{gestion de règles}), malléable (\textit{apprentissage supervisé}) ou totalement délégués à la machine (\textit{modèles de langage}).
+			De ce fait, les choix de conception de l'assistant reviennent à définir quels composants doivent être rigides (\textit{gestion de règles}), entraînés (\textit{apprentissage supervisé, ...}) ou totalement délégués à la machine (\textit{modèles de langage, ...}).
 		\end{leftBarAuthorOpinion}
 		
 		%%% Approches hybrides.
@@ -319,7 +319,7 @@
 			
 		% Exemples.
 		\begin{leftBarExamples}
-			Nous dressons une liste nous exhaustives d'approches hybrides :
+			Nous dressons une liste non exhaustives d'approches hybrides :
 			\begin{itemize}
 				\item la compréhension du langage naturel à l'aide de détection de concepts (\texttt{NLU}) peut être améliorée en utilisant les capacités d'un large modèle de langage (voir \texttt{RASA v3.6+} par \cite{bocklisch-etal:2017:rasa-open-source}) ou en réutilisant les représentations vectorielles produites par l'encodeur (\textit{embeddings}) ;
 				\item le moteur de dialogue d'une approche \textit{task-oriented} (\texttt{DST} et \texttt{PL}) peut être entraîné par renforcement dans le but d'améliorer la prise de décision et de rendre les étapes de dialogue plus flexibles (voir \cite{chen-etal:2017:survey-dialogue-systems} et \cite{brabra-etal:2022:dialogue-management-conversational}) ;

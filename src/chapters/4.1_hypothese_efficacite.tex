@@ -123,20 +123,20 @@
 				% \textit{clustering}.
 				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants :
 				\textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}).
-				Le choix du nombre de \textit{clusters} n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
+				Le choix du nombre de \textit{cluster} n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
 				% \textit{sampling}.
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants :
-				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même cluster et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de clusters différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
+				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même \textit{cluster} et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de \textit{cluster} différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
 				Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$ \footnote{
 					Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données.
 					Ce choix sera discuté en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).
 				}.
 			\end{enumerate}
 			
-			% Problème nombre de clusters...
+			% Problème nombre de \textit{cluster}...
 			\begin{leftBarAuthorOpinion}
-				Il est difficile de discuter de l'influence du paramétrage du nombre de \textit{clusters} :
-				en effet, dans notre étude, nous désirons évaluer la capacité de notre méthode à atteindre une vérité terrain théorique ; or chercher un nombre de \textit{clusters} différent du nombre de classes reviendrait à remettre en cause la vérité terrain que nous essayons d'atteindre, nous empêchant donc d'évaluer la capacité de notre méthode...
+				Il est difficile de discuter de l'influence du paramétrage du nombre de \textit{cluster} :
+				en effet, dans notre étude, nous désirons évaluer la capacité de notre méthode à atteindre une vérité terrain théorique ; or chercher un nombre de \textit{cluster} différent du nombre de classes reviendrait à remettre en cause la vérité terrain que nous essayons d'atteindre, nous empêchant donc d'évaluer la capacité de notre méthode...
 				Devant ce cercle vicieux, nous laissons l'étude de ce problème ouvert à de futures études.
 			\end{leftBarAuthorOpinion}
 			
@@ -263,7 +263,7 @@
 			
 			% Avantage 2 : Annotations plus simples et plus concrètes
 			D'autre part, ces contraintes ont fait l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
-			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les clusters en cours de construction, améliorant ainsi la cohérence des clusters (cf. pentes croissantes) ; soit en remaniant les clusters mal formés pour repartir sur de bonnes bases, détériorant la cohérence des clusters le temps de la réorganisation (cf. oscillations ou pentes décroissantes).
+			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les \textit{cluster} en cours de construction, améliorant ainsi la cohérence des \textit{cluster} (cf. pentes croissantes) ; soit en remaniant les \textit{cluster} mal formés pour repartir sur de bonnes bases, détériorant la cohérence des \textit{cluster} le temps de la réorganisation (cf. oscillations ou pentes décroissantes).
 			Une telle assistance limite ainsi le nombre de contraintes non utiles au \textit{clustering}, même si certains paramétrages semblent plus efficaces que d'autres (voir la forte dispersion des résultats).
 			
 			% Avantage 3 : Pas besoins d'une exhaustivité de contraintes.
