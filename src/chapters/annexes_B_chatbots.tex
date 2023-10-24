@@ -221,7 +221,7 @@
 					ce second réseau a pour objectif de traiter la représentation numérique produite par l'encodeur dans le but de générer des séquences de mots pour former la réponse ;
 				% Contexte.
 				\item entre les deux, un \textcolor{colorDarkPastelGreen}{\textbf{\texttt{vecteur de contexte}}} :
-					ce vecteur permet de maintenir la continuité de la co,versation entre deux échanges.
+					ce vecteur permet de maintenir la continuité de la conversation entre deux échanges.
 					L'encodeur se charge de mettre à jour le contexte tandis que le décodeur l'utilise pour adapter la génération de son texte.
 			\end{itemize}
 			
@@ -238,21 +238,26 @@
 					(\textit{cette interprétation est déduite de l'immense volume de textes utilisés à l’entraînement}) ;
 					% Autres propriétés
 					en utilisant des larges modèles de langage, des propriétés intéressantes peuvent apparaître
-					(\textit{résumer ou traduire un texte, résoudre un calcul ou réaliser une déduction, large champ de connaissances, ...}).
+					(\textit{capable de consulter un très large champ de connaissances, de résumer et traduire un texte, de résoudre un calcul, d'effectuer une tâche d'analyse ou de déduction, de générer un code informatique, ...}).
 				\item[\faThumbsDown] Au sujet des inconvénients :
 					% Coûts techniques imports.
 					les coûts d'entraînement et d'inférence du modèle sont conséquents
-					(\textit{besoin d'une quantité démesurée pour l'apprentissage, besoin de \texttt{GPU} et d'une infrastructure technique musclée, ...}) ;
-					% Mise sous contrôle
+					(\textit{besoin d'une quantité démesurée de données pour l'apprentissage, besoin de \texttt{GPU} et d'une infrastructure technique musclée, ...}) ;
+					% Réponses erronées.
+					le décodeur peut générer des contenus inexactes, erronés ou offensant
+					(\textit{imprécisions, fausses informations, hallucinations, réponse biaisée ou discriminatoire, ...}) ;
+					la reproduction des données utilisées pour l'entraînement questionne le respect des droits d'auteur et expose potentiellement des données privées ou confidentielles
+					(\textit{capacités à reproduire des passages entiers de livres, à trouver des numéros de cartes bancaires ou des clés d'activation de logiciel issus de fuites de bases de données, ...}) ;
+					% Mise sous contrôle.
 					la mise sous contrôle de l'assistant est difficile voire impossible
-					(\textit{difficulté à évaluer les performances du modèle, possibilités d'hallucinations ou de générations offensantes, ...}).
+					(\textit{manque de visibilité et d'explicabilité concernant le comportement du modèle, peu de leviers d'action direct, recours à une annotation de masse par ressenti utilisateur, ...}).
 			\end{itemize}
 			
 			% Exemples.
 			\begin{leftBarExamples}
 				Nous pouvons citer les projets ou outils suivants :
 				\begin{itemize}
-					\item \texttt{ChatGPT} (\cite{openai:2023:chatgpt}), \texttt{BARD} (\cite{google:2023:bard-chat-based}) et \texttt{LLAMA2} (\cite{touvron-etal:2023:llama-open-foundation}), trois solutions basées sur des larges modèles de langage permettant de discuter de presque tous les domaines ;
+					\item \texttt{ChatGPT} (\cite{openai:2023:chatgpt}), \texttt{BARD} (\cite{google:2023:bard-chat-based}) et \texttt{LLAMA2} (\cite{touvron-etal:2023:llama-open-foundation}) sont trois solutions basées sur des larges modèles de langage permettant de discuter de presque tous les domaines ainsi que de réaliser de très nombreuses tâches ;
 					\item \cite{kaddour-etal:2023:challenges-applications-large} détaillent une longue liste d'inconvénients et de défis pour l'utilisation de larges modèles de langage.
 				\end{itemize}
 			\end{leftBarExamples}
@@ -261,66 +266,64 @@
 	%%%%%--------------------------------------------------------------------
 	%%%%% Annexe B.3: Dilemme de conception et approches hybrides.
 	%%%%%--------------------------------------------------------------------
+	\newpage
 	\section{Dilemme de conception et approches hybrides}
 	\label{annex:B.3-ANNEXE-CHATBOTS-DILEMME}
 		
 		%%% Introduction: Description du dilemme.
-		Dans la section précédente, nous avons pu voir que deux approches de conception se distingue :
+		Dans la section précédente, nous avons pu voir que deux approches de conception se distinguent :
 		d'une part, il y a l'approche \textit{task-oriented}, basée sur une gestion symbolique du dialogue et permettant facilement de contrôler le comportement de l'assistant ;
 		d'autre part, il y a l'approche \textit{chat-oriented}, basée sur un encodage/décodage numérique de la conversation et permettant une grande flexibilité dans les échanges avec l'utilisateur.
 		Cependant, chaque approche possède les inconvénients de l'autre approche :
 		en effet, l'approche \textit{task-oriented} est plutôt rigide, tandis que l'approche \textit{chat-oriented} est sensible aux dérives de comportement et aux risques d'hallucinations.
-		Nous nous trouvons donc face à un dilemme de conception : \textbf{voulons-nous privilégier la fluidité du dialogue ou le contrôle du comportement ?}
+		Nous nous trouvons donc face à un dilemme de conception : \textbf{voulons-nous privilégier la fluidité du dialogue ou le contrôle du comportement de l'assistant ?}
 		
 		
-		%%% Questionnement sur le niveaux d'automatisation.
-		Ce choix cornélien questionne le \textbf{degré d'automatisation} que nous sommes prêts à accorder.
-		En effet :
-		\begin{itemize}
-			\item si nous voulons plus de fluidité dans la conversation (\textit{pour améliorer l'ergonomie utilisateur, pour permettre de discuter de sujets plus généraux, ...}), nous nous tournerons davantage vers une approche \textit{chat-oriented}, et nous acceptons en échange de déléguer la gestion du dialogue ainsi que la génération de réponse à la machine ;
-			\item à l'inverse, si nous avons besoin d'un contrôle plus fort (\textit{pour assurer la sécurisation des actions réaliser, pour garantir l'image de la marque, pour éviter les scandales, ...}), nous nous tournerons davantage vers une modélisation symbolique du dialogue, permettant de limiter les possibilités de divergence de la machine.
-		\end{itemize}
+		%%% Notes: Questionnement sur le niveaux d'automatisation.
+		Ce choix cornélien questionne le \textbf{niveau d'automatisation} que nous sommes prêts à déléguer à la machine.
 		
-		%%% Notes: complément sur le niveau d'automatisation.
 		\begin{leftBarAuthorOpinion}
 			% Dix niveaux d'automatisation.
-			Pour estimer un \textbf{degré d'automatisation}, nous nous référons à \cite{sheridan-verplank:1978:human-computer-control} qui les classent en \textbf{dix niveaux} :
-			\begin{enumerate}
-				\item (\textit{faible}) La machine n'offre aucune assistance, l'opérateur doit tout faire seul ;
-				\item La machine énumère exhaustivement les actions possibles, l'opérateur en choisit une et la réalise ;
-				\item La machine suggère quelques actions possibles, l'opérateur en choisit une et la réalise ;
-				\item La machine suggère une action à réaliser, l'opérateur peut la valider puis la réaliser ;
-				\item La machine suggère l'action et la réalise si l'opérateur la valide ;
-				\item La machine exécute automatiquement l'action au bout d'un certain temps si l'opérateur ne s'y oppose pas ;
-				\item La machine exécute automatiquement l'action, puis informe l'opérateur ;
-				\item La machine exécute automatiquement l'action, puis informe l'opérateur s'il l'a demandé ;
-				\item La machine exécute automatiquement l'action, puis informe l'opérateur si la machine le juge pertinent ;
-				\item (\textit{forte}) La machine exécute automatiquement l'action en ignorant l'opérateur.
-			\end{enumerate}
+			Pour estimer un \textbf{degré d'automatisation}, \cite{sheridan-verplank:1978:human-computer-control} identifient \textbf{dix niveaux} :
+			\begin{itemize}
+				\item de \textguillemets{la machine n'offre aucune assistance, l'opérateur doit choisir l'action à faire et la réaliser lui-même} (\textit{niveau 1 : automatisation nulle}) ;
+				\item à \textguillemets{la machine s'occupe de tout (analyse, choix et réalisation de l'action) sans consultation au préalable de l'opérateur ni information sur le déroulement de la tâche} (\textit{niveau 10 : automatisation totale}).
+			\end{itemize}
 			
 			% Quatre fonctions à automatisées.
-			De plus, \cite{parasuraman-etal:2000:model-types-levels} complètent l'estimation d'un degré d'automatisation en analysant \textbf{quatre aspects} :
+			En plus de cette proposition en dix niveaux d'automatisation, \cite{parasuraman-etal:2000:model-types-levels} proposent une analyse selon \textbf{quatre aspects} :
 			\begin{itemize}
-				\item l'acquisition de l'information (\textit{est-ce que la machine collecte et sélectionne les informations pertinentes à porter à l'attention de l'opérateur ?}) ;
-				\item l'analyse de l'information (\textit{est-ce que la machine examine les informations et propose les actions possibles à l'opérateur ?}) ;
-				\item la prise de décision (\textit{est-ce que la machine choisit l'action à réaliser à la place de l'opérateur ?}) ;
-				\item l'implémentation de l'action (\textit{est-ce que la machine réalise elle-même l'action ans aide de l'opérateur ?}).
+				\item l'acquisition de l'information (\textit{à quel point la machine collecte et sélectionne les informations pertinentes à porter à l'attention de l'opérateur ?}) ;
+				\item l'analyse de l'information (\textit{à quel point la machine participe à l'examen des informations dans le but de proposer les actions possibles à réaliser ?}) ;
+				\item la prise de décision (\textit{à quel point la machine choisit l'action à réaliser à la place de l'opérateur ?}) ;
+				\item l'implémentation de l'action (\textit{à quel point la machine réalise l'action et informe l'opérateur des résultats ?}).
 			\end{itemize}
-		\end{leftBarAuthorOpinion}
 			
-		% Retours aux chatbot.
-		Ainsi, pour résoudre ce dilemme de conception d'un \textit{chatbot}, \textbf{diverses approches hybrides peuvent être mises en oeuvre}.
+			%%% Aplicationa aux chatbots.
+			Nous pouvons d'ailleurs faire des parallèles avec l'architecture des assistants conversationnels :
+			\begin{itemize}
+				\item l'acquisition de l'information correspond au \textcolor{colorCarrotOrange}{\textbf{\texttt{NLU}}} ou à l'\textcolor{colorCarrotOrange}{\textbf{\texttt{encodeur}}} ;
+				\item l'analyse de l'information et la prise de décision correspondent aux \textcolor{colorDarkPastelGreen}{\textbf{\texttt{DST}}}/\textcolor{colorDarkPastelGreen}{\textbf{\texttt{PL}}} ou à la manipulation du \textcolor{colorDarkPastelGreen}{\textbf{\texttt{vecteur de contexte}}} ;
+				\item l'implémentation de l'action correspond à la \textcolor{colorSilverLakeBlue}{\textbf{\texttt{NLG}}} ou au \textcolor{colorSilverLakeBlue}{\textbf{\texttt{décodeur}}}.
+			\end{itemize}
+			De fait, les choix de conception de l'assistant reviennent à définir quels composants doivent être rigides (\textit{gestion de règles}), malléable (\textit{apprentissage supervisé}) ou totalement délégués à la machine (\textit{modèles de langage}).
+		\end{leftBarAuthorOpinion}
 		
-		\todo[inline]{A REDIGER: terminer les exemples...}
+		%%% Approches hybrides.
+		\newpage
+		Pour résoudre ce dilemme de conception, \textbf{diverses approches hybrides peuvent être mises en oeuvre} :
+		\begin{itemize}
+			\item si nous voulons \textbf{plus de fluidité} dans la conversation (\textit{pour améliorer l'ergonomie utilisateur, pour permettre de discuter de sujets plus généraux, ...}), nous intégrerons davantage de composants issus d'une approche \textit{chat-oriented}, acceptant en échange de \textbf{déléguer} la gestion du dialogue et/ou la génération de réponse à la machine ;
+			\item à l'inverse, si nous avons besoin d'un \textbf{contrôle plus fort} (\textit{pour assurer la sécurité des actions réaliser, pour garantir l'image de la marque, pour éviter les scandales, ...}), nous nous tournerons davantage vers l'utilisation de composants modélisant une approche symbolique du dialogue, permettant ainsi de \textbf{limiter la machine} dans ses possibilités.
+		\end{itemize}
 			
 		% Exemples.
 		\begin{leftBarExamples}
-			TODO ...
-			
+			Nous dressons une liste nous exhaustives d'approches hybrides :
 			\begin{itemize}
-				\item \textit{A REDIGER: approche à base de fouille de documents} (\cite{zhang-etal:2016:neural-information-retrieval})
-				\item \textit{A REDIGER: utiliser l'encodeur pour le NLU} (\texttt{RASA v3.6+} (\cite{bocklisch-etal:2017:rasa-open-source}))
-				\item \textit{A REDIGER: utiliser le décodeur pour la NLG} (\cite{gao-etal:2018:neural-approaches-conversational}, \cite{chen-etal:2017:survey-dialogue-systems})
-				\item \textit{A REDIGER: entraîner la gestion de dialogue} (\cite{chen-etal:2017:survey-dialogue-systems}, \cite{brabra-etal:2022:dialogue-management-conversational})
+				\item la compréhension du langage naturel à l'aide de détection de concepts (\texttt{NLU}) peut être améliorée en utilisant les capacités d'un large modèle de langage (voir \texttt{RASA v3.6+} par \cite{bocklisch-etal:2017:rasa-open-source}) ou en réutilisant les représentations vectorielles produites par l'encodeur (\textit{embeddings}) ;
+				\item le moteur de dialogue d'une approche \textit{task-oriented} (\texttt{DST} et \texttt{PL}) peut être entraîné par renforcement dans le but d'améliorer la prise de décision et de rendre les étapes de dialogue plus flexibles (voir \cite{chen-etal:2017:survey-dialogue-systems} et \cite{brabra-etal:2022:dialogue-management-conversational}) ;
+				\item le décodeur d'une approche \textit{chat-oriented} peut être utilisé pour la génération de réponse d'un assistant \textit{task-oriented} (\texttt{NLG}), permettant afin d'améliorer la qualité de ses réponses (voir \cite{gao-etal:2018:neural-approaches-conversational} et \cite{chen-etal:2017:survey-dialogue-systems}) ;
+				\item il est possible de se baser sur une tâche de recherche d'information dans une base documentaire pour limiter les hallucinations lors de la génération de réponse (voir \cite{shuster-etal:2021:retrieval-augmentation-reduces} et \cite{zhang-etal:2016:neural-information-retrieval}).
 			\end{itemize}
 		\end{leftBarExamples}
