@@ -202,7 +202,6 @@
 		%%%
 		%%% Subsection B.2.2: Approches \textit{chat-oriented}.
 		%%%
-		\newpage
 		\subsection{Approches \textit{chat-oriented}}
 		\label{annex:B.2.2-ANNEXE-CHATBOTS-APPROCHES-CHAT-ORIENTED}
 			
@@ -257,37 +256,72 @@
 					\item \cite{kaddour-etal:2023:challenges-applications-large} détaillent une longue liste d'inconvénients et de défis pour l'utilisation de larges modèles de langage.
 				\end{itemize}
 			\end{leftBarExamples}
-		
-		
-		%%%
-		%%% Subsection B.2.3: Approches hybrides.
-		%%%
-		\newpage
-		\subsection{Approches hybrides}
-		\label{annex:B.2.3-ANNEXE-CHATBOTS-APPROCHES-HYBRIDES}
-		
-			\todo[inline]{
-				A REDIGER: \textit{hybride}\\
-				LLM instruct \\
-				DST entraînée \\
-				NLG décodeur
-			}
-			
-			% Définitions.
-			Les \textbf{approches hybrides}
-			
-			% Exemples.
-			\begin{leftBarExamples}
-				TODO
-			\end{leftBarExamples}
 	
 	
 	%%%%%--------------------------------------------------------------------
-	%%%%% Annexe B.3: Dilemme de conception : entre flexibilité et contrôle.
+	%%%%% Annexe B.3: Dilemme de conception et approches hybrides.
 	%%%%%--------------------------------------------------------------------
 	\newpage
-	\section{Dilemme de conception : entre flexibilité et contrôle}
+	\section{Dilemme de conception et approches hybrides}
 	\label{annex:B.3-ANNEXE-CHATBOTS-DILEMME}
 		
-		\todo[inline]{A REDIGER: niveau d'automatisation}
-		% \cite{sheridan-verplank:1978:human-computer-control} repris par \cite{parasuraman-etal:2000:model-types-levels} \\ % 10 niveaux de contrôles
+		%%% Introduction: Description du dilemme.
+		Dans la section précédente, nous avons pu voir que deux approches de conception se distingue :
+		d'une part, il y a l'approche \textit{task-oriented}, basée sur une gestion symbolique du dialogue et permettant facilement de contrôler le comportement de l'assistant ;
+		d'autre part, il y a l'approche \textit{chat-oriented}, basée sur un encodage/décodage numérique de la conversation et permettant une grande flexibilité dans les échanges avec l'utilisateur.
+		Cependant, chaque approche possède les inconvénients de l'autre approche :
+		en effet, l'approche \textit{task-oriented} est plutôt rigide, tandis que l'approche \textit{chat-oriented} est sensible aux dérives de comportement et aux risques d'hallucinations.
+		Nous nous trouvons donc face à un dilemme de conception : \textbf{voulons-nous privilégier la fluidité du dialogue ou le contrôle du comportement ?}
+		
+		
+		%%% Questionnement sur le niveaux d'automatisation.
+		Ce choix cornélien questionne le \textbf{degré d'automatisation} que nous sommes prêts à accorder.
+		En effet :
+		\begin{itemize}
+			\item si nous voulons plus de fluidité dans la conversation (\textit{pour améliorer l'ergonomie utilisateur, pour permettre de discuter de sujets plus généraux, ...}), nous nous tournerons davantage vers une approche \textit{chat-oriented}, et nous acceptons en échange de déléguer la gestion du dialogue ainsi que la génération de réponse à la machine ;
+			\item à l'inverse, si nous avons besoin d'un contrôle plus fort (\textit{pour assurer la sécurisation des actions réaliser, pour garantir l'image de la marque, pour éviter les scandales, ...}), nous nous tournerons davantage vers une modélisation symbolique du dialogue, permettant de limiter les possibilités de divergence de la machine.
+		\end{itemize}
+		
+		%%% Notes: complément sur le niveau d'automatisation.
+		\begin{leftBarAuthorOpinion}
+			% Dix niveaux d'automatisation.
+			Pour estimer un \textbf{degré d'automatisation}, nous nous référons à \cite{sheridan-verplank:1978:human-computer-control} qui les classent en \textbf{dix niveaux} :
+			\begin{enumerate}
+				\item (\textit{faible}) La machine n'offre aucune assistance, l'opérateur doit tout faire seul ;
+				\item La machine énumère exhaustivement les actions possibles, l'opérateur en choisit une et la réalise ;
+				\item La machine suggère quelques actions possibles, l'opérateur en choisit une et la réalise ;
+				\item La machine suggère une action à réaliser, l'opérateur peut la valider puis la réaliser ;
+				\item La machine suggère l'action et la réalise si l'opérateur la valide ;
+				\item La machine exécute automatiquement l'action au bout d'un certain temps si l'opérateur ne s'y oppose pas ;
+				\item La machine exécute automatiquement l'action, puis informe l'opérateur ;
+				\item La machine exécute automatiquement l'action, puis informe l'opérateur s'il l'a demandé ;
+				\item La machine exécute automatiquement l'action, puis informe l'opérateur si la machine le juge pertinent ;
+				\item (\textit{forte}) La machine exécute automatiquement l'action en ignorant l'opérateur.
+			\end{enumerate}
+			
+			% Quatre fonctions à automatisées.
+			De plus, \cite{parasuraman-etal:2000:model-types-levels} complètent l'estimation d'un degré d'automatisation en analysant \textbf{quatre aspects} :
+			\begin{itemize}
+				\item l'acquisition de l'information (\textit{est-ce que la machine collecte et sélectionne les informations pertinentes à porter à l'attention de l'opérateur ?}) ;
+				\item l'analyse de l'information (\textit{est-ce que la machine examine les informations et propose les actions possibles à l'opérateur ?}) ;
+				\item la prise de décision (\textit{est-ce que la machine choisit l'action à réaliser à la place de l'opérateur ?}) ;
+				\item l'implémentation de l'action (\textit{est-ce que la machine réalise elle-même l'action ans aide de l'opérateur ?}).
+			\end{itemize}
+		\end{leftBarAuthorOpinion}
+			
+		% Retours aux chatbot.
+		Ainsi, pour résoudre ce dilemme de conception d'un \textit{chatbot}, \textbf{diverses approches hybrides peuvent être mises en oeuvre}.
+		
+		\todo[inline]{A REDIGER}
+		\begin{itemize}
+			\item \textit{A REDIGER: approche a base de fouille de document} (\cite{zhang-etal:2016:neural-information-retrieval})
+			\item \textit{A REDIGER: utiliser l'encodeur pour le NLU}
+			\item \textit{A REDIGER: utiliser le décodeur pour la NLG} (\cite{gao-etal:2018:neural-approaches-conversational}, \cite{chen-etal:2017:survey-dialogue-systems})
+			\item \textit{A REDIGER: entraîner la gestion de dialogue} (\cite{chen-etal:2017:survey-dialogue-systems}, \cite{brabra-etal:2022:dialogue-management-conversational})
+		\end{itemize}
+			
+		% Exemples.
+		\begin{leftBarExamples}
+			TODO ...
+			https://rasa.com/docs/rasa/next/llms/large-language-models v3.6+
+		\end{leftBarExamples}
