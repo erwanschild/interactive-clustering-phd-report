@@ -170,6 +170,13 @@
 }{
     \end{leftbar}
 }  % \begin{leftBarImportantRed} \lipsum[1] \end{leftBarImportantRed}
+\definecolor{colorLeftBarImportantGray}{HTML}{737373}  % Dim Gray (#737373)
+\newenvironment{leftBarImportantGray}{
+	\begin{leftbar}{colorLeftBarImportantGray}
+	\noindent
+}{
+    \end{leftbar}
+}  % \begin{leftBarImportantGray} \lipsum[1] \end{leftBarImportantGray}
 
 % Définition de l'encadré d'attention.
 \definecolor{colorLeftBarWarning}{HTML}{F39A27}  % Carrot Orange (#F39A27)
