@@ -25,13 +25,13 @@
 		}} \\
 		
 		% Figure.
-		La \textsc{Figure~\ref{figure:4.6-HYPOTHESE-ROBUSTESSE}} illustre cette hypothèse et l'espoir de estimer l'impact de différences d'annotations sur le nombre d'itérations de la méthode.
+		La \textsc{Figure~\ref{figure:4.6-HYPOTHESE-ROBUSTESSE}} illustre cette hypothèse et la perspective de estimer l'impact de différences d'annotations sur le nombre d'itérations de la méthode.
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-06-robustesse}
 			\caption{
-				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 6/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que les marges d'erreurs représentant l'impact de différences d'annotation sur le nombre d'itérations nécessaire à la méthode.
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 6/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimée en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que les marges d'erreurs représentant l'impact de différences d'annotation sur le nombre d'itérations nécessaire à la méthode.
 			}
 			\label{figure:4.6-HYPOTHESE-ROBUSTESSE}
 		\end{figure}
@@ -68,7 +68,7 @@
 			%\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-PROTOCOLE}}.
 
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
@@ -98,7 +98,7 @@
 			Nous nous intéressions ici à la tâche de classification d'un titre d'article en fonction de sa catégorie de publication.
 			Comme certains titres pouvaient porter à confusion (un titre d'article n'étant pas toujours explicite sur son contenu), deux réviseurs (\textit{une Data Scientist et moi-même}) furent chargés de choisir les données les plus explicites sur un échantillon d'un millier de données représentatives des catégories les plus communes.
 			L'échantillon résultant, noté \texttt{MLSUM FR Train Subset (v1.0.0-schild)}, est composé de $744$ titres d'articles rédigés en français et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
+			Pour plus de détails, consulter l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}}.
 		
 			% Détails de l'expérience : sélection des contraintes à annoter.
 			À partir de ces données, nous avions sélectionné un lot de $400$ contraintes à annoter.
@@ -381,7 +381,7 @@
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
@@ -422,7 +422,7 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
+			Pour plus de détails, consulter l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			
 			% Description des tentatives de la méthode avec simulation d'erreurs.
 			Sur ce jeu de données, nous exécutons une tentative complète\footnote{
@@ -565,7 +565,7 @@
 		\subsubsection{Protocole expérimental}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeux de données annotées (vérités terrains) de tailles différentes}
@@ -609,10 +609,10 @@
 			\begin{itemize}
 				\item le jeu de données \texttt{Bank Cards (v2.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 				Il est composé de $1~000$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}} ;
+				Pour plus de détails, consulter l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}} ;
 				\item le jeu de données \texttt{MLSUM FR Train Subset (v1.0.0-schild)} : ce dernier concerne les titres d'articles de journaux issus des catégories de publication les plus communes.
 				Il est composé de $744$  titres d'articles rédigés et répartis en $14$ classes (\textit{économie}, \textit{sport}, ...).
-				Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}} ;
+				Pour plus de détails, consulter l'\textsc{Annexe~\ref{annex:A.2-DATASET-MLSUM-SUBSET-SCHILD}} ;
 			\end{itemize}
 			
 			Pour utiliser facilement plusieurs jeux de données de tailles différentes tout en maîtrisant leur contenu, nous avons donc dupliqué aléatoirement des données issues de ces jeux de référence en y insérant des fautes de frappes.

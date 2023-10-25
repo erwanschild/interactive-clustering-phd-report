@@ -24,7 +24,7 @@
 		}} \\
 		
 		% Figure.
-		La \textsc{Figure~\ref{figure:4.2-HYPOTHESE-EFFICIENCE}} illustre cette hypothèse et l'espoir d'une convergence "optimale" d'une base d'apprentissage en cours de construction vers sa vérité terrain.
+		La \textsc{Figure~\ref{figure:4.2-HYPOTHESE-EFFICIENCE}} illustre cette hypothèse et la perspective d'une convergence "optimale" d'une base d'apprentissage en cours de construction vers sa vérité terrain.
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
@@ -67,7 +67,7 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental adapté, vous pouvez vous référer au pseudo-code décrit dans \textsc{Algorithme~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}}.
+			Pour résumer le protocole expérimental adapté, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
@@ -93,7 +93,7 @@
 				\KwResult{meilleures combinaisons d'algorithmes et de paramètres}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \texttt{Clustering Interactif} vers une vérité terrain pré-établie.
+					Description en pseudo-code du protocole expérimental de l'étude d'optimisation de la convergence du \texttt{Clustering Interactif} vers une vérité terrain préétablie.
 				}}
 				\label{algorithm:4.2.1-ETUDE-OPTIMISATION-PROTOCOLE}
 			\end{algorithm}
@@ -107,11 +107,11 @@
 			% Description de l'évaluation et Seuils d'évaluation.
 			Comme lors de l'étude sur la convergence de la méthode, nous nous intéressons à l'évolution de la \texttt{v-measure} entre la vérité terrain et notre segmentation des données obtenue, et nous affinons notre évaluation en portant attention aux trois seuils d'annotations suivants :
 			\begin{enumerate}
-				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale \footnote{
+				\item le cas d'une \textbf{annotation partielle}, correspondant au nombre d'itérations nécessaire à la méthode pour avoir $90$\% de \texttt{v-measure}, c'est-à-dire un état de semi-parcours vers une convergence totale \footnote{
 					Le seuil de $90$\% a été choisi au cours de l'étude de convergence (cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}, coude de la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
 				} ;
-				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaires à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
-				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaires à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier \footnote{
+				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaire à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
+				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaire à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier \footnote{
 					Une annotation est a priori inutilisable en pratique (demande trop de contraintes, cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}), nous l'étudions toutefois pour avoir un point de comparaison.
 				}.
 			\end{enumerate}
@@ -143,16 +143,16 @@
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-partielle}
 				\caption{
-					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération à laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain.
+					Répartition des tentatives en fonction de l'itération de la méthode pour laquelle elles atteignent le seuil d'une annotation partielle, c'est-à-dire l'itération pour laquelle elles parviennent à $90$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain.
 					L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
 				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-PARTIELLE}
 			\end{figure}
 			%
-			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de $90$\%}).
+			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaire pour atteindre une \textbf{annotation partielle} (\textit{atteindre une \texttt{v-measure} de $90$\%}).
 			Les analyses de variance mettent en relief l'effet significatif sur cette convergence des prétraitements (\texttt{eta-carré}: $0.320$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.388$, \texttt{p-valeur}: $< 10^{-3}$), du \textit{clustering} (\texttt{eta-carré}: $0.866$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.968$, \texttt{p-valeur}: $< 10^{-3}$).
 			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation partielle} repose sur les prétraitements \texttt{prep.simple}, la vectorisation \texttt{vect.tfidf}, le \textit{clustering} \texttt{clust.hier.avg}, et l'échantillonnage \texttt{samp.closest.diff}.
-			La moyenne du nombre d'itération requis pour ce paramétrage est de $19.00$ (écart-type: $0.79$), soit $950$ annotations (écart-type: $39.34$).
+			La moyenne du nombre d'itérations requises pour ce paramétrage est de $19.00$ (écart-type: $0.79$), soit $950$ annotations (écart-type: $39.34$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -330,7 +330,7 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					ANOVA du nombre d'itérations nécessaires pour l'obtention de $90$\% de v-mesure. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+					ANOVA du nombre d'itérations nécessaire pour l'obtention de $90$\% de v-mesure. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
 				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-PARTIELLE}
 			\end{table}
@@ -351,16 +351,16 @@
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-suffisante}
 				\caption{
-					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération à laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain.
+					Répartition des tentatives en fonction de l'itération de la méthode pour laquelle elles atteignent le seuil d'une annotation suffisante, c'est-à-dire l'itération pour laquelle elles parviennent à $100$\% de \texttt{v-measure} entre un résultat obtenu et la vérité terrain.
 					L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
 				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-SUFFISANTE}
 			\end{figure}
 			%
-			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation suffisante}.
+			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaire pour atteindre une \textbf{annotation suffisante}.
 			Les analyses de variance mettent en relief l'effet significatif sur cette convergence des prétraitements (\texttt{eta-carré}: $0.987$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.991$, \texttt{p-valeur}: $< 10^{-3}$), du \textit{clustering} (\texttt{eta-carré}: $0.997$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.998$, \texttt{p-valeur}: $< 10^{-3}$).
 			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation suffisante} repose sur les prétraitements \texttt{prep.lemma}, la vectorisation \texttt{vect.tfidf}, le \textit{clustering} \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.closest.diff}.
-			La moyenne du nombre d'itération requis pour ce paramétrage est de $34.60$ (écart-type: $7.44$), soit $1~730$ annotations (écart-type: $372.00$).
+			La moyenne du nombre d'itérations requises pour ce paramétrage est de $34.60$ (écart-type: $7.44$), soit $1~730$ annotations (écart-type: $372.00$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -538,7 +538,7 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					ANOVA du nombre d'itérations nécessaires pour l'obtention de $100$\% de v-mesure. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+					ANOVA du nombre d'itérations nécessaire pour l'obtention de $100$\% de v-mesure. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
 				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-SUFFISANTE}
 			\end{table}
@@ -558,15 +558,16 @@
 				\centering
 				\includegraphics[width=0.90\textwidth]{figures/etude-efficience-histogramme-annotation-exhaustive}
 				\caption{
-					Répartition des tentatives en fonction de l'itération de la méthode à laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération à laquelle toutes les contraintes possibles entre les données ont été annotées.
+					Répartition des tentatives en fonction de l'itération de la méthode pour laquelle elles atteignent le seuil d'une annotation exhaustive, c'est-à-dire l'itération pour laquelle toutes les contraintes possibles entre les données ont été annotées.
 					L'histogramme est réduit à $60$ pics pour simplifier l'affichage.
 				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-HISTOGRAMME-ANNOTATION-EXHAUSTIVE}
 			\end{figure}
 			%
-			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaires pour atteindre une \textbf{annotation exhaustive}.
+			La \textsc{Table~\ref{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE}} retranscrit l'influence de chacun des paramètres sur le nombre d'itérations nécessaire pour atteindre une \textbf{annotation exhaustive}.
 			Les analyses de variance mettent en relief l'effet significatif sur cette convergence du prétraitement (\texttt{eta-carré}: $0.909$, \texttt{p-valeur}: $< 10^{-3}$), de la vectorisation (\texttt{eta-carré}: $0.985$, \texttt{p-valeur}: $< 10^{-3}$), du \textit{clustering} (\texttt{eta-carré}: $0.999$, \texttt{p-valeur}: $< 10^{-3}$) et de l'échantillonnage (\texttt{eta-carré}: $0.997$, \texttt{p-valeur}: $< 10^{-3}$).
-			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation exhaustive} repose sur les prétraitements \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le \textit{clustering} \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.random.same}. La moyenne du nombre d'itération requis pour ce paramétrage est de $32.60$ (écart-type: $1.14$), soit $1~630$ annotations (écart-type: $57.00$).
+			L'analyse post-hoc de ces effets indique que le meilleur paramétrage moyen pour atteindre une \textbf{annotation exhaustive} repose sur les prétraitements \texttt{prep.lemma}, le vectorisation \texttt{vect.tfidf}, le \textit{clustering} \texttt{clust.kmeans.cop}, et l'échantillonnage \texttt{samp.random.same}.
+			La moyenne du nombre d'itérations requises pour ce paramétrage est de $32.60$ (écart-type: $1.14$), soit $1~630$ annotations (écart-type: $57.00$).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -744,21 +745,21 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					ANOVA du nombre d'itérations nécessaires pour annoter toutes les contraintes possibles. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
+					ANOVA du nombre d'itérations nécessaire pour annoter toutes les contraintes possibles. Les ($\textit{*}$) dénotent le niveau de significativité ($\alpha=0.05$). Pour les effets significatifs, les chiffres précisés entre parenthèses dans la colonne \texttt{Moyenne} indiquent le classement des niveaux selon les analyses post-hoc.
 				}
 				\label{table:4.2.1-ETUDE-OPTIMISATION-ANOVA-ANNOTATION-EXHAUSTIVE}
 			\end{table}
 		
 		
 			% Graphe d'évolution de la v-measure moyenne, min et max.
-			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-PAR-FACTEURS}} représente les évolutions moyennes de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itération de la méthode pour les différentes valeurs des facteurs analysés (prétraitements en haut à gauche, vectorisation en haut à droite, \textit{clustering} en bas à gauche, échantillonnage en bas à droite).
-			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}} représente cette même évolution pour les meilleurs paramétrages moyens destinés à atteindre les trois seuils d'annotation définis (partiel, suffisant, exhaustif), où nous y constatons une baisse significative du nombre d'itérations nécessaire à la convergence par rapport à la moyenne des tentatives.
+			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-PAR-FACTEURS}} représente les évolutions moyennes de la \texttt{v-measure} du \textit{clustering} en fonction du nombre d'itérations de la méthode pour les différentes valeurs des facteurs analysés (prétraitements en haut à gauche, vectorisation en haut à droite, \textit{clustering} en bas à gauche, échantillonnage en bas à droite).
+			La \textsc{Figure~\ref{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}} représente cette même évolution pour les meilleurs paramétrages moyens destinés à atteindre les trois seuils d'annotation définis (partiel, suffisant, exhaustif), où nous constatons une baisse significative du nombre d'itérations nécessaire à la convergence par rapport à la moyenne des tentatives.
 			%
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-evolution-moyenne-par-vmeasure-par-facteur}
-				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \texttt{Clustering Interactif} pour obtenir un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes valeurs que peuvent prendre les facteurs analysés et affichées par facteur : \textbf{(1)} prétraitements, \textbf{(2)} vectorisation, \textbf{(3)} \textit{clustering} et \textbf{(4)} échantillonnage. \\
-				Note : \textit{Le seuil d'annotation exhaustive (annoter toutes les contraintes possibles) n'étant pas exprimé en terme de \texttt{v-measure}, ce seuil n'est pas affiché ici.}}
+				\caption{Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \texttt{Clustering Interactif} pour obtenir un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes valeurs que peuvent prendre les facteurs analysés, affichées par facteur : \textbf{(1)} prétraitements, \textbf{(2)} vectorisation, \textbf{(3)} \textit{clustering} et \textbf{(4)} échantillonnage. \\
+				Note : \textit{Le seuil d'annotation exhaustive (annoter toutes les contraintes possibles) n'étant pas exprimé en terme de \texttt{v-measure} ; ce seuil n'est pas affiché ici.}}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-PAR-FACTEURS}
 			\end{figure}
 			%
@@ -766,7 +767,7 @@
 				\centering
 				\includegraphics[width=0.95\textwidth]{figures/etude-efficience-evolution-moyenne-5best-par-vmeasure}
 				\caption{
-					Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \texttt{Clustering Interactif} pour obtenir un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différentes seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).
+					Évolution des moyennes du nombre d'itérations nécessaire de la méthode de \texttt{Clustering Interactif} pour obtenir un seuil défini de \texttt{v-measure} entre un résultat obtenu et la vérité terrain, moyennes réalisées sur les différents seuils d'annotations étudiés : l'annotation partielle (\textit{atteindre une \texttt{v-measure} de $90$\%}), l'annotation suffisante (\textit{atteindre une \texttt{v-measure} de $100$\%}) et l'annotation exhaustive (\textit{annoter toutes les contraintes possibles}).
 				}
 				\label{figure:4.2.1-ETUDE-OPTIMISATION-EVOLUTION-MEILLEUR-PARAMETRAGE}
 			\end{figure}
@@ -775,17 +776,18 @@
 		\subsubsection{Discussion}
 
 			% Rappel de l'objectif : être efficient.
-			L'objectif de l'étude est de trouver une implémentation "efficiente" du \texttt{Clustering Interactif} permettant d'obtenir une base d'apprentissage correctement annotée en un minimum d'annotation.
-			Pour trouver si une telle implémentation existe et quels en sont les paramètres optimaux, nous avons analysé l'impact de différentes paramétrages sur les tâches principales de la méthode (\textbf{prétraitements}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) en nous basant sur des simulations d'annotation d'un jeu de données.
+			L'objectif de l'étude est de trouver une implémentation "efficiente" du \texttt{Clustering Interactif} permettant d'obtenir une base d'apprentissage correctement annotée en un minimum d'annotations.
+			Pour trouver si une telle implémentation existe et quels en sont les paramètres optimaux, nous avons analysé l'impact de différents paramétrages sur les tâches principales de la méthode (\textbf{prétraitements}, \textbf{vectorisation}, \textbf{clustering sous contraintes}, \textbf{échantillonnage}) en nous basant sur des simulations d'annotation d'un jeu de données.
 			\\
 			
 			% Première remarque : Choix d'un seuil à 90\% de v-measure.
-			Dans l'optique d'être efficient, nous excluons le désir d'annoter \textbf{exhaustivement} le jeu de données car la charge de travail estimée est trop importante.
+			Dans l'optique d'être efficient, nous excluons les tentatives d'annoter \textbf{exhaustivement} le jeu de données car la charge de travail estimée est trop importante.
 			(cf. discussion de la \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}} (hypothèse d'efficacité))
 			Nous préférons donc nous concentrer sur deux seuils d'annotation plus réalistes : celui d'une \textbf{annotation partielle} (atteindre $90$\% de \texttt{v-measure} avec la vérité terrain) et celui d'une \textbf{annotation suffisante} (atteindre $100$\% de \texttt{v-measure} avec la vérité terrain en un minimum de contraintes). 
 			
 			% Meilleur paramétrage.
-			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitements}, \textbf{vectorisation}, \textbf{\textit{clustering} sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}. Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
+			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitements}, \textbf{vectorisation}, \textbf{\textit{clustering} sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}.
+			Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaire à annoter :
 			\begin{enumerate}
 				% Annotation partielle.
 				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}).
@@ -799,13 +801,13 @@
 			%
 			\begin{leftBarAuthorOpinion}
 				% Prétraitements et Vectorisation.
-				Nous notons que les facteurs de prétraitements et de vectorisation sont significatifs possèdent toutefois de faibles valeurs de variance expliquée ($\eta^{2} < 0.40$).
+				Nous notons que les facteurs de prétraitements et de vectorisation sont significatifs mais ils possèdent toutefois de faibles valeurs de variance expliquée ($\eta^{2} < 0.40$).
 				
 				% Echantillonnage et \textit{Clustering}.
-				Les facteurs de \textit{clustering} et d'échantillonnage ont quand à eux des valeurs plus fortes ($\eta^{2} > 0.70$), dénotant ainsi un plus grand pouvoir explicatif de la variance des résultats.
-				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{cluster} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tord.
-				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, nous savons que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, ont sait qu'il faut séparer les deux données sans exprimer dans quels \textit{cluster} ils doivent aller}).
-				Ainsi, nous sommes d'avis que l'échantillonnage \texttt{sampl.closest.diff} est efficiente car elle permet d'introduire efficacement des contraintes dont l'utilité est immédiate pour corriger le \textit{clustering}.
+				Les facteurs de \textit{clustering} et d'échantillonnage ont quant à eux des valeurs plus fortes ($\eta^{2} > 0.70$), dénotant ainsi un plus grand pouvoir explicatif de la variance des résultats.
+				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{cluster} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tort.
+				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, nous savons que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, on sait qu'il faut séparer les deux données sans exprimer dans quels \textit{cluster} ils doivent aller}).
+				Ainsi, nous sommes d'avis que l'échantillonnage \texttt{sampl.closest.diff} est efficient car il permet d'introduire efficacement des contraintes dont l'utilité est immédiate pour corriger le \textit{clustering}.
 			\end{leftBarAuthorOpinion}
 
 			%%% Avantages.
@@ -817,7 +819,7 @@
 			
 			% Avantage 2: La méthode devient réaliste !
 			Cette estimation est plus raisonnable que celle réalisée en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}.
-			De plus, en considérant que les annotations sont binaires et demandent a priori une charge mental plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quel est l'étiquette de cette donnée ?}", cf. \cite{hart-staveland:1988:development-nasatlx-task}), nous pouvons espérer que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \texttt{Clustering Interactif} est comparable à celles des méthodes traditionnelles.
+			De plus, en considérant que les annotations sont binaires et demandent a priori une charge mentale plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quelle est l'étiquette de cette donnée ?}", cf. \cite{hart-staveland:1988:development-nasatlx-task}), nous pouvons espérer que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \texttt{Clustering Interactif} est comparable à celle des méthodes traditionnelles.
 			Nous confirmerons cette conclusion en étudiant le temps nécessaire à un opérateur pour annoter un lot de contraintes (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}).
 			\\
 			
@@ -825,22 +827,22 @@
 			Afin de compléter cette analyse d'efficience, quelques pistes sont encore à explorer.
 			
 			% Limite 1 : Coût temporel.
-			D'une part, une étude de coût est à réaliser pour trancher le choix de paramètre optimaux réalistes.
+			D'une part, une étude de coût est à réaliser pour trancher le choix de paramètres optimaux réalistes.
 			En effet, il est intéressant d'étudier le coût machine (temps CPU utilisé) et le coût humain (temps d'annotation) afin d'affiner les choix techniques et de compléter les arguments sur l'utilisation en situation réelle d'une méthodologie d'annotation basée sur le \texttt{Clustering Interactif}.
-			Cette étude sera l'occasion de rentrer en détail dans la comparaison de la charge demander à l'annotateur, tant sur la durée que sur la complexité de la tâche d'annotation.
+			Cette étude sera l'occasion de rentrer en détail dans la comparaison de la charge demandée à l'annotateur, tant sur la durée que sur la complexité de la tâche d'annotation.
 			Cet aspect sera traité dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse des coûts).
 			
 			% Limite 2 : Valeur métier de ce 90\% (pas de vérité terrain en pratique).
 			D'autre part, l'étude réalisée se base sur des seuils de performance par rapport à une vérité terrain.
 			Or en situation réelle, cette comparaison avec la vérité terrain n'est pas possible car elle est précisément en cours de conception (la base d'apprentissage finale devant être la vérité terrain).
-			De plus, un tel score n'est pas le plus explicite pour pour un expert métier pour qui un score de \texttt{v-measure} n'est pas révélateur de la pertinence métier de la segmentation proposée des données.
+			De plus, un tel score n'est pas le plus explicite pour un expert métier pour qui un score de \texttt{v-measure} n'est pas révélateur de la pertinence métier de la segmentation proposée des données.
 			Dans un registre similaire, il est possible que l'évolution du partitionnement des données passe par plusieurs états stables et pertinents, mais que l'annotateur soit obligé d'affiner sa vision en annotant certaines contraintes ambiguës.
-			Cela peut être la cas avec des \textit{cluster} traitant en fin de compte de sujets très similaires (\textit{ajouter des \texttt{MUST-LINK} pour les fusionner}) ou avec un \textit{cluster} qui regroupe finalement plusieurs thématiques (\textit{ajouter des \texttt{CANNOT-LINK} pour le segmenter})
-			Il manque donc une stratégie d'évaluation de pertinence de la base d'apprentissage en cours de construction afin d'estimer la stabilité d'un partitionnement et de la suffisance des annotations réalisées pour faire refléter la vision de l'annotateur dans le résultat obtenu.
+			Cela peut être la cas avec des \textit{cluster} traitant en fin de compte de sujets très similaires (\textit{ajouter des \texttt{MUST-LINK} pour les fusionner}) ou avec un \textit{cluster} qui regroupe finalement plusieurs thématiques (\textit{ajouter des \texttt{CANNOT-LINK} pour les segmenter}).
+			Il manque donc une stratégie d'évaluation de pertinence de la base d'apprentissage en cours de construction, afin d'estimer la stabilité d'un partitionnement et la suffisance des annotations réalisées pour faire refléter la vision de l'annotateur dans le résultat obtenu.
 			Cet aspect sera traité dans la \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}} (hypothèse de pertinence).
 			
 			% Limite 3 : Expert métier parfait ==> simuler les erreurs.
 			Pour finir, comme pour l'étude de convergence réalisée en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
-			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différences d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
 			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
 			Cet aspect sera traité à la fin de ce chapitre dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).

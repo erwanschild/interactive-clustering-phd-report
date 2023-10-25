@@ -24,13 +24,13 @@
 		}} \\
 		
 		% Figure.
-		La \textsc{Figure~\ref{figure:4.5-HYPOTHESE-RENTABILITE}} illustre cette hypothèse et l'espoir de pouvoir estimer le rapport entre le gain de pertinence obtenu et le coût nécessaire pour l'obtenir.
+		La \textsc{Figure~\ref{figure:4.5-HYPOTHESE-RENTABILITE}} illustre cette hypothèse et la perspective de pouvoir estimer le rapport entre le gain de pertinence obtenu et le coût nécessaire pour l'obtenir.
 		%
 		\begin{figure}[H]  % keep [H] to be in the tcolorbox.
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/hypotheses-05-rentabilite}
 			\caption{
-				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimé en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).
+				Illustration des études réalisées sur le \texttt{Clustering Interactif} (\textit{étape 5/6}) en schématisant l'évolution de la pertinence (\textit{valeur métier évaluée par l'expert et exprimée en nombre de clusters}) d'une base d'apprentissage en cours de construction en fonction du coût temporel de la méthode (\textit{temps nécessaire à l'expert métier et à la machine}), ainsi que la rentabilité de chaque itération de la méthode (\textit{rapport entre le gain potentiel de pertinence et le coût à investir}).
 			}
 			\label{figure:4.5-HYPOTHESE-RENTABILITE}
 		\end{figure}
@@ -65,7 +65,7 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-ACCORD-ANNOTATION-CLUSTERING-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
@@ -98,7 +98,7 @@
 			% Description de la vérité terrain.
 			Nous utilisons comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)} : ce dernier traite des demandes les plus fréquentes des clients en ce qui concerne la gestion de leur carte bancaire.
 			Il est composé de $500$ questions rédigées en français et réparties en $10$ classes (\texttt{perte ou vol de carte}, \texttt{carte avalée}, \texttt{commande de carte}, ...).
-			Pour plus de détails, consultez l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
+			Pour plus de détails, consulter l'\textsc{Annexe~\ref{annex:A.1-DATASET-BANK-CARDS}}.
 			
 			% Description des tentatives de la méthode et du calcul de rentabilité.
 			Sur ce jeu de données, nous exécutons une tentative complète \footnote{
@@ -227,7 +227,7 @@
 		\subsubsection{Discussion}
 		
 			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'accord entre l'annotation et le \textit{clustering}.
-			Dans cette étude, nous avons analysé l'évolution de l'accord entre les annotations et le partitionnement de données proposé par un \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain pré-établie.
+			Dans cette étude, nous avons analysé l'évolution de l'accord entre les annotations et le partitionnement de données proposé par un \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain préétablie.
 			Cependant, en considérant les résultats obtenus, ce score d'accord ne semble pas répondre à cette objectif.
 			
 			% Trop instable pour définir un cas d'arrêt.
@@ -281,7 +281,7 @@
 			\end{leftBarWarning}
 			
 			% Pseudo-code.
-			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans \textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING-PROTOCOLE}}.
+			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.5.1-ETUDE-RENTABILITE-SIMILARITE-CLUSTERING-PROTOCOLE}}.
 			
 			\begin{algorithm}
 				\KwData{jeu de données annotées (vérité terrain)}
@@ -422,7 +422,7 @@
 		\subsubsection{Discussion}
 		
 			% Rappel de l'objectif : trouver un cas d'arrêt en regardant l'évolution de la différence entre deux \textit{clustering}.
-			Dans cette étude, nous avons analysé l'évolution du score de différence entre deux itérations de \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain pré-établie.
+			Dans cette étude, nous avons analysé l'évolution du score de différence entre deux itérations de \textit{clustering} dans l'espoir de définir un cas d'arrêt de notre méthodologie d'annotation qui soit indépendant d'une vérité terrain préétablie.
 			
 			% Avantage 1 : Caractérise la rentabilité.
 			Tout d'abord, nous pouvons affirmer qu'il y une forte corrélation entre l'évolution de ce score de différence et l'évolution du score de performance (voir \textsc{Table~\ref{table:4.5.2-ETUDE-RENTABILITE-CORRELATION-SIMILARITE-PERFORMANCE}} : \texttt{r} moyen de $0.75$ ; \texttt{r} supérieur à $0.85$ pour les paramétrages mis en avant).
