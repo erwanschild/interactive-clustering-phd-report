@@ -40,8 +40,8 @@
 	Afin de vérifier cette hypothèse, nous organisons plusieurs expériences pour simuler et déterminer ces durées :
 	\begin{itemize}
 		\item une étude du \textbf{temps d'annotation} par un expert métier, temps mesuré lors d'une expérience d'annotation de contraintes faisant intervenir plusieurs opérateurs (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}) ;
-		\item une étude du \textbf{temps de calcul} des algorithmes, temps modélisé en exécutant les différentes implémentations du \texttt{Clustering Interactif} avec diverses valeurs d'arguments (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ;
-		\item et une étude du \textbf{nombre de contraintes} nécessaires en fonction du nombre de données à traiter, nombre estimé en simulant la création d'une base d'annotation avec notre méthodologie sur des jeux de données de différentes tailles (cf. \textsc{Section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}).
+		\item une étude du \textbf{temps de calcul} des algorithmes, temps modélisé en exécutant les différentes implémentations du \texttt{Clustering Interactif} avec diverses valeurs d'arguments (cf. \textsc{Section~\ref{section:4.3.2-ETUDE-COUTS-TEMPS-CALCUL}}) ; et
+		\item une étude du \textbf{nombre de contraintes} nécessaires en fonction du nombre de données à traiter, nombre estimé en simulant la création d'une base d'annotation avec notre méthodologie sur des jeux de données de différentes tailles (cf. \textsc{Section~\ref{section:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}}).
 	\end{itemize}
 	Nous exposons nos conclusions sur l'estimation du \textbf{temps total} à investir et réalisons une comparaison avec une organisation plus traditionnelle d'un projet d'annotation en \textsc{Section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}}.
 	
@@ -1232,4 +1232,4 @@
 		Dans les sections suivantes, nous allons nous intéresser à l'analyse des résultats de cette méthode.
 		En effet, en situation réelle, nous n'avons pas accès à la vérité terrain car elle est justement en cours de construction.
 		Il nous est donc impossible d'estimer notre seuil de \texttt{v-measure}, et donc incapable de s'arrêter à $90$\% de \texttt{v-measure}.
-		Nous nous intéressons donc à l'estimation de la valeur métier d'un résultat de \textit{clustering} (cf. hypothèse de pertinence en \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) et à la définition de cas d'arrêt indépendant d'une vérité terrain (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).
+		Nous nous intéressons donc à l'estimation de la valeur métier d'un résultat de \textit{clustering} (cf. hypothèse de pertinence en \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}}) et à la définition de cas d'arrêt indépendants d'une vérité terrain (cf. hypothèse de rentabilité en \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}).

@@ -9,8 +9,8 @@
 	Pour aborder cette partie, nous verrons :
 	\begin{itemize}
 		\item qu'il y a une forte pression sur la \textbf{qualité des données} devant constituer le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
-		\item que ce standard de qualité entretient une \textbf{complexité inhérente} aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ;
-		\item et que cette complexité provoque des \textbf{différences de comportements} chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
+		\item que ce standard de qualité entretient une \textbf{complexité inhérente} aux étapes de modélisation et d'annotation (cf. \textsc{Section~\ref{section:2.3.2-DEFIS-ANNOTATION-ASPECT-COMPLEXITE}}) ; et
+		\item que cette complexité provoque des \textbf{différences de comportements} chez les annotateurs (cf. \textsc{Section~\ref{section:2.3.3-DEFIS-ANNOTATION-ASPECT-HUMAIN}}).
 	\end{itemize}
 	En détaillant chacun de ces trois points, nous discuterons d'un ensemble de techniques et bonnes pratiques mises en avant dans la littérature pour limiter les désagréments d'un projet d'annotation.
 	Nous identifierons aussi les freins récurrents pouvant intervenir dans les mises en application industrielles.
@@ -303,9 +303,9 @@
 		\begin{itemize}
 			% Complexité propre aux données.
 			\item la \textbf{complexité propre au phénomène} que l'on veut modéliser :
-			nous avons pu apercevoir celle-ci dans la \textsc{Section~\ref{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}}, notamment en considérant la nécessité de collecter une grande quantité de données pour représenter la diversité du phénomène et le besoin de contrôler les bruits pour en assurer la qualité, ...
+			nous avons pu apercevoir celle-ci dans la \textsc{Section~\ref{section:2.3.1.A-DEFIS-ANNOTATION-ASPECT-DONNEES-REPRESENTATIVITE}}, notamment en considérant la nécessité de collecter une grande quantité de données pour représenter la diversité du phénomène et le besoin de contrôler les bruits pour en assurer la qualité ; et
 			% Complexité propre à la procédure d'annotation.
-			\item et la \textbf{complexité propre à la procédure d'annotation} mise en place :
+			\item la \textbf{complexité propre à la procédure d'annotation} mise en place :
 			cet aspect est abordé brièvement dans la \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}} en exposant le besoin d'établir une modélisation du problème avec son guide d'annotation, de recourir à un processus itératif pour affiner les problèmes de conception et différences d'interprétation (cycles \texttt{MATTER} et \texttt{MAMA}), ou encore d'employer des opérateurs ayant différentes compétences.
 		\end{itemize}
 		Dans cette section, nous allons voir comment analyser et mesurer cette complexité, puis nous nous intéresserons aux coûts qu'elle peut engendrer lors de la conception du jeu de données.
@@ -466,8 +466,8 @@
 			\begin{itemize}
 				\item le temps nécessaire à la \textit{collecte de données}, pouvant prendre plusieurs semaines (\textit{diffusion d'un sondage, temps de mesure d'un phénomène s'étalant sur la durée, ...}) ;
 				\item le temps imposé par les \textit{ateliers de conception} de la modélisation, pouvant prendre entre quelques heures et quelques semaines en fonction de sa complexité et des différences d'opinions entre experts ;
-				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autres de la complexité de la modélisation et de la quantité à labelliser ;
-				\item et le temps requis pour entraîner le modèle de \textit{Machine Learning}.
+				\item le temps dédié à l'\textit{annotation des données}, dépendant entre autres de la complexité de la modélisation et de la quantité à labelliser ; et
+				\item le temps requis pour entraîner le modèle de \textit{Machine Learning}.
 			\end{itemize}
 			À cela s'ajoute aussi la perspective de révision de la modélisation, et donc à la multiplication des coûts en appliquant plusieurs itérations du cycle \texttt{MATTER} pour obtenir un modèle convenable.
 			Il est possible de réduire certains de ces coûts temporels en ajoutant davantage de personnes dans le projet, mais cela augmentera évidemment les charges de main d'oeuvre, et quelques aspects demeureront toutefois incompressibles (\textit{les débats lors de la phase de modélisation par exemple}).
