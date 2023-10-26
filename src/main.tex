@@ -53,6 +53,9 @@
 	pifont,
 	xcolor,  % http://latexcolor.com/
 }
+\usepackage{
+	soul,
+}
 
 \definecolor{colorDarkPastelRed}{HTML}{C23B21}  % Dark Pastel Red (#C23B21)
 \definecolor{colorCarrotOrange}{HTML}{F39A27}  % Carrot Orange (#F39A27)
@@ -502,17 +505,29 @@
 \NumberAbstractPages
 \begin{ThesisAbstract}
 
-    %%% Abstract en français
-    \begin{FrenchAbstract}
-        Le résumé à faire.
-        \KeyWords{chat, chien, puces.}
-    \end{FrenchAbstract}
-
-    %%% Abstract en anglais
-    \begin{EnglishAbstract}
-        The abstract to do
-        \KeyWords{cat, dog, flees.}
-    \end{EnglishAbstract}
+	%%% Abstract en français
+	\begin{FrenchAbstract}
+		Le résumé à \st{faire}.
+		\KeyWords{
+			\texttt{Apprentissage automatique} ;
+			\texttt{Traitement automatique du langage naturel} ;
+			\texttt{Annotation de contraintes} ;
+			\texttt{Clustering sous contraintes} ;
+			\texttt{Clustering interactif}.
+		}
+	\end{FrenchAbstract}
+	
+	%%% Abstract en anglais
+	\begin{EnglishAbstract}
+		The abstract to do
+		\KeyWords{
+			\texttt{Machine Learning} ;
+			\texttt{Natural Language Processing} ;
+			\texttt{Constraints annotation} ;
+			\texttt{Constrained clustering} ;
+			\texttt{Interactive clustering}.
+		}
+	\end{EnglishAbstract}
 \end{ThesisAbstract}
 
 %%%%%--------------------------------------------------------------------
@@ -522,10 +537,17 @@
 % \WriteThisInToc
 \begin{ThesisAcknowledgments}
 
-    Par la présente, je souhaite remercier:
-    \begin{todolist}
-        \item ...
-    \end{todolist}
+	Par la présente, je souhaite remercier:
+	% L'entreprise \texttt{Euro Information}, le laboratoire du \texttt{LORIA} et l'\texttt{ANRT} pour m'avoir permis de réaliser ce doctorat dans de bonnes conditions ;
+	% Mes encadrants, Jean-Charles et Florian,
+	% Mes collègues, notamment Amélie et Gautier,
+	% Ma relectrice, s'en ki ce manuscry serez truffé de photes d'autaugraff !
+	% Ma famille et mes amis qui m'ont \st{supporté} soutenu et encouragé tout au long de ces quatre années ;
+	% Ma tortue,
+	% Ma femme, qui a été un amour et une oreille attentive
+	\begin{todolist}
+		\item \st{test}
+	\end{todolist}
 
 \end{ThesisAcknowledgments}
 
@@ -534,12 +556,12 @@
 %%%%%--------------------------------------------------------------------
 
 % \WriteThisInToc
-%\begin{ThesisDedication}
-%
-%	Je dédie cette thèse\\
-%	à quelqu'un de bien.
-%
-%\end{ThesisDedication}
+\begin{ThesisDedication}
+
+	Je dédie cette thèse\\
+	à quelqu'un de bien.
+
+\end{ThesisDedication}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Table des matières
