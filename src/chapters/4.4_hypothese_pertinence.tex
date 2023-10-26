@@ -221,7 +221,7 @@
 			\begin{itemize}
 				\item employer plusieurs experts pour valider par consensus leurs appréciations sur un résultat de \textit{clustering} : cette méthode est efficace pour rattraper les thématiques non identifiées et pour s'accorder sur la valeur d'un \textit{cluster} ;
 				\item préparer le travail d'analyse en réalisant une étude linguistique des \textit{clusters}, et permettre ainsi d'identifier grossièrement les thématiques présentes en fonction du vocabulaire employé (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}) ;
-				\item automatiser une partie du travail d'analyse en utilisant les capacités de larges modèles de langage (\textit{large language models}, \texttt{LLM}), afin d'alléger la charge de travail demandée aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
+				\item automatiser une partie du travail d'analyse en utilisant les capacités des larges modèles de langage (\textit{large language models}, \texttt{LLM}), afin d'alléger la charge de travail demandée aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 			\end{itemize}
 	
 	
@@ -1161,7 +1161,7 @@
 			Celle-ci n'a pas besoin d'être systématique, elle peut être réalisée pour confirmer la fin des itérations de \texttt{Clustering Interactif}, limitant ainsi la charge de travail de l'expert.
 			
 			% Limite 2: L'infrastruture.
-			Toutefois, le principal obstacle à l'utilisation de larges modèles de langage concerne des problématiques techniques pour disposer, installer et utiliser ces modèles.
+			Toutefois, le principal obstacle à l'utilisation des larges modèles de langage concerne des problématiques techniques pour disposer, installer et utiliser ces modèles.
 			En effet, à l'heure de rédaction de ce manuscrit (juillet 2023), l'entraînement requiert des serveurs aux configurations pharaoniques, composés de plusieurs milliers de \texttt{GPU}, du stockage et de la bande passante pour manipuler des téraoctets de données, et de toute l'infrastructure auxiliaire nécessaire pour contrôler et refroidir les machines, soit un investissement de plusieurs millions voire milliards de dollars.
 			L'inférence n'est pas simple non plus, car les machines doivent entre autres disposer de suffisamment de \texttt{RAM} pour charger les modèles et de \texttt{GPU} pour les exécuter.
 			Ainsi, seules quelques entreprises peuvent investir et mettre à disposition ce genre d'infrastructures, souvent sous forme de services hébergés sur le \textit{Cloud}, comme la plateforme \textit{Meta Reasearch Super Cluster} (\cite{lee-sengupta:2022:introducing-ai-research}) ou le service \textit{Microsoft Azure AI} (\cite{roach:2023:how-microsoft-bet}))\footnote{
@@ -1192,7 +1192,7 @@
 			Au cours de cette étude de pertinence, nous avons pu voir que :
 			\begin{itemize}
 				\item[\itemok] La tâche de validation et de labellisation de résultats de \textit{clustering} est plutôt complexe et fastidieuse si elle n'est pas assistée : il est donc conseillé de faire intervenir plusieurs experts afin de consolider leurs analyses et de confronter les points de vue ;
-				\item[\itemok] Nous pouvons utiliser de larges modèles de langage (\texttt{LLM}) pour réaliser une synthèse automatique d'un \textit{cluster} : cela permet d'estimer rapidement la pertinence d'un regroupement de questions et d'identifier les thématiques qui y sont présentes, offrant ainsi un gain d'efficacité et de confort aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}) ;
+				\item[\itemok] Nous pouvons utiliser des larges modèles de langage (\texttt{LLM}) pour réaliser une synthèse automatique d'un \textit{cluster} : cela permet d'estimer rapidement la pertinence d'un regroupement de questions et d'identifier les thématiques qui y sont présentes, offrant ainsi un gain d'efficacité et de confort aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}) ;
 				\item[\itemok] Cette approche automatisée n'étant pas infaillible, il est recommandé de croiser différentes approches d'analyses, et de toujours vérifier manuellement le contenu des \textit{clusters} avant d'arrêter le projet d'annotation : pour faciliter cette revue, il est possible de réaliser une analyse linguistique grâce à la \texttt{FMC} pour identifier les termes caractéristiques de chaque \textit{cluster} et les mettre en avant dans le texte (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
 			\end{itemize}
 		\end{leftBarSummary}

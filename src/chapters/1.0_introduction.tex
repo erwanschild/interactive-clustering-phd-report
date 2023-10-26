@@ -36,15 +36,15 @@
 			\item Les attentes des utilisateurs sont parfois trop élevées par rapport aux capacités réelles du modèle.
 			Il en résulte alors un sentiment de frustration, en particulier lorsque l'utilisateur exprime un besoin urgent, mais que le modèle se contente de répondre qu'il n'a pas compris la question et que vous devriez reformuler votre demande.
 			% Confiance aveugle.
-			\item La crédit accordé aux modèles d'\texttt{IA} est parfois excessif, au point que l'esprit critique des utilisateurs s'efface petit à petit.
-			Cette confiance aveugle s'accentue avec les capacités spectaculaires des derniers modèles génératifs, pour lesquels il devient difficile d'identifier une fausse information tant leurs résultats sont crédibles (\textit{par exemple, \texttt{ChatGPT} peut vous mentir avec conviction en inventant certains détails dans ses réponses}). 
+			\item Le crédit accordé aux modèles d'\texttt{IA} est parfois excessif, au point que l'esprit critique des utilisateurs s'efface petit à petit.
+			Les capacités spectaculaires des derniers modèles génératifs accentue davantage cette confiance aveugle, et il devient même difficile d'identifier les fausses informations générées tant elles semblent crédibles (\textit{par exemple, \texttt{ChatGPT} peut vous mentir avec conviction en inventant certains détails dans ses réponses}). 
 		\end{itemize}
 		
 		%%% Idée reçu : pas complexe à faire.
-		L'idée reçue selon laquelle la conception d'un modèle d'\texttt{IA} est simple et peu onéreuse explique en partie ces confusions.
-		Encore une fois, la culture populaire véhicule l'image d'une conception accessible à tous et à moindres coûts.
+		L'idée reçue selon laquelle il est facile de concevoir un modèle d'\texttt{IA} explique en partie ces confusions.
+		Encore une fois, la culture populaire véhicule cette image d'une conception accessible à tous et à moindres coûts.
 		En reprenant l'exemple d'\textit{Ultron}, il suffit au \texttt{Dr. Hank Pym} de \textguillemets{calquer ses schémas mentaux} pour créer le robot, comme si cela était un acte banal ; plus récemment, dans la série \texttt{Black Mirror} (S2 Ep1), le personnage de \textit{Martha} se procure un avatar de son conjoint décédé sans trop de difficultés en communiquant simplement les messages et les photos de ce dernier, mais aucune mention n'est faite sur le processus de conception, excepté qu'il est \textguillemets{expérimental}.
-		Toutes ces illusions masquent à quel point la création d'un modèle d'\textit{IA} peut être longue est pénible.
+		Toutes ces illusions masquent à quel point la création d'un modèle d'\texttt{IA} peut être longue et pénible.
 		
 		
 	%%%%%--------------------------------------------------------------------
@@ -57,60 +57,85 @@
 	}
 		
 		%%% Introduction.
-		En pratique, nous nous rendons vite compte qu'il faut traiter un certain nombre de défis pour mettre un modèle d'\texttt{IA} en production, et que plusieurs de ces défis sont encore aujourd'hui des problèmes ouverts du monde de la recherche.
-		
+		En pratique, nous nous rendons vite compte qu'il faut traiter un certain nombre de défis pour mettre un modèle d'\texttt{IA} en production, et que plusieurs de ces défis sont aujourd'hui encore des problèmes ouverts du monde de la recherche.
+
 		%%% Deep Learning.
-		Tout d'abord, nous pourrions être tenté d'utiliser les dernières avancées publiés dans la littérature : nous pensons donc nécessairement aux modèles d'apprentissage profond (\textit{Deep Learning}), réputés pour leurs performances impressionnantes (\texttt{ChatGPT}, \texttt{LLaMA2}, \texttt{BLOOM}, ...).
-		% Besoin de données
-		De tels modèles tirent parti des immenses quantités de données mises à leur disposition : sans compter les difficultés liées à la collecte et aux droits d'utilisation de ces données, nous sommes rapidement confronté aux critères de qualité et aux biais de représentation.
-		Un travail titanesque est alors nécessaire pour assainir, corriger, rééquilibrer puis documenter les jeux de données nécessaires à l'entraînement, représentant un coût non négligeable dans le processus de conception.
-		
-		% Besoin d'infrastructure technique.
-		De plus, l'entraînement de ces modèles requiert une infrastructure technique colossale dont seules les grandes entreprises sont capables de se doter.
-		Enfin, leur utilisation dans un environnement de production est pénalisée par des temps d'exécution lents ainsi que des erreurs de comportement non contrôlable et peu prévisibles.
-		% Plutôt du Machine Learning.
-		Par conséquent, les entreprises se tournent plus facilement vers des modèles d'\texttt{IA} plus traditionnels (\textit{Machine Learning}), mais moins onéreuses et plus facilement contrôlables.
+		%Tout d'abord, nous pourrions être tenté d'utiliser les dernières avancées publiées dans la littérature scientifique : nous pensons nécessairement aux modèles d'apprentissage profond (\textit{Deep Learning}), réputés pour leurs performances impressionnantes (\texttt{ChatGPT}, \texttt{LLaMA2}, \texttt{BLOOM}, ...).
+		%%% Besoin de données
+		%De tels modèles tirent parti des immenses quantités de données mises à leur disposition.
+		%Cependant, sans compter les difficultés liées à la collecte et aux droits d'utilisation de ces données, nous sommes rapidement confronté aux critères de qualité et aux biais de représentation.
+		%Un travail titanesque est alors nécessaire pour assainir, corriger, rééquilibrer puis documenter les jeux de données nécessaires à l'entraînement, représentant un coût non négligeable dans ce processus de conception.
+		%%% Besoin d'infrastructure technique.
+		%De plus, l'entraînement de ces modèles requiert une infrastructure technique colossale dont seules les grandes entreprises sont capables de se doter.
+		%Enfin, leur utilisation dans un environnement de production est pénalisée par des temps d'exécution lents, ainsi que des erreurs de comportements non contrôlables et peu prévisibles.
 		
 		%%% Machine Learning.
-		En tête de liste, nous retrouvons fréquemment les apprentissages supervisés.
-		Ces techniques utilisent une modélisation abstraite du problème qui sera reproduite par un modèle sur la base des exemples de sa base d'apprentissage.
-		% Exemple.
-		Avec des telles approches, il est possible à un radar automatique d'identifier la marque d'une voiture flashée sur la base d'exemples de photos de voitures de sa base d'apprentissage ; en outre, il est aussi possible d'entraîner un modèles d'extraction pour lire automatiquement le numéro de la plaque d'immatriculation et ainsi savoir qui verbaliser en cas d'infraction.
+		%En raison des défis concernant l'utilisation des méthodes de \textit{Deep Learning} en production, de nombreuses entreprises font le choix de se contenter de modèles plus traditionnels
 		
-		% Besoin d'une modélisation.
-		L'inconvénient de cette méthode réside néanmoins dans le besoin de créer une modélisation abstraite du problème dans le but de le reproduire.
-		À part dans de rares occasions où cette modélisation est triviale (\textit{dans notre exemple : les différentes marques de voitures existantes}), il est nécessaire de consulter des experts du domaine pour comprendre comment ces derniers manipulent les données au quotidien.
+		%Une approche plus raisonnable consiste à se contenter des modèles d'apprentissage automatique.
+		%Plus traditionnels, ces modèles 
+		%Pour limiter les coûts à investir, les entreprises se tournent vers des approches plus traditionneles 
+		%Une autre approche consiste à utiliser des modèles plus traditionnels basés sur de l'apprentissage automatique supervisé.
+		
+		
+		
+		
+		%Les entreprises, et en particulier celles qui n'en ont pas les moyens, se tournent davantage vers des modèles d'\texttt{IA} plus traditionnels, réalisant ainsi un compromis entre performances, coûts de conception et maîtrise du comportement.
+		
+		%%% Machine Learning et Besoin d'une modélisation.
+		%En tête de liste, nous retrouvons fréquemment les apprentissages supervisés.
+		%Ces techniques consistent à reproduire par l'exemple aspects d'les aspects dmodéliser certains aspects du problème .
+		
+		%Ces techniques utilisent une représentation abstraite du problème (\textit{appelée modélisation ou type-system}) qui sera reproduite par un modèle sur la base des exemples de sa base d'apprentissage.
+		%L'avantage de cette approche 
+		
+		%Cependant, son principale inconvénient repose sur la difficulté de réaliser la modélisation du problème à reproduire.
+		
+		
+		
 		% Exemple chatbot.
-		Par exemple, pour traiter des commandes vocales ou des demandes clients avec un assistant conversationnel (\textit{chatbot}), il est possible de modéliser le texte en intention de dialogue, chaque intention conceptualisant l'action ou la demande à traiter (\textit{des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peut être alors être modélisées par l'intention \texttt{jouer\_musique}}).
-		Cependant, cette modélisation est généralement laborieuse à cause de la complexité intrinsèque des phénomènes à reproduire (\textit{dans notre exemple : la difficulté d'interprétation du langage naturel}), ce qui entretient le caractère subjectif de la tâche (\textit{avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant doit effectuer une action, ou doit-il exprimer s'il en est capable ?}).
+		%Pour illustrer nos propos, prenons l'exemple de la conception d'un assistant conversationnel (\textit{chatbot}).
+		%Un tel assistant peut traiter des commandes vocales ou des demandes clients exprimées en langage naturel.
+		%Pour cela, une modélisation des textes en intentions est nécessaire, chaque intention conceptualisant l'action ou la demande à traiter.
+		%Ainsi, des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peuvent être modélisées par l'intention \texttt{jouer\_musique}.
+		
+		% Complexité de la modélisation.
+		%Malgré l'illusion de simplicité de cet exemple, force est de constater que la modélisation du texte n'est pas une tâche facile :
+		
+		
+		
+		%l%a modélisation d'un phénomène est souvent difficile à réaliser.
+		%Dans le cadre des assistants conversationnels, c'est la complexité intrinsèque liée à la compréhension du langage, associée à la vaste diversité d'intentions de dialogue possibles, qui rendent cette modélisation pénible.
+		%En effet, 
+		
+		
+		% (\textit{avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant doit effectuer une action, ou doit-il exprimer s'il en est capable ?}).
+		
+		% Projet d'annotation onéreux, subjectif, sensibles aux erreurs, ...
+		% problème de compétences
+		
 		
 		
 	%%%%%--------------------------------------------------------------------
-	%%%%% GAP: Complexité d'annotation et manque de valorisation de l'expertise métier.
+	%%%%% GAP: Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données.
 	%%%%%--------------------------------------------------------------------
-	\section*{Complexité d'annotation et manque de valorisation de l'expertise métier}
+	\section*{Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Complexité d'annotation et manque de valorisation de l'expertise métier
+		Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données
 	}
 		
-		\todo[inline]{A REDIGER}
-		
-		%- Peu de travaux sur la conception d'un jeu de données : en recherche les données sont publiques, en entreprises les données sont privées ;
-		%- Nombreuses pistes d'amélioration, mais peu sont exploitées en pratique ; 
-		%- Défis d'organisation, de gestion de coûts, de complexité, de qualité, ... 
-		%- Conception trop manuelle, experts pas à leur place, ...
-		
 		
 		
 	%%%%%--------------------------------------------------------------------
-	%%%%% OCCUPYING THE NICHE: Recherche d'une méthode alternative pour modéliser le texte en intentions
+	%%%%% OCCUPYING THE NICHE: Recherche d'une méthode alternative pour modéliser le texte en intentions tout en valorisant l'intervention de l'expert
 	%%%%%--------------------------------------------------------------------
-	\section*{Recherche d'une méthode alternative pour modéliser le texte en intentions}
+	\section*{Recherche d'une méthode alternative pour modéliser le texte en intentions tout en valorisant l'intervention de l'expert}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Recherche d'une méthode alternative pour modéliser le texte en intentions
+		Recherche d'une méthode alternative pour modéliser le texte en intentions tout en valorisant l'intervention de l'expert
 	}
+		
 		
 		\todo[inline]{A REDIGER}
 		

@@ -16,7 +16,7 @@
 		\begin{itemize}
 			\item des formations analytiques nécessaires aux annotateurs pour intervenir dans le projet ;
 			\item des nombreux ateliers de modélisation en mode essai-erreur nécessaires pour trouver une base d'apprentissage stable et pertinente ; et
-			\item de la complexité engendrée par la manipulation de concepts abstraits (\textit{intention, entités, ...}) dans le but de représenter les connaissances des experts métiers .
+			\item de la complexité engendrée par la manipulation de concepts abstraits (\textit{intentions, entités, ...}) dans le but de représenter les connaissances des experts métiers.
 		\end{itemize}
 		
 		% Remise en cause.
@@ -129,7 +129,7 @@
 	\label{section:5.3-GUIDE-UTILISER}
 	
 		%%% Annotation collaborative.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Annotation collaborative:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Annotation collaborative.}
 			
 			% Constat.
 			L'annotation est un acte relevant du domaine de l'interprétation et de la subjectivité.
@@ -138,7 +138,7 @@
 			
 			% Solution.
 			Au cours de l'\texttt{étude de robustesse} (voir \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}), \textbf{nous conseillons d'employer au moins $3$ experts et de régulièrement (voire toujours) leur soumettre les mêmes contraintes à annoter}.
-			Un tel choix semble contre-intuitif à première vue (\textit{nous triplons le coût d'embauche alors que nous pourrions tripler le nombre de contraintes annotées}), mais ce parti pris a l'avantage de contraindre les annotateurs à discuter de leurs divergences d'opinion (\textit{s'ils n'annotent pas de façon analogue, c'est qu'ils ne sont pas d'accord de la manière de traiter les données}).
+			Un tel choix semble contre-intuitif à première vue (\textit{nous triplons le coût d'embauche alors que nous pourrions tripler le nombre de contraintes annotées}), mais ce parti pris a l'avantage de contraindre les annotateurs à discuter de leurs divergences d'opinion (\textit{s'ils n'annotent pas de façon analogue, c'est qu'ils ne sont pas d'accord sur la manière de traiter les données}).
 			Ainsi, même si ce choix engendre des coûts supplémentaires, il s'avère être un investissement à long terme pour garantir la qualité et la cohérence de la base d'apprentissage en cours de construction.
 			
 			% Notes.
@@ -146,13 +146,13 @@
 		
 		
 		%%% Rentabilité d'une itération.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Rentabilité d'une itération:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Rentabilité d'une itération.}
 			
 			% Constat.
 			Comme notre méthodologie est itérative, il faut être capable de définir un cas d'arrêt (\textit{annoter toutes les contraintes possibles étant trop ambitieux}).
 			
 			% Solution.
-			Au cours de l'\texttt{étude de rentabilité} (voir \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}), nous avons mis en évidence l'intérêt d'\textbf{analyser l'évolution de la différence de résultats de \textit{clustering} entre deux itérations consécutives afin d'identifier l'intérêt d'une itération supplémentaire}.
+			Au cours de l'\texttt{étude de rentabilité} (voir \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}), nous avons mis en évidence l'intérêt d'\textbf{analyser l'évolution de la différence de résultats de \textit{clustering} entre deux itérations consécutives afin de quantifier l'intérêt d'une itération supplémentaire}.
 			En effet, si le nouveau \textit{clustering} reste fortement similaire au \textit{clustering} précédent, malgré l'ajout de contraintes supplémentaires, nous pouvons en déduire que la méthode d'annotation stagne.
 			Il peut alors être intéressant d'envisager de stopper les itérations de la méthode, d'évaluer la pertinence métier du \textit{clustering} actuel, et de corriger manuellement les reliquats.
 			
@@ -161,7 +161,7 @@
 		
 		
 		%%% Pertinence d'un résultat.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Pertinence d'un résultat:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Pertinence d'un résultat.}
 			
 			% Constat.
 			L'analyse d'un résultat de \textit{clustering} n'est pas une tâche aisée, et elle peut vite devenir fastidieuse si elle doit être faite à chaque itération de notre méthode.
@@ -176,11 +176,11 @@
 				% LLM.
 				\item Un \textbf{résumé thématique des \textit{clusters} par un large modèle de langage (\texttt{LLM})} :
 				cette approche permet d'estimer efficacement la cohérence d'un \textit{cluster} à l'aide d'une courte description en langage naturel.
-				Il faut toutefois être vigilant aux hallucinations du modèle utilisé : nous conseillons donc de confirmer manuellement l'analyse.
+				Il faut toutefois être vigilant aux hallucinations du \texttt{LLM}.
 			\end{itemize}
 			
 			% Constat.
-			Toutefois, \textbf{une correction manuelle reste nécessaire} avant de valider un \textit{cluster}.
+			Note : \textbf{Une correction manuelle est parfois nécessaire} pour valider un \textit{cluster}.
 	
 	
 	%%%%%--------------------------------------------------------------------
@@ -191,14 +191,14 @@
 		\label{section:5.4-GUIDE-PARAMETRAGES}
 		
 		%%% Références aux implémentations.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Développements logiciels:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Développements logiciels.}
 		
 			% Références.
-			Pendant ce doctorat, nous avons implémenté plusieurs algorithmes de \textit{clustering} et d'échantillonnage (\textit{disponibles dans la librairie \texttt{cognitivefactory-interactive-clustering}}) et nous avons intégré la logique de notre méthodologie d'annotation dans une application web (\textit{accessible dans la librairie \texttt{cognitivefactory-interactive-clustering-gui}}).
+			Pendant ce doctorat, nous avons implémenté plusieurs algorithmes de \textit{clustering} et d'échantillonnage (\textit{disponibles dans la librairie \texttt{cognitivefactory-interactive-clustering}}) et nous avons intégré notre méthodologie d'annotation dans une application web (\textit{accessible dans la librairie \texttt{cognitivefactory-interactive-clustering-gui}}).
 			Ces développements logiciels sont décrits en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 		
 		%%% Paramétrage optimal.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Choix des paramétrages :}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Choix des paramétrages.}
 		
 			% Description.
 			Au cours de nos études (voir \textsc{Chapitre~\ref{chapter:4-ETUDES}}), nous avons mis en avant un \textbf{paramétrage favori} de notre méthode.
@@ -208,7 +208,7 @@
 			\begin{itemize}
 				\item \texttt{prep.simple}: les \textbf{prétraitements} \textbf{simples} supprimant les minuscules, les ponctuations, les accents et les espaces blancs ;
 				\item \texttt{vect.tfidf}: la \textbf{vectorisation} utilisant une représentation statistique du vocabulaire à l'aide d'un \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}) ;
-				\item \texttt{clust.kmeans.cop}: le \textbf{\textit{clustering} sous contraintes} utilisant l'algorithme \texttt{KMeans} adapté en mode \textbf{\texttt{COP-KMeans}} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) ;
+				\item \texttt{clust.kmeans.cop}: le \textbf{\textit{clustering} sous contraintes} utilisant l'algorithme \textbf{\texttt{COP-KMeans}} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) ;
 				\item \texttt{samp.closest.diff}: l'\textbf{échantillonnage de contraintes} concernant des données issues de \textbf{\textit{clusters} différents} et étant \textbf{les plus proches} les unes des autres.
 			\end{itemize}
 		
@@ -223,7 +223,7 @@
 		
 		
 		%%% Parallélisation.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} ~Choix d'architecture:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Choix d'architecture}
 		
 			% Description.
 			Au lieu de réaliser les étapes du \texttt{Clustering Interactif} de manière séquentielle, il peut être intéressant d'\textbf{implémenter une architecture parallèle} de notre méthode (voir \textsc{Figure~\ref{figure:5.4-GUIDE-PARAMETRAGES-ARCHITECTURE-PARALLELE}}).
@@ -254,11 +254,11 @@
 	\label{section:5.5-GUIDE-COUTS}
 	
 		% Introduction.
-		Dans nos études, et principalement au cours de la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}, nous avons pu estimé un ensemble de coûts théoriques (temporels et humains).
+		Dans nos études, et principalement au cours de la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}, nous avons pu estimer un ensemble de coûts théoriques (temporels et humains).
 		
 		
 		%%% Vitesse d'annotation.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Vitesse d'annotation:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Vitesse d'annotation}
 			
 			% Description.
 			À l'aide d'une expérience en situation réelle, nous avons estimé qu'\textbf{il faut environ $7.8$ secondes pour caractériser une contrainte}.
@@ -267,27 +267,27 @@
 		
 		
 		%%% Nombre de contraintes.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Nombre de contraintes nécessaires:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Nombre de contraintes nécessaires}
 		
 			% Description.
-			À l'aide d'une simulation, nous avons estimé qu'\textbf{il faut environ $3.15$ contraintes par donnée pour obtenir une base d'apprentissage stable} (\textit{bien entendu, cette estimation varie grandement suivant la complexité des données et la finalité du modèle à entraîner}).
-			Nous rappelons qu'il faudra confirmer la pertinence du \textit{clustering} obtenu par un expert.
+			À l'aide d'une simulation, nous avons estimé qu'\textbf{il faut environ $3.15$ contraintes par donnée pour obtenir une base d'apprentissage stable} (\textit{bien entendu, cette estimation doit varier grandement en fonction la complexité des données et la finalité du modèle à entraîner}).
+			Nous rappelons qu'un expert métier devra confirmer la pertinence du \textit{clustering} avant d'arrêter la méthode.
 			Il est toutefois intéressant de noter que cette estimation du nombre de contraintes nécessaires est linéaire alors que le nombre de contraintes possibles augmente de manière quadratique avec le nombre de données.
 		
 		
 		%%% Temps total.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Temps total théorique:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Temps total théorique}
 		
 			% Description.
 			En utilisant une architecture parallèle, nous estimons qu'\textbf{il faut environ $24.6$ secondes par donnée pour obtenir une base d'apprentissage stable}.
 			Nous pouvons aussi noter qu'une telle approche propose un nombre constant de $144.5$ itérations pour annoter le nombre de contraintes requis afin d'obtenir une base d'apprentissage stable.
 			
 			% Comparaison avec une approche classique.
-			Une telle estimation semble compétitive avec une annotation d'étiquettes faisant intervenir une modélisation : en effet, le temps d'annotation est légèrement plus long (\textit{à cause du nombre de contraintes à traiter}), mais cela économise le temps nécessaire à concevoir et à réviser plusieurs fois la modélisation abstraite des textes en intentions.
+			Une telle estimation semble compétitive avec une annotation d'étiquettes faisant intervenir une modélisation : en effet, le temps d'annotation est légèrement plus long (\textit{à cause du nombre de contraintes à traiter}), mais cela économise le temps nécessaire à la formation des experts ainsi que le temps alloué aux nombreuses révisions de la modélisation abstraite des intentions.
 		
 		
 		%%% Robustesse et nombre d'annotateurs.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Coûts d'analyse et de robustesse:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Coûts d'analyse et de robustesse}
 			
 			% Attention.
 			Il est à noter que \textbf{de nombreux coûts n'ont pas pu être estimés} (\textit{ces derniers étaient impossibles à simuler ou à reproduire}) :
@@ -313,7 +313,7 @@
 				\texttt{constraints\_needed}~[\#] &
 					~\propto~3.15 \cdot \texttt{dataset\_size} \\
 				% Total time.
-				\texttt{total\_time(parallel)}~[s] &
+				\texttt{total\_time}~[s] &
 					~\propto~24.6 \cdot \texttt{dataset\_size} \\
 				% Iterations number.
 				\texttt{iterations\_needed}~[\#] &

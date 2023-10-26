@@ -1,5 +1,5 @@
 \DontFrameThisInToc
-\Annex{Annexe sur l'évaluation d'un \textit{clustering} à l'aide de la \texttt{v-measure}}
+\Annex{Évaluation d'un \textit{clustering} à l'aide de la \texttt{v-measure}}
 \label{annex:D-ANNEXE-EVALUATION-CLUSTERING}
 
 	% INTRODUCTION DE L'ANNEXE.
@@ -8,7 +8,7 @@
 	
 	% Annonce du plan et conseils.
 	\begin{leftBarAuthorOpinion}
-		Dans cette annexe, nous allons décrire la \texttt{v-measure} de manière formelle puis détailler son fonctionnement sur quelques exemples.
+		Dans cette annexe, nous allons décrire la \texttt{v-measure} de manière formelle puis détailler son fonctionnement grâce à quelques exemples.
 		Si la première section est très (\textit{voir trop}) abstraite, consulter directement la deuxième section : les exemples permettront d'illustrer les intuitions principales.
 	\end{leftBarAuthorOpinion}
 	
@@ -30,18 +30,18 @@
 			% Classes.
 			\item $\mathcal{C}$ représente l'ensemble des classes $c$ de la vérité terrain (\textit{référence à atteindre}) ;
 			% \textit{Cluster}.
-			\item $\mathcal{K}$ représente l'ensemble des \textit{clusters} $k$ de la segmentation (\textit{clustering proposé par la machine à une itération donnée}).
+			\item $\mathcal{K}$ représente l'ensemble des \textit{clusters} $k$ de la segmentation (\textit{clustering proposé par la machine pour une itération donnée}).
 		\end{itemize}
 		
 		
 		%%% INTRODUCTION, ENTROPIE ET ENTROPIE CONDITIONNELLE.
 		La \texttt{v-measure} entre un \textit{clustering} $\mathcal{K}$ et la vérité terrain $\mathcal{C}$ (servant de référence) est un score entropique calculé à partir de deux termes : l'homogénéité (\textit{homogeneity}) et la complétude (\textit{completeness}).
-		Pour calculer ces termes, nous avons donc besoin d'introduire les concepts d'entropie intrinsèque et d'entropie conditionnelle.
+		Pour calculer ces termes, nous avons besoin d'introduire les concepts d'entropie intrinsèque et d'entropie conditionnelle.
 		\newline
 		
 		% Description de l'entropie.
 		L'\textbf{entropie intrinsèque} d'une segmentation $\mathcal{X}$ des données $\mathcal{D}$, notée $H(\mathcal{X})$, est définie comme l'opposé de la somme des termes $p(x) \cdot log~p(x)$,
-		où $p(x)$ représente la proportion d'éléments de $\mathcal{D}$ contenu dans le groupe $x \in \mathcal{X}$.
+		où $p(x)$ représente la proportion d'éléments de $\mathcal{D}$ contenus dans le groupe $x \in \mathcal{X}$.
 		
 		% Equation.
 		\begin{equation}
@@ -67,7 +67,7 @@
 		\end{equation}
 		
 		% Description de l'entropie conditionnelle.
-		L'\textbf{entropie conditionnelle} d'une segmentation $\mathcal{X}$ par rapport à une autre segmentation $\mathcal{Y}$, notée $H(\mathcal{X}|\mathcal{Y})$, est un score compris entre $0$ et $H(\mathcal{X})$ qui est obtenu par l'opposé des sommes des termes $p(x \cap y) \cdot log~p(x \cap y|y)$,
+		L'\textbf{entropie conditionnelle} d'une segmentation $\mathcal{X}$ par rapport à une autre segmentation $\mathcal{Y}$, notée $H(\mathcal{X}|\mathcal{Y})$, est un score compris entre $0$ et $H(\mathcal{X})$, qui est obtenu par l'opposé des sommes des termes $p(x \cap y) \cdot log~p(x \cap y|y)$,
 		où $p(x \cap y)$ représente la proportion d'éléments de $\mathcal{D}$ contenus dans l'intersection $x \cap y$,
 		et $p(x \cap y|y)$ représente la proportion d'éléments de $y$ contenus dans l'intersection $x \cap y$.
 		
@@ -102,7 +102,7 @@
 			La notion d'entropie est difficile à appréhender, mais nous proposons toutefois les pistes d'interprétation suivantes :
 			\begin{itemize}
 				\item l'entropie intrinsèque $H(\mathcal{X})$ représente le "\textbf{désordre}" de la segmentation $\mathcal{X}$ :
-				en effet, si les données seront réparties dans un grand nombre de groupes ou dans des groupes déséquilibrés, alors il y aura plus de termes $p(x) \cdot log p(x)$, et donc l'entropie sera plus grande ;
+				en effet, si les données seront réparties dans un grand nombre de groupes ou dans des groupes déséquilibrés, alors il y aura plus de termes $p(x) \cdot log p(x)$, donc l'entropie sera plus grande ;
 				\item l'entropie conditionnelle $H(\mathcal{X}|\mathcal{Y})$ représente à quel point une segmentation $\mathcal{X}$ \textbf{ne respecte pas une autre segmentation} $\mathcal{Y}$ :
 				en effet, si $\mathcal{X}$ respecte $\mathcal{Y}$, alors les intersections non nulles entre $\mathcal{X}$ et $\mathcal{Y}$ ressembleront davantage aux groupes de $\mathcal{Y}$ et les termes $log~p(x \cap y|y)$ seront davantage nuls, donc l'entropie conditionnelle sera plus faible.
 			\end{itemize}
@@ -111,7 +111,7 @@
 		%%% HOMOGENEITE et COMPLETUDE
 		\newpage
 		% Description de l'homogénéité.
-		L'\textbf{homogénéité} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{homogeneity}(C|K)$, est un score entre $0$ et $1$ qui est obtenu par $1$ moins le ratio entre :
+		L'\textbf{homogénéité} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{homogeneity}(C|K)$, est un score entre $0$ et $1$, qui est obtenu par $1$ moins le ratio entre :
 		\begin{itemize}
 			\item l'entropie conditionnelle de la vérité terrain $\mathcal{C}$ par rapport au \textit{clustering} $\mathcal{K}$, et
 			\item l'entropie intrinsèque de la vérité terrain $\mathcal{C}$.
@@ -131,7 +131,7 @@
 		\end{equation}
 		
 		% Description de la complétude.
-		La \textbf{complétude} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{completeness}(C|K)$, est un score entre $0$ et $1$ qui est obtenu par $1$ moins le ratio entre :
+		La \textbf{complétude} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{completeness}(C|K)$, est un score entre $0$ et $1$, qui est obtenu par $1$ moins le ratio entre :
 		\begin{itemize}
 			\item l'entropie conditionnelle du \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$, et
 			\item l'entropie intrinsèque du \textit{clustering} $\mathcal{K}$.
@@ -155,9 +155,9 @@
 			Nous pouvons interpréter ces termes de la manière suivante :
 			\begin{itemize}
 				\item l'homogénéité $\texttt{homogeneity}(\mathcal{C}|\mathcal{K})$ représente à quel point \textbf{chaque \textit{cluster} $k$ contient uniquement des données provenant d'une même et une seule classe $c$} :
-				en effet, l'homogénéité est maximale lorsque l'entropie conditionnelle $H(\mathcal{C}|\mathcal{K})$ minimale, et cette entropie conditionnelle est nulle si chaque \textit{cluster} $k$ ne contient que des données d'une même classe $c$ ($log \frac{|k|}{|k|}=log(1)=0$) ;
+				en effet, l'homogénéité est maximale lorsque l'entropie conditionnelle $H(\mathcal{C}|\mathcal{K})$ est minimale, et cette entropie conditionnelle est nulle si chaque \textit{cluster} $k$ ne contient que des données d'une même classe $c$ ($log \frac{|k|}{|k|}=log(1)=0$) ;
 				\item la complétude $\texttt{completeness}(\mathcal{C}|\mathcal{K})$ représente à quel point \textbf{chaque classe $c$ est contenue entièrement dans un même et unique \textit{cluster} $k$} :
-				en effet, la complétude est maximale lorsque l'entropie conditionnelle $H(\mathcal{K}|\mathcal{C})$ minimale, et cette entropie conditionnelle est nulle si chaque classe $c$ ne contient que des données d'un même \textit{cluster} $k$ ;
+				en effet, la complétude est maximale lorsque l'entropie conditionnelle $H(\mathcal{K}|\mathcal{C})$ est minimale, et cette entropie conditionnelle est nulle si chaque classe $c$ ne contient que des données d'un même \textit{cluster} $k$ ;
 				\item ces termes sont liés : $\texttt{homogeneity}(\mathcal{C}|\mathcal{K}) = \texttt{completeness}(\mathcal{K}|\mathcal{C})$ ($log \frac{|c|}{|c|}=log(1)=0$).
 			\end{itemize}
 		\end{leftBarAuthorOpinion}
@@ -165,7 +165,7 @@
 		%%% VMEASURE
 		
 		% Description du calcul.
-		La \textbf{V-Measure} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{v-measure}(C|K)$, est un score entre $0$ et $1$ qui est obtenu par la moyenne harmonique entre l'homogénéité et la complétude.
+		La \textbf{V-Measure} d'un \textit{clustering} $\mathcal{K}$ par rapport à la vérité terrain $\mathcal{C}$ (servant de référence), notée $\texttt{v-measure}(C|K)$, est un score entre $0$ et $1$, qui est obtenu par la moyenne harmonique entre l'homogénéité et la complétude.
 		
 		% Equation.
 		\begin{equation}
@@ -181,7 +181,7 @@
 		\begin{leftBarAuthorOpinion}
 			Ce score de \texttt{v-measure} est le compromis entre l'homogénéité et la complétude.
 			Pour être maximal, il faut que chaque \textit{cluster} ne contienne que des données d'une même classe et qu'en échange chaque classe ne soit contenue que dans un seul \textit{cluster}.
-			Autrement dit : la \texttt{v-measure} est maximale si et seulement si chaque \textit{cluster} a une classe équivalente et inversement.
+			Autrement dit : la \texttt{v-measure} est maximale si chaque \textit{cluster} correspond a une classe et si chaque classe correspond a un \textit{cluster}.
 			
 			Ce score est symétrique : $\texttt{v-measure}(C|K) = \texttt{v-measure}(K|C)$.
 		\end{leftBarAuthorOpinion}
@@ -201,7 +201,7 @@
 			\centering
 			\includegraphics[width=0.95\textwidth]{figures/annexe-vmeasure-presentation}
 			\caption{
-				Présentation du jeu d'exemple :
+				Présentation du jeu d'exemples :
 				\textbf{(1)} représente $10$ données non regroupées ;
 				\textbf{(2)} représente ces $10$ données regroupées en $3$ \textit{clusters} en fonction de formes : \texttt{carrés}, \texttt{ronds}e t \texttt{triangles}.
 			}
@@ -261,7 +261,7 @@
 		\end{figure}
 		
 		% Description des cas simples.
-		Terminons maintenant les deux cas simples de la \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-2-CAS-SIMPLES}}.
+		Examinons enfin les deux cas simples de la \textsc{Figure~\ref{figure:D.2-ANNEXE-EVALUATION-CLUSTERING-EXEMPLE-VMEASURE-2-CAS-SIMPLES}}.
 		\begin{itemize}
 			\item \textbf{(1)} représente une segmentation presque parfaite où les \texttt{carrés} sont séparés :
 			\begin{itemize}

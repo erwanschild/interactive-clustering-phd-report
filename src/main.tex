@@ -505,56 +505,16 @@
 
 %%% (si le résumé apparaît sur une colonne étroite, avec la bibliographie à gauche, c'est sans doute parce que vous avez oublié de générer les fichiers d'index et de glossaire...)
 
-\NumberAbstractPages
-\begin{ThesisAbstract}
+\input{chapters/abstract.tex}
 
-	%%% Abstract en français
-	\begin{FrenchAbstract}
-		Le résumé à \st{faire}.
-		\KeyWords{
-			\texttt{Apprentissage automatique} ;
-			\texttt{Traitement automatique du langage naturel} ;
-			\texttt{Annotation de contraintes} ;
-			\texttt{Clustering sous contraintes} ;
-			\texttt{Clustering interactif} ;
-			\texttt{Assistant conversationnel}.
-		}
-	\end{FrenchAbstract}
-	
-	%%% Abstract en anglais
-	\begin{EnglishAbstract}
-		The abstract to do
-		\KeyWords{
-			\texttt{Machine Learning} ;
-			\texttt{Natural Language Processing} ;
-			\texttt{Constraints annotation} ;
-			\texttt{Constrained clustering} ;
-			\texttt{Interactive clustering} ;
-			\texttt{Chatbot}.
-		}
-	\end{EnglishAbstract}
-\end{ThesisAbstract}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Page de remerciements
 %%%%%--------------------------------------------------------------------
 
 % \WriteThisInToc
-\begin{ThesisAcknowledgments}
+\input{chapters/remerciements.tex}
 
-	Par la présente, je souhaite remercier:
-	% L'entreprise \texttt{Euro Information}, le laboratoire du \texttt{LORIA} et l'\texttt{ANRT} pour m'avoir permis de réaliser ce doctorat dans de bonnes conditions ;
-	% Mes encadrants, Jean-Charles et Florian,
-	% Mes collègues, notamment Amélie et Gautier,
-	% Ma relectrice, s'en ki ce manuscry serez truffé de photes d'autaugraff !
-	% Ma famille et mes amis qui m'ont \st{supporté} soutenu et encouragé tout au long de ces quatre années ;
-	% Ma tortue,
-	% Ma femme, qui a été un amour et une oreille attentive
-	\begin{todolist}
-		\item \st{test}
-	\end{todolist}
-
-\end{ThesisAcknowledgments}
 
 %%%%%--------------------------------------------------------------------
 %%%%% Page de dédicaces
@@ -644,7 +604,7 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génère la liste des choses à faire:
-\listoftodos[Liste des TODOs]
+%\listoftodos[Liste des TODOs]
 
 %%%%%--------------------------------------------------------------------
 %%%%% Liste des figures
@@ -667,9 +627,8 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Génère la liste des algorithmes:
-%\renewcommand{\listalgorithmname}{Liste des algorithmes}
 \renewcommand{\listalgorithmcfname}{Liste des algorithmes}
-\listofalgorithms  % ERROR TABLE MATIERES
+\listofalgorithms
 
 %%%%%--------------------------------------------------------------------
 %%%%% Liste des codes
@@ -684,14 +643,14 @@
 %%%%%--------------------------------------------------------------------
 
 %%% Affichage du glossaire:
-\printglossaries
+%\printglossaries
 
 %%%%%--------------------------------------------------------------------
 %%%%% Index
 %%%%%--------------------------------------------------------------------
 
 %%% Affichage de l'index:
-\WriteThisInToc
-\PrintIndex
+%\WriteThisInToc
+%\PrintIndex
 
 \end{document}

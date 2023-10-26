@@ -1,5 +1,5 @@
 \DontFrameThisInToc
-\Annex{Annexe sur les assistants conversationnels (\textit{chatbots})}
+\Annex{Les assistants conversationnels (\textit{chatbots})}
 \label{annex:B-ANNEXE-CHATBOTS}
 	
 	% INTRODUCTION DE L'ANNEXE.
@@ -40,9 +40,9 @@
 		Les \textit{chatbots} sont des robots conversationnels permettant à un utilisateur d'obtenir des informations ou d'automatiser des actions à l'aide d'instructions en langage naturel.
 		\begin{itemize}
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}] L'utilisation de tels assistants comporte \textbf{plusieurs avantages} :
-			ces derniers permettent de réduire les coûts en automatisant certaines tâches simples et répétitives (\textit{permettant ainsi aux humains de se concentrer sur d'autres tâches à risques ou à forte valeur ajoutée}),
+			ces derniers permettent de réduire les coûts en automatisant certaines tâches simples et répétitives (\textit{permettant ainsi aux opérateurs humains de se concentrer sur d'autres tâches à risques ou à forte valeur ajoutée}),
 			ils sont réactifs et toujours accessibles (\textit{au milieu de la nuit, les jours fériés, et même le vendredi après 16h}),
-			et ils ont un comportement stable quelle que soit la situation (\textit{pas de sauts d'humeur, de coups de fatigue ou d'erreurs d'inattention}).
+			et ils ont un comportement stable quelle que soit la situation (\textit{pas de sautes d'humeur, de coups de fatigue ou d'erreurs d'inattention}).
 			\item[\textcolor{colorDarkPastelRed}{\textcolor{colorDarkPastelRed}{\faThumbsDown}}] Néanmoins, ces assistants rencontrent aussi \textbf{plusieurs inconvénients} :
 			leur compréhension limitée du langage peut introduire des erreurs (\textit{notamment lorsque le sujet est complexe, quand il y a trop ou trop peu de contexte}),
 			ils manquent parfois de flexibilité ou d'empathie (\textit{nécessitant alors d'escalader la requête vers un opérateur humain}),
@@ -51,13 +51,13 @@
 		
 		
 		%%% Applications.
-		Ainsi, ces assistants sont utilisés dans de nombreux domaines :
+		Cependant, ces assistants sont utilisés dans de nombreux domaines :
 		\begin{itemize}
 			\item la \textbf{relation client à distance} (\textit{proposer une assistance 24/7, répondre aux questions fréquentes, automatiser la prise de rendez-vous, envoyer des formulaires de satisfaction, ...}) ;
 			\item le \textbf{commerce en ligne} (\textit{remplir des formulaires de réservation ou de rétractation, suivre une commande, assurer le service après-vente, ...}) ;
-			\item la \textbf{domotique} (\textit{gérer d'appareils connectés, écouter de la musique, interagir avec le \texttt{GPS}, être notifié en cas d'alerte intrusion, ...}) ;
+			\item la \textbf{domotique} (\textit{gérer les appareils connectés, écouter de la musique, interagir avec le \texttt{GPS}, être notifié en cas d'alerte intrusion, ...}) ;
 			\item l'\textbf{accès à l'information} (\textit{consulter une base documentaire, favoriser l'éducation, vulgariser ou résumer des concepts, ...}) ; 
-			\item le \textbf{divertissement} (\textit{raconter une histoire ou une blague, organiser un jeu narratif, organiser une sortie, simplement discuter lors d'une insomnie, ...}).
+			\item le \textbf{divertissement} (\textit{raconter une histoire ou une blague, organiser un jeu narratif, organiser une sortie, ou simplement discuter lors d'une insomnie, ...}).
 		\end{itemize}
 		
 		%%% Exemples.
@@ -90,7 +90,7 @@
 		\vspace{0.5cm}
 		
 		%%% Classification \textit{task-oriented} vs \textit{chat-oriented}.
-		Il existe de nombreuses façons d'agencer et d'implémenter de ces fonctionnalités, mais selon \cite{chen-etal:2017:survey-dialogue-systems}, nous pouvons les distinguer en \textbf{deux approches principales} en fonction de l'usage de l'assistant :
+		Il existe de nombreuses façons d'agencer et d'implémenter ces fonctionnalités, mais selon \cite{chen-etal:2017:survey-dialogue-systems}, nous pouvons les distinguer en \textbf{deux approches principales} en fonction de l'usage de l'assistant :
 		\begin{enumerate}
 			\item soit l'assistant est spécialisé pour une tâche bien déterminée (\textit{task-oriented}), dans ce cas sa conception se base traditionnellement sur une \textbf{approche symbolique} pour modéliser ses états de dialogue ;
 			\item soit l'assistant est axé sur la fluidité de la conversation avec l'utilisateur (\textit{chat-oriented}), dans ce cas sa conception est plutôt basée sur une \textbf{approche numérique}, utilisant un encodeur et un décodeur pour traiter la demande en un seul jet.
@@ -124,18 +124,18 @@
 			
 			% Achitecture.
 			La \textsc{Figure~\ref{figure:B.2-ANNEXE-CHATBOT-APPROCHES}} \textbf{(1)} représente l'architecture traditionnellement utilisée pour concevoir ce type d'assistants.
-			Cette architecture est composée de éléments suivants :
+			Cette architecture est composée des éléments suivants :
 			\begin{itemize}
 				% NLU.
 				\item le \textcolor{colorCarrotOrange}{\textbf{\texttt{NLU}}} (\textit{Natural Language Understanding}) :
 					ce composant utilise un ensemble de concepts pour interpréter le dialogue de manière symbolique.
-					Cette modélisation du dialogue, généralement implémentée à l'aide de méthodes supervisées, repose sur des détections de \textit{domaines} (\textit{thématique générale traitée}), des détections de \textit{sentiments} (\textit{positif, négatif ou neutre}), des détections d'\textit{intentions} (\textit{action exprimée par l'utilisateur, manifesté par le verbe d'action}), ou encore des extractions d'\textit{entités} (\textit{ensemble de mentions textuelles pertinentes}) (voir \cite{adamopoulou-moussiades:2020:overview-chatbot-technology}) ;
+					Cette modélisation du dialogue, généralement implémentée à l'aide de méthodes supervisées, repose sur des détections de \textit{domaines} (\textit{thématique générale traitée}), des détections de \textit{sentiments} (\textit{positif, négatif ou neutre}), des détections d'\textit{intentions} (\textit{action exprimée par l'utilisateur, manifestée par le verbe d'action}), ou encore des extractions d'\textit{entités} (\textit{ensemble de mentions textuelles pertinentes}) (voir \cite{adamopoulou-moussiades:2020:overview-chatbot-technology}) ;
 				% DST.
 				\item le \textcolor{colorDarkPastelGreen}{\textbf{\texttt{DST}}} (\textit{Dialogue State Tracking}) :
 					ce composant utilise les concepts détectés précédemment par le \texttt{NLU} (\textit{domaine}, \textit{sentiment}, \textit{intentions}, \textit{entités}) pour déterminer ou mettre à jour l'état de la conversation, et ainsi définir les actions possibles à partir de l'état en cours ;
 				% PL.
 				\item la \textcolor{colorDarkPastelGreen}{\textbf{\texttt{PL}}} (\textit{Policy Learning}) : 
-					ce composant choisit la prochaine action de l'assistant parmi celle autorisée par le \texttt{DST} pour l'état en cours.
+					ce composant choisit la prochaine action de l'assistant parmi celles autorisées par le \texttt{DST} pour l'état en cours.
 					Ce choix peut être réalisé à l'aide d'un ensemble de règles, d'un apprentissage supervisé ou encore d'un apprentissage par renforcement (voir \cite{brabra-etal:2022:dialogue-management-conversational}) ;
 				% NLG.
 				\item la \textcolor{colorSilverLakeBlue}{\textbf{\texttt{NLG}}} (\textit{Natural Language Generation}) :
@@ -150,9 +150,9 @@
 				\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}] Au sujet des avantages :
 					% Implémentation facile.
 					les différents composants de l'architecture sont simples à implémenter et à maintenir
-					(\textit{ces différentes briques sont indépendantes et ont des fonctionnalités bien précises}) ;
+					(\textit{les différentes briques sont indépendantes et ont des fonctionnalités bien précises}) ;
 					% Paramétrage facile.
-					de nouvelles règles de dialogues peuvent facilement être ajoutées dans le système
+					de nouvelles règles de dialogue peuvent facilement être ajoutées dans le système
 					(\textit{du moins si les processus de ces tâches sont bien documentés}) ;
 					% Mise sous contrôle.
 					il est facile de contrôler le comportement de l'assistant
@@ -193,7 +193,7 @@
 				Nous pouvons citer les projets ou outils suivants :
 				\begin{itemize}
 					\item \texttt{RASA} (\cite{bocklisch-etal:2017:rasa-open-source}) et \texttt{WATSON} (\cite{hoyt-etal:2016:ibm-watson-analytics}) sont deux moteurs de dialogue basés sur une approche symbolique et manipulant des intentions et des entités ;
-					\item \texttt{Assistant Virtuel SNCF} (\cite{sncf:2018:agent-virtuel-sncf}), \texttt{Google Assistant} (\cite{google:2016:google-assistant-your}) et \texttt{Alexa} (\cite{alexa-internet:2018:keyword-research-competitor}) sont des assistants connus pour être orientés par tâches, les deux derniers pouvant même être paramétrables par l'utilisateur final pour ses usages en domotiques ;
+					\item \texttt{Assistant Virtuel SNCF} (\cite{sncf:2018:agent-virtuel-sncf}), \texttt{Google Assistant} (\cite{google:2016:google-assistant-your}) et \texttt{Alexa} (\cite{alexa-internet:2018:keyword-research-competitor}) sont des assistants connus pour être orientés par tâches (\textit{les deux derniers pouvant même être paramétrables par l'utilisateur final pour ses usages en domotique}) ;
 					\item \cite{yan-etal:2017:building-taskoriented-dialogue} décrivent un projet de conception d'un assistant conversationnel pour du commerce en ligne.
 				\end{itemize}
 			\end{leftBarExamples}
@@ -206,7 +206,7 @@
 		\label{annex:B.2.2-ANNEXE-CHATBOTS-APPROCHES-CHAT-ORIENTED}
 			
 			% Description.
-			Les \textbf{approches axées sur le dialogue} (\textit{chat-oriented} ou \textit{non-task-oriented}) sont utilisées pour favoriser des conversations ouvertes avec les utilisateur : le système n'est donc pas conçu pour répondre à un besoin spécifique, mais plutôt pour être en mesure de discuter avec un utilisateur sur des thématiques générales et de rebondir à chacun de ses messages de manière fluide .
+			Les \textbf{approches axées sur le dialogue} (\textit{chat-oriented} ou \textit{non-task-oriented}) sont utilisées pour favoriser des conversations ouvertes avec les utilisateurs : le système n'est donc pas conçu pour répondre à un besoin spécifique, mais plutôt pour être en mesure de discuter avec un utilisateur sur des thématiques générales, et de rebondir à chacun de ses messages de manière fluide .
 			Afin de capturer la vaste diversité du langage, ces approches reposent majoritairement sur les capacités du \textit{Deep Learning}, notamment pour concevoir des modèles de langage permettant de capturer et de reproduire des séquences de phrases (voir \cite{ni-etal:2022:recent-advances-deep} et \cite{kumar-etal:2016:ask-me-anything}).
 			
 			% Achitecture.
@@ -238,19 +238,19 @@
 					(\textit{cette interprétation est déduite de l'immense volume de textes utilisés à l'entraînement}) ;
 					% Autres propriétés
 					en utilisant des larges modèles de langage, des propriétés intéressantes peuvent apparaître
-					(\textit{capable de consulter un très large champ de connaissances, de résumer et traduire un texte, de résoudre un calcul, d'effectuer une tâche d'analyse ou de déduction, de générer un code informatique, ...}).
+					(\textit{capacité de consulter un très large champ de connaissances, de résumer et traduire un texte, de résoudre un calcul, d'effectuer une tâche d'analyse ou de déduction, de générer un code informatique, ...}).
 				\item[\textcolor{colorDarkPastelRed}{\textcolor{colorDarkPastelRed}{\faThumbsDown}}] Au sujet des inconvénients :
 					% Coûts techniques imports.
 					les coûts d'entraînement et d'inférence du modèle sont conséquents
 					(\textit{besoin d'une immense quantité de données pour l'apprentissage, besoin de \texttt{GPU} et d'une infrastructure technique conséquente, ...}) ;
 					% Réponses erronées.
-					le décodeur peut générer des contenus inexactes, erronés ou offensant
+					le décodeur peut générer des contenus inexacts, erronés ou offensants
 					(\textit{imprécisions, fausses informations, hallucinations, réponse biaisée ou discriminatoire, ...}) ;
 					la reproduction des données utilisées pour l'entraînement questionne le respect des droits d'auteur et expose potentiellement des données privées ou confidentielles
-					(\textit{capacités à reproduire des passages entiers de livres, à trouver des numéros de cartes bancaires ou des clés d'activation de logiciel issus de fuites de bases de données, ...}) ;
+					(\textit{capacités de reproduire des passages entiers de livres, de trouver des numéros de cartes bancaires ou des clés d'activation de logiciel issus de fuites de bases de données, ...}) ;
 					% Mise sous contrôle.
 					la mise sous contrôle de l'assistant est difficile voire impossible
-					(\textit{manque de visibilité et d'explicabilité concernant le comportement du modèle, peu de leviers d'action direct, recours à une annotation de masse par ressenti utilisateur, ...}).
+					(\textit{manque de visibilité et d'explicabilité concernant le comportement du modèle, peu de leviers d'action directe, recours à une annotation de masse par ressenti utilisateur, ...}).
 			\end{itemize}
 			
 			% Exemples.
@@ -258,7 +258,7 @@
 				Nous pouvons citer les projets ou outils suivants :
 				\begin{itemize}
 					\item \texttt{ChatGPT} (\cite{openai:2023:chatgpt}), \texttt{BARD} (\cite{google:2023:bard-chat-based}) et \texttt{LLAMA2} (\cite{touvron-etal:2023:llama-open-foundation}) sont trois solutions basées sur des larges modèles de langage permettant de discuter de presque tous les domaines ainsi que de réaliser de très nombreuses tâches ;
-					\item \cite{kaddour-etal:2023:challenges-applications-large} détaillent une longue liste d'inconvénients et de défis pour l'utilisation de larges modèles de langage.
+					\item \cite{kaddour-etal:2023:challenges-applications-large} détaillent une longue liste d'inconvénients et de défis pour l'utilisation des larges modèles de langage.
 				\end{itemize}
 			\end{leftBarExamples}
 	
@@ -287,7 +287,7 @@
 			Pour estimer un \textbf{degré d'automatisation}, \cite{sheridan-verplank:1978:human-computer-control} identifient \textbf{dix niveaux} :
 			\begin{itemize}
 				\item de \textguillemets{la machine n'offre aucune assistance, l'opérateur doit choisir l'action à faire et la réaliser lui-même} (\textit{niveau 1 : automatisation nulle}) ;
-				\item à \textguillemets{la machine s'occupe de tout (analyse, choix et réalisation de l'action) sans consultation au préalable de l'opérateur ni information sur le déroulement de la tâche} (\textit{niveau 10 : automatisation totale}).
+				\item à \textguillemets{la machine s'occupe de tout (analyse, choix et réalisation de l'action) sans consultation préalable de l'opérateur ni information sur le déroulement de la tâche} (\textit{niveau 10 : automatisation totale}).
 			\end{itemize}
 			
 			% Quatre fonctions à automatisées.
@@ -313,17 +313,17 @@
 		\newpage
 		Pour résoudre ce dilemme de conception, \textbf{diverses approches hybrides peuvent être mises en oeuvre} :
 		\begin{itemize}
-			\item si nous voulons \textbf{plus de fluidité} dans la conversation (\textit{pour améliorer l'ergonomie utilisateur, pour permettre de discuter de sujets plus généraux, ...}), nous intégrerons davantage de composants issus d'une approche \textit{chat-oriented}, acceptant en échange de \textbf{déléguer} la gestion du dialogue et/ou la génération de réponse à la machine ;
+			\item si nous voulons \textbf{plus de fluidité} dans la conversation (\textit{pour améliorer l'ergonomie utilisateur, pour permettre de discuter de sujets plus généraux, ...}), nous intégrerons davantage de composants issus d'une approche \textit{chat-oriented}, acceptant en échange de \textbf{déléguer} la gestion du dialogue et/ou la génération de réponses à la machine ;
 			\item à l'inverse, si nous avons besoin d'un \textbf{contrôle plus fort} (\textit{pour assurer la sécurité des actions réaliser, pour garantir l'image de la marque, pour éviter les scandales, ...}), nous nous tournerons davantage vers l'utilisation de composants modélisant une approche symbolique du dialogue, permettant ainsi de \textbf{limiter la machine} dans ses possibilités.
 		\end{itemize}
 			
 		% Exemples.
 		\begin{leftBarExamples}
-			Nous dressons une liste non exhaustives d'approches hybrides :
+			Nous dressons une liste non exhaustive d'approches hybrides :
 			\begin{itemize}
 				\item la compréhension du langage naturel à l'aide de détection de concepts (\texttt{NLU}) peut être améliorée en utilisant les capacités d'un large modèle de langage (voir \texttt{RASA v3.6+} par \cite{bocklisch-etal:2017:rasa-open-source}) ou en réutilisant les représentations vectorielles produites par l'encodeur (\textit{embeddings}) ;
 				\item le moteur de dialogue d'une approche \textit{task-oriented} (\texttt{DST} et \texttt{PL}) peut être entraîné par renforcement dans le but d'améliorer la prise de décision et de rendre les étapes de dialogue plus flexibles (voir \cite{chen-etal:2017:survey-dialogue-systems} et \cite{brabra-etal:2022:dialogue-management-conversational}) ;
-				\item le décodeur d'une approche \textit{chat-oriented} peut être utilisé pour la génération de réponse d'un assistant \textit{task-oriented} (\texttt{NLG}), permettant afin d'améliorer la qualité de ses réponses (voir \cite{gao-etal:2018:neural-approaches-conversational} et \cite{chen-etal:2017:survey-dialogue-systems}) ;
-				\item il est possible de se baser sur une tâche de recherche d'information dans une base documentaire pour limiter les hallucinations lors de la génération de réponse (voir \cite{shuster-etal:2021:retrieval-augmentation-reduces} et \cite{zhang-etal:2016:neural-information-retrieval}).
+				\item le décodeur d'une approche \textit{chat-oriented} peut être utilisé pour la génération de réponses d'un assistant \textit{task-oriented} (\texttt{NLG}), permettant afin d'améliorer la qualité de ses réponses (voir \cite{gao-etal:2018:neural-approaches-conversational} et \cite{chen-etal:2017:survey-dialogue-systems}) ;
+				\item il est possible de se baser sur une tâche de recherche d'informations dans une base documentaire pour limiter les hallucinations lors de la génération de réponses (voir \cite{shuster-etal:2021:retrieval-augmentation-reduces} et \cite{zhang-etal:2016:neural-information-retrieval}).
 			\end{itemize}
 		\end{leftBarExamples}
