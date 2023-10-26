@@ -123,20 +123,20 @@
 				% \textit{clustering}.
 				\item le \textbf{clustering sous contraintes} des données, avec les niveaux suivants :
 				\textbf{KMeans} (modèle \textit{COP} noté \texttt{clust.kmeans.cop}), \textbf{Hiérarchique} (lien \textit{single} noté \texttt{clust.hier.sing} ; lien \textit{complete} noté \texttt{clust.hier.comp} ; lien \textit{average} noté \texttt{clust.hier.avg} ; lien \textit{ward} noté \texttt{clust.hier.ward}) et \textbf{Spectral} (modèle \textit{SPEC} noté \texttt{clust.spec}).
-				Le choix du nombre de \textit{cluster} n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
+				Le choix du nombre de \textit{clusters} n'est pas étudié ici, et ce nombre est fixé au nombre de classes présentes dans la vérité terrain ;
 				% \textit{sampling}.
 				\item l'\textbf{échantillonnage} des contraintes à annoter, avec les niveaux suivants :
-				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même \textit{cluster} et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de \textit{cluster} différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
+				couples de données \textbf{purement aléatoires} (noté \texttt{samp.random.full}), couples de données \textbf{pseudo-aléatoires} (sélectionnant des données provenant d'un même \textit{cluster} ; noté \texttt{samp.random.same}), couples de données \textbf{issues d'un même \textit{cluster} et étant les plus éloignées} (noté \texttt{samp.farhtest.same}) et couples de données \textbf{issues de \textit{clusters} différents et étant les plus proches} (noté \texttt{samp.closest.diff}).
 				Le choix de la taille d'échantillon n'est pas étudié ici, et cette taille est arbitrairement fixée à $50$ \footnote{
-					Une taille d'échantillon de $50$ contraintes à annoter semble a priori un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données.
+					Une taille d'échantillon de $50$ contraintes à annoter semble \textit{a priori} un bon compromis entre (1) ne pas donner trop de travail à un annotateur en une session et (2) donner suffisamment de nouvelles contraintes au \textit{clustering} pour proposer un partitionnement plus pertinent des données.
 					Ce choix sera discuté en fin de partie, et nous nous y intéresserons davantage dans la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}} (hypothèse sur les coûts).
 				}.
 			\end{enumerate}
 			
-			% Problème nombre de \textit{cluster}...
+			% Problème nombre de \textit{clusters}...
 			\begin{leftBarAuthorOpinion}
-				Il est difficile de discuter de l'influence du paramétrage du nombre de \textit{cluster} :
-				en effet, dans notre étude, nous désirons évaluer la capacité de notre méthode à atteindre une vérité terrain théorique ; or chercher un nombre de \textit{cluster} différent du nombre de classes reviendrait à remettre en cause la vérité terrain que nous essayons d'atteindre, nous empêchant donc d'évaluer la capacité de notre méthode...
+				Il est difficile de discuter de l'influence du paramétrage du nombre de \textit{clusters} :
+				en effet, dans notre étude, nous désirons évaluer la capacité de notre méthode à atteindre une vérité terrain théorique ; or chercher un nombre de \textit{clusters} différent du nombre de classes reviendrait à remettre en cause la vérité terrain que nous essayons d'atteindre, nous empêchant donc d'évaluer la capacité de notre méthode...
 				Devant ce cercle vicieux, nous laissons l'étude de ce problème ouvert à de futures études.
 			\end{leftBarAuthorOpinion}
 			
@@ -263,7 +263,7 @@
 			
 			% Avantage 2 : Annotations plus simples et plus concrètes
 			D'autre part, ces contraintes ont fait l'objet d'une annotation guidée par les besoins de la machine afin de s'améliorer d'itération en itération (voir la croissance globale de la \texttt{v-measure} sur la \textsc{Figure~\ref{figure:4.1.1-ETUDE-CONVERGENCE-EVOLUTION}}).
-			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les \textit{cluster} en cours de construction, améliorant ainsi la cohérence des \textit{cluster} (cf. pentes croissantes) ; soit en remaniant les \textit{cluster} mal formés pour repartir sur de bonnes bases, détériorant la cohérence des \textit{cluster} le temps de la réorganisation (cf. oscillations ou pentes décroissantes).
+			Ainsi, l'expert métier corrige la base d'apprentissage à chaque itération : soit en affinant les \textit{clusters} en cours de construction, améliorant ainsi la cohérence des \textit{clusters} (cf. pentes croissantes) ; soit en remaniant les \textit{clusters} mal formés pour repartir sur de bonnes bases, détériorant la cohérence des \textit{clusters} le temps de la réorganisation (cf. oscillations ou pentes décroissantes).
 			Une telle assistance limite ainsi le nombre de contraintes non utiles au \textit{clustering}, même si certains paramétrages semblent plus efficaces que d'autres (voir la forte dispersion des résultats).
 			
 			% Avantage 3 : Pas besoins d'une exhaustivité de contraintes.
@@ -278,7 +278,7 @@
 			
 			% Limite 1 : Nombre d'annotations ==> besoin d'optimisation.
 			D'une part, nous échangeons le besoin de définir une structure de données contre la nécessité d'annoter un grand nombre de contraintes : pour $500$ points de données, et en considérant que l'asymptote à $100$\% est atteinte en moyenne autour de l'itération $200$, il faudrait $10~000$ annotations de contraintes pour être exhaustif, ce qui correspond à près de $20$ fois plus de contraintes que de données.
-			Bien que l'annotation binaire demande a priori une charge mentale plus faible (\cite{hart-staveland:1988:development-nasatlx-task}) et que l'opérateur n'a pas besoin de définir ou de maintenir en mémoire une structure de données complexe, un tel volume d'annotation représente tout de même une grande quantité de travail.
+			Bien que l'annotation binaire demande \textit{a priori} une charge mentale plus faible (\cite{hart-staveland:1988:development-nasatlx-task}) et que l'opérateur n'a pas besoin de définir ou de maintenir en mémoire une structure de données complexe, un tel volume d'annotation représente tout de même une grande quantité de travail.
 			Cela peut décourager les experts métiers en début de projet, surtout pour des projets ayant des jeux de données de plus grande taille.
 			Toutefois, les résultats obtenus montrent une forte dispersion du nombre d'itérations nécessaire, et certaines tentatives ont été bien plus efficientes dans l'utilisation de leurs contraintes. La tentative la plus rapide a convergé à l'itération $19$, soit $950$ contraintes, ce qui est un volume d'annotation bien plus abordable !
 			Nous pouvons donc espérer trouver un paramétrage optimal de la méthode permettant de diminuer significativement le nombre moyen de contraintes nécessaires afin d'obtenir une base d'apprentissage exploitable avec un volume d'annotations acceptable.
@@ -292,6 +292,6 @@
 			
 			% Limite 3 : Expert métier parfait ==> simuler les différences.
 			Pour finir, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
-			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+			Cette hypothèse forte n'est \textit{a priori} pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différence d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
 			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
 			Cet aspect sera traité à la fin de ce chapitre dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).

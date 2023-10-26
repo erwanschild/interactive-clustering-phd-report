@@ -112,7 +112,7 @@
 				} ;
 				\item le cas d'une \textbf{annotation suffisante}, correspondant au nombre d'itérations nécessaire à la méthode pour avoir $100$\% de \texttt{v-measure}, c'est-à-dire avoir suffisamment de contraintes annotées par l'expert métier pour retrouver la vérité terrain ;
 				\item le cas d'une \textbf{annotation exhaustive}, correspondant au nombre d'itérations nécessaire à la méthode pour parcourir toutes les contraintes possibles sur les données, et ainsi retranscrire exhaustivement la vision de l'expert métier \footnote{
-					Une annotation est a priori inutilisable en pratique (demande trop de contraintes, cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}), nous l'étudions toutefois pour avoir un point de comparaison.
+					Une annotation est \textit{a priori} inutilisable en pratique (demande trop de contraintes, cf. hypothèse d'efficacité, \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}), nous l'étudions toutefois pour avoir un point de comparaison.
 				}.
 			\end{enumerate}
 			
@@ -787,13 +787,13 @@
 			
 			% Meilleur paramétrage.
 			L'étude réalisée met en avant l'impact significatif des quatre tâches principales (\textbf{prétraitements}, \textbf{vectorisation}, \textbf{\textit{clustering} sous contraintes}, \textbf{échantillonnage}) sur la vitesse de convergence de la méthode pour atteindre les seuils définis de $90$\% et $100$\% de \texttt{v-measure}.
-			Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaire à annoter :
+			Il existe donc bien un paramétrage permettant d'optimiser l'implémentation proposée et de réduire le nombre de contraintes nécessaires à annoter :
 			\begin{enumerate}
 				% Annotation partielle.
-				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}).
+				\item pour une \textbf{annotation partielle} ($90$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué des prétraitements simples (\texttt{prep.simple}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} hiérarchique à lien moyen (\texttt{clust.hier.avg}) et de l'échantillonnage des données les plus proches dans des \textit{clusters} différents (\texttt{sampl.closest.diff}).
 				Avec ce paramétrage, il faut en moyenne $950$ annotations de contraintes pour obtenir une \texttt{v-measure} de $90$\% ;
 				% Annotation suffisante.
-				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}).
+				\item pour une \textbf{annotation suffisante} ($100$\% de \texttt{v-measure}), le meilleur paramétrage moyen est constitué du prétraitement avec lemmatisation (\texttt{prep.lemma}), de la vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), du \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et de l'échantillonnage des données les plus proches dans des \textit{clusters} différents (\texttt{sampl.closest.diff}).
 				Avec ce paramétrage, il faut en moyenne $1~750$ annotations de contraintes pour obtenir une \texttt{v-measure} de $100$\% ;
 				% Annotation exhaustive.
 				\item le cas d'une \textbf{annotation exhaustive} (annoter toutes les contraintes possibles sur les données) n'est pas explicité ici mais peut se déduire des résultats décrits plus haut.
@@ -805,7 +805,7 @@
 				
 				% Echantillonnage et \textit{Clustering}.
 				Les facteurs de \textit{clustering} et d'échantillonnage ont quant à eux des valeurs plus fortes ($\eta^{2} > 0.70$), dénotant ainsi un plus grand pouvoir explicatif de la variance des résultats.
-				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{cluster} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tort.
+				Notre attention s'attarde particulièrement sur l'échantillonnage des données les plus proches dans des \textit{clusters} différents (\texttt{sampl.closest.diff}) qui s'avère très prometteur : cette sélection semble permettre de corriger efficacement la frontière des \textit{clusters} en favorisant l'ajout de contraintes \texttt{MUST-LINK} sur des données séparées à tort.
 				Or les corrections introduisant des contraintes \texttt{MUST-LINK} sont plus explicites que les contraintes \texttt{CANNOT-LINK} dont l'utilisation est plus ambiguë (\textit{dans le premier cas, nous savons que les deux données sont désormais à mettre dans le même \textit{cluster} ; dans le second, on sait qu'il faut séparer les deux données sans exprimer dans quels \textit{cluster} ils doivent aller}).
 				Ainsi, nous sommes d'avis que l'échantillonnage \texttt{sampl.closest.diff} est efficient car il permet d'introduire efficacement des contraintes dont l'utilité est immédiate pour corriger le \textit{clustering}.
 			\end{leftBarAuthorOpinion}
@@ -819,7 +819,7 @@
 			
 			% Avantage 2: La méthode devient réaliste !
 			Cette estimation est plus raisonnable que celle réalisée en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}.
-			De plus, en considérant que les annotations sont binaires et demandent a priori une charge mentale plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quelle est l'étiquette de cette donnée ?}", cf. \cite{hart-staveland:1988:development-nasatlx-task}), nous pouvons espérer que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \texttt{Clustering Interactif} est comparable à celle des méthodes traditionnelles.
+			De plus, en considérant que les annotations sont binaires et demandent \textit{a priori} une charge mentale plus faible que les annotations par attribution de label ("\textit{les données sont-elles similaires ?}" vs "\textit{quelle est l'étiquette de cette donnée ?}", cf. \cite{hart-staveland:1988:development-nasatlx-task}), nous pouvons espérer que la charge totale nécessaire à l'annotation avec une méthodologie basée sur le \texttt{Clustering Interactif} est comparable à celle des méthodes traditionnelles.
 			Nous confirmerons cette conclusion en étudiant le temps nécessaire à un opérateur pour annoter un lot de contraintes (cf. \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}}).
 			\\
 			
@@ -837,12 +837,12 @@
 			Or en situation réelle, cette comparaison avec la vérité terrain n'est pas possible car elle est précisément en cours de conception (la base d'apprentissage finale devant être la vérité terrain).
 			De plus, un tel score n'est pas le plus explicite pour un expert métier pour qui un score de \texttt{v-measure} n'est pas révélateur de la pertinence métier de la segmentation proposée des données.
 			Dans un registre similaire, il est possible que l'évolution du partitionnement des données passe par plusieurs états stables et pertinents, mais que l'annotateur soit obligé d'affiner sa vision en annotant certaines contraintes ambiguës.
-			Cela peut être la cas avec des \textit{cluster} traitant en fin de compte de sujets très similaires (\textit{ajouter des \texttt{MUST-LINK} pour les fusionner}) ou avec un \textit{cluster} qui regroupe finalement plusieurs thématiques (\textit{ajouter des \texttt{CANNOT-LINK} pour les segmenter}).
+			Cela peut être la cas avec des \textit{clusters} traitant en fin de compte de sujets très similaires (\textit{ajouter des \texttt{MUST-LINK} pour les fusionner}) ou avec un \textit{cluster} qui regroupe finalement plusieurs thématiques (\textit{ajouter des \texttt{CANNOT-LINK} pour les segmenter}).
 			Il manque donc une stratégie d'évaluation de pertinence de la base d'apprentissage en cours de construction, afin d'estimer la stabilité d'un partitionnement et la suffisance des annotations réalisées pour faire refléter la vision de l'annotateur dans le résultat obtenu.
 			Cet aspect sera traité dans la \textsc{Section~\ref{section:4.4-HYPOTHESE-PERTINENCE}} (hypothèse de pertinence).
 			
 			% Limite 3 : Expert métier parfait ==> simuler les erreurs.
 			Pour finir, comme pour l'étude de convergence réalisée en \textsc{Section~\ref{section:4.1-HYPOTHESE-EFFICACITE}}, nous avons supposé dans cette étude que l'annotateur est un expert métier connaissant parfaitement le domaine traité.
-			Cette hypothèse forte n'est a priori pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différences d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
+			Cette hypothèse forte n'est \textit{a priori} pas valable en situation réelle : En effet, des différences d'annotations peuvent intervenir (\textit{ambiguïtés sur les données, méconnaissance du domaine, erreurs d'inattention, différences d'opinions entre annotateurs, ...}), ce qui peut entraîner des divergences ou des incohérences dans la construction de la base d'apprentissage.
 			Il semble donc nécessaire d'étudier les impacts de ces incohérences, ainsi que de proposer une méthode pour les prévenir ou les corriger.
 			Cet aspect sera traité à la fin de ce chapitre dans la \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}} (hypothèse de robustesse).

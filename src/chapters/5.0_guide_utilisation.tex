@@ -2,19 +2,19 @@
 \label{chapter:5-GUIDE}
 	
 	% Introduction.
-	Dans nos études, nous nous sommes intéressés aux assistants conversationnels orientés par tâches et aux méthodes de conception des bases d'apprentissage nécessaires à leur entraînement.
+	Dans nos études, nous nous sommes intéressé aux assistants conversationnels orientés par tâches et aux méthodes de conception des bases d'apprentissage nécessaires à leur entraînement.
 	Dans ce chapitre, nous dressons une synthèse des découvertes et des conseils d'utilisation de notre méthodologie d'annotation basée sur un \texttt{Clustering Interactif} ayant pour but d'assister les experts métiers dans la phase de modélisation des textes en intentions de dialogue.
 	
 	\begin{leftBarReminder}
 		% Rappel: Complexité et cycle MATTER
 		Nous partons du constat selon lequel la conception d'une base d'apprentissage de textes annotés en intentions est connue pour être complexe, subjective et sensible aux erreurs (voir \textsc{Section~\ref{section:2.3-DEFIS-ANNOTATION}}).
-		Pour limiter ces problèmes, un projet de labellisation s'organise généralement autour du cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}) durant lequel une modélisation abstraite des intentions est définie pour d'annoter les données, et cette modélisation est affinée ou remise en cause plusieurs fois au cours du cycle pour mieux s'adapter aux données du projet (voir \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}}).
+		Pour limiter ces problèmes, un projet de labellisation s'organise généralement autour du cycle \texttt{MATTER} (\cite{pustejovsky-stubbs:2012:natural-language-annotation}) durant lequel une modélisation abstraite des intentions est définie pour annoter les données ; cette modélisation est ensuite affinée ou remise en cause plusieurs fois au cours du cycle pour mieux s'adapter au projet (voir \textsc{Section~\ref{section:2.2-ORGANISATION-ANNOTATION}}).
 		
 		% Besoin d'experts métiers.
 		Pour modéliser et annoter les données, les experts métiers ont besoin de leurs connaissances métiers, mais aussi de compétences analytiques et techniques afin d'assurer de la qualité de la base d'apprentissage en cours de construction.
 		Par conséquent, un projet d'annotation devient rapidement onéreux, notamment à cause :
 		\begin{itemize}
-			\item des formations analytiques dont les experts métiers ont besoin pour intervenir dans le projet ;
+			\item des formations analytiques nécessaires aux annotateurs pour intervenir dans le projet ;
 			\item des nombreux ateliers de modélisation en mode essai-erreur nécessaires pour trouver une base d'apprentissage stable et pertinente ; et
 			\item de la complexité engendrée par la manipulation de concepts abstraits (\textit{intention, entités, ...}) dans le but de représenter les connaissances des experts métiers .
 		\end{itemize}
@@ -34,18 +34,18 @@
 		
 		% Intuitions : annotation par différences de cas d'usages.
 		Sur la base d'intuitions issues de la littérature (\textsc{Section~\ref{section:3.1-INTUITIONS-ORIGINES}}), nous avons décidé de centrer notre méthodologie d'annotation sur l'\textbf{annotation des similarités et des différences entre les données}.
-		En effet, une telle stratégie semble moins complexe à appliquer car elle ne dépend pas d'une modélisation abstraite des connaissances de l'expert, mais elle se base directement sur ces connaissances pour décrire si deux données ont ou n'ont pas un cas d'usage équivalent.
+		En effet, une telle stratégie semble moins complexe à appliquer, car elle ne dépend pas d'une modélisation abstraite des connaissances de l'expert, mais elle se base directement sur ses connaissances pour décrire si deux données ont ou n'ont pas un cas d'usage équivalent.
 		
 		% Proposition de \texttt{Clustering Interactif}.
 		Nous mettons en oeuvre cette stratégie d'annotation par similarité au sein d'une méthodologie basée sur un \texttt{Clustering Interactif} (voir \textsc{Section~\ref{section:3.2-DESCRIPTION-THEORIQUE}}).
-		Cette méthode repose sur les avantages des interactions Homme/Machine, en déléguant la conception de la base d'apprentissage à la machine (\textit{à l'aide d'algorithme de regroupement automatique de texte (clustering)}) et en faisant intervenir l'expert pour affiner itérativement la base d'apprentissage proposée (\textit{en annotant des contraintes entre les données pour corriger le regroupement des textes}).
+		Cette méthode repose sur les avantages des interactions Homme/Machine, en déléguant la conception de la base d'apprentissage à la machine (\textit{à l'aide d'un algorithme de regroupement automatique de texte (clustering)}) et en faisant intervenir l'expert pour affiner itérativement la base d'apprentissage proposée (\textit{en annotant des contraintes entre les données pour corriger le regroupement des textes}).
 		\textbf{Trois étapes principales} se répètent ainsi au cours de ce \textbf{processus itératif} :
 		\begin{itemize}
 			\item une \textbf{sélection de données à annoter} :
 			la machine propose un ensemble de données dont la similarité serait à confirmer (ou à infirmer) afin de corriger efficacement le regroupement automatique des données opéré à l'itération suivante ;
 			\item une \textbf{annotation des contraintes} :
 			l'expert caractérise chaque couple de données en répondant à la question \textguillemets{\textit{est-ce que les deux données ont un cas d'usage similaire ?}}, en ajoutant une contrainte \texttt{MUST-LINK} si oui (\textit{similaires}) et en ajoutant une contrainte \texttt{CANNOT-LINK} sinon (\textit{non similaires}) ;
-			\item une \textbf{segmentation automatique des données} : la machine regroupe les données basée en fonction de leurs similarités intrinsèques et des contraintes annotées par l'expert.
+			\item une \textbf{segmentation automatique des données} : la machine regroupe les données en fonction de leurs similarités intrinsèques et des contraintes annotées par l'expert.
 		\end{itemize}
 		
 		
@@ -87,20 +87,20 @@
 		\begin{itemize}
 			% Apprentissage semi-supervisé.
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}]
-				Par conception, la méthode tire parti des avantages de l'apprentissage actif et des méthodes de regroupement semi-supervisé : \textbf{l'expert n'est plus responsable de l'ensemble du travail de labellisation}, il intervient simplement là où il offre une valeur ajoutée (\textit{annotation des contraintes pour améliorer la pertinence de la base d'apprentissage en cours de construction}) et il délègue le reste à la machine (\textit{regroupement automatique, sélection des contraintes intéressantes à annoter, identification des incohérences}).
+				Par conception, la méthode tire parti des avantages de l'apprentissage actif et des méthodes de regroupement semi-supervisé : \textbf{l'expert n'est plus responsable de l'ensemble du travail de labellisation} ; il intervient simplement là où il offre une valeur ajoutée (\textit{annotation des contraintes pour améliorer la pertinence de la base d'apprentissage en cours de construction}), et il délègue le reste à la machine (\textit{regroupement automatique, sélection des contraintes intéressantes à annoter, identification des incohérences}).
 			% Plus de modélisation.
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}]
 				\textbf{Il n'est plus nécessaire de définir une modélisation abstraite de la connaissance d'un expert métier pour labelliser un jeu de données} : cette modélisation est construite au cours des itérations de la méthode, à l'aide des regroupements automatiques réalisés par la machine.
 			% Annotation binaire
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}]
-				Par extension, il n'est plus nécessaire de manipuler cette modélisation abstraite pouvant contenir des dizaines d'intention de dialogue :
+				Par extension, il n'est plus nécessaire de manipuler cette modélisation abstraite pouvant contenir des dizaines d'intentions de dialogue :
 				\textbf{l'expert se contente de décrire la similarité entre deux données au cours d'une annotation binaire (\texttt{MUST-LINK} ou \texttt{CANNOT-LINK})} pour corriger le résultat proposé par la machine.
 			% Connaissance métier.
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}]
-				\textbf{Cette annotation binaire se base directement sur la ressemblance entre cas d'usage métiers} : les experts intervenant dans le projet peuvent traiter les données comme il le ferait au quotidien au cours de leur profession, sans avoir à manipuler ou à interpréter des concepts abstraits et potentiellement non adaptés à la situation (\textit{intentions, ...}).
+				\textbf{Cette annotation binaire se base directement sur la ressemblance entre cas d'usage métiers} : les experts intervenant dans le projet peuvent traiter les données comme ils le feraient professionnellement au quotidien, sans avoir à manipuler ou à interpréter des concepts abstraits et potentiellement non adaptés à la situation (\textit{intentions, ...}).
 			% Optimisation technique et coûts compétitifs.
 			\item[\textcolor{colorDarkPastelGreen}{\textcolor{colorDarkPastelGreen}{\faThumbsUp}}]
-				L'implémentation proposée de notre méthodologie d'annotation a pu être optimisée afin de converger vers une base d'apprentissage stable en un minimum de contraintes : \textbf{les coûts à engager pour cette approche semblent raisonnables et compétitifs avec l'approche d'annotation traditionnelle} (voir \textsc{Section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}}).
+				L'implémentation de notre méthodologie d'annotation a pu être optimisée afin de converger vers une base d'apprentissage stable en un minimum de contraintes : \textbf{les coûts à engager pour cette approche semblent raisonnables et compétitifs avec l'approche d'annotation traditionnelle} (voir \textsc{Section~\ref{section:4.3.4-ETUDE-COUTS-TOTAL}}).
 		\end{itemize}
 	
 		%%% Limites.
@@ -137,12 +137,12 @@
 			Afin de limiter ces incohérences, il est nécessaire de bien définir l'objectif de l'annotation (\textit{quel est la finalité du modèle à entraîner ?}), mais aussi d'harmoniser les points de vue des différents annotateurs.
 			
 			% Solution.
-			Au cours de l'\texttt{étude de robustesse} (voir \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}) À cet effet, \textbf{nous conseillons d'employer au moins $3$ experts et de régulièrement (voire toujours) leur soumettre les mêmes contraintes à annoter}.
-			Un tel choix semble contre-intuitif à première vue (\textit{nous triplons le coût d'embauche alors que nous pourrions tripler le nombre de contraintes annotées}), mais ce parti pris à l'avantage de contraindre les annotateurs à discuter de leurs divergences d'opinion (\textit{s'ils n'annotent pas la même chose, c'est qu'ils ne sont pas d'accord de la manière de traiter les données}).
-			Ainsi, même si ce choix engendre des coûts supplémentaires, il s'avère être un investissement à longs termes pour garantir la qualité et la cohérence de la base d'apprentissage en cours de construction.
+			Au cours de l'\texttt{étude de robustesse} (voir \textsc{Section~\ref{section:4.6-HYPOTHESE-ROBUSTESSE}}), \textbf{nous conseillons d'employer au moins $3$ experts et de régulièrement (voire toujours) leur soumettre les mêmes contraintes à annoter}.
+			Un tel choix semble contre-intuitif à première vue (\textit{nous triplons le coût d'embauche alors que nous pourrions tripler le nombre de contraintes annotées}), mais ce parti pris a l'avantage de contraindre les annotateurs à discuter de leurs divergences d'opinion (\textit{s'ils n'annotent pas de façon analogue, c'est qu'ils ne sont pas d'accord de la manière de traiter les données}).
+			Ainsi, même si ce choix engendre des coûts supplémentaires, il s'avère être un investissement à long terme pour garantir la qualité et la cohérence de la base d'apprentissage en cours de construction.
 			
 			% Notes.
-			Les experts pourront annoter des contraintes différentes après plusieurs itérations de la méthodes lorsque leur score d'accord inter-annotateurs sera considéré comme (très) \texttt{fort}.
+			Les experts pourront annoter des contraintes différentes après plusieurs itérations de la méthode lorsque leur score d'accord inter-annotateurs sera considéré comme (très) \texttt{fort}.
 		
 		
 		%%% Rentabilité d'une itération.
@@ -153,7 +153,7 @@
 			
 			% Solution.
 			Au cours de l'\texttt{étude de rentabilité} (voir \textsc{Section~\ref{section:4.5-HYPOTHESE-RENTABILITE}}), nous avons mis en évidence l'intérêt d'\textbf{analyser l'évolution de la différence de résultats de \textit{clustering} entre deux itérations consécutives afin d'identifier l'intérêt d'une itération supplémentaire}.
-			En effet, si le nouveau \textit{clustering} reste fortement similaire au \textit{clustering} précédent malgré l'ajout de contraintes supplémentaires, nous pouvons en déduire que la méthode d'annotation stagne.
+			En effet, si le nouveau \textit{clustering} reste fortement similaire au \textit{clustering} précédent, malgré l'ajout de contraintes supplémentaires, nous pouvons en déduire que la méthode d'annotation stagne.
 			Il peut alors être intéressant d'envisager de stopper les itérations de la méthode, d'évaluer la pertinence métier du \textit{clustering} actuel, et de corriger manuellement les reliquats.
 			
 			% Mise en oeuvre.
@@ -172,15 +172,15 @@
 				% FMC.
 				\item Une \textbf{analyse des patterns linguistiques caractéristiques de chaque \textit{cluster} en utilisant la \texttt{FMC}} (voir \textsc{Annexe~\ref{annex:C.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC}}) :
 				un \textit{cluster} peut ainsi être identifié comme pertinent s'il possède un vocabulaire caractéristique cohérent du point de vue de l'expert.
-				Il est aussi possible de se servir de cette analyse pour identifier dans chaque texte les mots caractéristiques d'un ou plusieurs \textit{cluster}.
+				Il est aussi possible de se servir de cette analyse pour identifier dans chaque texte les mots caractéristiques d'un ou plusieurs \textit{clusters}.
 				% LLM.
-				\item Un \textbf{résumé thématique des \textit{cluster} par un large modèle de langue (\texttt{LLM})} :
+				\item Un \textbf{résumé thématique des \textit{clusters} par un large modèle de langage (\texttt{LLM})} :
 				cette approche permet d'estimer efficacement la cohérence d'un \textit{cluster} à l'aide d'une courte description en langage naturel.
 				Il faut toutefois être vigilant aux hallucinations du modèle utilisé : nous conseillons donc de confirmer manuellement l'analyse.
 			\end{itemize}
 			
 			% Constat.
-			Cependant, une \textbf{correction manuelle est souvent nécessaire} avant de valider un \textit{cluster}.
+			Toutefois, \textbf{une correction manuelle reste nécessaire} avant de valider un \textit{cluster}.
 	
 	
 	%%%%%--------------------------------------------------------------------
@@ -194,7 +194,7 @@
 		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Développements logiciels:}
 		
 			% Références.
-			Au cours de ce doctorat, nous avons implémenté plusieurs algorithmes de \textit{clustering} et d'échantillonnage (\textit{disponibles dans la librairie \texttt{cognitivefactory-interactive-clustering}}) et nous avons intégré la logique de notre méthodologie d'annotation dans une application web (\textit{accessible dans la librairie \texttt{cognitivefactory-interactive-clustering-gui}}).
+			Pendant ce doctorat, nous avons implémenté plusieurs algorithmes de \textit{clustering} et d'échantillonnage (\textit{disponibles dans la librairie \texttt{cognitivefactory-interactive-clustering}}) et nous avons intégré la logique de notre méthodologie d'annotation dans une application web (\textit{accessible dans la librairie \texttt{cognitivefactory-interactive-clustering-gui}}).
 			Ces développements logiciels sont décrits en \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
 		
 		%%% Paramétrage optimal.
@@ -209,7 +209,7 @@
 				\item \texttt{prep.simple}: les \textbf{prétraitements} \textbf{simples} supprimant les minuscules, les ponctuations, les accents et les espaces blancs ;
 				\item \texttt{vect.tfidf}: la \textbf{vectorisation} utilisant une représentation statistique du vocabulaire à l'aide d'un \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine}) ;
 				\item \texttt{clust.kmeans.cop}: le \textbf{\textit{clustering} sous contraintes} utilisant l'algorithme \texttt{KMeans} adapté en mode \textbf{\texttt{COP-KMeans}} (\cite{wagstaff-etal:2001:constrained-kmeans-clustering}) ;
-				\item \texttt{samp.closest.diff}: l'\textbf{échantillonnage de contraintes} concernant des données issues de \textbf{\textit{cluster} différents} et étant \textbf{les plus proches} les unes des autres.
+				\item \texttt{samp.closest.diff}: l'\textbf{échantillonnage de contraintes} concernant des données issues de \textbf{\textit{clusters} différents} et étant \textbf{les plus proches} les unes des autres.
 			\end{itemize}
 		
 			% Temps de calcul.
@@ -254,7 +254,7 @@
 	\label{section:5.5-GUIDE-COUTS}
 	
 		% Introduction.
-		Au cours de nos études, et principalement au cours de la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}, nous avons pu estimé en ensemble de coûts théoriques (temporels et humains).
+		Dans nos études, et principalement au cours de la \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}, nous avons pu estimé un ensemble de coûts théoriques (temporels et humains).
 		
 		
 		%%% Vitesse d'annotation.
@@ -262,16 +262,17 @@
 			
 			% Description.
 			À l'aide d'une expérience en situation réelle, nous avons estimé qu'\textbf{il faut environ $7.8$ secondes pour caractériser une contrainte}.
-			Nous avons montré que ce temps est inférieur à celui d'une annotation d'étiquettes faisant intervenir une modélisation, l'annotation de contraintes est donc \textit{a priori} moins complexe et plus rapide.
+			Nous avons montré que ce temps est inférieur à celui d'une annotation d'étiquettes faisant intervenir une modélisation ;
+			l'annotation de contraintes est donc \textit{a priori} moins complexe et plus rapide.
 		
 		
 		%%% Nombre de contraintes.
-		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Nombre de contraintes nécessaire:}
+		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Nombre de contraintes nécessaires:}
 		
 			% Description.
-			À l'aide d'une simulation, nous avons estimé qu'\textbf{il faut environ $3.15$ contraintes par données pour obtenir une base d'apprentissage stable} (\textit{bien entendu, cette estimation varie grandement suivant la complexité des données et la finalité du modèle à entraîner}).
+			À l'aide d'une simulation, nous avons estimé qu'\textbf{il faut environ $3.15$ contraintes par donnée pour obtenir une base d'apprentissage stable} (\textit{bien entendu, cette estimation varie grandement suivant la complexité des données et la finalité du modèle à entraîner}).
 			Nous rappelons qu'il faudra confirmer la pertinence du \textit{clustering} obtenu par un expert.
-			Il est toutefois intéressant de noter que cet estimation du nombre de contraintes nécessaires est linéaire alors que le nombre de contraintes possible augmente de manière quadratique avec le nombre de données.
+			Il est toutefois intéressant de noter que cette estimation du nombre de contraintes nécessaires est linéaire alors que le nombre de contraintes possibles augmente de manière quadratique avec le nombre de données.
 		
 		
 		%%% Temps total.
@@ -282,14 +283,14 @@
 			Nous pouvons aussi noter qu'une telle approche propose un nombre constant de $144.5$ itérations pour annoter le nombre de contraintes requis afin d'obtenir une base d'apprentissage stable.
 			
 			% Comparaison avec une approche classique.
-			Une telle estimation semble compétitive avec une annotation d'étiquettes faisant intervenir une modélisation : en effet, le temps d'annotation est légèrement plus long (\textit{à cause du nombre de contraintes à traiter}), mais elle économise le temps nécessaire à concevoir et à réviser plusieurs fois la modélisation abstraite des textes en intentions.
+			Une telle estimation semble compétitive avec une annotation d'étiquettes faisant intervenir une modélisation : en effet, le temps d'annotation est légèrement plus long (\textit{à cause du nombre de contraintes à traiter}), mais cela économise le temps nécessaire à concevoir et à réviser plusieurs fois la modélisation abstraite des textes en intentions.
 		
 		
 		%%% Robustesse et nombre d'annotateurs.
 		\paragraph{\textcolor{colorSilverLakeBlue}{\faCheckSquare} Coûts d'analyse et de robustesse:}
 			
 			% Attention.
-			Il est à noter qu'\textbf{un ensemble de coûts n'ont pas pu être estimé} (\textit{ces derniers étaient impossibles à simuler ou à reproduire}) :
+			Il est à noter que \textbf{de nombreux coûts n'ont pas pu être estimés} (\textit{ces derniers étaient impossibles à simuler ou à reproduire}) :
 			\begin{itemize}
 				% Temps d'analyse.
 				\item Le \textbf{temps nécessaire à l'analyse de la pertinence et de la rentabilité}
@@ -301,7 +302,7 @@
 			\end{itemize}
 			
 			% Conseils.
-			Poar conséquent, \textbf{nous conseillons d'utiliser les estimations de l'\textsc{Équation~\ref{equation:5.5-GUIDE-COUTS}} avec une marge d'erreur proportionnelle à la quantité et à la complexité des données à annoter}.
+			Par conséquent, \textbf{nous conseillons d'utiliser les estimations ci-dessous avec une marge d'erreur proportionnelle à la quantité et à la complexité des données à annoter}.
 			
 		% Equation.
 		\begin{equation}
@@ -329,7 +330,7 @@
 		\label{section:5.6-GUIDE-REDIGER}
 		
 		% Introduction.
-		Nous terminons ce chapitre de bilan en listant quelques conseils pour bien cadrer un projet de conception de base d'apprentissage voulant utiliser notre méthode d'annotation.
+		Nous terminons ce chapitre de bilan en listant quelques conseils pour bien cadrer un projet de conception de base d'apprentissage utilisant notre méthode d'annotation.
 		\begin{leftBarInformation}
 			Nous nous référons aux $7$ maximes proposées par \cite{leech:1993:corpus-annotation-schemes} (et détaillées par \cite{fort:2022:manual-annotation-what}) que nous allons adapter pour le cas d'annotation de contraintes.
 		\end{leftBarInformation}
@@ -340,32 +341,32 @@
 			\item \textbf{La donnée initiale doit toujours pouvoir être accessible} \footnote{
 				Maxime $1$ : \textguillemets{\textit{It should always be possible to come back to initial data.}}
 			} :
-			en effet, il faut faire attention aux étapes de prétraitements et de nettoyage qui peuvent effacer des informations potentiellement importantes pour l'analyse ;
+			en effet, il faut faire attention aux étapes de prétraitements et de nettoyage qui peuvent effacer des informations potentiellement importantes pour l'analyse.
 			% 2. Annotations should be extractable from the text.
 			\item \textbf{L'annotation d'une contrainte doit se baser sur des similarités ou des différences observables} \footnote{
 				Maxime $2$ : \textguillemets{\textit{Annotations should be extractable from the text.}}
 			} :
-			en effet, si aucun indice ne permet de faire un choix objectif, il est préférable de s'abstenir (\textit{voire de supprimer la donnée si elle est trop ambiguë}) ;
+			en effet, si aucun indice ne permet de faire un choix objectif, il est préférable de s'abstenir (\textit{voire de supprimer la donnée si elle est trop ambiguë}).
 			% 3. The annotation procedure should be documented.
 			\item \textbf{Il faut documenter l'objectif de l'annotation de contraintes et expliciter clairement sur quels critères elle se base} \footnote{
 				Maxime $3$ : \textguillemets{\textit{The annotation procedure should be documented.}}
 			} :
 			d'une part, il est important de décrire sur quoi caractériser la similarité entre les données (\textit{sur l'action ? sur l'objet de l'action ? sur le sentiment associé ? ...}) ;
-			d'autre part, cette documentation doit être complétée au fur et à mesure des revues d'annotation et des résolutions d'incohérences dans la base de contraintes (\textit{dans telle situation, la similarité sera caractérisée de telle manière}) ;
+			d'autre part, cette documentation doit être complétée au fur et à mesure des revues d'annotation et des résolutions d'incohérences dans la base de contraintes (\textit{dans telle situation, la similarité sera caractérisée de telle manière}).
 			% 4. Mention should be made of the annotator(s) and the way annotation was made.
 			\item \textbf{Il est important de  décrire les opérateurs réalisant les annotations} \footnote{
 				Maxime $4$ : \textguillemets{\textit{Mention should be made of the annotator(s) and the way annotation was made.}}
 			} :
-			leur nombre, leur expertise du sujet traité, leur formation à la tâche d'annotation, les outils d'assistance à leur disposition, les biais potentiels au cours de l'annotation, ... ;
+			leur nombre, leur expertise du sujet traité, leur formation à la tâche d'annotation, les outils d'assistance à leur disposition, les biais potentiels au cours de l'annotation, \textit{etc}.
 			% 5. Annotation is an act of interpretation (cannot be infallible).
 			\item \textbf{L'annotation est toujours une action d'interprétation} \footnote{
 				Maxime $5$ : \textguillemets{\textit{Annotation is an act of interpretation (cannot be infallible).}}
-			} : elle est donc forcément subjective et entraînera des différences d'annotation qui devront être discutées lors de revues entre opérateurs ;
+			} : elle est donc forcément subjective et entraînera des différences d'annotations qui devront être discutées lors de revues entre opérateurs.
 			% 6. Annotation schemas should be as independent as possible on formalisms.
 			\item \textbf{Il est nécessaire d'être rigoureux dans l'annotation de contraintes pour ne pas introduire des incohérences ou produire des regroupements imprévus} \footnote{
 				Maxime $6$ : \textguillemets{\textit{Annotation schemas should be as independent as possible on formalisms.}}
 			} :
-			dans le doute, il est préférable de s'abstenir de caractériser une contrainte et de laisser la machine décider du regroupement le plus adéquat au regard du reste du jeu de données ;
+			dans le doute, il est préférable de s'abstenir de caractériser une contrainte et de laisser la machine décider du regroupement le plus adéquat au regard du reste du jeu de données.
 			% 7. No annotation schema should consider itself a standard (it possibly becomes one).
 			\item \textbf{À cause de la subjectivité de la tâche, plusieurs visions peuvent être envisagées pour annoter la similarité} \footnote{
 				Maxime $7$ : \textguillemets{\textit{No annotation schema should consider itself a standard (it possibly becomes one).}}

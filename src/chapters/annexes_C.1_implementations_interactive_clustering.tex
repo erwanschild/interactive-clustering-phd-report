@@ -192,8 +192,8 @@ vectorizer_type="tfidf",
 	
 	% cognitivefactory.interactive-clustering.constraints: Composants connexe.
 	À partir d'une donnée \(D\), et par application de la propriété de transitivité des \texttt{MUST-LINK}, nous appelons \textbf{composant connexe} de \(D\) l'ensemble des données \(D_i\) liées par une succession de contraintes \texttt{MUST-LINK} à \(D\) (cf. \textsc{Figure~\ref{figure:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-TRANSITIVITE}}).
-	Ce composant peut être vu comme un noyau de \textit{cluster}.
-	Il pourra être associé à d'autres noyaux par similarité pour former un \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{cluster}.
+	Ce composant peut être vu comme un noyau de \textit{clusters}.
+	Il pourra être associé à d'autres noyaux par similarité pour former un \textit{cluster} plus conséquent, ou être distingué d'autres noyaux pour former plusieurs \textit{clusters}.
 
 	\begin{figure}[!htb]
 		\centering
@@ -312,7 +312,7 @@ vectors=dict_of_vectors,
 	
 	% cognitivefactory.interactive-clustering.utils.clustering : Historique.
 	\begin{leftBarInformation}
-		Dans le cadre d'un projet étudiant avec l'école d'ingénieur Télécom Physique Strasbourg (au cours de l'année 2022), les implémentations des algorithmes \texttt{MPC-KMeans}, \texttt{C-DBScan} et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
+		Dans le cadre d'un projet étudiant avec l'École d'Ingénieurs Télécom Physique Strasbourg (au cours de l'année 2022), les implémentations des algorithmes \texttt{MPC-KMeans}, \texttt{C-DBScan} et propagation par affinité ont été ajoutées. Les élèves ont conclu ce projet d'extension en suggérant de se concentrer sur l'étude du C-DBScan car les deux autres algorithmes étaient soit trop instables, soit trop gourmand en temps de calcul.
 		Les autres algorithmes (\texttt{COP-KMeans}, hiérarchique et spectral) ont été implémentés au début de ce doctorat.
 	\end{leftBarInformation}
 	
@@ -335,7 +335,7 @@ vectors=dict_of_vectors,
 	
 	\begin{itemize}
 		\item[\(\bullet\)] une restriction sur la \textit{distance} pouvant imposer aux données d'être les plus proches ou les plus éloignées du corpus ;
-		\item[\(\bullet\)] une restriction sur le \textit{résultat du clustering} pouvant imposer aux données d'être issues d'un même \textit{cluster} ou de \textit{cluster} différents,
+		\item[\(\bullet\)] une restriction sur le \textit{résultat du clustering} pouvant imposer aux données d'être issues d'un même \textit{cluster} ou de \textit{clusters} différents,
 		\item[\(\bullet\)] une restriction pour exclure les contraintes \textit{déjà annotées},
 		\item[\(\bullet\)] et enfin une restriction pour exclure les contraintes \textit{déjà déduites} par transitivité.
 	\end{itemize}
@@ -346,14 +346,14 @@ vectors=dict_of_vectors,
 		\item Un échantillonnage \textbf{purement aléatoire} en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
 		\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même \textit{cluster}}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;
 		\item Un échantillonnage des données issues d'un \textbf{même \textit{cluster}} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
-		\item Un échantillonnage des données issues de \textbf{\textit{cluster} différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
+		\item Un échantillonnage des données issues de \textbf{\textit{clusters} différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
 	\end{enumerate}
 	
 	\begin{figure}[!htb]
 		\centering
 		\includegraphics[width=0.35\textwidth]{figures/example-sampling}
 		\caption{
-			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes \textit{cluster} et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
+			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes \textit{clusters} et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
 		}
 		\label{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}
 	\end{figure}

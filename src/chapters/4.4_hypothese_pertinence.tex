@@ -38,9 +38,9 @@
 	% Résumé des études.
 	Afin de vérifier cette hypothèse, nous explorons trois approches :
 	\begin{itemize}
-		\item une \textbf{validation par un expert} du partitionnement des données obtenus, en parcourant manuellement le contenu des \textit{cluster} et en donnant un avis sur l'exploitabilité de ces derniers (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) ;
+		\item une \textbf{validation par un expert} du partitionnement des données obtenus, en parcourant manuellement le contenu des \textit{clusters} et en donnant un avis sur l'exploitabilité de ces derniers (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) ;
 		\item une analyse des \textbf{patterns linguistiques saillants} dans la base d'apprentissage à l'aide d'une stratégie de sélection des composantes principales d'un modèle (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}) ; et
-		\item une approche utilisant un \textbf{résumé automatique de thématique} par un large modèle de langage (\texttt{LLM}), permettant de décrire succinctement le contenu des \textit{cluster} en une phrase (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
+		\item une approche utilisant un \textbf{résumé automatique de thématique} par un large modèle de langage (\texttt{LLM}), permettant de décrire succinctement le contenu des \textit{clusters} en une phrase (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 	\end{itemize}
 	
 	
@@ -61,7 +61,7 @@
 			Pour résumer le protocole expérimental que nous détaillons ci-dessous, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeux de données annotées (vérité terrain)}
+				\KwData{jeux de données annotées (vérités terrains)}
 				%
 				\ForEach{jeu de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -100,7 +100,7 @@
 				Tentative complète : itérations d'échantillonnage, d'annotation et de \textit{clustering} jusqu'à annotation de toutes les contraintes possibles.
 			}
 			de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori \footnote{
-				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des \textit{cluster} différents (\texttt{sampl.closest.diff}).
+				Paramétrage favori (atteindre $90$\% de \texttt{v-measure} avec un coût minimal): prétraitements simples (\texttt{prep.simple}), vectorisation \texttt{TF-IDF} (\texttt{vect.tfidf}), \textit{clustering} \texttt{KMeans} avec modèle \texttt{COP} (\texttt{clust.kmeans.cop}) et échantillonnage des données les plus proches dans des \textit{clusters} différents (\texttt{sampl.closest.diff}).
 			} (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et cette tentative est répétée $5$ fois pour contrer les aléas statistiques des exécutions.
 			
 			% Description de l'évaluation manuelle.
@@ -140,20 +140,20 @@
 		\subsubsection{Résultats obtenus}
 		
 			% Description statistiques.
-			La \textsc{Figure~\ref{figure:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}} met en avant l'évolution de la pertinence moyenne estimée par l'opérateur sur la base des contenus des \textit{cluster}.
+			La \textsc{Figure~\ref{figure:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}} met en avant l'évolution de la pertinence moyenne estimée par l'opérateur sur la base des contenus des \textit{clusters}.
 			Nous allons nous intéresser à trois phases s'y distinguant.
 			
 			% 0: Initialisation
-			À l'initialisation (itération $0$), la majeure partie des \textit{cluster} sont inexploitables (environ $60$\%) et seuls $35$\% d'entre eux semblent exploitables.
+			À l'initialisation (itération $0$), la majeure partie des \textit{clusters} sont inexploitables (environ $60$\%) et seuls $35$\% d'entre eux semblent exploitables.
 			Dans le top $3$ des classes facilement identifiables à ce stade, nous retrouvons \texttt{gestion\_sans\_contact} ($5/5$), \texttt{consultation\_solde} ($3/5$) et \texttt{gestion\_carte\_virtuelle} ($3/5$).
 			
 			% 0-10: Phase d'exploration.
-			Nous constatons ensuite une première phase de remaniement des \textit{cluster}, située entre les itérations $0$ et $10$, où le taux d'inexploitables chute au profit des \textit{cluster} partiellement exploitables, dont la proportion augmente de $10$\% à près de $40$\%.
+			Nous constatons ensuite une première phase de remaniement des \textit{clusters}, située entre les itérations $0$ et $10$, où le taux d'inexploitables chute au profit des \textit{clusters} partiellement exploitables, dont la proportion augmente de $10$\% à près de $40$\%.
 			À l'itération $10$, le top $3$ des classes identifiables mais bruitées ou en cohabitation dans un \textit{cluster} sont \texttt{gestion\_carte\_virtuelle} ($4/5$),  \texttt{alerte\_perte\_vol\_carte} ($4/5$) et  \texttt{commande\_carte} ($4/5$).
 			
 			% 10-25: Phase de consolidation.
 			Une seconde phase de consolidation se présente entre les itérations $10$ et $25$.
-			Durant cette phase, les taux de \textit{cluster} non exploitables et de partiellement exploitables diminuent alors que le taux d'exploitables monte en flèche (de $35$\% à $90$\% en $15$ itérations).
+			Durant cette phase, les taux de \textit{clusters} non exploitables et de partiellement exploitables diminuent alors que le taux d'exploitables monte en flèche (de $35$\% à $90$\% en $15$ itérations).
 			La majeure partie des \texttt{clusters} sont ainsi exploitables en l'état ou après la correction de quelques points aberrants.
 			Après l'itération $25$, le \textit{cluster} le plus récalcitrant concerne un mélange des classes \texttt{alerte\_perte\_vol\_carte} et \texttt{gestion\_decouvert} ($5/5$).
 
@@ -163,7 +163,7 @@
 				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-llm-check-clustering-annotation-favori}
 				\caption{
 					Évolution de la pertinence métier moyenne estimée manuellement au cours des itérations du résultat du \texttt{Clustering Interactif} avec notre paramétrage favori.
-					Cette pertinence, exprimée en proportion du nombre de \textit{cluster}, est retranscrite en trois niveaux : \texttt{exploitable} en vert, \texttt{partiellement exploitable} en orange, et \texttt{non exploitable} en rouge.
+					Cette pertinence, exprimée en proportion du nombre de \textit{clusters}, est retranscrite en trois niveaux : \texttt{exploitable} en vert, \texttt{partiellement exploitable} en orange, et \texttt{non exploitable} en rouge.
 				}
 				\label{figure:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}
 			\end{figure}
@@ -174,29 +174,29 @@
 		
 			% Rappel de l'objectif.
 			Cette première étude visait à observer comment un expert métier peut interpréter un résultat de \textit{clustering} proposé par notre méthode.
-			Nous avons donc validé manuellement tous les \textit{cluster} et essayé de les labelliser.
+			Nous avons donc validé manuellement tous les \textit{clusters} et essayé de les labelliser.
 			\\
 			
 			% Remarques sur l'évolution de l'exploitabilité.
-			Comme l'analyse n'a pu être faite que par un seul opérateur, nous ne nous attardons pas sur la précision des taux d'exploitabilité des \textit{cluster}.
+			Comme l'analyse n'a pu être faite que par un seul opérateur, nous ne nous attardons pas sur la précision des taux d'exploitabilité des \textit{clusters}.
 			Nous pouvons déjà reconnaître que trois phases sont présentes :
 			\begin{itemize}
 				\item une première \textbf{phase exploratoire} (cf. itérations $0$ à $10$), où des premiers \textit{cluster} partiellement exploitables apparaissent.
 				Ces derniers contiennent souvent une thématique bruitée ou quelques thématiques mal séparées, ce qui permet toutefois à l'expert de se faire une idée des thématiques contenues dans la collecte de données.
 				Cependant, s'arrêter à ce stade demanderait beaucoup de travail manuel pour obtenir une base d'apprentissage opérationnelle ;
-				\item une seconde \textbf{phase de consolidation} (cf. itérations $10$ à $25$), où les \textit{cluster} partiellement exploitables s'affinent.
-				De plus en plus de \textit{cluster} bien définis naissent, avec une seule thématique et peu de bruits.
+				\item une seconde \textbf{phase de consolidation} (cf. itérations $10$ à $25$), où les \textit{clusters} partiellement exploitables s'affinent.
+				De plus en plus de \textit{clusters} bien définis naissent, avec une seule thématique et peu de bruits.
 				Ces derniers pourraient être extraits et exploités en l'état ;
-				\item une \textbf{phase de parachèvement} (cf. itérations après $25$), où la plupart des \textit{cluster} sont exploitables en l'état mais quelques-uns nécessitent encore du travail.
+				\item une \textbf{phase de parachèvement} (cf. itérations après $25$), où la plupart des \textit{clusters} sont exploitables en l'état mais quelques-uns nécessitent encore du travail.
 				Cette phase est la moins rentable car les derniers \textit{cluster} et points aberrants sont corrigés petit à petit, mais sans impact notable sur leur valeur métier. 
 			\end{itemize}
 			
 			% Limite 1: Tâche plutôt complexe.
-			Au cours de ces validations, il apparaît que la complexité réside dans l'analyse des \textit{cluster} partiellement exploitables.
-			En effet, les \textit{cluster} totalement exploitables ou totalement inexploitables sont souvent simples à identifier.
+			Au cours de ces validations, il apparaît que la complexité réside dans l'analyse des \textit{clusters} partiellement exploitables.
+			En effet, les \textit{clusters} totalement exploitables ou totalement inexploitables sont souvent simples à identifier.
 			les premiers se repèrent facilement, surtout quand ils sont déjà présents lors d'itérations précédentes (exemple de la classe \texttt{gestion\_sans\_contact}, présente dès l'itération $0$) ;
-			les seconds, plutôt présents au début de la méthode, peuvent mélanger un grand nombre de thématiques et s'apparenter rapidement à des \textit{cluster} poubelle.
-			En revanche, les \textit{cluster} partiellement exploitables peuvent avoir des limites subjectives, altérant parfois l'avis de l'expert.
+			les seconds, plutôt présents au début de la méthode, peuvent mélanger un grand nombre de thématiques et s'apparenter rapidement à des \textit{clusters} poubelle.
+			En revanche, les \textit{clusters} partiellement exploitables peuvent avoir des limites subjectives, altérant parfois l'avis de l'expert.
 			
 			% Limite 1: Raison de cette complexité.
 			Pour aller plus loin, la difficulté de cette tâche est aussi due aux contraintes suivantes :
@@ -204,15 +204,15 @@
 				\item il faut être capable de maintenir en mémoire de grands ensembles de données ;
 				\item il faut estimer la thématique principale à l'aide de données désordonnées ;
 				\item il faut examiner la cohérence de cette thématique alors que le vocabulaire employé diffère ;
-				\item il faut juger de l'importance du bruit contenu dans les \textit{cluster} ;
-				\item il faut prendre du recul pour repérer la dispersion d'une thématique dans plusieurs \textit{cluster} ;
+				\item il faut juger de l'importance du bruit contenu dans les \textit{clusters} ;
+				\item il faut prendre du recul pour repérer la dispersion d'une thématique dans plusieurs \textit{clusters} ;
 				\item ...
 			\end{itemize}
-			Tous ces facteurs peuvent donc nuire à la qualité, tant sur l'estimation de l'exploitabilité que sur le nommage des \textit{cluster}.
+			Tous ces facteurs peuvent donc nuire à la qualité, tant sur l'estimation de l'exploitabilité que sur le nommage des \textit{clusters}.
 			
 			% Limite 2: impacts sur la qualité.
 			Ainsi, nous déduisons aisément que l'expérience utilisateur proposée à l'expert métier induit une charge mentale élevée.
-			Comme l'analyse de l'exploitabilité d'un \textit{cluster} semble être une tâche complexe, il semble inconcevable de demander sa réalisation sur tous les \textit{cluster} de toutes les itérations !
+			Comme l'analyse de l'exploitabilité d'un \textit{cluster} semble être une tâche complexe, il semble inconcevable de demander sa réalisation sur tous les \textit{clusters} de toutes les itérations !
 			De plus, sans aide supplémentaire et sans vis-à-vis pour se confronter à ses conclusions d'analyse, l'opérateur peut difficilement vérifier la cohérence et la reproductibilité de son travail.
 			Il est donc nécessaire de considérer des pistes d'amélioration pour ne pas abandonner l'expert métier à lui-même dans cette tâche cruciale.
 			
@@ -220,7 +220,7 @@
 			Quelques pistes peuvent être étudiées pour accompagner l'opérateur :
 			\begin{itemize}
 				\item employer plusieurs experts pour valider par consensus leurs appréciations sur un résultat de \textit{clustering} : cette méthode est efficace pour rattraper les thématiques non identifiées et pour s'accorder sur la valeur d'un \textit{cluster} ;
-				\item préparer le travail d'analyse en réalisant une étude linguistique des \textit{cluster}, et permettre ainsi d'identifier grossièrement les thématiques présentes en fonction du vocabulaire employé (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}) ;
+				\item préparer le travail d'analyse en réalisant une étude linguistique des \textit{clusters}, et permettre ainsi d'identifier grossièrement les thématiques présentes en fonction du vocabulaire employé (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}) ;
 				\item automatiser une partie du travail d'analyse en utilisant les capacités de larges modèles de langage (\textit{large language models}, \texttt{LLM}), afin d'alléger la charge de travail demandée aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 			\end{itemize}
 	
@@ -242,7 +242,7 @@
 			Pour résumer le protocole expérimental adapté, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeux de données annotées (vérité terrain)}
+				\KwData{jeux de données annotées (vérités terrains)}
 				%
 				\ForEach{jeu de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -250,7 +250,7 @@
 					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-					\textbf{analyse linguistique}: caractériser les \textit{cluster} grâce à la \texttt{FMC} \;
+					\textbf{analyse linguistique}: caractériser les \textit{clusters} grâce à la \texttt{FMC} \;
 					\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
@@ -258,7 +258,7 @@
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{analyse linguistique}: caractériser les \textit{cluster} grâce à la \texttt{FMC} \;
+						\textbf{analyse linguistique}: caractériser les \textit{clusters} grâce à la \texttt{FMC} \;
 						\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 						\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					}
@@ -274,7 +274,7 @@
 			\end{algorithm}
 			
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{cluster} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
 			
 			% Ajout de l'analyse linguistique.
 			Cependant, avant de demander l'avis de l'expert, nous réalisons une analyse du vocabulaire employé.
@@ -306,13 +306,13 @@
 			
 			% Axiome/Contraintes.
 			\begin{leftBarWarning}
-				Par manque de moyens, la vérification manuelle des \textit{cluster} n'a pas été réalisée.
+				Par manque de moyens, la vérification manuelle des \textit{clusters} n'a pas été réalisée.
 				Nous présentons donc simplement quelques exemples d'analyses linguistiques réalisées grâce à la \texttt{FMC}.
 			\end{leftBarWarning}
 			
 			% Description de deux cas d'études.
 			Prenons quelques \textit{cluster} et suivons l'évolution de leur analyse linguistique au cours des itérations.
-			Nous nous référons aux tableaux ci-contre pour connaître le top $10$ des termes caractéristiques des différents \textit{cluster} et nous réalisons un extrait de questions issues de ces \textit{cluster} avec une mise en évidence des termes caractéristiques dans le texte.
+			Nous nous référons aux tableaux ci-contre pour connaître le top $10$ des termes caractéristiques des différents \textit{cluster} et nous réalisons un extrait de questions issues de ces \textit{clusters} avec une mise en évidence des termes caractéristiques dans le texte.
 			
 			% Exemple d'un \textit{cluster} qui est bien formé dès le début.
 			D'abord, prenons l'exemple suivi dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}}.
@@ -449,9 +449,9 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Extrait de l'analyse linguistique de \textit{cluster} exploitables dès la première itération.
-					Ces \textit{cluster} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
-					La troisième colonne expose un aperçu du contenu des \textit{cluster} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
+					Extrait de l'analyse linguistique de \textit{clusters} exploitables dès la première itération.
+					ces \textit{clusters} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+					La troisième colonne expose un aperçu du contenu des \textit{clusters} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
 				}
 				\label{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}
 			\end{table}
@@ -462,7 +462,7 @@
 			À l'itération $10$, le résultat semble un peu plus exploitable.
 			Nous pouvons d'ailleurs déduire deux thématiques principales : la première, mise en avant par des patterns linguistiques de type "\textit{numero}", "\textit{online}", et "\textit{de carte virtuelle}", permet d'imaginer un sujet sur la gestion des numéros de cartes virtuelles ; la seconde, identifiée par les termes "\textit{débloquer}" et "\textit{réactiver}", oriente plutôt vers la création d'un thème pour débloquer une carte bancaire.
 			Quelques bruits sont présents, mais ce \textit{cluster} à l'itération $10$ peut être associé aux classes \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}.
-			Dès l'itération $15$, ces thématiques se séparent en deux \textit{cluster} ($1$ et $4$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
+			Dès l'itération $15$, ces thématiques se séparent en deux \textit{clusters} ($1$ et $4$) : nous pouvons les identifier à l'aide de leurs listes de termes bien fournies.
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -707,9 +707,9 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Extrait de l'analyse linguistique de \textit{cluster} évoluant de non exploitables à exploitables.
-					Ces \textit{cluster} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
-					La troisième colonne expose un aperçu du contenu des \textit{cluster} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
+					Extrait de l'analyse linguistique de \textit{clusters} évoluant de non exploitables à exploitables.
+					ces \textit{clusters} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+					La troisième colonne expose un aperçu du contenu des \textit{clusters} en mettant l'emphase sur les termes caractéristiques identifiés grâce à la \texttt{FMC}, et la deuxième colonne représente le top $10$ de ces termes les plus caractéristiques pour chaque \textit{cluster}.
 				}
 				\label{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}
 			\end{table}
@@ -718,35 +718,35 @@
 		\subsubsection{Discussion}
 		
 			% Rappel de l'objectif.
-			Cette seconde étude avait pour objectif de proposer une assistance à la validation manuelle des \textit{cluster} par un expert métier afin d'en qualifier la pertinence métier.
+			Cette seconde étude avait pour objectif de proposer une assistance à la validation manuelle des \textit{clusters} par un expert métier afin d'en qualifier la pertinence métier.
 			Pour cela, nous avons choisi une analyse linguistique à l'aide de la maximisation de traits pour mettre en avant les mots représentatifs et discriminants de chaque groupe de questions.
 			Nous discutons ici de l'intérêt d'une telle analyse.
 			\\
 			
-			% Avantage 1: Utilité de la FMC pour les \textit{cluster} exploitables.
-			Tout d'abord, concernant les \textit{cluster} jugés exploitables, nous constatons que la \texttt{FMC} permet d'identifier aisément la thématique principale.
+			% Avantage 1: Utilité de la FMC pour les \textit{clusters} exploitables.
+			Tout d'abord, concernant les \textit{clusters} jugés exploitables, nous constatons que la \texttt{FMC} permet d'identifier aisément la thématique principale.
 			C'est le cas dans les exemples présentés dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}), où les thématiques sont bien représentées par leurs patterns (\texttt{gestion\_sans\_contact} avec "\textit{mode}", "\textit{sans}", "\textit{contact}", "\textit{nfc}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{numero}", "\textit{virtuel}", "\textit{online}" ; \texttt{deblocage\_carte} avec "\textit{debloquer}", "\textit{deverrouiller}", "\textit{carte}").
 			De plus, la présence des différentes variantes d'un même pattern (\textit{avec ses pluriels, au sein d'un groupe de termes, ...}) permet rapidement d'intégrer le champ lexical présent, aidant ainsi à interpréter le \textit{cluster} comme probablement exploitable.
 			
-			% Avantage 2: Utilité de la FMC pour les \textit{cluster} partiellement exploitables.
-			Les thématiques présentes dans les \textit{cluster} partiellement exploitables sont aussi identifiables grâce à la \texttt{FMC}, mais à moindre mesure.
+			% Avantage 2: Utilité de la FMC pour les \textit{clusters} partiellement exploitables.
+			Les thématiques présentes dans les \textit{clusters} partiellement exploitables sont aussi identifiables grâce à la \texttt{FMC}, mais à moindre mesure.
 			En effet, comme plusieurs thématiques se mélangent, l'ensemble des termes caractéristiques est aussi plus hétérogène, des variantes ne sont pas identifiées, et des patterns dénués de sens peuvent être mis en avant.
 			Par exemple, dans le \textit{cluster} $2$ de la tentative $1$ à l'itération $0$, deux classes sont présentes avec leurs termes caractéristiques (\texttt{consultation\_solde} avec "\textit{solde}" et "\textit{compte}" ; \texttt{gestion\_carte\_virtuelle} avec "\textit{carte virtuelle}" et "\textit{numero}"), mais certains termes quelconques sont pourtant présentés comme représentatifs ("\textit{de mes}", "\textit{avec un}") et d'autres termes intéressants ne sont pas identifiés ("\textit{compte}" et "\textit{numeros}" ne sont présents qu'au singulier).
-			Ces petits indices peuvent donc aiguiller l'expert pour identifier des ajustements nécessaires ou des \textit{cluster} réalisés sur des bases fragiles.
+			Ces petits indices peuvent donc aiguiller l'expert pour identifier des ajustements nécessaires ou des \textit{clusters} réalisés sur des bases fragiles.
 			
-			% Avantage 3: Utilité de la FMC pour les \textit{cluster} non exploitables.
-			Enfin, en ce qui concerne les \textit{cluster} jugés non exploitables, la \texttt{FMC} permet de confirmer leur manque de cohérence (pour le \textit{cluster} $1$ de la tentative $2$ à l'itération $0$ : "\textit{carte gold}", "\textit{numeros virtuels}", "\textit{découvert bancaire}", "\textit{carte paiement differe}", ...) ou leur absence de valeur métier (seulement $2$ termes caractéristiques pour le \textit{cluster} $1$ de la tentative $1$ à l'itération $0$).
-			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{cluster} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir \cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
+			% Avantage 3: Utilité de la FMC pour les \textit{clusters} non exploitables.
+			Enfin, en ce qui concerne les \textit{clusters} jugés non exploitables, la \texttt{FMC} permet de confirmer leur manque de cohérence (pour le \textit{cluster} $1$ de la tentative $2$ à l'itération $0$ : "\textit{carte gold}", "\textit{numeros virtuels}", "\textit{découvert bancaire}", "\textit{carte paiement differe}", ...) ou leur absence de valeur métier (seulement $2$ termes caractéristiques pour le \textit{cluster} $1$ de la tentative $1$ à l'itération $0$).
+			Nous pouvons aussi constater que les termes estimés comme caractéristiques pour ces \textit{clusters} non exploitables sont souvent des groupes de mots trop spécifiques (dans notre dernier exemple : "\textit{numeros virtuels}" uniquement au pluriel), ce qui est plutôt caractéristique de termes qui distinguent le \textit{cluster} des autres mais qui ne l'identifient pas (voir \cite{lamirel-etal:2017:novel-approach-feature} pour comprendre la balance entre \textit{Features Recall} (identification) et \textit{Features Predominance} (discrimination)).
 			\\
 			
 			% Limite 1: toujours une tâche complexe.
-			Cependant, une telle approche pour qualifier les \textit{cluster} risque de ne pas répondre à nos attentes en l'état, car certains problèmes identifiés dans la section précédente subsistent (\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}).
-			Entre autres, malgré une abstraction des \textit{cluster} par leurs termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir un grand nombre de données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
+			Cependant, une telle approche pour qualifier les \textit{clusters} risque de ne pas répondre à nos attentes en l'état, car certains problèmes identifiés dans la section précédente subsistent (\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}).
+			Entre autres, malgré une abstraction des \textit{clusters} par leurs termes les plus caractéristiques (cf. deuxième colonne dans les \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}) et une mise en exergue dans le texte (cf. troisième colonne de ces tableaux), il faut toujours parcourir un grand nombre de données pour juger de la pertinence métier, ce qui reste une tâche chronophage s'il faut la réaliser à chaque itération.
 			Ainsi, même si le travail est simplifié par l'identification rapide des termes importants du corpus, la charge de travail reste élevée.
 			
 			% Limite 2: résultats encore à affiner.
 			D'autre part, les résultats remontés par l'analyse linguistique sont à affiner davantage pour faciliter leur interprétation.
-			Par exemple, les mots pourraient être réduits à leur forme racine (lemmatisation) afin d'éviter de considérer les nombreuses variations possibles (formes conjuguées, pluriels, ...) et les mots vides (\textit{stopwords}) pourraient être supprimés pour accentuer l'absence de termes caractéristiques à valeur métier dans les \textit{cluster} inexploitables.
+			Par exemple, les mots pourraient être réduits à leur forme racine (lemmatisation) afin d'éviter de considérer les nombreuses variations possibles (formes conjuguées, pluriels, ...) et les mots vides (\textit{stopwords}) pourraient être supprimés pour accentuer l'absence de termes caractéristiques à valeur métier dans les \textit{clusters} inexploitables.
 			En ce qui concerne l'affichage des patterns identifiés dans les textes, un code couleur pourrait être introduit pour faciliter la lecture, avec l'usage de nuances de couleurs pour marquer la prépondérance d'un terme en fonction du \textit{cluster}.
 			L'exemple ci-dessous (issu du \textit{cluster} $0$ de la tentative $1$ à l'itération $0$) illustre l'intérêt de cette coloration : nous y distinguons facilement que le \textit{cluster} traite des paiements sans contact (\texttt{NFC} en vert) mais que les cartes \textit{Visa} (en rouge) ont dû être regroupées au sein d'un autre \textit{cluster}.
 
@@ -777,15 +777,15 @@
 			\end{leftBarAuthorOpinion}
 			
 			% Conclusions et suggestion.
-			Pour conclure, nous retenons que l'analyse linguistique est pleine de potentiel et qu'elle permet de mettre en exergue des mots importants lors de l'affichage du contenu des \textit{cluster}.
+			Pour conclure, nous retenons que l'analyse linguistique est pleine de potentiel et qu'elle permet de mettre en exergue des mots importants lors de l'affichage du contenu des \textit{clusters}.
 			Toutefois, nous conservons quelques doutes concernant l'expérience utilisateur d'une telle approche pour des experts métiers qui, n'étant pas des experts en linguistique, pourraient se perdre dans des considérations trop techniques durant leur analyse.
 			De fait, si une approche linguistique est trop abstraite pour qualifier un \textit{cluster}, nous nous intéressons pour la suite à une approche plus pragmatique pour identifier sa thématique principale (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}).
 	
 	
 	%%%
-	%%% Subsection 4.4.3: Étude d'un résumé automatique des \textit{cluster} à l'aide d'un large modèle de langage.
+	%%% Subsection 4.4.3: Étude d'un résumé automatique des \textit{clusters} à l'aide d'un large modèle de langage.
 	%%%
-	\subsection{Étude d'un résumé automatique des \textit{cluster} à l'aide d'un large modèle de langage}
+	\subsection{Étude d'un résumé automatique des \textit{clusters} à l'aide d'un large modèle de langage}
 	\label{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
 		
 		% Objectif de l'expérience.
@@ -803,7 +803,7 @@
 			Pour résumer le protocole expérimental adapté, une description en pseudo-code est disponible dans l'\textsc{Algorithme~\ref{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}}.
 			
 			\begin{algorithm}
-				\KwData{jeux de données annotées (vérité terrain)}
+				\KwData{jeux de données annotées (vérités terrains)}
 				%
 				\ForEach{jeu de données à tester}{
 					\textbf{initialisation (données)}: récupérer les données et la vérité terrain \;
@@ -811,7 +811,7 @@
 					\textbf{prétraitements}: supprimer le bruit dans les données avec \texttt{prep.simple} \;
 					\textbf{vectorisation}: transformer les données en vecteurs avec \texttt{vect.tfidf} \;
 					\textbf{clustering initial}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-					\textbf{synthèse automatique}: résumer les thématiques des \textit{cluster} par un \texttt{LLM} \;
+					\textbf{synthèse automatique}: résumer les thématiques des \textit{clusters} par un \texttt{LLM} \;
 					\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 					\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					\Repeat{annotation de toutes les contraintes possibles}{
@@ -819,7 +819,7 @@
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration}: ajouter les nouvelles contraintes au gestionnaire de contraintes \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;
-						\textbf{synthèse automatique}: résumer les thématiques des \textit{cluster} par un \texttt{LLM} \;
+						\textbf{synthèse automatique}: résumer les thématiques des \textit{clusters} par un \texttt{LLM} \;
 						\textbf{évaluation assistée}: juger de l'exploitabilité de chaque \textit{cluster} \;
 						\textbf{labellisation assistée}: nommer chaque \textit{cluster} exploitable \;
 					}
@@ -829,13 +829,13 @@
 				\KwResult{discussion sur la complexité de la tâche et sur l'évolution de l'exploitabilité}
 				%
 				\caption{\textit{
-					Description en pseudo-code du protocole expérimental de l'étude d'un résumé automatique des \textit{cluster} à l'aide d'un large modèle de langage pour vérifier la valeur métier d'une base d'apprentissage.
+					Description en pseudo-code du protocole expérimental de l'étude d'un résumé automatique des \textit{clusters} à l'aide d'un large modèle de langage pour vérifier la valeur métier d'une base d'apprentissage.
 				}}
 				\label{algorithm:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-PROTOCOLE}
 			\end{algorithm}
 			
 			% Détails de l'expérience.
-			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{cluster} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
+			Nous nous appuyons sur le même protocole que l'expérience précédente (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}) : nous utilisons donc comme vérité terrain le jeu de données \texttt{Bank Cards (v1.0.0)}, nous réalisons $5$ tentatives complètes de la méthode du \texttt{Clustering Interactif} en utilisant notre paramétrage favori (voir \textsc{Section~\ref{section:4.3-HYPOTHESE-COUTS}}), et nous demandons toutes les $5$ itérations à un expert de qualifier les \textit{clusters} obtenus entre trois catégories (\textbf{exploitable}, \textbf{partiellement exploitable} et \textbf{non exploitable}).
 			
 			% Ajout d'un résumé automatique.
 			Cependant, avant de demander l'avis de l'expert, nous utilisons un large modèle de langage pour résumer automatiquement le contenu du \textit{cluster} à analyser.
@@ -903,9 +903,9 @@
 		
 			% Description statistiques.
 			La \textsc{Figure~\ref{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}} met en avant l'évolution de le pertinence moyenne estimée par l'opérateur
-			sur la base des résumés automatiques des \textit{cluster}.
-			Comme lors de l'analyse manuelle (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}), il est normal de retrouver une tendance générale à la diminution du nombre de \textit{cluster} inexploitables au profit de \textit{cluster} exploitables.
-			La différence principale réside dans l'absence du pic de croissance du nombre de \textit{cluster} partiellement exploitables, dont l'apogée était précédemment situé à l'itération $10$.
+			sur la base des résumés automatiques des \textit{clusters}.
+			Comme lors de l'analyse manuelle (cf. \textsc{Section~\ref{section:4.4.1-ETUDE-PERTINENCE-VALIDATION-MANUELLE}}), il est normal de retrouver une tendance générale à la diminution du nombre de \textit{clusters} inexploitables au profit de \textit{clusters} exploitables.
+			La différence principale réside dans l'absence du pic de croissance du nombre de \textit{clusters} partiellement exploitables, dont l'apogée était précédemment situé à l'itération $10$.
 			
 			% Figure.
 			%
@@ -914,13 +914,13 @@
 				\includegraphics[width=0.95\textwidth]{figures/etude-pertinence-llm-check-resume-annotation-favori}
 				\caption{
 					Évolution de la pertinence métier moyenne en fonction du nombre d'itérations de la méthode.
-					Cette pertinence, exprimée en proportion du nombre de \textit{cluster}, est estimée sur la base du résumé automatique des \textit{cluster} par un large modèle de language et est retranscrite en trois niveaux : \texttt{exploitable} en vert, \texttt{partiellement exploitable} en orange, et \texttt{non exploitable} en rouge.
+					Cette pertinence, exprimée en proportion du nombre de \textit{clusters}, est estimée sur la base du résumé automatique des \textit{clusters} par un large modèle de language et est retranscrite en trois niveaux : \texttt{exploitable} en vert, \texttt{partiellement exploitable} en orange, et \texttt{non exploitable} en rouge.
 				}
 				\label{figure:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}
 			\end{figure}
 			
 			% Description de deux cas d'études.
-			Pour aller plus loin, reprenons les \textit{cluster} que nous avons utilisés comme cas d'étude lors de l'analyse linguistique à l'aide de la maximisation des traits (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
+			Pour aller plus loin, reprenons les \textit{clusters} que nous avons utilisés comme cas d'étude lors de l'analyse linguistique à l'aide de la maximisation des traits (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
 			
 			% Exemple d'un \textit{cluster} qui est bien formé dès le début.
 			D'abord, reprenons l'exemple de l'évolution d'un \textit{cluster} bien formé dès l'itération $0$, précédemment détaillé dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et dont les résumés automatiques sont présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}.
@@ -988,18 +988,18 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Extrait de de l'analyse de résumés automatiques de \textit{cluster} exploitables dès la première itération.
-					Ces \textit{cluster} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+					Extrait de de l'analyse de résumés automatiques de \textit{clusters} exploitables dès la première itération.
+					ces \textit{clusters} représentent la thématique \texttt{gestion\_sans\_contact} entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
 					La seconde colonne expose le résumé obtenu en appelant un large modèle de langage (\texttt{gpt-3.5-turbo}) sur une tâche de résumé.
 				}
 				\label{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}
 			\end{table}
 			
 			% Exemple d'un cluster qui se forme.
-			Ensuite, intéressons-nous à l'exemple de l'évolution des \textit{cluster} en cours de formation détaillé dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et dont les résumés automatiques sont présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}.
+			Ensuite, intéressons-nous à l'exemple de l'évolution des \textit{clusters} en cours de formation détaillé dans la \textsc{Table~\ref{table:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES-GESTION-SANS-CONTACT}} et dont les résumés automatiques sont présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}.
 			À l'itération $0$, le résumé proposé est une longue énumération de $9$ thématiques différentes sur la gestion de carte bancaires : puisque le jeu de données entier traite des cartes bancaires, nous identifions clairement ce \textit{cluster} comme non exploitable.
 			À l'itération $10$, nous ne distinguons plus que deux sujets principaux : le déblocage de carte, et l'utilisation de numéros de cartes virtuelles, ce qui est en accord avec notre précédente analyse.
-			À partir de l'itération $15$, ces deux thématiques se retrouvent bien séparées dans deux \textit{cluster} différents, et chacune est identifiable via le résumé proposé : nous notons toutefois que si la thématique principale est identifiée, alors l'énumération de détails est plutôt portée sur les actions réalisables avec cette thématique ("\textit{création}", "\textit{activation}", "\textit{suppression}" pour la classe \texttt{gestion\_carte\_virtuelle}).
+			À partir de l'itération $15$, ces deux thématiques se retrouvent bien séparées dans deux \textit{clusters} différents, et chacune est identifiable via le résumé proposé : nous notons toutefois que si la thématique principale est identifiée, alors l'énumération de détails est plutôt portée sur les actions réalisables avec cette thématique ("\textit{création}", "\textit{activation}", "\textit{suppression}" pour la classe \texttt{gestion\_carte\_virtuelle}).
 			%
 			\begin{table}[!htb]
 				\begin{center}
@@ -1110,8 +1110,8 @@
 				\end{tabular}
 				\end{center}
 				\caption{
-					Extrait de de l'analyse de résumés automatiques de \textit{cluster} évoluant de non exploitables à exploitables.
-					Ces \textit{cluster} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
+					Extrait de de l'analyse de résumés automatiques de \textit{clusters} évoluant de non exploitables à exploitables.
+					ces \textit{clusters} représentent la conception des thématiques \texttt{gestion\_carte\_virtuelle} et \texttt{deblocage\_carte}, entre l'itération $0$ (initialisation) et l'itération $15$ (atteinte de la vérité terrain).
 					La seconde colonne expose le résumé obtenu en appelant un large modèle de langage (\texttt{gpt-3.5-turbo}) sur une tâche de résumé.
 				}
 				\label{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}
@@ -1120,8 +1120,8 @@
 			% Majoritairement utile pour identifier une thématique.
 			D'une manière générales, la majorité des résumés automatiques permettent d'identifier sans ambiguïté les mêmes thématiques qu'une validation manuelle.
 			\begin{itemize}
-				\item En ce qui concerne les itérations où le \textit{clustering} atteint la vérité terrain, tous les résumés permettent d'identifier les thématiques présentes ($190$ \textit{cluster} concernés, toutes itérations confondues) ;
-				\item En ce qui concerne les autres itérations (dont le \textit{clustering} ne correspond pas encore à la vérité terrain), les résumés automatiques permettent d'identifier les mêmes thématiques qu'une validation manuelle dans $86$\% des cas ($331$ cas sur $386$ \textit{cluster}, toutes itérations confondues).
+				\item En ce qui concerne les itérations où le \textit{clustering} atteint la vérité terrain, tous les résumés permettent d'identifier les thématiques présentes ($190$ \textit{clusters} concernés, toutes itérations confondues) ;
+				\item En ce qui concerne les autres itérations (dont le \textit{clustering} ne correspond pas encore à la vérité terrain), les résumés automatiques permettent d'identifier les mêmes thématiques qu'une validation manuelle dans $86$\% des cas ($331$ cas sur $386$ \textit{clusters}, toutes itérations confondues).
 			\end{itemize}
 			
 
@@ -1135,9 +1135,9 @@
 			
 			% Avantage 1: C'est efficace !
 			En premier lieu, nous constatons que l'approche est efficace, car elle permet à l'expert, dans près de $86$\% des cas, de parvenir aux mêmes conclusions sur l'analyse de la valeur métier d'un \textit{cluster}.
-			Concernant les \textit{cluster} exploitables, la synthèse générée est généralement très explicite, à l'image des résultats présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}, ce qui rend la tâche de labellisation des \textit{cluster} presque triviale.
+			Concernant les \textit{clusters} exploitables, la synthèse générée est généralement très explicite, à l'image des résultats présentés dans la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-GESTION-SANS-CONTACT}}, ce qui rend la tâche de labellisation des \textit{clusters} presque triviale.
 			Nous retrouvons notamment ces résultats lorsque le \textit{clustering} atteint la vérité terrain : toutes les résumés permettent de décrire sans ambiguïté les thématiques traitées, confirmant à la fois que le jeu de données est bien annoté et que le \textit{clustering} est exploitable.
-			De manière similaire, les \textit{cluster} non exploitables peuvent aussi être rapidement identifiés, notamment par la présence de longues énumérations incohérentes et des tournures de phrases ambiguës, à l'image du premier exemple de la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}.
+			De manière similaire, les \textit{clusters} non exploitables peuvent aussi être rapidement identifiés, notamment par la présence de longues énumérations incohérentes et des tournures de phrases ambiguës, à l'image du premier exemple de la \textsc{Table~\ref{table:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE-DEBLOCAGE-CARTE-GESTION-CARTE-VIRTUELLE}}.
 			Les résultats obtenus ci-dessus permettent donc de conclure sans hésitation que l'approche est adéquate pour assister un expert dans sa tâche d'évaluation.
 			
 			% Avantage 2: C'est un vrai gain d'expérience utilisateur.
@@ -1154,7 +1154,7 @@
 				\item le modèle peut générer des hallucinations n'ayant rien à voir avec les données en entrée : c'est le cas avec le \textit{cluster} $9$ de la tentative $2$ à l'itération $10$, où le \textit{cluster} est composé de $2$ questions (\textguillemets{\textit{Comment obtenir une Mastercard ?}} et \textguillemets{\textit{Désactiver les numéros virtuels.}}) et où le résumé parle de "\textit{sécurisation des transactions bancaires}" ;
 				\item le résumé peut être trop concis et certaines thématiques peuvent être ignorées dans la synthèse : l'expert sera tenté de conclure à un \textit{cluster} exploitable alors qu'il est potentiellement bruité ;
 				\item à l'inverse, les données aberrantes ou isolées d'un \textit{cluster} peuvent influencer le résumé : cela peut donner l'illusion que plusieurs thématiques sont présentes alors qu'une seule l'est réellement (voir aussi \cite{falke-etal:2019:ranking-generated-summaries} qui met en avant l'importance de l'ordre des informations transmises au modèle) ;
-				\item le résumé peut aussi mettre en avant des thématiques auxquelles l'expert n'aurait pas pensé : c'est le cas dans les \textit{cluster} $7$ et $8$ de la tentative $1$ à l'itération $0$, où les thématiques \texttt{gestion\_carte\_mastercard} et \texttt{gestion\_carte\_visa} sont proposées dans la synthèse, mais auraient probablement été considérées par un expert (\textit{il n'y a pas de différences vraiment significatives entre les deux réseaux de cartes bancaires pour justifier une gestion séparée, même si les \textit{cluster} sont bien formés}).
+				\item le résumé peut aussi mettre en avant des thématiques auxquelles l'expert n'aurait pas pensé : c'est le cas dans les \textit{clusters} $7$ et $8$ de la tentative $1$ à l'itération $0$, où les thématiques \texttt{gestion\_carte\_mastercard} et \texttt{gestion\_carte\_visa} sont proposées dans la synthèse, mais auraient probablement été considérées par un expert (\textit{il n'y a pas de différences vraiment significatives entre les deux réseaux de cartes bancaires pour justifier une gestion séparée, même si les \textit{clusters} sont bien formés}).
 			\end{itemize}
 			
 			Ces différents exemples confirment qu'une étape de validation reste nécessaire.
@@ -1193,7 +1193,7 @@
 			\begin{itemize}
 				\item[\itemok] La tâche de validation et de labellisation de résultats de \textit{clustering} est plutôt complexe et fastidieuse si elle n'est pas assistée : il est donc conseillé de faire intervenir plusieurs experts afin de consolider leurs analyses et de confronter les points de vue ;
 				\item[\itemok] Nous pouvons utiliser de larges modèles de langage (\texttt{LLM}) pour réaliser une synthèse automatique d'un \textit{cluster} : cela permet d'estimer rapidement la pertinence d'un regroupement de questions et d'identifier les thématiques qui y sont présentes, offrant ainsi un gain d'efficacité et de confort aux experts métiers (cf. \textsc{Section~\ref{section:4.4.3-ETUDE-PERTINENCE-RESUME-AUTOMATIQUE}}) ;
-				\item[\itemok] Cette approche automatisée n'étant pas infaillible, il est recommandé de croiser différentes approches d'analyses, et de toujours vérifier manuellement le contenu des \textit{cluster} avant d'arrêter le projet d'annotation : pour faciliter cette revue, il est possible de réaliser une analyse linguistique grâce à la \texttt{FMC} pour identifier les termes caractéristiques de chaque \textit{cluster} et les mettre en avant dans le texte (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
+				\item[\itemok] Cette approche automatisée n'étant pas infaillible, il est recommandé de croiser différentes approches d'analyses, et de toujours vérifier manuellement le contenu des \textit{clusters} avant d'arrêter le projet d'annotation : pour faciliter cette revue, il est possible de réaliser une analyse linguistique grâce à la \texttt{FMC} pour identifier les termes caractéristiques de chaque \textit{cluster} et les mettre en avant dans le texte (cf. \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}}).
 			\end{itemize}
 		\end{leftBarSummary}
 		

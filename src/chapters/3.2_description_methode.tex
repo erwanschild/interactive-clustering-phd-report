@@ -58,7 +58,7 @@
 				\textbf{validation}: estimer la pertinence et la stabilité de la segmentation \;
 				\textbf{coûts}: estimer le budget restant et les coûts restants à investir \;
 			}
-			\textbf{interprétation}: trier et nommer les \textit{cluster} pour les exploiter \;
+			\textbf{interprétation}: trier et nommer les \textit{clusters} pour les exploiter \;
 			%
 			\KwResult{données segmentées (i.e. base d'apprentissage)}
 			%
@@ -116,7 +116,7 @@
 
 		% Description de l'évaluation.
 		Lorsque la boucle itérative est finie, nous avons à disposition une segmentation des données qui a été corrigée par un expert et qui reflète ses connaissances métiers.
-		La dernière étape consiste alors à \textbf{interpréter} ces \textit{cluster} pour pouvoir les exploiter (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}).
+		La dernière étape consiste alors à \textbf{interpréter} ces \textit{clusters} pour pouvoir les exploiter (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 13}).
 		Cela commence par leur attribuer un nom au lieu de leur identifiant technique, de les définir en les rapprochant d'un cas d'usage métier, et éventuellement de les raffiner manuellement en supprimant certaines données aberrantes.
 		
 		% Exemple abstrait.
@@ -131,11 +131,11 @@
 					Exemple d'une itération de \texttt{Clustering Interactif}. \\
 					Lors de l'initialisation,
 					\textbf{(1)} correspond au jeu de données brut,
-					et \textbf{(2)} correspond à une première segmentation des données en $3$ \textit{cluster}.
+					et \textbf{(2)} correspond à une première segmentation des données en $3$ \textit{clusters}.
 					Lors de l'itération $1$ :
 					\textbf{(3)} correspond à un exemple d'échantillonnage de $6$ contraintes représentées par les flèches en pointillé,
 					\textbf{(4)} correspond à la caractérisation de ces $6$ contraintes par des liens \texttt{MUST-LINK} en vert et \texttt{CANNOT-LINK} en rouge,
-					et \textbf{(5)} correspond à la nouvelle segmentation des données en $3$ \textit{cluster} respectant les $6$ contraintes annotées.
+					et \textbf{(5)} correspond à la nouvelle segmentation des données en $3$ \textit{clusters} respectant les $6$ contraintes annotées.
 					La prochaine itération se poursuivra par un nouvel échantillonnage de contraintes.
 				}
 				\label{figure:3.2.2-DESCRIPTION-THEORIQUE-DETAILLEE-EXEMPLE}
