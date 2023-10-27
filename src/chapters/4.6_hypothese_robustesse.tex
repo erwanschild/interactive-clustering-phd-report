@@ -4,7 +4,7 @@
 	%%%
 	%%% Introduction / Transition.
 	%%%
-	Dans les précédentes études, nous avons presque toujours analysé le \texttt{Clustering Interactif} en supposant que l'annotateur connaît parfaitement le domaine traité par le jeu de données et qu'il est capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
+	Dans les précédentes études, nous avons presque toujours analysé le \texttt{Clustering Interactif} en supposant que l'annotateur connaissait parfaitement le domaine traité par le jeu de données et qu'il était capable de caractériser sans ambiguïté la similitude entre deux données issues de cet ensemble.
 	Bien entendu, cette hypothèse forte n'est pas toujours vérifiée en situation réelle : l'interprétation du langage peut contenir certaines ambiguïtés, l'opérateur peut faire des erreurs d'inattention, et deux annotateurs peuvent avoir des avis contraires sur un même sujet.
 	Or, comme notre méthode d'annotation est itérative, elle est \textit{a priori} sensible aux dérives de fonctionnement liées à ce type de contradictions.
 	Dans cette section, nous nous intéressons donc à la robustesse du \texttt{Clustering Interactif} en présence d'incohérences dans les contraintes et aux moyens de les contrer.
@@ -55,7 +55,7 @@
 		
 		% Objectif de l'expérience.
 		Afin d'affiner le champ de recherche de nos futures études, nous voulons analyser le score d'accords inter-annotateurs calculé lors d'une expérience d'annotation de contraintes par plusieurs experts métiers en situation réelle.
-		Pour cela, nous reprenons l'expérience de la \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}} visant à estimer le temps moyen d'annotation d'un lot de contraintes, et nous réutilisons ces résultats pour en estimer l'accord inter-annotateurs.
+		Pour cela, nous reprenons l'expérience de la \textsc{Section~\ref{section:4.3.1-ETUDE-COUTS-TEMPS-ANNOTATION}} visant à estimer le temps moyen d'annotation d'un lot de contraintes, et nous réutilisons les résultats de cette expérience pour en estimer l'accord inter-annotateurs.
 		Comme l'objectif de cette précédente étude n'était pas d'étudier la qualité des annotations, aucun guide ni aucune règle d'annotation précise n'avaient été fournis : nous espérons donc pourvoir \textbf{estimer une borne maximale grossière du désaccord entre annotateurs} lors de l'utilisation de notre méthode, permettant ainsi d'affiner notre discussion.
 		
 		%%% Protocole expérimental.
@@ -167,7 +167,6 @@
 				\item $4$ \textit{Data Scientist} ;
 				\item $1$ personne ayant révisé le jeu de données, $3$ le découvrant pour la première fois.
 			\end{itemize}
-			Par manque de disponibilités, $4$ annotateurs n'ont que partiellement réalisé leur tâche : nous avons toutefois intégré leurs participations car elles contenaient au minimum $150$ annotations.
 		
 			% Description des scores d'accords avec la vérité terrain.
 			La \textsc{Table~\ref{table:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-VERITE-TERRAIN}} expose les accords des opérateurs ($1$ réviseur, $3$ annotateurs) par rapport à la vérité terrain.
@@ -233,7 +232,7 @@
 						\tabularnewline
 						\hline
 					% Tous les opérateurs
-					Opérateurs $1$, $7$, $9$ et $12$
+					Tous ($1$, $7$, $9$ et $12$)
 						& $71.75$\%
 						& $0.735$
 						& \textit{acceptable}
@@ -328,7 +327,7 @@
 						\tabularnewline
 						\hline
 					% Tous les opérateurs
-					Opérateurs $1$, $7$, $9$ et $12$
+					Tous ($1$, $7$, $9$ et $12$)
 						& $74.00$\%
 						& $0.715$
 						& \textit{acceptable}
@@ -367,7 +366,7 @@
 				\item  Sur la base des résultats rapportés dans la \textsc{Table~\ref{table:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-VERITE-TERRAIN}}, nous observons un accord brut avec la vérité terrain sur au moins $84.25$\% des contraintes annotées, c'est-à-dire que le désaccord maximal concerne au plus $15.75$\% des annotations ;
 				\item Sur la base des résultats rapportés dans la \textsc{Table~\ref{table:4.6.1-ETUDE-ROBUSTESSE-SCORE-ACCORD-INTER-ANNOTATEURS}}, nous observons un accord brut inter-annotateurs sur au moins $80.25$\% des contraintes annotées, c'est-à-dire que le désaccord maximal concerne au plus $19.75$\% des annotations .
 			\end{itemize}
-			Par conséquent, et afin de prendre en compte ces résultats, \textbf{nous décidons de considérer $25$\% comme une borne maximale des taux d'erreurs de désaccords dans nos futures simulations}.
+			Par conséquent, et afin de prendre en compte ces résultats et de s'accorder une marge supplémentaire, \textbf{nous décidons de considérer $25$\% comme une borne maximale des taux d'erreurs de désaccords dans nos futures simulations}.
 			
 			% Note : 25%, ça fait beaucoup !.
 			\begin{leftBarAuthorOpinion}
@@ -531,7 +530,8 @@
 			En effet, sur le jeu de données utilisé comme vérité terrain, nous constatons une perte irréversible d'au moins $35$\% de \texttt{v-measure} dès l'introduction de $5$\% d'erreurs d'annotation, caractérisant ainsi une dérive importante des résultats si les conflits d'annotations ne sont pas corrigés.
 			Toutefois, la mise en oeuvre d'un mécanisme simple de correction semble estomper en partie ces régressions de performances et permet à certaines tentatives introduisant des erreurs de rester compétitives
 			(\textit{toutes les tentatives peuvent espérer atteindre $80$\% de \texttt{v-measure} en corrigeant leurs incohérences, alors que l'approche naïve les condamnait à une \texttt{v-measure} plafonnée}).
-			Nous pouvons donc assurément conclure en faveur de la \textbf{nécessité de vérifier la base de contraintes et de corriger toute incohérence s'y trouvant}.
+			Ces observations dépendent bien entendu fortement du jeu de données utilisé pour réaliser ces simulations.
+			Nous pouvons néanmoins assurément conclure en faveur de la \textbf{nécessité de vérifier la base de contraintes et de corriger toute incohérence s'y trouvant}.
 			
 			% Remarque : En accord avec les approches incrémentale.
 			Une telle conclusion confirme la sensibilité aux erreurs de cette approche incrémentale : si une erreur apparaît, elle peut rapidement se propager et impacter les résultats de la méthode.
@@ -621,7 +621,8 @@
 			% Détails de l'expérience.
 			\begin{leftBarInformation}
 				Nous reprenons dans les grandes lignes le protocole expérimental de la précédente étude sur l'impact des erreurs d'annotation et l'intérêt de les corriger (voir \textsc{Section~\ref{section:4.6.2-ETUDE-ROBUSTESSE-ERREURS-ANNOTATION-ET-CORRECTION}}.
-				Cependant, nous utilisons ici la vérité terrain pour représenter un opérateur de référence, et nous représentons le second opérateur par les différences d'annotation introduites. 
+				Cependant, nous utilisons ici la vérité terrain pour représenter un opérateur de référence, et nous représentons le second opérateur par les différences d'annotation introduites.
+				De plus, comme nous voulons analyser l'impact des différences d'annotation sur des jeux de données de différentes tailles, nous allons utiliser plusieurs vérités terrains.
 			\end{leftBarInformation}
 			
 			% Description des jeux de données.
@@ -1011,7 +1012,8 @@
 			Sur la base des résultats rapportés dans la \textsc{Table~\ref{table:4.6.3-ETUDE-ROBUSTESSE-SUBJECTIVITE-ANNOTATION-ET-DIVERGENCE-CLUSTERING}}, nous pouvons constater que les résultats de \textit{clustering} divergent rapidement si des désaccords d'annotation sont présents.
 			En effet, l'introduction de $5$\% de différences fait diverger les résultats d'au moins $14$ points de \texttt{v-measure}, et cette divergence est plus forte lorsque la taille du jeu de données augmente.
 			Si nous prenons le cas extrême ($25$\% de désaccord, taille de $4~500$ données), la similitude des \textit{clustering} obtenus n'est en moyenne plus que de $26.73$\% au bout de $13~500$ contraintes.
-			Nous pouvons donc conclure qu'en l'état, le \texttt{Clustering Interactif} est sensible à la subjectivité des annotateurs.
+			Ces observations dépendent bien entendu fortement des jeux de données utilisés pour réaliser ces simulations.
+			Nous pouvons néanmoins conclure qu'en l'état, le \texttt{Clustering Interactif} est sensible à la subjectivité des annotateurs.
 			
 			% Remarque : En accord avec les approches incrémentale.
 			Une telle conclusion est en accord avec le caractère incrémental de la méthode : une différence d'annotation peut rapidement se propager et faire diverger les résultats de la méthode.
