@@ -21,7 +21,9 @@
 			\item Vous avez les mains pleines de farine et vous voulez lancer un minuteur ou écouter de la musique ? Demandez-le \texttt{OK Google} ou \texttt{Alexa}.
 			\item Il vous manque une belle image pour votre présentation ? \texttt{DALL-E} peut la générer.
 			\item Vous devez rédiger une dissertation en histoire-géographie ? \texttt{ChatGPT} s'en occupera.
-			\item La classe \LaTeX{} proposée par votre école doctorale ne compile pas ? \texttt{ChatGPT} peut aussi identifier l'erreur et même la corriger...
+			\item La classe \LaTeX{} proposée par votre école doctorale ne compile pas \footnote{
+				Toute ressemblance avec une situation réelle ou ayant existé est purement fortuite !
+			} ? \texttt{ChatGPT} peut aussi identifier l'erreur et même la corriger...
 		\end{itemize}
 		
 		%%% Mais des mythes se créent.
@@ -47,7 +49,7 @@
 		\newline
 		
 		%%% TR: annotation de données.
-		\textbf{Toutes ces illusions masquent ainsi un point pourtant fondamental à la conception des modèles d'\texttt{IA} : la qualité des données sur lesquelles ils sont entraînés.}
+		\textbf{Toutes ces illusions masquent ainsi un point pourtant fondamental à la conception des modèles d'\texttt{IA} : la nécessité d'avoir des données de qualité pour l'entraînement.}
 		
 		
 	%%%%%--------------------------------------------------------------------
@@ -62,7 +64,7 @@
 		% Modèle d'IA => besoins de données.
 		Nous pouvons résumer l'apprentissage automatique comme étant un ensemble de méthodes permettant de reproduire un phénomène par l'exemple.
 		En d'autres termes, il faut des données en qualité et en quantité suffisante pour concevoir la base d'apprentissage d'un modèle d'\texttt{IA}.
-		C'est là qu'intervient la tâche d'annotation : celle-ci consiste à demander à un expert du métier, c'est-à-dire à un spécialiste du phénomène, d'enrichir les données pour leur attribuer une signification, de leur fournir de la valeur ajoutée, et ainsi permettre à la machine de comprendre et reproduire le phénomène.
+		C'est là qu'intervient la \textbf{tâche d'annotation} : celle-ci consiste à demander à un expert du métier, c'est-à-dire à un spécialiste du phénomène, d'enrichir les données pour leur attribuer une signification, de leur fournir de la valeur ajoutée, et ainsi permettre à la machine de comprendre et reproduire le phénomène.
 		\newline
 		
 		% Exemple assistant conversationnel.
@@ -70,7 +72,7 @@
 		Ces assistants ont pour objectif de traiter automatiquement des requêtes exprimées en langage naturel.
 		Pour ce faire, il est possible de réaliser une modélisation de textes en intentions de dialogue.
 		À ce titre, des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peuvent être modélisées par l'intention \texttt{jouer\_musique}.
-		La base d'apprentissage d'un assistant conversationnel est alors constitué d'un ensemble de textes qui ont été annotée en intention.
+		La base d'apprentissage d'un assistant conversationnel est alors constitué d'un ensemble de textes qui ont été annotés en intention.
 		
 		% Complexité cachée.
 		L'aspect élémentaire de notre exemple cache cependant toute la difficulté de cette tâche :
@@ -97,24 +99,26 @@
 		% Organisation MATTER.
 		Pour absorber la complexité liée à la tâche d'annotation, un projet de conception d'une base d'apprentissage s'organise généralement de manière cyclique.
 		\begin{itemize}
-			\item En premier lieu, les experts métiers sont consultés lors d'atelier d'idéation pour définir une première version de la modélisation (\textit{dans le cadre de notre exemple sur les assistants conversationnel, ce serait la définition de la liste des intention possible et de leur définition}).
+			\item En premier lieu, les experts métiers sont consultés lors d'ateliers d'idéation pour définir une première version de la modélisation (\textit{dans le cadre de notre exemple sur les assistants conversationnels, ils définiraient la liste des intentions possibles}).
 			\item Dans un second temps, les experts métiers parcourent l'ensemble des données pour les annoter en fonction de la modélisation définie ;
-			\item si certaines frictions apparaissent (\textit{modélisation pas adaptée, différence d'avis en annotateurs, ...}), le projet retourne à l'étape de modélisation pour proposer une nouvelle version révisée, et le cycle recommence...
+			\item Si certaines frictions apparaissent (\textit{modélisation inadaptée, différences d'avis en annotateurs, ...}), le projet retourne à l'étape de modélisation pour proposer une nouvelle version révisée, et le cycle recommence...
 		\end{itemize}
 		
 		% Complexité d'organisation.
-		Une telle approche à l'avantage de régler la complexité de la tâche par de petits ajustements (\textit{un héritage de la gestion de projet en mode agile}), mais elle possède les inconvénients d'être chronophage et onéreuse.
+		Une telle approche a l'avantage de régler la complexité de la tâche par de petits ajustements, s'apparentant ainsi aux méthodes agiles.
+		Toutefois, elle possède les inconvénients d'être chronophage et onéreuse.
 		En effet, à chaque remise en cause de la modélisation, toutes les données annotées sont potentiellement à revoir pour s'assurer de leur compatibilité avec la nouvelle modélisation proposée.
-		D'autre part, la discussion sur une remise en cause potentielle de cette modélisation relève du domaine analytique, qui n'est pas le domaine principale d'expertise des annotateurs intervenant dans le projet.
-		Il est donc nécessaire de former les experts métiers à la tâche d'analyse de données pour que leurs remarques soient le plus pertinentes possibles.
+		D'autre part, la définition d'une modélisation stable et cohérente, ainsi que l'encadrement de ses remises en cause potentielles, relève du domaine analytique, qui n'est pas le domaine principal d'expertise des annotateurs intervenant dans le projet.
+		Il est donc nécessaire de former les experts métiers à la tâche d'analyse de données pour que leurs remarques soient le plus pertinentes possibles lors des revues de modélisations.
 		\newline
 		
 		% BAM : ça va pas !
-		Nous touchons alors du doigt un problème philosophique : \textbf{comment sommes-nous arrivé à la conclusion que la meilleure manière de faire intervenir un expert métier sur une tâche d'annotation, c'est en lui demandant une tâche pour laquelle il n'est pas expert ?}
-		En effet, si nous voulions par exemple faire un assistant conversationnel sur un domaine gastronomique, nous engagerions a priori un chef cuisinier ou un restaurateur ; toutefois, il semble incongru d'engager ces profils dans le but de réaliser des analyses statistiques ou d'être compétents sur des questions linguistiques.
+		Nous touchons alors du doigt une aberration : \textbf{comment sommes-nous arrivé à la conclusion que la meilleure manière de faire intervenir un expert métier sur une tâche d'annotation, c'est en lui demandant une tâche pour laquelle il n'est pas expert ?}
+		(\textit{En effet, si nous voulions par exemple faire un assistant conversationnel sur un domaine gastronomique, nous engagerions a priori un chef cuisinier ou un restaurateur ;
+		toutefois, il semblerait incongru d'engager ces profils dans le but de réaliser des analyses statistiques ou d'être compétents sur des questions linguistiques.})
 		
 		% Constat : on a reposer la complexité sur l'annotateur.
-		En conclusion, l'organisation traditionnelle des projets d'annotations ne semble pas résoudre la complexité de cette tâche, mais semble plutôt l'ignorer en espérant trouver ou former des annotateurs ayant à la fois des compétences métiers et des compétences analytiques.
+		En conclusion, l'organisation traditionnelle des projets d'annotation ne semble pas résoudre la complexité de cette tâche : au contraire, elle semble plutôt l'ignorer en espérant qu'un opérateur humain suffisamment formé la résolve tout seul.
 		
 		
 	%%%%%--------------------------------------------------------------------
@@ -126,32 +130,21 @@
 		Recherche d'une méthode alternative pour modéliser le texte en intentions tout en valorisant l'intervention de l'expert
 	}
 		
+		% Objectifs.
+		Au cours de ce doctorat, nous nous sommes demandé s'il était possible de changer la philosophie traditionnelle régissant les projets d'annotation, avec pour objectif de remettre l'expert métier au centre du processus.
+		Pour cela, nous nous sommes restreint au cas d'usage de la modélisation du texte en intentions, en prenant comme contrainte le fait de toujours faire intervenir un expert métier pour ses vraies connaissances, et lui demander le moins de connaissance analytique ou technique possible.
 		
-		\todo[inline]{A REDIGER}
-		
-			%- Besoin de recentrer l'activité des experts métiers ;
-			%- Besoin d'assister la conception d'un jeu de données ;
-			%- Nous proposons donc une méthode itérative et semi-supervisée.
-		
-	%%%%%--------------------------------------------------------------------
-	%%%%% PLAN: Annonce du plan de ce manuscrit.
-	%%%%%--------------------------------------------------------------------
-	\section*{Annonce du plan de ce manuscrit}
-	\addcontentsline{toc}{section}{
-		\protect\numberline{}
-		Annonce du plan de ce manuscrit
-	}
-		
-		% Introduction.
-		Afin de traiter la problématique que nous venons d'exposer, nous organisons la discussion de ce manuscrit de la manière suivante :
+		% Proposition.
+		Nous avons donc proposé une méthodologie d'annotation assistée par la machine et basée sur la caractérisation de contraintes de similarité.
+		Dans ce manuscrit, nous organisons la présentation et l'étude de cette méthodologie de la manière suivante :
 		
 		% Plan.
 		\begin{itemize}
 			% Chapitre 2: Revue de littérature.
-			\item Au cours du \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}, nous présentons en détails la tâche d'annotation, son organisation traditionnelle ainsi que les nombreux défis qu'elle comporte.
+			\item Au cours du \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}, nous présentons une revue de littérature sur la tâche d'annotation, son organisation traditionnelle ainsi que les nombreux défis qu'elle comporte.
 			Pour mieux illustrer nos propos, nous utilisons des exemples inspirés de l'univers de la bande dessinée.
 			% Section 2.4: Contexte du doctorat.
-			\item Nous complétons la revue de littérature en expliquant le contexte de ce doctorat en \textsc{Section~\ref{section:2.4-CONTEXTE-DOCTORAT}} : ce complément nous permet de mettre en évidence la difficulté d'intervention des experts métiers dans un projet traditionnel d'annotation.
+			\item Nous complétons la revue de littérature en expliquant le contexte de ce doctorat en \textsc{Section~\ref{section:2.4-CONTEXTE-DOCTORAT}} : ce complément nous permet de mettre en évidence la difficulté d'intervention des experts métiers dans un projet traditionnel d'annotation pour la conception d'assistants conversationnels.
 			% Chapitre 3 : Présentation de la méthode.
 			\item Le \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}} est dédié à la présentation de notre méthodologie d'annotation alternative basée sur un \texttt{Clustering Interactif}.
 			La description de l'implémentation technique est consultable dans l'\textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}.
