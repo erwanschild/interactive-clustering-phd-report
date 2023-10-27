@@ -31,7 +31,7 @@
 		L'étude d'une interface graphique et de ses fonctionnalités a été l'objet d'un premier projet étudiant avec l'École d'Ingénieurs Télécom Physique Strasbourg (au cours de l'année 2021).
 		Lors de nos échanges, une idée consistait à s'inspirer des fonctionnalités de l'application \texttt{TINDER} \footnotemark pour \textit{swipe left} (respectivement \textit{swipe right}) l'annotation d'une contrainte \texttt{MUST-LINK} (respectivement d'une contrainte \texttt{CANNOT-LINK}).
 		Bien qu'aucune version mobile de cette application n'ait été développée, une telle fonctionnalité pourrait être envisagée afin d'améliorer le confort de l'utilisateur.
-		Nous pouvons toutefois noter qu'un reliquat de cette discussion à mener au choix du logo de l'application, proche du logo de celui de l'application \texttt{TINDER}, ainsi qu'au design de la page d'annotation (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-ANNOTATION}}).
+		Nous pouvons toutefois noter qu'un reliquat de cette discussion a mené au choix du logo (proche de celui de l'application \texttt{TINDER}), ainsi qu'au design de la page d'annotation (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-ANNOTATION}}).
 	\end{leftBarAuthorOpinion}
 		% Rattraper les footnote.
 			\stepcounter{localCounterOfFootnoteValue}
@@ -162,7 +162,7 @@
 				\item l'échantillonnage de contraintes, exécuté en tâche de fond grâce au bouton \textguillemets{\texttt{SAMPLING}}, et dont les paramètres sont accessibles via le bouton \textguillemets{\faCog} ;
 				\item l'annotation de contraintes, avec le bouton \textguillemets{\texttt{ANNOTATE}} qui redirige vers la prochaine contrainte à annoter.
 				Cette étape contient aussi une gestion de la modélisation, c'est-à-dire une vérification des prétraitements et de la vectorisation des textes, ainsi qu'une vérification de la cohérence des contraintes par l'absence de conflits d'annotation : le bouton \textguillemets{\texttt{UPDATE}} permet de recalculer cette modélisation en tâche de fond et le bouton \textguillemets{\texttt{APPROVE}} permet de la fixer jusqu'à la fin de l'itération en cours ;
-				\item l'\textit{clustering} sous contraintes, exécuté en tâche de fond grâce au bouton \textguillemets{\texttt{CLUSTERING}}, et dont les paramètres sont accessibles via le bouton \textguillemets{\faCog} ;
+				\item le \textit{clustering} sous contraintes, exécuté en tâche de fond grâce au bouton \textguillemets{\texttt{CLUSTERING}}, et dont les paramètres sont accessibles via le bouton \textguillemets{\faCog} ;
 				\item la confirmation du passage à la nouvelle itération, exécutée grâce au bouton \textguillemets{\texttt{NEXT ITERATION}}.
 			\end{enumerate}
 			
@@ -216,7 +216,7 @@
 			% Warning: Architecture asynchrone en production.
 			\begin{leftBarWarning}
 				Pour une simplicité d'usage et afin d'offrir une démonstration rapide de notre méthodologie, nous avons décidé d'exécuter simplement les algorithmes en tâche de fond.
-				Toutefois, pour favoriser les performances de l'application ainsi que sa sûreté pour une utilisation en production, nous vous conseillons de ré-implémenter cette gestion des exécutions en privilégiant une architecture asynchrone utilisant des \textit{workers} dédiés.
+				Toutefois, pour favoriser les performances de l'application ainsi que sa sûreté pour une utilisation en production, nous conseillons de réimplémenter cette gestion des exécutions en privilégiant une architecture asynchrone utilisant des \textit{workers} dédiés.
 			\end{leftBarWarning}
 		
 		
@@ -272,8 +272,8 @@
 			% Boutons accessibles: gestion des textes.
 			Concernant les informations générales (partie supérieure) :
 			\begin{itemize}
-				\item Le bouton \textguillemets{\texttt{UPDATE}} permet de mettre à jour la modélisation si des contraintes ont été ajoutées, des paramètres de prétraitements ou de vectorisation ont été mis à jour, ou si des textes ont été modifiés : cette action est exécutée en tâche de fond.
-				La couleur de se bouton est définie par le diagramme d'état (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
+				\item Le bouton \textguillemets{\texttt{UPDATE}} permet de mettre à jour la modélisation lorsque des contraintes ont été ajoutées, des paramètres de prétraitements ou de vectorisation ont été mis à jour, ou si des textes ont été modifiés : cette action est exécutée en tâche de fond.
+				La couleur de e bouton est définie par le diagramme d'état (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
 				\item Le bouton \textguillemets{\texttt{CONSTRAINTS}} mène vers la page d'inventaire et de gestion des contraintes annotées ou en cours d'annotation (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-INVENTAIRE-CONTRAINTES}}).
 			\end{itemize}
 			
@@ -312,19 +312,19 @@
 			\begin{itemize}
 				\item Le bouton \textguillemets{\texttt{ANNOTATE}} redirige vers la prochaine contrainte à annoter (s'il en reste) ;
 				\item Le bouton \textguillemets{\texttt{UPDATE}} permet de mettre à jour la modélisation si des contraintes ont été ajoutées, des paramètres de prétraitements ou de vectorisation ont été mis à jour, ou si des textes ont été modifiés : cette action est exécutée en tâche de fond.
-				La couleur de se bouton est définie par le diagramme d'état (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
+				La couleur de ce bouton est définie par le diagramme d'état (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
 				\item Le bouton \textguillemets{\texttt{TEXTS}} mène vers la page d'inventaire et de gestion des données du projet (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-INVENTAIRE-TEXTES}}).
 			\end{itemize}
 			
 			% Boutons accessibles: liste des contraintes.
 			Concernant le tableau listant les contraintes (partie inférieure) :
 			\begin{itemize}
-				\item Les deux textes d'une même contrainte sont affichés de part et d'autre de la valeur annotée : \textcolor{colorApplicationMUSTLINK}{\texttt{MUST-LINK}}, \textcolor{colorApplicationCANNOTLINK}{\texttt{CANNOT-LINK}} ou \texttt{SKIP} (\textit{pour une contrainte non-annotée ou temporairement ignorée}) ;
+				\item Les deux textes d'une même contrainte sont affichés de part et d'autre de la valeur annotée : \textcolor{colorApplicationMUSTLINK}{\texttt{MUST-LINK}}, \textcolor{colorApplicationCANNOTLINK}{\texttt{CANNOT-LINK}} ou \texttt{SKIP} (\textit{pour une contrainte non annotée ou temporairement ignorée}) ;
 				\item Il est possible de marquer une contrainte pour la revoir plus tard grâce à la coche \textguillemets{\textcolor{colorApplicationREVIEW}{\faCheckSquare}} ;
 				\item Le bouton \textguillemets{\faAngleRight} à droite permet d'accéder à la page d'annotation de cette contrainte (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-ANNOTATION}}) ;
-				\item Diverses informations sont disponibles à la droite du tableau : l'itération à laquelle la contrainte a été échantillonnée, sa dernière date de modification, son besoin d'annotation (\textit{\textguillemets{\faQuestion} pour une contrainte encore jamais été annotée}), et la présence ou non de conflits (\textit{\textguillemets{\textcolor{colorApplicationMUSTLINK}{\faCheck}} ou \textguillemets{\textcolor{colorApplicationERROR}{\faExclamation}}}) ;
+				\item Diverses informations sont disponibles à la droite du tableau : l'itération à laquelle la contrainte a été échantillonnée, sa dernière date de modification, son besoin d'annotation (\textit{\textguillemets{\faQuestion} pour une contrainte encore jamais annotée}), et la présence ou non de conflits (\textit{\textguillemets{\textcolor{colorApplicationMUSTLINK}{\faCheck}} ou \textguillemets{\textcolor{colorApplicationERROR}{\faExclamation}}}) ;
 				\item En haut du tableau, il est possible de trier les contraintes suivant différents critères (\textit{ordre alphabétique, valeur d'annotation, date d'échantillonnage ou de modification, présence de conflit, ...}) ;
-				\item \textbf{Attention} : Toute action de modification de la valeur d'annotation nécessite de mettre à jour la modélisation par la suite ;
+				\item \textbf{Attention} : Toute action de modification de la valeur d'annotation nécessite de mettre à jour la modélisation par la suite.
 				De plus, cette action est désactivée si le projet n'est pas à l'étape d'annotation (cf. diagramme d'états en \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
 				\item \textit{Note} : Si une contrainte concerne au moins un texte qui a été supprimé (cf. \textsc{Figure~\ref{figure:C-WEB-APPLICATION-INVENTAIRE-TEXTES}}), la contrainte n'apparaît pas dans ce tableau mais existe toujours dans l'application (\textit{elle n'est plus prise en compte}).
 			\end{itemize}
@@ -353,28 +353,28 @@
 			\end{figure}
 			
 			% Description générale.
-			Cette page est le coeur de cette application d'annotation : la partie supérieure permet d'annoter une contraintes entre deux textes, les parties inférieures sont des détails (éléments repliés par défaut).
+			Cette page est le coeur de cette application d'annotation : la partie supérieure permet d'annoter une contrainte entre deux textes, les parties inférieures sont des détails (éléments repliés par défaut).
 			
 			% Boutons accessibles: annotation.
 			Concernant l'annotation de la contrainte (partie supérieure) :
 			\begin{itemize}
 				\item Les deux textes de la contrainte sont affichés en haut du bloc d'annotation ;
 				\item Les deux boutons principaux d'annotation sont le \textguillemets{\textcolor{colorApplicationMUSTLINK}{\faEquals}} pour un \texttt{MUST-LINK} et le \textguillemets{\textcolor{colorApplicationCANNOTLINK}{\faNotEqual}} pour un \texttt{CANNOT-LINK}.
-				Les raccourcis claviers de ses boutons sont respectivement \textguillemets{\texttt{A}} (\textit{accept}) et \textguillemets{\texttt{R}} (\textit{reject}).
-				Il est aussi possible d'ignorer la contrainte avec le bouton \textguillemets{\textcolor{colorApplicationSKIP}{\faQuestion}} (raccourcis avec la barre espace) ;
+				Les raccourcis claviers de ces boutons sont respectivement \textguillemets{\texttt{A}} (\textit{accept}) et \textguillemets{\texttt{R}} (\textit{reject}).
+				Il est aussi possible d'ignorer la contrainte avec le bouton \textguillemets{\textcolor{colorApplicationSKIP}{\faQuestion}} (raccourci avec la barre espace) ;
 				\item Si c'est la première fois que cette contrainte est annotée, la prochaine contrainte est automatiquement chargée lors d'un choix d'annotation (\textguillemets{\textcolor{colorApplicationMUSTLINK}{\faEquals}}, \textguillemets{\textcolor{colorApplicationCANNOTLINK}{\faNotEqual}} ou \textguillemets{\textcolor{colorApplicationSKIP}{\faQuestion}}).
 				Sinon, une confirmation est demandée pour valider le changement de la valeur de la contrainte ;
-				\item Une gestion de revue d'annotation est possible grâce à un champ de commentaire, et \textguillemets{\textcolor{colorApplicationREVIEW}{\faCheckSquare}} permet de marquer la contrainte pour la pour revoir plus tard ;
-				\item Grâce à l'icône info-bulle, il est possible d'afficher la version non-prétraitée de chaque texte
+				\item Une gestion de revue d'annotation est possible grâce à un champ de commentaire, et \textguillemets{\textcolor{colorApplicationREVIEW}{\faCheckSquare}} permet de marquer la contrainte pour la revoir plus tard ;
+				\item Grâce à l'icône info-bulle, il est possible d'afficher la version non prétraitée de chaque texte
 				De plus, grâce à la coche \textguillemets{\textcolor{colorApplicationDELETE}{\faTrash}}, il est possible de supprimer (\textit{ne plus prendre en compte}) un texte non pertinent pour le projet : la contrainte sera alors masquée de la liste des contraintes ;
 				\item \textbf{Attention} : Toute action de modification de la valeur d'annotation nécessite de mettre à jour la modélisation par la suite.
 				De plus, cette action est désactivée si le projet n'est pas à l'étape d'annotation (cf. diagramme d'états en \textsc{Figure~\ref{figure:C-WEB-APPLICATION-DIAGRAMME-ETATS}}) ;
 			\end{itemize}
 			
 			% Boutons accessibles: détails.
-			Concernant les détails sur la contraintes (partie inférieure) :
+			Concernant les détails sur la contrainte (partie inférieure) :
 			\begin{itemize}
-				\item L'encadré du milieu donne quelques informations sur l'annotation : ce qu'a effectué la machine lors de la précédente étape de \textit{clustering} (même \textit{cluster} ou différentes \textit{cluster} ?), l'historique de ce que l'annotateur a renseigné au préalable, et la déduction faite par le gestionnaire de contraintes grâce aux propriétés de transitivité ;
+				\item L'encadré du milieu donne quelques informations sur l'annotation : ce qu'a effectué la machine lors de la précédente étape de \textit{clustering} (même \textit{cluster} ou différents \textit{clusters} ?), l'historique de ce que l'annotateur a renseigné au préalable, et la déduction faite par le gestionnaire de contraintes grâce aux propriétés de transitivité ;
 				\item L'encadré du bas propose une visualisation du graphe de contraintes à l'aide de la librairie \texttt{d3js} \footnote {
 					\url{https://d3js.org/}
 				} ;
@@ -394,11 +394,11 @@
 			% Graphe de contraintes.
 			Concernant le graphe local de contraintes :
 			\begin{itemize}
-				\item Les cercles représentent les données : chaque numéro correspond à un identifiant, et leurs textes respectifs sont visibles par un survol de souris.
+				\item Les cercles représentent les données : chaque numéro correspond à un identifiant, et leur textes respectifs sont visibles par un survol de souris.
 				Ces cercles peuvent être déplacés pour une meilleur visibilité ;
-				\item Les liens entre les cercles représentent les contraintes : en \textcolor{colorApplicationMUSTLINK}{\textbf{vert}} pour les \texttt{MUST-LINK} et en \textcolor{colorApplicationCANNOTLINK}{\textbf{rouge}} pour les \texttt{CANNOT-LINK}, en \textbf{gras} pour les contraintes annotées et en \textit{fin} pour les contraintes déduites par transitivité, et en \texttt{pointillés} pour les conflits détectés.
+				\item Les liens entre les cercles représentent les contraintes : en \textcolor{colorApplicationMUSTLINK}{\textbf{vert}} pour les \texttt{MUST-LINK}, en \textcolor{colorApplicationCANNOTLINK}{\textbf{rouge}} pour les \texttt{CANNOT-LINK}, en \textbf{gras} pour les contraintes annotées, en écriture \textit{fine} pour les contraintes déduites par transitivité, et en \texttt{pointillés} pour les conflits détectés.
 				Un clic de souris sur un lien redirige vers la page d'annotation de la contrainte associée (si elle existe) ;
 				\item Comme il peut y avoir un nombre important de contraintes dans un projet, ce graphe ne représente que la partie des contraintes impliquées dans l'annotation des deux textes de cette page : nous retrouvons ainsi les deux textes en cours d'annotation et leurs composants connexes respectifs (voir \textsc{Section~\ref{annex:C.1.2-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-GESTION-DES-CONTRAINTES}}) ;
 				\item Dans l'exemple en \textsc{Figure~\ref{figure:C-WEB-APPLICATION-CONFLIT}}, nous pouvons voir le conflit suivant : \textbf{(1)} $118$ et $270$ doivent être séparés car $118$ est différent de $271$ qui est similaire à $270$, mais \textbf{(2)} $118$ et $270$ doivent être rapprochés car $118$ est similaire à $220$ qui est similaire à $270$...
-				\item \textbf{Attention} : En cas de conflit, plusieurs boutons deviennent \textcolor{colorApplicationERROR}{\textbf{rouge}}, et l'approbation de la modélisation est désactivée tant que le conflit n'est pas résolu.
+				\item \textbf{Attention} : En cas de conflit, plusieurs boutons deviennent \textcolor{colorApplicationERROR}{\textbf{rouges}}, et l'approbation de la modélisation est désactivée tant que le conflit n'est pas résolu.
 			\end{itemize}

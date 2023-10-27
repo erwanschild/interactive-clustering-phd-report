@@ -15,7 +15,7 @@
 		\item le calcul du score de \textit{Features F-Measure} associé à cette méthode (cf. \textsc{Section~\ref{annex:C.3.1-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-CALCUL-FMEASURE}}) ;
 		\item la sélection des composantes vectorielles pertinentes à l'aide du score de \textit{Features F-Measure} (cf. \textsc{Section~\ref{annex:C.3.2-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-SELECTION-FEATURES}}) ;
 		\item l'activation des composantes vectorielles pertinentes pour chaque classe de la base d'apprentissage (cf. \textsc{Section~\ref{annex:C.3.3-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-ACTIVATION-FEATURES}}) ;
-		\item l'application de cette méthode à l'analyse des patterns linguistiques pertinent d'une base d'apprentissage utilisée pour de la classification de textes intention (cf. \textsc{Section~\ref{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}}).
+		\item l'application de cette méthode à l'analyse des patterns linguistiques pertinents d'une base d'apprentissage utilisée pour de la classification de textes en intentions (cf. \textsc{Section~\ref{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}}).
 	\end{itemize}
 	
 	% Information : comme y accéder.
@@ -144,7 +144,7 @@
 		% Interprétation.
 		\begin{leftBarAuthorOpinion}
 			Ce score répond à la question :
-			\textguillemets{\textit{combien d'information contient la \textit{feature} $f$ au sujet de la classe $c$ ?}}
+			\textguillemets{\textit{combien d'informations contient la \textit{feature} $f$ au sujet de la classe $c$ ?}}
 		\end{leftBarAuthorOpinion}
 	
 	
@@ -281,7 +281,7 @@
 	\label{annex:C.3.4-DESCRIPTION-IMPLEMENTATION-FEATURES-MAXIMIZATION-METRIC-APPLICATION-TEXTES}
 	
 		% Description.
-		Plaçons nous dans le cas d'une classification de textes en intentions :
+		Plaçons-nous dans le cas d'une classification de textes en intentions :
 		\begin{itemize}
 			% Data.
 			\item $\mathcal{D}$ représente l'ensemble des textes de la base d'apprentissage ;
@@ -292,7 +292,7 @@
 		\end{itemize}
 		
 		% Application au TF-IDF
-		Si nous utilisons une représentation vectorielle basées sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine})), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
+		Si nous utilisons une représentation vectorielle basée sur une description statistique du vocabulaire (comme \texttt{Bag of Words} (\cite{harris:1954:distributional-structure}) ou \texttt{TF-IDF} (\cite{ramos:2003:using-tfidf-determine})), nous pouvons alors déduire quels sont les mots du vocabulaire qui décrivent le mieux chaque intention grâce à la \texttt{Maximisation des traits}.
 		Il est possible de compléter l'analyse en considérant que :
 		\begin{itemize}
 			\item un pattern linguistique $f$ est caractéristique d'une classe $c$ s'il ne s'active que pour cette classe. La liste des patterns linguistiques représentatifs d'une classe $c$ se notera $\mathcal{F}_{\texttt{ACTIVATED}}[c]$ ;
@@ -315,6 +315,6 @@
 			Nous utilisons cette technique dans la \textsc{Section~\ref{section:4.4.2-ETUDE-PERTINENCE-PATTERNS-LINGUISTIQUES}} pour déterminer la pertinence sémantique d'un \textit{cluster} :
 			\begin{itemize}
 				\item en vérifiant la valeur métier du vocabulaire caractéristique du \textit{cluster} ;
-				\item en vérifiant que les textes de ce \textit{cluster} contiennent peu de mots des vocabulaires caractéristiques des autres \textit{cluster}.
+				\item en vérifiant que les textes de ce \textit{cluster} contiennent peu de mots des vocabulaires caractéristiques des autres \textit{clusters}.
 			\end{itemize}
 		\end{leftBarAuthorOpinion}
