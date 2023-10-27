@@ -44,87 +44,77 @@
 		L'idée reçue selon laquelle il est facile de concevoir un modèle d'\texttt{IA} explique en partie ces confusions.
 		Encore une fois, la culture populaire véhicule cette image d'une conception accessible à tous et à moindres coûts.
 		En reprenant l'exemple d'\textit{Ultron}, il suffit au \texttt{Dr. Hank Pym} de \textguillemets{calquer ses schémas mentaux} pour créer le robot, comme si cela était un acte banal ; plus récemment, dans la série \texttt{Black Mirror} (S2 Ep1), le personnage de \textit{Martha} se procure un avatar de son conjoint décédé sans trop de difficultés en communiquant simplement les messages et les photos de ce dernier, mais aucune mention n'est faite sur le processus de conception, excepté qu'il est \textguillemets{expérimental}.
-		Toutes ces illusions masquent à quel point la création d'un modèle d'\texttt{IA} peut être longue et pénible.
+		\newline
+		
+		%%% TR: annotation de données.
+		\textbf{Toutes ces illusions masquent ainsi un point pourtant fondamental à la conception des modèles d'\texttt{IA} : la qualité des données sur lesquelles ils sont entraînés.}
 		
 		
 	%%%%%--------------------------------------------------------------------
-	%%%%% NICHE: Désillusion quant à la simplicité de conception d'un modèle d'\texttt{IA}.
+	%%%%% NICHE: Désillusion quant à la simplicité de l'annotation de données.
 	%%%%%--------------------------------------------------------------------
-	\section*{Désillusion quant à la simplicité de conception d'un modèle d'\texttt{IA}}
+	\section*{Désillusion quant à la simplicité de l'annotation de données}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Désillusion quant à la simplicité de conception d'un modèle d'\texttt{IA}
+		Désillusion quant à la simplicité de l'annotation de données
 	}
 		
-		%%% Introduction.
-		En pratique, nous nous rendons vite compte qu'il faut traiter un certain nombre de défis pour mettre un modèle d'\texttt{IA} en production, et que plusieurs de ces défis sont aujourd'hui encore des problèmes ouverts du monde de la recherche.
-
-		%%% Deep Learning.
-		%Tout d'abord, nous pourrions être tenté d'utiliser les dernières avancées publiées dans la littérature scientifique : nous pensons nécessairement aux modèles d'apprentissage profond (\textit{Deep Learning}), réputés pour leurs performances impressionnantes (\texttt{ChatGPT}, \texttt{LLaMA2}, \texttt{BLOOM}, ...).
-		%%% Besoin de données
-		%De tels modèles tirent parti des immenses quantités de données mises à leur disposition.
-		%Cependant, sans compter les difficultés liées à la collecte et aux droits d'utilisation de ces données, nous sommes rapidement confronté aux critères de qualité et aux biais de représentation.
-		%Un travail titanesque est alors nécessaire pour assainir, corriger, rééquilibrer puis documenter les jeux de données nécessaires à l'entraînement, représentant un coût non négligeable dans ce processus de conception.
-		%%% Besoin d'infrastructure technique.
-		%De plus, l'entraînement de ces modèles requiert une infrastructure technique colossale dont seules les grandes entreprises sont capables de se doter.
-		%Enfin, leur utilisation dans un environnement de production est pénalisée par des temps d'exécution lents, ainsi que des erreurs de comportements non contrôlables et peu prévisibles.
+		% Modèle d'IA => besoins de données.
+		Nous pouvons résumer l'apprentissage automatique comme étant un ensemble de méthodes permettant de reproduire un phénomène par l'exemple.
+		En d'autres termes, il faut des données en qualité et en quantité suffisante pour concevoir la base d'apprentissage d'un modèle d'\texttt{IA}.
+		C'est là qu'intervient la tâche d'annotation : celle-ci consiste à demander à un expert du métier, c'est-à-dire à un spécialiste du phénomène, d'enrichir les données pour leur attribuer une signification, de leur fournir de la valeur ajoutée, et ainsi permettre à la machine de comprendre et reproduire le phénomène.
+		\newline
 		
-		%%% Machine Learning.
-		%En raison des défis concernant l'utilisation des méthodes de \textit{Deep Learning} en production, de nombreuses entreprises font le choix de se contenter de modèles plus traditionnels
+		% Exemple assistant conversationnel.
+		Pour illustrer nos propos, prenons l'exemple des assistants conversationnels (\textit{chatbot}).
+		Ces assistants ont pour objectif de traiter automatiquement des requêtes exprimées en langage naturel.
+		Pour ce faire, il est possible de réaliser une modélisation de textes en intentions de dialogue.
+		À ce titre, des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peuvent être modélisées par l'intention \texttt{jouer\_musique}.
+		La base d'apprentissage d'un assistant conversationnel est alors constitué d'un ensemble de textes qui ont été annotée en intention.
 		
-		%Une approche plus raisonnable consiste à se contenter des modèles d'apprentissage automatique.
-		%Plus traditionnels, ces modèles 
-		%Pour limiter les coûts à investir, les entreprises se tournent vers des approches plus traditionneles 
-		%Une autre approche consiste à utiliser des modèles plus traditionnels basés sur de l'apprentissage automatique supervisé.
+		% Complexité cachée.
+		L'aspect élémentaire de notre exemple cache cependant toute la difficulté de cette tâche :
+		\begin{itemize}
+			\item Il est possible d'avoir une vaste diversité d'intentions (\textit{jouer de la musique, allumer la lumière, consulter la météo, démarrer un minuteur, appeler sa maman, ...}) : la complexité grandit d'autant qu'il y a de cas d'usage modélisables ;
+			\item L'interprétation du langage est complexe par essence : le vocabulaire employé peut être spécifique, une requête peut être ambiguë ou un double sens, une erreur grammaticale peut gênée la compréhension de la phrase, ...
+			\item La modélisation en intention est un exercice subjectif durant laquelle deux annotateurs peuvent avoir des avis différents : dans notre exemple, et avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant devrait effectuer une action, ou devrait-il simplement exprimer s'il en est capable ?
+		\end{itemize}
 		
-		
-		
-		
-		%Les entreprises, et en particulier celles qui n'en ont pas les moyens, se tournent davantage vers des modèles d'\texttt{IA} plus traditionnels, réalisant ainsi un compromis entre performances, coûts de conception et maîtrise du comportement.
-		
-		%%% Machine Learning et Besoin d'une modélisation.
-		%En tête de liste, nous retrouvons fréquemment les apprentissages supervisés.
-		%Ces techniques consistent à reproduire par l'exemple aspects d'les aspects dmodéliser certains aspects du problème .
-		
-		%Ces techniques utilisent une représentation abstraite du problème (\textit{appelée modélisation ou type-system}) qui sera reproduite par un modèle sur la base des exemples de sa base d'apprentissage.
-		%L'avantage de cette approche 
-		
-		%Cependant, son principale inconvénient repose sur la difficulté de réaliser la modélisation du problème à reproduire.
-		
-		
-		
-		% Exemple chatbot.
-		%Pour illustrer nos propos, prenons l'exemple de la conception d'un assistant conversationnel (\textit{chatbot}).
-		%Un tel assistant peut traiter des commandes vocales ou des demandes clients exprimées en langage naturel.
-		%Pour cela, une modélisation des textes en intentions est nécessaire, chaque intention conceptualisant l'action ou la demande à traiter.
-		%Ainsi, des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peuvent être modélisées par l'intention \texttt{jouer\_musique}.
-		
-		% Complexité de la modélisation.
-		%Malgré l'illusion de simplicité de cet exemple, force est de constater que la modélisation du texte n'est pas une tâche facile :
-		
-		
-		
-		%l%a modélisation d'un phénomène est souvent difficile à réaliser.
-		%Dans le cadre des assistants conversationnels, c'est la complexité intrinsèque liée à la compréhension du langage, associée à la vaste diversité d'intentions de dialogue possibles, qui rendent cette modélisation pénible.
-		%En effet, 
-		
-		
-		% (\textit{avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant doit effectuer une action, ou doit-il exprimer s'il en est capable ?}).
-		
-		% Projet d'annotation onéreux, subjectif, sensibles aux erreurs, ...
-		% problème de compétences
-		
+		% Bilan sur cette complexité.
+		Ainsi, l'annotation de textes en intentions met en évidence la complexité de cette tâche.
+		Ben Hamner, cofondateur et directeur technique de l'entreprise \texttt{Kaggle}, résume ainsi cette problématique : \textbf{l'\texttt{IA} c'est \textguillemets{1\% d'écriture de code informatique, 9\% d'analyse de ce qui ne va pas dans le code informatique, et 90\% d'analyse de ce qui ne va pas dans les données d'entraînement}}.
 		
 		
 	%%%%%--------------------------------------------------------------------
-	%%%%% GAP: Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données.
+	%%%%% GAP: Intervention difficile des experts métiers dans les projets de conception de base d'apprentissage.
 	%%%%%--------------------------------------------------------------------
-	\section*{Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données}
+	\section*{Intervention difficile des experts métiers dans les projets de conception de base d'apprentissage}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Manque de reconnaissance de l'expertise métier durant les tâches de modélisation et d'annotation de données
+		Intervention difficile des experts métiers dans les projets de conception de base d'apprentissage
 	}
 		
+		% Organisation MATTER.
+		Pour absorber la complexité liée à la tâche d'annotation, un projet de conception d'une base d'apprentissage s'organise généralement de manière cyclique.
+		\begin{itemize}
+			\item En premier lieu, les experts métiers sont consultés lors d'atelier d'idéation pour définir une première version de la modélisation (\textit{dans le cadre de notre exemple sur les assistants conversationnel, ce serait la définition de la liste des intention possible et de leur définition}).
+			\item Dans un second temps, les experts métiers parcourent l'ensemble des données pour les annoter en fonction de la modélisation définie ;
+			\item si certaines frictions apparaissent (\textit{modélisation pas adaptée, différence d'avis en annotateurs, ...}), le projet retourne à l'étape de modélisation pour proposer une nouvelle version révisée, et le cycle recommence...
+		\end{itemize}
+		
+		% Complexité d'organisation.
+		Une telle approche à l'avantage de régler la complexité de la tâche par de petits ajustements (\textit{un héritage de la gestion de projet en mode agile}), mais elle possède les inconvénients d'être chronophage et onéreuse.
+		En effet, à chaque remise en cause de la modélisation, toutes les données annotées sont potentiellement à revoir pour s'assurer de leur compatibilité avec la nouvelle modélisation proposée.
+		D'autre part, la discussion sur une remise en cause potentielle de cette modélisation relève du domaine analytique, qui n'est pas le domaine principale d'expertise des annotateurs intervenant dans le projet.
+		Il est donc nécessaire de former les experts métiers à la tâche d'analyse de données pour que leurs remarques soient le plus pertinentes possibles.
+		\newline
+		
+		% BAM : ça va pas !
+		Nous touchons alors du doigt un problème philosophique : \textbf{comment sommes-nous arrivé à la conclusion que la meilleure manière de faire intervenir un expert métier sur une tâche d'annotation, c'est en lui demandant une tâche pour laquelle il n'est pas expert ?}
+		En effet, si nous voulions par exemple faire un assistant conversationnel sur un domaine gastronomique, nous engagerions a priori un chef cuisinier ou un restaurateur ; toutefois, il semble incongru d'engager ces profils dans le but de réaliser des analyses statistiques ou d'être compétents sur des questions linguistiques.
+		
+		% Constat : on a reposer la complexité sur l'annotateur.
+		En conclusion, l'organisation traditionnelle des projets d'annotations ne semble pas résoudre la complexité de cette tâche, mais semble plutôt l'ignorer en espérant trouver ou former des annotateurs ayant à la fois des compétences métiers et des compétences analytiques.
 		
 		
 	%%%%%--------------------------------------------------------------------
