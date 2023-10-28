@@ -389,269 +389,269 @@
 
 \begin{document}
 
-%%% Pour définir le style de pages:
-\OddHead={{\leftmark\rightmark}{\hfil\slshape\rightmark}}
-\EvenHead={{\leftmark}{{\slshape\leftmark}\hfil}}
-\OddFoot={\hfil\thepage}
-\EvenFoot={\thepage\hfil}
-\pagestyle{ThesisHeadingsII}
+	%%% Pour définir le style de pages:
+	\OddHead={{\leftmark\rightmark}{\hfil\slshape\rightmark}}
+	\EvenHead={{\leftmark}{{\slshape\leftmark}\hfil}}
+	\OddFoot={\hfil\thepage}
+	\EvenFoot={\thepage\hfil}
+	\pagestyle{ThesisHeadingsII}
 
-%%% Pour aider à aligner le texte.
-\emergencystretch=3em
+	%%% Pour aider à aligner le texte.
+	\emergencystretch=3em
 
-%%%%%--------------------------------------------------------------------
-%%%%% Paramétrage de la table des matières (encadrement, numérotation, ...)
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Paramétrage de la table des matières (encadrement, numérotation, ...)
+	%%%%%--------------------------------------------------------------------
 
-%%% Ecrire "Partie" dans la table des matières:
-% \WritePartLabelInToc
-%%% Ecrire "Chapitre" dans la table des matières:
-% \WriteChapterLabelInToc
-%%% Ajouter ou non le prochain titre à la table des matières:
-% \WriteThisInToc
-% \DontWriteThisInToc
+	%%% Ecrire "Partie" dans la table des matières:
+	% \WritePartLabelInToc
+	%%% Ecrire "Chapitre" dans la table des matières:
+	% \WriteChapterLabelInToc
+	%%% Ajouter ou non le prochain titre à la table des matières:
+	% \WriteThisInToc
+	% \DontWriteThisInToc
 
-%%% Ajouter une ligne ou un saut de page dans la table des matières:
-% \PutLineInToc
-% \PutNewPageInToc
+	%%% Ajouter une ligne ou un saut de page dans la table des matières:
+	% \PutLineInToc
+	% \PutNewPageInToc
 
-%%% Pour encadrer encadre les parties dans la table des matières:
-%%% (nb: ces commandes doivent figurer apres \begin{document})
-% \FramePartsInToc
-\DontFramePartsInToc
-%%% Pour encadrer encadre les chapitres dans la table des matières:
-%%% (nb: ces commandes doivent figurer apres \begin{document})
-\FrameChaptersInToc
-% \DontFrameChaptersInToc
-%%% Encadrer ou non le prochain titre:
-% \FrameThisInToc
-% \DontFrameThisInToc
+	%%% Pour encadrer encadre les parties dans la table des matières:
+	%%% (nb: ces commandes doivent figurer apres \begin{document})
+	% \FramePartsInToc
+	\DontFramePartsInToc
+	%%% Pour encadrer encadre les chapitres dans la table des matières:
+	%%% (nb: ces commandes doivent figurer apres \begin{document})
+	\FrameChaptersInToc
+	% \DontFrameChaptersInToc
+	%%% Encadrer ou non le prochain titre:
+	% \FrameThisInToc
+	% \DontFrameThisInToc
 
-%%% Pour réinitialiser la numérotation des chapitres à chaque partie:
-%%% (nb: ces commandes doivent figurer apres \begin{document})
-\ResetChaptersAtParts
-%%% Numéroter ou non le prochain titre dans la table des matières:
-% \NumberThisInToc
-% \DontNumberThisInToc
+	%%% Pour réinitialiser la numérotation des chapitres à chaque partie:
+	%%% (nb: ces commandes doivent figurer apres \begin{document})
+	\ResetChaptersAtParts
+	%%% Numéroter ou non le prochain titre dans la table des matières:
+	% \NumberThisInToc
+	% \DontNumberThisInToc
 
-%%% Pour numéroter les subsubsection avec une lettre en minuscule.
-\setcounter{secnumdepth}{3}
-\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
-
-
-%%%%%--------------------------------------------------------------------
-%%%%% Mini-table des matières à chaque chapitre
-%%%%%--------------------------------------------------------------------
-
-%%% Préparer les mini-tables des matières par chapitre (commande de minitoc.sty):
-\dominitoc
-
-%%% Créer une mini table du chapitre à cet endroit:
-% \minitoc
-
-%%%%%--------------------------------------------------------------------
-%%%%% Page de titre
-%%%%%--------------------------------------------------------------------
-
-%%% Titre:
-\ThesisTitle{
-	% Techniques de Valorisation de l'Expertise Humaine dans l'Annotation : \\
-	% Application à la Modélisation de Textes en Intentions à l'aide d'un Clustering Interactif
-	De l'Importance de Valoriser l'Expertise Humaine dans l'Annotation :
-	Application à la Modélisation de Textes en Intentions à l'aide d'un Clustering Interactif
-}
-
-%%% Date:
-\ThesisDate{
-    20 décembre 2023
-}  % 8 semaine après la date du rendu
-
-%%% Auteur:
-\ThesisAuthor{
-    Erwan SCHILD
-}
-
-%%% Type de these:
-\ThesisUL
-
-%%% Membres du jury:
-\President={
-    Dr. Pascale KUNTZ-COSPEREC
-}
-\Rapporteurs={
-	% rapporteurs = membre du jury évaluant le manuscrit
-    Dr. Pascale KUNTZ-COSPEREC\\
-    Dr. Thomas LAMPERT
-}
-\Examinateurs={
-	% examinateurs = membre du jury présents à la soutenance
-    Dr. Adrien COULET
-}
-\Encadrants={
-    Dr. Jean-Charles LAMIREL\\
-    Dr. Florian MICONI
-}
-\Invites={
-    Dr. Gautier DURANTIN\\
-    Dr. Mathieu POWALKA
-}
-
-%%% Création de la page de titre:
-\MakeThesisTitlePage
-
-%%%%%--------------------------------------------------------------------
-%%%%% Abstract
-%%%%%--------------------------------------------------------------------
-
-%%% (si le résumé apparaît sur une colonne étroite, avec la bibliographie à gauche, c'est sans doute parce que vous avez oublié de générer les fichiers d'index et de glossaire...)
-
-\input{chapters/abstract.tex}
+	%%% Pour numéroter les subsubsection avec une lettre en minuscule.
+	\setcounter{secnumdepth}{3}
+	\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
 
 
-%%%%%--------------------------------------------------------------------
-%%%%% Page de remerciements
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Mini-table des matières à chaque chapitre
+	%%%%%--------------------------------------------------------------------
 
-% \WriteThisInToc
-\input{chapters/remerciements.tex}
+	%%% Préparer les mini-tables des matières par chapitre (commande de minitoc.sty):
+	\dominitoc
 
+	%%% Créer une mini table du chapitre à cet endroit:
+	% \minitoc
 
-%%%%%--------------------------------------------------------------------
-%%%%% Page de dédicaces
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Page de titre
+	%%%%%--------------------------------------------------------------------
 
-% \WriteThisInToc
-\begin{ThesisDedication}
+	%%% Titre:
+	\ThesisTitle{
+		% Techniques de Valorisation de l'Expertise Humaine dans l'Annotation : \\
+		% Application à la Modélisation de Textes en Intentions à l'aide d'un Clustering Interactif
+		De l'Importance de Valoriser l'Expertise Humaine dans l'Annotation :
+		Application à la Modélisation de Textes en Intentions à l'aide d'un Clustering Interactif
+	}
 
-	Je dédie cette thèse \\
-	à tous ceux que j'aime bien. \\
-	Ils se reconnaîtront !
+	%%% Date:
+	\ThesisDate{
+		20 décembre 2023
+	}  % 8 semaine après la date du rendu
 
-\end{ThesisDedication}
+	%%% Auteur:
+	\ThesisAuthor{
+		Erwan SCHILD
+	}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Table des matières
-%%%%%--------------------------------------------------------------------
+	%%% Type de these:
+	\ThesisUL
 
-%%% Génération de la table des matières:
-\renewcommand{\contentsname}{Table des matières}
-\tableofcontents
+	%%% Membres du jury:
+	\President={
+		Dr. Pascale KUNTZ-COSPEREC
+	}
+	\Rapporteurs={
+		% rapporteurs = membre du jury évaluant le manuscrit
+		Dr. Pascale KUNTZ-COSPEREC\\
+		Dr. Thomas LAMPERT
+	}
+	\Examinateurs={
+		% examinateurs = membre du jury présents à la soutenance
+		Dr. Adrien COULET
+	}
+	\Encadrants={
+		Dr. Jean-Charles LAMIREL\\
+		Dr. Florian MICONI
+	}
+	\Invites={
+		Dr. Gautier DURANTIN\\
+		Dr. Mathieu POWALKA
+	}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% CORPS DU DOCUMENT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% Création de la page de titre:
+	\MakeThesisTitlePage
 
-%%% Commencer la numérotation arabe (cf. '\pagenumbering{arabic}') avec la page 1 sur une page impaire:
-\mainmatter
+	%%%%%--------------------------------------------------------------------
+	%%%%% Abstract
+	%%%%%--------------------------------------------------------------------
 
-%%%%%--------------------------------------------------------------------
-%%%%% Introduction
-%%%%%--------------------------------------------------------------------
-\input{chapters/1.0_introduction.tex}
+	%%% (si le résumé apparaît sur une colonne étroite, avec la bibliographie à gauche, c'est sans doute parce que vous avez oublié de générer les fichiers d'index et de glossaire...)
 
-%%%%%--------------------------------------------------------------------
-%%%%% Chapitre: Etat de l'art
-%%%%%--------------------------------------------------------------------
-\input{chapters/2.0_etat_de_l_art.tex}
-
-%%%%%--------------------------------------------------------------------
-%%%%% Chapitre: Clustering Interactif
-%%%%%--------------------------------------------------------------------
-\input{chapters/3.0_clustering_interactif.tex}
-
-%%%%%--------------------------------------------------------------------
-%%%%% Chapitre: Etude de la méthode
-%%%%%--------------------------------------------------------------------
-\input{chapters/4.0_etudes.tex}
-
-%%%%%--------------------------------------------------------------------
-%%%%% Chapitre: Guide d'utilisation
-%%%%%--------------------------------------------------------------------
-\input{chapters/5.0_guide_utilisation.tex}
-
-%%%%%--------------------------------------------------------------------
-%%%%% Conclusion
-%%%%%--------------------------------------------------------------------
-\input{chapters/6.0_conclusion.tex}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% ANNEXES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\PutLineInToc
-\input{chapters/annexes_0_sommaire.tex}
+	\input{chapters/abstract.tex}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% DIVERS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%--------------------------------------------------------------------
+	%%%%% Page de remerciements
+	%%%%%--------------------------------------------------------------------
 
-\PutLineInToc
-\DontFrameChaptersInToc
+	% \WriteThisInToc
+	\input{chapters/remerciements.tex}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Bibliographie
-%%%%%--------------------------------------------------------------------
 
-%%% Affichage de la bibliographie:
-\printbibliography
+	%%%%%--------------------------------------------------------------------
+	%%%%% Page de dédicaces
+	%%%%%--------------------------------------------------------------------
 
-% Use "\nocite{*}" to add all .bib file.
-% Use this command to see which references are note cited.
+	% \WriteThisInToc
+	\begin{ThesisDedication}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Liste des TODOs
-%%%%%--------------------------------------------------------------------
+		Je dédie cette thèse à tous ceux que j'aime bien. \\
+		Si vous lisez cela, alors vous en faîtes probablement partie.
 
-%%% Génère la liste des choses à faire:
-%\listoftodos[Liste des TODOs]
 
-%%%%%--------------------------------------------------------------------
-%%%%% Liste des figures
-%%%%%--------------------------------------------------------------------
+	\end{ThesisDedication}
 
-%%% Génère la liste des figures:
-\renewcommand{\listfigurename}{Liste des figures}
-\listoffigures
+	%%%%%--------------------------------------------------------------------
+	%%%%% Table des matières
+	%%%%%--------------------------------------------------------------------
 
-%%%%%--------------------------------------------------------------------
-%%%%% Liste des tableaux
-%%%%%--------------------------------------------------------------------
+	%%% Génération de la table des matières:
+	\renewcommand{\contentsname}{Table des matières}
+	\tableofcontents
 
-%%% Génère la liste des tableaux:
-\renewcommand{\listtablename}{Liste des tableaux}
-\listoftables
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%% CORPS DU DOCUMENT
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%--------------------------------------------------------------------
-%%%%% Liste des algorithmes
-%%%%%--------------------------------------------------------------------
+	%%% Commencer la numérotation arabe (cf. '\pagenumbering{arabic}') avec la page 1 sur une page impaire:
+	\mainmatter
 
-%%% Génère la liste des algorithmes:
-\renewcommand{\listalgorithmcfname}{Liste des algorithmes}
-\listofalgorithms
+	%%%%%--------------------------------------------------------------------
+	%%%%% Introduction
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/1.0_introduction.tex}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Liste des codes
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Chapitre: Etat de l'art
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/2.0_etat_de_l_art.tex}
 
-%%% Génère la liste des codes:
-\renewcommand{\lstlistlistingname}{Liste de codes informatiques}
-\lstlistoflistings
+	%%%%%--------------------------------------------------------------------
+	%%%%% Chapitre: Clustering Interactif
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/3.0_clustering_interactif.tex}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Glossaire
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Chapitre: Etude de la méthode
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/4.0_etudes.tex}
 
-%%% Affichage du glossaire:
-%\printglossaries
+	%%%%%--------------------------------------------------------------------
+	%%%%% Chapitre: Guide d'utilisation
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/5.0_guide_utilisation.tex}
 
-%%%%%--------------------------------------------------------------------
-%%%%% Index
-%%%%%--------------------------------------------------------------------
+	%%%%%--------------------------------------------------------------------
+	%%%%% Conclusion
+	%%%%%--------------------------------------------------------------------
+	\input{chapters/6.0_conclusion.tex}
 
-%%% Affichage de l'index:
-%\WriteThisInToc
-%\PrintIndex
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%% ANNEXES
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\PutLineInToc
+	\input{chapters/annexes_0_sommaire.tex}
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%% DIVERS
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\PutLineInToc
+	\DontFrameChaptersInToc
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Bibliographie
+	%%%%%--------------------------------------------------------------------
+
+	%%% Affichage de la bibliographie:
+	\printbibliography
+
+	% Use "\nocite{*}" to add all .bib file.
+	% Use this command to see which references are note cited.
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Liste des TODOs
+	%%%%%--------------------------------------------------------------------
+
+	%%% Génère la liste des choses à faire:
+	%\listoftodos[Liste des TODOs]
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Liste des figures
+	%%%%%--------------------------------------------------------------------
+
+	%%% Génère la liste des figures:
+	\renewcommand{\listfigurename}{Liste des figures}
+	\listoffigures
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Liste des tableaux
+	%%%%%--------------------------------------------------------------------
+
+	%%% Génère la liste des tableaux:
+	\renewcommand{\listtablename}{Liste des tableaux}
+	\listoftables
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Liste des algorithmes
+	%%%%%--------------------------------------------------------------------
+
+	%%% Génère la liste des algorithmes:
+	\renewcommand{\listalgorithmcfname}{Liste des algorithmes}
+	\listofalgorithms
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Liste des codes
+	%%%%%--------------------------------------------------------------------
+
+	%%% Génère la liste des codes:
+	\renewcommand{\lstlistlistingname}{Liste de codes informatiques}
+	\lstlistoflistings
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Glossaire
+	%%%%%--------------------------------------------------------------------
+
+	%%% Affichage du glossaire:
+	%\printglossaries
+
+	%%%%%--------------------------------------------------------------------
+	%%%%% Index
+	%%%%%--------------------------------------------------------------------
+
+	%%% Affichage de l'index:
+	%\WriteThisInToc
+	%\PrintIndex
 
 \end{document}
