@@ -1,5 +1,9 @@
 # interactive-clustering-phd-report
 
+<p align="center">
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.2/phd_report_1.0.0.pdf">TELECHARGER LE PDF (v1.0.0)</a>
+</p>
+
 
 ## Description de la thèse
 
@@ -20,7 +24,9 @@
 > En conclusion, cette thèse offre une approche innovante pour concevoir une base d'apprentissage d'un assistant conversationnel, permettant d'impliquer les experts du domaine métier pour leurs vraies connaissances, tout en leur demandant un minimum de compétences analytiques et techniques. Ces travaux ouvrent ainsi la voie à des méthodes plus accessibles pour la construction de ces assistants.
 
 <p align="center">
-	<img src="docs/phd_report_first_page.png" alt="Page de couverture du manuscrit" width="40%" />
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.2/phd_report_1.0.0.pdf">
+		<img src="docs/phd_report_first_page.png" alt="TELECHARGER LE PDF (v1.0.0)" width="40%" />
+	</a>
 </p>
 
 ## Compilation du code LaTeX
