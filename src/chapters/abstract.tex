@@ -3,7 +3,28 @@
 
 	%%% Abstract en français
 	\begin{FrenchAbstract}
-		Le résumé à \st{faire}.
+	
+		% Contexte.
+		Habituellement, la tâche d'annotation, nécessaire à l'entraînement d'assistants conversationnels, fait appel à des experts du domaine qui est à décrire.
+		Toutefois, l'annotation de données est connue pour être une tâche difficile en raison de sa complexité et sa subjectivité : elle nécessite par conséquent de solides compétences analytiques dans le but de modéliser les textes en intention de dialogue.
+		De ce fait, la plupart des projets d'annotation choisissent de former les experts aux tâches d'analyse pour en faire des "super-experts".
+		
+		% Proposition.
+		Dans cette thèse, nous avons plutôt décidé de valoriser les connaissances réelles des experts en proposant une nouvelle méthode d'annotation basée sur un \texttt{Clustering Interactif}.
+		Celle-ci se base sur une coopération Homme/Machine, où la machine réalise un \textit{clustering} pour proposer une base d'apprentissage, et où l'expert annote des contraintes \texttt{MUST-LINK} ou \texttt{CANNOT-LINK} entre les données pour affiner itérativement la base d'apprentissage proposée.
+		Une telle annotation a l'avantage d'être plus instinctive, car les experts peuvent associer ou différencier les données en fonction de la similarité de leur cas d'usage, permettant ainsi de traiter les données comme ils le feraient professionnellement au quotidien.
+
+		% Résumé études.
+		Au cours de nos études, nous avons pu montrer que cette méthode réduit sensiblement la complexité de conception d'une base d'apprentissage, tout en réduisant la nécessité de formation des experts intervenant dans un projet d'annotation.
+		Nous proposons une implémentation technique de cette méthode (algorithmes et interface graphique associée), ainsi qu'une étude des paramètres optimaux pour obtenir une base d'apprentissage cohérente en un minimum d'annotation.
+		Nous avons aussi réalisé une étude de coûts (techniques et humain) permettant de confirmer que l'utilisation d'une telle méthode est réaliste dans un cadre industriel.
+		Enfin, nous fournissons un ensemble de conseils afin que la méthode atteigne son plein potentiel, notamment en ce qui concerne : (1) des recommandations visant à cadrer la stratégie d'annotation, (2) une aide à l'identification et à la résolution des divergences d'opinion entre annotateurs, (3) des indicateurs de rentabilité pour chaque intervention de l'expert, et (4) des méthodes d'analyse de la pertinence de la base d'apprentissage en cours de construction.
+		
+		% Conclusion et ouverture.
+		En conclusion, cette thèse offre une approche innovante pour concevoir une base d'apprentissage d'un assistant conversationnel, permettant d'impliquer les experts du domaine métier pour leurs vraies connaissances, tout en leur demandant un minimum de compétences analytiques et techniques.
+		Ces travaux ouvrent ainsi la voie à des méthodes plus accessibles pour la formation de ces assistants.
+		
+		% Mots-clés.
 		\KeyWords{
 			\texttt{Apprentissage automatique} ;
 			\texttt{Traitement automatique du langage naturel} ;
@@ -12,11 +33,35 @@
 			\texttt{Clustering interactif} ;
 			\texttt{Assistant conversationnel}.
 		}
+	
 	\end{FrenchAbstract}
 	
 	%%% Abstract en anglais
+	\newpage
 	\begin{EnglishAbstract}
-		The abstract to do
+		
+		% Contexte.
+		Usually, the task of annotation, used to train conversational assistants, typically relies on domain experts who understand the subject matter being described.
+		However, data annotation is known to be a challenging task due to its complexity and subjectivity.
+		Therefore, it requires strong analytical skills to model the text in dialogue intention.
+		As a result, most annotation projects choose to train experts in analytical tasks to turn them into "super-experts".
+		
+		% Proposition.
+		In this thesis, we have chosen to value the real knowledge of experts by proposing a new annotation method based on \texttt{Interactive Clustering}.
+		This method involves a human-machine cooperation, where the machine performs clustering to provide a learning base, and the expert annotates \texttt{MUST-LINK} or \texttt{CANNOT-LINK} constraints between the data to iteratively refine the proposed learning base.
+		Such annotation has the advantage of being more intuitive, as experts can associate or differentiate data based on the similarity of their use cases, allowing them to handle the data as they would in their professional daily work.
+
+		% Etudes.
+		During our studies, we have demonstrated that this method significantly reduces the complexity of designing a learning base, while reducing the need for expert training in an annotation project.
+		We provide a technical implementation of this method (algorithms and associated graphical interface), as well as a study of optimal parameters to achieve a coherent learning base with minimal annotation.
+		We have also conducted a cost study (both technical and human) to confirm that the use of such a method is realistic in an industrial setting.
+		Finally, we offer a set of recommendations to help this method reach its full potential, including: (1) advice aimed at framing the annotation strategy, (2) assistance in identifying and resolving differences of opinion between annotators, (3) rentability indicators for each expert's intervention, and (4) methods for analyzing the relevance of the learning base under construction.
+		
+		% Conslusion.
+		In conclusion, this thesis provides an innovative approach to designing a learning base for a conversational assistant, involving domain experts for their actual knowledge while requiring minimal analytical and technical skills from them.
+		These efforts pave the way for more accessible methods in training such assistants.
+
+		% Mots-clés.
 		\KeyWords{
 			\texttt{Machine Learning} ;
 			\texttt{Natural Language Processing} ;
@@ -26,4 +71,5 @@
 			\texttt{Chatbot}.
 		}
 	\end{EnglishAbstract}
+
 \end{ThesisAbstract}
