@@ -72,14 +72,14 @@
 		Ces assistants ont pour objectif de traiter automatiquement des requêtes exprimées en langage naturel.
 		Pour ce faire, il est possible de réaliser une modélisation de textes en intentions de dialogue.
 		À ce titre, des requêtes comme \textguillemets{\textit{joue moi du jazz s'il te plaît !}} ou \textguillemets{\textit{peux-tu lancer une playlist de Noël sur l'enceinte du salon !}} peuvent être modélisées par l'intention \texttt{jouer\_musique}.
-		La base d'apprentissage d'un assistant conversationnel est alors constitué d'un ensemble de textes qui ont été annotés en intention.
+		La base d'apprentissage d'un assistant conversationnel est alors constituée d'un ensemble de textes qui ont été annotés en intention.
 		
 		% Complexité cachée.
 		L'aspect élémentaire de notre exemple cache cependant toute la difficulté de cette tâche :
 		\begin{itemize}
 			\item Il est possible d'avoir une vaste diversité d'intentions (\textit{jouer de la musique, allumer la lumière, consulter la météo, démarrer un minuteur, appeler sa maman, ...}) : la complexité grandit d'autant qu'il y a de cas d'usage modélisables ;
-			\item L'interprétation du langage est complexe par essence : le vocabulaire employé peut être spécifique, une requête peut être ambiguë ou un double sens, une erreur grammaticale peut gêner la compréhension de la phrase, ...
-			\item La modélisation en intention est un exercice subjectif durant laquelle deux annotateurs peuvent avoir des avis différents : dans notre exemple, et avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant devrait effectuer une action, ou devrait-il simplement exprimer s'il en est capable ?
+			\item L'interprétation du langage est complexe par essence : le vocabulaire employé peut être spécifique, une requête peut être ambiguë ou à double sens, une erreur grammaticale peut gêner la compréhension de la phrase, ...
+			\item La modélisation en intentions est un exercice subjectif durant laquelle deux annotateurs peuvent avoir des avis différents : dans notre exemple, et avec les mots \textguillemets{\textit{peux-tu lancer ...}}, est-ce que l'assistant devrait effectuer une action, ou devrait-il simplement exprimer s'il en est capable ?
 		\end{itemize}
 		
 		% Bilan sur cette complexité.
@@ -132,7 +132,7 @@
 		
 		% Objectifs.
 		Au cours de ce doctorat, nous nous sommes demandé s'il était possible de changer la philosophie traditionnelle régissant les projets d'annotation, avec pour objectif de remettre l'expert métier au centre du processus.
-		Pour cela, nous nous sommes restreint au cas d'usage de la modélisation du texte en intentions, en prenant comme contrainte le fait de toujours faire intervenir un expert métier pour ses vraies connaissances, et lui demander le moins de connaissance analytique ou technique possible.
+		Pour cela, nous nous sommes restreint au cas d'usage de la modélisation du texte en intentions, en prenant comme contrainte le fait de toujours impliquer un expert métier pour ses vraies connaissances, et en lui demandant un minimum de connaissance analytique ou technique possible.
 		
 		% Proposition.
 		Nous avons donc proposé une méthodologie d'annotation assistée par la machine et basée sur la caractérisation de contraintes de similarité.
