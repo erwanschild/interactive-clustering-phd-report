@@ -1,16 +1,70 @@
 \chapter{Conclusion}
 \label{chapter:6-CONCLUSION}
 	
-	%%% Rappel objectif.
+	%%%%%--------------------------------------------------------------------
+	%%%%% OCCUPYING THE NICHE: Proposition d'une méthode d'annotation valorisant l'expertise métier.
+	%%%%%--------------------------------------------------------------------
+	\section*{Proposition d'une nouvelle méthode d'annotation valorisant l'expertise métier}
+	\addcontentsline{toc}{section}{
+		\protect\numberline{}
+		Proposition d'une nouvelle méthode d'annotation valorisant l'expertise métier
+	}
 	
-	%%% Rappel bilan clustering interatif.
-	
-	%%% Contribution principale: mettre l'expertise métier au centre.
-	
-	%%% Il est possible de ne pas faire trop techniques.
-	
-	%%% Encouragement à le faire pour les autres tâches de Machine Learning.
-		% RLHF: \cite{griffith-etal:2013:policy-shaping-integrating} ou  \cite{arumugam-etal:2019:deep-reinforcement-learning}
-	
-	%%% 
-	
+		%%% Introduction, Revue de littérature et Rappel de la problématique (voir \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}).
+		Dans cette thèse, nous nous sommes intéressé à la tâche d'annotation, nécessaire à l'entraînement d'assistants conversationnels, et impliquant habituellement des experts du domaine à modéliser.
+		Lors de notre revue de littérature (voir \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}), nous avons pu voir que l'annotation est réputée pour être une tâche complexe et subjective.
+		Cette complexité provient notamment du besoin d'avoir des données représentatives du phénomène à reproduire, exerçant par conséquent une forte pression quant à la qualité de la base d'apprentissage à construire.
+		Un projet d'annotation s'organise alors traditionnellement autour du cycle \texttt{MATTER}, une méthodologie durant laquelle la modélisation des textes en intentions est révisée plusieurs fois pour mieux s'adapter aux données du projet.
+		Cependant, une telle organisation se révèle généralement onéreuse, entre autres à cause des nombreux ateliers de modélisation en mode essai-erreur, de la difficulté à manipuler des concepts abstraits (\textit{intentions}, \textit{entités}, ...), et du besoin de former les experts aux tâches d'analyse.
+		Sur la base de ces constats, nous avons cherché une méthodologie d'annotation alternative en nous posant la question suivante : \textguillemets{\textbf{Comment assister la phase de modélisation de textes en intentions pour concevoir la base d'apprentissage d'un assistant conversationnel en impliquant des experts métiers pour leurs vraies compétences et en leur demandant un minimum de bagages analytiques ou techniques ?}}
+		
+		%%% Rappel proposition \texttt{Clustering Interactif} (voir \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}}).
+		En choisissant de mettre l'accent sur les connaissances réelles des experts, nous avons proposé une approche de modélisation des textes en intentions utilisant un \texttt{Clustering Interactif} (voir \textsc{Chapitre~\ref{chapter:3-CLUSTERING-INTERACTIF}}).
+		Cette méthodologie repose sur coopération entre l'Homme et la Machine :
+		\begin{itemize}
+			\item d'une part, la machine réalise un \textit{clustering} pour proposer une base initiale d'apprentissage ;
+			\item d'autre part, l'expert métier annote des contraintes \texttt{MUST-LINK} ou \texttt{CANNOT-LINK} entre les données dans le but d'affiner itérativement la base d'apprentissage proposée.
+		\end{itemize}
+		Une telle approche à l'avantage d'être instinctive, car les experts peuvent associer ou différencier les données en fonction de la similarité de leur cas d'usage, permettant ainsi de traiter les données comme ils le feraient professionnellement au quotidien.
+		De plus, cette méthodologie redéfinie clairement les rôles entre les parties : l'expert métier intervient uniquement pour transmettre ses connaissances métiers sur différences entre cas d'usages, et la machine se charge d'appliquer cette connaissance pour concevoir une modélisation stable et pertinente des textes en intentions.
+		
+		
+		%%% Rappel études sur le \texttt{Clustering Interactif} (voir \textsc{Chapitre~\ref{chapter:4-ETUDES}}).
+		Pour éprouver notre méthodologie d'annotation, nous avons réalisé un ensemble d'études réparties en six hypothèses : efficacité, efficience, coûts, pertinence, rentabilité et robustesse (voir \textsc{Chapitre~\ref{chapter:4-ETUDES}}).
+		Grâce à ces études, nous avons pu montrer que notre méthode diminuait sensiblement la complexité de conception d'une base d'apprentissage, réduisant notamment la nécessité de formation des experts intervenant dans un projet d'annotation.
+		Nous mettons à disposition une implémentation technique de cette méthode (algorithmes et interface graphique associée, voir \textsc{Annexe~\ref{annex:C-ANNEXE-IMPLEMENTATIONS}}), ainsi qu'une étude des paramètres optimaux pour obtenir une base d'apprentissage cohérente en un minimum d'annotation (hypothèse d'efficacité et d'efficience).
+		Nous réalisons également une étude de coûts (techniques et humain) permettant de confirmer que l'utilisation d'une telle méthode est réaliste dans un cadre industriel (voir hypothèse de coûts).
+		Les trois dernières hypothèse (pertinence, rentabilité et robustesse) permettent de vérifier le comportement et les limites de notre technique, ouvrant ainsi la discussion sur les fonctionnalités et mécanismes de suivi nécessaires à sa mise en oeuvre.
+		
+		%%% Rappel guide sur le \texttt{Clustering Interactif} (voir \textsc{Chapitre~\ref{chapter:5-GUIDE}}).
+		Le \textsc{Chapitre~\ref{chapter:5-GUIDE}} dresse le bilan de notre méthodologie d'annotation sous la forme d'un guide d'utilisation synthétique.
+		Afin que la méthode atteigne son plein potentiel, nous y fournissons un ensemble de conseils, notamment : (1) des recommandations visant à cadrer la stratégie d'annotation, (2) une aide à l'identification et à la résolution des divergences d'opinion entre annotateurs, (3) des indicateurs de rentabilité pour chaque intervention de l'expert, et (4) des méthodes d'analyse de la pertinence de la base d'apprentissage en cours de construction.
+		
+		%%% Conclusion finale.
+		En conclusion, notre méthodologie d'annotation représente une réelle alternative aux stratégies d'annotation traditionnelles, permettant de valoriser les annotateurs pour les compétences qu'ils possèdent, et non pour les compétences dont le projet d'annotation a besoin.
+		
+		
+	%%%%%--------------------------------------------------------------------
+	%%%%% NICHE and ASSET CENTRALITY: Perspectives d'utilisation du \textit{Clustering Interactif}.
+	%%%%%--------------------------------------------------------------------
+	\section*{Perspectives d'utilisation du \textit{Clustering Interactif}}
+	\addcontentsline{toc}{section}{
+		\protect\numberline{}
+		Perspectives d'utilisation du \textit{Clustering Interactif}
+	}
+		
+		%%% Amélioration signification de l'implication des experts métiers.
+		Nous avons pu montrer que cette thèse offre une approche innovante pour concevoir une base d'apprentissage d'un assistant conversationnel, permettant d'impliquer les experts du domaine métier pour leurs vraies connaissances, tout en leur demandant un minimum de compétences analytiques et techniques.
+		En effet, ces travaux prouvent qu'il est possible de contourner habillement la complexité d'une tâche d'annotation en reformulant judicieusement le problème exposé à l'annotateur, ouvrant ainsi la voix à des méthodes plus accessibles pour construire ces assistants.
+
+		%%% Certes moins pour la gestion de dialogues (cf \textit{chatbot} génératif), mais probablement pour leur contrôle ; Application possible à des domaines autre que le texte (image, voix, données tabulaires, ...) si la modélisation est complexe
+		Néanmoins, depuis $2023$, la conception de \textit{chatbot} s'est davantage tournée vers les approches génératives, celles-ci n'ayant plus besoin d'intentions pour gérer le dialogue.
+		Mais malgré leurs performances encourageantes, ces approches manquent encore fiabilité, notamment en ce qui concerne les dérives de comportements et les risques d'hallucination ; de plus, une étape de modélisation reste nécessaire pour paramétrer certaines de leurs actions spécifiques (\textit{allumer la lumière, lancer un appel téléphonique, faire un virement bancaire, ...}).
+		De ce fait, nous pensons que notre approche reste pertinente pour entraîner des assistants orientés par tâches, pour modéliser des mécanismes de contrôle, ou encore pour assister la conception de certains assistants hybrides (voir \textsc{Annexe~\ref{annex:B-ANNEXE-CHATBOTS}}).
+		D'autre part, notre approche peut facilement se généraliser à d'autres cas d'usages faisant intervenir une classification supervisée (\textit{classification d'images, de documents, ...}).
+		
+		%%% Mot d'ordre de la fin.
+		Pour conclure ce manuscrit, nous encourageons les gérants de projets d'annotation, quelle que soit la tâche d'annotation à réaliser, à repenser leur protocole de labellisation de données en considérant d'abord les vraies connaissances de leurs experts.
+		En effet, il est tentant de concevoir une stratégie d'annotation classique, et de supposer qu'un annotateur "parfait" ou suffisamment formé arrivera à en supporter la complexité.
+		Cependant, nous avons montré au cours de ce doctorat qu'en reformulant judicieusement l'objectif, il était possible de concevoir une stratégie d'annotation accessible facilement aux experts du domaine métier, faisant appel à des connaissances qu'ils appliquent professionnellement au quotidien.
+		Par conséquent, nous pensons qu'il est de notre ressort de réexaminer l'organisation de nos projets d'annotation, afin de ne pas avoir à former des experts pour des tâches qu'ils ne maîtrisent pas, mais de les impliquer pour des tâches où ils sont déjà des experts : un tel changement de position serait alors une réelle avancée pour les annotateurs intervenant dans des projets d'apprentissage automatique.
