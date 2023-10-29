@@ -1,6 +1,10 @@
 # interactive-clustering-phd-report
 Erwan SCHILD PHD report on Interactive Clustering methodology.
 
+<p align="center">
+  <img src="docs/phd_report_first_page.png" alt="Page de couverture du manuscrit" width="50%" />
+</p>
+
 ## Description
 
 Title: `De l'Importance de Valoriser l'Expertise Humaine dans l'Annotation : Application à la Modélisation de Textes en Intentions à l'aide d'un Clustering Interactif`
