@@ -20,6 +20,11 @@ Au cours de nos études, nous avons pu montrer que cette méthode diminuait sens
 En conclusion, cette thèse offre une approche innovante pour concevoir une base d'apprentissage d'un assistant conversationnel, permettant d'impliquer les experts du domaine métier pour leurs vraies connaissances, tout en leur demandant un minimum de compétences analytiques et techniques. Ces travaux ouvrent ainsi la voie à des méthodes plus accessibles pour la construction de ces assistants.
 ```
 
+How to cite:
+```
+Schild, E. (2024, in press). De l'Importance de Valoriser l'Expertise Humaine dans l’Annotation : Application à la Modélisation de Textes en Intentions à l'aide d’un Clustering Interactif. Université de Lorraine.
+```
+
 ### Installation
 
 - `MikTeX`: https://miktex.org/
