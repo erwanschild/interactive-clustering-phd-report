@@ -330,7 +330,7 @@ clustering_result = clustering_model.cluster(
 	} de la librairie \texttt{cognitivefactory-interactive-clustering}.
 	
 	% cognitivefactory.interactive-clustering.utils.sampling : Implémentation.
-	Cet échantillonnage correspond à la sélection de couple de données.
+	Cet échantillonnage correspond à la sélection de paires de données.
 	Par défaut, l'échantillonnage est purement aléatoire.
 	Cependant, plusieurs options sont disponibles :
 	
@@ -346,7 +346,7 @@ clustering_result = clustering_model.cluster(
 	\begin{enumerate}
 		\item Un échantillonnage \textbf{purement aléatoire}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.full} ;
 		\item Un échantillonnage \textbf{pseudo-aléatoire} de données issues d'un \textbf{même \textit{cluster}}, en excluant toutes les contraintes déjà annotées ou déduites, noté \texttt{samp.random.same} ;
-		\item Un échantillonnage des données issues d'un \textbf{même \textit{cluster}} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farhtest.same} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
+		\item Un échantillonnage des données issues d'un \textbf{même \textit{cluster}} et étant \textbf{les plus éloignées} les unes des autres, noté \texttt{samp.farthest.same} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}) ;
 		\item Un échantillonnage des données issues de \textbf{\textit{clusters} différents} et étant \textbf{les plus proches} les unes des autres, noté \texttt{samp.closest.diff} (cf. \textsc{Figure~\ref{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}}).
 	\end{enumerate}
 	
@@ -354,7 +354,7 @@ clustering_result = clustering_model.cluster(
 		\centering
 		\includegraphics[width=0.35\textwidth]{figures/example-sampling}
 		\caption{
-			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes \textit{clusters} et étant les plus éloignées les unes des autres (\texttt{samp.farhtest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
+			Exemples d'échantillonnages, sur la base de trois clusters, de données issues de mêmes \textit{clusters} et étant les plus éloignées les unes des autres (\texttt{samp.farthest.same}), et de données issues de clusters différents et étant les plus proches les unes des autres (\texttt{samp.closest.diff}).
 		}
 		\label{figure:C.1.4-DESCRIPTION-IMPLEMENTATION-INTERACTIVE-CLUSTERING-CONTRAINTES-SAMPLING}
 	\end{figure}

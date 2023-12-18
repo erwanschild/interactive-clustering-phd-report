@@ -28,12 +28,13 @@
 		
 		%%% Mais des mythes se créent.
 		Les modèles d'\texttt{IA} s'immiscent ainsi dans la plupart des activités de notre quotidien.
+		%% NOTE (Thierry P.): Comme toute technologie, cette opmniprésence instaure aussi des dépendances, une diminution de certaines compétences, ... >> "Cependant, cette omniprésence, en plus de créer une dépendance à la technologie, est aussi source de confusion [...]" ?
 		Cependant, cette omniprésence est aussi source de confusion et d'incompréhension pour le grand public.
 		En effet :
 		\begin{itemize}
 			% Craintes.
 			\item L'\texttt{IA} peut être perçue comme une menace, soit parce qu'elle vole des emplois, soit parce qu'elle risquerait de devenir incontrôlable.
-			Ces craintes sont notamment véhiculées par la culture populaire, à l'image de \texttt{Terminator} ou d'\texttt{Ultron} qui se sont retournés contre leur créateur.
+			Ces craintes sont notamment véhiculées par la culture populaire, à l'image de \texttt{Terminator} ou d'\texttt{Ultron} qui se sont retournés contre leurs créateurs.
 			% Attentes trop hautes.
 			\item Les attentes des utilisateurs sont parfois trop élevées par rapport aux capacités réelles du modèle.
 			Il en résulte alors un sentiment de frustration, en particulier lorsque l'utilisateur exprime un besoin urgent, mais que le modèle se contente de répondre qu'il n'a pas compris la question et que vous devriez reformuler votre demande.
@@ -102,6 +103,7 @@
 			\item En premier lieu, les experts métiers sont consultés lors d'ateliers d'idéation pour définir une première version de la modélisation (\textit{dans le cadre de notre exemple sur les assistants conversationnels, ils définiraient la liste des intentions possibles}).
 			\item Dans un second temps, les experts métiers parcourent l'ensemble des données pour les annoter en fonction de la modélisation définie ;
 			\item Si certaines frictions apparaissent (\textit{modélisation inadaptée, différences d'avis en annotateurs, ...}), le projet retourne à l'étape de modélisation pour proposer une nouvelle version révisée, et le cycle recommence...
+			%% NOTE (Thierry P.): Donner un exemple en ba se page d'une modélisation inadaptée sur la base d'un chatbot ? par exemple, un processus client mal détaillé ?
 		\end{itemize}
 		
 		% Complexité d'organisation.
@@ -113,12 +115,13 @@
 		\newline
 		
 		% BAM : ça va pas !
-		Nous touchons alors du doigt un paradoxe manifeste : \textbf{comment sommes-nous arrivé à la conclusion que la meilleure manière de faire intervenir un expert métier sur une tâche d'annotation, c'est en lui demandant une tâche pour laquelle il n'est pas expert ?}
+		Nous touchons alors du doigt un paradoxe manifeste : \textbf{comment sommes-nous arrivés à la conclusion que la meilleure manière de faire intervenir un expert métier sur une tâche d'annotation, c'est en lui demandant une tâche pour laquelle il n'est pas expert ?}
 		(\textit{En effet, si nous voulions par exemple faire un assistant conversationnel sur un domaine gastronomique, nous engagerions a priori un chef cuisinier ou un restaurateur ;
 		toutefois, il semblerait incongru d'engager ces profils dans le but de réaliser des analyses statistiques ou d'être compétents sur des questions linguistiques.})
 		
 		% Constat : on a reposer la complexité sur l'annotateur.
 		En conclusion, l'organisation traditionnelle des projets d'annotation ne semble pas résoudre la complexité de cette tâche : au contraire, elle semble plutôt l'ignorer en espérant qu'un opérateur humain suffisamment formé la résolve tout seul.
+		%% NOTE (Thierry P.): "l'organisation traditionnelle des projets d'annotation ne semble pas optimale, et elle introduit de fait une complexité qui est généralement ignorée, mais subie par les opérateur humain intervenant dans le processus" ?
 		
 		
 	%%%%%--------------------------------------------------------------------
@@ -133,7 +136,7 @@
 		
 		% Objectifs.
 		Au cours de ce doctorat, nous nous sommes demandé s'il était possible de changer la philosophie traditionnelle régissant les projets d'annotation, avec pour objectif de remettre l'expert métier au centre du processus.
-		Pour cela, nous nous sommes restreint au cas d'usage de la modélisation du texte en intentions, en prenant comme contrainte le fait de toujours impliquer un expert métier pour ses vraies connaissances, et en lui demandant un minimum de connaissance analytique ou technique possible.
+		Pour cela, nous nous sommes restreints au cas d'usage de la modélisation du texte en intentions, en prenant comme contrainte le fait de toujours impliquer un expert métier pour ses vraies connaissances, et en lui demandant un minimum de connaissances analytiques ou techniques.
 		
 		% Proposition.
 		Nous avons donc proposé une méthodologie d'annotation assistée par la machine et basée sur la caractérisation de contraintes de similarité.

@@ -276,7 +276,7 @@
 			% Peu de repères concrets.
 			D'autre part, il y a un manque de repères concrets dans la littérature scientifique, entre autres à cause des nombreux facteurs intervenant dans une tâche d'annotation (\textit{objectifs à réaliser, données à manipuler, nombre de choix proposés à l'opérateur, complexité sémantique des données, des compétences de l'opérateur, fréquence d'exécution de la tâche, ...}), mais aussi en raison du manque d'intérêt à l'analyse du temps nécessaire au profit de l'analyse de la cohérence et de la qualité intra- ou inter-annotateur (\cite{baledent:2022:complexite-annotation-manuelle}).
 			% Diversité des données.
-			De plus, les résultats peuvent différer en fonction des contraintes à caractériser : nous pouvons supposer que des couples de données très similaires ou très différentes sont simples à annoter, mais que des données plus ambiguës peuvent nécessiter davantage de temps pour être intégrées et étiquetées.
+			De plus, les résultats peuvent différer en fonction des contraintes à caractériser : nous pouvons supposer que des paires de données très similaires ou très différentes sont simples à annoter, mais que des données plus ambiguës peuvent nécessiter davantage de temps pour être intégrées et étiquetées.
 			
 			% Angle d'attaque.
 			Pour pallier ce problème, nous proposons de confronter nos estimations à des mesures réalisées sur des tâches n'ayant pas le même objectif mais dont la complexité est comparable.
@@ -306,7 +306,7 @@
 				Nous utilisons ce point de repère car la tâche s'apparente à une annotation d'une tâche de classification ($3$ catégories).
 				% Task 2: (Word Similarity)
 				\item Tâche de "\textit{caractérisation de similitude des mots}" (\cite{miller-charles:1991:contextual-correlates-semantic}).
-				Elle consiste à ordonner des couples de mots du plus similaire au moins similaire en fonction de leur proximité sémantique afin de mettre en avant les meilleurs couples de synonymes.
+				Elle consiste à ordonner des paires de mots du plus similaire au moins similaire en fonction de leur proximité sémantique afin de mettre en avant les meilleurs paires de synonymes.
 				Il y a $30$ paires de synonymes à ordonner par $10$ annotateurs, et la tâche a été réalisée en un total de $0.17$ heures, soit une moyenne de $2.0$ secondes par annotation.
 				Nous utilisons ce point de repère car la tâche s'apparente à l'annotation de contraintes (\textit{laquelle de ces deux paires est la plus adéquate ?}) qui ne fait pas appel à un mécanisme de réflexion (\textit{peu de vocabulaire, similarité intrinsèque triviale entre deux mots}).
 				% Task 3: (Recognizing Textual Entailment)
@@ -365,7 +365,7 @@
 			
 			% Idées : nombre de contraintes moyen par session.
 			Afin de proposer tout de même un ordre de grandeur de taille de lot, nous pouvons nous intéresser au nombre moyen de contraintes annotées lors des sessions réalisées par les opérateurs de notre expérience.
-			Bien que ces informations n'ont pas été collectées initialement à cette fin, nous pouvons supposer que les opérateurs ont interrompu leur session pour se reposer (\textit{par fatigue, ennui, agacement, ...}) ou répondre à une autre sollicitation (\textit{intervention d'un collègue, mail important, pause café, ...})
+			Bien que ces informations n'aient pas été collectées initialement à cette fin, nous pouvons supposer que les opérateurs ont interrompu leur session pour se reposer (\textit{par fatigue, ennui, agacement, ...}) ou répondre à une autre sollicitation (\textit{intervention d'un collègue, mail important, pause café, ...})
 			Après un entretien avec les opérateurs de notre expérience, il semble y avoir deux possibilités : soit l'opérateur ne se fixait pas d'objectif et s'arrêtait par fatigue ; soit il se fixait un objectif (\textit{de nombre ou de durée}), mais adaptait son prochain objectif en fonction de la fatigue ressentie en fin de session.
 			Dans les deux cas, nous pouvons faire l'hypothèse que le nombre moyen d'annotation par session tend à représenter une borne supérieure de la taille maximale d'un lot à considérer pour ne pas entamer l'effet de fatigue.
 			Sur l'expérience réalisée, cette moyenne est de $170.70$ contraintes annotées par session (écart-type: $106.37$, erreur standard: $13.19$).
@@ -527,8 +527,8 @@
 				% Sampling.
 				\item l'\textbf{échantillonnage} des contraintes à annoter...
 					\begin{itemize}
-						\item avec les algorithmes suivants : \textbf{purement aléatoire} (noté \texttt{samp.random.full}), \textbf{pseudo-aléatoire} (noté \texttt{samp.random.same}), \textbf{même \textit{cluster} mais étant les plus éloignés} (noté \texttt{samp.farhtest.same}) et \textbf{\textit{clusters} différents mais étant les plus proches} (noté \texttt{samp.closest.diff}) ;
-						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$), le \textbf{nombre de contraintes annotées} (variant de $0$ à $5~000$ par pas de $500$, noté $\texttt{previous\_nb\_constraints}$), le \textbf{nombre de \textit{\textit{cluster}} existant} (variant de $10$ à $50$ par pas de $10$, noté $\texttt{previous\_nb\_clusters}$) et le \textbf{nombre de contraintes à sélectionner} (variant de $50$ à $250$ par pas de $50$, noté $\texttt{algorithm\_nb\_constraints}$) ;
+						\item avec les algorithmes suivants : \textbf{purement aléatoire} (noté \texttt{samp.random.full}), \textbf{pseudo-aléatoire} (noté \texttt{samp.random.same}), \textbf{même \textit{cluster} mais étant les plus éloignés} (noté \texttt{samp.farthest.same}) et \textbf{\textit{clusters} différents mais étant les plus proches} (noté \texttt{samp.closest.diff}) ;
+						\item avec les contextes d'utilisation suivants : \textbf{nombre de données} (variant de $1~000$ à $5~000$ par pas de $1~000$, noté $\texttt{dataset\_size}$), le \textbf{nombre de contraintes annotées} (variant de $0$ à $5~000$ par pas de $500$, noté $\texttt{previous\_nb\_constraints}$), le \textbf{nombre de \textit{\textit{clusters}} existants} (variant de $10$ à $50$ par pas de $10$, noté $\texttt{previous\_nb\_clusters}$) et le \textbf{nombre de contraintes à sélectionner} (variant de $50$ à $250$ par pas de $50$, noté $\texttt{algorithm\_nb\_constraints}$) ;
 						\item le tout précédé par des prétraitements \textbf{simples}, une vectorisation \textbf{TF-IDF}, un \textit{clustering} initial \textbf{KMeans} (modèle \textit{COP}) et un échantillonnage initial \textbf{purement aléatoire} ;
 					\end{itemize}
 			\end{enumerate}
@@ -734,13 +734,13 @@
 				\propto~1.85 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{\textbf{2}}
 			\end{equation}
 			
-			% Modélisation du temps de calcul (samp.farhtest.same).
-			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.farhtest.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{\textbf{2}}$ (\texttt{r}: $0.981$).
+			% Modélisation du temps de calcul (samp.farthest.same).
+			Pour les algorithmes de l'échantillonnage de contraintes \texttt{samp.farthest.same}, l'analyse de la corrélation des facteurs avec les mesures de temps d'exécution indique qu'une modélisation minimale et suffisante peut être réalisée à partir du facteur $\texttt{dataset\_size}^{\textbf{2}}$ (\texttt{r}: $0.981$).
 			Le second facteur le plus corrélé (mais non retenu) est l'interaction $\texttt{dataset\_size}^{\textbf{2}} \cdot \texttt{previous\_nb\_clusters}$ (\texttt{r}: $0.700$).
 			Le modèle linéaire généralisé retenu (\texttt{R²}: $> 0.999$, \texttt{llf}: $-4.56 \cdot 10^{4}$, \texttt{llf\_null}: $-1.02 \cdot 10^{5}$) nous permet de déduire l'équation suivante :
 			%
 			\begin{equation}
-				\texttt{computation\_time}(\texttt{samp.farhtest.same})~[s]~
+				\texttt{computation\_time}(\texttt{samp.farthest.same})~[s]~
 				\propto~5.19 \cdot 10^{-7} \cdot \texttt{dataset\_size}^{\textbf{2}}
 			\end{equation}
 			
@@ -772,7 +772,7 @@
 		
 			% Rappel de l'objectif : estimer le temps d'exécution.
 			Dans cette étude, nous avons estimé le temps de calcul des différents algorithmes implémentés afin de confirmer le choix de paramétrage pour une convergence optimale (cf. hypothèse d'efficience en \textsc{Section~\ref{section:4.2-HYPOTHESE-EFFICIENCE}}).
-			Ces estimations ont été réalisées sur la base de plusieurs exécutions et fonction de divers contextes d'utilisation : nombre de données, nombre de contraintes annotées, nombre de contraintes à sélectionner, nombre de \textit{clusters} existant, nombre de \textit{clusters} à trouver.
+			Ces estimations ont été réalisées sur la base de plusieurs exécutions et fonction de divers contextes d'utilisation : nombre de données, nombre de contraintes annotées, nombre de contraintes à sélectionner, nombre de \textit{clusters} existants, nombre de \textit{clusters} à trouver.
 			\\
 			
 			% Remarque générale : Dépend principalement du nombre de données.
@@ -1005,8 +1005,8 @@
 			% Discussion générale sur la pente.
 			Nous pouvons constater que la relation entre la taille du jeu de données et le nombre de contraintes à annoter est linéaire (pente de $3.15$) : doubler la taille d'un jeu de données doublera donc la charge de travail incombant à l'expert métier.
 			À première vue, une telle estimation représente une lourde charge d'annotation : \textbf{pour un jeu de $5~000$ données, il faut caractériser $15~750$ contraintes, ce qui correspond environ à $34$ heures d'annotation} d'après l'\textsc{Equation~\ref{equation:4.3.1-ETUDE-COUT-COUTS-TEMPS-ANNOTATION}} !
-			Néanmoins, comme le nombre de contraintes possibles évolue en $ \mathcal{O}(\texttt{dataset\_size}) $, cette estimation aurait pu être bien pire et représenter $12~497~500$ contraintes (cf. \textsc{Figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}} dans notre précédente précédente).
-			Mieux encore, le nombre théorique minimal moyen de contraintes à annoter pour $5~000$ données n'est que $2.55$ fois plus faible que notre estimation ($6~175$ vs $15~750$, cf. notre précédente précédente), alors que cette borne minimale nécessite un échantillonnage "\textit{parfait}" permettant d'identifier le chemin minimal parcourant les \textit{clusters}.
+			Néanmoins, comme le nombre de contraintes possibles évolue en $ \mathcal{O}(\texttt{dataset\_size}) $, cette estimation aurait pu être bien pire et représenter $12~497~500$ contraintes (cf. \textsc{Figure~\ref{figure:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES-EXEMPLES}}).
+			Mieux encore, le nombre théorique minimal moyen de contraintes à annoter pour $5~000$ données n'est que $2.55$ fois plus faible que notre estimation ($6~175$ vs $15~750$), alors que cette borne minimale nécessite un échantillonnage "\textit{parfait}" permettant d'identifier le chemin minimal parcourant les \textit{clusters}.
 			Nous pouvons donc relativiser l'estimation faite avec l'\textsc{Equation~\ref{equation:4.3.3-ETUDE-COUT-NOMBRE-CONTRAINTES}} et en conclure que notre méthode comporte un nombre de contraintes raisonnable à annoter.
 			
 			% Influence du jeu de données.

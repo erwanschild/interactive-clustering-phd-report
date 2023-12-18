@@ -5,7 +5,7 @@
 	%%% Introduction: annoncer la complexité due (1) aux données (2) à la tâche et (3) aux humains.
 	%%%
 	
-	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de zones d'ombres pouvant introduire des complications dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
+	Comme nous avons pu l'apercevoir dans les sections précédentes, le cycle d'annotation recèle de nombreuses zones d'ombres pouvant introduire des complications dans la conception d'une base d'apprentissage (\cite{baledent:2022:complexite-annotation-manuelle}).
 	Pour aborder cette partie, nous verrons :
 	\begin{itemize}
 		\item qu'il y a une forte pression sur la \textbf{qualité des données} devant constituer le corpus d'entraînement (cf. \textsc{Section~\ref{section:2.3.1-DEFIS-ANNOTATION-ASPECT-DONNEES}}) ;
@@ -66,7 +66,7 @@
 				Nous pourrions aussi nous assurer de la présence de cas emblématiques permettant de catégoriser les \texttt{BD} en "\texttt{Mauvais état}", "\texttt{Bon état}", "\texttt{Très bon état}", "\texttt{Neuf}".
 				
 				% Autre cas d'usage : pas représentatif.
-				Toutefois, cette base d'apprentissage ne sera plus représentative si nous voulons détecter la langue de la bande dessinée (auquel cas, une répartition par langue sera \textit{a priori} plus adéquate).
+				Toutefois, cette base d'apprentissage ne serait peut-être plus représentative si nous voulions détecter la langue de la bande dessinée : il conviendrait alors de vérifier la répartition par langue en revoyant les trois mesures précédemment mentionnées.
 			\end{leftBarExamples}
 			
 			% Besoin de beaucoup d'exemples.
@@ -154,7 +154,7 @@
 			La qualité d'une base d'apprentissage dépend fortement du bruit qu'elle contient.
 			Ce bruit est inévitablement inséré lors de la collecte :
 			d'une part, la méthode de collecte elle-même peut en introduire (\textit{instrument de mesure faillible, erreur humaine, ...}) ;
-			d'autre part, par souci de représentativité, le bruit intrinsèque du phénomène va être capturé (\textit{forte variabilité, présence d'irrégularité, ...}).
+			d'autre part, par souci de représentativité, le bruit intrinsèque du phénomène va être capturé (\textit{forte variabilité, présence d'irrégularités, ...}).
 			Un échantillon de données va donc forcément devoir se confronter à des étapes de prétraitements et de curation de données.
 
 			% Classification des types de bruits.
@@ -220,7 +220,7 @@
 				% Approche: Data transformation.
 				\item le \textbf{formatage des données} : pour exploiter facilement les données, certaines transformations sont parfois nécessaires pour limiter les ambiguïtés dues au leur format (\textit{par exemple: normaliser une valeur entre $0$ et $1$, limiter les caractères spéciaux dans un texte});
 				% Approche: Data reduction.
-				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, nous pouvons quelques fois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimées pour réduire la complexité de la base d'apprentissage.
+				\item la \textbf{réduction des données} : en réalisant une analyse approfondie des données, nous pouvons quelquefois constater que certaines caractéristiques présentes sur les données sont peu utiles et peuvent être supprimées pour réduire la complexité de la base d'apprentissage.
 			\end{itemize}
 			\cite{baledent:2022:complexite-annotation-manuelle} rappelle néanmoins que le document source (ou ici : la donnée brute) doit rester accessible pour la phase d'annotation afin de ne pas manquer une information potentiellement intéressante.
 			%
@@ -235,7 +235,7 @@
 					% Correction: 3. Absence de valeurs.
 					\item une année d'édition manquante pourrait être identifiée par l'étiquette \texttt{inconnue} et un prix manquant pourrait être complété par la moyenne du prix des \texttt{BD} ayant les mêmes caractéristiques ;
 					% Correction: 4. Incohérences et ambiguïtés
-					\item une prix faussé pourrait être identifié comme incohérent en analysant les prix des \texttt{BD} ayant les mêmes caractéristiques ;
+					\item un prix faussé pourrait être identifié comme incohérent en analysant les prix des \texttt{BD} ayant les mêmes caractéristiques ;
 				\end{itemize}
 			\end{leftBarExamples}
 		
@@ -333,7 +333,8 @@
 			Si le phénomène est intrinsèquement complexe, il est possible néanmoins que ces ateliers se réalisent en mode essai-erreur (à l'image du mini-cycle \texttt{MAMA}) jusqu'à trouver une modélisation qui puisse convenir, rendant cette tâche particulièrement pénible.
 			%
 			\begin{leftBarExamples}
-				Pour se rendre compte de cette difficulté, essayons par exemple de détailler l'ensemble des actions que peut entreprendre un robot conversationnel en domotique (comme \texttt{Alexa}, \cite{alexa-internet:2018:keyword-research-competitor}), et modélisons ensuite les diverses instructions verbales pouvant déclencher ces actions.
+				Pour se rendre compte de cette difficulté, il suffit d'essayer de détailler l'ensemble des actions que peut entreprendre un robot conversationnel en domotique (comme \texttt{Alexa}, \cite{alexa-internet:2018:keyword-research-competitor}), puis de modéliser les diverses instructions verbales pouvant déclencher ces actions.
+				Nous pouvons vite tomber sur des débats d'opinion, notamment autour de la gestion des formulations ambigües ou d'actions différentes provenant d'instructions similaires (\textit{voir l'exemple précédemment utilisé : est-ce que l'énoncé \textguillemets{peux-tu allumer...} demande à l'assistant d'effectuer une action, ou demande-t-il simplement exprimer s'il en est capable ?})
 			\end{leftBarExamples}
 			
 			% Solution pour limiter la complexité de modélisation.
@@ -445,6 +446,7 @@
 				Au final, l'analyse révèle que cette tâche est relativement peu complexe.
 				Le calcul d'un score d'accord entre annotateurs permettrait de confirmer cette hypothèse et d'en déduire la confiance que nous pouvons accorder à la qualité des données labellisées.
 			\end{leftBarExamples}
+			%% NOTE (Thierry P.): Compléter par un exemple plus complexe ?
 			
 			
 		%%% 2.3.2.C. Problèmes de coûts.
@@ -455,10 +457,11 @@
 			Toute cette complexité a un impact non négligeable sur les coûts à engager dans un projet de conception de jeu de données.
 			Nous allons ici détailler certains de ces coûts et donner quelques exemples notoires.
 			
-			% Coût embauches.
+			% Coût du recrutement, de la formation, du tarif horaire.
 			Tout d'abord, il y a des \textbf{charges de main d'oeuvre}.
 			En effet, de nombreuses personnes aux compétences diverses vont s'investir dans un tel projet (voir \textsc{Section~\ref{section:2.2.2-ORGANISATION-ANNOTATION-ACTEURS}}), à la fois pour modéliser le phénomène mais aussi pour labelliser les données le représentant.
-			L'intervention de ces acteurs va engager des coûts dans l'embauche des experts et opérateurs nécessaires, mais aussi dans leur formation si cela est nécessaire (veille technologique, montée en compétence sur la compréhension du phénomène, ...).
+			Cependant, les experts qualifiés pour ces tâches sont souvent très demandés : ainsi, ces profils sont rares à l'embauche, souvent difficiles à mobiliser sur de longues durées, et ont généralement des tarifs horaires élevés.
+			Une alternative consiste à former le personnel nécessaire, mais cette montée en compétence prend du temps et représente aussi un investissement important (\textit{formations professionnelles, veille technologique, appréhension du phénomène à modéliser, ...}).
 			
 			% Coût temporel.
 			Ensuite, il faut considérer les \textbf{facteurs temporels} qui impactent le délai de mise en production du modèle de \textit{Machine Learning}.
@@ -510,7 +513,7 @@
 					% Solution: Myriadisation.
 					\item la \textbf{myriadisation} (\textit{crowdsourcing}) :
 						cette approche consiste à déléguer l'annotation à des plateformes collaboratives en ligne comme \texttt{Amazon Mechanical Turk} (\cite{callison-burch-dredze:2010:creating-speech-language}) ou \texttt{Language ARC} (\cite{fiumara-etal:2020:languagearc-developing-language}).
-						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindre coûts.
+						N'importe quel internaute peut alors contribuer à la tâche d'annotation, permettant ainsi de labelliser de grands volumes de données rapidement et à moindres coûts.
 						Cette technique comporte toutefois un inconvénient majeur : les opérateurs ne sont généralement pas des experts et cer derniers sont rémunérés au volume labellisé.
 						La qualité des annotations risque donc d'être délaissée au profit de la quantité (\cite{sagot-etal:2011:turc-mecanique-pour}).
 				\end{itemize}
@@ -659,11 +662,11 @@
 		\begin{todolist}
 			% Pression sur la qualité.
 			\item[\itemok] L'enjeu d'un projet d'annotation consiste à \textbf{avoir des données de qualité} :
-			celles-ci doivent être représentatives du problème à traiter, en quantité suffisante, avec un minimum de bruit, et leur droits d'usage doivent être disponibles ;
+			celles-ci doivent être représentatives du problème à traiter, en quantité suffisante, avec un minimum de bruit, et leurs droits d'usage doivent être disponibles ;
 			% Complexité élevée.
 			\item[\itemok] Cependant, la tâche de labellisation et son exigence de qualité \textbf{engendre de la complexité} :
-			celle-ci peut venir de la difficulté à modéliser le phénomène, de l'annotation elle-même, ou encore des coûts qui y sont associés ;
+			celle-ci peut venir de la difficulté à modéliser le phénomène ou de l'annotation elle-même, ce qui engendre un certains nombre de coûts ;
 			% Différence de comportement.
-			\item[\itemok] Ainsi, cette complexité \textbf{créé des différences de comportements} : ces divergences s'expliquent par la subjectivité de l'annotation et par la régulation de la charge de travail effectuée par l'opérateur lorsque cette charge est trop élevée.
+			\item[\itemok] Ainsi, cette complexité \textbf{créé des différences de comportements} : ces divergences s'expliquent notamment par la subjectivité de l'annotation et par la régulation de la charge de travail effectuée par l'opérateur lorsque cette charge est trop élevée.
 		\end{todolist}
 	\end{leftBarSummary}

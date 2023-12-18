@@ -28,7 +28,7 @@
 			\includegraphics[width=0.95\textwidth]{figures/interactive-clustering-architecture-sequentielle}
 			\caption{
 				Schéma illustrant l'architecture du \texttt{Clustering Interactif}.
-				La boucle principale enchaîne un échantillonnage de couples de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.
+				La boucle principale enchaîne un échantillonnage de paires de données, une annotation de contraintes, et un \textit{clustering} sous contraintes.
 			}
 			\label{figure:3.2.1-DESCRIPTION-THEORIQUE-GENERALE}
 		\end{figure}
@@ -69,7 +69,7 @@
 		\end{algorithm}
 		
 		% Description de l'initialisation.
-		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, nous y ajoutons les contraintes annotées par l'expert grâce à ses connaissances métiers (nous entrerons en détails en décrivant la phase d'annotation).
+		Pour l'\textbf{initialisation} de la méthode (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{lignes 1 à 3}), nous définissons une liste vide de contraintes : tout au long du processus, nous y ajoutons les contraintes annotées par l'expert grâce à ses connaissances métiers (nous entrerons en détail en décrivant la phase d'annotation).
 		Il faut aussi une première segmentation des données par la machine : celle-ci se réalise par l'exécution d'un algorithme de \textit{clustering}.
 		Nous estimons qu'il n'est pas du ressort de l'expert métier de choisir l'algorithme de \textit{clustering} ni de régler ses hyperparamètres.
 		Ces derniers pourront être déterminés par un \textit{data scientist} en fonction du problème à traiter.
@@ -81,7 +81,7 @@
 		De plus, l'intervention d'experts est chiffrée et représente en général une partie des coûts à investir dans un projet (voir \textsc{Section~\ref{section:2.3.2.C-DEFIS-ANNOTATION-ASPECT-COMPLEXITE-COUTS}}).
 		Il est donc inconcevable de laisser un expert métier annoter des contraintes "\textit{seul}" et "\textit{au hasard}".
 		Ainsi, pour optimiser ses interventions, il convient de déterminer là où l'expert aura le plus d'impact lors de sa transmission de connaissances.
-		C'est pourquoi la phase d'échantillonnage est primordiale dans la méthode proposée : nous proposons d'y sélectionner des couples de données sur la base de leur similarité, de leur segmentation ou encore de leurs relations avec d'autres données déjà liées par des contraintes.
+		C'est pourquoi la phase d'échantillonnage est primordiale dans la méthode proposée : nous proposons d'y sélectionner des paires de données sur la base de leur similarité, de leur segmentation ou encore de leurs relations avec d'autres données déjà liées par des contraintes.
 		
 		% Description de l'annotation.
 		Sur la base de cet échantillon, l'expert peut entamer son étape d'\textbf{annotation de contraintes} (cf. \textsc{Algorithme~\ref{algorithm:3.2-CLUSTERING-INTERACTIF}}, \textit{ligne 7}).
@@ -164,7 +164,7 @@
 			% cognitivefactory-features-maximization-metric
 			\item \texttt{cognitivefactory-features-maximization-metric} \footnote{
 				\url{https://pypi.org/project/cognitivefactory-features-maximization-metric/}
-			} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques caractéristiques d'un jeu de données labellisées, permettant ainsi d'analyser la pertinence d'un résultat de \textit{clustering}.
+			} (\cite{schild:2023:cognitivefactory-featuresmaximizationmetric}), disposant d'une méthode de sélection des patterns linguistiques caractéristiques d'un jeu de données labellisées, permettant ainsi d'analyser la pertinence d'un résultat de \textit{clustering} en fonction du vocabulaire utilisé dans chaque \textit{cluster}.
 		\end{enumerate}
 		
 		

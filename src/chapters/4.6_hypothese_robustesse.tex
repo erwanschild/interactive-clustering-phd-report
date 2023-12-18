@@ -253,7 +253,7 @@
 			Nous pouvons constater les points suivants :
 			\begin{itemize}
 				\item les accords deux à deux concernent à chaque fois au moins $80.25$\% des contraintes ;
-				\item un seul couple d'opérateurs est considéré comme ayant un accord \textit{faible} ($\alpha = 0.597 < 0.667$) ;
+				\item une seule paire d'opérateurs est considéré comme ayant un accord \textit{faible} ($\alpha = 0.597 < 0.667$) ;
 				\item les autres annotateurs, ne connaissant pas la vérité terrain, ont tous un accord \textit{acceptable} avec celle-ci $\alpha \geq 0.685$ ; d'après le taux d'accord brut, le pourcentage de désaccords d'annotations concerne entre $13$\% et $16$\% de contraintes pour chaque annotateur ;
 				\item malgré ces désaccords, l'accord inter-opérateurs global reste \textit{acceptable} ($\alpha = 0.669$ et $\alpha = 0.715$).
 			\end{itemize}
@@ -392,7 +392,7 @@
 		Nous allons ici simuler de telles erreurs dans l'annotation de contraintes dans le but :
 		\begin{itemize}
 			\item d'observer leur détection par le gestionnaire de contraintes ;
-			\item d'évaluer la perte de performances par rapport à la vérité terrain si les contradictions détectées ne sont pas corrigés.
+			\item d'évaluer la perte de performances par rapport à la vérité terrain si les contradictions détectées ne sont pas corrigées.
 		\end{itemize}
 	
 		%%% Protocole expérimental.
@@ -466,7 +466,7 @@
 			\end{itemize}
 			
 			% Description des tentatives de la méthode avec les répétitions.
-			Ainsi, il y a donc $6$ taux d'erreurs d'annotation à simuler, chacun suivant $2$ approches de gestion de conflits ; chacune de ces simulations d'erreurs sera répété $10$ fois sur chaque tentative complète de la méthode pour contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $120$ simulations par tentative.
+			Ainsi, il y a donc $6$ taux d'erreurs d'annotation à simuler, chacun suivant $2$ approches de gestion de conflits ; chacune de ces simulations d'erreurs sera répétée $10$ fois sur chaque tentative complète de la méthode pour contrer les aléas statistiques des tirages de contraintes erronées, ce qui représente $120$ simulations par tentative.
 			Enfin, chaque tentative complète de \texttt{Clustering Interactif} est répétée $5$ fois pour contrer les aléas statistiques des exécutions, ce qui représente un total de $600$ tentatives complètes à simuler.
 
 			% Description de l'analyse.
@@ -600,7 +600,7 @@
 					\textbf{évaluation}: estimer l'équivalence entre le \textit{clustering} et la vérité terrain \;
 					\Repeat{annotation de toutes les contraintes possibles}{
 						\textbf{échantillonnage}: sélectionner des contraintes avec \texttt{samp.closest.diff} \;
-						\textbf{choix des désaccords}: définir les contraintes erronées \;
+						\textbf{choix des désaccords}: définir les contraintes divergentes \;
 						\textbf{simulation d'annotation}: déterminer les contraintes avec la vérité terrain \;
 						\textbf{intégration corrective}: ajouter les nouvelles contraintes au gestionnaire de contraintes, et ré-annoter les annotations en conflit \;
 						\textbf{clustering}: regrouper les données par similarité avec \texttt{clust.kmeans.cop} \;

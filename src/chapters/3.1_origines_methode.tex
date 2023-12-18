@@ -12,7 +12,7 @@
 	
 		%%% Possibilité d'utilisé des regroupements non supervisés.
 		Dans le but d'assister la phase de modélisation des données, une piste intéressante revient à déléguer cette tâche à la machine.
-		En effet, grâce à une \textbf{classification non supervises (\textit{clustering})}, un algorithme peut regrouper les données en fonction de leur similarité intrinsèque et ainsi suggérer une modélisation intentions.
+		En effet, grâce à une \textbf{classification non supervisées (\textit{clustering})}, un algorithme peut regrouper les données en fonction de leur similarité intrinsèque et ainsi suggérer une modélisation en intentions.
 		%%% Quelques exemples communs: KMeans, Hiérarchique, Spectral, DBScan, Affinity propagation, ...
 		Plusieurs algorithmes et méthodes connus peuvent être utilisés :
 		
@@ -38,8 +38,8 @@
 		
 		%%% Cependant, il y a des limites.
 		Cependant, ces algorithmes non supervisés font régulièrement face à un ensemble de difficultés qui pénalisent leur utilisation.
-		En effet, ces méthodes ont souvent du mal à traiter des données de grandes dimensionnalités ou en grand nombre (\cite{steinbach-etal:2004:challenges-clustering-high}), la présence de bruits peut rapidement perturber le fonctionnement d'un algorithme (\cite{yang-wang:2004:competitive-algorithms-clustering}), et certains \textit{cluster} aux géométries complexes peuvent être difficiles à identifier (\cite{kriegel-etal:2011:density-based-clustering}).
-		De plus, le choix de certains hyperparamètres de ces méthodes n'est pas toujours simple, surtout en ce qui concerne le nombre de clusters, la méthode d'initialisation ou la mesure de distance à utiliser (\cite{agarwal-etal:2011:issues-challenges-tools}).
+		En effet, ces méthodes ont souvent du mal à traiter des données de grandes dimensionnalités ou en grand nombre (\cite{steinbach-etal:2004:challenges-clustering-high}), la présence de bruits peut rapidement perturber le fonctionnement d'un algorithme (\cite{yang-wang:2004:competitive-algorithms-clustering}), et certains \textit{clusters} aux géométries complexes peuvent être difficiles à identifier (\cite{kriegel-etal:2011:density-based-clustering}).
+		De plus, le choix de certains hyperparamètres de ces méthodes n'est pas toujours simple, surtout en ce qui concerne le nombre de \textit{clusters}, la méthode d'initialisation ou la mesure de distance à utiliser (\cite{agarwal-etal:2011:issues-challenges-tools}).
 		Enfin, toutes ces difficultés se retrouvent dans le traitement du langage naturel, notamment à cause de la taille de vocabulaire importante, de la présence de nombreux bruits et de la vaste diversité et complexité des thématiques pouvant y être abordées.
 		\begin{leftBarInformation}
 			La revue de \cite{xu-tian:2015:comprehensive-survey-clustering} détaille plusieurs algorithmes de \textit{clustering}, en fonction de leurs forces et faiblesses sur les points mentionnés ci-dessus.

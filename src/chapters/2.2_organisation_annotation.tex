@@ -111,7 +111,7 @@
 			
 			\begin{leftBarInformation}
 				% La théorie rencontre le réel.
-				C'est généralement à ce stade que la théorie rencontre la pratique : certaines règles d'annotation peuvent difficilement être applicables, certains données peuvent être ambiguës ou hors-sujet, deux annotateurs peuvent aussi avoir des avis différents sur l'annotation la plus adéquate, ...
+				C'est généralement à ce stade que la théorie rencontre la pratique : certaines règles d'annotation peuvent difficilement être applicables, certaines données peuvent être ambiguës ou hors-sujet, deux annotateurs peuvent aussi avoir des avis différents sur l'annotation la plus adéquate, ...
 				Il est aussi important de rappeler que l'annotation est un acte d'interprétation, et que les données sont donc labellisées par un humain dont l'avis n'est pas infaillible. 
 				\cite{pustejovsky-stubbs:2012:natural-language-annotation} introduisent donc le premier sous-cycle \texttt{MAMA} en référence à la boucle entre \textit{\textbf{M}odelize} et \textit{\textbf{A}nnotate} qui peut avoir lieu tant que le guide d'annotation n'est pas adapté aux données manipulées ou que différents points de vue opposent les annotateurs.
 				
@@ -151,7 +151,7 @@
 			%%% Evaluate.
 			Ainsi, le modèle représente la connaissance présente dans le jeu \texttt{entraînement}, il est étudié puis affiné grâce au jeu de \texttt{développement}, et est finalement évalué en fonction de ses performances sur le jeu de \texttt{test}.
 			Il est encore une fois difficile d'être exhaustif sur les analyses et les métriques à considérer, car elles dépendent fortement du type de problème que le modèle tente de résoudre.
-			Une métrique basique est l'\texttt{ccuracy} (ou taux de bonnes prédictions), décrivant simplement le nombre de fois où le modèle a fait une bonne proposition sur l'ensemble du test.
+			Une métrique basique est l'\texttt{accuracy} (ou taux de bonnes prédictions), décrivant simplement le nombre de fois où le modèle a fait une bonne proposition sur l'ensemble du test.
 			Suivant le problème et le type de données, d'autres métriques usuelles peuvent être utilisées comme le \texttt{MSE} (\textit{Mean Squared Error}) pour la prédiction de variables numériques (voir \cite{wallach-goffinet:1987:mean-squared-error}), le \texttt{F1-score} pour les variables catégorielles (voir \cite{sasaki:2007:truth-fmeasure}) ou le \texttt{WER} (\textit{Word Error Rate}) pour la transcription de textes (voir \cite{mccowan-etal:2005:use-information-retrieval}).
 			Dans tous les cas, une règle d'or est de ne pas utiliser le jeu de test lors de la phase de développement pour éviter tout biais de surapprentissage \footnote{
 				Pour plus de détails sur le surapprentissage: voir \cite{collins:2017:chapter-overfitting}
@@ -175,7 +175,7 @@
 				\item la modélisation ou l'annotation peuvent devenir obsolètes car le phénomène modélisé évolue dans le temps ;
 				\item un cas d'usage non identifié jusqu'à présent nécessite de nouvelles données pour être pris en compte ;
 				\item le modèle peut ne pas convenir aux utilisateurs finaux par manque d'ergonomie ou à cause d'une utilisation non prévue initialement ;
-				\item un nouvel algorithme de \textit{Machine Learning} \textit{a priori} plus performant requiert une modélisation différente pour traiter le problème.
+				\item un nouvel algorithme de \textit{Machine Learning} \textit{a priori} plus performant peut requérir une modélisation différente pour traiter le problème.
 			\end{itemize}
 			%
 			\begin{leftBarExamples}
@@ -249,7 +249,7 @@
 			\begin{itemize}
 				\item des compétences \texttt{analytiques} pour gérer les jeux de données (\textit{entraînement, développement, test}) et évaluer les performances statistiques du modèle ;
 				\item des compétences \texttt{techniques} pour manipuler l'écosystème de développement du modèle, régler les hyperparamètres, versionner les changements, et planifier la distribution du modèle sur un environnement de production ;
-				\item des compétences de \texttt{gestion} pour s'assurer du respect des normes et du caractère privée ou confidentielle de certaines données.
+				\item des compétences de \texttt{gestion} pour s'assurer du respect des normes et du caractère privé ou confidentiel de certaines données.
 			\end{itemize}
 			% Revoir la base d'apprentissage
 			\item la \textbf{révision} de la base d'apprentissage (étape \textit{\textbf{R}evise}) nécessite :
@@ -302,7 +302,7 @@
 			% Gérer le \textbf{flux de travail} et le \textbf{suivi de projet}.
 			\item gérer le \textbf{flux de travail} et le \textbf{suivi de projet} :
 				certaines fonctionnalités simples sont nécessaires à l'organisation de l'équipe d'annotation.
-				Cela peut comprendre la répartition de la charge de travail, l'historisation des changements pour permettre les retours arrières, la possibilité d'émettre des appels d'aide ou d'écrire des commentaires sur les choix d'annotation, ou encore l'accompagnement des nouveaux annotateurs lors de leur montée en compétence ;
+				Cela peut comprendre la répartition de la charge de travail entre plusieurs utilisateurs, l'historisation des changements pour permettre les retours arrières, la possibilité d'émettre des appels d'aide ou d'écrire des commentaires sur les choix d'annotation, ou encore l'accompagnement des nouveaux annotateurs lors de leur montée en compétence ;
 			% Favoriser le \textbf{confort de l'annotateur}.
 			\item favoriser le \textbf{confort de l'annotateur} :
 				le logiciel choisi sera utilisé au quotidien par l'équipe d'annotation, il semble donc essentiel d'offrir une expérience utilisateur agréable pour réaliser cette tâche.
