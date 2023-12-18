@@ -1,0 +1,1 @@
+This figures are used in main repository `README.md` on GitHub.
