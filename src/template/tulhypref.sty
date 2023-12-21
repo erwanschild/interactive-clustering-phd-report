@@ -131,22 +131,21 @@ template/thesul wrapper for hyperref package (D. Roegel)]
   }
 
 \renewcommand\@generic@chapter@hook[3]{%
-    \@generic@schapter@hook{#1}{#2}%
+  \@generic@schapter@hook{#1}{#2}%
   }
 
 \renewcommand\@generic@chapter@lasthook[3]{%
-    \@generic@schapter@lasthook{#1}{#2}%
+  \@generic@schapter@lasthook{#1}{#2}%
   }
 
 \renewcommand{\@acknowledgment@hook}{%
-    \@division@inc@hook
-    \pdfbookmark[\TUL@topbookmarkpos]{\AcknowledgmentName}%
-              {acknowledgment.\theHdivision}%
+  \@division@inc@hook
+  \pdfbookmark[\TUL@topbookmarkpos]{\AcknowledgmentName}{acknowledgment.\theHdivision}%
   }
-\newcommand{\DedicationName}{D\'edicace}
+
 \renewcommand{\@dedication@hook}{%
   \@division@inc@hook
-  \pdfbookmark[\TUL@topbookmarkpos]{\DedicationName}{dedication.\theHdivision}%
+  %\pdfbookmark[\TUL@topbookmarkpos]{\DedicationName}{dedication.\theHdivision}%
   }
 
 \renewcommand{\@abstract@hook}[1]{%

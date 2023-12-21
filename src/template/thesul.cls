@@ -1196,28 +1196,49 @@
         \fi
         %\addtocounter{page}{-2}%
         }
+        % FUNDINGS
+        \newcommand{\FundingName}{Financements}
+        \newcommand{\@funding@hook}{}
+        \newenvironment{ThesisFundings}
+        {
+            \@newdoublepage
+            \section*{\@title@lignment\FundingName}
+            \addcontentsline{toc}{spsection}{\FundingName}
+            \reset@numbertocswitch
+            \reset@frame@switch
+            \global\@tocswitchfalse
+        }
+        {\par\@newdoublepage}
+        % ACKNOWLEDGMENTS
         \newcommand{\AcknowledgmentName}{Remerciements}
         \newcommand{\@acknowledgment@hook}{}
         \newenvironment{ThesisAcknowledgments}
-        {\@newdoublepage
-    \section*{\@title@lignment\AcknowledgmentName}
-        \addcontentsline{toc}{spsection}{\AcknowledgmentName}
-        \reset@numbertocswitch
-        \reset@frame@switch
-        \global\@tocswitchfalse
+        {
+            \@newdoublepage
+            \section*{\@title@lignment\AcknowledgmentName}
+            \addcontentsline{toc}{spsection}{\AcknowledgmentName}
+            \reset@numbertocswitch
+            \reset@frame@switch
+            \global\@tocswitchfalse
         }
         {\par\@newdoublepage}
+        % DEDICATION
+        \newcommand{\DedicationName}{Dédicace}
         \newcommand{\@dedication@hook}{}
         \newenvironment{ThesisDedication}
-        {\@newdoublepage
+        {
+            \@newdoublepage
             \@dedication@hook
             \@mkboth{}{}
             \vglue0pt plus.5fil
             \fontfamily{\sfdefault}\fontseries{m}\fontshape{sl}\selectfont
+            \addcontentsline{toc}{spsection}{\DedicationName}
             \begin{flushright}
-                }
-                {\end{flushright}
-            \vglue0pt plus1fil\@newdoublepage}
+        }
+        {
+            \end{flushright}
+            \vglue0pt plus1fil\@newdoublepage
+        }
         \newif\if@there@re@p@rts
         \newif\if@there@were@p@rts
         \AtEndDocument{\@see@if@parts}
