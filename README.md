@@ -1,7 +1,7 @@
 # interactive-clustering-phd-report
 
 <p align="center">
-	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.2/phd_report_1.0.0.pdf">TELECHARGER LE PDF (v1.0.0)</a>
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.3/phd_report_1.0.3.pdf">TELECHARGER LE PDF (v1.0.3)</a>
 </p>
 
 
@@ -27,8 +27,8 @@
 > Schild, E. (2024, in press). De l'Importance de Valoriser l'Expertise Humaine dans l’Annotation : Application à la Modélisation de Textes en Intentions à l'aide d’un Clustering Interactif. Université de Lorraine.
 
 <p align="center">
-	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.2/phd_report_1.0.0.pdf">
-		<img src="docs/figures/phd-report-first-page.png" alt="TELECHARGER LE PDF (v1.0.0)" width="40%" />
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.3/phd_report_1.0.3.pdf">
+		<img src="docs/figures/phd-report-first-page.png" alt="TELECHARGER LE PDF (v1.0.3)" width="40%" />
 	</a>
 </p>
 
@@ -37,7 +37,6 @@
 **Première publication scientifique à la conférence _EGC 2021_** :
 
 > Schild, E., Durantin, G., Lamirel, J.C., & Miconi, F. (2021). Conception itérative et semi-supervisée d'assistants conversationnels par regroupement interactif des questions. In EGC 2021 - 21èmes Journées Francophones Extraction et Gestion des Connaissances. Edition RNTI. https://hal.science/hal-03133007.
-
 
 **Extension de la publication dans le journal _IJDWM 2022_** : *(publication de référence)*
 
