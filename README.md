@@ -1,7 +1,7 @@
 # interactive-clustering-phd-report
 
 <p align="center">
-	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.5/phd_report_1.0.5.pdf">TELECHARGER LE PDF (v1.0.5)</a>
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.1.0/phd_report_1.1.0.pdf">TELECHARGER LE PDF (v1.1.0)</a>
 </p>
 
 
@@ -27,8 +27,8 @@
 > Schild, E. (2024, in press). De l'Importance de Valoriser l'Expertise Humaine dans l’Annotation : Application à la Modélisation de Textes en Intentions à l'aide d’un Clustering Interactif. Université de Lorraine.
 
 <p align="center">
-	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.0.5/phd_report_1.0.5.pdf">
-		<img src="docs/figures/phd-report-first-page.png" alt="TELECHARGER LE PDF (v1.0.5)" width="40%" />
+	<a href="https://github.com/erwanschild/interactive-clustering-phd-report/releases/download/1.1.0/phd_report_1.1.0.pdf">
+		<img src="docs/figures/phd-report-first-page.png" alt="TELECHARGER LE PDF (v1.1.0)" width="40%" />
 	</a>
 </p>
 
