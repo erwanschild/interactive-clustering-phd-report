@@ -2,12 +2,12 @@
 \label{chapter:6-CONCLUSION}
 	
 	%%%%%--------------------------------------------------------------------
-	%%%%% OCCUPYING THE NICHE: Proposition d'une méthode d'annotation valorisant l'expertise métier.
+	%%%%% OCCUPYING THE NICHE: Proposition d'une méthode d'annotation autour d'un \textit{Clustering Interactif}.
 	%%%%%--------------------------------------------------------------------
-	\section*{Proposition d'une nouvelle méthode d'annotation valorisant l'expertise métier}
+	\section*{Proposition d'une nouvelle méthode d'annotation autour d'un \textit{Clustering Interactif}}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Proposition d'une nouvelle méthode d'annotation valorisant l'expertise métier
+		Proposition d'une nouvelle méthode d'annotation autour d'un \textit{Clustering Interactif}
 	}
 	
 		%%% Introduction, Revue de littérature et Rappel de la problématique (voir \textsc{Chapitre~\ref{chapter:2-REVUE-DE-LITTERATURE}}).
@@ -45,12 +45,12 @@
 		
 		
 	%%%%%--------------------------------------------------------------------
-	%%%%% NICHE and ASSET CENTRALITY: Perspectives d'utilisation du \textit{Clustering Interactif}.
+	%%%%% NICHE: Perspectives d'utilisation de notre \textit{Clustering Interactif}.
 	%%%%%--------------------------------------------------------------------
-	\section*{Perspectives d'utilisation du \textit{Clustering Interactif}}
+	\section*{Perspectives d'utilisation de notre \textit{Clustering Interactif}}
 	\addcontentsline{toc}{section}{
 		\protect\numberline{}
-		Perspectives d'utilisation du \textit{Clustering Interactif}
+		Perspectives d'utilisation de notre \textit{Clustering Interactif}
 	}
 		
 		%%% Amélioration signification de l'implication des experts métiers.
@@ -60,11 +60,48 @@
 		%%% Certes moins pour la gestion de dialogues (cf \textit{chatbot} génératif), mais probablement pour leur contrôle ; Application possible à des domaines autre que le texte (image, voix, données tabulaires, ...) si la modélisation est complexe
 		Néanmoins, depuis $2023$, la conception de \textit{chatbot} s'est davantage tournée vers les approches génératives, celles-ci n'ayant plus besoin d'intentions pour gérer le dialogue.
 		Mais malgré leurs performances encourageantes, ces approches manquent encore clairement de fiabilité, notamment en ce qui concerne les dérives de comportements et les risques d'hallucination ; de plus, une étape de modélisation reste nécessaire pour paramétrer certaines de leurs actions spécifiques (\textit{allumer la lumière, lancer un appel téléphonique, faire un virement bancaire, ...}).
-		De ce fait, nous pensons que notre approche reste pertinente pour entraîner des assistants orientés par tâches, pour modéliser des mécanismes de contrôle, ou encore pour assister la conception de certains assistants hybrides.
-		D'autre part, notre approche peut facilement se généraliser à d'autres cas d'usages faisant intervenir une classification supervisée (\textit{classification d'images, de documents, ...}).
+		De ce fait, nous pensons que notre méthode d'annotation reste pertinente pour entraîner des assistants orientés par tâches, pour modéliser des mécanismes de contrôle, ou encore pour assister la conception de certains assistants hybrides.
+		D'autres part, cette méthode pourrait facilement être adaptée à d'autres usages tout en conservant l'esprit d'une tâche d'annotation à choix binaires, permettant ainsi de rester au plus proche de la connaissance métier des opérateurs.
+		
+		%%% Ouverture vers Chatbot arena.
+		\begin{leftBarAuthorOpinion}
+			% Description générale de Chatbot arena.
+			Parmi les techniques d'annotation récentes autour des modèles de génération de textes, nous sommes particulièrement attentifs à la méthode \textguillemets{\texttt{Chatbot Arena}} proposée par \texttt{LMSYS Org} (\cite{chiang-etal:2024:chatbot-arena-open}, voir \url{https://huggingface.co/spaces/lmsys/chatbot-arena-leaderboard} et \textsc{Figure~\ref{figure:6.2-PERSPECTIVES-CHATBOT-ARENA}}).
+			Cette méthode consiste à comparer les réponses générées par deux modèles différents pour une même question en demandant à l'opérateur de choisir sa réponse préférée : soit la réponse de gauche est la meilleure (\textit{option \textguillemets{\texttt{{\faHandPointLeft}~A is better}}}), soit la réponse de droite est la meilleure (\textit{option \textguillemets{\texttt{{\faHandPointRight}~B is better}}}).
+			Il est aussi possible de préciser si les deux réponses sont bonnes (\textit{option \textguillemets{\texttt{{\faHandshake}~Tie}}}) ou si aucune ne l'est (\textit{option \textguillemets{\texttt{{\faThumbsDown}~Both are bad}}}).
+			Sur la base de ces annotations comparatives, un classement des modèles peut ensuite être établi en calculant leur score \texttt{elo}.
+			
+			% Parallèle entre Chatbot arena et Interactive Clustering.
+			Nous avons constaté que notre \texttt{Clustering Interactif} et ce \texttt{Chatbot Arena} partagent plusieurs similitudes, bien que leurs objectifs soient différents (\textit{la modélisation en thématiques pour le premier, le classement de modèles génératifs pour le second}).
+			Ces similitudes incluent un accent mis sur l'annotation binaire (\textit{{\faEquals}/{\faNotEqual} vs {\faHandPointLeft}/{\faHandPointRight}}) et sur la simplification de la tâche pour s'adapter aux compétences et aux connaissances des annotateurs.
+			Ces points communs nous encouragent à croire qu'il sera possible d'adapter notre méthode d'annotation itérative basée sur un \texttt{Clustering Interactif} pour contribuer aux efforts de contrôle et d'alignement des modèles génératifs à venir.
+		
+			% Figure.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.95\textwidth]{figures/chatbot-arena-vs-interactive-clustering}
+				\caption{
+					Comparaison des captures d'écran du \texttt{Chatbot Arena} \textbf{(1)} et de notre \texttt{Clustering Interactif} \textbf{(2)} :
+					le premier concerne l'annotation de la réponse la plus adéquate parmi les réponses générées par deux modèles différents (choix binaire gauche/droite) ;
+					le second concerne l'annotation de la similitude ou de la différence de cas d'usage entre deux questions (choix binaire égal/différent). 
+				}
+
+				\label{figure:6.2-PERSPECTIVES-CHATBOT-ARENA}
+			\end{figure}
+		\end{leftBarAuthorOpinion}
+		
+		
+	%%%%%--------------------------------------------------------------------
+	%%%%% ASSET CENTRALITY: Approche engagée sur l'importance de valoriser l'expertise humaine dans l'annotation.
+	%%%%%--------------------------------------------------------------------
+	\section*{Approche engagée sur l'importance de valoriser l'expertise humaine dans l'annotation}
+	\addcontentsline{toc}{section}{
+		\protect\numberline{}
+		Approche engagée sur l'importance de valoriser l'expertise humaine dans l'annotation
+	}
 		
 		%%% Mot d'ordre de la fin.
 		Pour conclure ce manuscrit, nous encourageons les gérants de projets d'annotation, quelle que soit la tâche d'annotation à réaliser, à repenser leur protocole de labellisation de données en considérant d'abord les vraies connaissances de leurs experts.
-		En effet, il est tentant de concevoir une stratégie d'annotation classique, et de supposer qu'un annotateur "parfait" ou suffisamment formé arrivera à en supporter la complexité.
+		En effet, il est tentant de concevoir une stratégie d'annotation classique, et de supposer que des annotateurs "parfaits", longuement formés ou en nombre suffisant arriveront à en supporter la complexité.
 		Cependant, nous avons montré au cours de ce doctorat qu'en reformulant judicieusement l'objectif, il était possible de concevoir une stratégie d'annotation accessible facilement aux experts du domaine métier, faisant appel à des connaissances qu'ils appliquent professionnellement au quotidien.
 		Par conséquent, nous pensons qu'il est de notre ressort de réexaminer l'organisation de nos projets d'annotation, afin de ne pas avoir à former des experts pour des tâches qu'ils ne maîtrisent pas, mais de les impliquer pour des tâches où ils sont déjà des experts : un tel changement de position serait alors une réelle avancée pour les annotateurs intervenant dans des projets d'apprentissage automatique.
